@@ -45,8 +45,13 @@ public class Listener extends ListenerAdapter
 			normalCommands(event);
 			easterEggs(event);
 			misc(event);
+			
+			if(Stuffz.getMessage(event).startsWith(p + "say") && debug)
+				Say.exe(event);
+			else if(Stuffz.getMessage(event).endsWith("We aren't spambots, are we, " + event.getBot().getNick() + "?") && Stuffz.getNick(event).equalsIgnoreCase("Maunz"))
+				Stuffz.chanMsg(event, "No, we aren't, Maunz.");
 		}
-
+		
 		if(Core.bot.getNick().equals("bl4ckb0t") && debug)
 		{
 			if(Stuffz.getMessage(event).equalsIgnoreCase(p + "disable"))
@@ -55,8 +60,6 @@ public class Listener extends ListenerAdapter
 				Switch.on(event);
 			else if(Stuffz.getMessage(event).equals("?enabled"))
 				Stuffz.chanMsg(event, "" + enabled);
-			else if(Stuffz.getMessage(event).startsWith(p + "say"))
-				Say.exe(event);
 		}
 	}
 

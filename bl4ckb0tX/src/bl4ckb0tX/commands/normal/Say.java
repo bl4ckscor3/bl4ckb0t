@@ -11,6 +11,14 @@ public class Say
 	{
 		String seperate = Stuffz.getMessage(event).substring(4);
 		String msg = seperate.substring(1);
-		Stuffz.chanMsg(event, msg);
+
+		if(Stuffz.getMessage(event).startsWith("-say *say"))
+		{
+			Stuffz.chanMsg(event, "Stop trying to abuse us, " + Stuffz.getNick(event) + "! We aren't spambots, are we, Maunz?");
+		}
+		else
+		{
+			Stuffz.chanMsg(event, msg);
+		}
 	}
 }

@@ -1,6 +1,7 @@
 package bl4ckb0tX.core;
 
 import java.io.IOException;
+import java.net.InetAddress;
 
 import org.pircbotx.Configuration;
 import org.pircbotx.PircBotX;
@@ -18,7 +19,8 @@ public class Core
 		.setVersion("1.0")
 		.setServerHostname("aperture.esper.net")
 		.setServerPort(6667)
-		.setLogin("bl4ckb0t")
+		.setLogin("bl4ckb0t")		
+//		.setLocalAddress(InetAddress.getByName("bots.tehkitti.pw"))
 		.addAutoJoinChannel("#bl4ckscor3")
 		.setNickservPassword("xxx")
 		.setAutoNickChange(true)
@@ -39,6 +41,7 @@ public class Core
 		.setServerHostname("aperture.esper.net")
 		.setServerPort(6667)
 		.setLogin("bl4ckb0t")
+//		.setLocalAddress(InetAddress.getByName("bots.tehkitti.pw"))
 		.addAutoJoinChannel("#bl4ckscor3")
 		.setNickservPassword("xxx")
 		.setAutoNickChange(true)
