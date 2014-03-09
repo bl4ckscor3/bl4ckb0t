@@ -23,8 +23,21 @@ public class Kick
 					"Darkhax",
 					"Geforce132",
 					"Geforce132|Away",
-					"TehKitti"
+					"TehKitti",
+					"Maunz"
 				};
+			String[] usersNotToKick =
+			{
+					"bl4ckscor3",
+					"bl4ckgon3",
+					"bl4ckweb",
+					"bl4ckdro1d",
+					"Darkhax",
+					"Geforce132",
+					"Geforce132|Away",
+					"TehKitti",
+					"Maunz"
+			};
 			//-kick bl4ckscor3 cause i can
 			String splitUserReasonFromCommand = Stuffz.getMessage(event).substring(5);// bl4ckscor3 cause i can
 			String correctSplitFromCommand = splitUserReasonFromCommand.substring(1);//bl4ckscor3 cause i can
@@ -48,9 +61,9 @@ public class Kick
 			}
 			else
 			{
-				for(int k = 0; k < allowedUsers.length; k++)
+				for(int k = 0; k < usersNotToKick.length; k++)
 				{
-					if(user.equalsIgnoreCase(allowedUsers[k]))
+					if(user.equalsIgnoreCase(usersNotToKick[k]))
 					{
 						found = true;
 					}
