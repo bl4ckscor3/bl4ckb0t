@@ -28,21 +28,27 @@ public class Stop
 
 			if(!done)
 			{
-				String[] reboot = event.getMessage().split(" ", 2); //getting everything after "-stop " | [0] is "-stop" for 3 chars in general
-
+				//-stop no abc def
+				String splitRebootReasonFromCommand = Stuffz.getMessage(event).substring(5);// no abc def
+				String correctSplitFromCommand = splitRebootReasonFromCommand.substring(1);//no abc def
+				String[] splitRebootFromReason = correctSplitFromCommand.split(" ");//no
+				String splitReasonFromReboot = correctSplitFromCommand.substring(splitRebootFromReason[0].length());// abc def
+				String reboot = splitRebootFromReason[0];
+				String reason = splitReasonFromReboot.substring(1);
+				
 				try
 				{
-					switch(reboot[1])
+					switch(reboot)
 					{
 						case "yes":
 							Stuffz.chanMsg(event, "I will reboot, sir");
-							irc.quitServer("My master sent me to sleep!");
+							irc.quitServer(reason);
 							Core.main2(); //making another PircBotX
 							break;
 
 						case "no":
 							Stuffz.chanMsg(event, "You wished that I don't reboot. Do you still like me?");
-							irc.quitServer("My master sent me to sleep!");
+							irc.quitServer(reason);
 							break;
 
 						default:
