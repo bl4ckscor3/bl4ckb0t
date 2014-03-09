@@ -74,7 +74,7 @@ public class Listener extends ListenerAdapter
 			Test.exe(event);
 		else if(Stuffz.getMessage(event).startsWith(p + "stop") || Stuffz.getMessage(event).equalsIgnoreCase(event.getBot().getNick() + ", sleep!"))
 			Stop.exe(event);
-		else if(Stuffz.getMessage(event).startsWith(p + "k"))
+		else if(Stuffz.getMessage(event).startsWith(p + "kick"))
 			Kick.exe(event);
 		else if(Stuffz.getMessage(event).startsWith(p + "letter"))
 			RandomStuff.letter(event);

@@ -18,6 +18,7 @@ public class Help
 		Stuffz.addHelpLine(event, "-addjoke                    " + Colors.BOLD + "| You can add your own Jokes with this command! NOT IMPLEMENTED YET");
 		Stuffz.addHelpLine(event, "-u <name> [where to go]     " + Colors.BOLD + "| Minecraftforumuser command!");
 		Stuffz.addHelpLine(event, "-say <what to say>          " + Colors.BOLD + "| Lets bl4cb0t say what you said if debug mode is activated!");
+		Stuffz.addHelpLine(event, "-kick <user> <reason>       " + Colors.BOLD + "| Kicks a user from a channel. Only useable by specific people");
 		Stuffz.addEmptyLine(event, false);
 		Stuffz.userMsg(event, Colors.BOLD + Colors.OLIVE + "----------------------Other features----------------------");
 		Stuffz.addHelpLine(event, "Welcome Messages!");
