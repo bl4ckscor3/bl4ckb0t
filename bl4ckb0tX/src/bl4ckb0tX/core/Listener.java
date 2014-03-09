@@ -61,6 +61,8 @@ public class Listener extends ListenerAdapter
 				Switch.on(event);
 			else if(Stuffz.getMessage(event).equals("?enabled"))
 				Stuffz.chanMsg(event, "" + enabled);
+			else if(Stuffz.getMessage(event).startsWith(p + "changenick"))
+				ChangeNick.exe(event);
 		}
 	}
 
@@ -86,8 +88,6 @@ public class Listener extends ListenerAdapter
 			Debug.exe(event);
 		else if(Stuffz.getMessage(event).startsWith(p + "u"))
 			McfUser.exe(event);
-		else if(Stuffz.getMessage(event).startsWith(p + "changenick"))
-			ChangeNick.exe(event);
 	}
 
 	public void misc(MessageEvent event) throws Exception
