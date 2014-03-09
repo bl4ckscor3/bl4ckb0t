@@ -14,7 +14,7 @@ public class ChangeNick
 		String seperated = Stuffz.getMessage(event).substring(11);
 		String nick = seperated.substring(1);
 		
-		if(Stuffz.validUser(event, Stuffz.getNick(event)))
+		if(Stuffz.validUser(event))
 		{
 			OutputIRC irc = new OutputIRC(Core.bot);
 			

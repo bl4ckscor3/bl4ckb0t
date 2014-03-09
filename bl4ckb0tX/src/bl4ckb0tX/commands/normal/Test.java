@@ -9,7 +9,7 @@ public class Test
 	@SuppressWarnings("rawtypes")
 	public static void exe(MessageEvent event)
 	{
-		if(Stuffz.validUser(event, Stuffz.getNick(event)))
+		if(Stuffz.validUser(event))
 		{
 			Stuffz.chanMsg(event, "Nothing to see here");
 		}

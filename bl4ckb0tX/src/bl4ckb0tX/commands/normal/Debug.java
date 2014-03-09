@@ -10,7 +10,7 @@ public class Debug
 {
 	public static void exe(MessageEvent event)
 	{
-		if(Stuffz.validUser(event, Stuffz.getNick(event)))
+		if(Stuffz.validUser(event))
 		{
 			if(!Listener.debug)
 			{

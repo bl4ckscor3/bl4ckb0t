@@ -2,6 +2,7 @@ package bl4ckb0tX.util;
 
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
+import org.pircbotx.hooks.events.PrivateMessageEvent;
 
 @SuppressWarnings("rawtypes")
 public class Stuffz
@@ -53,7 +54,7 @@ public class Stuffz
 		}
 	}
 	
-	public static boolean validUser(MessageEvent event, String nick)
+	public static boolean validUser(MessageEvent event)
 	{
 		String[] validUsers =
 			{
@@ -66,6 +67,26 @@ public class Stuffz
 		for(int i = 0; i < validUsers.length; i++)
 		{
 			if(getNick(event).equalsIgnoreCase(validUsers[i]))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static boolean validUser(PrivateMessageEvent event)
+	{
+		String[] validUsers =
+			{
+				"bl4ckscor3",
+				"bl4ckgon3",
+				"bl4ckweb",
+				"bl4ckdro1d"
+			};
+		
+		for(int i = 0; i < validUsers.length; i++)
+		{
+			if(event.getUser().getNick().equalsIgnoreCase(validUsers[i]))
 			{
 				return true;
 			}

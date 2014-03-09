@@ -10,7 +10,7 @@ public class Switch
 {
 	public static void off(MessageEvent event)
 	{	
-		if(Stuffz.validUser(event, Stuffz.getNick(event)))
+		if(Stuffz.validUser(event))
 		{
 			if(Listener.enabled)
 			{

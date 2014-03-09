@@ -12,8 +12,8 @@ public class Help
 	{
 		Stuffz.userMsg(event, Colors.BOLD + Colors.OLIVE + "----------------------My Commands :)----------------------");
 		Stuffz.addHelpLine(event, "-time                       " + Colors.BOLD + "| Tells you the current time from where I'm running!");
-		Stuffz.addHelpLine(event, "-letter <number>            " + Colors.BOLD + "| Outputs as many random letters as you specified!");
-		Stuffz.addHelpLine(event, "-number <number>            " + Colors.BOLD + "| Outputs as many random numbers as you specified!");
+		Stuffz.addHelpLine(event, "-letter <number>            " + Colors.BOLD + "| Outputs as many random letters as you specified (not more than 20)!");
+		Stuffz.addHelpLine(event, "-number <number>            " + Colors.BOLD + "| Outputs as many random numbers as you specified (not more than 20)!");
 		Stuffz.addHelpLine(event, "-joke                       " + Colors.BOLD + "| Simply tells a joke! NOT IMPLEMENTED YET");
 		Stuffz.addHelpLine(event, "-addjoke                    " + Colors.BOLD + "| You can add your own Jokes with this command! NOT IMPLEMENTED YET");
 		Stuffz.addHelpLine(event, "-u <name> [where to go]     " + Colors.BOLD + "| Minecraftforumuser command!");

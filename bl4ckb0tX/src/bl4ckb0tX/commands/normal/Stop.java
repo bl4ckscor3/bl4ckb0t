@@ -14,7 +14,7 @@ public class Stop
 {
 	public static void exe(MessageEvent event) throws IOException, IrcException
 	{
-		if(Stuffz.validUser(event, Stuffz.getNick(event)))
+		if(Stuffz.validUser(event))
 		{
 			boolean done = false;
 			OutputIRC irc = new OutputIRC(Core.bot);
@@ -44,7 +44,7 @@ public class Stop
 							Stuffz.chanMsg(event, "You wished that I don't reboot. Do you still like me?");
 							irc.quitServer("My master sent me to sleep!");
 							break;
-
+							
 						default:
 							Stuffz.userMsg(event, "Should I reboot? I cannot disconnect if I don't know that :(");
 					}

@@ -13,15 +13,18 @@ public class Easter
 		love(event);
 		fourtyTwo(event);
 	}
-	
+
 	private static void love(MessageEvent event)
 	{
 		if(Stuffz.getMessage(event).contains(Core.bot.getNick()) && Stuffz.getMessage(event).contains("love") && !((Stuffz.getMessage(event).contains("don't") || Stuffz.getMessage(event).contains("does not")) || Stuffz.getMessage(event).contains("not") || Stuffz.getMessage(event).contains("hate")))
 		{
-			Stuffz.respond(event, "I love you too :)");
+			if(Stuffz.validUser(event))
+				Stuffz.respond(event, "I love you too :)");
+			else
+				Stuffz.respond(event, "sorry, I only love bl4ckscor3.");
 		}
 	}
-	
+
 	private static void fourtyTwo(MessageEvent event)
 	{
 		if(Stuffz.getMessage(event).contains("answer of life, universe and everything") || Stuffz.getMessage(event).contains("answer to everything") || Stuffz.getMessage(event).contains("answer of everything"))

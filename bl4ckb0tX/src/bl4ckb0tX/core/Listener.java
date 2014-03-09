@@ -3,6 +3,7 @@ package bl4ckb0tX.core;
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.JoinEvent;
 import org.pircbotx.hooks.events.MessageEvent;
+import org.pircbotx.hooks.events.PrivateMessageEvent;
 
 import bl4ckb0tX.commands.egg.Easter;
 import bl4ckb0tX.commands.normal.ChangeNick;
@@ -27,6 +28,15 @@ public class Listener extends ListenerAdapter
 	public static boolean debug = false;
 
 	@Override
+	public void onPrivateMessage(PrivateMessageEvent event)
+	{
+		if(Stuffz.validUser(event))
+			Core.bot.sendIRC().message("#bl4ckscor3", event.getMessage());
+		else
+			Core.bot.sendIRC().message("bl4ckscor3", event.getUser().getNick() + " just sent me this message: " + event.getMessage());
+	}
+
+	@Override
 	public void onJoin(JoinEvent event)
 	{
 		if(enabled)
@@ -46,23 +56,32 @@ public class Listener extends ListenerAdapter
 			normalCommands(event);
 			easterEggs(event);
 			misc(event);
-			
+
 			if(Stuffz.getMessage(event).startsWith(p + "say") && debug)
 				Say.exe(event);
-			else if(Stuffz.getMessage(event).endsWith("We aren't spambots, are we, " + event.getBot().getNick() + "?") && Stuffz.getNick(event).equalsIgnoreCase("Maunz"))
+			else if(Stuffz.getMessage(event).endsWith("We aren't spambots, are we, bl4ckb0t?") && Stuffz.getNick(event).equalsIgnoreCase("Maunz"))
 				Stuffz.chanMsg(event, "No, we aren't, Maunz.");
 		}
-		
-		if(Core.bot.getNick().equals("bl4ckb0t") && debug)
+
+		if(debug)
 		{
-			if(Stuffz.getMessage(event).equalsIgnoreCase(p + "disable"))
-				Switch.off(event);
-			else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "enable"))
-				Switch.on(event);
-			else if(Stuffz.getMessage(event).equals("?enabled"))
-				Stuffz.chanMsg(event, "" + enabled);
-			else if(Stuffz.getMessage(event).startsWith(p + "changenick"))
-				ChangeNick.exe(event);
+			if(Core.bot.getNick().equals("bl4ckb0t"))
+			{
+				if(Stuffz.getMessage(event).equalsIgnoreCase(p + "disable"))
+					Switch.off(event);
+				else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "enable"))
+					Switch.on(event);
+				else if(Stuffz.getMessage(event).equals("?enabled"))
+					Stuffz.chanMsg(event, "" + enabled);
+				else if(Stuffz.getMessage(event).startsWith(p + "changenick"))
+					ChangeNick.exe(event);
+			}
+
+			if(enabled)
+			{
+				if(Stuffz.getMessage(event).startsWith(p + "changenick"))
+					ChangeNick.exe(event);
+			}
 		}
 	}
 
