@@ -5,6 +5,7 @@ import org.pircbotx.hooks.events.JoinEvent;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckb0tX.commands.egg.Easter;
+import bl4ckb0tX.commands.normal.ChangeNick;
 import bl4ckb0tX.commands.normal.Debug;
 import bl4ckb0tX.commands.normal.Help;
 import bl4ckb0tX.commands.normal.Joke;
@@ -73,7 +74,7 @@ public class Listener extends ListenerAdapter
 			Test.exe(event);
 		else if(Stuffz.getMessage(event).startsWith(p + "stop") || Stuffz.getMessage(event).equalsIgnoreCase(event.getBot().getNick() + ", sleep!"))
 			Stop.exe(event);
-		else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "k"))
+		else if(Stuffz.getMessage(event).startsWith(p + "k"))
 			Kick.exe(event);
 		else if(Stuffz.getMessage(event).startsWith(p + "letter"))
 			RandomStuff.letter(event);
@@ -85,6 +86,8 @@ public class Listener extends ListenerAdapter
 			Debug.exe(event);
 		else if(Stuffz.getMessage(event).startsWith(p + "u"))
 			McfUser.exe(event);
+		else if(Stuffz.getMessage(event).startsWith(p + "changenick"))
+			ChangeNick.exe(event);
 	}
 
 	public void misc(MessageEvent event) throws Exception

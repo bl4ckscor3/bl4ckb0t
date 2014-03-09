@@ -10,7 +10,7 @@ public class Switch
 {
 	public static void off(MessageEvent event)
 	{	
-		if(Stuffz.getNick(event).equalsIgnoreCase("bl4ckscor3") || Stuffz.getNick(event).equalsIgnoreCase("bl4ckgon3") || Stuffz.getNick(event).equalsIgnoreCase("bl4ckweb") || Stuffz.getNick(event).equalsIgnoreCase("bl4ckdro1d"))
+		if(Stuffz.validUser(event, Stuffz.getNick(event)))
 		{
 			if(Listener.enabled)
 			{

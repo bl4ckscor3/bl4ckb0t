@@ -14,7 +14,7 @@ public class Stop
 {
 	public static void exe(MessageEvent event) throws IOException, IrcException
 	{
-		if(Stuffz.getNick(event).equals("bl4ckscor3") || Stuffz.getNick(event).equals("bl4ckgon3") || Stuffz.getNick(event).equals("bl4ckweb") || Stuffz.getNick(event).equals("bl4ckdro1d"))
+		if(Stuffz.validUser(event, Stuffz.getNick(event)))
 		{
 			boolean done = false;
 			OutputIRC irc = new OutputIRC(Core.bot);

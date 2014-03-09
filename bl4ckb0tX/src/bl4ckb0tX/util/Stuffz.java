@@ -52,4 +52,24 @@ public class Stuffz
 			Stuffz.userMsg(event, " ");
 		}
 	}
+	
+	public static boolean validUser(MessageEvent event, String nick)
+	{
+		String[] validUsers =
+			{
+				"bl4ckscor3",
+				"bl4ckgon3",
+				"bl4ckweb",
+				"bl4ckdro1d"
+			};
+		
+		for(int i = 0; i < validUsers.length; i++)
+		{
+			if(getNick(event).equalsIgnoreCase(validUsers[i]))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 }
