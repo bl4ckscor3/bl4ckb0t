@@ -9,6 +9,7 @@ import org.pircbotx.hooks.events.PrivateMessageEvent;
 import bl4ckb0tX.commands.egg.Easter;
 import bl4ckb0tX.commands.normal.ChangeNick;
 import bl4ckb0tX.commands.normal.Debug;
+import bl4ckb0tX.commands.normal.GirlBalls;
 import bl4ckb0tX.commands.normal.Help;
 import bl4ckb0tX.commands.normal.Joke;
 import bl4ckb0tX.commands.normal.Kick;
@@ -96,6 +97,8 @@ public class Listener extends ListenerAdapter
 			Twitter.exe(event);
 		else if(Stuffz.getMessage(event).startsWith(p + "tv"))
 			Twitch.exe(event);
+		else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "girlballs"))
+			GirlBalls.exe(event);
 	}
 
 	public void misc(MessageEvent event) throws Exception

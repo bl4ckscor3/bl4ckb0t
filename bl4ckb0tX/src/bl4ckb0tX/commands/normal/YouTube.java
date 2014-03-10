@@ -11,6 +11,9 @@ public class YouTube
 	{
 		String[] seperate = Stuffz.getMessage(event).split(" ");
 		
-		Stuffz.respond(event, "http://www.youtube.com/" + seperate[1], false);
+		if(seperate[1].equalsIgnoreCase("emmablackery"))
+			Stuffz.respond(event, "only bl4ckscor3 can get girlballs, sorry :(", true);
+		else
+			Stuffz.respond(event, "http://www.youtube.com/" + seperate[1], false);
 	}
 }
