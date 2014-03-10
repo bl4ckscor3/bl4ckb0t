@@ -24,7 +24,8 @@ public class Kick
 					"Geforce132",
 					"Geforce132|Away",
 					"TehKitti",
-					"Maunz"
+					"Maunz",
+					"StealthBravo"
 				};
 			String[] usersNotToKick =
 			{
@@ -36,7 +37,8 @@ public class Kick
 					"Geforce132",
 					"Geforce132|Away",
 					"TehKitti",
-					"Maunz"
+					"Maunz",
+					"StealthBravo"
 			};
 			//-kick bl4ckscor3 cause i can
 			String splitUserReasonFromCommand = Stuffz.getMessage(event).substring(5);// bl4ckscor3 cause i can

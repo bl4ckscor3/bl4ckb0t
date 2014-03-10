@@ -26,7 +26,7 @@ public class Core
 		.setAutoNickChange(true)
 		.setCapEnabled(true)
 		.addListener(new Listener())
-		.setMessageDelay(0)
+		.setMessageDelay(500)
 		.buildConfiguration();
 		
 		bot = new PircBotX(config);
@@ -47,7 +47,7 @@ public class Core
 		.setAutoNickChange(true)
 		.setCapEnabled(true)
 		.addListener(new Listener())
-		.setMessageDelay(0)
+		.setMessageDelay(500)
 		.buildConfiguration();
 		
 		bot = new PircBotX(config);

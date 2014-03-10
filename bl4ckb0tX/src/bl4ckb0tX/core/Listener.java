@@ -99,6 +99,8 @@ public class Listener extends ListenerAdapter
 			Twitch.exe(event);
 		else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "girlballs"))
 			GirlBalls.exe(event);
+		else if(Stuffz.getMessage(event).startsWith(p + "draw"))
+			Draw.exe(event);
 	}
 
 	public void misc(MessageEvent event) throws Exception

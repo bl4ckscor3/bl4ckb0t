@@ -22,6 +22,7 @@ public class Help
 		Stuffz.addHelpLine(event, "-tv <channel>               " + Colors.BOLD + "| Sends you to the specified Twitch channel!");
 		Stuffz.addHelpLine(event, "-say <what to say>          " + Colors.BOLD + "| Lets bl4cb0t say what you said if debug mode is activated!");
 		Stuffz.addHelpLine(event, "-kick <user> <reason>       " + Colors.BOLD + "| Kicks a user from a channel. Only useable by specific people");
+		Stuffz.addHelpLine(event, "-draw help                  " + Colors.BOLD + "| See available drawings. To draw, replace \"help\" with a listed word!");
 		Stuffz.addEmptyLine(event, false);
 		Stuffz.userMsg(event, Colors.BOLD + Colors.OLIVE + "----------------------Other features----------------------");
 		Stuffz.addHelpLine(event, "Welcome Messages!");
