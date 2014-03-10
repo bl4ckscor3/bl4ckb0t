@@ -9,6 +9,7 @@ import org.pircbotx.hooks.events.PrivateMessageEvent;
 import bl4ckb0tX.commands.egg.Easter;
 import bl4ckb0tX.commands.normal.ChangeNick;
 import bl4ckb0tX.commands.normal.Debug;
+import bl4ckb0tX.commands.normal.Draw;
 import bl4ckb0tX.commands.normal.GirlBalls;
 import bl4ckb0tX.commands.normal.Help;
 import bl4ckb0tX.commands.normal.Joke;
