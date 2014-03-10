@@ -3,6 +3,7 @@ package bl4ckb0tX.core;
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.JoinEvent;
 import org.pircbotx.hooks.events.MessageEvent;
+import org.pircbotx.hooks.events.NickChangeEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
 import bl4ckb0tX.commands.egg.Easter;
@@ -26,27 +27,6 @@ public class Listener extends ListenerAdapter
 	private static final String p = "-";
 	public static boolean enabled = true;
 	public static boolean debug = false;
-
-	@Override
-	public void onPrivateMessage(PrivateMessageEvent event)
-	{
-		if(Stuffz.validUser(event))
-			Core.bot.sendIRC().message("#bl4ckscor3", event.getMessage());
-		else
-			Core.bot.sendIRC().message("bl4ckscor3", event.getUser().getNick() + " just sent me this message: " + event.getMessage());
-	}
-
-	@Override
-	public void onJoin(JoinEvent event)
-	{
-		if(enabled)
-		{
-			if(!(event.getUser().getNick().equalsIgnoreCase("bl4ckb0t") || event.getUser().getNick().equalsIgnoreCase("bl4ckb0t1") || event.getUser().getNick().equalsIgnoreCase("bl4ckb0t2") || event.getUser().getNick().equalsIgnoreCase("bl4ckb0t3")))
-			{
-				event.getUser().send().notice("Welcome to the official channel of bl4ckscor3! Type '-help' for help and /topic to see the topic of the channel.");
-			}
-		}
-	}
 
 	@Override
 	public void onMessage(MessageEvent event) throws Exception
@@ -118,5 +98,35 @@ public class Listener extends ListenerAdapter
 	public void easterEggs(MessageEvent event)
 	{
 		Easter.init(event);
+	}
+
+	@Override
+	public void onPrivateMessage(PrivateMessageEvent event)
+	{
+		if(Stuffz.validUser(event))
+			Core.bot.sendIRC().message("#bl4ckscor3", event.getMessage());
+		else
+			Core.bot.sendIRC().message("bl4ckscor3", event.getUser().getNick() + " just sent me this message: " + event.getMessage());
+	}
+
+	@Override
+	public void onNickChange(NickChangeEvent event) throws Exception 
+	{
+		if(event.getOldNick().equalsIgnoreCase("bl4ckscor3"))
+			Core.bot.sendIRC().message("#bl4ckscor3", "Bye, bl4ckscor3 :(");
+		else if(event.getOldNick().equalsIgnoreCase("bl4ckgon3"))
+			Core.bot.sendIRC().message("#bl4ckscor3", "Hi, bl4ckscor3 :)");			
+	}
+
+	@Override
+	public void onJoin(JoinEvent event)
+	{
+		if(enabled)
+		{
+			if(!(event.getUser().getNick().equalsIgnoreCase("bl4ckb0t") || event.getUser().getNick().equalsIgnoreCase("bl4ckb0t1") || event.getUser().getNick().equalsIgnoreCase("bl4ckb0t2") || event.getUser().getNick().equalsIgnoreCase("bl4ckb0t3")))
+			{
+				event.getUser().send().notice("Welcome to the official channel of bl4ckscor3! Type '-help' for help and /topic to see the topic of the channel.");
+			}
+		}
 	}
 }
