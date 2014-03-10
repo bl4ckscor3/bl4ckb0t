@@ -7,6 +7,13 @@ import bl4ckb0tX.util.Stuffz;
 @SuppressWarnings("rawtypes")
 public class Draw
 {
+	private static String[] drawings =
+		{
+		"smiley",
+		"mario",
+		"batman"
+		};
+
 	public static void exe(MessageEvent event)
 	{
 		String[] seperate = Stuffz.getMessage(event).split(" ");
@@ -14,7 +21,7 @@ public class Draw
 		switch(seperate[1].toLowerCase())
 		{
 			case "help":
-				Stuffz.chanMsg(event, "Available drawings: 'smiley' | 'mario'");
+				Stuffz.chanMsg(event, getAvailableDrawings());
 				break;
 			case "smiley":
 				smiley(event);
@@ -22,8 +29,11 @@ public class Draw
 			case "mario":
 				mario(event);
 				break;
+			case "batman":
+				batman(event);
+				break;
 			default:
-				Stuffz.chanMsg(event, "Available drawings: 'smiley' | 'mario'");
+				Stuffz.chanMsg(event, getAvailableDrawings());
 		}
 	}
 
@@ -66,5 +76,43 @@ public class Draw
 		Stuffz.chanMsg(event, "1,1xxx5,5xxx1,1xxxx5,5xxx1,1xxx");
 		Stuffz.chanMsg(event, "1,1xx5,5xxxx1,1xxxx5,5xxxx1,1xx");
 		Stuffz.chanMsg(event, "1,1xxxxxxxxxxxxxxxx");
+	}
+
+	private static void batman(MessageEvent event)
+	{
+		Stuffz.chanMsg(event, "0,0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+		Stuffz.chanMsg(event, "0,0xxxxxxxxxxxxxx1,1xxxxxxxxxxxxxx0,0xxxxxxxxxxxxxx");
+		Stuffz.chanMsg(event, "0,0xxxxxxxxxx1,1xxxx8,8xxxxxxxxxxxxxx1,1xxxx0,0xxxxxxxxxx");
+		Stuffz.chanMsg(event, "0,0xxxxxxxx1,1xx8,8xxxxxxxxxxxxxxxxxxxxxx1,1xx0,0xxxxxxxx");
+		Stuffz.chanMsg(event, "0,0xxxxxx1,1xx8,8xxxx1,1xx8,8xxxx1,1xx8,8xx1,1xx8,8xxxx1,1xx8,8xxxx1,1xx0,0xxxxxx");
+		Stuffz.chanMsg(event, "0,0xxxx1,1xx8,8xxxx1,1xx8,8xxxxxx1,1xxxxxx8,8xxxxxx1,1xx8,8xxxx1,1xx0,0xxxx");
+		Stuffz.chanMsg(event, "0,0xx1,1xx8,8xxxx1,1xxxx8,8xxxxxx1,1xxxxxx8,8xxxxxx1,1xxxx8,8xxxx1,1xx0,0xx");
+		Stuffz.chanMsg(event, "0,0xx1,1xx8,8xx1,1xxxxxxxx8,8xx1,1xxxxxxxxxx8,8xx1,1xxxxxxxx8,8xx1,1xx0,0xx");
+		Stuffz.chanMsg(event, "0,0xx1,1xx8,8xx1,1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx8,8xx1,1xx0,0xx");
+		Stuffz.chanMsg(event, "0,0xx1,1xx8,8xx1,1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx8,8xx1,1xx0,0xx");
+		Stuffz.chanMsg(event, "0,0xx1,1xx8,8xx1,1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx8,8xx1,1xx0,0xx");
+		Stuffz.chanMsg(event, "	0,0xx1,1xx8,8xx1,1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx8,8xx1,1xx0,0xx");
+		Stuffz.chanMsg(event, "	0,0xx1,1xx8,8xxxx1,1xxxx8,8xx1,1xx8,8xx1,1xxxxxx8,8xx1,1xx8,8xx1,1xxxx8,8xxxx1,1xx0,0xx");
+		Stuffz.chanMsg(event, "	0,0xxxx1,1xx8,8xxxx1,1xx8,8xxxxxxxx1,1xx8,8xxxxxxxx1,1xx8,8xxxx1,1xx0,0xxxx");
+		Stuffz.chanMsg(event, "0,0xxxxxx1,1xx8,8xxxx1,1xx8,8xxxxxx1,1xx8,8xxxxxx1,1xx8,8xxxx1,1xx0,0xxxxxx");
+		Stuffz.chanMsg(event, "0,0xxxxxxxx1,1xx8,8xxxxxxxxxxxxxxxxxxxxxx1,1xx0,0xxxxxxxx");
+		Stuffz.chanMsg(event, "0,0xxxxxxxxxx1,1xxxx8,8xxxxxxxxxxxxxx1,1xxxx0,0xxxxxxxxxx");
+		Stuffz.chanMsg(event, "0,0xxxxxxxxxxxxxx1,1xxxxxxxxxxxxxx0,0xxxxxxxxxxxxxx");
+		Stuffz.chanMsg(event, "0,0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+	}
+
+	private static String getAvailableDrawings()
+	{
+		StringBuilder output = new StringBuilder();
+
+		output.append("Available drawings: ");
+
+		for(int i = 0; i < drawings.length; i++)
+		{
+			output.append("'" + drawings[i] + "' | ");
+		}
+
+		output.delete(output.length() - 3, output.length() - 1);
+		return output.toString();
 	}
 }
