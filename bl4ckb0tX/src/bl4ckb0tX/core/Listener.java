@@ -19,6 +19,9 @@ import bl4ckb0tX.commands.normal.Stop;
 import bl4ckb0tX.commands.normal.Switch;
 import bl4ckb0tX.commands.normal.Test;
 import bl4ckb0tX.commands.normal.Time;
+import bl4ckb0tX.commands.normal.Twitch;
+import bl4ckb0tX.commands.normal.Twitter;
+import bl4ckb0tX.commands.normal.YouTube;
 import bl4ckb0tX.util.Stuffz;
 
 @SuppressWarnings("rawtypes")
@@ -87,6 +90,12 @@ public class Listener extends ListenerAdapter
 			Debug.exe(event);
 		else if(Stuffz.getMessage(event).startsWith(p + "u"))
 			McfUser.exe(event);
+		else if(Stuffz.getMessage(event).startsWith(p + "yt"))
+			YouTube.exe(event);
+		else if(Stuffz.getMessage(event).startsWith(p + "tw"))
+			Twitter.exe(event);
+		else if(Stuffz.getMessage(event).startsWith(p + "tv"))
+			Twitch.exe(event);
 	}
 
 	public void misc(MessageEvent event) throws Exception

@@ -17,9 +17,12 @@ public class Stuffz
 		event.getUser().send().notice(msg);
 	}
 	
-	public static void respond(MessageEvent event, String msg)
+	public static void respond(MessageEvent event, String msg, boolean comma)
 	{
-		chanMsg(event, getNick(event) + ", " + msg);
+		if(comma)
+			chanMsg(event, getNick(event) + ", " + msg);
+		else
+			chanMsg(event, getNick(event) + ": " + msg);
 	}
 	
 	public static void sorry(MessageEvent event)

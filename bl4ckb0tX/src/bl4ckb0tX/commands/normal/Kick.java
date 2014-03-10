@@ -82,7 +82,7 @@ public class Kick
 		}
 		else
 		{
-			Stuffz.respond(event, "you need to be identified to be able to kick someone.");
+			Stuffz.respond(event, "you need to be identified to be able to kick someone.", true);
 		}
 	}
 }

@@ -19,9 +19,9 @@ public class Easter
 		if(Stuffz.getMessage(event).contains(Core.bot.getNick()) && Stuffz.getMessage(event).contains("love") && !((Stuffz.getMessage(event).contains("don't") || Stuffz.getMessage(event).contains("does not")) || Stuffz.getMessage(event).contains("not") || Stuffz.getMessage(event).contains("hate")))
 		{
 			if(Stuffz.validUser(event))
-				Stuffz.respond(event, "I love you too :)");
+				Stuffz.respond(event, "I love you too :)", true);
 			else
-				Stuffz.respond(event, "sorry, I only love bl4ckscor3.");
+				Stuffz.respond(event, "sorry, I only love bl4ckscor3.", true);
 		}
 	}
 
@@ -29,11 +29,11 @@ public class Easter
 	{
 		if(Stuffz.getMessage(event).contains("answer of life, universe and everything") || Stuffz.getMessage(event).contains("answer to everything") || Stuffz.getMessage(event).contains("answer of everything"))
 		{
-			Stuffz.respond(event, "42");
+			Stuffz.respond(event, "42", false);
 		}
 		if(Stuffz.getMessage(event).equals("42"))
 		{
-			Stuffz.respond(event, "this is the answer of life, universe and everything!");
+			Stuffz.respond(event, "this is the answer of life, universe and everything!", true);
 		}
 	}
 }
