@@ -17,6 +17,9 @@ public class Help
 		Stuffz.addHelpLine(event, "-joke                       " + Colors.BOLD + "| Simply tells a joke! NOT IMPLEMENTED YET");
 		Stuffz.addHelpLine(event, "-addjoke                    " + Colors.BOLD + "| You can add your own Jokes with this command! NOT IMPLEMENTED YET");
 		Stuffz.addHelpLine(event, "-u <name> [where to go]     " + Colors.BOLD + "| Minecraftforumuser command!");
+		Stuffz.addHelpLine(event, "-yt <channel>               " + Colors.BOLD + "| Sends you to the specified YouTube channel!");
+		Stuffz.addHelpLine(event, "-tw <profile>               " + Colors.BOLD + "| Sends you to the specified Twitter profile!");
+		Stuffz.addHelpLine(event, "-tv <channel>               " + Colors.BOLD + "| Sends you to the specified Twitch channel!");
 		Stuffz.addHelpLine(event, "-say <what to say>          " + Colors.BOLD + "| Lets bl4cb0t say what you said if debug mode is activated!");
 		Stuffz.addHelpLine(event, "-kick <user> <reason>       " + Colors.BOLD + "| Kicks a user from a channel. Only useable by specific people");
 		Stuffz.addEmptyLine(event, false);
