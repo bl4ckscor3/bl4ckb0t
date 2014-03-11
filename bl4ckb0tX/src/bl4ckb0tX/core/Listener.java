@@ -14,6 +14,7 @@ import bl4ckb0tX.commands.normal.GirlBalls;
 import bl4ckb0tX.commands.normal.Help;
 import bl4ckb0tX.commands.normal.Joke;
 import bl4ckb0tX.commands.normal.Kick;
+import bl4ckb0tX.commands.normal.LatestForge;
 import bl4ckb0tX.commands.normal.McfUser;
 import bl4ckb0tX.commands.normal.RandomStuff;
 import bl4ckb0tX.commands.normal.Say;
@@ -78,7 +79,7 @@ public class Listener extends ListenerAdapter
 			Time.exe(event);
 		else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "test"))
 			Test.exe(event);
-		else if(Stuffz.getMessage(event).startsWith(p + "stop") || Stuffz.getMessage(event).equalsIgnoreCase(event.getBot().getNick() + ", sleep!"))
+		else if(Stuffz.getMessage(event).startsWith(p + "stop") || Stuffz.getMessage(event).equalsIgnoreCase(event.getBot().getNick() + ", sleep"))
 			Stop.exe(event);
 		else if(Stuffz.getMessage(event).startsWith(p + "kick"))
 			Kick.exe(event);
@@ -102,12 +103,16 @@ public class Listener extends ListenerAdapter
 			GirlBalls.exe(event);
 		else if(Stuffz.getMessage(event).startsWith(p + "draw"))
 			Draw.exe(event);
+		else if(Stuffz.getMessage(event).startsWith(p + "latestforge"))
+			LatestForge.exe(event);
 	}
 
 	public void misc(MessageEvent event) throws Exception
 	{
 		if(Stuffz.getMessage(event).startsWith(">ide"))
 			Stuffz.userMsg(event, "Wrong channel, pal!");
+		else if(Stuffz.getMessage(event).equalsIgnoreCase("Show me your github, + " + Core.bot.getNick()))
+			Stuffz.chanMsg(event, "Here it is: https://github.com/bl4ckscor3/bl4ckb0tX");
 	}
 
 	public void easterEggs(MessageEvent event)
