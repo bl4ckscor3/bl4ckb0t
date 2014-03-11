@@ -111,7 +111,7 @@ public class Listener extends ListenerAdapter
 	{
 		if(Stuffz.getMessage(event).startsWith(">ide"))
 			Stuffz.userMsg(event, "Wrong channel, pal!");
-		else if(Stuffz.getMessage(event).equalsIgnoreCase("Show me your github, + " + Core.bot.getNick()))
+		else if(Stuffz.getMessage(event).equalsIgnoreCase("Show me your github, " + Core.bot.getNick()))
 			Stuffz.chanMsg(event, "Here it is: https://github.com/bl4ckscor3/bl4ckb0tX");
 	}
 
