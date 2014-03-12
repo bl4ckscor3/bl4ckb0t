@@ -111,8 +111,8 @@ public class Listener extends ListenerAdapter
 			Draw.exe(event);
 		else if(Stuffz.getMessage(event).startsWith(p + "latestforge"))
 			LatestForge.exe(event);
-		else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "fun"))
-			fun = true;
+		else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "fun") && Stuffz.validUser(event))
+			Fun.exe(event);
 	}
 
 	public void misc(MessageEvent event) throws Exception
