@@ -33,6 +33,7 @@ public class Listener extends ListenerAdapter
 	private static final String p = "-";
 	public static boolean enabled = true;
 	public static boolean debug = false;
+	public static boolean fun = false;
 
 	@Override
 	public void onMessage(MessageEvent event) throws Exception
@@ -68,6 +69,11 @@ public class Listener extends ListenerAdapter
 				if(Stuffz.getMessage(event).startsWith(p + "changenick"))
 					ChangeNick.exe(event);
 			}
+		}
+		
+		if(fun)
+		{
+			Stuffz.chanMsg(event, Stuffz.getMessage(event));
 		}
 	}
 
@@ -105,6 +111,8 @@ public class Listener extends ListenerAdapter
 			Draw.exe(event);
 		else if(Stuffz.getMessage(event).startsWith(p + "latestforge"))
 			LatestForge.exe(event);
+		else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "fun"))
+			fun = true;
 	}
 
 	public void misc(MessageEvent event) throws Exception
