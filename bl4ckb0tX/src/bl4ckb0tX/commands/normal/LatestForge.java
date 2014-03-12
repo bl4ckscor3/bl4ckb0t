@@ -15,73 +15,80 @@ public class LatestForge
 	@SuppressWarnings("rawtypes")
 	public static void exe(MessageEvent event) throws MalformedURLException, IOException
 	{
-		String buffer = "x";
-		String[] seperate = Stuffz.getMessage(event).split(" ");
-		StringBuilder builder = new StringBuilder();
-		BufferedReader mainReader = new BufferedReader(new InputStreamReader(new URL("http://files.minecraftforge.net/").openStream()));
+		try
+		{
+			String buffer = "x";
+			String[] seperate = Stuffz.getMessage(event).split(" ");
+			StringBuilder builder = new StringBuilder();
+			BufferedReader mainReader = new BufferedReader(new InputStreamReader(new URL("http://files.minecraftforge.net/").openStream()));
 
-		if(seperate[1].equals("version"))
-		{
-			Stuffz.respond(event, "the latest version is: " + getLatestForgeVersion(buffer, seperate, builder, mainReader), true);
-		}
-		else if(seperate[1].equals("changelog"))
-		{
-			String latestForge = getLatestForgeVersion(buffer, seperate, builder, mainReader);
-			String changelogUrl = "http://files.minecraftforge.net/maven/net/minecraftforge/forge/" + latestForge + "/forge-" + latestForge + "-changelog.txt";
-
-			Stuffz.respond(event, "here is the changelog for Forge build " + latestForge + ": " + changelogUrl, true);
-		}
-		else if(seperate[1].equals("dlsrc"))
-		{
-			while(mainReader.readLine() != null)
+			if(seperate[1].equals("version"))
 			{
-				buffer = mainReader.readLine();
+				Stuffz.respond(event, "the latest version is: " + getLatestForgeVersion(buffer, seperate, builder, mainReader), true);
+			}
+			else if(seperate[1].equals("changelog"))
+			{
+				String latestForge = getLatestForgeVersion(buffer, seperate, builder, mainReader);
+				String changelogUrl = "http://files.minecraftforge.net/maven/net/minecraftforge/forge/" + latestForge + "/forge-" + latestForge + "-changelog.txt";
 
-				if(buffer.contains("<td>1.7.2-Latest</td>"))
+				Stuffz.respond(event, "here is the changelog for Forge build " + latestForge + ": " + changelogUrl, true);
+			}
+			else if(seperate[1].equals("dlsrc"))
+			{
+				while(mainReader.readLine() != null)
 				{
-					while(mainReader.readLine() != null)
-					{
-						buffer = mainReader.readLine();
+					buffer = mainReader.readLine();
 
-						if(buffer.endsWith("Src</a>)"))
+					if(buffer.contains("<td>1.7.2-Latest</td>"))
+					{
+						while(mainReader.readLine() != null)
 						{
-							String[] filter1 = buffer.split("\"");
-							String[] filter2 = filter1[1].split("y/");
-							String dl = filter2[1].substring(7);
-							Stuffz.respond(event, "this is the download to the latest source of Forge: " + dl, true);
-							break;
+							buffer = mainReader.readLine();
+
+							if(buffer.endsWith("Src</a>)"))
+							{
+								String[] filter1 = buffer.split("\"");
+								String[] filter2 = filter1[1].split("y/");
+								String dl = filter2[1].substring(7);
+								Stuffz.respond(event, "this is the download to the latest source of Forge: " + dl, true);
+								break;
+							}
 						}
 					}
 				}
+
+				Stuffz.respond(event, "I couldn't find a proper version, I'm sorry :(", true);
 			}
-			
-			Stuffz.respond(event, "I couldn't find a proper version, I'm sorry :(", true);
-		}
-		else if(seperate[1].equals("dlmain"))
-		{
-			while(mainReader.readLine() != null)
+			else if(seperate[1].equals("dlmain"))
 			{
-				buffer = mainReader.readLine();
-
-				if(buffer.contains("<td>1.7.2-Latest</td>"))
+				while(mainReader.readLine() != null)
 				{
-					while(mainReader.readLine() != null)
-					{
-						buffer = mainReader.readLine();
+					buffer = mainReader.readLine();
 
-						if(buffer.endsWith("Installer</a>)"))
+					if(buffer.contains("<td>1.7.2-Latest</td>"))
+					{
+						while(mainReader.readLine() != null)
 						{
-							String[] filter1 = buffer.split("\"");
-							String[] filter2 = filter1[1].split("y/");
-							String dl = filter2[1].substring(7);
-							Stuffz.respond(event, "this is the download to the latest installer of Forge: " + dl, true);
-							break;
+							buffer = mainReader.readLine();
+
+							if(buffer.endsWith("Installer</a>)"))
+							{
+								String[] filter1 = buffer.split("\"");
+								String[] filter2 = filter1[1].split("y/");
+								String dl = filter2[1].substring(7);
+								Stuffz.respond(event, "this is the download to the latest installer of Forge: " + dl, true);
+								break;
+							}
 						}
 					}
 				}
+
+				Stuffz.respond(event, "I couldn't find a proper version, I'm sorry :(", true);
 			}
-			
-			Stuffz.respond(event, "I couldn't find a proper version, I'm sorry :(", true);
+		}
+		catch(ArrayIndexOutOfBoundsException e)
+		{
+			Stuffz.chanMsg(event, "Available commands: 'version' | 'changelog' | 'dlsrc' | 'dlmain' - Usage: -latestforge <command>");
 		}
 	}
 
