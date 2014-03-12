@@ -10,6 +10,7 @@ import bl4ckb0tX.commands.egg.Easter;
 import bl4ckb0tX.commands.normal.ChangeNick;
 import bl4ckb0tX.commands.normal.Debug;
 import bl4ckb0tX.commands.normal.Draw;
+import bl4ckb0tX.commands.normal.Fun;
 import bl4ckb0tX.commands.normal.GirlBalls;
 import bl4ckb0tX.commands.normal.Help;
 import bl4ckb0tX.commands.normal.Joke;
@@ -70,8 +71,8 @@ public class Listener extends ListenerAdapter
 					ChangeNick.exe(event);
 			}
 		}
-		
-		if(fun)
+
+		if(fun && !(Stuffz.getMessage(event).equalsIgnoreCase(p + "fun")))
 		{
 			Stuffz.chanMsg(event, Stuffz.getMessage(event));
 		}
