@@ -11,7 +11,17 @@ public class Draw
 		{
 		"smiley",
 		"mario",
-		"batman"
+		"batman",
+		"bullshit",
+		"bunny",
+		"cat",
+		"chick",
+		"fly",
+		"invaders",
+		"megaman",
+		"phone",
+		"superman",
+		"stormtrooper"
 		};
 
 	public static void exe(MessageEvent event)
@@ -31,6 +41,36 @@ public class Draw
 				case "batman":
 					batman(event);
 					break;
+				case "bullshit":
+					bullshit(event);
+					break;
+				case "bunny":
+					bunny(event);
+					break;
+				case "cat":
+					cat(event);
+					break;
+				case "chick":
+					chick(event);
+					break;
+				case "fly":
+					fly(event);
+					break;
+				case "invaders":
+					invaders(event);
+					break;
+				case "megaman":
+					megaman(event);
+					break;
+				case "phone":
+					phone(event);
+					break;
+				case "superman":
+					superman(event);
+					break;
+				case "stormtrooper":
+					stormtrooper(event);
+					break;
 			}
 		}
 		catch(ArrayIndexOutOfBoundsException e)
@@ -40,66 +80,314 @@ public class Draw
 	}
 	private static void smiley(MessageEvent event)
 	{
-		Stuffz.chanMsg(event, "1,1XXXXXXXXXX1,1XXXXXXXXXX1,1XXXXXXXXXX");
-		Stuffz.chanMsg(event, "1,1XXXXXX1,1XXXX8,8XXXXXXXXXX1,1XXXX1,1XXXXXX");
-		Stuffz.chanMsg(event, "1,1XXXX1,1XX8,8XXXXXXXXXXXXXXXXXX1,1XX1,1XXXX");
-		Stuffz.chanMsg(event, "1,1XX1,1XX8,8XXXX1,1XXXX8,8XXXXXX1,1XXXX8,8XXXX1,1XX1,1XX");
-		Stuffz.chanMsg(event, "1,1XX1,1XX8,8XX1,1XX8,8XXXX1,1XX8,8XX1,1XX8,8XXXX1,1XX8,8XX1,1XX1,1XX");
-		Stuffz.chanMsg(event, "1,1XX8,8XXXXXXXXXXXXXXXXXXXXXXXXXX1,1XX");
-		Stuffz.chanMsg(event, "1,1XX8,8XX1,1XXXXXXXXXXXXXXXXXXXXXX8,8XX1,1XX");
-		Stuffz.chanMsg(event, "1,1XX8,8XX1,1XX0,0XX15,15XX1,1XX0,0XXXX15,15XX1,1XX0,0XX15,15XX1,1XX8,8XX1,1XX");
-		Stuffz.chanMsg(event, "1,1XX8,8XX1,1XX0,0XX15,15XX1,1XX0,0XXXX15,15XX1,1XX0,0XX15,15XX1,1XX8,8XX1,1XX");
-		Stuffz.chanMsg(event, "1,1XX8,8XX1,1XX0,0XX15,15XX1,1XX0,0XXXX15,15XX1,1XX0,0XX15,15XX1,1XX8,8XX1,1XX");
-		Stuffz.chanMsg(event, "1,1XX1,1XX8,8XX1,1XX15,15XX1,1XX0,0XXXX15,15XX1,1XX0,0XX1,1XX8,8XX1,1XX1,1XX");
-		Stuffz.chanMsg(event, "1,1XX1,1XX8,8XXXX1,1XXXX0,0XXXX15,15XX1,1XXXX8,8XXXX1,1XX1,1XX");
-		Stuffz.chanMsg(event, "1,1XXXX1,1XX8,8XXXX1,1XXXXXXXXXX8,8XXXX1,1XX1,1XXXX");
-		Stuffz.chanMsg(event, "1,1XXXXXX1,1XXXX8,8XXXXXXXXXX1,1XXXX1,1XXXXXX");
-		Stuffz.chanMsg(event, "1,1XXXXXXXXXX1,1XXXXXXXXXX1,1XXXXXXXXXX");
+		Stuffz.chanMsg(event, "1,1          1,1          1,1          ");
+		Stuffz.chanMsg(event, "1,1      1,1    8,8          1,1    1,1      ");
+		Stuffz.chanMsg(event, "1,1    1,1  8,8                  1,1  1,1    ");
+		Stuffz.chanMsg(event, "1,1  1,1  8,8    1,1    8,8      1,1    8,8    1,1  1,1  ");
+		Stuffz.chanMsg(event, "1,1  1,1  8,8  1,1  8,8    1,1  8,8  1,1  8,8    1,1  8,8  1,1  1,1  ");
+		Stuffz.chanMsg(event, "1,1  8,8                          1,1  ");
+		Stuffz.chanMsg(event, "1,1  8,8  1,1                      8,8  1,1  ");
+		Stuffz.chanMsg(event, "1,1  8,8  1,1  0,0  15,15  1,1  0,0    15,15  1,1  0,0  15,15  1,1  8,8  1,1  ");
+		Stuffz.chanMsg(event, "1,1  8,8  1,1  0,0  15,15  1,1  0,0    15,15  1,1  0,0  15,15  1,1  8,8  1,1  ");
+		Stuffz.chanMsg(event, "1,1  8,8  1,1  0,0  15,15  1,1  0,0    15,15  1,1  0,0  15,15  1,1  8,8  1,1  ");
+		Stuffz.chanMsg(event, "1,1  1,1  8,8  1,1  15,15  1,1  0,0    15,15  1,1  0,0  1,1  8,8  1,1  1,1  ");
+		Stuffz.chanMsg(event, "1,1  1,1  8,8    1,1    0,0    15,15  1,1    8,8    1,1  1,1  ");
+		Stuffz.chanMsg(event, "1,1    1,1  8,8    1,1          8,8    1,1  1,1    ");
+		Stuffz.chanMsg(event, "1,1      1,1    8,8          1,1    1,1      ");
+		Stuffz.chanMsg(event, "1,1          1,1          1,1          ");
 	}
 
 	private static void mario(MessageEvent event)
 	{
-		Stuffz.chanMsg(event, "1,1xxxxxxxxxxxxxxxx");
-		Stuffz.chanMsg(event, "1,1xxxxx4,4xxxxx1,1xxxxxx");
-		Stuffz.chanMsg(event, "1,1xxxx4,4xxxxxxxxx1,1xxx");
-		Stuffz.chanMsg(event, "1,1xxxx5,5xxx7,7xx5,5x7,7x1,1xxxxx");
-		Stuffz.chanMsg(event, "1,1xxx5,5x7,7x5,5x7,7xxx5,5x7,7xxx1,1xxx");
-		Stuffz.chanMsg(event, "1,1xxx5,5x7,7x5,5xx7,7xxx5,5x7,7xxx1,1xx");
-		Stuffz.chanMsg(event, "1,1xxx5,5xx7,7xxxx5,5xxxx1,1xxx");
-		Stuffz.chanMsg(event, "1,1xxxxx7,7xxxxxxx1,1xxxx");
-		Stuffz.chanMsg(event, "1,1xxxx5,5xx4,4x5,5xxx1,1xxxxxx");
-		Stuffz.chanMsg(event, "1,1xxx5,5xxx4,4x5,5xx4,4x5,5xxx1,1xxx");
-		Stuffz.chanMsg(event, "1,1xx5,5xxxx4,4xxxx5,5xxxx1,1xx");
-		Stuffz.chanMsg(event, "1,1xx7,7xx5,5x4,4x7,7x4,4xx7,7x4,4x5,5x7,7xx1,1xx");
-		Stuffz.chanMsg(event, "1,1xx7,7xxx4,4xxxxxx7,7xxx1,1xx");
-		Stuffz.chanMsg(event, "1,1xx7,7xx4,4xxxxxxxx7,7xx1,1xx");
-		Stuffz.chanMsg(event, "1,1xxxx4,4xxx1,1xx4,4xxx1,1xxxx");
-		Stuffz.chanMsg(event, "1,1xxx5,5xxx1,1xxxx5,5xxx1,1xxx");
-		Stuffz.chanMsg(event, "1,1xx5,5xxxx1,1xxxx5,5xxxx1,1xx");
-		Stuffz.chanMsg(event, "1,1xxxxxxxxxxxxxxxx");
+		Stuffz.chanMsg(event, "1,1                ");
+		Stuffz.chanMsg(event, "1,1     4,4     1,1      ");
+		Stuffz.chanMsg(event, "1,1    4,4         1,1   ");
+		Stuffz.chanMsg(event, "1,1    5,5   7,7  5,5 7,7 1,1     ");
+		Stuffz.chanMsg(event, "1,1   5,5 7,7 5,5 7,7   5,5 7,7   1,1   ");
+		Stuffz.chanMsg(event, "1,1   5,5 7,7 5,5  7,7   5,5 7,7   1,1  ");
+		Stuffz.chanMsg(event, "1,1   5,5  7,7    5,5    1,1   ");
+		Stuffz.chanMsg(event, "1,1     7,7       1,1    ");
+		Stuffz.chanMsg(event, "1,1    5,5  4,4 5,5   1,1      ");
+		Stuffz.chanMsg(event, "1,1   5,5   4,4 5,5  4,4 5,5   1,1   ");
+		Stuffz.chanMsg(event, "1,1  5,5    4,4    5,5    1,1  ");
+		Stuffz.chanMsg(event, "1,1  7,7  5,5 4,4 7,7 4,4  7,7 4,4 5,5 7,7  1,1  ");
+		Stuffz.chanMsg(event, "1,1  7,7   4,4      7,7   1,1  ");
+		Stuffz.chanMsg(event, "1,1  7,7  4,4        7,7  1,1  ");
+		Stuffz.chanMsg(event, "1,1    4,4   1,1  4,4   1,1    ");
+		Stuffz.chanMsg(event, "1,1   5,5   1,1    5,5   1,1   ");
+		Stuffz.chanMsg(event, "1,1  5,5    1,1    5,5    1,1  ");
+		Stuffz.chanMsg(event, "1,1                ");
 	}
 
 	private static void batman(MessageEvent event)
 	{
-		Stuffz.chanMsg(event, "0,0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-		Stuffz.chanMsg(event, "0,0xxxxxxxxxxxxxx1,1xxxxxxxxxxxxxx0,0xxxxxxxxxxxxxx");
-		Stuffz.chanMsg(event, "0,0xxxxxxxxxx1,1xxxx8,8xxxxxxxxxxxxxx1,1xxxx0,0xxxxxxxxxx");
-		Stuffz.chanMsg(event, "0,0xxxxxxxx1,1xx8,8xxxxxxxxxxxxxxxxxxxxxx1,1xx0,0xxxxxxxx");
-		Stuffz.chanMsg(event, "0,0xxxxxx1,1xx8,8xxxx1,1xx8,8xxxx1,1xx8,8xx1,1xx8,8xxxx1,1xx8,8xxxx1,1xx0,0xxxxxx");
-		Stuffz.chanMsg(event, "0,0xxxx1,1xx8,8xxxx1,1xx8,8xxxxxx1,1xxxxxx8,8xxxxxx1,1xx8,8xxxx1,1xx0,0xxxx");
-		Stuffz.chanMsg(event, "0,0xx1,1xx8,8xxxx1,1xxxx8,8xxxxxx1,1xxxxxx8,8xxxxxx1,1xxxx8,8xxxx1,1xx0,0xx");
-		Stuffz.chanMsg(event, "0,0xx1,1xx8,8xx1,1xxxxxxxx8,8xx1,1xxxxxxxxxx8,8xx1,1xxxxxxxx8,8xx1,1xx0,0xx");
-		Stuffz.chanMsg(event, "0,0xx1,1xx8,8xx1,1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx8,8xx1,1xx0,0xx");
-		Stuffz.chanMsg(event, "0,0xx1,1xx8,8xx1,1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx8,8xx1,1xx0,0xx");
-		Stuffz.chanMsg(event, "0,0xx1,1xx8,8xx1,1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx8,8xx1,1xx0,0xx");
-		Stuffz.chanMsg(event, "0,0xx1,1xx8,8xx1,1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx8,8xx1,1xx0,0xx");
-		Stuffz.chanMsg(event, "0,0xx1,1xx8,8xxxx1,1xxxx8,8xx1,1xx8,8xx1,1xxxxxx8,8xx1,1xx8,8xx1,1xxxx8,8xxxx1,1xx0,0xx");
-		Stuffz.chanMsg(event, "0,0xxxx1,1xx8,8xxxx1,1xx8,8xxxxxxxx1,1xx8,8xxxxxxxx1,1xx8,8xxxx1,1xx0,0xxxx");
-		Stuffz.chanMsg(event, "0,0xxxxxx1,1xx8,8xxxx1,1xx8,8xxxxxx1,1xx8,8xxxxxx1,1xx8,8xxxx1,1xx0,0xxxxxx");
-		Stuffz.chanMsg(event, "0,0xxxxxxxx1,1xx8,8xxxxxxxxxxxxxxxxxxxxxx1,1xx0,0xxxxxxxx");
-		Stuffz.chanMsg(event, "0,0xxxxxxxxxx1,1xxxx8,8xxxxxxxxxxxxxx1,1xxxx0,0xxxxxxxxxx");
-		Stuffz.chanMsg(event, "0,0xxxxxxxxxxxxxx1,1xxxxxxxxxxxxxx0,0xxxxxxxxxxxxxx");
-		Stuffz.chanMsg(event, "0,0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+		Stuffz.chanMsg(event, "0,0                                          ");
+		Stuffz.chanMsg(event, "0,0              1,1              0,0              ");
+		Stuffz.chanMsg(event, "0,0          1,1    8,8              1,1    0,0          ");
+		Stuffz.chanMsg(event, "0,0        1,1  8,8                      1,1  0,0        ");
+		Stuffz.chanMsg(event, "0,0      1,1  8,8    1,1  8,8    1,1  8,8  1,1  8,8    1,1  8,8    1,1  0,0      ");
+		Stuffz.chanMsg(event, "0,0    1,1  8,8    1,1  8,8      1,1      8,8      1,1  8,8    1,1  0,0    ");
+		Stuffz.chanMsg(event, "0,0  1,1  8,8    1,1    8,8      1,1      8,8      1,1    8,8    1,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  1,1  8,8  1,1        8,8  1,1          8,8  1,1        8,8  1,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  1,1  8,8  1,1                              8,8  1,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  1,1  8,8  1,1                              8,8  1,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  1,1  8,8  1,1                              8,8  1,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  1,1  8,8  1,1                              8,8  1,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  1,1  8,8    1,1    8,8  1,1  8,8  1,1      8,8  1,1  8,8  1,1    8,8    1,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0    1,1  8,8    1,1  8,8        1,1  8,8        1,1  8,8    1,1  0,0    ");
+		Stuffz.chanMsg(event, "0,0      1,1  8,8    1,1  8,8      1,1  8,8      1,1  8,8    1,1  0,0      ");
+		Stuffz.chanMsg(event, "0,0        1,1  8,8                      1,1  0,0        ");
+		Stuffz.chanMsg(event, "0,0          1,1    8,8              1,1    0,0          ");
+		Stuffz.chanMsg(event, "0,0              1,1              0,0              ");
+		Stuffz.chanMsg(event, "0,0                                          ");
+	}
+
+	private static void bullshit(MessageEvent event)
+	{
+		Stuffz.chanMsg(event, "0,0                                                  ");
+		Stuffz.chanMsg(event, "0,0  14,14  0,0              14,14  0,0                              ");
+		Stuffz.chanMsg(event, "0,0  14,14  0,0      1,1        14,14  1,1                    0,0          ");
+		Stuffz.chanMsg(event, "0,0  0,14    0,1          0,14    0,0    0,14                0,1      0,0    ");
+		Stuffz.chanMsg(event, "0,0    0,1  0,14      0,0    0,1  0,0      0,14                0,1  0,5  0,1  0,0    ");
+		Stuffz.chanMsg(event, "0,0    0,1  0,14  0,1  0,0  0,1  0,0  0,1  0,0      0,14                0,1  0,5  0,0  0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0    0,1  0,0  0,1  0,0  0,1  0,0  0,1  0,0        0,14            0,0  0,1  0,5  0,0  0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0    0,1              0,0          0,14      0,0      0,1  0,0    0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,13            0,1    0,0                0,14    0,1  0,0    0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,13              0,1  0,0    0,14        0,0    0,14    0,1  0,0        ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,13  0,5  0,13      0,5  0,13  0,1  0,0  0,14            0,0      0,1  0,0        ");
+		Stuffz.chanMsg(event, "0,0    0,1  0,13  0,5  0,13  0,5  0,13    0,1  0,14                0,0  0,1    0,0        ");
+		Stuffz.chanMsg(event, "	0,0      0,1                                  0,0          ");
+		Stuffz.chanMsg(event, "0,0          0,1  0,0      0,1  0,0      0,13          0,1  0,0            ");
+		Stuffz.chanMsg(event, "0,0          0,1  0,0      0,1  0,0        0,13      0,0  0,1  0,0    0,5  0,0      ");
+		Stuffz.chanMsg(event, "0,0          0,1  0,0      0,1  0,0          0,1  0,0    0,1  0,0  0,5      0,0    ");
+		Stuffz.chanMsg(event, "0,0          0,1  0,0      0,1  0,0          0,1  0,0    0,1  0,5          0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,3                                                ");
+		Stuffz.chanMsg(event, "0,0                                                  ");
+	}
+
+	private static void bunny(MessageEvent event)
+	{
+		Stuffz.chanMsg(event, "0,0                                              ");
+		Stuffz.chanMsg(event, "0,0      0,1      0,0                    0,1      0,0        ");
+		Stuffz.chanMsg(event, "0,0    0,1  0,15  0,0    0,1  0,0                0,1  0,0    0,15  0,1  0,0      ");
+		Stuffz.chanMsg(event, "0,0    0,1  0,15  0,13    0,0  0,1  0,0            0,1  0,0  0,13    0,15  0,1  0,0      ");
+		Stuffz.chanMsg(event, "0,0    0,1  0,15    0,13  0,0  0,1  0,0            0,1  0,0  0,13  0,15    0,1  0,0      ");
+		Stuffz.chanMsg(event, "0,0      0,1  0,15  0,13    0,0  0,1  0,0        0,1  0,0  0,13    0,15  0,1  0,0        ");
+		Stuffz.chanMsg(event, "0,0        0,1  0,15  0,13  0,0  0,1  0,0        0,1  0,0  0,13  0,15  0,1  0,0          ");
+		Stuffz.chanMsg(event, "0,0          0,1  0,15  0,13  0,0  0,1        0,0  0,13  0,15  0,1  0,0            ");
+		Stuffz.chanMsg(event, "0,0            0,1      0,15        0,1      0,0              ");
+		Stuffz.chanMsg(event, "0,0            0,1  0,15  0,0            0,15  0,1  0,0              ");
+		Stuffz.chanMsg(event, "0,0          0,1  0,15  0,0                0,15  0,1  0,0            ");
+		Stuffz.chanMsg(event, "0,0          0,1  0,15  0,0                0,15  0,1  0,0            ");
+		Stuffz.chanMsg(event, "0,0          0,1  0,15  0,0  0,1  0,0        0,1  0,0  0,15  0,1  0,0            ");
+		Stuffz.chanMsg(event, "0,0          0,1  0,15  0,0  0,1  0,0        0,1  0,0  0,15  0,1  0,0            ");
+		Stuffz.chanMsg(event, "0,0          0,1  0,15  0,13    0,0        0,13    0,15  0,1  0,0            ");
+		Stuffz.chanMsg(event, "0,0        0,1      0,15                0,1      0,0          ");
+		Stuffz.chanMsg(event, "0,1        0,0    0,1                    0,0    0,1          ");
+		Stuffz.chanMsg(event, "0,3      0,1  0,15      0,1  0,3            0,1  0,15      0,1  0,3        ");
+		Stuffz.chanMsg(event, "0,3        0,1      0,3                0,1      0,3          ");
+		Stuffz.chanMsg(event, "0,3                                              ");
+		Stuffz.chanMsg(event, "0,3                                              ");
+	}
+
+	private static void cat(MessageEvent event)
+	{
+		Stuffz.chanMsg(event, "0,0                                          ");
+		Stuffz.chanMsg(event, "0,0      0,1    0,0                      0,1    0,0      ");
+		Stuffz.chanMsg(event, "0,0    0,1  0,7    0,1  0,0                  0,1  0,7    0,1  0,0    ");
+		Stuffz.chanMsg(event, "0,0    0,1  0,7      0,1  0,0              0,1  0,7      0,1  0,0    ");
+		Stuffz.chanMsg(event, "0,0    0,1  0,7  0,5  0,7    0,1  0,0          0,1  0,7    0,5  0,7  0,1  0,0    ");
+		Stuffz.chanMsg(event, "0,0    0,1  0,7  0,5    0,7    0,1          0,7    0,5    0,7  0,1  0,0    ");
+		Stuffz.chanMsg(event, "0,0    0,1  0,7  0,5    0,7    0,5  0,7  0,5  0,7  0,5  0,7    0,5    0,7  0,1  0,0    ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,7            0,5  0,7  0,5  0,7  0,5  0,7            0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,5    0,7                          0,5    0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,7      0,1    0,0  0,7          0,1    0,0  0,7      0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,5    0,7  0,1      0,7  0,1  0,13  0,1  0,7  0,1      0,7  0,5    0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,7      0,1      0,7  0,1      0,7  0,1      0,7      0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,5    0,7                          0,5    0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,7          0,1  0,7    0,1  0,7    0,1  0,7          0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0    0,1  0,7        0,1              0,7        0,1  0,0    ");
+		Stuffz.chanMsg(event, "0,0      0,1  0,7                          0,1  0,0      ");
+		Stuffz.chanMsg(event, "0,0        0,1                          0,0        ");
+		Stuffz.chanMsg(event, "0,0                                          ");
+	}
+
+	private static void chick(MessageEvent event)
+	{
+		Stuffz.chanMsg(event, "0,0                                                  ");
+		Stuffz.chanMsg(event, "0,0                0,1                  0,0                ");
+		Stuffz.chanMsg(event, "0,0              0,1  0,8                  0,1  0,0              ");
+		Stuffz.chanMsg(event, "0,0            0,1  0,8                      0,1  0,0            ");
+		Stuffz.chanMsg(event, "0,0          0,1  0,8                          0,1  0,0          ");
+		Stuffz.chanMsg(event, "0,0          0,1  0,8                          0,1  0,0          ");
+		Stuffz.chanMsg(event, "0,0          0,1  0,8    0,0  0,1  0,8          0,0  0,1  0,8    0,1  0,0          ");
+		Stuffz.chanMsg(event, "0,0          0,1  0,8    0,1    0,8          0,1    0,8    0,1  0,0          ");
+		Stuffz.chanMsg(event, "0,0          0,1  0,8    0,1    0,8          0,1    0,8    0,1  0,0          ");
+		Stuffz.chanMsg(event, "0,0          0,1  0,8          0,1      0,8          0,1  0,0          ");
+		Stuffz.chanMsg(event, "0,0        0,1    0,8        0,1  0,7      0,1  0,8        0,1    0,0        ");
+		Stuffz.chanMsg(event, "0,0      0,1  0,8              0,1      0,8              0,1  0,0      ");
+		Stuffz.chanMsg(event, "0,0    0,1  0,8                                      0,1  0,0    ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,8    0,1  0,8          0,0          0,8        0,1    0,8    0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0    0,1    0,0  0,1  0,8      0,0              0,8      0,1  0,0  0,1    0,0    ");
+		Stuffz.chanMsg(event, "0,0          0,1  0,8      0,0              0,8      0,1  0,0          ");
+		Stuffz.chanMsg(event, "0,0          0,1  0,8      0,0              0,8      0,1  0,0          ");
+		Stuffz.chanMsg(event, "0,0          0,1  0,8          0,0      0,8          0,1  0,0          ");
+		Stuffz.chanMsg(event, "0,0          0,1  0,8  0,1      0,8  0,1      0,8  0,1      0,8  0,1  0,0          ");
+		Stuffz.chanMsg(event, "0,0            0,1  0,7      0,1  0,0      0,1  0,7      0,1  0,0            ");
+		Stuffz.chanMsg(event, "0,0              0,1      0,0          0,1      0,0              ");
+		Stuffz.chanMsg(event, "0,0                                                                                                    ");
+	}
+
+	private static void fly(MessageEvent event)
+	{
+		Stuffz.chanMsg(event, "0,0                                                            ");
+		Stuffz.chanMsg(event, "0,0    0,14      0,0                                      0,14        0,0    ");
+		Stuffz.chanMsg(event, "0,0  0,14  0,0      0,14    0,0          0,1            0,0          0,14  0,0        0,14  0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,14  0,0          0,14  0,0    0,1      0,14    0,15      0,1    0,0    0,14  0,0          0,14  0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,14  0,15  0,0        0,14  0,0  0,1      0,14    0,15            0,1  0,0  0,14  0,0        0,15  0,14  0,0  ");
+		Stuffz.chanMsg(event, "0,0    0,14  0,15    0,0      0,1        0,14        0,15          0,1  0,15  0,0    0,15    0,14  0,0    ");
+		Stuffz.chanMsg(event, "0,0      0,14    0,15      0,1          0,14        0,15      0,14  0,1  0,15      0,14    0,0      ");
+		Stuffz.chanMsg(event, "0,0          0,14    0,1                  0,14            0,1  0,14    0,0          ");
+		Stuffz.chanMsg(event, "0,0              0,1    0,0        0,1        0,0        0,14  0,1  0,0              ");
+		Stuffz.chanMsg(event, "0,0              0,1  0,0            0,1    0,0            0,1  0,0              ");
+		Stuffz.chanMsg(event, "0,0              0,1  0,0    0,1  0,15  0,0    0,1    0,0    0,1  0,15  0,0    0,1  0,0              ");
+		Stuffz.chanMsg(event, "0,0              0,1  0,0    0,1    0,0    0,1    0,0    0,1    0,0    0,1  0,0              ");
+		Stuffz.chanMsg(event, "0,0            0,1    0,0            0,1    0,0            0,1    0,0            ");
+		Stuffz.chanMsg(event, "0,0            0,1  0,0  0,1  0,0        0,1        0,0        0,1  0,0  0,1  0,0            ");
+		Stuffz.chanMsg(event, "0,0            0,1  0,0  0,1                            0,0  0,1  0,0            ");
+		Stuffz.chanMsg(event, "0,0          0,1    0,0    0,1                        0,0    0,1    0,0          ");
+		Stuffz.chanMsg(event, "0,0                  0,1          0,0    0,1          0,0                  ");
+		Stuffz.chanMsg(event, "0,0                  0,1  0,0    0,1            0,0    0,1  0,0                  ");
+		Stuffz.chanMsg(event, "0,0                0,1    0,0                    0,1    0,0                ");
+		Stuffz.chanMsg(event, "0,0                                                            ");
+
+	}
+
+	private static void invaders(MessageEvent event)
+	{
+		Stuffz.chanMsg(event, "0,0                                                                                            ");
+		Stuffz.chanMsg(event, "0,0                                          0,1            0,0                                      ");
+		Stuffz.chanMsg(event, "0,0                                  0,1          0,5        0,1          0,0                              ");
+		Stuffz.chanMsg(event, "0,0      0,1      0,0        0,1      0,0      0,1      0,5      0,4        0,5      0,1      0,0        0,1            0,0        ");
+		Stuffz.chanMsg(event, "0,0      0,1  0,12  0,1  0,0        0,1  0,12  0,1  0,0      0,1  0,5    0,4                    0,5    0,1  0,0      0,1    0,3        0,1    0,0      ");
+		Stuffz.chanMsg(event, "0,0      0,1    0,12  0,1        0,12  0,1    0,0      0,1  0,5  0,4      0,1    0,4    0,1    0,4      0,5  0,1  0,0    0,1    0,3  0,9        0,3  0,1    0,0    ");
+		Stuffz.chanMsg(event, "0,0    0,1    0,12  0,11  0,12        0,11  0,12  0,1    0,0    0,1  0,5  0,4                        0,5  0,1  0,0  0,1    0,3  0,9            0,3  0,1    0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1    0,12  0,11  0,1  0,11        0,1  0,11  0,12  0,1    0,0  0,1          0,4    0,1    0,4    0,1          0,0  0,1  0,3  0,9  0,1  0,9        0,1  0,9  0,3  0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1    0,11    0,1  0,11        0,1  0,11    0,1    0,0          0,1  0,4    0,1    0,4    0,1  0,0          0,1  0,3  0,9  0,1  0,9        0,1  0,9  0,3  0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,12  0,11                    0,12  0,1  0,0  0,1        0,4    0,1  0,4    0,1  0,4    0,1        0,0  0,1  0,3  0,9                0,3  0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,11  0,1  0,11                0,1  0,11  0,1  0,0  0,1  0,5  0,4    0,1                0,4    0,5  0,1  0,0  0,1      0,9  0,1        0,9  0,1      0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,11  0,1  0,11  0,1            0,11  0,1  0,11  0,1  0,0  0,1          0,0            0,1          0,0  0,1    0,9  0,1  0,9        0,1  0,9  0,1    0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1        0,11    0,1    0,11    0,1        0,0                                    0,1  0,3  0,1  0,9  0,1  0,9    0,1  0,9  0,1  0,3  0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0        0,1      0,0    0,1      0,0                                            0,1  0,0  0,1  0,0  0,1    0,0  0,1  0,0  0,1  0,0    ");
+		Stuffz.chanMsg(event, "0,0                                                                                            ");
+	}
+
+	private static void megaman(MessageEvent event)
+	{
+		Stuffz.chanMsg(event, "0,0                                              ");
+		Stuffz.chanMsg(event, "0,0                      0,1      0,0                  ");
+		Stuffz.chanMsg(event, "0,0                  0,1      0,11    0,1  0,0                ");
+		Stuffz.chanMsg(event, "0,0                0,1  0,12      0,1  0,11    0,1  0,0              ");
+		Stuffz.chanMsg(event, "0,0              0,1  0,12          0,1        0,0            ");
+		Stuffz.chanMsg(event, "0,0              0,1  0,12          0,1  0,11    0,12  0,1  0,0          ");
+		Stuffz.chanMsg(event, "0,0            0,1  0,11  0,12            0,1    0,12  0,1  0,0          ");
+		Stuffz.chanMsg(event, "0,0            0,1  0,11  0,12    0,15  0,0      0,12    0,0  0,1  0,0          ");
+		Stuffz.chanMsg(event, "0,0            0,1  0,11  0,12  0,15  0,0    0,1    0,15  0,1  0,0  0,1  0,0          ");
+		Stuffz.chanMsg(event, "0,0              0,1  0,12  0,15  0,0    0,1    0,15  0,1  0,0  0,1  0,0          ");
+		Stuffz.chanMsg(event, "0,0            0,1    0,12  0,15    0,0      0,15  0,0    0,1  0,0          ");
+		Stuffz.chanMsg(event, "0,0        0,1    0,11    0,1  0,2  0,15  0,1        0,15  0,1      0,0        ");
+		Stuffz.chanMsg(event, "0,0      0,1  0,12  0,11        0,1  0,15          0,1  0,11    0,12  0,1  0,0      ");
+		Stuffz.chanMsg(event, "0,0      0,1  0,12    0,11        0,1          0,11    0,12    0,1  0,0      ");
+		Stuffz.chanMsg(event, "0,0    0,1  0,12      0,11  0,1  0,11              0,1  0,11  0,12      0,1  0,0    ");
+		Stuffz.chanMsg(event, "0,0    0,1  0,12    0,1      0,11              0,1      0,12    0,1  0,0    ");
+		Stuffz.chanMsg(event, "0,0    0,1  0,12      0,1    0,11              0,1    0,12      0,1  0,0    ");
+		Stuffz.chanMsg(event, "0,0    0,1  0,12      0,1    0,12              0,1    0,12      0,1  0,0    ");
+		Stuffz.chanMsg(event, "0,0      0,1      0,0  0,1  0,12              0,1  0,0  0,1      0,0      ");
+		Stuffz.chanMsg(event, "0,0            0,1  0,11    0,12        0,11      0,1  0,0            ");
+		Stuffz.chanMsg(event, "0,0          0,1  0,12    0,11      0,1  0,11        0,12  0,1  0,0          ");
+		Stuffz.chanMsg(event, "0,0        0,1    0,12      0,11  0,1  0,0  0,1  0,11  0,12      0,1    0,0        ");
+		Stuffz.chanMsg(event, "0,0    0,1    0,12          0,1  0,0      0,1  0,12          0,1    0,0    ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,12              0,1  0,0      0,1  0,12              0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1                  0,0      0,1                  0,0  ");
+		Stuffz.chanMsg(event, "0,0                                              ");
+	}
+
+	private static void phone(MessageEvent event)
+	{
+		Stuffz.chanMsg(event, "0,0                            ");
+		Stuffz.chanMsg(event, "0,0                0,1      0,0      ");
+		Stuffz.chanMsg(event, "0,0                  0,1  0,0        ");
+		Stuffz.chanMsg(event, "0,0                  0,1  0,0        ");
+		Stuffz.chanMsg(event, "0,0                  0,1  0,0        ");
+		Stuffz.chanMsg(event, "0,0                  0,1  0,0        ");
+		Stuffz.chanMsg(event, "0,0    0,1                    0,0    ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,10                    0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,10  0,0                0,10  0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,10  0,0  0,1            0,0  0,10  0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,10  0,0  0,1  0,14        0,1  0,0  0,10  0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,10  0,0  0,1  0,14        0,1  0,0  0,10  0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,10  0,0  0,1  0,14        0,1  0,0  0,10  0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,10  0,0  0,1            0,0  0,10  0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,10  0,0                0,10  0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,10  0,0                0,10  0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,10  0,1                0,10  0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,10  0,1  0,15  0,1  0,15    0,1  0,15  0,1  0,10  0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,10  0,1                0,10  0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,10  0,1  0,15  0,1  0,15    0,1  0,15  0,1  0,10  0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,10  0,1                0,10  0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,10  0,1  0,15  0,1  0,15    0,1  0,15  0,1  0,10  0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,10  0,1                0,10  0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,10  0,0                0,10  0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,1  0,10                    0,1  0,0  ");
+		Stuffz.chanMsg(event, "0,0    0,1                    0,0    ");
+		Stuffz.chanMsg(event, "0,0                            ");
+	}
+
+	private static void superman(MessageEvent event)
+	{
+
+		Stuffz.chanMsg(event, "0,0                                                  ");
+		Stuffz.chanMsg(event, "0,0                                                  ");
+		Stuffz.chanMsg(event, "0,0        0,12                                  0,0        ");
+		Stuffz.chanMsg(event, "0,0      0,12    0,4                              0,12    0,0      ");
+		Stuffz.chanMsg(event, "0,0    0,12    0,4      0,8  0,4    0,8        0,4    0,8  0,4        0,12    0,0    ");
+		Stuffz.chanMsg(event, "0,0  0,12    0,4      0,8  0,4    0,8            0,4      0,8  0,4      0,12    0,0  ");
+		Stuffz.chanMsg(event, "0,0  0,12    0,4    0,8    0,4    0,8                      0,4    0,12    0,0  ");
+		Stuffz.chanMsg(event, "0,0    0,12    0,4    0,8  0,4                      0,8    0,4  0,12    0,0    ");
+		Stuffz.chanMsg(event, "0,0      0,12    0,4                              0,12    0,0      ");
+		Stuffz.chanMsg(event, "0,0        0,12    0,4    0,8              0,4        0,12    0,0        ");
+		Stuffz.chanMsg(event, "0,0          0,12    0,4      0,8  0,4  0,8      0,4      0,12    0,0          ");
+		Stuffz.chanMsg(event, "0,0            0,12    0,4                  0,12    0,0            ");
+		Stuffz.chanMsg(event, "0,0              0,12    0,4    0,8      0,4    0,12    0,0              ");
+		Stuffz.chanMsg(event, "0,0                0,12    0,4    0,8  0,4    0,12    0,0                ");
+		Stuffz.chanMsg(event, "0,0                  0,12    0,4      0,12    0,0                  ");
+		Stuffz.chanMsg(event, "0,0                    0,12    0,4  0,12    0,0                    ");
+		Stuffz.chanMsg(event, "0,0                      0,12      0,0                      ");
+		Stuffz.chanMsg(event, "0,0                        0,12  0,0                        ");
+		Stuffz.chanMsg(event, "0,0                                                  ");
+	}
+
+	private static void stormtrooper(MessageEvent event)
+	{
+		Stuffz.chanMsg(event, "0,14                                  ");
+		Stuffz.chanMsg(event, "0,14          0,1              0,14          ");
+		Stuffz.chanMsg(event, "0,14        0,1  0,0          0,15    0,1  0,14        ");
+		Stuffz.chanMsg(event, "0,14      0,1  0,0              0,15    0,1  0,14      ");
+		Stuffz.chanMsg(event, "0,14      0,1  0,0                0,15  0,1  0,14      ");
+		Stuffz.chanMsg(event, "0,14      0,1                      0,14      ");
+		Stuffz.chanMsg(event, "0,14      0,1  0,0                0,15  0,1  0,14      ");
+		Stuffz.chanMsg(event, "0,14    0,1  0,0  0,1      0,0      0,1      0,15  0,1  0,14    ");
+		Stuffz.chanMsg(event, "0,14    0,1  0,0  0,1    0,0          0,1    0,15  0,1  0,14    ");
+		Stuffz.chanMsg(event, "0,14    0,1  0,0        0,1      0,0      0,15  0,1  0,14    ");
+		Stuffz.chanMsg(event, "0,14    0,1  0,0        0,1      0,0      0,15  0,1  0,14    ");
+		Stuffz.chanMsg(event, "0,14    0,1    0,0    0,1          0,0    0,1    0,14    ");
+		Stuffz.chanMsg(event, "0,14  0,1  0,15    0,0  0,1    0,15      0,1    0,0  0,15    0,1  0,14  ");
+		Stuffz.chanMsg(event, "0,14  0,1  0,0                          0,1  0,14  ");
+		Stuffz.chanMsg(event, "0,14  0,1  0,0    0,1  0,0  0,15  0,1      0,0    0,1  0,0  0,15  0,1  0,14  ");
+		Stuffz.chanMsg(event, "0,14    0,1  0,0    0,15  0,1          0,0    0,15  0,1  0,14    ");
+		Stuffz.chanMsg(event, "0,14      0,1        0,14      0,1        0,14      ");
+		Stuffz.chanMsg(event, "0,14                                  ");
+
 	}
 
 	private static String getAvailableDrawings()

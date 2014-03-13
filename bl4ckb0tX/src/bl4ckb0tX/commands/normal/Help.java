@@ -20,7 +20,7 @@ public class Help
 		Stuffz.addHelpLine(event, "-yt <channel>               " + Colors.BOLD + "| Sends you to the specified YouTube channel!");
 		Stuffz.addHelpLine(event, "-tw <profile>               " + Colors.BOLD + "| Sends you to the specified Twitter profile!");
 		Stuffz.addHelpLine(event, "-tv <channel>               " + Colors.BOLD + "| Sends you to the specified Twitch channel!");
-		Stuffz.addHelpLine(event, "-say <what to say>          " + Colors.BOLD + "| Lets bl4cb0t say what you said if debug mode is activated!");
+		Stuffz.addHelpLine(event, "-say <what to say>          " + Colors.BOLD + "| Lets bl4ckb0t say what you said if debug mode is activated!");
 		Stuffz.addHelpLine(event, "-kick <user> <reason>       " + Colors.BOLD + "| Kicks a user from a channel. Only useable by specific people");
 		Stuffz.addHelpLine(event, "-draw                       " + Colors.BOLD + "| Draws something on the screen!");
 		Stuffz.addHelpLine(event, "-latestforge                " + Colors.BOLD + "| Several commands to receive the changelog, source and installer.");

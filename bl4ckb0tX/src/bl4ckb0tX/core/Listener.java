@@ -38,16 +38,16 @@ public class Listener extends ListenerAdapter
 
 	@Override
 	public void onMessage(MessageEvent event) throws Exception
-	{
+	{		
 		if(enabled)
 		{
 			normalCommands(event);
 			easterEggs(event);
 			misc(event);
 
-			if(Stuffz.getMessage(event).startsWith(p + "say") && debug)
+			if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "say") && debug)
 				Say.exe(event);
-			else if(Stuffz.getMessage(event).endsWith("We aren't spambots, are we, bl4ckb0t?") && Stuffz.getNick(event).equalsIgnoreCase("Maunz"))
+			else if(Stuffz.getMessage(event).toLowerCase().endsWith("We aren't spambots, are we, bl4ckb0t?") && Stuffz.getNick(event).equalsIgnoreCase("Maunz"))
 				Stuffz.chanMsg(event, "No, we aren't, Maunz.");
 		}
 
@@ -61,13 +61,13 @@ public class Listener extends ListenerAdapter
 					Switch.on(event);
 				else if(Stuffz.getMessage(event).equals("?enabled"))
 					Stuffz.chanMsg(event, "" + enabled);
-				else if(Stuffz.getMessage(event).startsWith(p + "changenick"))
+				else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "changenick"))
 					ChangeNick.exe(event);
 			}
 
 			if(enabled)
 			{
-				if(Stuffz.getMessage(event).startsWith(p + "changenick"))
+				if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "changenick"))
 					ChangeNick.exe(event);
 			}
 		}
@@ -84,33 +84,33 @@ public class Listener extends ListenerAdapter
 			Help.exe(event);
 		else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "time"))
 			Time.exe(event);
-		else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "test"))
+		else if(Stuffz.getMessage(event).startsWith(p + "test"))
 			Test.exe(event);
-		else if(Stuffz.getMessage(event).startsWith(p + "stop") || Stuffz.getMessage(event).equalsIgnoreCase(event.getBot().getNick() + ", sleep"))
+		else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "stop") || Stuffz.getMessage(event).equalsIgnoreCase(event.getBot().getNick() + ", sleep"))
 			Stop.exe(event);
-		else if(Stuffz.getMessage(event).startsWith(p + "kick"))
+		else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "kick"))
 			Kick.exe(event);
-		else if(Stuffz.getMessage(event).startsWith(p + "letter"))
+		else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "letter"))
 			RandomStuff.letter(event);
-		else if(Stuffz.getMessage(event).startsWith(p + "number"))
+		else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "number"))
 			RandomStuff.number(event);
 		else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "joke"))
 			Joke.exe(event);
 		else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "debug"))
 			Debug.exe(event);
-		else if(Stuffz.getMessage(event).startsWith(p + "u"))
+		else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "u"))
 			McfUser.exe(event);
-		else if(Stuffz.getMessage(event).startsWith(p + "yt"))
+		else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "yt"))
 			YouTube.exe(event);
-		else if(Stuffz.getMessage(event).startsWith(p + "tw"))
+		else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "tw"))
 			Twitter.exe(event);
-		else if(Stuffz.getMessage(event).startsWith(p + "tv"))
+		else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "tv"))
 			Twitch.exe(event);
 		else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "girlballs"))
 			GirlBalls.exe(event);
-		else if(Stuffz.getMessage(event).startsWith(p + "draw"))
+		else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "draw"))
 			Draw.exe(event);
-		else if(Stuffz.getMessage(event).startsWith(p + "latestforge"))
+		else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "latestforge"))
 			LatestForge.exe(event);
 		else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "fun") && Stuffz.validUser(event))
 			Fun.exe(event);
@@ -118,7 +118,7 @@ public class Listener extends ListenerAdapter
 
 	public void misc(MessageEvent event) throws Exception
 	{
-		if(Stuffz.getMessage(event).startsWith(">ide"))
+		if(Stuffz.getMessage(event).toLowerCase().startsWith(">ide"))
 			Stuffz.userMsg(event, "Wrong channel, pal!");
 		else if(Stuffz.getMessage(event).equalsIgnoreCase("source code please, " + Core.bot.getNick()))
 			Stuffz.chanMsg(event, "Here it is: https://github.com/bl4ckscor3/bl4ckb0tX");
