@@ -12,9 +12,9 @@ public class RandomStuff
 	public static void letter(MessageEvent event)
 	{
 		StringBuilder output = new StringBuilder();
-		String[] number = event.getMessage().split(" ");
+		String number = Stuffz.seperate(event);
 		String[] chars = new String[20];
-		int n = Integer.parseInt(number[1]);
+		int n = Integer.parseInt(number);
 		
 		if(Stuffz.getMessage(event).equalsIgnoreCase("-letter"))
 		{

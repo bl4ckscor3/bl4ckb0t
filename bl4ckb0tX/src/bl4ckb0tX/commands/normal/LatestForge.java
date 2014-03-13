@@ -18,22 +18,22 @@ public class LatestForge
 		try
 		{
 			String buffer = "x";
-			String[] seperate = Stuffz.getMessage(event).split(" ");
+			String action = Stuffz.seperate(event);
 			StringBuilder builder = new StringBuilder();
 			BufferedReader mainReader = new BufferedReader(new InputStreamReader(new URL("http://files.minecraftforge.net/").openStream()));
 
-			if(seperate[1].equals("version"))
+			if(action.equals("version"))
 			{
-				Stuffz.respond(event, "the latest version is: " + getLatestForgeVersion(buffer, seperate, builder, mainReader), true);
+				Stuffz.respond(event, "the latest version is: " + getLatestForgeVersion(buffer, builder, mainReader), true);
 			}
-			else if(seperate[1].equals("changelog"))
+			else if(action.equals("changelog"))
 			{
-				String latestForge = getLatestForgeVersion(buffer, seperate, builder, mainReader);
+				String latestForge = getLatestForgeVersion(buffer, builder, mainReader);
 				String changelogUrl = "http://files.minecraftforge.net/maven/net/minecraftforge/forge/" + latestForge + "/forge-" + latestForge + "-changelog.txt";
 
 				Stuffz.respond(event, "here is the changelog for Forge build " + latestForge + ": " + changelogUrl, true);
 			}
-			else if(seperate[1].equals("dlsrc"))
+			else if(action.equals("dlsrc"))
 			{
 				while(mainReader.readLine() != null)
 				{
@@ -59,7 +59,7 @@ public class LatestForge
 
 				Stuffz.respond(event, "I couldn't find a proper version, I'm sorry :(", true);
 			}
-			else if(seperate[1].equals("dlmain"))
+			else if(action.equals("dlmain"))
 			{
 				while(mainReader.readLine() != null)
 				{
@@ -92,7 +92,7 @@ public class LatestForge
 		}
 	}
 
-	private static String getLatestForgeVersion(String buffer, String[] seperate, StringBuilder builder, BufferedReader mainReader) throws IOException
+	private static String getLatestForgeVersion(String buffer, StringBuilder builder, BufferedReader mainReader) throws IOException
 	{
 		while(mainReader.readLine() != null)
 		{

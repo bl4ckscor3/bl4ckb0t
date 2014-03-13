@@ -19,8 +19,8 @@ public class Test
 //			Stuffz.chanMsg(event, "Nothing to see here");
 			try
 			{
-				String[] seperate = event.getMessage().split(" ");
-				BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://axis.iaero.me/accstatus?username=" + seperate[1] + "&format=plain").openStream()));
+				String user = Stuffz.seperate(event);
+				BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://axis.iaero.me/accstatus?username=" + user + "&format=plain").openStream()));
 				String status = reader.readLine();
 				Stuffz.chanMsg(event, "status");
 			}

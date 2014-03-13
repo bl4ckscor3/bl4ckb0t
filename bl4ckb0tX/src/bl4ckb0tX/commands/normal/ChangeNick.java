@@ -11,8 +11,7 @@ public class ChangeNick
 	@SuppressWarnings("rawtypes")
 	public static void exe(MessageEvent event)
 	{
-		String seperated = Stuffz.getMessage(event).substring(11);
-		String nick = seperated.substring(1);
+		String nick = Stuffz.seperate(event);
 		
 		if(Stuffz.validUser(event))
 		{

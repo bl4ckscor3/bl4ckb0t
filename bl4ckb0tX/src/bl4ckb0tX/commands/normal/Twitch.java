@@ -9,8 +9,8 @@ public class Twitch
 	@SuppressWarnings("rawtypes")
 	public static void exe(MessageEvent event)
 	{
-		String[] seperate = Stuffz.getMessage(event).split(" ");
+		String channel = Stuffz.seperate(event);
 		
-		Stuffz.respond(event, "http://www.twitch.tv/" + seperate[1], false);
+		Stuffz.respond(event, "http://www.twitch.tv/" + channel, false);
 	}
 }

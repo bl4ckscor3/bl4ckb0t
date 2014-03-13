@@ -16,12 +16,12 @@ public class Fun
 		try
 		{
 			StringBuilder builder = new StringBuilder();
-			String[] seperate = Stuffz.getMessage(event).split(" ");
+			String time = Stuffz.seperate(event);;
 			
-			builder.append(seperate[1]);
+			builder.append(time);
 			builder.append("000");
 			Listener.fun = true;
-			Stuffz.chanMsg(event, "Activated the fun for " + seperate[1] + "seconds!");
+			Stuffz.chanMsg(event, "Activated the fun for " + time + "seconds!");
 
 			new Timer().schedule(new TimerTask() 
 			{          

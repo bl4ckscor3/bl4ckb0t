@@ -28,9 +28,9 @@ public class Draw
 	{
 		try
 		{
-			String[] seperate = Stuffz.getMessage(event).split(" ");
+			String draw = Stuffz.seperate(event);
 
-			switch(seperate[1].toLowerCase())
+			switch(draw.toLowerCase())
 			{
 				case "smiley":
 					smiley(event);

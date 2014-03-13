@@ -28,11 +28,11 @@ public class Stop
 
 			if(!done)
 			{
-				String[] reboot = event.getMessage().split(" ", 2); //getting everything after "-stop " | [0] is "-stop" for 3 chars in general
+				String reboot = Stuffz.seperate(event);
 
 				try
 				{
-					switch(reboot[1])
+					switch(reboot)
 					{
 						case "yes":
 							Stuffz.chanMsg(event, "I will reboot, sir");

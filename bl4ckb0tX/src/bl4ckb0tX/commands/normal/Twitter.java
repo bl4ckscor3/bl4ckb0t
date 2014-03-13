@@ -9,8 +9,8 @@ public class Twitter
 	@SuppressWarnings("rawtypes")
 	public static void exe(MessageEvent event)
 	{
-		String[] seperate = Stuffz.getMessage(event).split(" ");
+		String user = Stuffz.seperate(event);
 		
-		Stuffz.respond(event, "http://www.twitter.com/" + seperate[1], false);
+		Stuffz.respond(event, "http://www.twitter.com/" + user, false);
 	}
 }

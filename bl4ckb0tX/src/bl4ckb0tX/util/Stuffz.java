@@ -77,6 +77,11 @@ public class Stuffz
 		return false;
 	}
 	
+	public static String seperate(MessageEvent event)
+	{
+		return getMessage(event).split(" ")[1];
+	}
+	
 	public static boolean validUser(PrivateMessageEvent event)
 	{
 		String[] validUsers =

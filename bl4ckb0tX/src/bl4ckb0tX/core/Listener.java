@@ -122,6 +122,8 @@ public class Listener extends ListenerAdapter
 			Stuffz.userMsg(event, "Wrong channel, pal!");
 		else if(Stuffz.getMessage(event).equalsIgnoreCase("source code please, " + Core.bot.getNick()))
 			Stuffz.chanMsg(event, "Here it is: https://github.com/bl4ckscor3/bl4ckb0tX");
+		else if(Stuffz.getMessage(event).equalsIgnoreCase("re"))
+			Stuffz.chanMsg(event, "wb, " + Stuffz.getNick(event));
 	}
 
 	public void easterEggs(MessageEvent event)

@@ -9,11 +9,11 @@ public class YouTube
 	@SuppressWarnings("rawtypes")
 	public static void exe(MessageEvent event)
 	{
-		String[] seperate = Stuffz.getMessage(event).split(" ");
+		String channel = Stuffz.seperate(event);
 		
-		if(seperate[1].equalsIgnoreCase("emmablackery"))
+		if(channel.equalsIgnoreCase("emmablackery"))
 			Stuffz.respond(event, "only bl4ckscor3 can get girlballs, sorry :(", true);
 		else
-			Stuffz.respond(event, "http://www.youtube.com/" + seperate[1], false);
+			Stuffz.respond(event, "http://www.youtube.com/" + channel, false);
 	}
 }
