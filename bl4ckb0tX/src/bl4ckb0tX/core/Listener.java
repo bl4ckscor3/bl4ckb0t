@@ -35,7 +35,7 @@ public class Listener extends ListenerAdapter
 	public static boolean enabled = true;
 	public static boolean debug = false;
 	public static boolean fun = false;
-
+	
 	@Override
 	public void onMessage(MessageEvent event) throws Exception
 	{		

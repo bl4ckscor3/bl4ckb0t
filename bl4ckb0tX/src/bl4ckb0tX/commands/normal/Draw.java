@@ -21,7 +21,9 @@ public class Draw
 		"megaman",
 		"phone",
 		"superman",
-		"stormtrooper"
+		"stormtrooper",
+		"penis",
+		"boobies"
 		};
 
 	public static void exe(MessageEvent event)
@@ -70,6 +72,12 @@ public class Draw
 					break;
 				case "stormtrooper":
 					stormtrooper(event);
+					break;
+				case "penis":
+					Stuffz.respond(event, "are you serious >.>", true);
+					break;
+				case "boobies":
+					Stuffz.respond(event, "are you serious >.>", true);
 					break;
 			}
 		}
@@ -156,7 +164,7 @@ public class Draw
 		Stuffz.chanMsg(event, "0,0  0,1  0,13              0,1  0,0    0,14        0,0    0,14    0,1  0,0        ");
 		Stuffz.chanMsg(event, "0,0  0,1  0,13  0,5  0,13      0,5  0,13  0,1  0,0  0,14            0,0      0,1  0,0        ");
 		Stuffz.chanMsg(event, "0,0    0,1  0,13  0,5  0,13  0,5  0,13    0,1  0,14                0,0  0,1    0,0        ");
-		Stuffz.chanMsg(event, "	0,0      0,1                                  0,0          ");
+		Stuffz.chanMsg(event, "0,0      0,1                                  0,0          ");
 		Stuffz.chanMsg(event, "0,0          0,1  0,0      0,1  0,0      0,13          0,1  0,0            ");
 		Stuffz.chanMsg(event, "0,0          0,1  0,0      0,1  0,0        0,13      0,0  0,1  0,0    0,5  0,0      ");
 		Stuffz.chanMsg(event, "0,0          0,1  0,0      0,1  0,0          0,1  0,0    0,1  0,0  0,5      0,0    ");
@@ -235,7 +243,8 @@ public class Draw
 		Stuffz.chanMsg(event, "0,0          0,1  0,8  0,1      0,8  0,1      0,8  0,1      0,8  0,1  0,0          ");
 		Stuffz.chanMsg(event, "0,0            0,1  0,7      0,1  0,0      0,1  0,7      0,1  0,0            ");
 		Stuffz.chanMsg(event, "0,0              0,1      0,0          0,1      0,0              ");
-		Stuffz.chanMsg(event, "0,0                                                                                                    ");
+		Stuffz.chanMsg(event, "0,0                                                  ");
+        
 	}
 
 	private static void fly(MessageEvent event)
