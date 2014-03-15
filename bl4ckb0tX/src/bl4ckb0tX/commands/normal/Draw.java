@@ -79,13 +79,16 @@ public class Draw
 				case "boobies":
 					Stuffz.respond(event, "are you serious >.>", true);
 					break;
+				default:
+					sendAvailableDrawings(event);
 			}
 		}
 		catch(ArrayIndexOutOfBoundsException e)
 		{
-			Stuffz.chanMsg(event, getAvailableDrawings());
+			sendAvailableDrawings(event);
 		}
 	}
+	
 	private static void smiley(MessageEvent event)
 	{
 		Stuffz.chanMsg(event, "1,1          1,1          1,1          ");
@@ -399,7 +402,7 @@ public class Draw
 
 	}
 
-	private static String getAvailableDrawings()
+	private static void sendAvailableDrawings(MessageEvent event)
 	{
 		StringBuilder output = new StringBuilder();
 
@@ -411,6 +414,6 @@ public class Draw
 		}
 
 		output.delete(output.length() - 3, output.length() - 1);
-		return output.toString();
+		Stuffz.chanMsg(event, output.toString());
 	}
 }

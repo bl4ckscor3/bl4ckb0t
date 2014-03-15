@@ -145,7 +145,7 @@ public class Listener extends ListenerAdapter
 	{
 		if(event.getOldNick().equalsIgnoreCase("bl4ckscor3"))
 			Core.bot.sendIRC().message("#bl4ckscor3", "Bye, bl4ckscor3 :(");
-		else if(event.getOldNick().equalsIgnoreCase("bl4ckgon3"))
+		else if(event.getNewNick().equalsIgnoreCase("bl4ckscor3"))
 			Core.bot.sendIRC().message("#bl4ckscor3", "Hi, bl4ckscor3 :)");			
 	}
 
