@@ -29,7 +29,7 @@ public class Kick
 					"FishFish0001"
 				};
 			String[] usersNotToKick =
-			{
+				{
 					"bl4ckscor3",
 					"bl4ckgon3",
 					"bl4ckweb",
@@ -41,7 +41,7 @@ public class Kick
 					"Maunz",
 					"StealthBravo",
 					"FishFish0001"
-			};
+				};
 			//-kick bl4ckscor3 cause i can
 			String splitUserReasonFromCommand = Stuffz.getMessage(event).substring(5);// bl4ckscor3 cause i can
 			String correctSplitFromCommand = splitUserReasonFromCommand.substring(1);//bl4ckscor3 cause i can
@@ -60,7 +60,7 @@ public class Kick
 						break;
 					}
 				}
-	
+
 				if(!allowed)
 				{
 					Stuffz.chanMsg(event, "Sorry, " + Stuffz.getNick(event) + ", you're not authorized to kick people from this channel.");
@@ -74,15 +74,19 @@ public class Kick
 							found = true;
 						}
 					}
-	
+
 					if(!found)
 					{
 						if(user.equalsIgnoreCase(Core.bot.getNick()))
+						{
 							event.getChannel().send().action("kicks himself");
+							Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + user + " :I'm said now :(");
+						}
 						else
+						{
 							event.getChannel().send().action("kicks " + user);
-						
-						Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + user + " :" + reason.substring(1));
+							Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + user + " :" + reason.substring(1));
+						}
 					}
 					else
 					{

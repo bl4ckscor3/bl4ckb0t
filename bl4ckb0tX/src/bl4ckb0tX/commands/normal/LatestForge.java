@@ -85,6 +85,10 @@ public class LatestForge
 
 				Stuffz.respond(event, "I couldn't find a proper version, I'm sorry :(", true);
 			}
+			else
+			{
+				Stuffz.chanMsg(event, "Available commands: 'version' | 'changelog' | 'dlsrc' | 'dlmain' - Usage: -latestforge <command>");
+			}
 		}
 		catch(ArrayIndexOutOfBoundsException e)
 		{
