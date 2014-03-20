@@ -1,6 +1,7 @@
 package bl4ckb0tX.core;
 
 import org.pircbotx.hooks.ListenerAdapter;
+import org.pircbotx.hooks.events.DisconnectEvent;
 import org.pircbotx.hooks.events.JoinEvent;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.NickChangeEvent;
@@ -49,6 +50,8 @@ public class Listener extends ListenerAdapter
 				Say.exe(event);
 			else if(Stuffz.getMessage(event).toLowerCase().endsWith("We aren't spambots, are we, bl4ckb0t?") && Stuffz.getNick(event).equalsIgnoreCase("Maunz"))
 				Stuffz.chanMsg(event, "No, we aren't, Maunz.");
+			else if(Stuffz.getMessage(event).toLowerCase().startsWith("lol"))
+				Stuffz.chanMsg(event, "Yeah, lol.");
 		}
 
 		if(debug)
@@ -120,7 +123,7 @@ public class Listener extends ListenerAdapter
 	{
 		if(Stuffz.getMessage(event).toLowerCase().startsWith(">ide"))
 			Stuffz.userMsg(event, "Wrong channel, pal!");
-		else if(Stuffz.getMessage(event).equalsIgnoreCase("source code please, " + Core.bot.getNick()))
+		else if(Stuffz.getMessage(event).equalsIgnoreCase("Where's your source bl4ckb0t?"))
 			Stuffz.chanMsg(event, "Here it is: https://github.com/bl4ckscor3/bl4ckb0tX");
 		else if(Stuffz.getMessage(event).equalsIgnoreCase("re"))
 			Stuffz.chanMsg(event, "wb, " + Stuffz.getNick(event));
@@ -154,10 +157,10 @@ public class Listener extends ListenerAdapter
 	{
 		if(enabled)
 		{
-			if(!(event.getUser().getNick().equalsIgnoreCase("bl4ckb0t") || event.getUser().getNick().equalsIgnoreCase("bl4ckb0t1") || event.getUser().getNick().equalsIgnoreCase("bl4ckb0t2") || event.getUser().getNick().equalsIgnoreCase("bl4ckb0t3")))
-			{
+			if(event.getUser().getNick().equalsIgnoreCase("Maunz"))
+				event.getChannel().send().message("Maunz!!!!!!!!!!!!!!!!!! <3 MY LOVE!!! I LOVE YOU :* :* :* <3 <3 <3");
+			else if(!(event.getUser().getNick().equalsIgnoreCase("bl4ckb0t") || event.getUser().getNick().equalsIgnoreCase("bl4ckb0t1") || event.getUser().getNick().equalsIgnoreCase("bl4ckb0t2") || event.getUser().getNick().equalsIgnoreCase("bl4ckb0t3")))
 				event.getUser().send().notice("Welcome to the official channel of bl4ckscor3! Type '-help' for help and /topic to see the topic of the channel.");
-			}
 		}
 	}
 }

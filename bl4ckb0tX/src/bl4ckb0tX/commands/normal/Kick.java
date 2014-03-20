@@ -25,7 +25,8 @@ public class Kick
 					"Geforce132|Away",
 					"TehKitti",
 					"Maunz",
-					"StealthBravo"
+					"StealthBravo",
+					"FishFish0001"
 				};
 			String[] usersNotToKick =
 			{
@@ -38,7 +39,8 @@ public class Kick
 					"Geforce132|Away",
 					"TehKitti",
 					"Maunz",
-					"StealthBravo"
+					"StealthBravo",
+					"FishFish0001"
 			};
 			//-kick bl4ckscor3 cause i can
 			String splitUserReasonFromCommand = Stuffz.getMessage(event).substring(5);// bl4ckscor3 cause i can
@@ -48,38 +50,50 @@ public class Kick
 			String user = splitUserFromReason[0];
 			String reason = splitReasonFromUser;
 
-			for(int i = 0; i < allowedUsers.length; i++)
+			if(!(Stuffz.getNick(event).equalsIgnoreCase(user)))
 			{
-				if(Stuffz.getNick(event).equals(allowedUsers[i]))
-				{	
-					allowed = true;
-					break;
-				}
-			}
-
-			if(!allowed)
-			{
-				Stuffz.chanMsg(event, "Sorry, " + Stuffz.getNick(event) + ", you're not authorized to kick people from this channel.");
-			}
-			else
-			{
-				for(int k = 0; k < usersNotToKick.length; k++)
+				for(int i = 0; i < allowedUsers.length; i++)
 				{
-					if(user.equalsIgnoreCase(usersNotToKick[k]))
-					{
-						found = true;
+					if(Stuffz.getNick(event).equals(allowedUsers[i]))
+					{	
+						allowed = true;
+						break;
 					}
 				}
-
-				if(!found)
+	
+				if(!allowed)
 				{
-					event.getChannel().send().action("kicks " + user);
-					Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + user + " :" + reason.substring(1));
+					Stuffz.chanMsg(event, "Sorry, " + Stuffz.getNick(event) + ", you're not authorized to kick people from this channel.");
 				}
 				else
 				{
-					Stuffz.chanMsg(event, "This user cannot be kicked.");
+					for(int k = 0; k < usersNotToKick.length; k++)
+					{
+						if(user.equalsIgnoreCase(usersNotToKick[k]))
+						{
+							found = true;
+						}
+					}
+	
+					if(!found)
+					{
+						if(user.equalsIgnoreCase(Core.bot.getNick()))
+							event.getChannel().send().action("kicks himself");
+						else
+							event.getChannel().send().action("kicks " + user);
+						
+						Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + user + " :" + reason.substring(1));
+					}
+					else
+					{
+						Stuffz.chanMsg(event, "This user cannot be kicked.");
+					}
 				}
+			}
+			else
+			{
+				Stuffz.chanMsg(event, user + " was dumb and kicked himself...");
+				Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + user + " :I'm dumb.");
 			}
 		}
 		else
