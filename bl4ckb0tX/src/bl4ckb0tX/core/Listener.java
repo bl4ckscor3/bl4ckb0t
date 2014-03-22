@@ -36,7 +36,7 @@ public class Listener extends ListenerAdapter
 	public static boolean enabled = true;
 	public static boolean debug = false;
 	public static boolean fun = false;
-	
+
 	@Override
 	public void onMessage(MessageEvent event) throws Exception
 	{		
@@ -117,6 +117,8 @@ public class Listener extends ListenerAdapter
 			LatestForge.exe(event);
 		else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "fun") && Stuffz.validUser(event))
 			Fun.exe(event);
+		else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "dl") && (Stuffz.validUser(event) || Stuffz.getNick(event).equalsIgnoreCase("TehKitti")))
+			Stuffz.userMsg(event, "Update me right here: http://goo.gl/czxHGT");
 	}
 
 	public void misc(MessageEvent event) throws Exception
@@ -137,19 +139,30 @@ public class Listener extends ListenerAdapter
 	@Override
 	public void onPrivateMessage(PrivateMessageEvent event)
 	{
-		if(Stuffz.validUser(event))
-			Core.bot.sendIRC().message("#bl4ckscor3", event.getMessage());
-		else
-			Core.bot.sendIRC().message("bl4ckscor3", event.getUser().getNick() + " just sent me this message: " + event.getMessage());
+		if(enabled)
+		{
+			if(Stuffz.validUser(event))
+			{
+				if(event.getMessage().startsWith("*"))
+					Core.bot.sendIRC().action("#bl4ckscor3", event.getMessage().substring(1));
+				else
+					Core.bot.sendIRC().message("#bl4ckscor3", event.getMessage());
+			}		
+			else
+				Core.bot.sendIRC().message("bl4ckscor3", event.getUser().getNick() + " just sent me this message: " + event.getMessage());
+		}
 	}
 
 	@Override
 	public void onNickChange(NickChangeEvent event) throws Exception 
 	{
-		if(event.getOldNick().equalsIgnoreCase("bl4ckscor3"))
-			Core.bot.sendIRC().message("#bl4ckscor3", "Bye, bl4ckscor3 :(");
-		else if(event.getNewNick().equalsIgnoreCase("bl4ckscor3"))
-			Core.bot.sendIRC().message("#bl4ckscor3", "Hi, bl4ckscor3 :)");			
+		if(enabled)
+		{
+			if(event.getOldNick().equalsIgnoreCase("bl4ckscor3"))
+				Core.bot.sendIRC().message("#bl4ckscor3", "Bye, bl4ckscor3 :(");
+			else if(event.getNewNick().equalsIgnoreCase("bl4ckscor3"))
+				Core.bot.sendIRC().message("#bl4ckscor3", "Hi, bl4ckscor3 :)");			
+		}
 	}
 
 	@Override

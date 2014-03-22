@@ -1,6 +1,10 @@
 package bl4ckb0tX.commands.normal;
 
+import java.io.IOException;
+
+import org.pircbotx.exception.IrcException;
 import org.pircbotx.hooks.events.MessageEvent;
+import org.pircbotx.output.OutputIRC;
 
 import bl4ckb0tX.core.Core;
 import bl4ckb0tX.util.Stuffz;
@@ -8,7 +12,7 @@ import bl4ckb0tX.util.Stuffz;
 @SuppressWarnings("rawtypes")
 public class Kick
 {	
-	public static void exe(MessageEvent event)
+	public static void exe(MessageEvent event) throws IOException, IrcException
 	{
 		if(event.getUser().isVerified())
 		{
@@ -79,8 +83,12 @@ public class Kick
 					{
 						if(user.equalsIgnoreCase(Core.bot.getNick()))
 						{
+							OutputIRC irc = new OutputIRC(Core.bot);
+							
 							event.getChannel().send().action("kicks himself");
 							Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + user + " :I'm said now :(");
+							irc.quitServer("My master sent me to sleep!");
+							Core.main2();
 						}
 						else
 						{
