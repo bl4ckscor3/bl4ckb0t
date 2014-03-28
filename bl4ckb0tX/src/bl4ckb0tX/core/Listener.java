@@ -3,15 +3,14 @@ package bl4ckb0tX.core;
 import java.util.Random;
 
 import org.pircbotx.hooks.ListenerAdapter;
-import org.pircbotx.hooks.events.DisconnectEvent;
 import org.pircbotx.hooks.events.JoinEvent;
 import org.pircbotx.hooks.events.MessageEvent;
-import org.pircbotx.hooks.events.NickChangeEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
 import bl4ckb0tX.commands.egg.Easter;
 import bl4ckb0tX.commands.normal.ChangeNick;
 import bl4ckb0tX.commands.normal.Debug;
+import bl4ckb0tX.commands.normal.Decide;
 import bl4ckb0tX.commands.normal.Draw;
 import bl4ckb0tX.commands.normal.Fun;
 import bl4ckb0tX.commands.normal.GirlBalls;
@@ -117,6 +116,8 @@ public class Listener extends ListenerAdapter
 			LatestForge.exe(event);
 		else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "fun") && Stuffz.validUser(event))
 			Fun.exe(event);
+		else if(Stuffz.getMessage(event).startsWith(p + "decide") && Stuffz.getMessage(event).endsWith("?"))
+			Decide.exe(event);
 		else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "dl") && (Stuffz.validUser(event) || Stuffz.getNick(event).equalsIgnoreCase("TehKitti")))
 			Stuffz.userMsg(event, "Update me right here: https://www.dropbox.com/s/32pf41acn4pato5/bl4ckb0t.jar");
 	}
@@ -137,6 +138,12 @@ public class Listener extends ListenerAdapter
 			if(number == 5)
 				Stuffz.chanMsg(event, "Yeah, lol.");
 		}
+		
+		Random r = new Random();
+		int number = r.nextInt(1000);
+		
+		if(number == 851)
+			Core.bot.sendIRC().action("#bl4ckscor3", "is masturbating now.");
 	}
 	
 	public void easterEggs(MessageEvent event)

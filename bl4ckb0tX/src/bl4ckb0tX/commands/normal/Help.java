@@ -24,6 +24,7 @@ public class Help
 		Stuffz.addHelpLine(event, "-kick <user> <reason>       " + Colors.BOLD + "| Kicks a user from a channel. Only useable by specific people");
 		Stuffz.addHelpLine(event, "-draw                       " + Colors.BOLD + "| Draws something on the screen!");
 		Stuffz.addHelpLine(event, "-latestforge                " + Colors.BOLD + "| Several commands to receive the changelog, source and installer.");
+		Stuffz.addHelpLine(event, "-decide <question>		   " + Colors.BOLD + "| Decides for you. Please only enter Yes/No answerable questions.");
 		Stuffz.addEmptyLine(event, false);
 		Stuffz.userMsg(event, Colors.BOLD + Colors.OLIVE + "----------------------Other features----------------------");
 		Stuffz.addHelpLine(event, "Welcome Messages!");
