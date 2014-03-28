@@ -1,5 +1,7 @@
 package bl4ckb0tX.core;
 
+import java.util.Random;
+
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.DisconnectEvent;
 import org.pircbotx.hooks.events.JoinEvent;
@@ -50,8 +52,6 @@ public class Listener extends ListenerAdapter
 				Say.exe(event);
 			else if(Stuffz.getMessage(event).toLowerCase().endsWith("We aren't spambots, are we, bl4ckb0t?") && Stuffz.getNick(event).equalsIgnoreCase("Maunz"))
 				Stuffz.chanMsg(event, "No, we aren't, Maunz.");
-			else if(Stuffz.getMessage(event).toLowerCase().startsWith("lol"))
-				Stuffz.chanMsg(event, "Yeah, lol.");
 		}
 
 		if(debug)
@@ -118,19 +118,27 @@ public class Listener extends ListenerAdapter
 		else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "fun") && Stuffz.validUser(event))
 			Fun.exe(event);
 		else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "dl") && (Stuffz.validUser(event) || Stuffz.getNick(event).equalsIgnoreCase("TehKitti")))
-			Stuffz.userMsg(event, "Update me right here: http://goo.gl/czxHGT");
+			Stuffz.userMsg(event, "Update me right here: https://www.dropbox.com/s/32pf41acn4pato5/bl4ckb0t.jar");
 	}
 
 	public void misc(MessageEvent event) throws Exception
 	{
 		if(Stuffz.getMessage(event).toLowerCase().startsWith(">ide"))
 			Stuffz.userMsg(event, "Wrong channel, pal!");
-		else if(Stuffz.getMessage(event).equalsIgnoreCase("Where's your source bl4ckb0t?"))
+		else if(Stuffz.getMessage(event).equalsIgnoreCase("Wheres your source bl4ckb0t?"))
 			Stuffz.chanMsg(event, "Here it is: https://github.com/bl4ckscor3/bl4ckb0tX");
 		else if(Stuffz.getMessage(event).equalsIgnoreCase("re"))
 			Stuffz.chanMsg(event, "wb, " + Stuffz.getNick(event));
-	}
+		else if(Stuffz.getMessage(event).toLowerCase().startsWith("lol"))
+		{
+			Random r = new Random();
+			int number = r.nextInt(21);
 
+			if(number == 5)
+				Stuffz.chanMsg(event, "Yeah, lol.");
+		}
+	}
+	
 	public void easterEggs(MessageEvent event)
 	{
 		Easter.init(event);
@@ -150,18 +158,7 @@ public class Listener extends ListenerAdapter
 			}		
 			else
 				Core.bot.sendIRC().message("bl4ckscor3", event.getUser().getNick() + " just sent me this message: " + event.getMessage());
-		}
-	}
-
-	@Override
-	public void onNickChange(NickChangeEvent event) throws Exception 
-	{
-		if(enabled)
-		{
-			if(event.getOldNick().equalsIgnoreCase("bl4ckscor3"))
-				Core.bot.sendIRC().message("#bl4ckscor3", "Bye, bl4ckscor3 :(");
-			else if(event.getNewNick().equalsIgnoreCase("bl4ckscor3"))
-				Core.bot.sendIRC().message("#bl4ckscor3", "Hi, bl4ckscor3 :)");			
+			Core.bot.sendIRC().message("bl4ckgon3", event.getUser().getNick() + " just sent me this message: " + event.getMessage());
 		}
 	}
 
