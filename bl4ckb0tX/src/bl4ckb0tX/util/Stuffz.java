@@ -42,7 +42,7 @@ public class Stuffz
 	
 	public static void addHelpLine(MessageEvent event, String msg)
 	{
-		Stuffz.userMsg(event, Colors.BOLD + Colors.BLUE + msg);
+		Stuffz.userMsg(event, Colors.BOLD + Colors.RED + msg);
 	}
 	
 	public static void addEmptyLine(MessageEvent event, boolean sendToChan)
