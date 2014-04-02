@@ -7,6 +7,14 @@ import org.pircbotx.hooks.events.PrivateMessageEvent;
 @SuppressWarnings("rawtypes")
 public class Stuffz
 {
+	private static String[] validUsers =
+		{
+			"bl4ckscor3",
+			"bl4ckgon3",
+			"bl4ckweb",
+			"bl4ckdro1d"
+		};
+	
 	public static void chanMsg(MessageEvent event, String msg)
 	{
 		event.getChannel().send().message(msg);
@@ -59,14 +67,6 @@ public class Stuffz
 	
 	public static boolean validUser(MessageEvent event)
 	{
-		String[] validUsers =
-			{
-				"bl4ckscor3",
-				"bl4ckgon3",
-				"bl4ckweb",
-				"bl4ckdro1d"
-			};
-		
 		for(int i = 0; i < validUsers.length; i++)
 		{
 			if(getNick(event).equalsIgnoreCase(validUsers[i]))
@@ -83,15 +83,7 @@ public class Stuffz
 	}
 	
 	public static boolean validUser(PrivateMessageEvent event)
-	{
-		String[] validUsers =
-			{
-				"bl4ckscor3",
-				"bl4ckgon3",
-				"bl4ckweb",
-				"bl4ckdro1d"
-			};
-		
+	{	
 		for(int i = 0; i < validUsers.length; i++)
 		{
 			if(event.getUser().getNick().equalsIgnoreCase(validUsers[i]))
@@ -100,5 +92,10 @@ public class Stuffz
 			}
 		}
 		return false;
+	}
+	
+	public static String[] getValidUsers()
+	{
+		return validUsers;
 	}
 }

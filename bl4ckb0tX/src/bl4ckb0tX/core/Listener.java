@@ -41,42 +41,45 @@ public class Listener extends ListenerAdapter
 	@Override
 	public void onMessage(MessageEvent event) throws Exception
 	{		
-		if(enabled)
+		if(event.getChannel().getName().equals("#bl4ckscor3"))
 		{
-			normalCommands(event);
-			easterEggs(event);
-			misc(event);
-
-			if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "say") && debug)
-				Say.exe(event);
-			else if(Stuffz.getMessage(event).toLowerCase().endsWith("We aren't spambots, are we, bl4ckb0t?") && Stuffz.getNick(event).equalsIgnoreCase("Maunz"))
-				Stuffz.chanMsg(event, "No, we aren't, Maunz.");
-		}
-
-		if(debug)
-		{
-			if(Core.bot.getNick().equals("bl4ckb0t"))
-			{
-				if(Stuffz.getMessage(event).equalsIgnoreCase(p + "disable"))
-					Switch.off(event);
-				else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "enable"))
-					Switch.on(event);
-				else if(Stuffz.getMessage(event).equals("?enabled"))
-					Stuffz.chanMsg(event, "" + enabled);
-				else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "changenick"))
-					ChangeNick.exe(event);
-			}
-
 			if(enabled)
 			{
-				if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "changenick"))
-					ChangeNick.exe(event);
-			}
-		}
+				normalCommands(event);
+				easterEggs(event);
+				misc(event);
 
-		if(fun && !(Stuffz.getMessage(event).equalsIgnoreCase(p + "fun")))
-		{
-			Stuffz.chanMsg(event, Stuffz.getMessage(event));
+				if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "say") && debug)
+					Say.exe(event);
+				else if(Stuffz.getMessage(event).toLowerCase().endsWith("We aren't spambots, are we, bl4ckb0t?") && Stuffz.getNick(event).equalsIgnoreCase("Maunz"))
+					Stuffz.chanMsg(event, "No, we aren't, Maunz.");
+			}
+
+			if(debug)
+			{
+				if(Core.bot.getNick().equals("bl4ckb0t"))
+				{
+					if(Stuffz.getMessage(event).equalsIgnoreCase(p + "disable"))
+						Switch.off(event);
+					else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "enable"))
+						Switch.on(event);
+					else if(Stuffz.getMessage(event).equals("?enabled"))
+						Stuffz.chanMsg(event, "" + enabled);
+					else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "changenick"))
+						ChangeNick.exe(event);
+				}
+
+				if(enabled)
+				{
+					if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "changenick"))
+						ChangeNick.exe(event);
+				}
+			}
+
+			if(fun && !(Stuffz.getMessage(event).equalsIgnoreCase(p + "fun")))
+			{
+				Stuffz.chanMsg(event, Stuffz.getMessage(event));
+			}
 		}
 	}
 
@@ -138,14 +141,14 @@ public class Listener extends ListenerAdapter
 			if(number == 5)
 				Stuffz.chanMsg(event, "Yeah, lol.");
 		}
-		
+
 		Random r = new Random();
 		int number = r.nextInt(1000);
-		
+
 		if(number == 851)
 			Core.bot.sendIRC().action("#bl4ckscor3", "is masturbating now.");
 	}
-	
+
 	public void easterEggs(MessageEvent event)
 	{
 		Easter.init(event);
@@ -164,8 +167,14 @@ public class Listener extends ListenerAdapter
 					Core.bot.sendIRC().message("#bl4ckscor3", event.getMessage());
 			}		
 			else
-				Core.bot.sendIRC().message("bl4ckscor3", event.getUser().getNick() + " just sent me this message: " + event.getMessage());
-			Core.bot.sendIRC().message("bl4ckgon3", event.getUser().getNick() + " just sent me this message: " + event.getMessage());
+			{
+				String[] validUsers = Stuffz.getValidUsers();
+				
+				for(int i = 0; i < Stuffz.getValidUsers().length; i++)
+				{
+					Core.bot.sendIRC().message(validUsers[i], event.getUser().getNick() + " just sent me this message: " + event.getMessage());
+				}
+			}
 		}
 	}
 

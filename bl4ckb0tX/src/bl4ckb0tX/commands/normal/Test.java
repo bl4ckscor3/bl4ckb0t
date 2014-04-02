@@ -9,9 +9,9 @@ import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckb0tX.util.Stuffz;
 
+@SuppressWarnings({"rawtypes", "unused"})
 public class Test
 {
-	@SuppressWarnings("rawtypes")
 	public static void exe(MessageEvent event) throws IOException
 	{
 		if(Stuffz.validUser(event))
