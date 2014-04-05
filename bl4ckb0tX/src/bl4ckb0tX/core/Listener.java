@@ -45,7 +45,7 @@ public class Listener extends ListenerAdapter
 				misc(event);
 
 				if(Stuffz.getMessage(event).toLowerCase().endsWith("We aren't spambots, are we, bl4ckb0t?") && Stuffz.getNick(event).equalsIgnoreCase("Maunz"))
-					Stuffz.chanMsg(event, "No, we aren't, Maunz.");
+					Stuffz.chanMsg(event, "No, we aren't, Maunz.");//maunz' reply lololololol
 
 				if(Core.bot.getNick().equals("bl4ckb0t"))
 				{
