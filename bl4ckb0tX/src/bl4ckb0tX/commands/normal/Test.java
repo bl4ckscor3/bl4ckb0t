@@ -22,7 +22,7 @@ public class Test
 				String user = Stuffz.seperate(event);
 				BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://axis.iaero.me/accstatus?username=" + user + "&format=plain").openStream()));
 				String status = reader.readLine();
-				Stuffz.chanMsg(event, "status");
+				Stuffz.chanMsg(event, status);
 			}
 			catch (ArrayIndexOutOfBoundsException e) 
 			{

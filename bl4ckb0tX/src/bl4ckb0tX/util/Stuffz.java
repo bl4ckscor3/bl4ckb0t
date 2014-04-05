@@ -11,7 +11,8 @@ public class Stuffz
 		{
 			"bl4ckscor3",
 			"bl4ckgon3",
-			"bl4ckweb",
+			"bl4ckwebgerät",
+			"bl4ck_ubuntu",
 			"bl4ckdro1d"
 		};
 	

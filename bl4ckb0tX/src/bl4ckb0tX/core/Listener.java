@@ -7,20 +7,18 @@ import org.pircbotx.hooks.events.JoinEvent;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
-import bl4ckb0tX.commands.egg.Easter;
 import bl4ckb0tX.commands.normal.ChangeNick;
-import bl4ckb0tX.commands.normal.Debug;
 import bl4ckb0tX.commands.normal.Decide;
 import bl4ckb0tX.commands.normal.Draw;
-import bl4ckb0tX.commands.normal.Fun;
 import bl4ckb0tX.commands.normal.GirlBalls;
 import bl4ckb0tX.commands.normal.Help;
 import bl4ckb0tX.commands.normal.Joke;
 import bl4ckb0tX.commands.normal.Kick;
 import bl4ckb0tX.commands.normal.LatestForge;
+import bl4ckb0tX.commands.normal.Leet;
 import bl4ckb0tX.commands.normal.McfUser;
+import bl4ckb0tX.commands.normal.MinusVowels;
 import bl4ckb0tX.commands.normal.RandomStuff;
-import bl4ckb0tX.commands.normal.Say;
 import bl4ckb0tX.commands.normal.Stop;
 import bl4ckb0tX.commands.normal.Switch;
 import bl4ckb0tX.commands.normal.Test;
@@ -35,8 +33,6 @@ public class Listener extends ListenerAdapter
 {
 	private static final String p = "-";
 	public static boolean enabled = true;
-	public static boolean debug = false;
-	public static boolean fun = false;
 
 	@Override
 	public void onMessage(MessageEvent event) throws Exception
@@ -46,17 +42,11 @@ public class Listener extends ListenerAdapter
 			if(enabled)
 			{
 				normalCommands(event);
-				easterEggs(event);
 				misc(event);
 
-				if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "say") && debug)
-					Say.exe(event);
-				else if(Stuffz.getMessage(event).toLowerCase().endsWith("We aren't spambots, are we, bl4ckb0t?") && Stuffz.getNick(event).equalsIgnoreCase("Maunz"))
+				if(Stuffz.getMessage(event).toLowerCase().endsWith("We aren't spambots, are we, bl4ckb0t?") && Stuffz.getNick(event).equalsIgnoreCase("Maunz"))
 					Stuffz.chanMsg(event, "No, we aren't, Maunz.");
-			}
 
-			if(debug)
-			{
 				if(Core.bot.getNick().equals("bl4ckb0t"))
 				{
 					if(Stuffz.getMessage(event).equalsIgnoreCase(p + "disable"))
@@ -68,17 +58,6 @@ public class Listener extends ListenerAdapter
 					else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "changenick"))
 						ChangeNick.exe(event);
 				}
-
-				if(enabled)
-				{
-					if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "changenick"))
-						ChangeNick.exe(event);
-				}
-			}
-
-			if(fun && !(Stuffz.getMessage(event).equalsIgnoreCase(p + "fun")))
-			{
-				Stuffz.chanMsg(event, Stuffz.getMessage(event));
 			}
 		}
 	}
@@ -101,8 +80,6 @@ public class Listener extends ListenerAdapter
 			RandomStuff.number(event);
 		else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "joke"))
 			Joke.exe(event);
-		else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "debug"))
-			Debug.exe(event);
 		else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "u"))
 			McfUser.exe(event);
 		else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "yt"))
@@ -117,12 +94,14 @@ public class Listener extends ListenerAdapter
 			Draw.exe(event);
 		else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "latestforge"))
 			LatestForge.exe(event);
-		else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "fun") && Stuffz.validUser(event))
-			Fun.exe(event);
 		else if(Stuffz.getMessage(event).startsWith(p + "decide") && Stuffz.getMessage(event).endsWith("?"))
 			Decide.exe(event);
 		else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "dl") && (Stuffz.validUser(event) || Stuffz.getNick(event).equalsIgnoreCase("TehKitti")))
 			Stuffz.userMsg(event, "Update me right here: https://www.dropbox.com/s/32pf41acn4pato5/bl4ckb0t.jar");
+		else if(Stuffz.getMessage(event).startsWith(p + "leet"))
+			Leet.exe(event);
+		else if(Stuffz.getMessage(event).startsWith(p + "vowels"))
+			MinusVowels.exe(event);
 	}
 
 	public void misc(MessageEvent event) throws Exception
@@ -149,11 +128,6 @@ public class Listener extends ListenerAdapter
 			Core.bot.sendIRC().action("#bl4ckscor3", "is masturbating now.");
 	}
 
-	public void easterEggs(MessageEvent event)
-	{
-		Easter.init(event);
-	}
-
 	@Override
 	public void onPrivateMessage(PrivateMessageEvent event)
 	{
@@ -169,7 +143,7 @@ public class Listener extends ListenerAdapter
 			else
 			{
 				String[] validUsers = Stuffz.getValidUsers();
-				
+
 				for(int i = 0; i < Stuffz.getValidUsers().length; i++)
 				{
 					Core.bot.sendIRC().message(validUsers[i], event.getUser().getNick() + " just sent me this message: " + event.getMessage());
