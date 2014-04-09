@@ -1,7 +1,6 @@
 package bl4ckb0tX.core;
 
 import java.io.IOException;
-import java.net.InetAddress;
 
 import org.pircbotx.Configuration;
 import org.pircbotx.PircBotX;
@@ -22,7 +21,7 @@ public class Core
 		.setLogin("bl4ckb0t")		
 //		.setLocalAddress(InetAddress.getByName("bots.tehkitti.pw"))
 		.addAutoJoinChannel("#bl4ckscor3")
-		.setNickservPassword("7h15p455w0rd15n7v3ry53cur3y37")
+		.setNickservPassword("xxx")
 		.setAutoNickChange(true)
 		.setCapEnabled(true)
 		.addListener(new Listener())
@@ -43,7 +42,7 @@ public class Core
 		.setLogin("bl4ckb0t")
 //		.setLocalAddress(InetAddress.getByName("bots.tehkitti.pw"))
 		.addAutoJoinChannel("#bl4ckscor3")
-		.setNickservPassword("7h15p455w0rd15n7v3ry53cur3y37")
+		.setNickservPassword("xxx")
 		.setAutoNickChange(true)
 		.setCapEnabled(true)
 		.addListener(new Listener())
