@@ -21,7 +21,6 @@ import bl4ckb0tX.commands.normal.MinusVowels;
 import bl4ckb0tX.commands.normal.RandomStuff;
 import bl4ckb0tX.commands.normal.Stop;
 import bl4ckb0tX.commands.normal.Switch;
-import bl4ckb0tX.commands.normal.Test;
 import bl4ckb0tX.commands.normal.Time;
 import bl4ckb0tX.commands.normal.Twitch;
 import bl4ckb0tX.commands.normal.Twitter;
@@ -37,28 +36,21 @@ public class Listener extends ListenerAdapter
 	@Override
 	public void onMessage(MessageEvent event) throws Exception
 	{		
-		if(event.getChannel().getName().equals("#bl4ckscor3"))
+		if(enabled)
 		{
-			if(enabled)
-			{
-				normalCommands(event);
-				misc(event);
+			normalCommands(event);
+			misc(event);
 
-				if(Stuffz.getMessage(event).toLowerCase().endsWith("We aren't spambots, are we, bl4ckb0t?") && Stuffz.getNick(event).equalsIgnoreCase("Maunz"))
-					Stuffz.chanMsg(event, "No, we aren't, Maunz.");//maunz' reply lololololol
-
-				if(Core.bot.getNick().equals("bl4ckb0t"))
-				{
-					if(Stuffz.getMessage(event).equalsIgnoreCase(p + "disable"))
-						Switch.off(event);
-					else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "enable"))
-						Switch.on(event);
-					else if(Stuffz.getMessage(event).equals("?enabled"))
-						Stuffz.chanMsg(event, "" + enabled);
-					else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "changenick"))
-						ChangeNick.exe(event);
-				}
-			}
+			if(Stuffz.getMessage(event).toLowerCase().endsWith("We aren't spambots, are we, bl4ckb0t?") && Stuffz.getNick(event).equalsIgnoreCase("Maunz"))
+				Stuffz.chanMsg(event, "No, we aren't, Maunz.");
+			else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "disable"))
+				Switch.off(event);
+			else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "enable"))
+				Switch.on(event);
+			else if(Stuffz.getMessage(event).equals("?enabled"))
+				Stuffz.chanMsg(event, "" + enabled);
+			else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "changenick"))
+				ChangeNick.exe(event);
 		}
 	}
 
@@ -68,8 +60,6 @@ public class Listener extends ListenerAdapter
 			Help.exe(event);
 		else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "time"))
 			Time.exe(event);
-		else if(Stuffz.getMessage(event).startsWith(p + "test"))
-			Test.exe(event);
 		else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "stop") || Stuffz.getMessage(event).equalsIgnoreCase(event.getBot().getNick() + ", sleep"))
 			Stop.exe(event);
 		else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "kick"))
@@ -108,7 +98,7 @@ public class Listener extends ListenerAdapter
 	{
 		if(Stuffz.getMessage(event).toLowerCase().startsWith(">ide"))
 			Stuffz.userMsg(event, "Wrong channel, pal!");
-		else if(Stuffz.getMessage(event).equalsIgnoreCase("Wheres your source bl4ckb0t?"))
+		else if(Stuffz.getMessage(event).equalsIgnoreCase(Core.bot.getNick() + ", source pls") || Stuffz.getMessage(event).equalsIgnoreCase(Core.bot.getNick() + ": source pls"))
 			Stuffz.chanMsg(event, "Here it is: https://github.com/bl4ckscor3/bl4ckb0tX");
 		else if(Stuffz.getMessage(event).equalsIgnoreCase("re"))
 			Stuffz.chanMsg(event, "wb, " + Stuffz.getNick(event));
@@ -120,6 +110,8 @@ public class Listener extends ListenerAdapter
 			if(number == 5)
 				Stuffz.chanMsg(event, "Yeah, lol.");
 		}
+		else if(Stuffz.getMessage(event).toLowerCase().startsWith("subaraki is awesome"))
+			Stuffz.respond(event, "http://pastebin.com/Vtpb9DWg", true);
 
 		Random r = new Random();
 		int number = r.nextInt(1000);
