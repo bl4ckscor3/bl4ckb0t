@@ -1,6 +1,7 @@
 package bl4ckb0tX.core;
 
 import java.io.IOException;
+import java.net.InetAddress;
 
 import org.pircbotx.Configuration;
 import org.pircbotx.PircBotX;

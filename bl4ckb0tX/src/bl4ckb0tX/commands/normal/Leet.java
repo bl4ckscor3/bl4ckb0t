@@ -101,6 +101,6 @@ public class Leet
 					Stuffz.userMsg(event, "Couldn't convert character: " + chars[i]);
 			}
 		}
-		Stuffz.chanMsg(event, builder.toString());
+		Stuffz.userMsg(event, builder.toString());
 	}
 }

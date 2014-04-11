@@ -45,12 +45,15 @@ public class Listener extends ListenerAdapter
 				Stuffz.chanMsg(event, "No, we aren't, Maunz.");
 			else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "disable"))
 				Switch.off(event);
-			else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "enable"))
-				Switch.on(event);
 			else if(Stuffz.getMessage(event).equals("?enabled"))
 				Stuffz.chanMsg(event, "" + enabled);
 			else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "changenick"))
 				ChangeNick.exe(event);
+		}
+		else
+		{
+			if(Stuffz.getMessage(event).equalsIgnoreCase(p + "enable"))
+				Switch.on(event);
 		}
 	}
 
@@ -84,7 +87,7 @@ public class Listener extends ListenerAdapter
 			Draw.exe(event);
 		else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "latestforge"))
 			LatestForge.exe(event);
-		else if(Stuffz.getMessage(event).startsWith(p + "decide") && Stuffz.getMessage(event).endsWith("?"))
+		else if(Stuffz.getMessage(event).startsWith(p + "decide"))
 			Decide.exe(event);
 		else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "dl") && (Stuffz.validUser(event) || Stuffz.getNick(event).equalsIgnoreCase("TehKitti")))
 			Stuffz.userMsg(event, "Update me right here: https://www.dropbox.com/s/32pf41acn4pato5/bl4ckb0t.jar");
