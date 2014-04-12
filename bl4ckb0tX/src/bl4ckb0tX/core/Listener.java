@@ -36,32 +36,24 @@ public class Listener extends ListenerAdapter
 	@Override
 	public void onMessage(MessageEvent event) throws Exception
 	{	
-		if(event.getMessage().startsWith(p))
+		if(enabled)
 		{
-			if(event.getUser().getNick().equals("bl4ckscor3"))
-			{
-				if(enabled)
-				{
-					normalCommands(event);
-					misc(event);
+			normalCommands(event);
+			misc(event);
 
-					if(event.getMessage().toLowerCase().endsWith("We aren't spambots, are we, bl4ckb0t?") && event.getUser().getNick().equalsIgnoreCase("Maunz"))
-						Utilities.chanMsg(event, "No, we aren't, Maunz.");
-					else if(event.getMessage().equalsIgnoreCase(p + "disable"))
-						Switch.off(event);
-					else if(event.getMessage().equals("?enabled"))
-						Utilities.chanMsg(event, "" + enabled);
-					else if(event.getMessage().toLowerCase().startsWith(p + "changenick"))
-						ChangeNick.exe(event);
-				}
-				else
-				{
-					if(event.getMessage().equalsIgnoreCase(p + "enable"))
-						Switch.on(event);
-				}
-			}
-			else
-				Utilities.respond(event, "I'm undergoing a reconstruction right now, things are breaking! Please do not use me right now.", true);
+			if(event.getMessage().toLowerCase().endsWith("We aren't spambots, are we, bl4ckb0t?") && event.getUser().getNick().equalsIgnoreCase("Maunz"))
+				Utilities.chanMsg(event, "No, we aren't, Maunz.");
+			else if(event.getMessage().equalsIgnoreCase(p + "disable"))
+				Switch.off(event);
+			else if(event.getMessage().equals("?enabled"))
+				Utilities.chanMsg(event, "" + enabled);
+			else if(event.getMessage().toLowerCase().startsWith(p + "changenick"))
+				ChangeNick.exe(event);
+		}
+		else
+		{
+			if(event.getMessage().equalsIgnoreCase(p + "enable"))
+				Switch.on(event);
 		}
 	}	
 
