@@ -2,14 +2,14 @@ package bl4ckb0tX.commands.normal;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckb0tX.util.Stuffz;
+import bl4ckb0tX.util.Utilities;
 
 @SuppressWarnings("rawtypes")
 public class Leet
 {
 	public static void exe(MessageEvent event)
 	{
-		char[] chars = Stuffz.getMessage(event).substring(6).toLowerCase().toCharArray();
+		char[] chars = event.getMessage().substring(6).toLowerCase().toCharArray();
 		StringBuilder builder = new StringBuilder();
 		
 		for(int i = 0; i < chars.length; i++)
@@ -98,9 +98,9 @@ public class Leet
 					builder.append(" ");
 					break;
 				default:
-					Stuffz.userMsg(event, "Couldn't convert character: " + chars[i]);
+					builder.append(chars[i]);
 			}
 		}
-		Stuffz.userMsg(event, builder.toString());
+		Utilities.chanMsg(event, builder.toString());
 	}
 }

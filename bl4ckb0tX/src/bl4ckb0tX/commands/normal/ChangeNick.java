@@ -4,24 +4,27 @@ import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.output.OutputIRC;
 
 import bl4ckb0tX.core.Core;
-import bl4ckb0tX.util.Stuffz;
+import bl4ckb0tX.util.Utilities;
 
 public class ChangeNick
 {
 	@SuppressWarnings("rawtypes")
 	public static void exe(MessageEvent event)
 	{
-		String nick = Stuffz.seperate(event);
+		String[] args = Utilities.toArgs(event.getMessage());
 		
-		if(Stuffz.validUser(event))
+		if(args.length == 2)
 		{
-			OutputIRC irc = new OutputIRC(Core.bot);
+			if(Utilities.validUser(event))
+			{
+				OutputIRC irc = new OutputIRC(Core.bot);
 			
-			irc.changeNick(nick);
+				irc.changeNick(args[1]);
+			}
+			else
+				Utilities.sorry(event);
 		}
 		else
-		{
-			Stuffz.sorry(event);
-		}
+			Utilities.respond(event, "please just put in a name and nothing else. Example: -changenick newName", true);
 	}
 }

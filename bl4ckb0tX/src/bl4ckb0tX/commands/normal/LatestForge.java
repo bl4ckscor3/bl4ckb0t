@@ -8,32 +8,37 @@ import java.net.URL;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckb0tX.util.Stuffz;
+import bl4ckb0tX.util.Utilities;
 
 public class LatestForge
 {
 	@SuppressWarnings("rawtypes")
 	public static void exe(MessageEvent event) throws MalformedURLException, IOException
 	{
-		try
+		String buffer = "x";
+		String[] args = Utilities.toArgs(event.getMessage());
+		StringBuilder builder = new StringBuilder();
+		BufferedReader mainReader = new BufferedReader(new InputStreamReader(new URL("http://files.minecraftforge.net/").openStream()));
+		
+		for(int i = 0; i < args.length; i++)
 		{
-			String buffer = "x";
-			String action = Stuffz.seperate(event);
-			StringBuilder builder = new StringBuilder();
-			BufferedReader mainReader = new BufferedReader(new InputStreamReader(new URL("http://files.minecraftforge.net/").openStream()));
-
-			if(action.equals("version"))
+			System.out.println(i + "   " + args[i]);
+		}
+		
+		if(args.length == 2)
+		{
+			if(args[1].equals("version"))
 			{
-				Stuffz.respond(event, "the latest version is: " + getLatestForgeVersion(buffer, builder, mainReader), true);
+				Utilities.respond(event, "the latest version is: " + getLatestForgeVersion(buffer, builder, mainReader), true);
 			}
-			else if(action.equals("changelog"))
+			else if(args[1].equals("changelog"))
 			{
 				String latestForge = getLatestForgeVersion(buffer, builder, mainReader);
 				String changelogUrl = "http://files.minecraftforge.net/maven/net/minecraftforge/forge/" + latestForge + "/forge-" + latestForge + "-changelog.txt";
 
-				Stuffz.respond(event, "here is the changelog for Forge build " + latestForge + ": " + changelogUrl, true);
+				Utilities.respond(event, "here is the changelog for Forge build " + latestForge + ": " + changelogUrl, true);
 			}
-			else if(action.equals("dlsrc"))
+			else if(args[1].equals("dlsrc"))
 			{
 				while(mainReader.readLine() != null)
 				{
@@ -50,16 +55,16 @@ public class LatestForge
 								String[] filter1 = buffer.split("\"");
 								String[] filter2 = filter1[1].split("y/");
 								String dl = filter2[1].substring(7);
-								Stuffz.respond(event, "this is the download to the latest source of Forge: " + dl, true);
+								Utilities.respond(event, "this is the download to the latest source of Forge: " + dl, true);
 								break;
 							}
 						}
 					}
 				}
 
-				Stuffz.respond(event, "I couldn't find a proper version, I'm sorry :(", true);
+				Utilities.respond(event, "I couldn't find a proper version, I'm sorry :(", true);
 			}
-			else if(action.equals("dlmain"))
+			else if(args[1].equals("dlmain"))
 			{
 				while(mainReader.readLine() != null)
 				{
@@ -76,24 +81,20 @@ public class LatestForge
 								String[] filter1 = buffer.split("\"");
 								String[] filter2 = filter1[1].split("y/");
 								String dl = filter2[1].substring(7);
-								Stuffz.respond(event, "this is the download to the latest installer of Forge: " + dl, true);
+								Utilities.respond(event, "this is the download to the latest installer of Forge: " + dl, true);
 								break;
 							}
 						}
 					}
 				}
 
-				Stuffz.respond(event, "I couldn't find a proper version, I'm sorry :(", true);
+				Utilities.respond(event, "I couldn't find a proper version, I'm sorry :(", true);
 			}
 			else
-			{
-				Stuffz.chanMsg(event, "Available commands: 'version' | 'changelog' | 'dlsrc' | 'dlmain' - Usage: -latestforge <command>");
-			}
+				Utilities.chanMsg(event, "Available commands: 'version' | 'changelog' | 'dlsrc' | 'dlmain' - Usage: -latestforge <command>");
 		}
-		catch(ArrayIndexOutOfBoundsException e)
-		{
-			Stuffz.chanMsg(event, "Available commands: 'version' | 'changelog' | 'dlsrc' | 'dlmain' - Usage: -latestforge <command>");
-		}
+		else
+			Utilities.chanMsg(event, "Available commands: 'version' | 'changelog' | 'dlsrc' | 'dlmain' - Usage: -latestforge <command>");
 	}
 
 	private static String getLatestForgeVersion(String buffer, StringBuilder builder, BufferedReader mainReader) throws IOException

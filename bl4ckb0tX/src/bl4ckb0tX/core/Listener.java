@@ -21,102 +21,107 @@ import bl4ckb0tX.commands.normal.MinusVowels;
 import bl4ckb0tX.commands.normal.RandomStuff;
 import bl4ckb0tX.commands.normal.Stop;
 import bl4ckb0tX.commands.normal.Switch;
-import bl4ckb0tX.commands.normal.Time;
 import bl4ckb0tX.commands.normal.Twitch;
 import bl4ckb0tX.commands.normal.Twitter;
 import bl4ckb0tX.commands.normal.YouTube;
-import bl4ckb0tX.util.Stuffz;
+import bl4ckb0tX.util.Utilities;
 
 @SuppressWarnings("rawtypes")
 public class Listener extends ListenerAdapter 
 {
 	private static final String p = "-";
 	public static boolean enabled = true;
+	private Random r = new Random();
+	private int number;
 
 	@Override
 	public void onMessage(MessageEvent event) throws Exception
-	{		
-		if(enabled)
+	{	
+		if(event.getMessage().startsWith(p))
 		{
-			normalCommands(event);
-			misc(event);
+			if(event.getUser().getNick().equals("bl4ckscor3"))
+			{
+				if(enabled)
+				{
+					normalCommands(event);
+					misc(event);
 
-			if(Stuffz.getMessage(event).toLowerCase().endsWith("We aren't spambots, are we, bl4ckb0t?") && Stuffz.getNick(event).equalsIgnoreCase("Maunz"))
-				Stuffz.chanMsg(event, "No, we aren't, Maunz.");
-			else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "disable"))
-				Switch.off(event);
-			else if(Stuffz.getMessage(event).equals("?enabled"))
-				Stuffz.chanMsg(event, "" + enabled);
-			else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "changenick"))
-				ChangeNick.exe(event);
+					if(event.getMessage().toLowerCase().endsWith("We aren't spambots, are we, bl4ckb0t?") && event.getUser().getNick().equalsIgnoreCase("Maunz"))
+						Utilities.chanMsg(event, "No, we aren't, Maunz.");
+					else if(event.getMessage().equalsIgnoreCase(p + "disable"))
+						Switch.off(event);
+					else if(event.getMessage().equals("?enabled"))
+						Utilities.chanMsg(event, "" + enabled);
+					else if(event.getMessage().toLowerCase().startsWith(p + "changenick"))
+						ChangeNick.exe(event);
+				}
+				else
+				{
+					if(event.getMessage().equalsIgnoreCase(p + "enable"))
+						Switch.on(event);
+				}
+			}
+			else
+				Utilities.respond(event, "I'm undergoing a reconstruction right now, things are breaking! Please do not use me right now.", true);
 		}
-		else
-		{
-			if(Stuffz.getMessage(event).equalsIgnoreCase(p + "enable"))
-				Switch.on(event);
-		}
-	}
+	}	
 
 	public void normalCommands(MessageEvent event) throws Exception
 	{
-		if(Stuffz.getMessage(event).equalsIgnoreCase(p + "help"))
+		if(event.getMessage().equalsIgnoreCase(p + "help"))
 			Help.exe(event);
-		else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "time"))
-			Time.exe(event);
-		else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "stop") || Stuffz.getMessage(event).equalsIgnoreCase(event.getBot().getNick() + ", sleep"))
+		else if(event.getMessage().toLowerCase().startsWith(p + "stop") || event.getMessage().equalsIgnoreCase(event.getBot().getNick() + ", sleep"))
 			Stop.exe(event);
-		else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "kick"))
+		else if(event.getMessage().toLowerCase().startsWith(p + "kick"))
 			Kick.exe(event);
-		else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "letter"))
+		else if(event.getMessage().toLowerCase().startsWith(p + "letter"))
 			RandomStuff.letter(event);
-		else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "number"))
+		else if(event.getMessage().toLowerCase().startsWith(p + "number"))
 			RandomStuff.number(event);
-		else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "joke"))
+		else if(event.getMessage().equalsIgnoreCase(p + "joke"))
 			Joke.exe(event);
-		else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "u"))
+		else if(event.getMessage().toLowerCase().startsWith(p + "u"))
 			McfUser.exe(event);
-		else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "yt"))
+		else if(event.getMessage().toLowerCase().startsWith(p + "yt"))
 			YouTube.exe(event);
-		else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "tw"))
+		else if(event.getMessage().toLowerCase().startsWith(p + "tw"))
 			Twitter.exe(event);
-		else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "tv"))
+		else if(event.getMessage().toLowerCase().startsWith(p + "tv"))
 			Twitch.exe(event);
-		else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "girlballs"))
+		else if(event.getMessage().equalsIgnoreCase(p + "girlballs"))
 			GirlBalls.exe(event);
-		else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "draw"))
+		else if(event.getMessage().toLowerCase().startsWith(p + "draw"))
 			Draw.exe(event);
-		else if(Stuffz.getMessage(event).toLowerCase().startsWith(p + "latestforge"))
+		else if(event.getMessage().toLowerCase().startsWith(p + "latestforge"))
 			LatestForge.exe(event);
-		else if(Stuffz.getMessage(event).startsWith(p + "decide"))
+		else if(event.getMessage().startsWith(p + "decide"))
 			Decide.exe(event);
-		else if(Stuffz.getMessage(event).equalsIgnoreCase(p + "dl") && (Stuffz.validUser(event) || Stuffz.getNick(event).equalsIgnoreCase("TehKitti")))
-			Stuffz.userMsg(event, "Update me right here: https://www.dropbox.com/s/32pf41acn4pato5/bl4ckb0t.jar");
-		else if(Stuffz.getMessage(event).startsWith(p + "leet"))
+		else if(event.getMessage().equalsIgnoreCase(p + "dl") && (Utilities.validUser(event) || event.getUser().getNick().equalsIgnoreCase("TehKitti")))
+			Utilities.userMsg(event, "Update me right here: https://www.dropbox.com/s/32pf41acn4pato5/bl4ckb0t.jar");
+		else if(event.getMessage().startsWith(p + "leet"))
 			Leet.exe(event);
-		else if(Stuffz.getMessage(event).startsWith(p + "vowels"))
+		else if(event.getMessage().startsWith(p + "vowels"))
 			MinusVowels.exe(event);
 	}
 
 	public void misc(MessageEvent event) throws Exception
 	{
-		if(Stuffz.getMessage(event).toLowerCase().startsWith(">ide"))
-			Stuffz.userMsg(event, "Wrong channel, pal!");
-		else if(Stuffz.getMessage(event).equalsIgnoreCase(Core.bot.getNick() + ", source pls") || Stuffz.getMessage(event).equalsIgnoreCase(Core.bot.getNick() + ": source pls"))
-			Stuffz.chanMsg(event, "Here it is: https://github.com/bl4ckscor3/bl4ckb0tX");
-		else if(Stuffz.getMessage(event).equalsIgnoreCase("re"))
-			Stuffz.chanMsg(event, "wb, " + Stuffz.getNick(event));
-		else if(Stuffz.getMessage(event).toLowerCase().startsWith("lol"))
+		if(event.getMessage().toLowerCase().startsWith(">ide"))
+			Utilities.userMsg(event, "Wrong channel, pal!");
+		else if(event.getMessage().equalsIgnoreCase(Core.bot.getNick() + ", source pls") || event.getMessage().equalsIgnoreCase(Core.bot.getNick() + ": source pls"))
+			Utilities.chanMsg(event, "Here it is: https://github.com/bl4ckscor3/bl4ckb0tX");
+		else if(event.getMessage().equalsIgnoreCase("re"))
+			Utilities.chanMsg(event, "wb, " + event.getUser().getNick());
+		else if(event.getMessage().toLowerCase().startsWith("lol"))
 		{
-			Random r = new Random();
-			int number = r.nextInt(21);
+			number = r.nextInt(21);
 
 			if(number == 5)
-				Stuffz.chanMsg(event, "Yeah, lol.");
+				Utilities.chanMsg(event, "Yeah, lol.");
 		}
-		else if(Stuffz.getMessage(event).toLowerCase().startsWith("subaraki is awesome"))
-			Stuffz.respond(event, "http://pastebin.com/Vtpb9DWg", true);
+		else if(event.getMessage().toLowerCase().startsWith("subaraki is awesome"))
+			Utilities.respond(event, "http://pastebin.com/Vtpb9DWg", true);
 
-		Random r = new Random();
 		int number = r.nextInt(1000);
 
 		if(number == 851)
@@ -128,7 +133,7 @@ public class Listener extends ListenerAdapter
 	{
 		if(enabled)
 		{
-			if(Stuffz.validUser(event))
+			if(Utilities.validUser(event))
 			{
 				if(event.getMessage().startsWith("*"))
 					Core.bot.sendIRC().action("#bl4ckscor3", event.getMessage().substring(1));
@@ -137,9 +142,9 @@ public class Listener extends ListenerAdapter
 			}		
 			else
 			{
-				String[] validUsers = Stuffz.getValidUsers();
+				String[] validUsers = Utilities.getValidUsers();
 
-				for(int i = 0; i < Stuffz.getValidUsers().length; i++)
+				for(int i = 0; i < Utilities.getValidUsers().length; i++)
 				{
 					Core.bot.sendIRC().message(validUsers[i], event.getUser().getNick() + " just sent me this message: " + event.getMessage());
 				}

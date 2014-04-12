@@ -5,7 +5,7 @@ import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
 @SuppressWarnings("rawtypes")
-public class Stuffz
+public class Utilities
 {
 	private static String[] validUsers =
 		{
@@ -29,9 +29,9 @@ public class Stuffz
 	public static void respond(MessageEvent event, String msg, boolean comma)
 	{
 		if(comma)
-			chanMsg(event, getNick(event) + ", " + msg);
+			chanMsg(event, event.getUser().getNick() + ", " + msg);
 		else
-			chanMsg(event, getNick(event) + ": " + msg);
+			chanMsg(event, event.getUser().getNick() + ": " + msg);
 	}
 	
 	public static void sorry(MessageEvent event)
@@ -39,30 +39,20 @@ public class Stuffz
 		chanMsg(event, "Sorry, only bl4ckscor3 is allowed to control me.");
 	}
 	
-	public static String getNick(MessageEvent event)
-	{
-		return event.getUser().getNick();
-	}
-	
-	public static String getMessage(MessageEvent event)
-	{
-		return event.getMessage();
-	}
-	
 	public static void addHelpLine(MessageEvent event, String msg)
 	{
-		Stuffz.userMsg(event, Colors.BOLD + Colors.RED + msg);
+		Utilities.userMsg(event, Colors.BOLD + Colors.RED + msg);
 	}
 	
 	public static void addEmptyLine(MessageEvent event, boolean sendToChan)
 	{
 		if(sendToChan)
 		{
-			Stuffz.chanMsg(event, " ");
+			Utilities.chanMsg(event, " ");
 		}
 		else
 		{
-			Stuffz.userMsg(event, " ");
+			Utilities.userMsg(event, " ");
 		}
 	}
 	
@@ -70,7 +60,7 @@ public class Stuffz
 	{
 		for(int i = 0; i < validUsers.length; i++)
 		{
-			if(getNick(event).equalsIgnoreCase(validUsers[i]))
+			if(event.getUser().getNick().equalsIgnoreCase(validUsers[i]))
 			{
 				return true;
 			}
@@ -78,9 +68,9 @@ public class Stuffz
 		return false;
 	}
 	
-	public static String seperate(MessageEvent event)
+	public static String[] toArgs(String line)
 	{
-		return getMessage(event).split(" ")[1];
+		return line.split(" ");
 	}
 	
 	public static boolean validUser(PrivateMessageEvent event)

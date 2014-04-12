@@ -7,7 +7,7 @@ import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.output.OutputIRC;
 
 import bl4ckb0tX.core.Core;
-import bl4ckb0tX.util.Stuffz;
+import bl4ckb0tX.util.Utilities;
 
 @SuppressWarnings("rawtypes")
 public class Kick
@@ -18,7 +18,7 @@ public class Kick
 		{
 			boolean allowed = false;
 			boolean found = false;
-			String[] allowedUsers = 
+			String[] allowedusers = 
 				{
 					"bl4ckscor3",
 					"bl4ckgon3",
@@ -38,79 +38,100 @@ public class Kick
 					"bl4ckgon3",
 					"bl4ckweb",
 					"bl4ckdro1d",
-					"Darkhax",
-					"Geforce132",
-					"Geforce132|Away",
-					"TehKitti",
-					"Maunz",
-					"StealthBravo",
-					"FishFish0001"
 				};
-			//-kick bl4ckscor3 cause i can
-			String splitUserReasonFromCommand = Stuffz.getMessage(event).substring(5);// bl4ckscor3 cause i can
-			String correctSplitFromCommand = splitUserReasonFromCommand.substring(1);//bl4ckscor3 cause i can
-			String[] splitUserFromReason = correctSplitFromCommand.split(" ");//bl4ckscor3
-			String splitReasonFromUser = correctSplitFromCommand.substring(splitUserFromReason[0].length());//cause i can
-			String user = splitUserFromReason[0];
-			String reason = splitReasonFromUser;
+			String[] args = Utilities.toArgs(event.getMessage());
 
-			if(!(Stuffz.getNick(event).equalsIgnoreCase(user)))
+			if(args.length >= 3)
 			{
-				for(int i = 0; i < allowedUsers.length; i++)
+				if(!(event.getUser().getNick().equalsIgnoreCase(args[1])))
 				{
-					if(Stuffz.getNick(event).equals(allowedUsers[i]))
-					{	
-						allowed = true;
-						break;
-					}
-				}
-
-				if(!allowed)
-				{
-					Stuffz.chanMsg(event, "Sorry, " + Stuffz.getNick(event) + ", you're not authorized to kick people from this channel.");
-				}
-				else
-				{
-					for(int k = 0; k < usersNotToKick.length; k++)
+					for(int i = 0; i < allowedusers.length; i++)
 					{
-						if(user.equalsIgnoreCase(usersNotToKick[k]))
-						{
-							found = true;
+						if(event.getUser().getNick().equals(allowedusers[i]))
+						{	
+							allowed = true;
+							break;
 						}
 					}
 
-					if(!found)
+					if(!allowed)
 					{
-						if(user.equalsIgnoreCase(Core.bot.getNick()))
-						{
-							OutputIRC irc = new OutputIRC(Core.bot);
-							
-							event.getChannel().send().action("kicks himself");
-							Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + user + " :I'm said now :(");
-							irc.quitServer("My master sent me to sleep!");
-							Core.main2();
-						}
-						else
-						{
-							event.getChannel().send().action("kicks " + user);
-							Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + user + " :" + reason.substring(1));
-						}
+						Utilities.chanMsg(event, "Sorry, " + event.getUser().getNick() + ", you're not authorized to kick people from this channel.");
 					}
 					else
 					{
-						Stuffz.chanMsg(event, "This user cannot be kicked.");
+						for(int i = 0; i < usersNotToKick.length; i++)
+						{
+							if(args[1].equalsIgnoreCase(usersNotToKick[i]))
+							{
+								found = true;
+								break;
+							}
+						}
+
+						if(!found)
+						{
+							if(args[1].equalsIgnoreCase(Core.bot.getNick()))
+							{
+								OutputIRC irc = new OutputIRC(Core.bot);
+
+								event.getChannel().send().action("kicks himself");
+								Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + args[1] + " :I'm said now :(");
+								irc.quitServer("My master sent me to sleep!");
+								Core.main2();
+							}
+							else
+							{
+								StringBuilder builder = new StringBuilder();
+
+								for(int i = 3; i <= args.length; i++)
+								{
+									builder.append(args[i - 1] + " ");
+								}
+								
+								builder.replace(builder.length() - 1, builder.length(), "");
+								
+								event.getChannel().send().action("kicks " + args[1]);
+								Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + args[1] + " :" + builder.toString());
+							}
+						}
+						else
+						{
+							Utilities.chanMsg(event, "This user cannot be kicked.");
+						}
 					}
+				}
+				else
+				{
+					StringBuilder builder = new StringBuilder();
+
+					for(int i = 3; i <= args.length; i++)
+					{
+						builder.append(args[i - 1] + " ");
+					}
+
+					builder.replace(builder.length() - 1, builder.length(), "");
+
+					Utilities.chanMsg(event, args[1] + " was dumb and kicked himself...");
+					Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + args[1] + " :" + builder.toString());
 				}
 			}
 			else
 			{
-				Stuffz.chanMsg(event, user + " was dumb and kicked himself...");
-				Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + user + " :I'm dumb.");
+				switch(args.length)
+				{				
+					case 1:
+						Utilities.respond(event, "please tell me which user I should kick and why. Example: -kick " + event.getUser().getNick() + " Kicked", true);
+						break;
+					case 2:
+						Utilities.respond(event, "please tell me why I should kick the user. Example: -kick " + args[1] + " Kicked", true);
+						break;
+					default:
+						Utilities.chanMsg(event, "Euuuuh: " + args.length);
+				}
 			}
 		}
 		else
-		{
-			Stuffz.respond(event, "you need to be identified to be able to kick someone.", true);
-		}
+			Utilities.respond(event, "you need to be identified to be able to kick someone.", true);
 	}
 }
