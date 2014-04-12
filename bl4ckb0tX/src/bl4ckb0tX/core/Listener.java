@@ -12,7 +12,6 @@ import bl4ckb0tX.commands.normal.Decide;
 import bl4ckb0tX.commands.normal.Draw;
 import bl4ckb0tX.commands.normal.GirlBalls;
 import bl4ckb0tX.commands.normal.Help;
-import bl4ckb0tX.commands.normal.Joke;
 import bl4ckb0tX.commands.normal.Kick;
 import bl4ckb0tX.commands.normal.LatestForge;
 import bl4ckb0tX.commands.normal.Leet;
@@ -78,8 +77,6 @@ public class Listener extends ListenerAdapter
 			RandomStuff.letter(event);
 		else if(event.getMessage().toLowerCase().startsWith(p + "number"))
 			RandomStuff.number(event);
-		else if(event.getMessage().equalsIgnoreCase(p + "joke"))
-			Joke.exe(event);
 		else if(event.getMessage().toLowerCase().startsWith(p + "u"))
 			McfUser.exe(event);
 		else if(event.getMessage().toLowerCase().startsWith(p + "yt"))
