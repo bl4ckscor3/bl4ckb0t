@@ -7,6 +7,7 @@ import org.pircbotx.hooks.events.JoinEvent;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
+import bl4ckb0tX.commands.normal.Calc;
 import bl4ckb0tX.commands.normal.ChangeNick;
 import bl4ckb0tX.commands.normal.Decide;
 import bl4ckb0tX.commands.normal.Draw;
@@ -91,6 +92,8 @@ public class Listener extends ListenerAdapter
 			Leet.exe(event);
 		else if(event.getMessage().startsWith(p + "vowels"))
 			MinusVowels.exe(event);
+		else if(event.getMessage().startsWith(p + "calc"))
+			Calc.exe(event);
 	}
 
 	public void misc(MessageEvent event) throws Exception
@@ -148,6 +151,11 @@ public class Listener extends ListenerAdapter
 		{
 			if(event.getUser().getNick().equalsIgnoreCase("Maunz"))
 				event.getChannel().send().message("Maunz!!!!!!!!!!!!!!!!!! <3 MY LOVE!!! I LOVE YOU :* :* :* <3 <3 <3");
+			else if(event.getUser().getNick().equalsIgnoreCase("Zorbas2004"))
+			{
+				Core.bot.sendIRC().message("bl4ckscor3", "Zorbas2004 joined.");
+				Core.bot.sendIRC().message("bl4ckgon3", "Zorbas2004 joined.");
+			}
 			else if(!(event.getUser().getNick().equalsIgnoreCase("bl4ckb0t") || event.getUser().getNick().equalsIgnoreCase("bl4ckb0t1") || event.getUser().getNick().equalsIgnoreCase("bl4ckb0t2") || event.getUser().getNick().equalsIgnoreCase("bl4ckb0t3")))
 				event.getUser().send().notice("Welcome to the official channel of bl4ckscor3! Type '-help' for help and /topic to see the topic of the channel.");
 		}
