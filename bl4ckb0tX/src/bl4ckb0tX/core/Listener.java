@@ -23,6 +23,7 @@ import bl4ckb0tX.commands.normal.Stop;
 import bl4ckb0tX.commands.normal.Switch;
 import bl4ckb0tX.commands.normal.Twitch;
 import bl4ckb0tX.commands.normal.Twitter;
+import bl4ckb0tX.commands.normal.Update;
 import bl4ckb0tX.commands.normal.YouTube;
 import bl4ckb0tX.util.Utilities;
 
@@ -31,6 +32,7 @@ public class Listener extends ListenerAdapter
 {
 	private static final String p = "-";
 	public static boolean enabled = true;
+	public static boolean isCounting = false;
 	private Random r = new Random();
 	private int number;
 
@@ -129,16 +131,26 @@ public class Listener extends ListenerAdapter
 			{
 				if(event.getMessage().startsWith("*"))
 					Core.bot.sendIRC().action("#bl4ckscor3", event.getMessage().substring(1));
+				else if(event.getMessage().equals("update"))
+					Update.exe();
 				else
 					Core.bot.sendIRC().message("#bl4ckscor3", event.getMessage());
 			}		
 			else
 			{
-				String[] validUsers = Utilities.getValidUsers();
-
-				for(int i = 0; i < Utilities.getValidUsers().length; i++)
+				if(event.getUser().getNick().equals("TehKitti") && event.getMessage().equals("stop") && isCounting)
 				{
-					Core.bot.sendIRC().message(validUsers[i], event.getUser().getNick() + " just sent me this message: " + event.getMessage());
+					isCounting = false;
+					Core.bot.sendIRC().message("TehKitti", "Update me right here: https://www.dropbox.com/s/32pf41acn4pato5/bl4ckb0t.jar");
+				}
+				else
+				{	
+					String[] validUsers = Utilities.getValidUsers();
+
+					for(int i = 0; i < Utilities.getValidUsers().length; i++)
+					{
+						Core.bot.sendIRC().message(validUsers[i], event.getUser().getNick() + " just sent me this message: " + event.getMessage());
+					}
 				}
 			}
 		}
