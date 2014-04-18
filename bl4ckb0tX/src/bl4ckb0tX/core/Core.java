@@ -20,7 +20,7 @@ public class Core
 		.setServerPort(6667)
 		.setLogin("bl4ckb0t")		
 		.addAutoJoinChannel("#bl4ckscor3")
-		.setNickservPassword("xxx")//lol
+		.setNickservPassword("xxx")
 		.setAutoNickChange(true)
 		.setCapEnabled(true)
 		.addListener(new Listener())
@@ -40,7 +40,7 @@ public class Core
 		.setServerPort(6667)
 		.setLogin("bl4ckb0t")
 		.addAutoJoinChannel("#bl4ckscor3")
-		.setNickservPassword("xxx")//lol
+		.setNickservPassword("xxx")
 		.setAutoNickChange(true)
 		.setCapEnabled(true)
 		.addListener(new Listener())

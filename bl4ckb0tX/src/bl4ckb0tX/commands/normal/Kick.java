@@ -55,9 +55,7 @@ public class Kick
 					}
 
 					if(!allowed)
-					{
 						Utilities.chanMsg(event, "Sorry, " + event.getUser().getNick() + ", you're not authorized to kick people from this channel.");
-					}
 					else
 					{
 						for(int i = 0; i < usersNotToKick.length; i++)
@@ -90,8 +88,6 @@ public class Kick
 								}
 								
 								builder.replace(builder.length() - 1, builder.length(), "");
-								
-								event.getChannel().send().action("kicks " + args[1]);
 								Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + args[1] + " :" + builder.toString());
 							}
 						}
