@@ -25,6 +25,6 @@ public class Update
 					Core.bot.sendIRC().message("TehKitti", "Please update me!");
 				}
 			}
-		}, 5000, 600000);
+		}, 5000, 600000);//5000 = first delay | 60000 = repeat after
 	}
 }
