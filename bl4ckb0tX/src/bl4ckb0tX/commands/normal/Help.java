@@ -8,7 +8,7 @@ import bl4ckb0tX.util.Utilities;
 public class Help
 {
 	@SuppressWarnings("rawtypes")
-	public static void exe(MessageEvent event)
+	public static void exe(MessageEvent event) //TODO: Update this menu!!
 	{
 		Utilities.userMsg(event, Colors.BOLD + Colors.OLIVE + "----------------------My Commands :)----------------------");
 		Utilities.addHelpLine(event, "-letter <number> " + Colors.BOLD + Colors.BLUE + "| Outputs as many random letters as you specified (not more than 20)!");

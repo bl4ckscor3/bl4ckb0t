@@ -7,6 +7,7 @@ import org.pircbotx.hooks.events.JoinEvent;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
+import bl4ckb0tX.commands.normal.Bukkit;
 import bl4ckb0tX.commands.normal.Calc;
 import bl4ckb0tX.commands.normal.ChangeNick;
 import bl4ckb0tX.commands.normal.Decide;
@@ -96,6 +97,8 @@ public class Listener extends ListenerAdapter
 			MinusVowels.exe(event);
 		else if(event.getMessage().startsWith(p + "calc"))
 			Calc.exe(event);
+		else if(event.getMessage().startsWith(p + "bukkit"))
+			Bukkit.exe(event);
 	}
 
 	public void misc(MessageEvent event) throws Exception

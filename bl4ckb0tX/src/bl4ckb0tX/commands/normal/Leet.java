@@ -50,7 +50,7 @@ public class Leet
 					builder.append("k");
 					break;
 				case 'l':
-					builder.append("l");
+					builder.append("|");
 					break;
 				case 'm':
 					builder.append("m");
