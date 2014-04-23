@@ -11,13 +11,13 @@ import org.pircbotx.hooks.events.MessageEvent;
 import bl4ckb0tX.util.Utilities;
 
 @SuppressWarnings("rawtypes")
-public class Bukkit
+public class CraftBukkit
 {
 	public static void exe(MessageEvent event) throws IOException
 	{
 		String buffer = "x";
 		String[] args = Utilities.toArgs(event.getMessage());
-		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://dl.bukkit.org/downloads/bukkit/").openStream()));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://dl.bukkit.org/downloads/craftbukkit/").openStream()));
 
 		if(args.length == 2)
 		{
@@ -38,7 +38,7 @@ public class Bukkit
 						String[] link = buffer.split("\"");
 
 						//Code for the Build version
-						String newUrl = "http://dl.bukkit.org" + link[1].replace("get", "view").replace("bukkit.jar", "");
+						String newUrl = "http://dl.bukkit.org" + link[1].replace("get", "view").replace("craftbukkit.jar", "");
 						BufferedReader versionReader = new BufferedReader(new InputStreamReader(new URL(newUrl).openStream()));
 						
 						while(!buffer.contains("Version:"))
@@ -52,7 +52,7 @@ public class Bukkit
 						String version = buffer.substring(12);
 						
 						//Output
-						Utilities.respond(event, Colors.DARK_GREEN + "the version of the latest recommended Bukkit build is " + Colors.BOLD + version + Colors.BOLD + ". Download it here: " + Colors.BOLD + "http://dl.bukkit.org" + link[1], true);
+						Utilities.respond(event, Colors.DARK_GREEN + "the version of the latest recommended Craftbukkit build is " + Colors.BOLD + version + Colors.BOLD + ". Download it here: " + Colors.BOLD + "http://dl.bukkit.org" + link[1], true);
 						return;
 					}
 				}
@@ -74,7 +74,7 @@ public class Bukkit
 						String[] link = buffer.split("\"");
 
 						//Code for the Build version
-						String newUrl = "http://dl.bukkit.org" + link[1].replace("get", "view").replace("bukkit-beta.jar", "");
+						String newUrl = "http://dl.bukkit.org" + link[1].replace("get", "view").replace("craftbukkit-beta.jar", "");
 						BufferedReader versionReader = new BufferedReader(new InputStreamReader(new URL(newUrl).openStream()));
 						
 						while(!buffer.contains("Version:"))
@@ -88,7 +88,7 @@ public class Bukkit
 						String version = buffer.substring(12);
 						
 						//Output
-						Utilities.respond(event, Colors.YELLOW + "the version of the latest Bukkit Betabuild is " + Colors.BOLD + version + Colors.BOLD + ". Download it here: " + Colors.BOLD + "http://dl.bukkit.org" + link[1], true);
+						Utilities.respond(event, Colors.YELLOW + "the version of the latest Craftbukkit Betabuild is " + Colors.BOLD + version + Colors.BOLD + ". Download it here: " + Colors.BOLD + "http://dl.bukkit.org" + link[1], true);
 						return;
 					}
 				}
@@ -110,7 +110,7 @@ public class Bukkit
 						String[] link = buffer.split("\"");
 
 						//Code for the Build version
-						String newUrl = "http://dl.bukkit.org" + link[1].replace("get", "view").replace("bukkit-dev.jar", "");
+						String newUrl = "http://dl.bukkit.org" + link[1].replace("get", "view").replace("craftbukkit-dev.jar", "");
 						BufferedReader versionReader = new BufferedReader(new InputStreamReader(new URL(newUrl).openStream()));
 						
 						while(!buffer.contains("Version:"))
@@ -124,7 +124,7 @@ public class Bukkit
 						String version = buffer.substring(12);
 						
 						//Output
-						Utilities.respond(event, Colors.RED + "the version of the latest Bukkit Devbuild is " + Colors.BOLD + version + Colors.BOLD + ". Download it here: " + Colors.BOLD + "http://dl.bukkit.org" + link[1], true);
+						Utilities.respond(event, Colors.RED + "the version of the latest Craftbukkit Devbuild is " + Colors.BOLD + version + Colors.BOLD + ". Download it here: " + Colors.BOLD + "http://dl.bukkit.org" + link[1], true);
 						return;
 					}
 				}
