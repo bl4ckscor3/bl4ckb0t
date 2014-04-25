@@ -1,16 +1,16 @@
-package bl4ckb0tX.commands.normal;
+package bl4ckscor3.bot.bl4ckb0tX.commands;
 
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckb0tX.util.Utilities;
+import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
-public class Help
+public class Help implements Command<MessageEvent>
 {
-	@SuppressWarnings("rawtypes")
-	public static void exe(MessageEvent event) //TODO: Update this menu!!
+	@Override
+	public void exe(MessageEvent event) //TODO: Update this menu!!
 	{
-		Utilities.userMsg(event, Colors.BOLD + Colors.OLIVE + "----------------------My Commands :)----------------------");
+		Utilities.userMsg(event, Colors.BOLD + Colors.OLIVE + "----------------------My Commands :) (Outdated)----------------------");
 		Utilities.addHelpLine(event, "-letter <number> " + Colors.BOLD + Colors.BLUE + "| Outputs as many random letters as you specified (not more than 20)!");
 		Utilities.addHelpLine(event, "-number <number> " + Colors.BOLD + Colors.BLUE + "| Outputs as many random numbers as you specified (not more than 20)!");
 		Utilities.addHelpLine(event, "-u <name> [where to go] " + Colors.BOLD + Colors.BLUE + "| Minecraftforumuser command!");
@@ -24,8 +24,14 @@ public class Help
 		Utilities.addEmptyLine(event, false);
 		Utilities.userMsg(event, Colors.BOLD + Colors.OLIVE + "-------------------------Credits--------------------------");
 		Utilities.userMsg(event, Colors.BLUE + "Made by bl4ckscor3!");
-		Utilities.userMsg(event, Colors.BLUE + "Help from TehKitti!");
+		Utilities.userMsg(event, Colors.BLUE + "Help from Lord_Ralex (and TehKitti, but that doesn't count)!");
 		Utilities.userMsg(event, Colors.BLUE + "Made in Java 7 using PircBotX 2.0.1 and its dependencies: https://code.google.com/p/pircbotx/");
 		Utilities.userMsg(event, Colors.TEAL + "Suggestions are much appreciated! Just ping bl4ckscor3 if you want to suggest something!");
+	}
+	
+	@Override
+	public String getAlias()
+	{
+		return "help";
 	}
 }

@@ -1,24 +1,21 @@
-package bl4ckb0tX.commands.normal;
+package bl4ckscor3.bot.bl4ckb0tX.commands;
 
-import java.io.IOException;
-
-import org.pircbotx.exception.IrcException;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.output.OutputIRC;
 
-import bl4ckb0tX.core.Core;
-import bl4ckb0tX.util.Utilities;
+import bl4ckscor3.bot.bl4ckb0tX.core.Core;
+import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
-@SuppressWarnings("rawtypes")
-public class Kick
+public class Kick implements Command<MessageEvent>
 {	
-	public static void exe(MessageEvent event) throws IOException, IrcException
+	@Override
+	public void exe(MessageEvent event)
 	{
 		if(event.getUser().isVerified())
 		{
 			boolean allowed = false;
 			boolean found = false;
-			String[] allowedusers = 
+			String[] allowedUsers = 
 				{
 					"bl4ckscor3",
 					"bl4ckgon3",
@@ -45,9 +42,9 @@ public class Kick
 			{
 				if(!(event.getUser().getNick().equalsIgnoreCase(args[1])))
 				{
-					for(int i = 0; i < allowedusers.length; i++)
+					for(String allowedUser : allowedUsers)
 					{
-						if(event.getUser().getNick().equals(allowedusers[i]))
+						if(event.getUser().getNick().equals(allowedUser))
 						{	
 							allowed = true;
 							break;
@@ -58,9 +55,9 @@ public class Kick
 						Utilities.chanMsg(event, "Sorry, " + event.getUser().getNick() + ", you're not authorized to kick people from this channel.");
 					else
 					{
-						for(int i = 0; i < usersNotToKick.length; i++)
+						for(String userNotToKick : usersNotToKick)
 						{
-							if(args[1].equalsIgnoreCase(usersNotToKick[i]))
+							if(args[1].equalsIgnoreCase(userNotToKick))
 							{
 								found = true;
 								break;
@@ -120,7 +117,7 @@ public class Kick
 						Utilities.respond(event, "please tell me which user I should kick and why. Example: -kick " + event.getUser().getNick() + " Kicked", true);
 						break;
 					case 2:
-						Utilities.respond(event, "please tell me why I should kick the user. Example: -kick " + args[1] + " Kicked", true);
+						Utilities.respond(event, "please tell me why I should kick " + args[1] + ". Example: -kick " + args[1] + " Kicked", true);
 						break;
 					default:
 						Utilities.chanMsg(event, "Euuuuh: " + args.length);
@@ -129,5 +126,11 @@ public class Kick
 		}
 		else
 			Utilities.respond(event, "you need to be identified to be able to kick someone.", true);
+	}
+	
+	@Override
+	public String getAlias()
+	{
+		return "kick";
 	}
 }

@@ -1,13 +1,13 @@
-package bl4ckb0tX.commands.normal;
+package bl4ckscor3.bot.bl4ckb0tX.commands;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckb0tX.util.Utilities;
+import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
-@SuppressWarnings("rawtypes")
-public class Calc
+public class Calculate implements Command<MessageEvent>
 {
-	public static void exe(MessageEvent event)
+	@Override
+	public void exe(MessageEvent event)
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 
@@ -44,10 +44,10 @@ public class Calc
 			}
 		}
 		else
-			Utilities.respond(event, "please tell me which operation I should do, and which numbers I should calculate with.", true);
+			Utilities.respond(event, "please tell me which operation I should do, and which numbers I should calculate with. Usage: -calc <operation> <several numbers>", true);
 	}
 	
-	private static void add(float[] numbers, MessageEvent event)
+	private void add(float[] numbers, MessageEvent event)
 	{
 		float solution = numbers[0];
 		
@@ -59,7 +59,7 @@ public class Calc
 		checkForIntAndSend(solution, event);
 	}
 	
-	private static void subtract(float[] numbers, MessageEvent event)
+	private void subtract(float[] numbers, MessageEvent event)
 	{
 		float solution = numbers[0];
 		
@@ -71,7 +71,7 @@ public class Calc
 		checkForIntAndSend(solution, event);
 	}
 	
-	private static void multiply(float[] numbers, MessageEvent event)
+	private void multiply(float[] numbers, MessageEvent event)
 	{
 		float solution = 1;
 		
@@ -83,19 +83,25 @@ public class Calc
 		checkForIntAndSend(solution, event);
 	}
 	
-	private static void pow(float[] numbers, MessageEvent event)
+	private void pow(float[] numbers, MessageEvent event)
 	{
 		double solution = Math.pow(numbers[0], numbers[1]);
 		
 		Utilities.chanMsg(event, "The solution is: " + solution);
 	}
 	
-	private static void checkForIntAndSend(float solution, MessageEvent event)
+	private void checkForIntAndSend(float solution, MessageEvent event)
 	{
 		System.out.println(solution);
 		if(Float.toString(solution).endsWith(".0"))
 			Utilities.chanMsg(event, "The solution is: " + (int)solution);
 		else
 			Utilities.chanMsg(event, "The solution is: " + solution);
+	}
+	
+	@Override
+	public String getAlias()
+	{
+		return "calc";
 	}
 }

@@ -1,15 +1,15 @@
-package bl4ckb0tX.commands.normal;
+package bl4ckscor3.bot.bl4ckb0tX.commands;
 
 import java.util.Random;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckb0tX.util.Utilities;
+import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
-@SuppressWarnings("rawtypes")
-public class RandomStuff
+public class Letter implements Command<MessageEvent>
 {
-	public static void letter(MessageEvent event)
+	@Override
+	public void exe(MessageEvent event)
 	{
 		StringBuilder output = new StringBuilder();
 		String[] args = Utilities.toArgs(event.getMessage());
@@ -68,31 +68,9 @@ public class RandomStuff
 			Utilities.respond(event, "please tell me how many letters I should select for you. Example: -letter 5", true);
 	}
 
-	public static void number(MessageEvent event)
+	@Override
+	public String getAlias()
 	{
-		StringBuilder output = new StringBuilder();
-		String[] args = Utilities.toArgs(event.getMessage());
-		int[] nums = new int[20];
-
-		if(args.length == 2)
-		{
-			int n = Integer.parseInt(args[1]);
-
-			if(!(n > 20))
-			{
-				for(int i = 0; i < n; i++)
-				{
-					Random rand = new Random();
-					nums[i] = rand.nextInt(10);
-					output.append(nums[i]);
-					output.append(" ");
-				}
-				Utilities.chanMsg(event, output.toString());
-			}
-			else
-				Utilities.chanMsg(event, "Please don't put in a number higher than 20");
-		}
-		else
-			Utilities.respond(event, "please tell me how many letters I should select for you. Example: -letter 5", true);
+		return "letter";
 	}
 }

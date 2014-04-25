@@ -1,4 +1,4 @@
-package bl4ckb0tX.commands.normal;
+package bl4ckscor3.bot.bl4ckb0tX.commands;
 
 import java.io.IOException;
 
@@ -6,13 +6,13 @@ import org.pircbotx.exception.IrcException;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.output.OutputIRC;
 
-import bl4ckb0tX.core.Core;
-import bl4ckb0tX.util.Utilities;
+import bl4ckscor3.bot.bl4ckb0tX.core.Core;
+import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
-@SuppressWarnings("rawtypes")
-public class Stop
+public class Stop implements Command<MessageEvent>
 {
-	public static void exe(MessageEvent event) throws IOException, IrcException
+	@Override
+	public void exe(MessageEvent event) throws IOException, IrcException
 	{
 		if(Utilities.validUser(event))
 		{
@@ -63,8 +63,12 @@ public class Stop
 			}
 		}
 		else
-		{
 			Utilities.sorry(event);
-		}
+	}
+	
+	@Override
+	public String getAlias()
+	{
+		return "stop";
 	}
 }

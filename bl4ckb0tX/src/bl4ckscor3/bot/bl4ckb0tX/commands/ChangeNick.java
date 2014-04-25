@@ -1,15 +1,15 @@
-package bl4ckb0tX.commands.normal;
+package bl4ckscor3.bot.bl4ckb0tX.commands;
 
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.output.OutputIRC;
 
-import bl4ckb0tX.core.Core;
-import bl4ckb0tX.util.Utilities;
+import bl4ckscor3.bot.bl4ckb0tX.core.Core;
+import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
-public class ChangeNick
+public class ChangeNick implements Command<MessageEvent>
 {
-	@SuppressWarnings("rawtypes")
-	public static void exe(MessageEvent event)
+	@Override
+	public void exe(MessageEvent event)
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 		
@@ -26,5 +26,11 @@ public class ChangeNick
 		}
 		else
 			Utilities.respond(event, "please just put in a name and nothing else. Example: -changenick newName", true);
+	}
+	
+	@Override
+	public String getAlias()
+	{
+		return "changenick";
 	}
 }

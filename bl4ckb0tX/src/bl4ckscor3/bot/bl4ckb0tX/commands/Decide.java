@@ -1,15 +1,15 @@
-package bl4ckb0tX.commands.normal;
+package bl4ckscor3.bot.bl4ckb0tX.commands;
 
 import java.util.Random;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckb0tX.util.Utilities;
+import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
-public class Decide
+public class Decide implements Command<MessageEvent>
 {
-	@SuppressWarnings("rawtypes")
-	public static void exe(MessageEvent event)
+	@Override
+	public void exe(MessageEvent event)
 	{
 		if(event.getMessage().endsWith("?"))
 		{
@@ -24,6 +24,12 @@ public class Decide
 				Utilities.chanMsg(event, "I failed badly: " + decision);
 		}
 		else
-			Utilities.respond(event, "that's not a question! Maybe try using a questionmark?", true);
+			Utilities.respond(event, "that's not a question! Maybe try using a questionmark? (Yes, I'm ocd about that :P)", true);
+	}
+	
+	@Override
+	public String getAlias()
+	{
+		return "decide";
 	}
 }

@@ -1,13 +1,13 @@
-package bl4ckb0tX.commands.normal;
+package bl4ckscor3.bot.bl4ckb0tX.commands;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckb0tX.util.Utilities;
+import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
-@SuppressWarnings("rawtypes")
-public class Leet
+public class Leet implements Command<MessageEvent>
 {
-	public static void exe(MessageEvent event)
+	@Override
+	public void exe(MessageEvent event)
 	{
 		char[] chars = event.getMessage().substring(6).toLowerCase().toCharArray();
 		StringBuilder builder = new StringBuilder();
@@ -102,5 +102,11 @@ public class Leet
 			}
 		}
 		Utilities.chanMsg(event, builder.toString());
+	}
+	
+	@Override
+	public String getAlias()
+	{
+		return "leet";
 	}
 }

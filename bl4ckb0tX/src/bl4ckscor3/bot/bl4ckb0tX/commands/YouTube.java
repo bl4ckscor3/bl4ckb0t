@@ -1,16 +1,16 @@
-package bl4ckb0tX.commands.normal;
+package bl4ckscor3.bot.bl4ckb0tX.commands;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckb0tX.util.Utilities;
+import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
-public class YouTube
+public class YouTube implements Command<MessageEvent>
 {
-	@SuppressWarnings("rawtypes")
-	public static void exe(MessageEvent event) throws MalformedURLException, IOException
+	@Override
+	public void exe(MessageEvent event) throws MalformedURLException, IOException
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 
@@ -22,7 +22,13 @@ public class YouTube
 				Utilities.respond(event, "http://www.youtube.com/" + args[1], false);
 		}
 		else
-			Utilities.respond(event, "please provide a channel name for me. Example: -yt antvenom", true);
+			Utilities.respond(event, "please provide a channel name for me and nothing else. Example: -yt antvenom", true);
+	}
+	
+	@Override
+	public String getAlias()
+	{
+		return "yt";
 	}
 }
 

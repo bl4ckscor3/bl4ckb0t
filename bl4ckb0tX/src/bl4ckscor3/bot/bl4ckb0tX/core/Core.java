@@ -1,9 +1,8 @@
-package bl4ckb0tX.core;
+package bl4ckscor3.bot.bl4ckb0tX.core;
 
 import org.pircbotx.Configuration;
 import org.pircbotx.PircBotX;
 
-@SuppressWarnings({"unchecked", "rawtypes"})
 public class Core
 {	
 	public static PircBotX bot;
@@ -28,7 +27,7 @@ public class Core
 
 		if(!bot.isConnected())
 		{
-			while(true)//only way of auto reconnect as of now
+			while(true)//only way of auto reconnect as of now - bugs out when using "-stop no"
 			{
 				try
 				{
@@ -59,7 +58,7 @@ public class Core
 		
 		if(!bot.isConnected())
 		{
-			while(true)//only way of auto reconnect as of now
+			while(true)//only way of auto reconnect as of now - bugs out when using "-stop no"
 			{
 				try
 				{

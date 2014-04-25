@@ -1,10 +1,9 @@
-package bl4ckb0tX.util;
+package bl4ckscor3.bot.bl4ckb0tX.util;
 
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
-@SuppressWarnings("rawtypes")
 public class Utilities
 {
 	private static String[] validUsers =
