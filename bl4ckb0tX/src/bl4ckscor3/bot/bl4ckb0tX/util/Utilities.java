@@ -8,6 +8,7 @@ public class Utilities
 {
 	private static String[] validUsers =
 		{
+			"bl4ck",
 			"bl4ckscor3",
 			"bl4ckgon3",
 			"bl4ckwebgerät",

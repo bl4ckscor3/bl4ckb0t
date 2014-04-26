@@ -17,17 +17,14 @@ public class Kick implements Command<MessageEvent>
 			boolean found = false;
 			String[] allowedUsers = 
 				{
-					"bl4ckscor3",
-					"bl4ckgon3",
-					"bl4ckweb",
-					"bl4ckdro1d",
 					"Darkhax",
 					"Geforce132",
 					"Geforce132|Away",
 					"TehKitti",
 					"Maunz",
 					"StealthBravo",
-					"FishFish0001"
+					"FishFish0001",
+					"tankerkiller125"
 				};
 			String[] usersNotToKick =
 				{
@@ -46,6 +43,15 @@ public class Kick implements Command<MessageEvent>
 					{
 						if(event.getUser().getNick().equals(allowedUser))
 						{	
+							allowed = true;
+							break;
+						}
+					}
+					
+					for(String allowedUser : Utilities.getValidUsers())
+					{
+						if(event.getUser().getNick().equalsIgnoreCase(allowedUser))
+						{
 							allowed = true;
 							break;
 						}

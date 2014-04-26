@@ -51,6 +51,7 @@ public class Listener extends ListenerAdapter
 	public void onMessage(MessageEvent event) throws Exception
 	{	
 		String cmdName = event.getMessage().split(" ")[0];
+
 		misc(event);
 
 		if(!cmdName.startsWith(p))
@@ -67,8 +68,6 @@ public class Listener extends ListenerAdapter
 				}
 			}
 
-			if(event.getMessage().equals("?enabled"))
-				Utilities.chanMsg(event, "" + enabled);
 		}
 		else
 		{
@@ -81,6 +80,9 @@ public class Listener extends ListenerAdapter
 				}
 			}
 		}
+
+		if(event.getMessage().equals("?enabled"))
+			Utilities.chanMsg(event, "" + enabled);
 	}	
 
 	public void misc(MessageEvent event) throws Exception
@@ -112,42 +114,14 @@ public class Listener extends ListenerAdapter
 			{
 				if(event.getMessage().startsWith("*"))
 					Core.bot.sendIRC().action("#bl4ckscor3", event.getMessage().substring(1));
-				else if(event.getMessage().equals("update"))
-				{
-					if(isCounting)
-					{
-						Core.bot.sendIRC().message("bl4ckscor3", "I'm already asking TehKitti to update me.");
-						Core.bot.sendIRC().message("bl4ckgon3", "I'm already asking TehKitti to update me.");
-					}
-					else
-					{
-						Update.exe();
-						isCounting = true;
-					}
-				}
-				else if(event.getMessage().equals("updating?"))
-				{
-					Core.bot.sendIRC().message("bl4ckscor3", "" + isCounting);
-					Core.bot.sendIRC().message("bl4ckgon3", "" + isCounting);
-				}
 				else
 					Core.bot.sendIRC().message("#bl4ckscor3", event.getMessage());
 			}		
 			else
 			{
-				if(event.getUser().getNick().equals("TehKitti") && event.getMessage().equals("stop") && isCounting)
+				for(String user : Utilities.getValidUsers())
 				{
-					isCounting = false;
-					Core.bot.sendIRC().message("TehKitti", "Update me right here: https://www.dropbox.com/s/32pf41acn4pato5/bl4ckb0t.jar");
-				}
-				else
-				{	
-					String[] validUsers = Utilities.getValidUsers();
-
-					for(int i = 0; i < Utilities.getValidUsers().length; i++)
-					{
-						Core.bot.sendIRC().message(validUsers[i], event.getUser().getNick() + " just sent me this message: " + event.getMessage());
-					}
+					Core.bot.sendIRC().message(user, event.getUser().getNick() + " just sent me this message: " + event.getMessage());
 				}
 			}
 		}
