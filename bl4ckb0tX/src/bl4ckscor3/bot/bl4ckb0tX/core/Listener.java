@@ -29,6 +29,7 @@ public class Listener extends ListenerAdapter
 		commands.add(new CraftBukkit());
 		commands.add(new Decide());
 		commands.add(new Draw());
+//		commands.add(new Filter());
 		commands.add(new GirlBalls());
 		commands.add(new Help());
 		commands.add(new Kick());
@@ -73,7 +74,7 @@ public class Listener extends ListenerAdapter
 		{
 			for(Command cmd : commands)
 			{
-				if(cmd instanceof SwitchOn && "enable".equalsIgnoreCase(p + cmd.getAlias()))
+				if(cmd instanceof SwitchOn && "-enable".equalsIgnoreCase(p + cmd.getAlias()))
 				{
 					cmd.exe(event);
 					return;
