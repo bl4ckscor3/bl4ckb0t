@@ -14,12 +14,13 @@ import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
 public class Listener extends ListenerAdapter 
 {
-	private static final String p = "-";
+	private final String p = "-";
 	public static boolean enabled = true;
-	public static boolean isCounting = false;
+	public boolean isCounting = false;
 	private Random r = new Random();
 	private int number;
 	private final LinkedList<Command> commands = new LinkedList<>();
+	public static boolean stopped = false;
 
 	public Listener()
 	{
@@ -74,21 +75,20 @@ public class Listener extends ListenerAdapter
 		{
 			for(Command cmd : commands)
 			{
-				if(cmd instanceof SwitchOn && "-enable".equalsIgnoreCase(p + cmd.getAlias()))
+				if(cmd instanceof SwitchOn && event.getMessage().equalsIgnoreCase(p + cmd.getAlias()))
 				{
 					cmd.exe(event);
 					return;
 				}
 			}
 		}
-
-		if(event.getMessage().equals("?enabled"))
-			Utilities.chanMsg(event, "" + enabled);
 	}	
 
 	public void misc(MessageEvent event) throws Exception
 	{
-		if(event.getMessage().equalsIgnoreCase("re"))
+		if(event.getMessage().equals("?enabled"))
+			Utilities.chanMsg(event, "" + enabled);
+		else if(event.getMessage().equalsIgnoreCase("re"))
 			Utilities.chanMsg(event, "wb, " + event.getUser().getNick());
 		else if(event.getMessage().toLowerCase().startsWith("lol"))
 		{

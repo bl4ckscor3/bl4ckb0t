@@ -7,6 +7,7 @@ import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.output.OutputIRC;
 
 import bl4ckscor3.bot.bl4ckb0tX.core.Core;
+import bl4ckscor3.bot.bl4ckb0tX.core.Listener;
 import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
 public class Stop implements Command<MessageEvent>
@@ -39,12 +40,11 @@ public class Stop implements Command<MessageEvent>
 							irc.quitServer("My master sent me to sleep!");
 							Core.main2(); //making another PircBotX
 							break;
-
 						case "no":
 							Utilities.chanMsg(event, "You wished that I don't reboot. Do you still like me?");
 							irc.quitServer("My master sent me to sleep!");
+							Listener.stopped = true;
 							break;
-							
 						default:
 							Utilities.userMsg(event, "Should I reboot? I cannot disconnect if I don't know that :(");
 					}

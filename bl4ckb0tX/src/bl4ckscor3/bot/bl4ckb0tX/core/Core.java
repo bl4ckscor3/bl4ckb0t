@@ -31,7 +31,8 @@ public class Core
 			{
 				try
 				{
-					bot.startBot();
+					if(!Listener.stopped)
+						bot.startBot();
 				}
 				catch(Exception e){}
 			}
@@ -62,7 +63,8 @@ public class Core
 			{
 				try
 				{
-					bot.startBot();
+					if(!Listener.stopped)
+						bot.startBot();
 				}
 				catch(Exception e){}
 			}

@@ -30,8 +30,10 @@ public class Calculate implements Command<MessageEvent>
 					multiply(numbers, event);
 				else if(args[1].equals("/"))
 					Utilities.respond(event, "I'm too dumb to divide :(", true);
-				else if(args[1].equals("pow") || args[1].equals("^") || args[1].equals("^"))
+				else if(args[1].equals("pow") || args[1].equals("^"))
 					pow(numbers, event);
+				else if(args[1].equals("%"))
+					modulo(numbers, event);
 			}
 			else 
 			{
@@ -92,11 +94,22 @@ public class Calculate implements Command<MessageEvent>
 	
 	private void checkForIntAndSend(float solution, MessageEvent event)
 	{
-		System.out.println(solution);
 		if(Float.toString(solution).endsWith(".0"))
 			Utilities.chanMsg(event, "The solution is: " + (int)solution);
 		else
 			Utilities.chanMsg(event, "The solution is: " + solution);
+	}
+	
+	private void modulo(float[] numbers, MessageEvent event) 
+	{
+		float solution = numbers[0];
+		
+		for(int i = 1; i < numbers.length; i++)
+		{
+			solution %= numbers[i];
+		}
+		
+		checkForIntAndSend(solution, event);
 	}
 	
 	@Override
