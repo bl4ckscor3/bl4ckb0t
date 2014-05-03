@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 import org.pircbotx.hooks.ListenerAdapter;
+import org.pircbotx.hooks.events.ActionEvent;
 import org.pircbotx.hooks.events.JoinEvent;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
@@ -99,7 +100,7 @@ public class Listener extends ListenerAdapter
 		}
 		else if(event.getMessage().toLowerCase().startsWith("subaraki is awesome"))
 			Utilities.respond(event, "http://pastebin.com/Vtpb9DWg", true);
-		else if(event.getMessage().toLowerCase().contains("suicide") || event.getMessage().toLowerCase().contains("kills himself"))
+		else if(event.getMessage().toLowerCase().contains("suicide"))
 			Utilities.chanMsg(event, "https://i.imgur.com/1pOApkk.png");
 
 		int number = r.nextInt(1000);
@@ -131,14 +132,9 @@ public class Listener extends ListenerAdapter
 	}
 
 	@Override
-	public void onJoin(JoinEvent event)
+	public void onAction(ActionEvent event) throws Exception 
 	{
-		if(enabled)
-		{
-			if(event.getUser().getNick().equalsIgnoreCase("Maunz"))
-				event.getChannel().send().message("Maunz!!!!!!!!!!!!!!!!!! <3 MY LOVE!!! I LOVE YOU :* :* :* <3 <3 <3");
-			else if(!(event.getUser().getNick().equalsIgnoreCase("bl4ckb0t") || event.getUser().getNick().equalsIgnoreCase("bl4ckb0t1") || event.getUser().getNick().equalsIgnoreCase("bl4ckb0t2") || event.getUser().getNick().equalsIgnoreCase("bl4ckb0t3")))
-				event.getUser().send().notice("Welcome to the official channel of bl4ckscor3! Type '-help' for help and /topic to see the topic of the channel.");
-		}
-	}
+		if(event.getMessage().toLowerCase().contains("kills himself"))
+			event.getChannel().send().message("https://i.imgur.com/1pOApkk.png");
+	}	
 }
