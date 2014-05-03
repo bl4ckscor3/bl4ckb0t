@@ -99,6 +99,8 @@ public class Listener extends ListenerAdapter
 		}
 		else if(event.getMessage().toLowerCase().startsWith("subaraki is awesome"))
 			Utilities.respond(event, "http://pastebin.com/Vtpb9DWg", true);
+		else if(event.getMessage().toLowerCase().contains("suicide") || event.getMessage().toLowerCase().contains("kills himself"))
+			Utilities.chanMsg(event, "https://i.imgur.com/1pOApkk.png");
 
 		int number = r.nextInt(1000);
 
