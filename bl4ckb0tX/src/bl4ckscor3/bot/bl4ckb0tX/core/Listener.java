@@ -2,19 +2,22 @@ package bl4ckscor3.bot.bl4ckb0tX.core;
 
 import java.util.LinkedList;
 import java.util.Random;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
+import org.pircbotx.hooks.Event;
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.ActionEvent;
-import org.pircbotx.hooks.events.JoinEvent;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0tX.commands.*;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Number;
 import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
 public class Listener extends ListenerAdapter 
 {
+	private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
 	private final String p = "-";
 	public static boolean enabled = true;
 	public boolean isCounting = false;
@@ -31,22 +34,23 @@ public class Listener extends ListenerAdapter
 		commands.add(new CraftBukkit());
 		commands.add(new Decide());
 		commands.add(new Draw());
-//		commands.add(new Filter());
+		//		commands.add(new Filter());
 		commands.add(new GirlBalls());
 		commands.add(new Help());
 		commands.add(new Kick());
-		commands.add(new LatestForge());
+		commands.add(new Forge());
 		commands.add(new Leet());
-		commands.add(new Letter());
+		commands.add(new RandomLetter());
 		commands.add(new McfUser());
 		commands.add(new MinusVowels());
-		commands.add(new Number());
+		commands.add(new RandomNumber());
 		commands.add(new Source());
 		commands.add(new Stop());
 		commands.add(new SwitchOff());
 		commands.add(new SwitchOn());
 		commands.add(new Twitch());
 		commands.add(new Twitter());
+		commands.add(new XColor());
 		commands.add(new YouTube());
 	}
 
@@ -89,24 +93,28 @@ public class Listener extends ListenerAdapter
 	{
 		if(event.getMessage().equals("?enabled"))
 			Utilities.chanMsg(event, "" + enabled);
-		else if(event.getMessage().equalsIgnoreCase("re"))
-			Utilities.chanMsg(event, "wb, " + event.getUser().getNick());
-		else if(event.getMessage().toLowerCase().startsWith("lol"))
+
+		if(enabled)
 		{
-			number = r.nextInt(21);
+			if(event.getMessage().equalsIgnoreCase("re"))
+				Utilities.chanMsg(event, "wb, " + event.getUser().getNick());
+			if(event.getMessage().toLowerCase().startsWith("lol"))
+			{
+				number = r.nextInt(21);
 
-			if(number == 5)
-				Utilities.chanMsg(event, "Yeah, lol.");
+				if(number == 5)
+					Utilities.chanMsg(event, "Yeah, lol.");
+			}
+			else if(event.getMessage().toLowerCase().startsWith("subaraki is awesome"))
+				Utilities.respond(event, "http://pastebin.com/Vtpb9DWg", true);
+			else if(event.getMessage().toLowerCase().contains("suicide"))
+				Utilities.chanMsg(event, "https://i.imgur.com/1pOApkk.png");
+
+			int number = r.nextInt(1000);
+
+			if(number == 851)
+				Core.bot.sendIRC().action("#bl4ckscor3", "is masturbating now.");
 		}
-		else if(event.getMessage().toLowerCase().startsWith("subaraki is awesome"))
-			Utilities.respond(event, "http://pastebin.com/Vtpb9DWg", true);
-		else if(event.getMessage().toLowerCase().contains("suicide"))
-			Utilities.chanMsg(event, "https://i.imgur.com/1pOApkk.png");
-
-		int number = r.nextInt(1000);
-
-		if(number == 851)
-			Core.bot.sendIRC().action("#bl4ckscor3", "is masturbating now.");
 	}
 
 	@Override
@@ -132,9 +140,24 @@ public class Listener extends ListenerAdapter
 	}
 
 	@Override
-	public void onAction(ActionEvent event) throws Exception 
+	public void onAction(final ActionEvent event) throws Exception 
 	{
-		if(event.getMessage().toLowerCase().contains("kills himself"))
-			event.getChannel().send().message("https://i.imgur.com/1pOApkk.png");
-	}	
+		if(enabled)
+		{
+			if(event.getMessage().toLowerCase().contains("kills himself"))
+			{
+				Runnable task = new Runnable()
+				{
+					@Override
+					public void run()
+					{
+						event.getChannel().send().action("revives " + event.getUser().getNick());
+					}
+				};
+
+				event.getChannel().send().message("https://i.imgur.com/1pOApkk.png");
+				worker.schedule(task, 3, TimeUnit.SECONDS);
+			}
+		}	
+	}
 }

@@ -13,7 +13,7 @@ public class Calculate implements Command<MessageEvent>
 
 		if(args.length != 1)
 		{
-			if(args.length > 3 && args.length <= 22)
+			if((args.length > 3 && args.length <= 22) || args[1].equals("!"))
 			{
 				float[] numbers = new float[args.length - 2];
 				
@@ -34,6 +34,8 @@ public class Calculate implements Command<MessageEvent>
 					pow(numbers, event);
 				else if(args[1].equals("%"))
 					modulo(numbers, event);
+				else if(args[1].equals("!"))
+					Utilities.chanMsg(event, "" + fact(event, Integer.parseInt(args[2])));
 			}
 			else 
 			{
@@ -110,6 +112,14 @@ public class Calculate implements Command<MessageEvent>
 		}
 		
 		checkForIntAndSend(solution, event);
+	}
+	
+	private int fact(MessageEvent event, int i)
+	{
+		if(i == 1)
+			return 1;
+		else
+			return i * fact(event,i - 1);
 	}
 	
 	@Override

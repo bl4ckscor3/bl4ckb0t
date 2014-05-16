@@ -6,7 +6,7 @@ import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
-public class Number implements Command<MessageEvent>
+public class RandomNumber implements Command<MessageEvent>
 {
 	@Override
 	public void exe(MessageEvent event)
