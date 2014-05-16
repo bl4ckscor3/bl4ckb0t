@@ -119,7 +119,7 @@ public class Calculate implements Command<MessageEvent>
 		if(i == 1)
 			return 1;
 		else
-			return i * fact(event,i - 1);
+			return i * fact(event, i - 1);
 	}
 	
 	@Override

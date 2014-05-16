@@ -38,7 +38,7 @@ public class Listener extends ListenerAdapter
 		commands.add(new GirlBalls());
 		commands.add(new Help());
 		commands.add(new Kick());
-		commands.add(new Forge());
+		commands.add(new LatestForge());
 		commands.add(new Leet());
 		commands.add(new RandomLetter());
 		commands.add(new McfUser());
