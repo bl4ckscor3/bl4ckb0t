@@ -34,7 +34,6 @@ public class Listener extends ListenerAdapter
 		commands.add(new CraftBukkit());
 		commands.add(new Decide());
 		commands.add(new Draw());
-		//		commands.add(new Filter());
 		commands.add(new GirlBalls());
 		commands.add(new Help());
 		commands.add(new Kick());
@@ -44,6 +43,7 @@ public class Listener extends ListenerAdapter
 		commands.add(new McfUser());
 		commands.add(new MinusVowels());
 		commands.add(new RandomNumber());
+		commands.add(new Select());
 		commands.add(new Source());
 		commands.add(new Stop());
 		commands.add(new SwitchOff());
@@ -74,7 +74,6 @@ public class Listener extends ListenerAdapter
 					return;
 				}
 			}
-
 		}
 		else
 		{
@@ -107,8 +106,6 @@ public class Listener extends ListenerAdapter
 			}
 			else if(event.getMessage().toLowerCase().startsWith("subaraki is awesome"))
 				Utilities.respond(event, "http://pastebin.com/Vtpb9DWg", true);
-			else if(event.getMessage().toLowerCase().contains("suicide"))
-				Utilities.chanMsg(event, "https://i.imgur.com/1pOApkk.png");
 
 			int number = r.nextInt(1000);
 
