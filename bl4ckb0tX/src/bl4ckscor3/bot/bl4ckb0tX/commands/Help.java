@@ -21,7 +21,7 @@ public class Help implements Command<MessageEvent>
 		Utilities.addHelpLine(event, "-draw " + Colors.BOLD + Colors.BLUE + "| Draws something on the screen!");
 		Utilities.addHelpLine(event, "-latestforge " + Colors.BOLD + Colors.BLUE + "| Several commands to receive the changelog, source and installer.");
 		Utilities.addHelpLine(event, "-decide <question> " + Colors.BOLD + Colors.BLUE + "| Decides for you. Please only enter Yes/No answerable questions.");
-		Utilities.addHelpLine(event, "-select <options> " + Colors.BOLD + Colors.BLUE + "| Decides for you. Please only enter options seperated with ",".");
+		Utilities.addHelpLine(event, "-select <options> " + Colors.BOLD + Colors.BLUE + "| Decides for you. Please only enter options seperated with.");
 		Utilities.addEmptyLine(event, false);
 		Utilities.userMsg(event, Colors.BOLD + Colors.OLIVE + "-------------------------Credits--------------------------");
 		Utilities.userMsg(event, Colors.BLUE + "Made by bl4ckscor3!");

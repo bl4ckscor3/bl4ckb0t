@@ -126,7 +126,7 @@ public class Listener extends ListenerAdapter
 				else if(event.getMessage().startsWith("msg"))
 				{
 					String[] parts = Utilities.toArgs(event.getMessage());
-					String[] msg = parts; //"= parts" <--- only a placeholder to avoid npe's
+					String[] msg = Utilities.toArgs(event.getMessage()); //"= Utilities.toArgs(event.getMessage())" <--- only a placeholder to avoid npe's
 					StringBuilder builder = new StringBuilder();
 					
 					for(int i = 2; i < parts.length; i++)
@@ -141,6 +141,9 @@ public class Listener extends ListenerAdapter
 					{
 						builder.append(s + " ");
 					}
+					
+					for(String s : parts)
+					System.out.println(s);
 					
 					Core.bot.sendIRC().message(parts[1], builder.toString());
 				}
