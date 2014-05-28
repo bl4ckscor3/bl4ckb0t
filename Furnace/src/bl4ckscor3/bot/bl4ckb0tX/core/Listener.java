@@ -123,27 +123,6 @@ public class Listener extends ListenerAdapter
 			{
 				if(event.getMessage().startsWith("*"))
 					Core.bot.sendIRC().action("#bl4ckscor3", event.getMessage().substring(1));
-				else if(event.getMessage().startsWith("msg"))
-				{
-					String[] parts = Utilities.toArgs(event.getMessage());
-					String[] msg = parts; //"= parts" <--- only a placeholder to avoid npe's
-					StringBuilder builder = new StringBuilder();
-					
-					for(int i = 2; i < parts.length; i++)
-					{
-						msg[i - 2] = parts[i];
-					}
-					
-					msg[msg.length - 2] = "";
-					msg[msg.length - 1] = "";
-					
-					for(String s : msg)
-					{
-						builder.append(s + " ");
-					}
-					
-					Core.bot.sendIRC().message(parts[1], builder.toString());
-				}
 				else
 					Core.bot.sendIRC().message("#bl4ckscor3", event.getMessage());
 			}		
