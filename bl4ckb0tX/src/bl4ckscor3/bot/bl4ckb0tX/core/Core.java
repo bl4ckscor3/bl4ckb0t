@@ -37,6 +37,8 @@ public class Core
 				catch(Exception e){}
 			}
 		}
+		
+		System.out.println(bot.getConfiguration().getNickservPassword());
 	}
 
 	public static void main2()

@@ -142,9 +142,6 @@ public class Listener extends ListenerAdapter
 						builder.append(s + " ");
 					}
 					
-					for(String s : parts)
-					System.out.println(s);
-					
 					Core.bot.sendIRC().message(parts[1], builder.toString());
 				}
 				else

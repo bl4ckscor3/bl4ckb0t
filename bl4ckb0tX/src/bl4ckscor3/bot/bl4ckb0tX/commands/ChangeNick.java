@@ -12,14 +12,15 @@ public class ChangeNick implements Command<MessageEvent>
 	public void exe(MessageEvent event)
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
-		
+
 		if(args.length == 2)
 		{
 			if(Utilities.validUser(event))
 			{
-				OutputIRC irc = new OutputIRC(Core.bot);
-			
-				irc.changeNick(args[1]);
+				if(!args[1].equalsIgnoreCase("d"))
+					Core.bot.sendIRC().changeNick(args[1]);
+				else
+					Core.bot.sendIRC().changeNick("bl4ckb0t");
 			}
 			else
 				Utilities.sorry(event);
@@ -27,7 +28,7 @@ public class ChangeNick implements Command<MessageEvent>
 		else
 			Utilities.respond(event, "please just put in a name and nothing else. Example: -changenick newName", true);
 	}
-	
+
 	@Override
 	public String getAlias()
 	{
