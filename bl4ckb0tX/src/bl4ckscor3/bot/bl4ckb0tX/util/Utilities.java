@@ -13,7 +13,8 @@ public class Utilities
 			"bl4ckgon3",
 			"bl4ckwebgerät",
 			"bl4ck_ubuntu",
-			"bl4ckdro1d"
+			"bl4ckdro1d",
+			"akino_germany"
 		};
 	
 	public static void chanMsg(MessageEvent event, String msg)

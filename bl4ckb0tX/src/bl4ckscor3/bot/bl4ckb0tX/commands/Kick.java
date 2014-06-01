@@ -18,13 +18,14 @@ public class Kick implements Command<MessageEvent>
 			String[] allowedUsers = 
 				{
 					"Darkhax",
-					"Geforce132",
-					"Geforce132|Away",
+					"Darkhax|Away",
+					"Geforce",
+					"Geforce|Away",
 					"TehKitti",
 					"Maunz",
 					"StealthBravo",
 					"FishFish0001",
-					"tankerkiller125"
+					"MineDefine"
 				};
 			String[] usersNotToKick =
 				{

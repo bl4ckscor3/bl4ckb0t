@@ -12,7 +12,7 @@ public class Core
 		Configuration config = new Configuration.Builder()	
 		.setName("bl4ckb0t")
 		.setVersion("1.0")
-		.setServerHostname("chaos.esper.net")
+		.setServerHostname("nova.esper.net")
 		.setServerPort(6667)
 		.setLogin("bl4ckb0t")		
 		.addAutoJoinChannel("#bl4ckscor3")
@@ -37,8 +37,6 @@ public class Core
 				catch(Exception e){}
 			}
 		}
-		
-		System.out.println(bot.getConfiguration().getNickservPassword());
 	}
 
 	public static void main2()
@@ -46,7 +44,7 @@ public class Core
 		Configuration config = new Configuration.Builder()	
 		.setName("bl4ckb0t")
 		.setVersion("1.0")
-		.setServerHostname("chaos.esper.net")
+		.setServerHostname("nova.esper.net")
 		.setServerPort(6667)
 		.setLogin("bl4ckb0t")
 		.addAutoJoinChannel("#bl4ckscor3")
