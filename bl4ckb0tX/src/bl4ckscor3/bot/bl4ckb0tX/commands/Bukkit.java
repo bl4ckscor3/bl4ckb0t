@@ -35,7 +35,7 @@ public class Bukkit implements Command<MessageEvent>
 							while(!buffer.contains("href"))
 							{
 								buffer = reader.readLine();
-							}
+							}//testingstuffz was here
 
 							String[] link = buffer.split("\"");
 
