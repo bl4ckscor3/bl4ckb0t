@@ -50,6 +50,7 @@ public class Listener extends ListenerAdapter
 		commands.add(new SwitchOn());
 		commands.add(new Twitch());
 		commands.add(new Twitter());
+		commands.add(new Weather());
 		commands.add(new XColor());
 		commands.add(new YouTube());
 	}
@@ -128,25 +129,25 @@ public class Listener extends ListenerAdapter
 					String[] parts = Utilities.toArgs(event.getMessage());
 					String[] msg = Utilities.toArgs(event.getMessage()); //"= Utilities.toArgs(event.getMessage())" <--- only a placeholder to avoid npe's
 					StringBuilder builder = new StringBuilder();
-					
+
 					for(int i = 2; i < parts.length; i++)
 					{
 						msg[i - 2] = parts[i];
 					}
-					
+
 					msg[msg.length - 2] = "";
 					msg[msg.length - 1] = "";
-					
+
 					for(String s : msg)
 					{
 						builder.append(s + " ");
 					}
-					
+
 					Core.bot.sendIRC().message(parts[1], builder.toString());
 				}
 				else
 					Core.bot.sendIRC().message("#bl4ckscor3", event.getMessage());
-			}		
+			}
 			else
 			{
 				for(String user : Utilities.getValidUsers())

@@ -1,20 +1,23 @@
 package bl4ckscor3.bot.bl4ckb0tX.core;
 
+import java.io.IOException;
+
 import org.pircbotx.Configuration;
 import org.pircbotx.PircBotX;
+import org.pircbotx.exception.IrcException;
 
 public class Core
 {	
 	public static PircBotX bot;
 
-	public static void main(String args[])
+	public static void main(String args[]) throws IOException, IrcException
 	{
 		Configuration config = new Configuration.Builder()	
 		.setName("bl4ckb0t")
 		.setVersion("1.0")
-		.setServerHostname("nova.esper.net")
+		.setServerHostname("availo.esper.net")
 		.setServerPort(6667)
-		.setLogin("bl4ckb0t")		
+		.setLogin("bl4ckb0t")
 		.addAutoJoinChannel("#bl4ckscor3")
 		.setNickservPassword("xxx")
 		.setAutoNickChange(true)
@@ -24,7 +27,7 @@ public class Core
 		.buildConfiguration();
 
 		bot = new PircBotX(config);
-
+		
 		if(!bot.isConnected())
 		{
 			while(true)//only way of auto reconnect as of now - bugs out when using "-stop no"
@@ -34,7 +37,7 @@ public class Core
 					if(!Listener.stopped)
 						bot.startBot();
 				}
-				catch(Exception e){}
+				catch(Exception e){e.printStackTrace();}
 			}
 		}
 	}
@@ -44,7 +47,7 @@ public class Core
 		Configuration config = new Configuration.Builder()	
 		.setName("bl4ckb0t")
 		.setVersion("1.0")
-		.setServerHostname("nova.esper.net")
+		.setServerHostname("availo.esper.net")
 		.setServerPort(6667)
 		.setLogin("bl4ckb0t")
 		.addAutoJoinChannel("#bl4ckscor3")
