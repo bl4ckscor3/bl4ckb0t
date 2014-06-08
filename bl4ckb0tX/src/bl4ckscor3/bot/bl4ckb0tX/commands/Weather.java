@@ -11,6 +11,8 @@ import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
 public class Weather implements Command<MessageEvent>
 {
+	private boolean error = false;
+	
 	@Override
 	public void exe(MessageEvent event) throws Exception 
 	{
@@ -33,15 +35,18 @@ public class Weather implements Command<MessageEvent>
 				lines[i] = reader.readLine();
 			}
 
-			if(lines[0].contains("Error"))
+			if(lines[2] != null)
 			{
-				Utilities.respond(event, "I'm afraid, but I couldn't find a city named \"" + toArgs[1] + "\" :/", true);
+				customizeResults(lines, kelvin, fahrenheit, celsius);
+				if(!error)
+					Utilities.chanMsg(event, "** " + lines[2] + ", " + lines[4] + " ** Conditions: " + lines[16] + " ** Temperature: " + lines[7] + " ** Humidity: " + lines[8] + " ** Pressure: " + lines[9] + " ** Wind: " + lines[12] + ", with " + lines[11] + " ** Powered by OpenWeatherMap - http://openweathermap.org/city/" + lines[1] + " **");
+				else
+					Utilities.chanMsg(event, "** " + lines[2] + ", " + lines[4] + " ** Conditions: " + lines[16] + " ** Temperature: " + lines[7] + " ** Humidity: " + lines[8] + " ** Pressure: " + lines[9] + " ** Wind: " + lines[11] + " ** Powered by OpenWeatherMap - http://openweathermap.org/city/" + lines[1] + " **");
 				reader.close();
 				return;
 			}
-
-			customizeResults(lines, kelvin, fahrenheit, celsius);
-			Utilities.chanMsg(event, "** " + lines[2] + ", " + lines[4] + " ** Conditions: " + lines[16] + " ** Temperature: " + lines[7] + " ** Humidity: " + lines[8] + " ** Pressure: " + lines[9] + " ** Wind: " + lines[12] + ", with " + lines[11] + " ** Powered by OpenWeatherMap - http://openweathermap.org/city/" + lines[1] + " **");
+			
+			Utilities.respond(event, "I'm afraid, but I couldn't find a city named \"" + toArgs[1] + "\" :/", true);
 			reader.close();
 		}
 		else
@@ -52,6 +57,9 @@ public class Weather implements Command<MessageEvent>
 	{
 		String[] temp = lines;
 
+		for(String i : lines)
+			System.out.println(i);
+		
 		lines[1] = temp[2].split("\"")[1];
 		lines[2] = temp[2].split("\"")[3];
 		lines[4] = temp[4].split(">")[1].split("<")[0];
@@ -61,11 +69,22 @@ public class Weather implements Command<MessageEvent>
 		lines[7] = c + "°C | " + f + "°F | " + k + "K";		
 		lines[8] = temp[8].split("\"")[1] + "%";
 		lines[9] = temp[9].split("\"")[1] + "hPa";
-		lines[11] = temp[11].split("\"")[1] + "m/s (" + temp[11].split("\"")[3] + ")";
-		lines[12] = temp[12].split("\"")[5];
+		
+		try
+		{
+			lines[11] = temp[11].split("\"")[1] + "m/s (" + temp[11].split("\"")[3] + ")";
+			lines[12] = temp[12].split("\"")[5];
+		}
+		catch(ArrayIndexOutOfBoundsException e)
+		{
+			temp = lines;
+			lines[11] = temp[11].split("\"")[0] + "m/s";
+			error = true;
+		}
+		
 		lines[16] = temp[16].split("\"")[3];
 	}
-	
+
 	@Override
 	public String getAlias() 
 	{
