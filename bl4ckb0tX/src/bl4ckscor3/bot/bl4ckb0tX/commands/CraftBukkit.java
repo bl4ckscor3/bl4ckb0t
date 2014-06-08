@@ -134,6 +134,8 @@ public class CraftBukkit implements Command<MessageEvent>
 		}
 		else
 			Utilities.chanMsg(event, "Available commands: 'rec' | 'beta' | 'dev' - Usage: -bukkit <command>");
+		
+		reader.close();
 	}
 	
 	@Override

@@ -18,7 +18,7 @@ public class LatestForge implements Command<MessageEvent>
 		String buffer = "x";
 		String[] args = Utilities.toArgs(event.getMessage());
 		StringBuilder builder = new StringBuilder();
-		BufferedReader mainReader = new BufferedReader(new InputStreamReader(new URL("http://files.minecraftforge.net/").openStream()));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://files.minecraftforge.net/").openStream()));
 
 		for(int i = 0; i < args.length; i++)
 		{
@@ -30,24 +30,24 @@ public class LatestForge implements Command<MessageEvent>
 			switch(args[1])
 			{
 				case "version":
-					Utilities.respond(event, "the latest version is: " + getLatestForgeVersion(buffer, builder, mainReader), true);
+					Utilities.respond(event, "the latest version is: " + getLatestForgeVersion(buffer, builder, reader), true);
 					break;
 				case "changelog":
-					String latestForge = getLatestForgeVersion(buffer, builder, mainReader);
+					String latestForge = getLatestForgeVersion(buffer, builder, reader);
 					String changelogUrl = "http://files.minecraftforge.net/maven/net/minecraftforge/forge/" + latestForge + "/forge-" + latestForge + "-changelog.txt";
 
 					Utilities.respond(event, "here is the changelog for Forge build " + latestForge + ": " + changelogUrl, true);
 					break;
 				case "dlsrc":
-					while(mainReader.readLine() != null)
+					while(reader.readLine() != null)
 					{
-						buffer = mainReader.readLine();
+						buffer = reader.readLine();
 
 						if(buffer.contains("<td>1.7.2-Latest</td>"))
 						{
-							while(mainReader.readLine() != null)
+							while(reader.readLine() != null)
 							{
-								buffer = mainReader.readLine();
+								buffer = reader.readLine();
 
 								if(buffer.endsWith("Src</a>)"))
 								{
@@ -64,15 +64,15 @@ public class LatestForge implements Command<MessageEvent>
 					Utilities.respond(event, "I couldn't find a proper version, I'm sorry :(", true);
 					break;
 				case "dlmain":
-					while(mainReader.readLine() != null)
+					while(reader.readLine() != null)
 					{
-						buffer = mainReader.readLine();
+						buffer = reader.readLine();
 
 						if(buffer.contains("<td>1.7.2-Latest</td>"))
 						{
-							while(mainReader.readLine() != null)
+							while(reader.readLine() != null)
 							{
-								buffer = mainReader.readLine();
+								buffer = reader.readLine();
 
 								if(buffer.endsWith("Installer</a>)"))
 								{
@@ -94,20 +94,22 @@ public class LatestForge implements Command<MessageEvent>
 		}
 		else
 			Utilities.chanMsg(event, "Available commands: 'version' | 'changelog' | 'dlsrc' | 'dlmain' - Usage: -latestforge <command>");
+	
+		reader.close();
 	}
 
-	private String getLatestForgeVersion(String buffer, StringBuilder builder, BufferedReader mainReader) throws IOException
+	private String getLatestForgeVersion(String buffer, StringBuilder builder, BufferedReader reader) throws IOException
 	{
-		while(mainReader.readLine() != null)
+		while(reader.readLine() != null)
 		{
-			buffer = mainReader.readLine();
+			buffer = reader.readLine();
 
 			if(buffer.contains("<td>1.7.2-Latest</td>"))
 			{
 				String[] mcVersion = buffer.split(">");
 
 				builder.append(mcVersion[1].substring(0, 5)).append("-");
-				buffer = mainReader.readLine();
+				buffer = reader.readLine();
 
 				String[] version = buffer.split(">");
 

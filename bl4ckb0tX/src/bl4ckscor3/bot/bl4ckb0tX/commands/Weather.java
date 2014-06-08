@@ -36,11 +36,13 @@ public class Weather implements Command<MessageEvent>
 			if(lines[0].contains("Error"))
 			{
 				Utilities.respond(event, "I'm afraid, but I couldn't find a city named \"" + toArgs[1] + "\" :/", true);
+				reader.close();
 				return;
 			}
 
 			customizeResults(lines, kelvin, fahrenheit, celsius);
 			Utilities.chanMsg(event, "** " + lines[2] + ", " + lines[4] + " ** Conditions: " + lines[16] + " ** Temperature: " + lines[7] + " ** Humidity: " + lines[8] + " ** Pressure: " + lines[9] + " ** Wind: " + lines[12] + ", with " + lines[11] + " ** Powered by OpenWeatherMap - http://openweathermap.org/city/" + lines[1] + " **");
+			reader.close();
 		}
 		else
 			Utilities.respond(event, "I don't know what you did, but you just need to specify a city, nothing else...", true);

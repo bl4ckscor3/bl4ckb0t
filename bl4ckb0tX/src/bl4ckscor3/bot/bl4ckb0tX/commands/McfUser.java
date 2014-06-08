@@ -12,7 +12,8 @@ import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
 public class McfUser implements Command<MessageEvent>
 {
-	private final String[] tasks = {
+	private final String[] tasks = 
+		{
 			"profile",
 			"posts",
 			"topics",
@@ -37,7 +38,7 @@ public class McfUser implements Command<MessageEvent>
 			"moderator_logs",
 			"administrator_logs",
 			"login"
-	};
+		};
 
 	@Override
 	public void exe(MessageEvent event) throws MalformedURLException, IOException
@@ -88,11 +89,11 @@ public class McfUser implements Command<MessageEvent>
 		{
 			builder.append("'").append(task).append("' | ");
 		}
-		
+
 		builder.delete(builder.length() - 2, builder.length());
 		return builder.toString();
 	}
-	
+
 	@Override
 	public String getAlias()
 	{
