@@ -19,7 +19,7 @@ public class RandomNumber implements Command<MessageEvent>
 		if(event.getMessage().equalsIgnoreCase("-number"))
 			Utilities.chanMsg(event, "Please put in a number. Usage: -number <number>");
 	
-		if(!(n > 20))
+		if(!(n > 50))
 		{
 			Random r = new Random();
 			
@@ -29,7 +29,7 @@ public class RandomNumber implements Command<MessageEvent>
 				output.append(numbs[i]).append(" ");
 			}
 			
-			Utilities.chanMsg(event, output.toString());
+			Utilities.userMsg(event, output.toString());
 		}
 		else
 			Utilities.chanMsg(event, "Please don't put in a number higher than 50.");

@@ -19,7 +19,7 @@ public class RandomLetter implements Command<MessageEvent>
 		{
 			int n = Integer.parseInt(args[1]);
 
-			if(!(n > 20))
+			if(!(n > 50))
 			{
 				for(int i = 0; i < n; i++)
 				{
@@ -59,7 +59,8 @@ public class RandomLetter implements Command<MessageEvent>
 					output.append(chars[i]);
 					output.append(" ");
 				}
-				Utilities.chanMsg(event, output.toString());
+				
+				Utilities.userMsg(event, output.toString());
 			}
 			else
 				Utilities.chanMsg(event, "Please don't put in a number higher than 50");
