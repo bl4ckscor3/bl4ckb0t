@@ -107,11 +107,6 @@ public class Listener extends ListenerAdapter
 			}
 			else if(event.getMessage().toLowerCase().startsWith("subaraki is awesome"))
 				Utilities.respond(event, "http://pastebin.com/Vtpb9DWg", true);
-
-			int number = r.nextInt(1000);
-
-			if(number == 851)
-				Core.bot.sendIRC().action("#bl4ckscor3", "is masturbating now.");
 		}
 	}
 

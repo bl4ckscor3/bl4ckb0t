@@ -89,11 +89,11 @@ public class LatestForge implements Command<MessageEvent>
 					Utilities.respond(event, "I couldn't find a proper version, I'm sorry :(", true);
 					break;
 				default:
-					Utilities.chanMsg(event, "Available commands: 'version' | 'changelog' | 'dlsrc' | 'dlmain' - Usage: -latestforge <command>");
+					Utilities.userMsg(event, "Available commands: 'version' | 'changelog' | 'dlsrc' | 'dlmain' - Usage: -latestforge <command>");
 			}
 		}
 		else
-			Utilities.chanMsg(event, "Available commands: 'version' | 'changelog' | 'dlsrc' | 'dlmain' - Usage: -latestforge <command>");
+			Utilities.userMsg(event, "Available commands: 'version' | 'changelog' | 'dlsrc' | 'dlmain' - Usage: -latestforge <command>");
 	
 		reader.close();
 	}

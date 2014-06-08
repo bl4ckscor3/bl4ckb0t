@@ -13,7 +13,7 @@ public class RandomLetter implements Command<MessageEvent>
 	{
 		StringBuilder output = new StringBuilder();
 		String[] args = Utilities.toArgs(event.getMessage());
-		String[] chars = new String[20];
+		String[] chars = new String[50];
 
 		if(args.length == 2)
 		{
@@ -62,7 +62,7 @@ public class RandomLetter implements Command<MessageEvent>
 				Utilities.chanMsg(event, output.toString());
 			}
 			else
-				Utilities.chanMsg(event, "Please don't put in a number higher than 20");
+				Utilities.chanMsg(event, "Please don't put in a number higher than 50");
 		}
 		else
 			Utilities.respond(event, "please tell me how many letters I should select for you. Example: -letter 5", true);

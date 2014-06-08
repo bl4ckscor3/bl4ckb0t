@@ -13,7 +13,7 @@ public class RandomNumber implements Command<MessageEvent>
 	{
 		StringBuilder output = new StringBuilder();
 		String[] number = event.getMessage().split(" ");
-		int[] numbs = new int[20];
+		int[] numbs = new int[50];
 		int n = Integer.parseInt(number[1]);
 		
 		if(event.getMessage().equalsIgnoreCase("-number"))
@@ -32,7 +32,7 @@ public class RandomNumber implements Command<MessageEvent>
 			Utilities.chanMsg(event, output.toString());
 		}
 		else
-			Utilities.chanMsg(event, "Please don't put in a number higher than twenty.");
+			Utilities.chanMsg(event, "Please don't put in a number higher than 50.");
 	}
 	
 	@Override

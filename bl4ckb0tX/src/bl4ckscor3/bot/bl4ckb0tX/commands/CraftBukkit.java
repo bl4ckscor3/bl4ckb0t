@@ -54,6 +54,7 @@ public class CraftBukkit implements Command<MessageEvent>
 
 							//Output
 							Utilities.respond(event, Colors.DARK_GREEN + "the version of the latest recommended Craftbukkit build is " + Colors.BOLD + version + Colors.BOLD + ". Download it here: " + Colors.BOLD + "http://dl.bukkit.org" + link[1], true);
+							versionReader.close();
 							break;
 						}
 					}
@@ -89,6 +90,7 @@ public class CraftBukkit implements Command<MessageEvent>
 
 							//Output
 							Utilities.respond(event, Colors.PURPLE + "the version of the latest Craftbukkit Betabuild is " + Colors.BOLD + version + Colors.BOLD + ". Download it here: " + Colors.BOLD + "http://dl.bukkit.org" + link[1], true);
+							versionReader.close();
 							break;
 						}
 					}
@@ -124,16 +126,17 @@ public class CraftBukkit implements Command<MessageEvent>
 
 							//Output
 							Utilities.respond(event, Colors.RED + "the version of the latest Craftbukkit Devbuild is " + Colors.BOLD + version + Colors.BOLD + ". Download it here: " + Colors.BOLD + "http://dl.bukkit.org" + link[1], true);
+							versionReader.close();
 							break;
 						}
 					}
 					break;
 				default:	
-					Utilities.chanMsg(event, "Available commands: 'rec' | 'beta' | 'dev' - Usage: -bukkit <command>");
+					Utilities.userMsg(event, "Available commands: 'rec' | 'beta' | 'dev' - Usage: -bukkit <command>");
 			}
 		}
 		else
-			Utilities.chanMsg(event, "Available commands: 'rec' | 'beta' | 'dev' - Usage: -bukkit <command>");
+			Utilities.userMsg(event, "Available commands: 'rec' | 'beta' | 'dev' - Usage: -bukkit <command>");
 		
 		reader.close();
 	}

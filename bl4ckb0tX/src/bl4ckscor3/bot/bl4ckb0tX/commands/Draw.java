@@ -410,7 +410,7 @@ public class Draw implements Command<MessageEvent>
 		}
 
 		output.delete(output.length() - 3, output.length() - 1);
-		Utilities.chanMsg(event, output.toString());
+		Utilities.userMsg(event, output.toString());
 	}
 	
 	@Override

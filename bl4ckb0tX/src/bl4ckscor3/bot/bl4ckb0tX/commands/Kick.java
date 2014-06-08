@@ -36,6 +36,22 @@ public class Kick implements Command<MessageEvent>
 				};
 			String[] args = Utilities.toArgs(event.getMessage());
 
+			if(event.getUser().getNick().equalsIgnoreCase(args[1]))
+			{
+				StringBuilder builder = new StringBuilder();
+				
+				for(int i = 3; i <= args.length; i++)
+				{
+					builder.append(args[i - 1] + " ");
+				}
+
+				builder.replace(builder.length() - 1, builder.length(), "");
+
+				Utilities.chanMsg(event, args[1] + " was dumb and kicked himself...");
+				Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + args[1] + " :" + builder.toString());
+				return;
+			}
+			
 			for(String allowedUser : allowedUsers)
 			{
 				if(event.getUser().getNick().equals(allowedUser))
@@ -62,59 +78,42 @@ public class Kick implements Command<MessageEvent>
 
 			if(args.length >= 3)
 			{
-				if(!(event.getUser().getNick().equalsIgnoreCase(args[1])))
+				for(String userNotToKick : usersNotToKick)
 				{
-					for(String userNotToKick : usersNotToKick)
+					if(args[1].equalsIgnoreCase(userNotToKick))
 					{
-						if(args[1].equalsIgnoreCase(userNotToKick))
-						{
-							found = true;
-							break;
-						}
+						found = true;
+						break;
 					}
+				}
 
-					if(!found)
+				if(!found)
+				{
+					if(args[1].equalsIgnoreCase(Core.bot.getNick()))
 					{
-						if(args[1].equalsIgnoreCase(Core.bot.getNick()))
-						{
-							OutputIRC irc = new OutputIRC(Core.bot);
+						OutputIRC irc = new OutputIRC(Core.bot);
 
-							event.getChannel().send().action("kicks himself");
-							Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + args[1] + " :I'm said now :(");
-							irc.quitServer("My master sent me to sleep!");
-							Core.main2();
-						}
-						else
-						{
-							StringBuilder builder = new StringBuilder();
-
-							for(int i = 3; i <= args.length; i++)
-							{
-								builder.append(args[i - 1] + " ");
-							}
-
-							builder.replace(builder.length() - 1, builder.length(), "");
-							Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + args[1] + " :" + builder.toString());
-						}
+						event.getChannel().send().action("kicks himself");
+						Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + args[1] + " :I'm said now :(");
+						irc.quitServer("My master sent me to sleep!");
+						Core.main2();
 					}
 					else
 					{
-						Utilities.chanMsg(event, "This user cannot be kicked.");
+						StringBuilder builder = new StringBuilder();
+
+						for(int i = 3; i <= args.length; i++)
+						{
+							builder.append(args[i - 1] + " ");
+						}
+
+						builder.replace(builder.length() - 1, builder.length(), "");
+						Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + args[1] + " :" + builder.toString());
 					}
 				}
 				else
 				{
-					StringBuilder builder = new StringBuilder();
-
-					for(int i = 3; i <= args.length; i++)
-					{
-						builder.append(args[i - 1] + " ");
-					}
-
-					builder.replace(builder.length() - 1, builder.length(), "");
-
-					Utilities.chanMsg(event, args[1] + " was dumb and kicked himself...");
-					Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + args[1] + " :" + builder.toString());
+					Utilities.chanMsg(event, "This user cannot be kicked.");
 				}
 			}
 			else
