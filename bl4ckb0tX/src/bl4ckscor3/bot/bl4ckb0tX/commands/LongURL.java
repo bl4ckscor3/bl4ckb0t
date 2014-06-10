@@ -19,7 +19,7 @@ public class LongURL implements Command<MessageEvent>
 		String[] args = Utilities.toArgs(event.getMessage());
 
 		if(args.length == 1)
-			Utilities.chanMsg(event, "you need to specify a short link which you want me to expand. Usage: -longurl <shortLink>");
+			Utilities.chanMsg(event, "You need to specify a short link which you want me to expand. Usage: -longurl <shortLink>");
 		else if(args.length == 2)
 		{
 			String longUrl;
@@ -33,7 +33,7 @@ public class LongURL implements Command<MessageEvent>
 			Utilities.chanMsg(event, "This is the long url of the given link: " + longUrl);
 		}
 		else
-			Utilities.respond(event, "I don't know what you did, but you just need to specify a short link, nothing else...", true);
+			Utilities.chanMsg(event, "I don't know what you did, but you just need to specify a short link, nothing else...");
 	}
 
 	@Override
