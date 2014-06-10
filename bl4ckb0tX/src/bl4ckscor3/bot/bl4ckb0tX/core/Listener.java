@@ -39,6 +39,7 @@ public class Listener extends ListenerAdapter
 		commands.add(new Kick());
 		commands.add(new LatestForge());
 		commands.add(new Leet());
+		commands.add(new LongURL());
 		commands.add(new RandomLetter());
 		commands.add(new McfUser());
 		commands.add(new MinusVowels());
