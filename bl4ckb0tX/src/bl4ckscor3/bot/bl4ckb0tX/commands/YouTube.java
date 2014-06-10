@@ -105,13 +105,13 @@ public class YouTube implements Command<MessageEvent>
 				if(src[i].contains("og:title"))
 					results[0] = src[i].split("\"")[3].split("\"")[0];
 				else if(src[i].contains("watch-view-count"))
-					results[1] = src[i].split(">")[4].split("<")[0];
+					results[1] = src[i].split(">")[4].split("<")[0].split(" ")[0];
 				else if(src[i].contains("dislikes-count"))
 					results[2] = src[i].split(">")[1].split("<")[0];
 				else if(src[i].contains("likes-count"))
 					results[3] = src[i].split(">")[1].split("<")[0];
 				else if(src[i].contains("watch-uploader-info"))
-					results[4] = src[i + 1].split(">")[1].split("<")[0].split(" ")[0] + " " + src[i + 1].split(">")[1].split("<")[0].split(" ")[1] + " " + src[i + 1].split(">")[1].split("<")[0].split(" ")[2];
+					results[4] = src[i + 1].split(">")[1].split("<")[0].split(" ")[2] + " " + src[i + 1].split(">")[1].split("<")[0].split(" ")[3] + " " + src[i + 1].split(">")[1].split("<")[0].split(" ")[4];
 				else if(src[i].contains("http://www.youtube.com/user/"))
 					results[5] = src[i].split("\"")[3].split("/")[4];
 			}
