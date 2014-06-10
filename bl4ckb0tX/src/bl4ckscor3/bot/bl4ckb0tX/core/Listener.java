@@ -12,33 +12,7 @@ import org.pircbotx.hooks.events.ActionEvent;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0tX.commands.Bukkit;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Calculate;
-import bl4ckscor3.bot.bl4ckb0tX.commands.ChangeNick;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Command;
-import bl4ckscor3.bot.bl4ckb0tX.commands.CraftBukkit;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Decide;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Draw;
-import bl4ckscor3.bot.bl4ckb0tX.commands.GirlBalls;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Help;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Kick;
-import bl4ckscor3.bot.bl4ckb0tX.commands.LatestForge;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Leet;
-import bl4ckscor3.bot.bl4ckb0tX.commands.LongURL;
-import bl4ckscor3.bot.bl4ckb0tX.commands.McfUser;
-import bl4ckscor3.bot.bl4ckb0tX.commands.MinusVowels;
-import bl4ckscor3.bot.bl4ckb0tX.commands.RandomLetter;
-import bl4ckscor3.bot.bl4ckb0tX.commands.RandomNumber;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Select;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Source;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Stop;
-import bl4ckscor3.bot.bl4ckb0tX.commands.SwitchOff;
-import bl4ckscor3.bot.bl4ckb0tX.commands.SwitchOn;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Twitch;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Twitter;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Weather;
-import bl4ckscor3.bot.bl4ckb0tX.commands.XColor;
-import bl4ckscor3.bot.bl4ckb0tX.commands.YouTube;
+import bl4ckscor3.bot.bl4ckb0tX.commands.*;
 import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
 public class Listener extends ListenerAdapter 
@@ -126,7 +100,7 @@ public class Listener extends ListenerAdapter
 			if(event.getMessage().contains("www.youtube.com/watch?v=") || event.getMessage().contains("http://youtu.be/"))
 				YouTube.sendVideoStats(event);
 		
-			if(event.getMessage().toLowerCase().startsWith("re"))
+			if(event.getMessage().toLowerCase().startsWith("re "))
 				Utilities.chanMsg(event, "wb, " + event.getUser().getNick());
 			else if(event.getMessage().toLowerCase().startsWith("lol"))
 			{
