@@ -22,13 +22,15 @@ public class LongURL implements Command<MessageEvent>
 			Utilities.chanMsg(event, "You need to specify a short link which you want me to expand. Usage: -longurl <shortLink>");
 		else if(args.length == 2)
 		{
-			String longUrl;
+			String longUrl = "";
+			String temp;
 			BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://api.longurl.org/v2/expand?url=" + args[1]).openStream()));
 			
 			reader.readLine();
 			reader.readLine();
-			longUrl = "h" + reader.readLine().split("h")[1];
-			longUrl = longUrl.split("]")[0];
+			longUrl = reader.readLine();
+			temp = longUrl;
+			longUrl = "http:" + temp.split(":")[1].split("]")[0];
 			
 			Utilities.chanMsg(event, "This is the long url of the given link: " + longUrl);
 		}
