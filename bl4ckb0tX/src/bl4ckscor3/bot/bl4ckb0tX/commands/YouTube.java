@@ -43,6 +43,7 @@ public class YouTube implements Command<MessageEvent>
 		String link = null;
 		BufferedReader reader;
 		String line;
+		boolean shortLink = false;
 		String[] src = new String[2000];
 		String[] results =
 			{
@@ -61,8 +62,21 @@ public class YouTube implements Command<MessageEvent>
 				link = s;
 				break;
 			}
+			else if(s.contains("http://youtu.be/"))
+			{
+				link = s;
+				shortLink = true;
+				break;
+			}
 		}
 
+		if(shortLink)
+		{
+			String videoId = link.split("/")[3];
+			
+			link = "www.youtube.com/watch?v=" + videoId;
+		}
+		
 		//if someone posts the link without a space between the link and the word before it
 		if(!link.startsWith("w"))
 			link = link.split(":")[1].substring(2);
