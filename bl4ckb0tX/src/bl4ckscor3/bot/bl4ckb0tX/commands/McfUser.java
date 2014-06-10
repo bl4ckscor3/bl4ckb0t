@@ -45,7 +45,16 @@ public class McfUser implements Command<MessageEvent>
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 
-		if(args.length == 3)
+		if(args.length == 1)
+			Utilities.userMsg(event, "Please specify at least a user. Usage: -u <username> [task]");
+		else if(args.length == 2)
+		{
+			if(isUserValid(args[1]))
+				Utilities.respond(event, "http://u.mcf.li/" + args[1], false);
+			else
+				Utilities.respond(event, "the user " + args[1] + " doesn't exist.", true);
+		}
+		else if(args.length == 3)
 		{
 			if(isUserValid(args[1]))
 			{
