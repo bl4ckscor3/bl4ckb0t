@@ -2,7 +2,6 @@ package bl4ckscor3.bot.bl4ckb0tX.core;
 
 import java.util.LinkedList;
 import java.util.Random;
-import java.util.Scanner;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -34,7 +33,6 @@ public class Listener extends ListenerAdapter
 		commands.add(new CraftBukkit());
 		commands.add(new Decide());
 		commands.add(new Draw());
-		commands.add(new GirlBalls());
 		commands.add(new Help());
 		commands.add(new Join());
 		commands.add(new Kick());
@@ -104,15 +102,6 @@ public class Listener extends ListenerAdapter
 
 			if(event.getMessage().toLowerCase().equalsIgnoreCase("re"))
 				Utilities.chanMsg(event, "wb, " + event.getUser().getNick());
-			else if(event.getMessage().toLowerCase().startsWith("lol"))
-			{
-				number = r.nextInt(21);
-
-				if(number == 5)
-					Utilities.chanMsg(event, "Yeah, lol.");
-			}
-			else if(event.getMessage().toLowerCase().startsWith("subaraki is awesome"))
-				Utilities.respond(event, "http://pastebin.com/Vtpb9DWg", true);
 		}
 	}
 
@@ -149,7 +138,7 @@ public class Listener extends ListenerAdapter
 					{
 						builder.append(args[i] + " ");
 					}
-					
+
 					msg = builder.toString();
 					Core.bot.sendIRC().message(args[1], msg);
 				}

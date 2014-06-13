@@ -1,13 +1,11 @@
 package bl4ckscor3.bot.bl4ckb0tX.commands;
 
-import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
@@ -20,12 +18,7 @@ public class YouTube implements Command<MessageEvent>
 		String[] args = Utilities.toArgs(event.getMessage());
 
 		if(args.length == 2)
-		{
-			if(args[1].equalsIgnoreCase("emmablackery"))
-				Utilities.respond(event, "only bl4ckscor3 can get girlballs, sorry :(", true);
-			else
-				Utilities.respond(event, "http://www.youtube.com/" + args[1], false);
-		}
+			Utilities.respond(event, "http://www.youtube.com/" + args[1], false);
 		else
 			Utilities.respond(event, "please provide a channel name for me and nothing else. Example: -yt antvenom", true);
 	}
@@ -73,10 +66,10 @@ public class YouTube implements Command<MessageEvent>
 		if(shortLink)
 		{
 			String videoId = link.split("/")[3];
-			
+
 			link = "www.youtube.com/watch?v=" + videoId;
 		}
-		
+
 		//if someone posts the link without a space between the link and the word before it
 		if(!link.startsWith("w"))
 			link = link.split(":")[1].substring(2);
@@ -116,7 +109,7 @@ public class YouTube implements Command<MessageEvent>
 					results[5] = src[i].split("\"")[3].split("/")[4];
 			}
 		}
-		
+
 		Utilities.chanMsg(event, "** 1,0You0,4Tube ** Title: " + results[0] + " ** Views: " + results[1] + " ** Likes:3 " + results[3] + " ** Dislikes:4 " + results[2] + " ** Uploaded on: " + results[4] + " ** Uploaded by: " + results[5] + " **");
 	}
 }

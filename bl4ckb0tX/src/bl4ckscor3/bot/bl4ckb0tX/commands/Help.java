@@ -22,7 +22,6 @@ public class Help implements Command<MessageEvent>
 		Utilities.addHelpLine(event, "-disable " + color + "| Disables all the bot's features.");
 		Utilities.addHelpLine(event, "-draw <drawing> " + color + "| Draws something on the screen!");
 		Utilities.addHelpLine(event, "-enable " + color + "| Enables all the bot's features.");
-		Utilities.addHelpLine(event, "-girlballs " + color + "| Girlballs.");
 		Utilities.addHelpLine(event, "-join <channel> " + color + "| Joins the given channel.");
 		Utilities.addHelpLine(event, "-kick <user> <reason> " + color + "| Kicks a user from a channel.");
 		Utilities.addHelpLine(event, "-latestforge <command> " + color + "| Several commands to receive the changelog, source and installer.");
