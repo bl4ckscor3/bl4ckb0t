@@ -1,8 +1,13 @@
 package bl4ckscor3.bot.bl4ckb0tX.util;
 
+import org.pircbotx.Channel;
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
+
+import bl4ckscor3.bot.bl4ckb0tX.core.Core;
+
+import com.google.common.collect.ImmutableSortedSet;
 
 public class Utilities
 {
@@ -89,5 +94,21 @@ public class Utilities
 	public static String[] getValidUsers()
 	{
 		return validUsers;
+	}
+	
+	public static String[] getJoinedChannels()
+	{
+		ImmutableSortedSet<Channel> list = Core.bot.getUserBot().getChannels();
+		Object[] x = list.toArray();
+		String[] chans = new String[20];
+		int i = 0;
+
+		for(Object o : x)
+		{
+			chans[i] = o.toString().split(",")[0].split("=")[1];
+			i++;
+		}
+		
+		return chans;
 	}
 }

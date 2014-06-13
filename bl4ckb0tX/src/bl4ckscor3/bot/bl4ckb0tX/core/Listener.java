@@ -36,8 +36,10 @@ public class Listener extends ListenerAdapter
 		commands.add(new Draw());
 		commands.add(new GirlBalls());
 		commands.add(new Help());
+		commands.add(new Join());
 		commands.add(new Kick());
 		commands.add(new LatestForge());
+		commands.add(new Leave());
 		commands.add(new Leet());
 		commands.add(new LongURL());
 		commands.add(new RandomLetter());
@@ -59,7 +61,7 @@ public class Listener extends ListenerAdapter
 	@Override
 	public void onMessage(MessageEvent event) throws Exception
 	{	
-		String cmdName = event.getMessage().split(" ")[0];
+		String cmdName = Utilities.toArgs(event.getMessage())[0];
 
 		misc(event);
 
@@ -99,8 +101,8 @@ public class Listener extends ListenerAdapter
 		{
 			if(event.getMessage().contains("www.youtube.com/watch?v=") || event.getMessage().contains("http://youtu.be/"))
 				YouTube.sendVideoStats(event);
-		
-			if(event.getMessage().toLowerCase().startsWith("re "))
+
+			if(event.getMessage().toLowerCase().equalsIgnoreCase("re"))
 				Utilities.chanMsg(event, "wb, " + event.getUser().getNick());
 			else if(event.getMessage().toLowerCase().startsWith("lol"))
 			{
@@ -121,31 +123,36 @@ public class Listener extends ListenerAdapter
 		{
 			if(Utilities.validUser(event))
 			{
-				if(event.getMessage().startsWith("*"))
-					Core.bot.sendIRC().action("#bl4ckscor3", event.getMessage().substring(1));
-				else if(event.getMessage().startsWith("msg"))
+				String[] args = Utilities.toArgs(event.getMessage());
+				StringBuilder builder = new StringBuilder();
+				String msg;
+
+				if(args[0].equalsIgnoreCase("join"))
+					Core.bot.sendIRC().joinChannel("#bl4ckscor3");
+				else if(args[0].startsWith("#"))
 				{
-					String[] parts = Utilities.toArgs(event.getMessage());
-					String[] msg = Utilities.toArgs(event.getMessage()); //"= Utilities.toArgs(event.getMessage())" <--- only a placeholder to avoid npe's
-					StringBuilder builder = new StringBuilder();
-
-					for(int i = 2; i < parts.length; i++)
+					for(int i = 1; i < args.length; i++)
 					{
-						msg[i - 2] = parts[i];
+						builder.append(args[i] + " ");
 					}
 
-					msg[msg.length - 2] = "";
-					msg[msg.length - 1] = "";
+					msg = builder.toString();
 
-					for(String s : msg)
-					{
-						builder.append(s + " ");
-					}
-
-					Core.bot.sendIRC().message(parts[1], builder.toString());
+					if(args[1].startsWith("*"))
+						Core.bot.sendIRC().action(args[0], msg.substring(1));
+					else
+						Core.bot.sendIRC().message(args[0], msg);
 				}
-				else
-					Core.bot.sendIRC().message("#bl4ckscor3", event.getMessage());
+				else if(args[0].equalsIgnoreCase("msg"))
+				{
+					for(int i = 2; i < args.length; i++)
+					{
+						builder.append(args[i] + " ");
+					}
+					
+					msg = builder.toString();
+					Core.bot.sendIRC().message(args[1], msg);
+				}
 			}
 			else
 			{

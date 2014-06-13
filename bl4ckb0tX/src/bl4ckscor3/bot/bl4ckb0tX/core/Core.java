@@ -1,13 +1,10 @@
 package bl4ckscor3.bot.bl4ckb0tX.core;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 import org.pircbotx.Configuration;
 import org.pircbotx.PircBotX;
 import org.pircbotx.exception.IrcException;
-
-import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
 public class Core
 {	
