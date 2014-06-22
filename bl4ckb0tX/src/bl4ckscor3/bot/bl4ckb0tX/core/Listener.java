@@ -8,10 +8,39 @@ import java.util.concurrent.TimeUnit;
 
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.ActionEvent;
+import org.pircbotx.hooks.events.JoinEvent;
 import org.pircbotx.hooks.events.MessageEvent;
+import org.pircbotx.hooks.events.PartEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0tX.commands.*;
+import bl4ckscor3.bot.bl4ckb0tX.commands.Bukkit;
+import bl4ckscor3.bot.bl4ckb0tX.commands.Calculate;
+import bl4ckscor3.bot.bl4ckb0tX.commands.ChangeNick;
+import bl4ckscor3.bot.bl4ckb0tX.commands.Command;
+import bl4ckscor3.bot.bl4ckb0tX.commands.CraftBukkit;
+import bl4ckscor3.bot.bl4ckb0tX.commands.Decide;
+import bl4ckscor3.bot.bl4ckb0tX.commands.Draw;
+import bl4ckscor3.bot.bl4ckb0tX.commands.Help;
+import bl4ckscor3.bot.bl4ckb0tX.commands.Join;
+import bl4ckscor3.bot.bl4ckb0tX.commands.Kick;
+import bl4ckscor3.bot.bl4ckb0tX.commands.Forge;
+import bl4ckscor3.bot.bl4ckb0tX.commands.Leave;
+import bl4ckscor3.bot.bl4ckb0tX.commands.Leet;
+import bl4ckscor3.bot.bl4ckb0tX.commands.LongURL;
+import bl4ckscor3.bot.bl4ckb0tX.commands.McfUser;
+import bl4ckscor3.bot.bl4ckb0tX.commands.MinusVowels;
+import bl4ckscor3.bot.bl4ckb0tX.commands.RandomLetter;
+import bl4ckscor3.bot.bl4ckb0tX.commands.RandomNumber;
+import bl4ckscor3.bot.bl4ckb0tX.commands.Select;
+import bl4ckscor3.bot.bl4ckb0tX.commands.Source;
+import bl4ckscor3.bot.bl4ckb0tX.commands.Stop;
+import bl4ckscor3.bot.bl4ckb0tX.commands.SwitchOff;
+import bl4ckscor3.bot.bl4ckb0tX.commands.SwitchOn;
+import bl4ckscor3.bot.bl4ckb0tX.commands.Twitch;
+import bl4ckscor3.bot.bl4ckb0tX.commands.Twitter;
+import bl4ckscor3.bot.bl4ckb0tX.commands.Weather;
+import bl4ckscor3.bot.bl4ckb0tX.commands.XColor;
+import bl4ckscor3.bot.bl4ckb0tX.commands.YouTube;
 import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
 public class Listener extends ListenerAdapter 
@@ -36,7 +65,7 @@ public class Listener extends ListenerAdapter
 		commands.add(new Help());
 		commands.add(new Join());
 		commands.add(new Kick());
-		commands.add(new LatestForge());
+		commands.add(new Forge());
 		commands.add(new Leave());
 		commands.add(new Leet());
 		commands.add(new LongURL());
@@ -58,7 +87,7 @@ public class Listener extends ListenerAdapter
 
 	@Override
 	public void onMessage(MessageEvent event) throws Exception
-	{	
+	{
 		String cmdName = Utilities.toArgs(event.getMessage())[0];
 
 		misc(event);
