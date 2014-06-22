@@ -64,7 +64,10 @@ public class Forge implements Command<MessageEvent>
 				if(line.contains(type))
 				{
 					line = reader.readLine();
-					return line.split(">")[1].split("<")[0];
+					
+					String mcVersion = (reader.readLine()).split(">")[1].split("<")[0];
+					
+					return line.split(">")[1].split("<")[0] + " (For Minecraft version " + mcVersion + ")";
 				}
 			}
 		}
