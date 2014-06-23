@@ -22,7 +22,16 @@ public class Forge implements Command<MessageEvent>
 			if(args[1].equalsIgnoreCase("latest") || args[1].equalsIgnoreCase("latets"))
 			{
 				if(args[2].equalsIgnoreCase("version"))
-					Utilities.chanMsg(event, createResult("<td>Latest</td>", "Version"));
+				{
+					String result = createResult("<td>Latest</td>", "Version");
+
+					if(result.equalsIgnoreCase(createResult("<td>Recommended</td>", "Version")))
+					{
+						Utilities.chanMsg(event, result + " This is also the recommended build.");
+					}
+					else
+						Utilities.chanMsg(event, result);
+				}
 				else if(args[2].equalsIgnoreCase("changelog"))
 					Utilities.chanMsg(event, createResult("<td>Latest</td>", "Changelog"));
 				else if(args[2].equalsIgnoreCase("dlmain"))
@@ -35,7 +44,16 @@ public class Forge implements Command<MessageEvent>
 			else if(args[1].equalsIgnoreCase("rec") || args[1].equalsIgnoreCase("recommended"))
 			{
 				if(args[2].equalsIgnoreCase("version"))
-					Utilities.chanMsg(event, createResult("<td>Recommended</td>", "Version"));
+				{
+					String result = createResult("<td>Recommended</td>", "Version");
+
+					if(result.equalsIgnoreCase(createResult("<td>Latest</td>", "Version")))
+					{
+						Utilities.chanMsg(event, result + " This is also the latest build.");
+					}
+					else
+						Utilities.chanMsg(event, result);
+				}
 				else if(args[2].equalsIgnoreCase("changelog"))
 					Utilities.chanMsg(event, createResult("<td>Recommended</td>", "Changelog"));
 				else if(args[2].equalsIgnoreCase("dlmain"))
@@ -64,9 +82,9 @@ public class Forge implements Command<MessageEvent>
 				if(line.contains(type))
 				{
 					line = reader.readLine();
-					
+
 					String mcVersion = (reader.readLine()).split(">")[1].split("<")[0];
-					
+
 					return line.split(">")[1].split("<")[0] + " (For Minecraft version " + mcVersion + ")";
 				}
 			}
@@ -109,7 +127,7 @@ public class Forge implements Command<MessageEvent>
 	{
 		Utilities.chanMsg(event, "Usage: -forge <latest|rec|recommended> <version|changelog|dlmain|dlsrc>");
 	}
-	
+
 	@Override
 	public String getAlias()
 	{
