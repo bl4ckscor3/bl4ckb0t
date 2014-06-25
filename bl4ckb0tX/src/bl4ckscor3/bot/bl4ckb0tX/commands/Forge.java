@@ -12,7 +12,7 @@ import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
 public class Forge implements Command<MessageEvent>
 {
-	@Override
+	@Override//test
 	public void exe(MessageEvent event) throws IOException
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
