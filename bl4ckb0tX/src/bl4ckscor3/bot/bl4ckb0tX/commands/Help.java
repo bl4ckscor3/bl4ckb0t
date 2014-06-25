@@ -22,12 +22,13 @@ public class Help implements Command<MessageEvent>
 		Utilities.addHelpLine(event, "-disable " + color + "| Disables all the bot's features.");
 		Utilities.addHelpLine(event, "-draw <drawing> " + color + "| Draws something on the screen!");
 		Utilities.addHelpLine(event, "-enable " + color + "| Enables all the bot's features.");
+		Utilities.addHelpLine(event, "-forge <latest|rec|recommended> <version|changelog|dlmain|dlsrc> " + color + "| Gives you the link to the specified options.");
 		Utilities.addHelpLine(event, "-join <channel> " + color + "| Joins the given channel.");
 		Utilities.addHelpLine(event, "-kick <user> <reason> " + color + "| Kicks a user from a channel.");
-		Utilities.addHelpLine(event, "-latestforge <command> " + color + "| Several commands to receive the changelog, source and installer.");
 		Utilities.addHelpLine(event, "-leave [channel] " + color + "| Leaves the given channel. If no channel is parsed, the channel the command was sent in will be used.");
 		Utilities.addHelpLine(event, "-leet <sentence> " + color + "| Converts your sentence into leet.");
 		Utilities.addHelpLine(event, "-letter <number> " + color + "| Outputs as many random letters as you specified (not more than 20)!");
+		Utilities.addHelpLine(event, "-listchans " + color + "| Lists the channels the bot is currently in.");
 		Utilities.addHelpLine(event, "-longurl <shortUrl> " + color + "| Enlarges your url.");
 		Utilities.addHelpLine(event, "-number <number> " + color + "| Outputs as many random numbers as you specified (not more than 20)!");
 		Utilities.addHelpLine(event, "-select <options> " + color + "| Selects an option you specified for you. Please only enter options seperated with a comma.");
