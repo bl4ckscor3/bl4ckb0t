@@ -8,9 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.ActionEvent;
-import org.pircbotx.hooks.events.JoinEvent;
 import org.pircbotx.hooks.events.MessageEvent;
-import org.pircbotx.hooks.events.PartEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0tX.commands.Bukkit;
@@ -20,12 +18,13 @@ import bl4ckscor3.bot.bl4ckb0tX.commands.Command;
 import bl4ckscor3.bot.bl4ckb0tX.commands.CraftBukkit;
 import bl4ckscor3.bot.bl4ckb0tX.commands.Decide;
 import bl4ckscor3.bot.bl4ckb0tX.commands.Draw;
+import bl4ckscor3.bot.bl4ckb0tX.commands.Forge;
 import bl4ckscor3.bot.bl4ckb0tX.commands.Help;
 import bl4ckscor3.bot.bl4ckb0tX.commands.Join;
 import bl4ckscor3.bot.bl4ckb0tX.commands.Kick;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Forge;
 import bl4ckscor3.bot.bl4ckb0tX.commands.Leave;
 import bl4ckscor3.bot.bl4ckb0tX.commands.Leet;
+import bl4ckscor3.bot.bl4ckb0tX.commands.ListChans;
 import bl4ckscor3.bot.bl4ckb0tX.commands.LongURL;
 import bl4ckscor3.bot.bl4ckb0tX.commands.McfUser;
 import bl4ckscor3.bot.bl4ckb0tX.commands.MinusVowels;
@@ -68,6 +67,7 @@ public class Listener extends ListenerAdapter
 		commands.add(new Forge());
 		commands.add(new Leave());
 		commands.add(new Leet());
+		commands.add(new ListChans());
 		commands.add(new LongURL());
 		commands.add(new RandomLetter());
 		commands.add(new McfUser());
