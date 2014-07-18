@@ -30,11 +30,6 @@ public class Weather implements Command<MessageEvent>
 			double fahrenheit = 0;
 			double celsius = 0;
 
-			for(int i = 0; i <= 18; i++)
-			{
-				lines[i] = reader.readLine();
-			}
-
 			if(lines[2] != null)
 			{
 				customizeResults(lines, kelvin, fahrenheit, celsius);
