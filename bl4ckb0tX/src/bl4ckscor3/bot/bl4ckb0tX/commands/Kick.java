@@ -1,5 +1,8 @@
 package bl4ckscor3.bot.bl4ckb0tX.commands;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.output.OutputIRC;
 
@@ -9,7 +12,7 @@ import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 public class Kick implements Command<MessageEvent>
 {	
 	@Override
-	public void exe(MessageEvent event)
+	public void exe(MessageEvent event) throws MalformedURLException, IOException
 	{
 		if(event.getUser().isVerified())
 		{
