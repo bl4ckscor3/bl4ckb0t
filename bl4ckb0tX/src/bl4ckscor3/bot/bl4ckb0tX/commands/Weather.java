@@ -39,9 +39,9 @@ public class Weather implements Command<MessageEvent>
 			{
 				customizeResults(lines, kelvin, fahrenheit, celsius);
 				if(!error)
-					Utilities.chanMsg(event, "** " + lines[2] + ", " + lines[4] + " ** Conditions: " + lines[16] + " ** Temperature: " + lines[7] + " ** Humidity: " + lines[8] + " ** Pressure: " + lines[9] + " ** Wind: " + lines[12] + ", with " + lines[11] + " ** Powered by OpenWeatherMap - http://openweathermap.org/city/" + lines[1] + " **");
+					Utilities.chanMsg(event, "** " + lines[2] + ", " + lines[4] + " ** Conditions: " + lines[17] + " ** Temperature: " + lines[7] + " ** Humidity: " + lines[8] + " ** Pressure: " + lines[9] + " ** Wind: " + lines[12] + ", with " + lines[11] + " ** Powered by OpenWeatherMap - http://openweathermap.org/city/" + lines[1] + " **");
 				else
-					Utilities.chanMsg(event, "** " + lines[2] + ", " + lines[4] + " ** Conditions: " + lines[16] + " ** Temperature: " + lines[7] + " ** Humidity: " + lines[8] + " ** Pressure: " + lines[9] + " ** Wind: " + lines[11] + " ** Powered by OpenWeatherMap - http://openweathermap.org/city/" + lines[1] + " **");
+					Utilities.chanMsg(event, "** " + lines[2] + ", " + lines[4] + " ** Conditions: " + lines[17] + " ** Temperature: " + lines[7] + " ** Humidity: " + lines[8] + " ** Pressure: " + lines[9] + " ** Wind: " + lines[11] + " ** Powered by OpenWeatherMap - http://openweathermap.org/city/" + lines[1] + " **");
 				reader.close();
 				return;
 			}
@@ -50,7 +50,7 @@ public class Weather implements Command<MessageEvent>
 			reader.close();
 		}
 		else
-			Utilities.respond(event, "I don't know what you did, but you just need to specify a city, nothing else...", true);
+			Utilities.respond(event, "If your city contains a space, use an underscore (\"_\") instead.", true);
 	}
 
 	private void customizeResults(String[] lines, double k, double f, double c)
@@ -81,8 +81,7 @@ public class Weather implements Command<MessageEvent>
 			lines[11] = temp[11].split("\"")[0] + "m/s";
 			error = true;
 		}
-		
-		lines[16] = temp[16].split("\"")[3];
+		lines[17] = temp[17].split("\"")[3];
 	}
 
 	@Override
