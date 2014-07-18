@@ -56,7 +56,7 @@ public class Core
 		}
 	}
 
-	public static void main2()
+	public static void main2() throws MalformedURLException, IOException
 	{
 		Configuration config;
 		String[] chans = addAutoJoinChans();
