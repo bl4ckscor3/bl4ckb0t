@@ -6,6 +6,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.pircbotx.Colors;
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.ActionEvent;
 import org.pircbotx.hooks.events.MessageEvent;
@@ -120,15 +123,36 @@ public class Listener extends ListenerAdapter
 	public void misc(MessageEvent event) throws Exception
 	{
 		if(event.getMessage().equals("?enabled"))
+		{
 			Utilities.chanMsg(event, "" + enabled);
+			return;
+		}
 
 		if(enabled)
 		{
 			if(event.getMessage().contains("www.youtube.com/watch?v=") || event.getMessage().contains("http://youtu.be/"))
 				YouTube.sendVideoStats(event);
 
+			checkForLinkAndSendTitle(event);
+
 			if(event.getMessage().toLowerCase().equalsIgnoreCase("re"))
 				Utilities.chanMsg(event, "wb, " + event.getUser().getNick());
+		}
+	}
+
+	private void checkForLinkAndSendTitle(MessageEvent event)
+	{
+		String[] args = Utilities.toArgs(event.getMessage());
+
+		for(String s : args)
+		{
+			if(s.contains("www.") || s.contains("http://") || s.contains("https://"))
+			{
+				WebDriver driver = new HtmlUnitDriver();
+
+				driver.get(s);
+				Utilities.chanMsg(event, "Page title: " + Colors.BOLD + driver.getTitle());
+			}
 		}
 	}
 
