@@ -19,22 +19,7 @@ public class Leave implements Command<MessageEvent>
 				Core.bot.sendRaw().rawLine("PART " + event.getChannel().getName() + " :My master told me that I can't be here anymore :C");
 			else if(args.length == 2)
 			{
-				String[] chans = Utilities.getJoinedChannels();
-				boolean joined = false;
-
-				for(String s : chans)
-				{
-					if(s != null)
-					{
-						if(s.equalsIgnoreCase(args[1]))
-						{
-							joined = true;
-							break;
-						}
-					}
-				}
-
-				if(joined)
+				if(Utilities.hasJoinedChannel(args))
 				{
 					Utilities.chanMsg(event, "I will leave the channel " + Colors.BOLD + args[1] + Colors.BOLD + " now.");
 					Core.bot.sendRaw().rawLine("PART " + args[1] + " :My master told me that I can't be here anymore :C");

@@ -22,22 +22,7 @@ public class Join implements Command<MessageEvent>
 				Utilities.respond(event, "you need to specify a channel!", true);
 			else if(args.length == 2)
 			{
-				String[] chans = Utilities.getJoinedChannels();
-				boolean joined = false;
-
-				for(String s : chans)
-				{
-					if(s != null)
-					{
-						if(s.equalsIgnoreCase(args[1]))
-						{
-							joined = true;
-							break;
-						}
-					}
-				}
-
-				if(!joined)
+				if(!Utilities.hasJoinedChannel(args))
 				{
 					Utilities.chanMsg(event, "I will join the channel " + Colors.BOLD + args[1]);
 					Core.bot.sendIRC().joinChannel(args[1]);

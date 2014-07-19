@@ -96,6 +96,22 @@ public class Utilities
 		return validUsers;
 	}
 	
+	public static boolean hasJoinedChannel(String[] args)
+	{
+		String[] chans = getJoinedChannels();
+		boolean joined = false;
+
+		for(String s : chans)
+		{
+			if(s != null)
+			{
+				if(s.equalsIgnoreCase(args[1]))
+					return true;
+			}
+		}
+		return false;
+	}
+	
 	public static String[] getJoinedChannels()
 	{
 		ImmutableSortedSet<Channel> list = Core.bot.getUserBot().getChannels();
