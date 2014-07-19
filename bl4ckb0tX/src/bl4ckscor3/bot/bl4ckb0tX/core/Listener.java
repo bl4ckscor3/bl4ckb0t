@@ -19,6 +19,7 @@ import bl4ckscor3.bot.bl4ckb0tX.commands.Calculate;
 import bl4ckscor3.bot.bl4ckb0tX.commands.ChangeNick;
 import bl4ckscor3.bot.bl4ckb0tX.commands.Command;
 import bl4ckscor3.bot.bl4ckb0tX.commands.CraftBukkit;
+import bl4ckscor3.bot.bl4ckb0tX.commands.DeAds;
 import bl4ckscor3.bot.bl4ckb0tX.commands.Decide;
 import bl4ckscor3.bot.bl4ckb0tX.commands.Draw;
 import bl4ckscor3.bot.bl4ckb0tX.commands.Forge;
@@ -61,6 +62,7 @@ public class Listener extends ListenerAdapter
 		commands.add(new Calculate());
 		commands.add(new ChangeNick());
 		commands.add(new CraftBukkit());
+		commands.add(new DeAds());
 		commands.add(new Decide());
 		commands.add(new Draw());
 		commands.add(new Help());
@@ -131,9 +133,13 @@ public class Listener extends ListenerAdapter
 		if(enabled)
 		{
 			if(event.getMessage().contains("www.youtube.com/watch?v=") || event.getMessage().contains("http://youtu.be/"))
+			{
 				YouTube.sendVideoStats(event);
+				return;
+			}
 
-			checkForLinkAndSendTitle(event);
+			if(!event.getMessage().startsWith(p))
+				checkForLinkAndSendTitle(event);
 
 			if(event.getMessage().toLowerCase().equalsIgnoreCase("re"))
 				Utilities.chanMsg(event, "wb, " + event.getUser().getNick());
@@ -149,9 +155,13 @@ public class Listener extends ListenerAdapter
 			if(s.contains("www.") || s.contains("http://") || s.contains("https://"))
 			{
 				WebDriver driver = new HtmlUnitDriver();
-
+				String title = null;
+				
 				driver.get(s);
-				Utilities.chanMsg(event, "Page title: " + Colors.BOLD + driver.getTitle());
+				title = driver.getTitle();
+				
+				if(title != null)
+					Utilities.chanMsg(event, "Page title: " + Colors.BOLD + title);
 			}
 		}
 	}
