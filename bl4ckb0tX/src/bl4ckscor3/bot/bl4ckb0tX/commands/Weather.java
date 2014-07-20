@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 
-import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
@@ -12,73 +11,71 @@ import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 public class Weather implements Command<MessageEvent>
 {
 	private boolean error = false;
-	
+
 	@Override
 	public void exe(MessageEvent event) throws Exception 
 	{
-		String[] toArgs = Utilities.toArgs(event.getMessage());
+		String[] args = Utilities.toArgs(event.getMessage());
+		String[] data = new String[19];//1 = name | 3 = country | 6 = temperature | 7 = humidity | 8 = pressure | 10 = wind speed | 11 = wind direction | 13 = clouds
 
-		if(toArgs.length == 1)
-			Utilities.respond(event, "you need to specify a city!", true);
-		else if(toArgs.length == 2)
-		{
-			BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://api.openweathermap.org/data/2.5/weather?q=" + toArgs[1] + "&mode=xml").openStream()));
-			//1 = id (after customization) | 2 = name | 4 = country | 7 = temp in k | 8 = humidity | 9 = pressure
-			//11 = windspeed | 12 = wind direction | 14 = clouds
-			String[] lines = new String[19];
-			double kelvin = 0;
-			double fahrenheit = 0;
-			double celsius = 0;
-
-			if(lines[2] != null)
-			{
-				customizeResults(lines, kelvin, fahrenheit, celsius);
-				if(!error)
-					Utilities.chanMsg(event, "** " + lines[2] + ", " + lines[4] + " ** Conditions: " + lines[17] + " ** Temperature: " + lines[7] + " ** Humidity: " + lines[8] + " ** Pressure: " + lines[9] + " ** Wind: " + lines[12] + ", with " + lines[11] + " ** Powered by OpenWeatherMap - http://openweathermap.org/city/" + lines[1] + " **");
-				else
-					Utilities.chanMsg(event, "** " + lines[2] + ", " + lines[4] + " ** Conditions: " + lines[17] + " ** Temperature: " + lines[7] + " ** Humidity: " + lines[8] + " ** Pressure: " + lines[9] + " ** Wind: " + lines[11] + " ** Powered by OpenWeatherMap - http://openweathermap.org/city/" + lines[1] + " **");
-				reader.close();
-				return;
-			}
-			
-			Utilities.respond(event, "I'm afraid, but I couldn't find a city named \"" + toArgs[1] + "\" :/", true);
-			reader.close();
-		}
+		if(args.length == 1)
+			Utilities.chanMsg(event, "Please specify a city. Example: -w London");
+		else if(args.length > 2)
+			Utilities.chanMsg(event, "Please only specify a city. Example: -w London");
 		else
-			Utilities.respond(event, "If your city contains a space, use an underscore (\"_\") instead.", true);
+		{
+			BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://api.openweathermap.org/data/2.5/weather?q=" + args[1] + "&mode=xml").openStream()));	
+			
+			if(reader.readLine().equalsIgnoreCase("{\"message\":\"Error: Not found city\",\"cod\":\"404\"}"))
+				Utilities.chanMsg(event, "Sorry, I couldn't find a city named \"" + args[1] + "\" :/");
+			else
+			{
+				for(int i = 0; i < 19; i++)
+				{
+					data[i] = reader.readLine();
+				}
+				
+				filter(data);
+				
+				if(!error)
+					Utilities.chanMsg(event, "** " + data[1] + ", " + data[3] + " ** Conditions: " + data[13] + " ** Temperature: " + data[6] + " ** Humidity: " + data[7] + " ** Pressure: " + data[8] + " ** Wind: " + data[11] + ", with " + data[10] + " ** Powered by OpenWeatherMap - http://openweathermap.org/city/" + data[1] + "/ **");
+				else
+					Utilities.chanMsg(event, "** " + data[1] + ", " + data[3] + " ** Conditions: " + data[13] + " ** Temperature: " + data[6] + " ** Humidity: " + data[7] + " ** Pressure: " + data[8] + " ** Wind: " + data[11] + " ** Powered by OpenWeatherMap - http://openweathermap.org/city/" + data[1] + "/ **");
+			}
+		}
 	}
 
-	private void customizeResults(String[] lines, double k, double f, double c)
+	private void filter(String[] data)
 	{
-		String[] temp = lines;
-
-		for(String i : lines)
-			System.out.println(i);
+		String[] temp = data;
+		double kentucky;
+		double fried;
+		double chicken;
 		
-		lines[1] = temp[2].split("\"")[1];
-		lines[2] = temp[2].split("\"")[3];
-		lines[4] = temp[4].split(">")[1].split("<")[0];
-		k = Double.parseDouble(temp[7].split("\"")[1]);
-		f = Math.round((9D / 5D * (k - 273.15D) + 32D) * 100D) / 100D;
-		c = Math.round((5D / 9D * (f - 32D)) * 100D) / 100D;
-		lines[7] = c + "°C | " + f + "°F | " + k + "K";		
-		lines[8] = temp[8].split("\"")[1] + "%";
-		lines[9] = temp[9].split("\"")[1] + "hPa";
+		data[1] = temp[1].split("\"")[3];
+		data[3] = temp[3].split(">")[1].split("<")[0];
+		kentucky = Double.parseDouble(temp[6].split("\"")[1]);
+		fried = Math.round((9D / 5D * (kentucky - 273.15D) + 32D) * 100D) / 100D;
+		chicken = Math.round((5D / 9D * (fried - 32D)) * 100D) / 100D;
+		data[6] = chicken + "°C | " + fried + "°F | " + kentucky + "K";	
+		data[7] = temp[7].split("\"")[1] + "%";
+		data[8] = temp[8].split("\"")[1] + "hPa";
 		
 		try
 		{
-			lines[11] = temp[11].split("\"")[1] + "m/s (" + temp[11].split("\"")[3] + ")";
-			lines[12] = temp[12].split("\"")[5];
+			data[10] = temp[10].split("\"")[1] + "m/s (" + temp[10].split("\"")[3] + ")";
+			data[11] = temp[11].split("\"")[5];
 		}
 		catch(ArrayIndexOutOfBoundsException e)
 		{
-			temp = lines;
-			lines[11] = temp[11].split("\"")[0] + "m/s";
+			temp = data;
+			data[10] = temp[10].split("\"")[1] + "m/s";
 			error = true;
 		}
-		lines[17] = temp[17].split("\"")[3];
+		
+		data[13] = temp[13].split("\"")[3];
 	}
-
+	
 	@Override
 	public String getAlias() 
 	{
