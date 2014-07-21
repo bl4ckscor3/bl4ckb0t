@@ -3,6 +3,7 @@ package bl4ckscor3.bot.bl4ckb0tX.commands;
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0tX.core.Core;
 import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
 public class Help implements Command<MessageEvent>
@@ -37,7 +38,7 @@ public class Help implements Command<MessageEvent>
 		Utilities.addHelpLine(event, "-stop <yes|no> " + color + "| Stops the bot with or without a restart.");
 		Utilities.addHelpLine(event, "-tv <channel> " + color + "| Sends you to the specified Twitch channel!");
 		Utilities.addHelpLine(event, "-tw <profile> " + color + "| Sends you to the specified Twitter profile!");
-		Utilities.addHelpLine(event, "-u <name> [where to go] " + color + "| Minecraftforumuser command!");
+		Utilities.addHelpLine(event, "-vowels <sentence> " + color + "| Removes all vowels from the sentenced. This is the most useless command from " + Core.bot.getNick() + "...");
 		Utilities.addHelpLine(event, "-w <city> " + color + "| Shows you the current weather stats of the specified city.");
 		Utilities.addHelpLine(event, "-yt <channel> " + color + "| Sends you to the specified YouTube channel!");
 		Utilities.addEmptyLine(event, false);
