@@ -18,6 +18,7 @@ public class Help implements Command<MessageEvent>
 		Utilities.addHelpLine(event, "-calc <+|-|*|x|pow|^> <numbers> " + color + "| Calculates the given numbers with the given option.");
 		Utilities.addHelpLine(event, "-cbukkit <command> " + color + "| Several commands to receive the recommended, beta, and dev craftbukkit builds.");
 		Utilities.addHelpLine(event, "-changenick <newNick>"  + color + "| Changes the bot's nickname. Only userable by specific people.");
+		Utilities.addHelpLine(event, "-deads <link> " + color + "| Resolves a link from a money linking site for you. This may take up to 1 minute.");
 		Utilities.addHelpLine(event, "-decide <question> " + color + "| Decides for you. Please only enter yes/no answerable questions.");
 		Utilities.addHelpLine(event, "-disable " + color + "| Disables all the bot's features.");
 		Utilities.addHelpLine(event, "-draw <drawing> " + color + "| Draws something on the screen!");
