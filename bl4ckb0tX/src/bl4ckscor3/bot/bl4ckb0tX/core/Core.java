@@ -30,12 +30,12 @@ public class Core
 		.setCapEnabled(true)
 		.addListener(new Listener())
 		.setMessageDelay(500);
-		
+
 		for(String s : chans)
 		{
 			configPresets.addAutoJoinChannel(s);
 		}
-		
+
 		config = configPresets.buildConfiguration();
 		bot = new PircBotX(config);
 
@@ -71,12 +71,18 @@ public class Core
 		.setCapEnabled(true)
 		.addListener(new Listener())
 		.setMessageDelay(500);
-		
+
 		for(String s : chans)
 		{
-			configPresets.addAutoJoinChannel(s);
+			if(bot.getNick().equalsIgnoreCase("bl4ckb0t"))
+				configPresets.addAutoJoinChannel(s);
+			else
+			{
+				configPresets.addAutoJoinChannel("#bl4ckb0tTest");
+				break;
+			}
 		}
-		
+
 		config = configPresets.buildConfiguration();
 		bot = new PircBotX(config);
 
@@ -96,7 +102,7 @@ public class Core
 			}
 		}
 	}
-	
+
 	private static String[] addAutoJoinChans() throws MalformedURLException, IOException
 	{
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/owng5ehcvf0h5cr/bl4ckb0t%20chans.txt?dl=1").openStream()));
