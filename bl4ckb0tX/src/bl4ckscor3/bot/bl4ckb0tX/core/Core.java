@@ -33,7 +33,13 @@ public class Core
 
 		for(String s : chans)
 		{
-			configPresets.addAutoJoinChannel(s);
+			if(bot.getNick().equalsIgnoreCase("bl4ckb0t"))
+				configPresets.addAutoJoinChannel(s);
+			else
+			{
+				configPresets.addAutoJoinChannel("#bl4ckb0tTest");
+				break;
+			}
 		}
 
 		config = configPresets.buildConfiguration();
