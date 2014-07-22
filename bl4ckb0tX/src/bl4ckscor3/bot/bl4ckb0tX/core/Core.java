@@ -33,13 +33,7 @@ public class Core
 
 		for(String s : chans)
 		{
-			if(bot.getNick().equalsIgnoreCase("bl4ckb0t"))
-				configPresets.addAutoJoinChannel(s);
-			else
-			{
-				configPresets.addAutoJoinChannel("#bl4ckb0tTest");
-				break;
-			}
+			configPresets.addAutoJoinChannel(s);
 		}
 
 		config = configPresets.buildConfiguration();
@@ -80,13 +74,7 @@ public class Core
 
 		for(String s : chans)
 		{
-			if(bot.getNick().equalsIgnoreCase("bl4ckb0t"))
-				configPresets.addAutoJoinChannel(s);
-			else
-			{
-				configPresets.addAutoJoinChannel("#bl4ckb0tTest");
-				break;
-			}
+			configPresets.addAutoJoinChannel(s);
 		}
 
 		config = configPresets.buildConfiguration();
