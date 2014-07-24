@@ -27,9 +27,14 @@ public class Utilities
 		event.getChannel().send().message(msg);
 	}
 	
-	public static void userMsg(MessageEvent event, String msg)
+	public static void notice(MessageEvent event, String msg)
 	{
 		event.getUser().send().notice(msg);
+	}
+	
+	public static void pm(String name, String msg)
+	{
+		Core.bot.sendIRC().message(name, msg);
 	}
 	
 	public static void respond(MessageEvent event, String msg, boolean comma)
@@ -47,19 +52,7 @@ public class Utilities
 	
 	public static void addHelpLine(MessageEvent event, String msg)
 	{
-		Utilities.userMsg(event, Colors.BOLD + Colors.RED + msg);
-	}
-	
-	public static void addEmptyLine(MessageEvent event, boolean sendToChan)
-	{
-		if(sendToChan)
-		{
-			Utilities.chanMsg(event, " ");
-		}
-		else
-		{
-			Utilities.userMsg(event, " ");
-		}
+		pm(event.getUser().getNick(), Colors.BOLD + Colors.RED + msg);
 	}
 	
 	public static boolean validUser(MessageEvent event)

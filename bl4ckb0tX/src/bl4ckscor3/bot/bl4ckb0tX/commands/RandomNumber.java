@@ -12,29 +12,30 @@ public class RandomNumber implements Command<MessageEvent>
 	public void exe(MessageEvent event)
 	{
 		StringBuilder output = new StringBuilder();
-		String[] number = event.getMessage().split(" ");
+		String[] args = event.getMessage().split(" ");
 		int[] numbs = new int[50];
-		int n = Integer.parseInt(number[1]);
-		
-		if(event.getMessage().equalsIgnoreCase("-number"))
-			Utilities.chanMsg(event, "Please put in a number. Usage: -number <number>");
-	
-		if(!(n > 50))
+		int n = Integer.parseInt(args[1]);
+
+		if(args.length == 2)
 		{
-			Random r = new Random();
-			
-			for(int i = 0; i < n; i++)
+			if(!(n > 50))
 			{
-				numbs[i] = r.nextInt(10);
-				output.append(numbs[i]).append(" ");
+				Random r = new Random();
+
+				for(int i = 0; i < n; i++)
+				{
+					numbs[i] = r.nextInt(10);
+					output.append(numbs[i]).append(" ");
+				}
+
+				Utilities.pm(event.getUser().getNick(), output.toString());
 			}
-			
-			Utilities.userMsg(event, output.toString());
+			else
+				Utilities.chanMsg(event, "Please don't put in a number higher than 50.");
 		}
 		else
-			Utilities.chanMsg(event, "Please don't put in a number higher than 50.");
+			Utilities.respond(event, "please tell me how many numbers I should select for you. Example: -number 5", true);
 	}
-	
 	@Override
 	public String getAlias()
 	{

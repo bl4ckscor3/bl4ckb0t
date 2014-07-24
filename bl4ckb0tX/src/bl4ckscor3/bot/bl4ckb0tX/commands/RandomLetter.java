@@ -60,7 +60,7 @@ public class RandomLetter implements Command<MessageEvent>
 					output.append(" ");
 				}
 				
-				Utilities.userMsg(event, output.toString());
+				Utilities.pm(event.getUser().getNick(), output.toString());
 			}
 			else
 				Utilities.chanMsg(event, "Please don't put in a number higher than 50");

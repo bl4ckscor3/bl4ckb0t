@@ -46,7 +46,7 @@ public class Stop implements Command<MessageEvent>
 							Listener.stopped = true;
 							break;
 						default:
-							Utilities.userMsg(event, "Should I reboot? I cannot disconnect if I don't know that :(");
+							Utilities.notice(event, "Should I reboot? I cannot disconnect if I don't know that :(");
 					}
 				}
 				else

@@ -132,11 +132,11 @@ public class CraftBukkit implements Command<MessageEvent>
 					}
 					break;
 				default:	
-					Utilities.userMsg(event, "Available commands: 'rec' | 'beta' | 'dev' - Usage: -bukkit <command>");
+					Utilities.notice(event, "Available commands: 'rec' | 'beta' | 'dev' - Usage: -bukkit <command>");
 			}
 		}
 		else
-			Utilities.userMsg(event, "Available commands: 'rec' | 'beta' | 'dev' - Usage: -bukkit <command>");
+			Utilities.notice(event, "Available commands: 'rec' | 'beta' | 'dev' - Usage: -bukkit <command>");
 		
 		reader.close();
 	}

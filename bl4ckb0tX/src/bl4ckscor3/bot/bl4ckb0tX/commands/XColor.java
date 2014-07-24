@@ -29,11 +29,11 @@ public class XColor implements Command<MessageEvent>
 		for(int i = 0; i < 14; i++)
 		{
 			if(i < 4)
-				Utilities.userMsg(event, "%C" + i + ": " + colors[i]);
+				Utilities.notice(event, "%C" + i + ": " + colors[i]);
 			else if(i > 4 && i < 12)
-				Utilities.userMsg(event, "%C" + i + ": " + colors[i]);
+				Utilities.notice(event, "%C" + i + ": " + colors[i]);
 			else if(i == 13)
-				Utilities.userMsg(event, "%C" + i + ": " + colors[i - 1]);
+				Utilities.notice(event, "%C" + i + ": " + colors[i - 1]);
 		}
 	}
 
