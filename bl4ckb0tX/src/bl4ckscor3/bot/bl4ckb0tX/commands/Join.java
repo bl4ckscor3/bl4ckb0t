@@ -22,6 +22,12 @@ public class Join implements Command<MessageEvent>
 				Utilities.respond(event, "you need to specify a channel!", true);
 			else if(args.length == 2)
 			{
+				if(!args[2].startsWith("#"))
+				{
+					Utilities.chanMsg(event, "This is not a channel. Channel names always start with a hashtag (#)");
+					return;
+				}
+				
 				if(!Utilities.hasJoinedChannel(args))
 				{
 					Utilities.chanMsg(event, "I will join the channel " + Colors.BOLD + args[1]);
