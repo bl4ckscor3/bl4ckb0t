@@ -62,7 +62,7 @@ public class Listener extends ListenerAdapter
 		commands.add(new Calculate());
 		commands.add(new ChangeNick());
 		commands.add(new CraftBukkit());
-		commands.add(new DeAds());
+//		commands.add(new DeAds());
 		commands.add(new Decide());
 		commands.add(new Draw());
 		commands.add(new Help());
