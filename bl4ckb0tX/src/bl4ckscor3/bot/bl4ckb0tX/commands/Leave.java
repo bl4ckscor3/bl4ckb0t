@@ -19,7 +19,7 @@ public class Leave implements Command<MessageEvent>
 				Core.bot.sendRaw().rawLine("PART " + event.getChannel().getName() + " :My master told me that I can't be here anymore :C");
 			else if(args.length == 2)
 			{
-				if(!args[2].startsWith("#"))
+				if(!args[1].startsWith("#"))
 				{
 					Utilities.chanMsg(event, "This is not a channel. Channel names always start with a hashtag (#)");
 					return;
