@@ -26,7 +26,7 @@ public class DeAds implements Command<MessageEvent>
 		String[] args = Utilities.toArgs(event.getMessage());
 		String link;
 		WebDriver driver = new FirefoxDriver();
-		WebDriverWait wait = new WebDriverWait(driver, 60L);
+		WebDriverWait wait = new WebDriverWait(driver, 5L);
 		WebElement element;
 		WebElement element2 = null;
 
