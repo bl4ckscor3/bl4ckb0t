@@ -11,6 +11,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.ActionEvent;
+import org.pircbotx.hooks.events.ConnectEvent;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
@@ -19,7 +20,6 @@ import bl4ckscor3.bot.bl4ckb0tX.commands.Calculate;
 import bl4ckscor3.bot.bl4ckb0tX.commands.ChangeNick;
 import bl4ckscor3.bot.bl4ckb0tX.commands.Command;
 import bl4ckscor3.bot.bl4ckb0tX.commands.CraftBukkit;
-import bl4ckscor3.bot.bl4ckb0tX.commands.DeAds;
 import bl4ckscor3.bot.bl4ckb0tX.commands.Decide;
 import bl4ckscor3.bot.bl4ckb0tX.commands.Draw;
 import bl4ckscor3.bot.bl4ckb0tX.commands.Forge;
@@ -236,5 +236,20 @@ public class Listener extends ListenerAdapter
 				worker.schedule(task, 3, TimeUnit.SECONDS);
 			}
 		}	
+	}
+	
+	@Override
+	public void onConnect(ConnectEvent event) throws Exception
+	{
+		String[] channelsToJoin = Utilities.addAutoJoinChans();
+		
+		for(String s : channelsToJoin)
+		{
+			try
+			{
+				Core.bot.sendIRC().joinChannel(s);
+			}
+			catch(Exception e){}
+		}
 	}
 }

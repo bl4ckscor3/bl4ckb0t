@@ -17,9 +17,7 @@ public class Core
 
 	public static void main(String args[]) throws IOException, IrcException
 	{
-		Configuration config;
-		String[] chans = addAutoJoinChans();
-		Builder configPresets = new Configuration.Builder()	
+		Configuration config = new Configuration.Builder()	
 		.setName("bl4ckb0t")
 		.setVersion("1.0")
 		.setServerHostname("irc.esper.net")
@@ -29,19 +27,14 @@ public class Core
 		.setAutoNickChange(true)
 		.setCapEnabled(true)
 		.addListener(new Listener())
-		.setMessageDelay(500);
-
-		for(String s : chans)
-		{
-			configPresets.addAutoJoinChannel(s);
-		}
-
-		config = configPresets.buildConfiguration();
+		.setMessageDelay(500)
+		.buildConfiguration();
+		
 		bot = new PircBotX(config);
-
+		
 		if(!bot.isConnected())
 		{
-			while(true)//only way of auto reconnect as of now - bugs out when using "-stop no"
+			while(true)//only way of auto reconnect as of now
 			{
 				try
 				{
@@ -58,9 +51,7 @@ public class Core
 
 	public static void main2() throws MalformedURLException, IOException
 	{
-		Configuration config;
-		String[] chans = addAutoJoinChans();
-		Builder configPresets = new Configuration.Builder()	
+		Configuration config = new Configuration.Builder()	
 		.setName("bl4ckb0t")
 		.setVersion("1.0")
 		.setServerHostname("irc.esper.net")
@@ -70,19 +61,14 @@ public class Core
 		.setAutoNickChange(true)
 		.setCapEnabled(true)
 		.addListener(new Listener())
-		.setMessageDelay(500);
-
-		for(String s : chans)
-		{
-			configPresets.addAutoJoinChannel(s);
-		}
-
-		config = configPresets.buildConfiguration();
+		.setMessageDelay(500)
+		.buildConfiguration();
+		
 		bot = new PircBotX(config);
-
+		
 		if(!bot.isConnected())
 		{
-			while(true)//only way of auto reconnect as of now - bugs out when using "-stop no"
+			while(true)//only way of auto reconnect as of now
 			{
 				try
 				{
@@ -95,11 +81,5 @@ public class Core
 				}
 			}
 		}
-	}
-
-	private static String[] addAutoJoinChans() throws MalformedURLException, IOException
-	{
-		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/owng5ehcvf0h5cr/bl4ckb0t%20chans.txt?dl=1").openStream()));
-		return reader.readLine().split(",");
 	}
 }
