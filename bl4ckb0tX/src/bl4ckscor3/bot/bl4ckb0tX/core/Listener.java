@@ -87,12 +87,6 @@ public class Listener extends ListenerAdapter
 		commands.add(new Weather());
 		commands.add(new XColor());
 		commands.add(new YouTube());
-		
-		if(!Core.bot.getNick().equals("bl4ckb0t"))
-		{
-			commands.add(new DeAds());
-			commands.add(new MCStatus());
-		}
 	}
 
 	@Override
@@ -255,6 +249,12 @@ public class Listener extends ListenerAdapter
 				Core.bot.sendIRC().joinChannel(s);
 			}
 			catch(Exception e){}
+		}
+		
+		if(!Core.bot.getNick().equals("bl4ckb0t"))
+		{
+			commands.add(new DeAds());
+			commands.add(new MCStatus());
 		}
 	}
 }
