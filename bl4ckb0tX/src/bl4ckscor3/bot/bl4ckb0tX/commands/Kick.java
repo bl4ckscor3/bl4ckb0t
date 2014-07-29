@@ -81,11 +81,9 @@ public class Kick implements Command<MessageEvent>
 				{
 					if(args[1].equalsIgnoreCase(Core.bot.getNick()))
 					{
-						OutputIRC irc = new OutputIRC(Core.bot);
-
 						event.getChannel().send().action("kicks himself");
 						Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + args[1] + " :I'm said now :(");
-						irc.quitServer("My master sent me to sleep!");
+						Core.bot.sendRaw().rawLine("QUIT :My master sent me to sleep!");
 						Core.main2();
 					}
 					else
@@ -102,9 +100,7 @@ public class Kick implements Command<MessageEvent>
 					}
 				}
 				else
-				{
 					Utilities.chanMsg(event, "This user cannot be kicked.");
-				}
 			}
 			else
 			{

@@ -26,9 +26,7 @@ public class Forge implements Command<MessageEvent>
 					String result = createResult("<td>Latest</td>", "Version");
 
 					if(result.equalsIgnoreCase(createResult("<td>Recommended</td>", "Version")))
-					{
 						Utilities.chanMsg(event, result + " This is also the recommended build.");
-					}
 					else
 						Utilities.chanMsg(event, result);
 				}
@@ -48,9 +46,7 @@ public class Forge implements Command<MessageEvent>
 					String result = createResult("<td>Recommended</td>", "Version");
 
 					if(result.equalsIgnoreCase(createResult("<td>Latest</td>", "Version")))
-					{
 						Utilities.chanMsg(event, result + " This is also the latest build.");
-					}
 					else
 						Utilities.chanMsg(event, result);
 				}

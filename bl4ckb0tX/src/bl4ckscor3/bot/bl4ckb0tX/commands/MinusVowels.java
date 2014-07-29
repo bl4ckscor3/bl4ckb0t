@@ -16,26 +16,15 @@ public class MinusVowels implements Command<MessageEvent>
 		{
 			switch(chars[i])
 			{
-				case 'a':
-					builder.append("");
-					break;
-				case 'e':
-					builder.append("");
-					break;
-				case 'i':
-					builder.append("");
-					break;
-				case 'o':
-					builder.append("");
-					break;
-				case 'u':
-					builder.append("");
-					break;
-				default:
-					builder.append(chars[i]);
+				case 'a': builder.append(""); break;
+				case 'e': builder.append(""); break;
+				case 'i': builder.append(""); break;
+				case 'o': builder.append(""); break;
+				case 'u': builder.append(""); break;
+				default: builder.append(chars[i]);
 			}
 		}
-	
+		
 		Utilities.respond(event, builder.toString(), false);
 	}
 	
