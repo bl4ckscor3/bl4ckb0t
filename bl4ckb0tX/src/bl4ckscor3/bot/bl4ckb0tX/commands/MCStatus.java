@@ -33,7 +33,7 @@ public class MCStatus implements Command<MessageEvent>
 		//login
 		if(login.getText().equals("Online"))
 			builder.append("** Login: " + Colors.DARK_GREEN + login.getText() + Colors.BLACK);
-		else if(login.getText().equals("Offline"))
+		else if(login.getText().equals("Timed Out") || login.getText().equals("HTTP Error 503"))
 			builder.append(" ** Login: " + Colors.RED + login.getText() + Colors.BLACK);
 		else	
 			builder.append(" ** Login: " + Colors.PURPLE + login.getText() + Colors.BLACK);
@@ -41,7 +41,7 @@ public class MCStatus implements Command<MessageEvent>
 		//session
 		if(session.getText().equals("Online"))
 			builder.append(" ** Session: " + Colors.DARK_GREEN + session.getText() + Colors.BLACK);
-		else if(session.getText().equals("Offline"))
+		else if(session.getText().equals("Timed Out") || session.getText().equals("HTTP Error 503"))
 			builder.append(" ** Session: " + Colors.RED + session.getText() + Colors.BLACK);
 		else	
 			builder.append(" ** Session: " + Colors.PURPLE + session.getText() + Colors.BLACK);
@@ -49,7 +49,7 @@ public class MCStatus implements Command<MessageEvent>
 		//website
 		if(website.getText().equals("Online"))
 			builder.append(" ** Website: " + Colors.DARK_GREEN + website.getText() + Colors.BLACK);
-		else if(website.getText().equals("Offline"))
+		else if(website.getText().equals("Timed Out") || website.getText().equals("HTTP Error 503"))
 			builder.append(" ** Website: " + Colors.RED + website.getText() + Colors.BLACK);
 		else	
 			builder.append(" ** Website: " + Colors.PURPLE + website.getText() + Colors.BLACK);
@@ -57,7 +57,7 @@ public class MCStatus implements Command<MessageEvent>
 		//skins
 		if(skins.getText().equals("Online"))
 			builder.append(" ** Skins: " + Colors.DARK_GREEN + skins.getText() + Colors.BLACK);
-		else if(skins.getText().equals("Offline"))
+		else if(skins.getText().equals("Timed Out") || skins.getText().equals("HTTP Error 503"))
 			builder.append(" ** Skins: " + Colors.RED + skins.getText() + Colors.BLACK);
 		else	
 			builder.append(" ** Skins: " + Colors.PURPLE + skins.getText() + Colors.BLACK);
@@ -65,7 +65,7 @@ public class MCStatus implements Command<MessageEvent>
 		//realms
 		if(realms.getText().equals("Online"))
 			builder.append(" ** Realms: " + Colors.DARK_GREEN + realms.getText() + Colors.BLACK);
-		else if(realms.getText().equals("Offline"))
+		else if(realms.getText().equals("Timed Out") || realms.getText().equals("HTTP Error 503"))
 			builder.append(" ** Realms: " + Colors.RED + realms.getText() + Colors.BLACK);
 		else	
 			builder.append(" ** Realms: " + Colors.PURPLE + realms.getText() + Colors.BLACK);
