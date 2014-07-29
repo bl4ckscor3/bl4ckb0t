@@ -20,6 +20,7 @@ import bl4ckscor3.bot.bl4ckb0tX.commands.Calculate;
 import bl4ckscor3.bot.bl4ckb0tX.commands.ChangeNick;
 import bl4ckscor3.bot.bl4ckb0tX.commands.Command;
 import bl4ckscor3.bot.bl4ckb0tX.commands.CraftBukkit;
+import bl4ckscor3.bot.bl4ckb0tX.commands.DeAds;
 import bl4ckscor3.bot.bl4ckb0tX.commands.Decide;
 import bl4ckscor3.bot.bl4ckb0tX.commands.Draw;
 import bl4ckscor3.bot.bl4ckb0tX.commands.Forge;
@@ -63,7 +64,6 @@ public class Listener extends ListenerAdapter
 		commands.add(new Calculate());
 		commands.add(new ChangeNick());
 		commands.add(new CraftBukkit());
-//		commands.add(new DeAds());
 		commands.add(new Decide());
 		commands.add(new Draw());
 		commands.add(new Help());
@@ -74,7 +74,6 @@ public class Listener extends ListenerAdapter
 		commands.add(new Leet());
 		commands.add(new ListChans());
 		commands.add(new LongURL());
-//		commands.add(new MCStatus());
 		commands.add(new MinusVowels());
 		commands.add(new RandomLetter());
 		commands.add(new RandomNumber());
@@ -88,6 +87,12 @@ public class Listener extends ListenerAdapter
 		commands.add(new Weather());
 		commands.add(new XColor());
 		commands.add(new YouTube());
+		
+		if(!Core.bot.getNick().equals("bl4ckb0t"))
+		{
+			commands.add(new DeAds());
+			commands.add(new MCStatus());
+		}
 	}
 
 	@Override
