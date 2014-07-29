@@ -1,7 +1,10 @@
 package bl4ckscor3.bot.bl4ckb0tX.commands;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
+import java.net.URL;
 
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.output.OutputIRC;
@@ -18,25 +21,9 @@ public class Kick implements Command<MessageEvent>
 		{
 			boolean allowed = false;
 			boolean found = false;
-			String[] allowedUsers = 
-				{
-					"Darkhax",
-					"Darkhax|Away",
-					"Geforce",
-					"Geforce|Away",
-					"TehKitti",
-					"Maunz",
-					"StealthBravo",
-					"FishFish0001",
-					"MineDefine"
-				};
-			String[] usersNotToKick =
-				{
-					"bl4ckscor3",
-					"bl4ckgon3",
-					"bl4ckweb",
-					"bl4ckdro1d",
-				};
+			BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/0flrfzw3ljmw3u2/allowedUsers.txt").openStream()));
+			String[] allowedUsers = reader.readLine().split(",");
+				
 			String[] args = Utilities.toArgs(event.getMessage());
 
 			if(event.getUser().getNick().equalsIgnoreCase(args[1]))
@@ -81,7 +68,7 @@ public class Kick implements Command<MessageEvent>
 
 			if(args.length >= 3)
 			{
-				for(String userNotToKick : usersNotToKick)
+				for(String userNotToKick : Utilities.getValidUsers())
 				{
 					if(args[1].equalsIgnoreCase(userNotToKick))
 					{
