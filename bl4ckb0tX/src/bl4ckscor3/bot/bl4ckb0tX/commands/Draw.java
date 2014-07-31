@@ -20,8 +20,6 @@ public class Draw implements Command<MessageEvent>
 			"phone",
 			"superman",
 			"stormtrooper",
-			"penis",
-			"boobies"
 		};
 
 	@Override
@@ -71,12 +69,6 @@ public class Draw implements Command<MessageEvent>
 					break;
 				case "stormtrooper":
 					stormtrooper(event);
-					break;
-				case "penis":
-					Utilities.respond(event, "are you serious >.>", true);
-					break;
-				case "boobies":
-					Utilities.respond(event, "are you serious >.>", true);
 					break;
 				default:
 					sendAvailableDrawings(event);
