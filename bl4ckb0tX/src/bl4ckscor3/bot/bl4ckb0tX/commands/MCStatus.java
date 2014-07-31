@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
@@ -14,7 +15,7 @@ public class MCStatus implements Command<MessageEvent>
 	@Override
 	public void exe(MessageEvent event) throws Exception
 	{
-		WebDriver driver = new FirefoxDriver();
+		WebDriver driver = new HtmlUnitDriver(true);
 		WebElement login;
 		WebElement session;
 		WebElement website;

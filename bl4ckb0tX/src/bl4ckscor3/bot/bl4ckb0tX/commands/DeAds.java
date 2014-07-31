@@ -1,15 +1,8 @@
 package bl4ckscor3.bot.bl4ckb0tX.commands;
 
-import java.util.Date;
-import java.util.NoSuchElementException;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -25,7 +18,7 @@ public class DeAds implements Command<MessageEvent>
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 		String link;
-		WebDriver driver = new FirefoxDriver();
+		WebDriver driver = new HtmlUnitDriver(true);
 		WebDriverWait wait = new WebDriverWait(driver, 5L);
 		WebElement element;
 		WebElement element2 = null;

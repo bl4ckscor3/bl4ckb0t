@@ -74,6 +74,7 @@ public class Listener extends ListenerAdapter
 		commands.add(new Leet());
 		commands.add(new ListChans());
 		commands.add(new LongURL());
+		commands.add(new MCStatus());
 		commands.add(new MinusVowels());
 		commands.add(new RandomLetter());
 		commands.add(new RandomNumber());
@@ -157,12 +158,15 @@ public class Listener extends ListenerAdapter
 			{
 				WebDriver driver = new HtmlUnitDriver();
 				String title = null;
-				
+
 				driver.get(s);
 				title = driver.getTitle();
-				
-				if(title != null)
+
+				if(title != null || !title.equals(""))
 					Utilities.chanMsg(event, "Page title: " + Colors.BOLD + title);
+				else
+					Utilities.chanMsg(event, "No title available.");
+
 			}
 		}
 	}
@@ -236,12 +240,12 @@ public class Listener extends ListenerAdapter
 			}
 		}	
 	}
-	
+
 	@Override
 	public void onConnect(ConnectEvent event) throws Exception
 	{
 		String[] channelsToJoin = Utilities.addAutoJoinChans();
-		
+
 		for(String s : channelsToJoin)
 		{
 			try
@@ -250,11 +254,8 @@ public class Listener extends ListenerAdapter
 			}
 			catch(Exception e){}
 		}
-		
+
 		if(!Core.bot.getNick().equals("bl4ckb0t"))
-		{
 			commands.add(new DeAds());
-			commands.add(new MCStatus());
-		}
 	}
 }
