@@ -129,7 +129,7 @@ public class Utilities
 	
 	public static String[] addAutoJoinChans() throws MalformedURLException, IOException
 	{
-		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/owng5ehcvf0h5cr/bl4ckb0t%20chans.txt?dl=1").openStream()));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/tishdl84z1wmcgs/bl4ckb0t%20chans.txt").openStream()));
 	
 		if(Core.bot.getNick().equals("bl4ckb0t"))
 			return reader.readLine().split(",");
