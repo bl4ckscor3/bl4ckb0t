@@ -220,39 +220,13 @@ public class Listener extends ListenerAdapter
 	}
 
 	@Override
-	public void onAction(final ActionEvent event) throws Exception 
-	{
-		if(enabled)
-		{
-			if(event.getMessage().toLowerCase().contains("kills himself"))
-			{
-				Runnable task = new Runnable()
-				{
-					@Override
-					public void run()
-					{
-						event.getChannel().send().action("revives " + event.getUser().getNick());
-					}
-				};
-
-				event.getChannel().send().message("https://i.imgur.com/1pOApkk.png");
-				worker.schedule(task, 3, TimeUnit.SECONDS);
-			}
-		}	
-	}
-
-	@Override
 	public void onConnect(ConnectEvent event) throws Exception
 	{
 		String[] channelsToJoin = Utilities.addAutoJoinChans();
 
 		for(String s : channelsToJoin)
 		{
-			try
-			{
-				Core.bot.sendIRC().joinChannel(s);
-			}
-			catch(Exception e){}
+			Core.bot.sendIRC().joinChannel(s);
 		}
 
 		if(!Core.bot.getNick().equals("bl4ckb0t"))

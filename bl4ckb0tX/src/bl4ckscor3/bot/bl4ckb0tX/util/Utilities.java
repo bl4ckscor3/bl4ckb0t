@@ -134,6 +134,6 @@ public class Utilities
 		if(Core.bot.getNick().equals("bl4ckb0t"))
 			return reader.readLine().split(",");
 		else
-			return new String[]{"#bl4ckb0tTest", ""};
+			return new String[]{"#bl4ckb0tTest"};
 	}
 }
