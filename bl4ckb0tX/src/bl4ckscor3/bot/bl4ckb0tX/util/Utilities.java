@@ -19,12 +19,7 @@ public class Utilities
 {
 	private static String[] validUsers =
 		{
-			"bl4ck",
 			"bl4ckscor3",
-			"bl4ckgon3",
-			"bl4ckwebgerät",
-			"bl4ck_ubuntu",
-			"bl4ckdro1d",
 			"akino_germany"
 		};
 	
@@ -63,11 +58,14 @@ public class Utilities
 	
 	public static boolean validUser(MessageEvent event)
 	{
-		for(int i = 0; i < validUsers.length; i++)
+		for(String s : validUsers)
 		{
-			if(event.getUser().getNick().equalsIgnoreCase(validUsers[i]))
+			if(event.getUser().getNick().equalsIgnoreCase(s))
 			{
-				return true;
+				if(event.getUser().isVerified())
+					return true;
+				else
+					return false;
 			}
 		}
 		return false;
@@ -80,11 +78,14 @@ public class Utilities
 	
 	public static boolean validUser(PrivateMessageEvent event)
 	{	
-		for(int i = 0; i < validUsers.length; i++)
+		for(String s : validUsers)
 		{
-			if(event.getUser().getNick().equalsIgnoreCase(validUsers[i]))
+			if(event.getUser().getNick().equalsIgnoreCase(s))
 			{
-				return true;
+				if(event.getUser().isVerified())
+					return true;
+				else
+					return false;
 			}
 		}
 		return false;
