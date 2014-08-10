@@ -38,7 +38,6 @@ public class Stop implements Command<MessageEvent>
 					case "no":
 						Utilities.chanMsg(event, "You wished that I don't reboot. Do you still like me?");
 						Core.bot.sendRaw().rawLine("QUIT :My master sent me to sleep!");
-						Listener.stopped = true;
 						break;
 					default:
 						Utilities.notice(event, "Should I reboot? I cannot disconnect if I don't know that :(");

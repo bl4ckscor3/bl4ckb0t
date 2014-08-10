@@ -31,25 +31,10 @@ public class Core
 		.buildConfiguration();
 		
 		bot = new PircBotX(config);
-		
-		if(!bot.isConnected())
-		{
-			while(true)//only way of auto reconnect as of now
-			{
-				try
-				{
-					if(!Listener.stopped)
-						bot.startBot();
-				}
-				catch(Exception e)
-				{
-					e.printStackTrace();
-				}
-			}
-		}
+		bot.startBot();
 	}
 
-	public static void main2() throws MalformedURLException, IOException
+	public static void main2() throws IOException, IrcException
 	{
 		Configuration config = new Configuration.Builder()	
 		.setName("bl4ckb0t")
@@ -65,21 +50,6 @@ public class Core
 		.buildConfiguration();
 		
 		bot = new PircBotX(config);
-		
-		if(!bot.isConnected())
-		{
-			while(true)//only way of auto reconnect as of now
-			{
-				try
-				{
-					if(!Listener.stopped)
-						bot.startBot();
-				}
-				catch(Exception e)
-				{
-					e.printStackTrace();
-				}
-			}
-		}
+		bot.startBot();
 	}
 }

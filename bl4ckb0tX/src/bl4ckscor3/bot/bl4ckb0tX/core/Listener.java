@@ -12,6 +12,7 @@ import org.pircbotx.Colors;
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.ActionEvent;
 import org.pircbotx.hooks.events.ConnectEvent;
+import org.pircbotx.hooks.events.DisconnectEvent;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
@@ -49,14 +50,13 @@ import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
 public class Listener extends ListenerAdapter 
 {
-	private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
+	private final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
 	private final String p = "-";
 	public static boolean enabled = true;
 	public boolean isCounting = false;
 	private Random r = new Random();
 	private int number;
 	private final LinkedList<Command> commands = new LinkedList<>();
-	public static boolean stopped = false;
 
 	public Listener()
 	{
