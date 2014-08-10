@@ -158,15 +158,17 @@ public class Listener extends ListenerAdapter
 			{
 				WebDriver driver = new HtmlUnitDriver();
 				String title = null;
-
+				
+				if(s.startsWith("www."))
+					s = "http://" + s;
+				
 				driver.get(s);
 				title = driver.getTitle();
 
 				if(title != null || !title.equals(""))
-					Utilities.chanMsg(event, "Page title: " + Colors.BOLD + title);
+					Utilities.chanMsg(event, "Page title of " + s + ": " + Colors.BOLD + title);
 				else
 					Utilities.chanMsg(event, "No title available.");
-
 			}
 		}
 	}
