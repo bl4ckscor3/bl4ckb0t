@@ -2,10 +2,12 @@ package bl4ckscor3.bot.bl4ckb0tX.commands;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.MalformedURLException;
-import java.net.URL;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
@@ -32,21 +34,16 @@ public class YouTube implements Command<MessageEvent>
 	public static void sendVideoStats(MessageEvent event) throws MalformedURLException, IOException
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
-		int lines = 0;
 		String link = null;
-		BufferedReader reader;
-		String line;
 		boolean shortLink = false;
-		String[] src = new String[2000];
-		String[] results =
-			{
-				"", //title
-				"", //views
-				"", //dislikes
-				"", //likes
-				"", //upload date
-				""  //uploader
-			};
+		WebDriver driver = new HtmlUnitDriver();
+		String title = "No value";
+		String duration = "No value";
+		String views = "No value";
+		String likes = "No value";
+		String dislikes = "No value";
+		String date = "No value";
+		String uploader = "No value";
 
 		for(String s : args)
 		{
@@ -83,34 +80,57 @@ public class YouTube implements Command<MessageEvent>
 			link = builder.toString();
 		}
 
-		reader = new BufferedReader(new InputStreamReader(new URL("http://" + link).openStream()));
+		//make sure that the links starts with "http://"
+		if(!link.startsWith("http://"))
+			link = "http://" + link;
+		
+		driver.get(link);
+		title = driver.findElement(By.xpath("//meta[@itemprop='name']")).getAttribute("content");
+		duration = resolveDuration(driver);
+		views = driver.findElement(By.xpath("//div[@class='watch-view-count']")).getText();
+		likes = driver.findElement(By.xpath("//span[@class='likes-count']")).getText();
+		dislikes = driver.findElement(By.xpath("//span[@class='dislikes-count']")).getText();
+		date = driver.findElement(By.xpath("//p[@id='watch-uploader-info']/strong")).getText().split("on")[1];
+		driver.close();
+		Utilities.chanMsg(event, Colors.BOLD + "** " + Colors.BOLD + "1,0You0,4Tube " + Colors.BOLD + "** Title: " + Colors.BOLD + title + Colors.BOLD + " ** Duration: " + Colors.BOLD + duration + Colors.BOLD + " ** Views: " + Colors.BOLD + views + Colors.BOLD + " ** Likes:3 " + Colors.BOLD + likes + Colors.BOLD + " ** Dislikes:4 " + Colors.BOLD + dislikes + Colors.BOLD + " ** Uploaded on:" + Colors.BOLD + date + Colors.BOLD + " **");
+	}
 
-		while((line = reader.readLine()) != null)
+	private static String resolveDuration(WebDriver driver)
+	{
+		String dur = "No Value";
+		String hours;
+		String minutes = "";
+		String seconds = null;
+		int h = 0;
+		int m;
+		
+		dur = driver.findElement(By.xpath("//meta[@itemprop='duration']")).getAttribute("content");
+		
+		if(dur.contains("M"))
+			minutes = dur.split("T")[1].split("M")[0]; 
+		
+		m = Integer.parseInt(minutes);
+
+		if(m > 60)
 		{
-			src[lines] = line;
-			lines++;
+			h = m / 60;
+			m %= 60;
 		}
+		
+		if(dur.contains("S"))
+			seconds = dur.split("T")[1].split("M")[1].split("S")[0];
 
-		for(int i = 0; i < src.length; i++)
-		{
-			if(src[i] != null)
-			{
-				if(src[i].contains("og:title"))
-					results[0] = src[i].split("\"")[3].split("\"")[0];
-				else if(src[i].contains("watch-view-count"))
-					results[1] = src[i].split(">")[4].split("<")[0].split(" ")[0];
-				else if(src[i].contains("dislikes-count"))
-					results[2] = src[i].split(">")[1].split("<")[0];
-				else if(src[i].contains("likes-count"))
-					results[3] = src[i].split(">")[1].split("<")[0];
-				else if(src[i].contains("watch-uploader-info"))
-					results[4] = src[i + 1].split(">")[1].split("<")[0].split(" ")[2] + " " + src[i + 1].split(">")[1].split("<")[0].split(" ")[3] + " " + src[i + 1].split(">")[1].split("<")[0].split(" ")[4];
-				else if(src[i].contains("http://www.youtube.com/user/"))
-					results[5] = src[i].split("\"")[3].split("/")[4];
-			}
-		}
-
-		Utilities.chanMsg(event, "** 1,0You0,4Tube ** Title: " + results[0] + " ** Views: " + results[1] + " ** Likes:3 " + results[3] + " ** Dislikes:4 " + results[2] + " ** Uploaded on: " + results[4] + " ** Uploaded by: " + results[5] + " **");
+		hours = "" + h;
+		
+		if(m < 10)
+			minutes = "0" + m;
+		else
+			minutes = "" + m;
+		
+		if(Integer.parseInt(seconds) < 10)
+			seconds = "0" + seconds;
+		
+		dur = hours + ":" + minutes + ":" + seconds;
+		return dur;
 	}
 }
-
