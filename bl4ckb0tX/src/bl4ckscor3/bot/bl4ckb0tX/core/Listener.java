@@ -166,7 +166,7 @@ public class Listener extends ListenerAdapter
 				title = driver.getTitle();
 
 				if(title != null || !title.equals(""))
-					Utilities.chanMsg(event, "Page title of " + s + ": " + Colors.BOLD + title);
+					Utilities.chanMsg(event, "Page title of " + s + " - " + Colors.BOLD + title);
 				else
 					Utilities.chanMsg(event, "No title available.");
 			}
