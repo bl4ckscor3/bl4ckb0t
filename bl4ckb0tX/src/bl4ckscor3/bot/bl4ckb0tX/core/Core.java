@@ -17,24 +17,10 @@ public class Core
 
 	public static void main(String args[]) throws IOException, IrcException
 	{
-		Configuration config = new Configuration.Builder()	
-		.setName("bl4ckb0t")
-		.setVersion("1.0")
-		.setServerHostname("irc.esper.net")
-		.setServerPort(6667)
-		.setLogin("bl4ckb0t")
-		.setNickservPassword("xxx")
-		.setAutoNickChange(true)
-		.setCapEnabled(true)
-		.addListener(new Listener())
-		.setMessageDelay(500)
-		.buildConfiguration();
-		
-		bot = new PircBotX(config);
-		bot.startBot();
+		createBot();
 	}
 
-	public static void main2() throws IOException, IrcException
+	public static void createBot() throws IOException, IrcException
 	{
 		Configuration config = new Configuration.Builder()	
 		.setName("bl4ckb0t")
