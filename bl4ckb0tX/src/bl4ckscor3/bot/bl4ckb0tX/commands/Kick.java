@@ -85,7 +85,7 @@ public class Kick implements Command<MessageEvent>
 						event.getChannel().send().action("kicks himself");
 						Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + args[1] + " :I'm said now :(");
 						Core.bot.sendRaw().rawLine("QUIT :My master sent me to sleep!");
-						Core.createBot();
+						Core.createNewBot();
 					}
 					else
 					{

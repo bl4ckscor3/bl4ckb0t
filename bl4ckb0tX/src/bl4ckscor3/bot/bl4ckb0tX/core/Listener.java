@@ -1,5 +1,6 @@
 package bl4ckscor3.bot.bl4ckb0tX.core;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.concurrent.Executors;
@@ -9,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.pircbotx.Colors;
+import org.pircbotx.exception.IrcException;
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.ActionEvent;
 import org.pircbotx.hooks.events.ConnectEvent;
@@ -174,7 +176,7 @@ public class Listener extends ListenerAdapter
 	}
 
 	@Override
-	public void onPrivateMessage(PrivateMessageEvent event)
+	public void onPrivateMessage(PrivateMessageEvent event) throws NumberFormatException, IOException, IrcException
 	{
 		if(enabled)
 		{
@@ -186,6 +188,13 @@ public class Listener extends ListenerAdapter
 
 				if(args[0].equalsIgnoreCase("join"))
 					Core.bot.sendIRC().joinChannel("#bl4ckscor3");
+				else if(args[0].equalsIgnoreCase("connect"))
+				{
+					if(args.length < 4 || args.length > 4)
+						Utilities.pm("bl4ckscor3", "Invalid number of arguments. Usage: connect <server address> <nickserv password> <first channel to join>");
+					else
+						Core.createBot(args[1], args[2], args[3]);
+				}
 				else if(args[0].startsWith("#"))
 				{
 					for(int i = 1; i < args.length; i++)
@@ -224,14 +233,27 @@ public class Listener extends ListenerAdapter
 	@Override
 	public void onConnect(ConnectEvent event) throws Exception
 	{
+		System.out.println("connect event");
+		if(!Core.bot.getNick().equals("bl4ckb0t"))
+			{
+			System.out.println("added deads");
+			commands.add(new DeAds());
+			}
+		
+		Utilities.pm("nickserv", "identify " + Core.password);
+		System.out.println("identified with nickserv");
+		if(!Core.lastJoinedNetwork.equalsIgnoreCase("irc.esper.net")) //no joining of unwanted channels
+		{
+			System.out.println("not esper");
+			Core.bot.sendIRC().joinChannel(Core.channel);
+			return;
+		}
+System.out.println("connecting to other chans");
 		String[] channelsToJoin = Utilities.addAutoJoinChans();
 
 		for(String s : channelsToJoin)
 		{
 			Core.bot.sendIRC().joinChannel(s);
 		}
-
-		if(!Core.bot.getNick().equals("bl4ckb0t"))
-			commands.add(new DeAds());
 	}
 }
