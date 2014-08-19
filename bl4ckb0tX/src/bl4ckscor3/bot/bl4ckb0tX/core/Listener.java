@@ -160,10 +160,10 @@ public class Listener extends ListenerAdapter
 			{
 				WebDriver driver = new HtmlUnitDriver();
 				String title = null;
-				
+
 				if(s.startsWith("www."))
 					s = "http://" + s;
-				
+
 				driver.get(s);
 				title = driver.getTitle();
 
@@ -176,7 +176,7 @@ public class Listener extends ListenerAdapter
 	}
 
 	@Override
-	public void onPrivateMessage(PrivateMessageEvent event) throws NumberFormatException, IOException, IrcException
+	public void onPrivateMessage(PrivateMessageEvent event)
 	{
 		if(enabled)
 		{
@@ -188,13 +188,6 @@ public class Listener extends ListenerAdapter
 
 				if(args[0].equalsIgnoreCase("join"))
 					Core.bot.sendIRC().joinChannel("#bl4ckscor3");
-				else if(args[0].equalsIgnoreCase("connect"))
-				{
-					if(args.length < 4 || args.length > 4)
-						Utilities.pm("bl4ckscor3", "Invalid number of arguments. Usage: connect <server address> <nickserv password> <first channel to join>");
-					else
-						Core.createBot(args[1], args[2], args[3]);
-				}
 				else if(args[0].startsWith("#"))
 				{
 					for(int i = 1; i < args.length; i++)
@@ -233,22 +226,12 @@ public class Listener extends ListenerAdapter
 	@Override
 	public void onConnect(ConnectEvent event) throws Exception
 	{
-		System.out.println("connect event");
 		if(!Core.bot.getNick().equals("bl4ckb0t"))
-			{
+		{
 			System.out.println("added deads");
 			commands.add(new DeAds());
-			}
-		
-		Utilities.pm("nickserv", "identify " + Core.password);
-		System.out.println("identified with nickserv");
-		if(!Core.lastJoinedNetwork.equalsIgnoreCase("irc.esper.net")) //no joining of unwanted channels
-		{
-			System.out.println("not esper");
-			Core.bot.sendIRC().joinChannel(Core.channel);
-			return;
 		}
-System.out.println("connecting to other chans");
+
 		String[] channelsToJoin = Utilities.addAutoJoinChans();
 
 		for(String s : channelsToJoin)

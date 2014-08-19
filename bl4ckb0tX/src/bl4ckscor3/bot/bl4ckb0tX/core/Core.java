@@ -14,35 +14,22 @@ import org.pircbotx.exception.IrcException;
 public class Core
 {	
 	public static PircBotX bot;
-	private static String esperNsPass = "xxx";
-	public static String lastJoinedNetwork = "";
-	public static String channel = "";
-	public static String password = "";
 	
 	public static void main(String args[]) throws IOException, IrcException
 	{
-		createBot("irc.esper.net", esperNsPass, null); //not needed because esper
+		createBot();
 	}
 
-	public static void createNewBot() throws IOException, IrcException
+	public static void createBot() throws IOException, IrcException
 	{
-		createBot("irc.esper.net", esperNsPass, null); //not needed because esper
-	}
-	
-	public static void createBot(String server, String nsPass, String firstChanToJoin) throws IOException, IrcException
-	{
-		lastJoinedNetwork = server;
-		channel = firstChanToJoin;
-		password = nsPass;
-		
 		Configuration config = new Configuration.Builder()	
 		.setName("bl4ckb0t")
 		.setVersion("1.0")
-		.setServerHostname(server)
+		.setServerHostname("irc.esper.net")
 		.setServerPort(6667)
+		.setNickservPassword("xxx")
 		.setLogin("bl4ckb0t")
 		.setAutoNickChange(true)
-		.setCapEnabled(true)
 		.addListener(new Listener())
 		.setMessageDelay(500)
 		.buildConfiguration();

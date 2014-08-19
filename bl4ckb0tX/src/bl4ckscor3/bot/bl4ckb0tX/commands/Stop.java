@@ -33,7 +33,7 @@ public class Stop implements Command<MessageEvent>
 					case "yes":
 						Utilities.chanMsg(event, "I will reboot, sir");
 						Core.bot.sendRaw().rawLine("QUIT :My master sent me to sleep!");
-						Core.createNewBot(); //creating another instance
+						Core.createBot(); //creating another instance
 						break;
 					case "no":
 						Utilities.chanMsg(event, "You wished that I don't reboot. Do you still like me?");
