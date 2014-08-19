@@ -26,6 +26,7 @@ import bl4ckscor3.bot.bl4ckb0tX.commands.CraftBukkit;
 import bl4ckscor3.bot.bl4ckb0tX.commands.DeAds;
 import bl4ckscor3.bot.bl4ckb0tX.commands.Decide;
 import bl4ckscor3.bot.bl4ckb0tX.commands.Draw;
+import bl4ckscor3.bot.bl4ckb0tX.commands.ETS2MPUpdate;
 import bl4ckscor3.bot.bl4ckb0tX.commands.Forge;
 import bl4ckscor3.bot.bl4ckb0tX.commands.Help;
 import bl4ckscor3.bot.bl4ckb0tX.commands.Join;
@@ -68,6 +69,7 @@ public class Listener extends ListenerAdapter
 		commands.add(new CraftBukkit());
 		commands.add(new Decide());
 		commands.add(new Draw());
+		commands.add(new ETS2MPUpdate());
 		commands.add(new Help());
 		commands.add(new Join());
 		commands.add(new Kick());
@@ -227,10 +229,7 @@ public class Listener extends ListenerAdapter
 	public void onConnect(ConnectEvent event) throws Exception
 	{
 		if(!Core.bot.getNick().equals("bl4ckb0t"))
-		{
-			System.out.println("added deads");
 			commands.add(new DeAds());
-		}
 
 		String[] channelsToJoin = Utilities.addAutoJoinChans();
 
