@@ -104,7 +104,7 @@ public class YouTube implements Command<MessageEvent>
 		}
 		catch(NoSuchElementException e)
 		{
-			views = driver.findElement(By.xpath("//span[@class='watch-view-count yt-uix-hovercard-target']")).getText();
+			views = driver.findElement(By.xpath("//span[@class='watch-view-count yt-uix-hovercard-target']")).getText().split("Views")[0];
 		}
 		
 		try
