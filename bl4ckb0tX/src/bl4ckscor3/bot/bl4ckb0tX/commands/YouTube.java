@@ -1,9 +1,9 @@
 package bl4ckscor3.bot.bl4ckb0tX.commands;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
@@ -85,14 +85,54 @@ public class YouTube implements Command<MessageEvent>
 			link = "http://" + link;
 		
 		driver.get(link);
-		title = driver.findElement(By.xpath("//meta[@itemprop='name']")).getAttribute("content");
-		duration = resolveDuration(driver);
-		views = driver.findElement(By.xpath("//div[@class='watch-view-count']")).getText();
-		likes = driver.findElement(By.xpath("//span[@class='likes-count']")).getText();
-		dislikes = driver.findElement(By.xpath("//span[@class='dislikes-count']")).getText();
-		date = driver.findElement(By.xpath("//p[@id='watch-uploader-info']/strong")).getText().split("on")[1];
+		
+		try
+		{
+			title = driver.findElement(By.xpath("//meta[@itemprop='name']")).getAttribute("content");
+		}
+		catch(NoSuchElementException e){}
+		
+		try
+		{
+			duration = resolveDuration(driver);
+		}
+		catch(NoSuchElementException e){}
+		
+		try
+		{
+			views = driver.findElement(By.xpath("//div[@class='watch-view-count']")).getText();
+		}
+		catch(NoSuchElementException e)
+		{
+			views = driver.findElement(By.xpath("//span[@class='watch-view-count yt-uix-hovercard-target']")).getText();
+		}
+		
+		try
+		{
+			likes = driver.findElement(By.xpath("//span[@class='likes-count']")).getText();
+		}
+		catch(NoSuchElementException e){}
+		
+		try
+		{
+			dislikes = driver.findElement(By.xpath("//span[@class='dislikes-count']")).getText();
+		}
+		catch(NoSuchElementException e){}
+		
+		try
+		{
+			date = driver.findElement(By.xpath("//p[@id='watch-uploader-info']/strong")).getText().split("on")[1];
+		}
+		catch(NoSuchElementException e){}
+		
+		try
+		{
+			uploader = driver.findElement(By.xpath("//div[@class='yt-user-info']/a")).getText();
+		}
+		catch(NoSuchElementException e){}
+		
 		driver.close();
-		Utilities.chanMsg(event, Colors.BOLD + "** " + Colors.BOLD + "1,0You0,4Tube " + Colors.BOLD + "** Title: " + Colors.BOLD + title + Colors.BOLD + " ** Duration: " + Colors.BOLD + duration + Colors.BOLD + " ** Views: " + Colors.BOLD + views + Colors.BOLD + " ** Likes:3 " + Colors.BOLD + likes + Colors.BOLD + " ** Dislikes:4 " + Colors.BOLD + dislikes + Colors.BOLD + " ** Uploaded on:" + Colors.BOLD + date + Colors.BOLD + " **");
+		Utilities.chanMsg(event, Colors.BOLD + "** " + Colors.BOLD + "1,0You0,4Tube " + Colors.BOLD + "** Title: " + Colors.BOLD + title + Colors.BOLD + " ** Duration: " + Colors.BOLD + duration + Colors.BOLD + " ** Views: " + Colors.BOLD + views + Colors.BOLD + " ** Likes:3 " + Colors.BOLD + likes + Colors.BOLD + " ** Dislikes:4 " + Colors.BOLD + dislikes + Colors.BOLD + " ** Uploaded by: " + Colors.BOLD + uploader + Colors.BOLD + " ** Uploaded on:" + Colors.BOLD + date + Colors.BOLD + " **");
 	}
 
 	private static String resolveDuration(WebDriver driver)
