@@ -91,15 +91,7 @@ public class Calculate implements Command<MessageEvent>
 	{
 		double solution = Math.pow(numbers[0], numbers[1]);
 		
-		Utilities.chanMsg(event, "The solution is: " + solution);
-	}
-	
-	private void checkForIntAndSend(float solution, MessageEvent event)
-	{
-		if(Float.toString(solution).endsWith(".0"))
-			Utilities.chanMsg(event, "The solution is: " + (int)solution);
-		else
-			Utilities.chanMsg(event, "The solution is: " + solution);
+		checkForIntAndSend(event, (float)solution);
 	}
 	
 	private void modulo(float[] numbers, MessageEvent event) 
@@ -120,6 +112,14 @@ public class Calculate implements Command<MessageEvent>
 			return 1;
 		else
 			return i * fact(event, i - 1);
+	}
+	
+	private void checkForIntAndSend(float solution, MessageEvent event)
+	{
+		if(Float.toString(solution).endsWith(".0"))
+			Utilities.chanMsg(event, "The solution is: " + (int)solution);
+		else
+			Utilities.chanMsg(event, "The solution is: " + solution);
 	}
 	
 	@Override
