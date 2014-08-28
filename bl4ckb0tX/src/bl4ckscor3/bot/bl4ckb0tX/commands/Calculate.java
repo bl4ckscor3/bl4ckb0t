@@ -91,7 +91,7 @@ public class Calculate implements Command<MessageEvent>
 	{
 		double solution = Math.pow(numbers[0], numbers[1]);
 		
-		checkForIntAndSend(event, (float)solution);
+		checkForIntAndSend((float)solution, event);
 	}
 	
 	private void modulo(float[] numbers, MessageEvent event) 
