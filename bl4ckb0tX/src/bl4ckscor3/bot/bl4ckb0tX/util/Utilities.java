@@ -48,7 +48,7 @@ public class Utilities
 	
 	public static void sorry(MessageEvent event)
 	{
-		chanMsg(event, "Sorry, only bl4ckscor3 is allowed to control me.");
+		chanMsg(event, "Sorry, only certain people are allowed to control me.");
 	}
 	
 	public static void addHelpLine(MessageEvent event, String msg)
