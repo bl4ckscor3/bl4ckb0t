@@ -17,9 +17,9 @@ public class Decide implements Command<MessageEvent>
 			int decision = r.nextInt(101);
 
 			if(decision >= 0 && decision <= 49)
-				Utilities.respond(event, "No", true);
+				Utilities.respond(event, "no", true);
 			else if(decision >= 50 && decision <= 100)
-				Utilities.respond(event, "Yes", true);
+				Utilities.respond(event, "yes", true);
 			else
 				Utilities.chanMsg(event, "I failed badly: " + decision);
 		}
