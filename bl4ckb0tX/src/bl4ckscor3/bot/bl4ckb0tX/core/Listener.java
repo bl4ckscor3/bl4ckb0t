@@ -118,7 +118,7 @@ public class Listener extends ListenerAdapter
 		{
 			for(Command cmd : commands)
 			{
-				if(cmd instanceof SwitchOn && event.getMessage().equalsIgnoreCase(p + cmd.getAlias()))
+				if((cmd instanceof SwitchOn || cmd instanceof SwitchOff) && event.getMessage().equalsIgnoreCase(p + cmd.getAlias()))
 				{
 					cmd.exe(event);
 					return;

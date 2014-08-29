@@ -17,6 +17,9 @@ public class SwitchOff implements Command<MessageEvent>
 			{
 				Listener.enabled = false;
 				Utilities.chanMsg(event, "Successfully disabled :(");
+				System.out.println(Utilities.getJoinedChannels().length);
+				if(Utilities.getJoinedChannels().length == 1)
+					return;
 				
 				for(String s : Utilities.getJoinedChannels())
 				{

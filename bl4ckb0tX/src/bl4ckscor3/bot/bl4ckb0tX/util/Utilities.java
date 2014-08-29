@@ -116,7 +116,7 @@ public class Utilities
 	{
 		ImmutableSortedSet<Channel> list = Core.bot.getUserBot().getChannels();
 		Object[] x = list.toArray();
-		String[] chans = new String[20];
+		String[] chans = new String[x.length];
 		int i = 0;
 
 		for(Object o : x)
