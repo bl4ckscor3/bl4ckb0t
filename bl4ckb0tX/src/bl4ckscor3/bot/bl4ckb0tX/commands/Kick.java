@@ -26,22 +26,6 @@ public class Kick implements Command<MessageEvent>
 			String[] allowedUsers = reader.readLine().split(",");
 				
 			String[] args = Utilities.toArgs(event.getMessage());
-
-			if(event.getUser().getNick().equalsIgnoreCase(args[1]))
-			{
-				StringBuilder builder = new StringBuilder();
-				
-				for(int i = 3; i <= args.length; i++)
-				{
-					builder.append(args[i - 1] + " ");
-				}
-
-				builder.replace(builder.length() - 1, builder.length(), "");
-
-				Utilities.chanMsg(event, args[1] + " was dumb and kicked himself...");
-				Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + args[1] + " :" + builder.toString());
-				return;
-			}
 			
 			for(String allowedUser : allowedUsers)
 			{
@@ -84,8 +68,6 @@ public class Kick implements Command<MessageEvent>
 					{
 						event.getChannel().send().action("kicks himself");
 						Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + args[1] + " :I'm said now :(");
-						Core.bot.sendRaw().rawLine("QUIT :My master sent me to sleep!");
-						Core.createBot();
 					}
 					else
 					{
