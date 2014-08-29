@@ -23,6 +23,7 @@ public class Help implements Command<MessageEvent>
 		Utilities.addHelpLine(event, "-decide <question>" + color + "Decides for you. Please only enter yes/no answerable questions.");
 		Utilities.addHelpLine(event, "-disable" + color + "Disables all the bot's features.");
 		Utilities.addHelpLine(event, "-draw <drawing>" + color + "Draws something on the screen!");
+		Utilities.addHelpLine(event, "-ets2mp <start|stop> [currentVersion]" + color + "Notifies you when a new Euro Truck Simulator 2 Multiplayer update is out.");
 		Utilities.addHelpLine(event, "-enable" + color + "Enables all the bot's features.");
 		Utilities.addHelpLine(event, "-forge <latest|rec|recommended> <version|changelog|dlmain|dlsrc>" + color + "Gives you the link to the specified options.");
 		Utilities.addHelpLine(event, "-join <channel>" + color + "Joins the given channel.");
@@ -41,12 +42,13 @@ public class Help implements Command<MessageEvent>
 		Utilities.addHelpLine(event, "-tw <profile>" + color + "Sends you to the specified Twitter profile!");
 		Utilities.addHelpLine(event, "-vowels <sentence>" + color + "Removes all vowels from the sentenced. This is the most useless command from " + Core.bot.getNick() + "...");
 		Utilities.addHelpLine(event, "-w <city>" + color + "Shows you the current weather stats of the specified city.");
+		Utilities.addHelpLine(event, "-xcolor" + color + "Shows you the XChat-SE color codes.");
 		Utilities.addHelpLine(event, "-yt <channel>" + color + "Sends you to the specified YouTube channel!");
 		Utilities.pm(event.getUser().getNick(), " ");
 		Utilities.pm(event.getUser().getNick(), Colors.BOLD + Colors.OLIVE + "-------------------------Credits--------------------------");
-		Utilities.pm(event.getUser().getNick(), Colors.BLUE + "Made by bl4ckscor3!");
-		Utilities.pm(event.getUser().getNick(), Colors.BLUE + "Help from Lord_Ralex (and TehKitti, but that doesn't count)!");
-		Utilities.pm(event.getUser().getNick(), Colors.BLUE + "Made in Java 7 using PircBotX 2.0.1 and its dependencies: https://code.google.com/p/pircbotx/");
+		Utilities.pm(event.getUser().getNick(), Colors.TEAL + "Made by bl4ckscor3!");
+		Utilities.pm(event.getUser().getNick(), Colors.TEAL + "Help from Lord_Ralex (and TehKitti, but that doesn't count)!");
+		Utilities.pm(event.getUser().getNick(), Colors.TEAL + "Made in Java 7 using PircBotX 2.0.1 (https://code.google.com/p/pircbotx/), its dependencies and Selenium (https://code.google.com/p/selenium/).");
 		Utilities.pm(event.getUser().getNick(), Colors.TEAL + "Suggestions are much appreciated! Just ping bl4ckscor3 if you want to suggest something!");
 	}
 	
