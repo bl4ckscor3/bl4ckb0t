@@ -39,6 +39,7 @@ import bl4ckscor3.bot.bl4ckb0tX.commands.MCStatus;
 import bl4ckscor3.bot.bl4ckb0tX.commands.MinusVowels;
 import bl4ckscor3.bot.bl4ckb0tX.commands.RandomLetter;
 import bl4ckscor3.bot.bl4ckb0tX.commands.RandomNumber;
+import bl4ckscor3.bot.bl4ckb0tX.commands.Scramble;
 import bl4ckscor3.bot.bl4ckb0tX.commands.Select;
 import bl4ckscor3.bot.bl4ckb0tX.commands.Source;
 import bl4ckscor3.bot.bl4ckb0tX.commands.Stop;
@@ -53,12 +54,9 @@ import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
 public class Listener extends ListenerAdapter 
 {
-	private final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
 	private final String p = "-";
 	public static boolean enabled = true;
 	public boolean isCounting = false;
-	private Random r = new Random();
-	private int number;
 	private final LinkedList<Command> commands = new LinkedList<>();
 
 	public Listener()
@@ -82,6 +80,7 @@ public class Listener extends ListenerAdapter
 		commands.add(new MinusVowels());
 		commands.add(new RandomLetter());
 		commands.add(new RandomNumber());
+		commands.add(new Scramble());
 		commands.add(new Select());
 		commands.add(new Source());
 		commands.add(new Stop());
