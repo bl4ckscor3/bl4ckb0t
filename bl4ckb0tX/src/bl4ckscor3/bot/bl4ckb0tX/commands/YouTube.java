@@ -109,13 +109,13 @@ public class YouTube implements Command<MessageEvent>
 		
 		try
 		{
-			likes = driver.findElement(By.xpath("//span[@class='likes-count']")).getText();
+			likes = driver.findElement(By.xpath("//button[@id='watch-like']/span[@class='yt-uix-button-content']")).getText();
 		}
 		catch(NoSuchElementException e){}
 		
 		try
 		{
-			dislikes = driver.findElement(By.xpath("//span[@class='dislikes-count']")).getText();
+			dislikes = driver.findElement(By.xpath("//button[@id='watch-dislike']/span[@class='yt-uix-button-content']")).getText();
 		}
 		catch(NoSuchElementException e){}
 		
