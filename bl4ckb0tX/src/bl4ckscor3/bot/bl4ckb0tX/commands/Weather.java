@@ -8,7 +8,7 @@ import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
-public class Weather implements Command<MessageEvent>
+public class Weather implements ICommand<MessageEvent>
 {
 	private boolean error = false;
 

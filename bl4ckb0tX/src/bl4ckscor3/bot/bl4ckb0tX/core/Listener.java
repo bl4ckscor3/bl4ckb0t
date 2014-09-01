@@ -21,7 +21,7 @@ import org.pircbotx.hooks.events.PrivateMessageEvent;
 import bl4ckscor3.bot.bl4ckb0tX.commands.Bukkit;
 import bl4ckscor3.bot.bl4ckb0tX.commands.Calculate;
 import bl4ckscor3.bot.bl4ckb0tX.commands.ChangeNick;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Command;
+import bl4ckscor3.bot.bl4ckb0tX.commands.ICommand;
 import bl4ckscor3.bot.bl4ckb0tX.commands.CraftBukkit;
 import bl4ckscor3.bot.bl4ckb0tX.commands.DeAds;
 import bl4ckscor3.bot.bl4ckb0tX.commands.Decide;
@@ -57,7 +57,7 @@ public class Listener extends ListenerAdapter
 	private final String p = "-";
 	public static boolean enabled = true;
 	public boolean isCounting = false;
-	private final LinkedList<Command> commands = new LinkedList<>();
+	private final LinkedList<ICommand> commands = new LinkedList<>();
 
 	public Listener()
 	{
@@ -105,7 +105,7 @@ public class Listener extends ListenerAdapter
 
 		if(enabled)
 		{
-			for(Command cmd : commands)
+			for(ICommand cmd : commands)
 			{
 				if(cmdName.equalsIgnoreCase(p + cmd.getAlias()))
 				{
@@ -116,7 +116,7 @@ public class Listener extends ListenerAdapter
 		}
 		else
 		{
-			for(Command cmd : commands)
+			for(ICommand cmd : commands)
 			{
 				if((cmd instanceof SwitchOn || cmd instanceof SwitchOff) && event.getMessage().equalsIgnoreCase(p + cmd.getAlias()))
 				{

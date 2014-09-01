@@ -11,7 +11,7 @@ import org.pircbotx.hooks.events.MessageEvent;
 import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
 
-public class DeAds implements Command<MessageEvent>
+public class DeAds implements ICommand<MessageEvent>
 {
 	@Override
 	public void exe(final MessageEvent event) throws Exception

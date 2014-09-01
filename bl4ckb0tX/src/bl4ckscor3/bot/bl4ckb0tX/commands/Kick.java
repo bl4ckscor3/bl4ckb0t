@@ -13,7 +13,7 @@ import org.pircbotx.output.OutputIRC;
 import bl4ckscor3.bot.bl4ckb0tX.core.Core;
 import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
-public class Kick implements Command<MessageEvent>
+public class Kick implements ICommand<MessageEvent>
 {	
 	@Override
 	public void exe(MessageEvent event) throws IOException, IrcException 

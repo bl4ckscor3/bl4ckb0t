@@ -6,7 +6,7 @@ import org.pircbotx.output.OutputIRC;
 import bl4ckscor3.bot.bl4ckb0tX.core.Core;
 import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
-public class ChangeNick implements Command<MessageEvent>
+public class ChangeNick implements ICommand<MessageEvent>
 {
 	@Override
 	public void exe(MessageEvent event)

@@ -7,7 +7,7 @@ import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
-public class Scramble implements Command<MessageEvent>
+public class Scramble implements ICommand<MessageEvent>
 {
 	private Random r = new Random();
 	private String[][] actions = 

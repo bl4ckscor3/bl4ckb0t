@@ -4,7 +4,7 @@ import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
-public class XColor implements Command<MessageEvent>
+public class XColor implements ICommand<MessageEvent>
 {
 	@Override
 	public void exe(MessageEvent event) throws Exception 

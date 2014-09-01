@@ -6,7 +6,7 @@ import org.pircbotx.hooks.events.MessageEvent;
 import bl4ckscor3.bot.bl4ckb0tX.core.Core;
 import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
-public class Help implements Command<MessageEvent>
+public class Help implements ICommand<MessageEvent>
 {
 	private String color = " " + Colors.BOLD + Colors.BLUE;
 	

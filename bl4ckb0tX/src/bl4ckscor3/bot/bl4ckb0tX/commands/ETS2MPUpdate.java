@@ -9,7 +9,7 @@ import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
-public class ETS2MPUpdate implements Command<MessageEvent>
+public class ETS2MPUpdate implements ICommand<MessageEvent>
 {
 	private boolean checking = false;
 	private String currentVersion;

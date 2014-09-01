@@ -4,7 +4,7 @@ import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
-public class Draw implements Command<MessageEvent>
+public class Draw implements ICommand<MessageEvent>
 {
 	private String[] drawings =
 		{
