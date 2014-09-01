@@ -47,10 +47,15 @@ public class YouTube implements Command<MessageEvent>
 
 		for(String s : args)
 		{
-			if(s.contains("www.youtube.com/watch?v="))
+			if(s.contains("www.youtube.com/watch"))
 			{
-				link = s;
-				break;
+				if(s.contains("v="))
+					link = "http://www.youtube.com/watch?v=" + s.split("v=")[1].substring(0, 11) + "/";
+				else
+				{
+					Utilities.chanMsg(event, "Couldn't find video id!");
+					break;
+				}
 			}
 			else if(s.contains("http://youtu.be/"))
 			{
@@ -83,21 +88,21 @@ public class YouTube implements Command<MessageEvent>
 		//make sure that the links starts with "http://"
 		if(!link.startsWith("http://"))
 			link = "http://" + link;
-		
+
 		driver.get(link);
-		
+
 		try
 		{
 			title = driver.findElement(By.xpath("//meta[@itemprop='name']")).getAttribute("content");
 		}
 		catch(NoSuchElementException e){}
-		
+
 		try
 		{
 			duration = resolveDuration(driver);
 		}
 		catch(NoSuchElementException e){}
-		
+
 		try
 		{
 			views = driver.findElement(By.xpath("//div[@class='watch-view-count']")).getText();
@@ -106,31 +111,31 @@ public class YouTube implements Command<MessageEvent>
 		{
 			views = driver.findElement(By.xpath("//span[@class='watch-view-count yt-uix-hovercard-target']")).getText().split("Views")[0];
 		}
-		
+
 		try
 		{
 			likes = driver.findElement(By.xpath("//button[@id='watch-like']/span[@class='yt-uix-button-content']")).getText();
 		}
 		catch(NoSuchElementException e){}
-		
+
 		try
 		{
 			dislikes = driver.findElement(By.xpath("//button[@id='watch-dislike']/span[@class='yt-uix-button-content']")).getText();
 		}
 		catch(NoSuchElementException e){}
-		
+
 		try
 		{
 			date = driver.findElement(By.xpath("//p[@id='watch-uploader-info']/strong")).getText().split("on")[1];
 		}
 		catch(NoSuchElementException e){}
-		
+
 		try
 		{
 			uploader = driver.findElement(By.xpath("//div[@class='yt-user-info']/a")).getText();
 		}
 		catch(NoSuchElementException e){}
-		
+
 		driver.close();
 		Utilities.chanMsg(event, Colors.BLACK + Colors.BOLD + "** " + Colors.BOLD + "1,0You0,4Tube " + Colors.BOLD + "** Title: " + Colors.BOLD + title + Colors.BOLD + " ** Duration: " + Colors.BOLD + duration + Colors.BOLD + " ** Views: " + Colors.BOLD + views + Colors.BOLD + " ** Likes:3 " + Colors.BOLD + likes + Colors.BOLD + " ** Dislikes:4 " + Colors.BOLD + dislikes + Colors.BOLD + " ** Uploaded by: " + Colors.BOLD + uploader + Colors.BOLD + " ** Uploaded on:" + Colors.BOLD + date + Colors.BOLD + " **");
 	}
@@ -143,12 +148,12 @@ public class YouTube implements Command<MessageEvent>
 		String seconds = null;
 		int h = 0;
 		int m;
-		
+
 		dur = driver.findElement(By.xpath("//meta[@itemprop='duration']")).getAttribute("content");
-		
+
 		if(dur.contains("M"))
 			minutes = dur.split("T")[1].split("M")[0]; 
-		
+
 		m = Integer.parseInt(minutes);
 
 		if(m > 60)
@@ -156,20 +161,20 @@ public class YouTube implements Command<MessageEvent>
 			h = m / 60;
 			m %= 60;
 		}
-		
+
 		if(dur.contains("S"))
 			seconds = dur.split("T")[1].split("M")[1].split("S")[0];
 
 		hours = "" + h;
-		
+
 		if(m < 10)
 			minutes = "0" + m;
 		else
 			minutes = "" + m;
-		
+
 		if(Integer.parseInt(seconds) < 10)
 			seconds = "0" + seconds;
-		
+
 		dur = hours + ":" + minutes + ":" + seconds;
 		return dur;
 	}
