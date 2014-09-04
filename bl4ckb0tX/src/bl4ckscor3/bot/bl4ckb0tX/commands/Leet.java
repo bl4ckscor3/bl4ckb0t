@@ -25,7 +25,6 @@ public class Leet implements ICommand<MessageEvent>
 				case 's': builder.append("5"); break;
 				case 't': builder.append("7"); break;
 				case 'z': builder.append("2"); break;
-				case ' ': builder.append(" "); break;
 				default: builder.append(chars[i]);
 			}
 		}
