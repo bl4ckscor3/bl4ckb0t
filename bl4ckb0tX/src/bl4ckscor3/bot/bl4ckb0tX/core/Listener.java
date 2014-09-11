@@ -17,6 +17,7 @@ import org.pircbotx.hooks.events.ConnectEvent;
 import org.pircbotx.hooks.events.DisconnectEvent;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
+import org.pircbotx.hooks.events.QuitEvent;
 
 import bl4ckscor3.bot.bl4ckb0tX.commands.Bukkit;
 import bl4ckscor3.bot.bl4ckb0tX.commands.Calculate;
@@ -235,6 +236,18 @@ public class Listener extends ListenerAdapter
 		for(String s : channelsToJoin)
 		{
 			Core.bot.sendIRC().joinChannel(s);
+		}
+	}
+
+	@Override
+	public void onQuit(QuitEvent event) throws Exception
+	{
+		if(event.getReason().toLowerCase().startsWith("ping"))
+		{
+			while(!Core.bot.isConnected())
+			{
+				Core.bot.startBot();
+			}
 		}
 	}
 }
