@@ -74,4 +74,22 @@ public class Scramble implements ICommand<MessageEvent>
 	{
 		return "scramble";
 	}
+
+	@Override
+	public String getSyntax()
+	{
+		return "-scramble";
+	}
+
+	@Override
+	public String[] getUsage()
+	{
+		return new String[]{"-scramble || Gives you a 25-move-algorythm for your 3x3 Rubik's Cube to scramble."};
+	}
+
+	@Override
+	public String getNotes()
+	{
+		return null;
+	}
 }

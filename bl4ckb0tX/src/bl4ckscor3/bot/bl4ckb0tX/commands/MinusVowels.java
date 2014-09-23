@@ -33,4 +33,22 @@ public class MinusVowels implements ICommand<MessageEvent>
 	{
 		return "vowels";
 	}
+
+	@Override
+	public String getSyntax()
+	{
+		return "-vowels <sentence>";
+	}
+
+	@Override
+	public String[] getUsage()
+	{
+		return new String[]{"-vowels <sentence> || Removes all vowels from the given sentence."};
+	}
+
+	@Override
+	public String getNotes()
+	{
+		return "Useless.";
+	}
 }

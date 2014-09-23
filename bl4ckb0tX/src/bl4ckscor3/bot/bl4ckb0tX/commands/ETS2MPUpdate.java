@@ -64,18 +64,18 @@ public class ETS2MPUpdate implements ICommand<MessageEvent>
 	{
 		WebDriver driver = new HtmlUnitDriver();
 		WebElement element;
-		
+
 		while(checking)
 		{
 			driver.get("http://ets2mp.com");
 			element = driver.findElement(By.xpath("//div[@class='red_haze']"));
-			
+
 			if(!element.getText().equals(currentVersion))
 			{
 				Utilities.chanMsg(event, "New version (" + element.getText() + ") of ETS2MP is out! Download: http://alpha.ets2mp.com");
 				checking = false;
 			}
-			
+
 			Thread.sleep(60000);//wait one minute before checking again
 		}
 	}
@@ -84,6 +84,28 @@ public class ETS2MPUpdate implements ICommand<MessageEvent>
 	public String getAlias()
 	{
 		return "ets2mp";
+	}
+
+	@Override
+	public String getSyntax()
+	{
+		return "-ets2mp <start|stop> [currentVersion]";
+	}
+
+	@Override
+	public String[] getUsage()
+	{
+		return new String[]
+				{
+				"-ets2mp start <currentVersion> || Starts a query every minute to check if there's an update for ETS2MP.",
+				"-ets2mp stop || Stops the query."
+				};
+	}
+
+	@Override
+	public String getNotes()
+	{
+		return "Check if you wrote the current version correctly. If you got the slightest typo, it will not work!";
 	}
 
 }

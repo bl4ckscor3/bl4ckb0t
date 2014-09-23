@@ -36,4 +36,22 @@ public class Leet implements ICommand<MessageEvent>
 	{
 		return "leet";
 	}
+
+	@Override
+	public String getSyntax()
+	{
+		return "-leet <sentence>";
+	}
+
+	@Override
+	public String[] getUsage()
+	{
+		return new String[]{"-leet <sentence> || Converts your sentence into leet speak."};
+	}
+
+	@Override
+	public String getNotes()
+	{
+		return null;
+	}
 }

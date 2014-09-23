@@ -22,4 +22,22 @@ public class Twitch implements ICommand<MessageEvent>
 	{
 		return "tv";
 	}
+
+	@Override
+	public String getSyntax()
+	{
+		return "-tv <channel>";
+	}
+
+	@Override
+	public String[] getUsage()
+	{
+		return new String[]{"-tv <channel> || Gives you the link to the specified Twitch channel."};
+	}
+
+	@Override
+	public String getNotes()
+	{
+		return null;
+	}
 }

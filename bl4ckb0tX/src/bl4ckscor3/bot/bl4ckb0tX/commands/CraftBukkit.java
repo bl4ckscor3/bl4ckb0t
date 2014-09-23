@@ -146,4 +146,27 @@ public class CraftBukkit implements ICommand<MessageEvent>
 	{
 		return "cbukkit";
 	}
+
+	@Override
+	public String getSyntax() 
+	{
+		return "-cbukkit <rec|beta|dev>";
+	}
+
+	@Override
+	public String[] getUsage()
+	{
+		return new String[]
+				{
+				"-cbukkit <rec> || Gives you the link to the latest recommended craftbukkit version.",
+				"-cbukkit <beta> || Gives you the link to the latest craftbukkit beta version.",
+				"-cbukkit <dev> || Gives you the link to the latest craftbukkit development version."
+				};
+	}
+
+	@Override
+	public String getNotes()
+	{
+		return "This may currently not work due to Bukkit having issues.";
+	}
 }

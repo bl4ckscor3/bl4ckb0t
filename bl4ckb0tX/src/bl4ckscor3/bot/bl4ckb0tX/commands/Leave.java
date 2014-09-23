@@ -45,4 +45,26 @@ public class Leave implements ICommand<MessageEvent>
 	{
 		return "leave";
 	}
+
+	@Override
+	public String getSyntax()
+	{
+		return "-leave [channel]";
+	}
+
+	@Override
+	public String[] getUsage()
+	{
+		return new String[]
+				{
+				"-leave <channel> || Leaves the given channel if the bot is in there.",
+				"-leave || Leaves the channel the command was sent from."
+				};
+	}
+
+	@Override
+	public String getNotes()
+	{
+		return "Only useable by OPs.";
+	}
 }

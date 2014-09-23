@@ -78,6 +78,34 @@ public class Draw implements ICommand<MessageEvent>
 			sendAvailableDrawings(event);
 	}
 
+	@Override
+	public String getAlias()
+	{
+		return "draw";
+	}
+
+	@Override
+	public String getSyntax()
+	{
+		return "-draw [drawing]";
+	}
+
+	@Override
+	public String[] getUsage()
+	{
+		return new String[]
+				{
+				"-draw <drawing> || Draws the specified drawing for you.",
+				"-draw || Lists available drawings"
+				};
+	}
+
+	@Override
+	public String getNotes()
+	{
+		return null;
+	}
+	
 	private void smiley(MessageEvent event)
 	{
 		Utilities.pm(event.getUser().getNick(), "1,1          1,1          1,1          ");
@@ -403,11 +431,5 @@ public class Draw implements ICommand<MessageEvent>
 
 		output.delete(output.length() - 3, output.length() - 1);
 		Utilities.notice(event, output.toString());
-	}
-	
-	@Override
-	public String getAlias()
-	{
-		return "draw";
 	}
 }

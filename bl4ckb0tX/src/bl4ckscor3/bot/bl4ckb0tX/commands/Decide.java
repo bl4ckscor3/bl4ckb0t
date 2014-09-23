@@ -32,4 +32,22 @@ public class Decide implements ICommand<MessageEvent>
 	{
 		return "decide";
 	}
+
+	@Override
+	public String getSyntax()
+	{
+		return "-decide <question>";
+	}
+
+	@Override
+	public String[] getUsage()
+	{
+		return new String[]{"-decide <question> || Decides for you. Please only enter yes/no answerable questions."};
+	}
+
+	@Override
+	public String getNotes()
+	{
+		return "Don't forget the questionmark!";
+	}
 }

@@ -22,4 +22,22 @@ public class Twitter implements ICommand<MessageEvent>
 	{
 		return "tw";
 	}
+	
+	@Override
+	public String getSyntax()
+	{
+		return "-tw <profile>";
+	}
+
+	@Override
+	public String[] getUsage()
+	{
+		return new String[]{"-tw <profile> || Gives you the link to the specified Twitter profile."};
+	}
+
+	@Override
+	public String getNotes()
+	{
+		return null;
+	}
 }

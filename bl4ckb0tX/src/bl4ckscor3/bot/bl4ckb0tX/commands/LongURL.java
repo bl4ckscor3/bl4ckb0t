@@ -43,4 +43,22 @@ public class LongURL implements ICommand<MessageEvent>
 	{
 		return "longurl";
 	}
+
+	@Override
+	public String getSyntax()
+	{
+		return "-longurl <shortUrl>";
+	}
+
+	@Override
+	public String[] getUsage()
+	{
+		return new String[]{"-longurl <shortUrl> || Enlarges the given link if possible."};
+	}
+
+	@Override
+	public String getNotes()
+	{
+		return "Some link shorteners may not work.";
+	}
 }

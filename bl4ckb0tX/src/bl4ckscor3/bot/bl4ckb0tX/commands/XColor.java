@@ -43,4 +43,21 @@ public class XColor implements ICommand<MessageEvent>
 		return "xcolor";
 	}
 
+	@Override
+	public String getSyntax()
+	{
+		return "-xcolor";
+	}
+
+	@Override
+	public String[] getUsage()
+	{
+		return new String[]{"-xcolor || Gives you the XChat-SE color codes and their corresponding colors."};
+	}
+
+	@Override
+	public String getNotes()
+	{
+		return "These colorcodes may work for other clients, too.";
+	}
 }

@@ -6,7 +6,7 @@ import bl4ckscor3.bot.bl4ckb0tX.core.Core;
 import bl4ckscor3.bot.bl4ckb0tX.core.Listener;
 import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
-public class SwitchOn implements ICommand<MessageEvent>
+public class Enable implements ICommand<MessageEvent>
 {
 	@Override
 	public void exe(MessageEvent event)
@@ -35,5 +35,23 @@ public class SwitchOn implements ICommand<MessageEvent>
 	public String getAlias()
 	{
 		return "enable";
+	}
+	
+	@Override
+	public String getSyntax()
+	{
+		return "-enable";
+	}
+
+	@Override
+	public String[] getUsage()
+	{
+		return new String[]{"-enable || Enables all the bot's features."};
+	}
+
+	@Override
+	public String getNotes()
+	{
+		return "Only useable by OPs.";
 	}
 }

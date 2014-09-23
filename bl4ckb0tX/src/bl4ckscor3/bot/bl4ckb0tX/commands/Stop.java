@@ -64,4 +64,26 @@ public class Stop implements ICommand<MessageEvent>
 	{
 		return "stop";
 	}
+
+	@Override
+	public String getSyntax()
+	{
+		return "-stop <yes|no>";
+	}
+
+	@Override
+	public String[] getUsage()
+	{
+		return new String[]
+				{
+				"-stop yes || Stops the bot and restarts it.",
+				"-stop no || Stops the bot but doesn't restart it."
+				};
+	}
+
+	@Override
+	public String getNotes()
+	{
+		return "Only useable by OPs.";
+	}
 }

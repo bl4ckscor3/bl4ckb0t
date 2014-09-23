@@ -81,4 +81,22 @@ public class MCStatus implements ICommand<MessageEvent>
 	{
 		return "mcstatus";
 	}
+
+	@Override
+	public String getSyntax()
+	{
+		return "-mcstatus";
+	}
+
+	@Override
+	public String[] getUsage()
+	{
+		return new String[]{"-mcstatus || Tells you the current status of \"Mojang\"'s servers."};
+	}
+
+	@Override
+	public String getNotes()
+	{
+		return "Currently not working.";
+	}
 }

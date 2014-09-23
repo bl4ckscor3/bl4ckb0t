@@ -1,56 +1,17 @@
 package bl4ckscor3.bot.bl4ckb0tX.core;
 
-import java.io.IOException;
 import java.util.LinkedList;
-import java.util.Random;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.pircbotx.Colors;
-import org.pircbotx.exception.IrcException;
 import org.pircbotx.hooks.ListenerAdapter;
-import org.pircbotx.hooks.events.ActionEvent;
 import org.pircbotx.hooks.events.ConnectEvent;
-import org.pircbotx.hooks.events.DisconnectEvent;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 import org.pircbotx.hooks.events.QuitEvent;
 
-import bl4ckscor3.bot.bl4ckb0tX.commands.Bukkit;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Calculate;
-import bl4ckscor3.bot.bl4ckb0tX.commands.ChangeNick;
-import bl4ckscor3.bot.bl4ckb0tX.commands.ICommand;
-import bl4ckscor3.bot.bl4ckb0tX.commands.CraftBukkit;
-import bl4ckscor3.bot.bl4ckb0tX.commands.DeAds;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Decide;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Draw;
-import bl4ckscor3.bot.bl4ckb0tX.commands.ETS2MPUpdate;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Forge;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Help;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Join;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Kick;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Leave;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Leet;
-import bl4ckscor3.bot.bl4ckb0tX.commands.ListChans;
-import bl4ckscor3.bot.bl4ckb0tX.commands.LongURL;
-import bl4ckscor3.bot.bl4ckb0tX.commands.MCStatus;
-import bl4ckscor3.bot.bl4ckb0tX.commands.MinusVowels;
-import bl4ckscor3.bot.bl4ckb0tX.commands.RandomLetter;
-import bl4ckscor3.bot.bl4ckb0tX.commands.RandomNumber;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Scramble;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Select;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Source;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Stop;
-import bl4ckscor3.bot.bl4ckb0tX.commands.SwitchOff;
-import bl4ckscor3.bot.bl4ckb0tX.commands.SwitchOn;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Twitch;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Twitter;
-import bl4ckscor3.bot.bl4ckb0tX.commands.Weather;
-import bl4ckscor3.bot.bl4ckb0tX.commands.XColor;
-import bl4ckscor3.bot.bl4ckb0tX.commands.YouTube;
+import bl4ckscor3.bot.bl4ckb0tX.commands.*;
 import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
 public class Listener extends ListenerAdapter 
@@ -58,8 +19,8 @@ public class Listener extends ListenerAdapter
 	private final String p = "-";
 	public static boolean enabled = true;
 	public boolean isCounting = false;
-	private final LinkedList<ICommand> commands = new LinkedList<>();
-
+	public final static LinkedList<ICommand> commands = new LinkedList<>();
+	
 	public Listener()
 	{
 		commands.add(new Bukkit());
@@ -67,7 +28,9 @@ public class Listener extends ListenerAdapter
 		commands.add(new ChangeNick());
 		commands.add(new CraftBukkit());
 		commands.add(new Decide());
+		commands.add(new Disable());
 		commands.add(new Draw());
+		commands.add(new Enable());
 		commands.add(new ETS2MPUpdate());
 		commands.add(new Help());
 		commands.add(new Join());
@@ -77,21 +40,20 @@ public class Listener extends ListenerAdapter
 		commands.add(new Leet());
 		commands.add(new ListChans());
 		commands.add(new LongURL());
-		commands.add(new MCStatus());
-		commands.add(new MinusVowels());
 		commands.add(new RandomLetter());
 		commands.add(new RandomNumber());
 		commands.add(new Scramble());
 		commands.add(new Select());
 		commands.add(new Source());
 		commands.add(new Stop());
-		commands.add(new SwitchOff());
-		commands.add(new SwitchOn());
 		commands.add(new Twitch());
 		commands.add(new Twitter());
+		commands.add(new MinusVowels());
 		commands.add(new Weather());
 		commands.add(new XColor());
 		commands.add(new YouTube());
+		
+		Help.setupHelpMenu(commands);
 	}
 
 	@Override
@@ -119,7 +81,7 @@ public class Listener extends ListenerAdapter
 		{
 			for(ICommand cmd : commands)
 			{
-				if((cmd instanceof SwitchOn || cmd instanceof SwitchOff) && event.getMessage().equalsIgnoreCase(p + cmd.getAlias()))
+				if((cmd instanceof Enable || cmd instanceof Disable) && event.getMessage().equalsIgnoreCase(p + cmd.getAlias()))
 				{
 					cmd.exe(event);
 					return;

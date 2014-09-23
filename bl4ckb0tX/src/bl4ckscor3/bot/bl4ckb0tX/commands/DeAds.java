@@ -36,5 +36,23 @@ public class DeAds implements ICommand<MessageEvent>
 	public String getAlias()
 	{
 		return "deads";
+	}
+
+	@Override
+	public String getSyntax()
+	{
+		return "-deads <link>";
+	}
+
+	@Override
+	public String[] getUsage()
+	{
+		return new String[]{"-deads <link> || Resolves a link from a money linking site for you."};
+	}
+
+	@Override
+	public String getNotes()
+	{
+		return "Currently bugged out and not working.";
 	}	
 }

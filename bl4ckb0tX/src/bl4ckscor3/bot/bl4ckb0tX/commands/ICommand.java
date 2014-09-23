@@ -7,4 +7,10 @@ public interface ICommand<E extends Event>
 	public void exe(E event) throws Exception;
 
 	public String getAlias();
+
+	public String getSyntax();
+	
+	public String[] getUsage();
+	
+	public String getNotes();
 }

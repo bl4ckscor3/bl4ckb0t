@@ -74,4 +74,22 @@ public class RandomLetter implements ICommand<MessageEvent>
 	{
 		return "letter";
 	}
+
+	@Override
+	public String getSyntax()
+	{
+		return "-letter <number>";
+	}
+
+	@Override
+	public String[] getUsage()
+	{
+		return new String[]{"-letter <number> || Outputs as many letters as you want."};
+	}
+
+	@Override
+	public String getNotes()
+	{
+		return "No number higher than 50 can be parsed.";
+	}
 }

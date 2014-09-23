@@ -137,13 +137,36 @@ public class Bukkit implements ICommand<MessageEvent>
 		}
 		else
 			Utilities.notice(event, "Available commands: 'rec' | 'beta' | 'dev' - Usage: -bukkit <command>");
-		
+
 		reader.close();
 	}
-	
+
 	@Override
 	public String getAlias()
 	{
 		return "bukkit";
+	}
+
+	@Override
+	public String getSyntax()
+	{
+		return "-bukkit <rec|beta|dev|>";
+	}
+
+	@Override
+	public String[] getUsage()
+	{
+		return new String[]
+				{
+				"-bukkit <rec> || Gives you the link to the latest recommended bukkit version.",
+				"-bukkit <beta> || Gives you the link to the latest bukkit beta version.",
+				"-bukkit <dev> || Gives you the link to the latest bukkit development version."
+				};
+	}
+
+	@Override
+	public String getNotes()
+	{
+		return "This may currently not work due to Bukkit having issues.";
 	}
 }

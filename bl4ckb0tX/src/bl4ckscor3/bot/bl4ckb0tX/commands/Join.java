@@ -48,4 +48,22 @@ public class Join implements ICommand<MessageEvent>
 	{
 		return "join";
 	}
+
+	@Override
+	public String getSyntax()
+	{
+		return "join <channel>";
+	}
+
+	@Override
+	public String[] getUsage()
+	{
+		return new String[]{"join <channel> || The bot joins into the given channel if it's not already in there."};
+	}
+
+	@Override
+	public String getNotes()
+	{
+		return "Only useable by OPs.";
+	}
 }

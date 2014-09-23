@@ -129,4 +129,33 @@ public class Forge implements ICommand<MessageEvent>
 	{
 		return "forge";
 	}
+
+	@Override
+	public String getSyntax()
+	{
+		return "-forge <latest|rec|recommended> <version|changelog|dlmain|dlsrc>";
+	}
+
+	@Override
+	public String[] getUsage()
+	{
+		return new String[]
+				{
+				"-forge latest version || Tells you the latest version for Forge inclusive the Minecraft version it is for.",
+				"-forge latest changelog || Gives you a link to the changelog of the latest Forge version.",
+				"-forge latest dlmain || Gives you a link to the client download of the latest Forge version.",
+				"-forge latest dlsrc || Gives you a link to the development download of the latest Forge version.",
+				"-forge <rec|recommended> version || Tells you the latest recommended version for Forge inclusive the Minecraft version it is for.",
+				"-forge <rec|recommended> changelog || Gives you a link to the changelog of the latest recommended Forge version.",
+				"-forge <rec|recommended> dlmain || Gives you a link to the client download of the latest recommended Forge version.",
+				"-forge <rec|recommended> dlsrc || Gives you a link to the development download of the latest recommended Forge version."
+				};
+	}
+
+	@Override
+	public String getNotes()
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

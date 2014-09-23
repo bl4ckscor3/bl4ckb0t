@@ -81,4 +81,22 @@ public class Weather implements ICommand<MessageEvent>
 	{
 		return "w";
 	}
+
+	@Override
+	public String getSyntax()
+	{
+		return "-w <city>";
+	}
+
+	@Override
+	public String[] getUsage()
+	{
+		return new String[]{"-w <city> || Shows you an up-to-date weather report for the given city."};
+	}
+
+	@Override
+	public String getNotes()
+	{
+		return "Some cities, such as Amsterdam, exist multiple times. Please use the country code to specify the city you want: -w amsterdam,nl (This will give the Amsterdam in the Netherlands). If your city contains a space, use an underscore (_) instead.";
+	}
 }

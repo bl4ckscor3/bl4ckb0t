@@ -109,4 +109,22 @@ public class Kick implements ICommand<MessageEvent>
 	{
 		return "kick";
 	}
+
+	@Override
+	public String getSyntax()
+	{
+		return "-kick <user> <reason>";
+	}
+
+	@Override
+	public String[] getUsage()
+	{
+		return new String[]{"-kick <user> <reason> || Kicks the user from the channel with the given reason."};
+	}
+	
+	@Override
+	public String getNotes()
+	{
+		return "Only useable by voiced/OPs.";
+	}
 }

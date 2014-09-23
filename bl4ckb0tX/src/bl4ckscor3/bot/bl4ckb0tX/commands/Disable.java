@@ -6,7 +6,7 @@ import bl4ckscor3.bot.bl4ckb0tX.core.Core;
 import bl4ckscor3.bot.bl4ckb0tX.core.Listener;
 import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
-public class SwitchOff implements ICommand<MessageEvent>
+public class Disable implements ICommand<MessageEvent>
 {
 	@Override
 	public void exe(MessageEvent event)
@@ -38,5 +38,23 @@ public class SwitchOff implements ICommand<MessageEvent>
 	public String getAlias()
 	{
 		return "disable";
+	}
+
+	@Override
+	public String getSyntax()
+	{
+		return "-disable";
+	}
+
+	@Override
+	public String[] getUsage()
+	{
+		return new String[]{"-disable || Disables all the bot's features."};
+	}
+
+	@Override
+	public String getNotes()
+	{
+		return "Only useable by OPs.";
 	}
 }

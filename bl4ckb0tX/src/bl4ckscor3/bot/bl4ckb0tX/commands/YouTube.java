@@ -31,6 +31,24 @@ public class YouTube implements ICommand<MessageEvent>
 		return "yt";
 	}
 
+	@Override
+	public String getSyntax()
+	{
+		return "-yt <channel>";
+	}
+
+	@Override
+	public String[] getUsage()
+	{
+		return new String[]{"-yt <channel> || Gives you the link to the specified YouTube channel."};
+	}
+
+	@Override
+	public String getNotes()
+	{
+		return "Newer channels (using channel IDs) don't work.";
+	}
+	
 	public static void sendVideoStats(MessageEvent event) throws MalformedURLException, IOException
 	{
 		String[] args = Utilities.toArgs(event.getMessage());

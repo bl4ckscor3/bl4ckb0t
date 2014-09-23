@@ -23,4 +23,22 @@ public class Select implements ICommand<MessageEvent>
 	{
 		return "select";
 	}
+
+	@Override
+	public String getSyntax()
+	{
+		return "-select <options>";
+	}
+
+	@Override
+	public String[] getUsage()
+	{
+		return new String[]{"-select <options> || Selects an option for you."};
+	}
+
+	@Override
+	public String getNotes()
+	{
+		return "Seperate multiple options with a comma. (e.g. -select 1,2,3,4,5)";
+	}
 }

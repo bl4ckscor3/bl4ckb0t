@@ -41,4 +41,19 @@ public class RandomNumber implements ICommand<MessageEvent>
 	{
 		return "number";
 	}
+	@Override
+	public String getSyntax()
+	{
+		return "-number <number>";
+	}
+	@Override
+	public String[] getUsage()
+	{
+		return new String[]{"-number <number> || Outputs as many numbers as you want."};
+	}
+	@Override
+	public String getNotes()
+	{
+		return "No number higher than 50 can be parsed.";
+	}
 }

@@ -35,4 +35,22 @@ public class ListChans implements ICommand<MessageEvent>
 	{
 		return "listchans";
 	}
+
+	@Override
+	public String getSyntax()
+	{
+		return "-listchans";
+	}
+
+	@Override
+	public String[] getUsage()
+	{
+		return new String[]{"-listchans || Lists the channels the bot is currently in."};
+	}
+
+	@Override
+	public String getNotes()
+	{
+		return null;
+	}
 }

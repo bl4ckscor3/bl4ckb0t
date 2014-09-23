@@ -34,4 +34,22 @@ public class ChangeNick implements ICommand<MessageEvent>
 	{
 		return "changenick";
 	}
+
+	@Override
+	public String getSyntax()
+	{
+		return "-changenick <newName>";
+	}
+
+	@Override
+	public String[] getUsage()
+	{
+		return new String[]{"-changenick <newName> || Changes the name of bl4ckb0t to the specified one."};
+	}
+
+	@Override
+	public String getNotes()
+	{
+		return "Only useable by OPs.";
+	}
 }

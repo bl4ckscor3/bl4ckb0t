@@ -17,4 +17,22 @@ public class Source implements ICommand<MessageEvent>
 	{
 		return "source";
 	}
+
+	@Override
+	public String getSyntax()
+	{
+		return "-source";
+	}
+
+	@Override
+	public String[] getUsage()
+	{
+		return new String[]{"-source || Gives you the link to the sourcecode of the bot."};
+	}
+
+	@Override
+	public String getNotes()
+	{
+		return null;
+	}
 }
