@@ -31,7 +31,7 @@ public class Core
 		.setLogin("bl4ckb0t")
 		.setAutoNickChange(true)
 		.addListener(new Listener())
-		.setMessageDelay(500)
+		.setMessageDelay(1000)
 		.buildConfiguration();
 
 		bot = new PircBotX(config);

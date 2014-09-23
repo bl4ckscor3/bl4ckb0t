@@ -36,17 +36,16 @@ public class Help implements ICommand<MessageEvent>
 
 			for(String s : aliases)
 			{
-				if(i == 10)
-				{
+				if(i == 4 || i == 9 || i == 14 || i == 19 || i == 24 || i == 29 || i == 34 || i == 39)
 					Thread.sleep(2000);
-					i = 10;
-				}
 				
 				Utilities.pm(nick, "    " + s);
+				i++;
 			}
 
 			Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------------------------------------------------------");
 			Utilities.pm(nick, "Write -help <command> to get more specific help on that command.");
+			Thread.sleep(2000);
 			Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "-------------------------Credits--------------------------");
 			Utilities.pm(nick, Colors.TEAL + "Made by bl4ckscor3!");
 			Utilities.pm(nick, Colors.TEAL + "Help from Lord_Ralex (and TehKitti, but that doesn't count)!");
@@ -55,9 +54,13 @@ public class Help implements ICommand<MessageEvent>
 		}
 		else if(args.length == 2)
 		{
+			System.out.println("-" + args[1]);
+			
 			for(ICommand cmd : Listener.commands)
 			{
-				if(cmd.getAlias().equals(args[1]))
+				System.out.println("-" + cmd.getAlias());
+				
+				if(cmd.getAlias().equals(args[1]) || ("-" + cmd.getAlias()).equals(args[1]))
 				{
 					Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "-------------------------Syntax--------------------------");
 					Utilities.pm(nick, cmd.getSyntax());
