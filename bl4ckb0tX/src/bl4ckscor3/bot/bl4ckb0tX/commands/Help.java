@@ -24,17 +24,24 @@ public class Help implements ICommand<MessageEvent>
 	}
 
 	@Override
-	public void exe(MessageEvent event)
+	public void exe(MessageEvent event) throws InterruptedException
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 		String nick = event.getUser().getNick();
-
+		int i = 0;
+		
 		if(args.length == 1)
 		{
 			Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------------------My Commands :)----------------------");
 
 			for(String s : aliases)
 			{
+				if(i == 10)
+				{
+					Thread.sleep(2000);
+					i = 10;
+				}
+				
 				Utilities.pm(nick, "    " + s);
 			}
 

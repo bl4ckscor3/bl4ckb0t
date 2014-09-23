@@ -35,7 +35,7 @@ public class Utilities
 	
 	public static void pm(String name, String msg)
 	{
-		Core.bot.sendIRC().notice(name, msg);
+		Core.bot.sendIRC().message(name, msg);
 	}
 	
 	public static void respond(MessageEvent event, String msg, boolean comma)
