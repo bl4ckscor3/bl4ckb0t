@@ -35,7 +35,7 @@ public class ETS2MPUpdate implements ICommand<MessageEvent>
 		}
 		else 
 		{
-			if(args.length < 3 || args.length > 3)
+			if(args.length < 3)
 			{
 				Utilities.chanMsg(event, "Invalid number of arguments. Usage: -ets2mp start <current version>");
 				return;
@@ -51,7 +51,11 @@ public class ETS2MPUpdate implements ICommand<MessageEvent>
 		switch(args[1])
 		{
 			case "start":
-				currentVersion = args[2];
+				for(int i = 2; i < args.length; i++)
+				{
+					currentVersion += args[i];
+				}
+				
 				checking = true;
 				checkForUpdates(event);
 				break;
