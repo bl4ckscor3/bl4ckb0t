@@ -14,6 +14,7 @@ import org.pircbotx.hooks.events.PrivateMessageEvent;
 import org.pircbotx.hooks.events.QuitEvent;
 
 import bl4ckscor3.bot.bl4ckb0tX.commands.*;
+import bl4ckscor3.bot.bl4ckb0tX.misc.*;
 import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
 public class Listener extends ListenerAdapter 
@@ -104,40 +105,15 @@ public class Listener extends ListenerAdapter
 		{
 			if(event.getMessage().contains("www.youtube.com/watch") || event.getMessage().contains("http://youtu.be/"))
 			{
-				YouTube.sendVideoStats(event);
+				YouTubeStats.sendVideoStats(event);
 				return;
 			}
 
 			if(!event.getMessage().startsWith(p))
-				checkForLinkAndSendTitle(event);
+				LinkTitle.checkForLinkAndSendTitle(event);
 
 			if(event.getMessage().toLowerCase().equalsIgnoreCase("re"))
 				Utilities.chanMsg(event, "wb, " + event.getUser().getNick());
-		}
-	}
-
-	private void checkForLinkAndSendTitle(MessageEvent event)
-	{
-		String[] args = Utilities.toArgs(event.getMessage());
-
-		for(String s : args)
-		{
-			if(s.contains("www.") || s.contains("http://") || s.contains("https://"))
-			{
-				WebDriver driver = new HtmlUnitDriver();
-				String title = null;
-
-				if(s.startsWith("www."))
-					s = "http://" + s;
-
-				driver.get(s);
-				title = driver.getTitle();
-
-				if(title != null || !title.equals(""))
-					Utilities.chanMsg(event, "Page title of " + s + " - " + Colors.BOLD + title);
-				else
-					Utilities.chanMsg(event, "No title available.");
-			}
 		}
 	}
 
