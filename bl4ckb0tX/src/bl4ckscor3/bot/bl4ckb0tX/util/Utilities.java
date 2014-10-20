@@ -17,27 +17,21 @@ import com.google.common.collect.ImmutableSortedSet;
 
 public class Utilities
 {
-	private static String[] validUsers =
-		{
-			"bl4ckscor3",
-			"akino_germany"
-		};
-	
 	public static void chanMsg(MessageEvent event, String msg)
 	{
 		event.getChannel().send().message(msg);
 	}
-	
+
 	public static void notice(MessageEvent event, String msg)
 	{
 		event.getUser().send().notice(msg);
 	}
-	
+
 	public static void pm(String name, String msg)
 	{
 		Core.bot.sendIRC().message(name, msg);
 	}
-	
+
 	public static void respond(MessageEvent event, String msg, boolean comma)
 	{
 		if(comma)
@@ -45,20 +39,22 @@ public class Utilities
 		else
 			chanMsg(event, event.getUser().getNick() + ": " + msg);
 	}
-	
+
 	public static void sorry(MessageEvent event)
 	{
 		chanMsg(event, "Sorry, only certain people are allowed to control me.");
 	}
-	
+
 	public static void addHelpLine(MessageEvent event, String msg)
 	{
 		pm(event.getUser().getNick(), Colors.BOLD + Colors.RED + msg);
 	}
-	
-	public static boolean validUser(MessageEvent event)
+
+	public static boolean validUser(MessageEvent event) throws MalformedURLException, IOException
 	{
-		for(String s : validUsers)
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/dyvu276rdwmbt9z/validUsers.txt?dl=0").openStream()));
+
+		for(String s : reader.readLine().split(","))
 		{
 			if(event.getUser().getNick().equalsIgnoreCase(s))
 			{
@@ -70,15 +66,17 @@ public class Utilities
 		}
 		return false;
 	}
-	
+
 	public static String[] toArgs(String line)
 	{
 		return line.split(" ");
 	}
-	
-	public static boolean validUser(PrivateMessageEvent event)
+
+	public static boolean validUser(PrivateMessageEvent event) throws MalformedURLException, IOException
 	{	
-		for(String s : validUsers)
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/dyvu276rdwmbt9z/validUsers.txt?dl=0").openStream()));
+
+		for(String s : reader.readLine().split(","))
 		{
 			if(event.getUser().getNick().equalsIgnoreCase(s))
 			{
@@ -90,16 +88,15 @@ public class Utilities
 		}
 		return false;
 	}
-	
-	public static String[] getValidUsers()
+
+	public static String[] getValidUsers() throws MalformedURLException, IOException
 	{
-		return validUsers;
+		return new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/dyvu276rdwmbt9z/validUsers.txt?dl=0").openStream())).readLine().split(",");
 	}
-	
+
 	public static boolean hasJoinedChannel(String[] args)
 	{
 		String[] chans = getJoinedChannels();
-		boolean joined = false;
 
 		for(String s : chans)
 		{
@@ -111,7 +108,7 @@ public class Utilities
 		}
 		return false;
 	}
-	
+
 	public static String[] getJoinedChannels()
 	{
 		ImmutableSortedSet<Channel> list = Core.bot.getUserBot().getChannels();
@@ -124,14 +121,14 @@ public class Utilities
 			chans[i] = o.toString().split(",")[0].split("=")[1];
 			i++;
 		}
-		
+
 		return chans;
 	}
-	
+
 	public static String[] addAutoJoinChans() throws MalformedURLException, IOException
 	{
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/tishdl84z1wmcgs/bl4ckb0t%20chans.txt?dl=1").openStream()));
-	
+
 		if(Core.bot.getNick().equals("bl4ckb0t"))
 			return reader.readLine().split(",");
 		else

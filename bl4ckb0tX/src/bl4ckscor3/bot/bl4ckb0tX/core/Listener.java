@@ -1,5 +1,7 @@
 package bl4ckscor3.bot.bl4ckb0tX.core;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.LinkedList;
 
 import org.openqa.selenium.WebDriver;
@@ -140,7 +142,7 @@ public class Listener extends ListenerAdapter
 	}
 
 	@Override
-	public void onPrivateMessage(PrivateMessageEvent event)
+	public void onPrivateMessage(PrivateMessageEvent event) throws MalformedURLException, IOException
 	{
 		if(enabled)
 		{
