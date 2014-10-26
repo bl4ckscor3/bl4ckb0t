@@ -22,7 +22,7 @@ public class Kick implements ICommand<MessageEvent>
 		{
 			boolean allowed = false;
 			boolean found = false;
-			BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/0flrfzw3ljmw3u2/allowedUsers.txt").openStream()));
+			BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/0flrfzw3ljmw3u2/allowedUsers.txt?dl=1").openStream()));
 			String[] allowedUsers = reader.readLine().split(",");
 				
 			String[] args = Utilities.toArgs(event.getMessage());
