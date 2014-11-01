@@ -53,6 +53,6 @@ public class ChangeNick implements ICommand<MessageEvent>
 	@Override
 	public String getNotes()
 	{
-		return "Only useable by OPs.";
+		return "If the name is \"d\" the name changes to the default one (bl4ckb0t). | This command is only useable by OPs.";
 	}
 }
