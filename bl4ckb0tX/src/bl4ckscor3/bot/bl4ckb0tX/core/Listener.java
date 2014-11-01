@@ -122,7 +122,7 @@ public class Listener extends ListenerAdapter
 	{
 		if(enabled)
 		{
-			if(Utilities.validUser(event))
+			if(Utilities.isValidUser(event))
 			{
 				String[] args = Utilities.toArgs(event.getMessage());
 				StringBuilder builder = new StringBuilder();
@@ -176,18 +176,6 @@ public class Listener extends ListenerAdapter
 		for(String s : channelsToJoin)
 		{
 			Core.bot.sendIRC().joinChannel(s);
-		}
-	}
-
-	@Override
-	public void onQuit(QuitEvent event) throws Exception
-	{
-		if(event.getReason().toLowerCase().startsWith("ping"))
-		{
-			while(!Core.bot.isConnected())
-			{
-				Core.bot.startBot();
-			}
 		}
 	}
 }

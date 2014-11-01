@@ -15,7 +15,7 @@ public class Stop implements ICommand<MessageEvent>
 	@Override
 	public void exe(MessageEvent event) throws IOException, IrcException
 	{
-		if(Utilities.validUser(event))
+		if(Utilities.isValidUser(event))
 		{
 			if(event.getMessage().equalsIgnoreCase(event.getBot().getNick() + ", sleep!"))
 			{

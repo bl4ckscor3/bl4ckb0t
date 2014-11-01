@@ -14,7 +14,7 @@ public class Enable implements ICommand<MessageEvent>
 	@Override
 	public void exe(MessageEvent event) throws MalformedURLException, IOException
 	{
-		if(Utilities.validUser(event))
+		if(Utilities.isValidUser(event))
 		{
 			if(!Listener.enabled)
 			{

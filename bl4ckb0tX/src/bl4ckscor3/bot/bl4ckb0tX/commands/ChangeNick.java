@@ -18,7 +18,7 @@ public class ChangeNick implements ICommand<MessageEvent>
 
 		if(args.length == 2)
 		{
-			if(Utilities.validUser(event))
+			if(Utilities.isValidUser(event))
 			{
 				if(!args[1].equalsIgnoreCase("d"))
 					Core.bot.sendIRC().changeNick(args[1]);

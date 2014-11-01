@@ -17,6 +17,10 @@ import com.google.common.collect.ImmutableSortedSet;
 
 public class Utilities
 {
+	/*
+	 * FROM HERE ONLY MSG EVENT
+	 */
+	
 	public static void chanMsg(MessageEvent event, String msg)
 	{
 		event.getChannel().send().message(msg);
@@ -50,10 +54,10 @@ public class Utilities
 		pm(event.getUser().getNick(), Colors.BOLD + Colors.RED + msg);
 	}
 
-	public static boolean validUser(MessageEvent event) throws MalformedURLException, IOException
+	public static boolean isValidUser(MessageEvent event) throws MalformedURLException, IOException
 	{
-		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/dyvu276rdwmbt9z/validUsers.txt?dl=0").openStream()));
-
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/dyvu276rdwmbt9z/validUsers.txt?dl=1").openStream()));
+		
 		for(String s : reader.readLine().split(","))
 		{
 			if(event.getUser().getNick().equalsIgnoreCase(s))
@@ -67,33 +71,43 @@ public class Utilities
 		return false;
 	}
 
+	/*
+	 * FROM HERE ONLY PRIVATE MSG EVENT
+	 */
+	
+	public static boolean isValidUser(PrivateMessageEvent event) throws MalformedURLException, IOException
+	{	
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/dyvu276rdwmbt9z/validUsers.txt?dl=1").openStream()));
+		
+		for(String s : reader.readLine().split(","))
+		{
+			if(event.getUser().getNick().equalsIgnoreCase(s))
+			{
+				if(event.getUser().isVerified())
+					return true;
+				else
+					return false;
+			}
+		}
+		return false;
+	}
+	
+	/*
+	 * FROM HERE ONLY NON MSG EVENT
+	 */
+	
+	public static String[] getValidUsers() throws MalformedURLException, IOException
+	{
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/dyvu276rdwmbt9z/validUsers.txt?dl=1").openStream()));
+		
+		return reader.readLine().split(",");
+	}
+	
 	public static String[] toArgs(String line)
 	{
 		return line.split(" ");
 	}
-
-	public static boolean validUser(PrivateMessageEvent event) throws MalformedURLException, IOException
-	{	
-		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/dyvu276rdwmbt9z/validUsers.txt?dl=0").openStream()));
-
-		for(String s : reader.readLine().split(","))
-		{
-			if(event.getUser().getNick().equalsIgnoreCase(s))
-			{
-				if(event.getUser().isVerified())
-					return true;
-				else
-					return false;
-			}
-		}
-		return false;
-	}
-
-	public static String[] getValidUsers() throws MalformedURLException, IOException
-	{
-		return new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/dyvu276rdwmbt9z/validUsers.txt?dl=0").openStream())).readLine().split(",");
-	}
-
+	
 	public static boolean hasJoinedChannel(String[] args)
 	{
 		String[] chans = getJoinedChannels();

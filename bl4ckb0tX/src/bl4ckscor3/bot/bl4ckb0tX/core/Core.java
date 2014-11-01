@@ -23,7 +23,7 @@ public class Core
 		Logger.getLogger("").setLevel(Level.OFF);
 
 		Configuration config = new Configuration.Builder()	
-		.setName("bl4ckb0t")
+		.setName("bl4ckb0t1")
 		.setVersion("1.0")
 		.setServerHostname("irc.esper.net")
 		.setServerPort(6667)

@@ -14,7 +14,7 @@ public class Join implements ICommand<MessageEvent>
 	@Override
 	public void exe(MessageEvent event) throws Exception
 	{
-		if(Utilities.validUser(event))
+		if(Utilities.isValidUser(event))
 		{
 			String[] args = Utilities.toArgs(event.getMessage());	
 
