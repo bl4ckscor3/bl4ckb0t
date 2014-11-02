@@ -17,8 +17,8 @@ public class YouTubeStats
 	public static void sendVideoStats(MessageEvent event) throws MalformedURLException, IOException
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
-		String link = null;
-		boolean shortLink = false;
+		String[] links = new String[10];
+		boolean[] shortLink = new boolean[10];
 		WebDriver driver = new HtmlUnitDriver();
 		String title = "No value";
 		String duration = "No value";
@@ -27,100 +27,115 @@ public class YouTubeStats
 		String dislikes = "No value";
 		String date = "No value";
 		String uploader = "No value";
+		int linkCounter = 0;
+		int currentLink = 0;
 
 		for(String s : args)
 		{
 			if(s.contains("www.youtube.com/watch"))
 			{
 				if(s.contains("v="))
-					link = "http://www.youtube.com/watch?v=" + s.split("v=")[1].substring(0, 11) + "/";
+				{
+					links[linkCounter] = "http://www.youtube.com/watch?v=" + s.split("v=")[1].substring(0, 11) + "/";
+					linkCounter++;
+				}
 				else
 				{
 					Utilities.chanMsg(event, "Couldn't find video id!");
 					break;
 				}
+
+
 			}
 			else if(s.contains("http://youtu.be/"))
 			{
-				link = s;
-				shortLink = true;
+				links[linkCounter] = s;
+				shortLink[linkCounter] = true;
 				break;
 			}
 		}
 
-		if(shortLink)
+		while(currentLink != linkCounter)
 		{
-			String videoId = link.split("/")[3];
+			if(currentLink != 0)
+				Utilities.chanMsg(event, "------------------------------------------");
+			
+			if(shortLink[currentLink])
+			{
+				String videoId = links[currentLink].split("/")[3];
 
-			link = "www.youtube.com/watch?v=" + videoId;
+				links[currentLink] = "www.youtube.com/watch?v=" + videoId;
+			}
+
+			//if someone posts the link without a space between the link and the word before it
+			if(!links[currentLink].startsWith("w"))
+				links[currentLink] = links[currentLink].split(":")[1].substring(2);
+
+			//check that the link is really the link needed (main use is when someone posts a word directly after the link without a space inbetween)
+			if(links[currentLink].length() != 35)
+			{
+				StringBuilder builder = new StringBuilder();
+				builder.append(links[currentLink]);
+				builder.delete(35, links[currentLink].length());
+				links[currentLink] = builder.toString();
+			}
+
+			//make sure that the links starts with "http://"
+			if(!links[currentLink].startsWith("http://"))
+				links[currentLink] = "http://" + links[currentLink];
+
+			driver.get(links[currentLink]);
+
+			try
+			{
+				title = driver.findElement(By.xpath("//meta[@itemprop='name']")).getAttribute("content");
+			}
+			catch(NoSuchElementException e){}
+
+			try
+			{
+				duration = resolveDuration(driver);
+			}
+			catch(NoSuchElementException e){}
+
+			try
+			{
+				views = driver.findElement(By.xpath("//div[@class='watch-view-count']")).getText();
+			}
+			catch(NoSuchElementException e)
+			{
+				views = driver.findElement(By.xpath("//span[@class='watch-view-count yt-uix-hovercard-target']")).getText().split("Views")[0];
+			}
+
+			try
+			{
+				likes = driver.findElement(By.xpath("//button[@id='watch-like']/span[@class='yt-uix-button-content']")).getText();
+			}
+			catch(NoSuchElementException e){}
+
+			try
+			{
+				dislikes = driver.findElement(By.xpath("//button[@id='watch-dislike']/span[@class='yt-uix-button-content']")).getText();
+			}
+			catch(NoSuchElementException e){}
+
+			try
+			{
+				date = driver.findElement(By.xpath("//p[@id='watch-uploader-info']/strong")).getText().split("on")[1];
+			}
+			catch(NoSuchElementException e){}
+
+			try
+			{
+				uploader = driver.findElement(By.xpath("//div[@class='yt-user-info']/a")).getText();
+			}
+			catch(NoSuchElementException e){}
+
+			Utilities.chanMsg(event, Colors.BLACK + Colors.BOLD + "** " + Colors.BOLD + "1,0You0,4Tube " + Colors.BOLD + "** Title: " + Colors.BOLD + title + Colors.BOLD + " ** Duration: " + Colors.BOLD + duration + Colors.BOLD + " ** Views: " + Colors.BOLD + views + Colors.BOLD + " ** Likes:3 " + Colors.BOLD + likes + Colors.BOLD + " ** Dislikes:4 " + Colors.BOLD + dislikes + Colors.BOLD + " ** Uploaded by: " + Colors.BOLD + uploader + Colors.BOLD + " ** Uploaded on:" + Colors.BOLD + date + Colors.BOLD + " **");
+			currentLink++;
 		}
-
-		//if someone posts the link without a space between the link and the word before it
-		if(!link.startsWith("w"))
-			link = link.split(":")[1].substring(2);
-
-		//check that the link is really the link needed (main use is when someone posts a word directly after the link without a space inbetween)
-		if(link.length() != 35)
-		{
-			StringBuilder builder = new StringBuilder();
-			builder.append(link);
-			builder.delete(35, link.length());
-			link = builder.toString();
-		}
-
-		//make sure that the links starts with "http://"
-		if(!link.startsWith("http://"))
-			link = "http://" + link;
-
-		driver.get(link);
-
-		try
-		{
-			title = driver.findElement(By.xpath("//meta[@itemprop='name']")).getAttribute("content");
-		}
-		catch(NoSuchElementException e){}
-
-		try
-		{
-			duration = resolveDuration(driver);
-		}
-		catch(NoSuchElementException e){}
-
-		try
-		{
-			views = driver.findElement(By.xpath("//div[@class='watch-view-count']")).getText();
-		}
-		catch(NoSuchElementException e)
-		{
-			views = driver.findElement(By.xpath("//span[@class='watch-view-count yt-uix-hovercard-target']")).getText().split("Views")[0];
-		}
-
-		try
-		{
-			likes = driver.findElement(By.xpath("//button[@id='watch-like']/span[@class='yt-uix-button-content']")).getText();
-		}
-		catch(NoSuchElementException e){}
-
-		try
-		{
-			dislikes = driver.findElement(By.xpath("//button[@id='watch-dislike']/span[@class='yt-uix-button-content']")).getText();
-		}
-		catch(NoSuchElementException e){}
-
-		try
-		{
-			date = driver.findElement(By.xpath("//p[@id='watch-uploader-info']/strong")).getText().split("on")[1];
-		}
-		catch(NoSuchElementException e){}
-
-		try
-		{
-			uploader = driver.findElement(By.xpath("//div[@class='yt-user-info']/a")).getText();
-		}
-		catch(NoSuchElementException e){}
-
+		
 		driver.close();
-		Utilities.chanMsg(event, Colors.BLACK + Colors.BOLD + "** " + Colors.BOLD + "1,0You0,4Tube " + Colors.BOLD + "** Title: " + Colors.BOLD + title + Colors.BOLD + " ** Duration: " + Colors.BOLD + duration + Colors.BOLD + " ** Views: " + Colors.BOLD + views + Colors.BOLD + " ** Likes:3 " + Colors.BOLD + likes + Colors.BOLD + " ** Dislikes:4 " + Colors.BOLD + dislikes + Colors.BOLD + " ** Uploaded by: " + Colors.BOLD + uploader + Colors.BOLD + " ** Uploaded on:" + Colors.BOLD + date + Colors.BOLD + " **");
 	}
 
 	private static String resolveDuration(WebDriver driver)
