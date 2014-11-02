@@ -81,6 +81,7 @@ public class Help implements ICommand<MessageEvent>
 			Utilities.chanMsg(event, "Only add 1 command as an argument.");
 	}
 
+	@Override
 	public String getAlias()
 	{
 		return "help";
