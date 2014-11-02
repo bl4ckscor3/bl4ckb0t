@@ -19,6 +19,16 @@ public class Leave implements ICommand<MessageEvent>
 				Core.bot.sendRaw().rawLine("PART " + event.getChannel().getName() + " :My master told me that I can't be here anymore :C");
 			else if(args.length == 2)
 			{
+				if(args[1].equals("default"))
+				{
+					Utilities.chanMsg(event, "I will leave my default channels now.");
+					
+					for(String s : Utilities.getDefaultChans())
+					{	
+						Core.bot.sendRaw().rawLine("PART " + s + " :My master told me that I can't be here anymore :C");
+					}
+				}
+				
 				if(!args[1].startsWith("#"))
 				{
 					Utilities.chanMsg(event, "This is not a channel. Channel names always start with a hashtag (#)");

@@ -22,6 +22,18 @@ public class Join implements ICommand<MessageEvent>
 				Utilities.respond(event, "you need to specify a channel!", true);
 			else if(args.length == 2)
 			{
+				if(args[1].equals("default"))
+				{
+					Utilities.chanMsg(event, "I will join my default channels now.");
+					
+					for(String s : Utilities.getDefaultChans())
+					{
+						Core.bot.sendIRC().joinChannel(s);
+					}
+					
+					return;
+				}
+				
 				if(!args[1].startsWith("#"))
 				{
 					Utilities.chanMsg(event, "This is not a channel. Channel names always start with a hashtag (#)");

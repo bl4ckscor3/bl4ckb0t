@@ -139,7 +139,14 @@ public class Utilities
 		return chans;
 	}
 
-	public static String[] addAutoJoinChans() throws MalformedURLException, IOException
+	public static String[] getDefaultChans() throws MalformedURLException, IOException
+	{
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/tishdl84z1wmcgs/bl4ckb0t%20chans.txt?dl=1").openStream()));
+		
+		return reader.readLine().split(",");
+	}
+
+	public static String[] getAutoJoinChans() throws MalformedURLException, IOException
 	{
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/tishdl84z1wmcgs/bl4ckb0t%20chans.txt?dl=1").openStream()));
 

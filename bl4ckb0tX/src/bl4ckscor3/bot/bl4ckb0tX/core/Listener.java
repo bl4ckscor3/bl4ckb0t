@@ -171,7 +171,7 @@ public class Listener extends ListenerAdapter
 		if(!Core.bot.getNick().equals("bl4ckb0t"))
 			commands.add(new DeAds());
 
-		String[] channelsToJoin = Utilities.addAutoJoinChans();
+		String[] channelsToJoin = Utilities.getAutoJoinChans();
 
 		for(String s : channelsToJoin)
 		{
