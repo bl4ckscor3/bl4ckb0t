@@ -26,12 +26,6 @@ public class ETS2MPUpdate implements ICommand<MessageEvent>
 				Utilities.chanMsg(event, "Invalid number of arguments. Usage: -ets2mp stop");
 				return;
 			}
-
-			if(args[1].equals("start"))
-			{
-				Utilities.chanMsg(event, "You cannot start again.");
-				return;
-			}
 		}
 		else 
 		{
@@ -40,26 +34,25 @@ public class ETS2MPUpdate implements ICommand<MessageEvent>
 				Utilities.chanMsg(event, "Invalid number of arguments. Usage: -ets2mp start <current version>");
 				return;
 			}
-
-			if(args[1].equalsIgnoreCase("stop"))
-			{
-				Utilities.chanMsg(event, "You cannot stop what hasn't been started.");
-				return;
-			}
 		}
 
 		switch(args[1])
 		{
 			case "start":
+				currentVersion = "";
+				
 				for(int i = 2; i < args.length; i++)
 				{
-					currentVersion += args[i];
+					currentVersion += args[i] + " ";
 				}
 				
+				currentVersion = currentVersion.substring(0, currentVersion.length() - 1);
 				checking = true;
+				Utilities.chanMsg(event, "Successfully started update checking...");
 				checkForUpdates(event);
 				break;
 			case "stop":
+				Utilities.chanMsg(event, "Successfully stopped update checking...");
 				checking = false;
 		}
 	}
@@ -72,11 +65,11 @@ public class ETS2MPUpdate implements ICommand<MessageEvent>
 		while(checking)
 		{
 			driver.get("http://ets2mp.com");
-			element = driver.findElement(By.xpath("//div[@class='red_haze']"));
+			element = driver.findElement(By.xpath("//div[@class='version']"));
 
-			if(!element.getText().equals(currentVersion))
+			if(!element.getText().equals("Current release: " + currentVersion + "Download latest version"))
 			{
-				Utilities.chanMsg(event, "New version (" + element.getText() + ") of ETS2MP is out! Download: http://alpha.ets2mp.com");
+				Utilities.chanMsg(event, "New version (" + element.getText().substring(17).split("Download")[0] + ") of ETS2MP is out! Download: http://alpha.ets2mp.com");
 				checking = false;
 			}
 
