@@ -103,7 +103,7 @@ public class Listener extends ListenerAdapter
 
 		if(enabled)
 		{
-			if(event.getMessage().contains("www.youtube.com/watch") || event.getMessage().contains("http://youtu.be/"))
+			if(event.getMessage().contains("www.youtube.com/watch") || event.getMessage().contains("youtu.be/"))
 			{
 				YouTubeStats.sendVideoStats(event);
 				return;

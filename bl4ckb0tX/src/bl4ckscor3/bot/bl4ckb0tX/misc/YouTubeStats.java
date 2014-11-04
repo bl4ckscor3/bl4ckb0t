@@ -47,11 +47,11 @@ public class YouTubeStats
 
 
 			}
-			else if(s.contains("http://youtu.be/"))
+			else if(s.contains("youtu.be/"))
 			{
 				links[linkCounter] = s;
 				shortLink[linkCounter] = true;
-				break;
+				linkCounter++;
 			}
 		}
 
@@ -59,7 +59,7 @@ public class YouTubeStats
 		{
 			if(currentLink != 0)
 				Utilities.chanMsg(event, "------------------------------------------");
-			
+
 			if(shortLink[currentLink])
 			{
 				String videoId = links[currentLink].split("/")[3];
