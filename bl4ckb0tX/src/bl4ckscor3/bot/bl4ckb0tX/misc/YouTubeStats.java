@@ -121,7 +121,7 @@ public class YouTubeStats
 
 			try
 			{
-				date = driver.findElement(By.xpath("//p[@id='watch-uploader-info']/strong")).getText().split("on")[1];
+				date = driver.findElement(By.xpath("//div[@id='watch-uploader-info']/strong")).getText().split("on")[1];
 			}
 			catch(NoSuchElementException e){}
 
@@ -131,7 +131,7 @@ public class YouTubeStats
 			}
 			catch(NoSuchElementException e){}
 
-			Utilities.chanMsg(event, Colors.BLACK + Colors.BOLD + "** " + Colors.BOLD + "1,0You0,4Tube " + Colors.BOLD + "** Title: " + Colors.BOLD + title + Colors.BOLD + " ** Duration: " + Colors.BOLD + duration + Colors.BOLD + " ** Views: " + Colors.BOLD + views + Colors.BOLD + " ** Likes:3 " + Colors.BOLD + likes + Colors.BOLD + " ** Dislikes:4 " + Colors.BOLD + dislikes + Colors.BOLD + " ** Uploaded by: " + Colors.BOLD + uploader + Colors.BOLD + " ** Uploaded on:" + Colors.BOLD + date + Colors.BOLD + " **");
+			Utilities.chanMsg(event, Colors.BLACK + Colors.BOLD + "** " + Colors.BOLD + "1,0You0,4Tube " + Colors.BOLD + "** Title: " + Colors.BOLD + title + Colors.BOLD + " ** Duration: " + Colors.BOLD + duration + Colors.BOLD + " ** Views: " + Colors.BOLD + views + Colors.BOLD + " ** Likes:3 " + Colors.BOLD + likes + Colors.BOLD + " ** Dislikes:4 " + Colors.BOLD + dislikes + Colors.BOLD + " ** Uploaded by: " + Colors.BOLD + uploader + Colors.BOLD + " ** Published on:" + Colors.BOLD + date + Colors.BOLD + " **");
 			currentLink++;
 		}
 		
