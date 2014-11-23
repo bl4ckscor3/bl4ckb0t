@@ -4,7 +4,7 @@ import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
-public class MinusVowels implements ICommand<MessageEvent>
+public class Vowels implements ICommand<MessageEvent>
 {
 	@Override
 	public void exe(MessageEvent event)

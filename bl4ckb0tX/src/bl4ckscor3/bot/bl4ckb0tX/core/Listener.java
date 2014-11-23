@@ -26,10 +26,8 @@ public class Listener extends ListenerAdapter
 	
 	public Listener()
 	{
-		commands.add(new Bukkit());
 		commands.add(new Calculate());
 		commands.add(new ChangeNick());
-		commands.add(new CraftBukkit());
 		commands.add(new Decide());
 		commands.add(new Disable());
 		commands.add(new Draw());
@@ -51,7 +49,7 @@ public class Listener extends ListenerAdapter
 		commands.add(new Stop());
 		commands.add(new Twitch());
 		commands.add(new Twitter());
-		commands.add(new MinusVowels());
+		commands.add(new Vowels());
 		commands.add(new Weather());
 		commands.add(new XColor());
 		commands.add(new YouTube());
