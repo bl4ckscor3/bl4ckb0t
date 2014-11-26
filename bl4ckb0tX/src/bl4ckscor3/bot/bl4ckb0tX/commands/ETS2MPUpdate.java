@@ -73,7 +73,7 @@ public class ETS2MPUpdate implements ICommand<MessageEvent>
 				checking = false;
 			}
 
-			Thread.sleep(60000);//wait one minute before checking again
+			Thread.sleep(60000); //wait one minute before checking again
 		}
 	}
 

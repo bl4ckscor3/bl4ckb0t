@@ -68,7 +68,7 @@ public class Forge implements ICommand<MessageEvent>
 
 	private String createResult(String type, String action) throws IOException
 	{
-		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://files.minecraftforge.net/").openStream()));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://files.minecraftforge.net/minecraftforge//1.8").openStream()));
 		String line;
 
 		if(action.equalsIgnoreCase("Version"))
@@ -155,7 +155,6 @@ public class Forge implements ICommand<MessageEvent>
 	@Override
 	public String getNotes()
 	{
-		// TODO Auto-generated method stub
 		return null;
 	}
 }
