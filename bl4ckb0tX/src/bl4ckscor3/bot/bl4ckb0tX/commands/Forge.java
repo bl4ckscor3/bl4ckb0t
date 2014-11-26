@@ -23,19 +23,19 @@ public class Forge implements ICommand<MessageEvent>
 			{
 				if(args[2].equalsIgnoreCase("version"))
 				{
-					String result = createResult("<td>Latest</td>", "Version");
+					String result = createResult("<td>Latest-1.8</td>", "Version");
 
-					if(result.equalsIgnoreCase(createResult("<td>Recommended</td>", "Version")))
+					if(result.equalsIgnoreCase(createResult("<td>Recommended-1.8</td>", "Version")))
 						Utilities.chanMsg(event, result + " This is also the recommended build.");
 					else
 						Utilities.chanMsg(event, result);
 				}
 				else if(args[2].equalsIgnoreCase("changelog"))
-					Utilities.chanMsg(event, createResult("<td>Latest</td>", "Changelog"));
+					Utilities.chanMsg(event, createResult("<td>Latest-1.8</td>", "Changelog"));
 				else if(args[2].equalsIgnoreCase("dlmain"))
-					Utilities.chanMsg(event, createResult("<td>Latest</td>", "Installer"));
+					Utilities.chanMsg(event, createResult("<td>Latest-1.8</td>", "Installer"));
 				else if(args[2].equalsIgnoreCase("dlsrc"))
-					Utilities.chanMsg(event, createResult("<td>Latest</td>", "Src"));
+					Utilities.chanMsg(event, createResult("<td>Latest-1.8</td>", "Src"));
 				else
 					usage(event);
 			}
@@ -43,19 +43,19 @@ public class Forge implements ICommand<MessageEvent>
 			{
 				if(args[2].equalsIgnoreCase("version"))
 				{
-					String result = createResult("<td>Recommended</td>", "Version");
+					String result = createResult("<td>Recommended-1.8</td>", "Version");
 
-					if(result.equalsIgnoreCase(createResult("<td>Latest</td>", "Version")))
+					if(result.equalsIgnoreCase(createResult("<td>Latest-1.8</td>", "Version")))
 						Utilities.chanMsg(event, result + " This is also the latest build.");
 					else
 						Utilities.chanMsg(event, result);
 				}
 				else if(args[2].equalsIgnoreCase("changelog"))
-					Utilities.chanMsg(event, createResult("<td>Recommended</td>", "Changelog"));
+					Utilities.chanMsg(event, createResult("<td>Recommended-1.8</td>", "Changelog"));
 				else if(args[2].equalsIgnoreCase("dlmain"))
-					Utilities.chanMsg(event, createResult("<td>Recommended</td>", "Installer"));
+					Utilities.chanMsg(event, createResult("<td>Recommended-1.8</td>", "Installer"));
 				else if(args[2].equalsIgnoreCase("dlsrc"))
-					Utilities.chanMsg(event, createResult("<td>Recommended</td>", "Src"));
+					Utilities.chanMsg(event, createResult("<td>Recommended-1.8</td>", "Src"));
 				else
 					usage(event);
 			}
