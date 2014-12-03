@@ -12,9 +12,7 @@ public class ListChans implements ICommand<MessageEvent>
 		String[] args = Utilities.toArgs(event.getMessage());
 		String[] chans = Utilities.getJoinedChannels();
 		
-		if(args.length > 1)
-			Utilities.chanMsg(event, "No need for additional arguments :)");
-		else
+		if(args.length == 1)
 		{
 			StringBuilder builder = new StringBuilder();
 			
@@ -28,6 +26,8 @@ public class ListChans implements ICommand<MessageEvent>
 			builder.deleteCharAt(builder.length() - 1);
 			Utilities.chanMsg(event, "I joined these channels: " + builder.toString());
 		}
+		else
+			Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 	}
 	
 	@Override

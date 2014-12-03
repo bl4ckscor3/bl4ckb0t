@@ -14,7 +14,7 @@ public class Twitter implements ICommand<MessageEvent>
 		if(args.length == 2)
 			Utilities.respond(event, "http://www.twitter.com/" + args[1], false);
 		else
-			Utilities.respond(event, "please provide a profile name for me. Example: -tw sethbling", true);
+			Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 	}
 	
 	@Override

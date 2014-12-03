@@ -24,7 +24,7 @@ public class Decide implements ICommand<MessageEvent>
 				Utilities.chanMsg(event, "I failed badly: " + decision);
 		}
 		else
-			Utilities.respond(event, "that's not a question! Maybe try using a questionmark? (Yes, I'm ocd about that :P)", true);
+			Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 	}
 	
 	@Override

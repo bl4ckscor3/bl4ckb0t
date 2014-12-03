@@ -96,6 +96,21 @@ public class Utilities
 	 * FROM HERE ONLY NON MSG EVENT
 	 */
 	
+	public static void sendHelp(String nick, String syntax, String[] usage, String notes)
+	{
+		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "-------------------------Syntax--------------------------");
+		Utilities.pm(nick, syntax);
+		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "--------------------------Usage--------------------------");
+
+		for(String s : usage)
+		{
+			Utilities.pm(nick, s);
+		}
+
+		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "--------------------------Notes--------------------------");
+		Utilities.pm(nick, notes == null ? "None." : notes);
+	}
+	
 	public static String[] getValidUsers() throws MalformedURLException, IOException
 	{
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/dyvu276rdwmbt9z/validUsers.txt?dl=1").openStream()));

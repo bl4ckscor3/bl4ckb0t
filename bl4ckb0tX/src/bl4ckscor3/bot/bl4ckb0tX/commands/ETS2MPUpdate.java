@@ -24,6 +24,7 @@ public class ETS2MPUpdate implements ICommand<MessageEvent>
 			if(args.length < 2 || args.length > 2)
 			{
 				Utilities.chanMsg(event, "Invalid number of arguments. Usage: -ets2mp stop");
+				Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 				return;
 			}
 		}
@@ -32,6 +33,7 @@ public class ETS2MPUpdate implements ICommand<MessageEvent>
 			if(args.length < 3)
 			{
 				Utilities.chanMsg(event, "Invalid number of arguments. Usage: -ets2mp start <current version>");
+				Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 				return;
 			}
 		}

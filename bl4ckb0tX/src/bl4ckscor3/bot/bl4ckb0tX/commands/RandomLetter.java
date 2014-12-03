@@ -66,7 +66,7 @@ public class RandomLetter implements ICommand<MessageEvent>
 				Utilities.chanMsg(event, "Please don't put in a number higher than 50");
 		}
 		else
-			Utilities.respond(event, "please tell me how many letters I should select for you. Example: -letter 5", true);
+			Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 	}
 
 	@Override

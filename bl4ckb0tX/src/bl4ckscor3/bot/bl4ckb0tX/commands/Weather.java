@@ -18,11 +18,7 @@ public class Weather implements ICommand<MessageEvent>
 		String[] args = Utilities.toArgs(event.getMessage());
 		String[] data = new String[19];//1 = name | 3 = country | 6 = temperature | 7 = humidity | 8 = pressure | 10 = wind speed | 11 = wind direction | 13 = clouds
 
-		if(args.length == 1)
-			Utilities.chanMsg(event, "Please specify a city. Example: -w London");
-		else if(args.length > 2)
-			Utilities.chanMsg(event, "Please only specify a city. Example: -w London");
-		else
+		if(args.length == 2)
 		{
 			BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://api.openweathermap.org/data/2.5/weather?q=" + args[1] + "&mode=xml").openStream()));	
 			
@@ -43,6 +39,8 @@ public class Weather implements ICommand<MessageEvent>
 					Utilities.chanMsg(event, "** " + data[1] + ", " + data[3] + " ** Conditions: " + data[13] + " ** Temperature: " + data[6] + " ** Humidity: " + data[7] + " ** Pressure: " + data[8] + " ** Wind: " + data[11] + " ** Powered by OpenWeatherMap - http://openweathermap.org/city/" + data[1] + "/ **");
 			}
 		}
+		else
+			Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 	}
 
 	private void filter(String[] data)

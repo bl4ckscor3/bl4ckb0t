@@ -14,7 +14,7 @@ public class Twitch implements ICommand<MessageEvent>
 		if(args.length == 2)
 			Utilities.respond(event, "http://www.twitch.tv/" + args[1], false);
 		else
-			Utilities.respond(event, "please provide a channel name for me. Example: -tv ohaiichun", true);
+			Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 	}
 	
 	@Override

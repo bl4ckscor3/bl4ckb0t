@@ -35,7 +35,7 @@ public class LongURL implements ICommand<MessageEvent>
 			Utilities.chanMsg(event, "This is the long url of the given link: " + longUrl);
 		}
 		else
-			Utilities.chanMsg(event, "I don't know what you did, but you just need to specify a short link, nothing else...");
+			Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 	}
 
 	@Override

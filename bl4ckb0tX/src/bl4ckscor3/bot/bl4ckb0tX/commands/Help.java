@@ -29,7 +29,7 @@ public class Help implements ICommand<MessageEvent>
 		String[] args = Utilities.toArgs(event.getMessage());
 		String nick = event.getUser().getNick();
 		int i = 0;
-		
+
 		if(args.length == 1)
 		{
 			Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------------------My Commands :)----------------------");
@@ -38,7 +38,7 @@ public class Help implements ICommand<MessageEvent>
 			{
 				if(i == 4 || i == 9 || i == 14 || i == 19 || i == 24 || i == 29 || i == 34 || i == 39)
 					Thread.sleep(2000);
-				
+
 				Utilities.pm(nick, "    " + s);
 				i++;
 			}
@@ -55,25 +55,14 @@ public class Help implements ICommand<MessageEvent>
 		else if(args.length == 2)
 		{
 			System.out.println("-" + args[1]);
-			
+
 			for(ICommand cmd : Listener.commands)
 			{
 				System.out.println("-" + cmd.getAlias());
-				
+
 				if(cmd.getAlias().equals(args[1]) || ("-" + cmd.getAlias()).equals(args[1]))
 				{
-					Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "-------------------------Syntax--------------------------");
-					Utilities.pm(nick, cmd.getSyntax());
-					Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "--------------------------Usage--------------------------");
-
-					for(String s : cmd.getUsage())
-					{
-						Utilities.pm(nick, s);
-					}
-
-					Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "--------------------------Notes--------------------------");
-					Utilities.pm(nick, cmd.getNotes() == null ? "None." :  cmd.getNotes());
-					break;
+					Utilities.sendHelp(nick, cmd.getSyntax(), cmd.getUsage(), cmd.getNotes());
 				}
 			}
 		}

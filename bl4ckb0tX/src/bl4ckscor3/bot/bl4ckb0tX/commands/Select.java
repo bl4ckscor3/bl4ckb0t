@@ -11,11 +11,17 @@ public class Select implements ICommand<MessageEvent>
 	@Override
 	public void exe(MessageEvent event) 
 	{
-		Random r = new Random();
 		String[] args = event.getMessage().substring(8).split(",");
-		int i = r.nextInt(args.length);
 		
-		Utilities.respond(event, args[i], false);
+		if(args.length == 2)
+		{
+			Random r = new Random();
+			int i = r.nextInt(args.length);
+
+			Utilities.respond(event, args[i], false);
+		}
+		else
+			Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 	}
 
 	@Override

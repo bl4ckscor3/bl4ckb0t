@@ -44,7 +44,7 @@ public class Leave implements ICommand<MessageEvent>
 					Utilities.chanMsg(event, "I'm not in that channel.");
 			}
 			else
-				Utilities.respond(event, "I don't know what you did, but you just need to specify a channel, nothing else...", true);
+				Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 		}
 		else
 			Utilities.sorry(event);

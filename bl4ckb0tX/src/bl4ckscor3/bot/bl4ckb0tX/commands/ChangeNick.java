@@ -29,7 +29,7 @@ public class ChangeNick implements ICommand<MessageEvent>
 				Utilities.sorry(event);
 		}
 		else
-			Utilities.respond(event, "please just put in a name and nothing else. Example: -changenick newName", true);
+			Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 	}
 
 	@Override

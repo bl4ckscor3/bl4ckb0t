@@ -40,19 +40,12 @@ public class Stop implements ICommand<MessageEvent>
 						Core.bot.sendRaw().rawLine("QUIT :My master sent me to sleep!");
 						break;
 					default:
-						Utilities.notice(event, "Should I reboot? I cannot disconnect if I don't know that :(");
+						Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 				}
 			}
 			else
 			{
-				switch(args.length)
-				{
-					case 1:
-						Utilities.respond(event, "please tell me if I should reboot. Example: -stop no", true);
-						break;
-					case 3:
-						Utilities.respond(event, "please only tell me if I should reboot and nothing else. Example: -stop no", true);
-				}
+				Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 			}
 		}
 		else

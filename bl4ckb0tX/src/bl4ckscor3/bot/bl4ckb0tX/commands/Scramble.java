@@ -24,7 +24,7 @@ public class Scramble implements ICommand<MessageEvent>
 	public void exe(MessageEvent event)
 	{
 		if(Utilities.toArgs(event.getMessage()).length != 1)
-			Utilities.respond(event, "you did something wrong :/ No arguments required!", true);
+			Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 		else
 		{
 			String[] results = new String[20];

@@ -57,13 +57,13 @@ public class Forge implements ICommand<MessageEvent>
 				else if(args[2].equalsIgnoreCase("dlsrc"))
 					Utilities.chanMsg(event, createResult("<td>Recommended-1.8</td>", "Src"));
 				else
-					usage(event);
+					Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 			}
 			else
-				usage(event);
+				Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 		}
 		else
-			usage(event);
+			Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 	}
 
 	private String createResult(String type, String action) throws IOException

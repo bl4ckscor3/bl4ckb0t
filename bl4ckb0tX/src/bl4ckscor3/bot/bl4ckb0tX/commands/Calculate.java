@@ -39,12 +39,7 @@ public class Calculate implements ICommand<MessageEvent>
 			}
 			else 
 			{
-				if(args.length == 2)
-					Utilities.respond(event, "please tell me which numbers I should calculate with.", true);
-				else if(args.length == 3)
-					Utilities.respond(event, "you can't just give me one number to calculate with!", true);
-				else
-					Utilities.respond(event, "I'm too dumb to calculate more than 20 numbers :(", true);
+				Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 			}
 		}
 		else

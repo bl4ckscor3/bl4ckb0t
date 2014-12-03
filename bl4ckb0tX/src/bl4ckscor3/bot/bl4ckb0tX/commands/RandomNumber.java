@@ -34,7 +34,7 @@ public class RandomNumber implements ICommand<MessageEvent>
 				Utilities.chanMsg(event, "Please don't put in a number higher than 50.");
 		}
 		else
-			Utilities.respond(event, "please tell me how many numbers I should select for you. Example: -number 5", true);
+			Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 	}
 	@Override
 	public String getAlias()

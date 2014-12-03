@@ -90,10 +90,10 @@ public class Kick implements ICommand<MessageEvent>
 				switch(args.length)
 				{				
 					case 1:
-						Utilities.respond(event, "please tell me which user I should kick and why. Example: -kick " + event.getUser().getNick() + " Kicked", true);
+						Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 						break;
 					case 2:
-						Utilities.respond(event, "please tell me why I should kick " + args[1] + ". Example: -kick " + args[1] + " Kicked", true);
+						Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 						break;
 					default:
 						Utilities.chanMsg(event, "Euuuuh: " + args.length);

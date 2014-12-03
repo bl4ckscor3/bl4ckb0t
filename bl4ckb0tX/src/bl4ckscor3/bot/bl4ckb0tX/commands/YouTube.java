@@ -22,7 +22,7 @@ public class YouTube implements ICommand<MessageEvent>
 		if(args.length == 2)
 			Utilities.respond(event, "http://www.youtube.com/" + args[1], false);
 		else
-			Utilities.respond(event, "please provide a channel name for me and nothing else. Example: -yt antvenom", true);
+			Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 	}
 
 	@Override
