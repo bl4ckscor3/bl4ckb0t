@@ -27,10 +27,10 @@ public class Scramble implements ICommand<MessageEvent>
 			Utilities.respond(event, "you did something wrong :/ No arguments required!", true);
 		else
 		{
-			String[] results = new String[25];
+			String[] results = new String[20];
 			StringBuilder builder = new StringBuilder();
 
-			for(int i = 0; i < 25; i++)
+			for(int i = 0; i < 20; i++)
 			{
 				results[i] = (actions[r.nextInt(actions.length)][r.nextInt(3)]);
 			}
