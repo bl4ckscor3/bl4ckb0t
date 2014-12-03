@@ -35,11 +35,14 @@ public class Scramble implements ICommand<MessageEvent>
 				results[i] = (actions[r.nextInt(actions.length)][r.nextInt(3)]);
 			}
 
-			for(int i = 0; i < results.length - 1; i++) 
+			for(int i = 0; i < results.length - 2; i++)
 			{
-				compare(results, i);  
+				compareJumping(results, i);
 			}
-
+			
+			//comparing the last two ones (preventing an aioob exception in the for loop above)
+			compareDirectly(results, 18);
+			
 			for(String s : results)
 			{
 				builder.append(s + " ");
@@ -49,14 +52,27 @@ public class Scramble implements ICommand<MessageEvent>
 		}
 	}
 
-	private void compare(String[] results, int index) 
+	private void compareDirectly(String[] results, int i)
 	{
 		//compare if both values are in the same array
-		if(getFirstLetter(results[index]).equals(getFirstLetter(results[index + 1])))
+		if(getFirstLetter(results[i]).equals(getFirstLetter(results[i + 1])))
 		{
-			reRoll(results, index + 1); //reroll if so
-			compare(results, index); //revalidate in case it re-rolls to the same array value
+			reRoll(results, i + 1); //reroll if so
+			compareDirectly(results, i); //revalidate in case it re-rolls to the same array value
 		}
+	}
+	
+	private void compareJumping(String[] results, int i)
+	{
+		//compare if both values are in the same array
+		if(getFirstLetter(results[i]).equals(getFirstLetter(results[i + 2])))
+		{
+			reRoll(results, i + 2); //reroll if so
+			compareJumping(results, i); //revalidate in case it re-rolls to the same array value
+		}
+		
+		//make sure the above code didn't screw up
+		compareDirectly(results, i);
 	}
 
 	private String getFirstLetter(String value)
