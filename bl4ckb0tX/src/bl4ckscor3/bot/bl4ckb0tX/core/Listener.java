@@ -23,7 +23,7 @@ public class Listener extends ListenerAdapter
 	public static boolean enabled = true;
 	public boolean isCounting = false;
 	public final static LinkedList<ICommand> commands = new LinkedList<>();
-	
+
 	public Listener()
 	{
 		commands.add(new Calculate());
@@ -53,7 +53,7 @@ public class Listener extends ListenerAdapter
 		commands.add(new Weather());
 		commands.add(new XColor());
 		commands.add(new YouTube());
-		
+
 		Help.setupHelpMenu(commands);
 	}
 
@@ -61,6 +61,10 @@ public class Listener extends ListenerAdapter
 	public void onMessage(MessageEvent event) throws Exception
 	{
 		String cmdName = Utilities.toArgs(event.getMessage())[0];
+
+		//adding the latest message to the array if it's not a spelling correction
+		if(!event.getMessage().startsWith("s/"))
+			SpellingCorrection.updateLatestMessage(event.getMessage(), event.getUser().getNick());
 
 		misc(event);
 
@@ -95,7 +99,7 @@ public class Listener extends ListenerAdapter
 	{
 		if(event.getMessage().startsWith(p))
 			return;
-		
+
 		if(event.getMessage().equals("?enabled"))
 		{
 			Utilities.chanMsg(event, "" + enabled);
@@ -104,13 +108,24 @@ public class Listener extends ListenerAdapter
 
 		if(enabled)
 		{
+			//spelling correction
+			if(event.getMessage().startsWith("s/"))
+			{
+				String[] split = event.getMessage().split("/");
+
+				if(split.length == 3 && split[0].equals("s"))
+					SpellingCorrection.correctSpelling(event, split);
+				else
+					return;
+			}
+
 			//sending a welcome back message
 			if(event.getMessage().toLowerCase().startsWith("re "))
 			{
 				Utilities.chanMsg(event, "wb, " + event.getUser().getNick());
 				return;
 			}
-			
+
 			//youtube recognition
 			if(event.getMessage().contains("www.youtube.com/watch") || event.getMessage().contains("youtu.be/"))
 			{
