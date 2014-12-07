@@ -9,31 +9,40 @@ public class SpellingCorrection
 {
 	//making room for 100 users to store their latest message
 	private static String[] messages = new String[100];
+	//needed to check if the message should be added to the array or not
+	public static boolean corrected = false;
 
-	public static void correctSpelling(MessageEvent event, String[] split)
+	public static void correctSpelling(MessageEvent event, String[] split, boolean correctsDifferentUser, String userToCorrect)
 	{
-		String user = event.getUser().getNick();
 		String toReplace = split[1];
 		String replaceWith = split[2];
-		int i = 0;
-		
+
+		System.out.println(userToCorrect);
+
 		for(String s : messages)
 		{
-			if(messages[i] == null)
+			if(s == null)
 				break;
-			
-			if(user.equals(messages[i].split("#")[0]))
+
+			if(userToCorrect.equals(s.split("#")[0]))
 			{
-				String betterMessage = getLatestMessage(user).replaceAll(toReplace, replaceWith);
-				System.out.println(messages[i]);
-				updateLatestMessage(betterMessage, user);
-				Utilities.chanMsg(event, user + Colors.BOLD + " meant " + Colors.BOLD + "to say: " + betterMessage);
+				String correctedMessage = getLatestMessage(userToCorrect).replaceAll(toReplace, replaceWith);
+
+				updateLatestMessage(correctedMessage, userToCorrect);
+
+				if(correctsDifferentUser)
+					Utilities.chanMsg(event, userToCorrect + " was corrected by " + event.getUser().getNick() + " and " + Colors.BOLD + " meant " + Colors.BOLD + "to say: " + correctedMessage);
+				else
+					Utilities.chanMsg(event, userToCorrect + Colors.BOLD + " meant " + Colors.BOLD + "to say: " + correctedMessage);
 			}
-			
-			i++;
 		}
 	}
 
+	/**
+	 * Adds or updates a user with his latest message
+	 * @param msg - The message to write into the array
+	 * @param username - The name of the user who wrote the message
+	 */
 	public static void updateLatestMessage(String msg, String username)
 	{
 		int i = 0;
@@ -48,6 +57,7 @@ public class SpellingCorrection
 			if(s.split("#")[0].equals(username))
 			{
 				messages[i] = username + "#" + msg;
+//				System.out.println("stuff written into array position " + i + " -- stuff: " + messages[i]);
 				return;
 			}
 
@@ -55,8 +65,14 @@ public class SpellingCorrection
 		}
 
 		messages[i] = username + "#" + msg;
+//		System.out.println("stuff written into array position " + i + " -- stuff: " + messages[i]);
 	}
-	
+
+	/**
+	 * Returns the latest message from the given user
+	 * @param user - The name of the user to get the latest message from
+	 * @return - The latest message from the given user
+	 */
 	private static String getLatestMessage(String user)
 	{
 		for(String s : messages)
@@ -64,7 +80,68 @@ public class SpellingCorrection
 			if(s.split("#")[0].equals(user))
 				return s.split("#")[1];
 		}
-		
+
 		return "Will never happen.";
+	}
+
+	/**
+	 * Determine if the message contains a syntax to correct a message sent before
+	 * @param event - The triggered MessageEvent
+	 * @param message - The message sent to the channel which triggered the event
+	 */
+	public static void checkForSpellingCorrection(MessageEvent event, String message)
+	{
+		//checking if someone corrects someone else
+		if(message.split(" ")[0].endsWith(":") || message.split(" ")[0].endsWith(","))
+		{
+			boolean colon;
+
+			if(message.split(" ")[0].endsWith(":"))
+				colon = true;
+			else
+				colon = false;
+
+			if(message.split(" ")[1].startsWith("s/"))
+			{
+				String[] split;
+				String newMessage = "";
+				int i = 0;
+
+				//actually getting only the s/x/y message if it contains spaces	
+				for(String s : message.split(" "))
+				{
+					if(i != 0)
+						newMessage += s + " ";
+
+					i++;
+				}
+
+				//removing the last character of the string to prevent 2 spaces
+				newMessage = newMessage.substring(0, newMessage.length() - 1);
+				split = newMessage.split("/");
+
+				if(split.length == 3 && split[0].equals("s"))
+				{
+					SpellingCorrection.correctSpelling(event, split, true, colon ? message.split(":")[0] : message.split(",")[0]);
+					corrected = true;
+				}
+
+				return;
+			}
+		}
+
+		//checking if someone is correcting himself
+		if(message.startsWith("s/"))
+		{
+			String[] split = message.split("/");
+
+			if(split.length == 3 && split[0].equals("s"))
+			{
+				SpellingCorrection.correctSpelling(event, split, false, event.getUser().getNick());
+				corrected = true;
+			}
+			else
+				return;
+		}
 	}
 }

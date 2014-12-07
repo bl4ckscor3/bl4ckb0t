@@ -62,10 +62,6 @@ public class Listener extends ListenerAdapter
 	{
 		String cmdName = Utilities.toArgs(event.getMessage())[0];
 
-		//adding the latest message to the array if it's not a spelling correction
-		if(!event.getMessage().startsWith("s/"))
-			SpellingCorrection.updateLatestMessage(event.getMessage(), event.getUser().getNick());
-
 		misc(event);
 
 		if(!cmdName.startsWith(p))
@@ -97,10 +93,12 @@ public class Listener extends ListenerAdapter
 
 	public void misc(MessageEvent event) throws Exception
 	{
-		if(event.getMessage().startsWith(p))
+		String message = event.getMessage();
+		
+		if(message.startsWith(p))
 			return;
 
-		if(event.getMessage().equals("?enabled"))
+		if(message.equals("?enabled"))
 		{
 			Utilities.chanMsg(event, "" + enabled);
 			return;
@@ -108,26 +106,23 @@ public class Listener extends ListenerAdapter
 
 		if(enabled)
 		{
-			//spelling correction
-			if(event.getMessage().startsWith("s/"))
-			{
-				String[] split = event.getMessage().split("/");
-
-				if(split.length == 3 && split[0].equals("s"))
-					SpellingCorrection.correctSpelling(event, split);
-				else
-					return;
-			}
-
+			SpellingCorrection.checkForSpellingCorrection(event, message);
+			
+			//making sure the above messages dont get added as a latest message
+			if(!SpellingCorrection.corrected)
+				SpellingCorrection.updateLatestMessage(event.getMessage(), event.getUser().getNick());
+			else
+				SpellingCorrection.corrected = false;
+			
 			//sending a welcome back message
-			if(event.getMessage().toLowerCase().startsWith("re "))
+			if(message.toLowerCase().startsWith("re "))
 			{
 				Utilities.chanMsg(event, "wb, " + event.getUser().getNick());
 				return;
 			}
 
 			//youtube recognition
-			if(event.getMessage().contains("www.youtube.com/watch") || event.getMessage().contains("youtu.be/"))
+			if(message.contains("www.youtube.com/watch") || message.contains("youtu.be/"))
 			{
 				YouTubeStats.sendVideoStats(event);
 				return;
