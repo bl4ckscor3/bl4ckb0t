@@ -93,6 +93,9 @@ public class Listener extends ListenerAdapter
 
 	public void misc(MessageEvent event) throws Exception
 	{
+		if(event.getMessage().startsWith(p))
+			return;
+		
 		if(event.getMessage().equals("?enabled"))
 		{
 			Utilities.chanMsg(event, "" + enabled);
@@ -101,17 +104,22 @@ public class Listener extends ListenerAdapter
 
 		if(enabled)
 		{
+			//sending a welcome back message
+			if(event.getMessage().toLowerCase().startsWith("re "))
+			{
+				Utilities.chanMsg(event, "wb, " + event.getUser().getNick());
+				return;
+			}
+			
+			//youtube recognition
 			if(event.getMessage().contains("www.youtube.com/watch") || event.getMessage().contains("youtu.be/"))
 			{
 				YouTubeStats.sendVideoStats(event);
 				return;
 			}
 
-			if(!event.getMessage().startsWith(p))
-				LinkTitle.checkForLinkAndSendTitle(event);
-
-			if(event.getMessage().toLowerCase().equalsIgnoreCase("re"))
-				Utilities.chanMsg(event, "wb, " + event.getUser().getNick());
+			//checking for urls and sending the title if available
+			LinkTitle.checkForLinkAndSendTitle(event);
 		}
 	}
 

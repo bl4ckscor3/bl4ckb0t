@@ -9,7 +9,6 @@ import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
 public class LinkTitle
 {
-
 	public static void checkForLinkAndSendTitle(MessageEvent event)
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
