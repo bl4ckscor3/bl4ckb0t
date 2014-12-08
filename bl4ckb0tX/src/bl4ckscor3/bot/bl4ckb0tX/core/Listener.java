@@ -115,7 +115,7 @@ public class Listener extends ListenerAdapter
 				SpellingCorrection.corrected = false;
 			
 			//sending a welcome back message
-			if(message.toLowerCase().startsWith("re "))
+			if(message.toLowerCase().startsWith("re ") || message.toLowerCase().equals("re"))
 			{
 				Utilities.chanMsg(event, "wb, " + event.getUser().getNick());
 				return;
