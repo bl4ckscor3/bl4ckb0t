@@ -147,6 +147,7 @@ public class Utilities
 
 		for(Object o : x)
 		{
+			//if the channel has the flag +s, it does not get shown
 			if(!o.toString().contains("secret=true"))
 				chans[i] = o.toString().split(",")[0].split("=")[1];
 
