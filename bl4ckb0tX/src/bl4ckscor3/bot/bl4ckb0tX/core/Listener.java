@@ -110,7 +110,7 @@ public class Listener extends ListenerAdapter
 			
 			//making sure the above messages dont get added as a latest message
 			if(!SpellingCorrection.corrected)
-				SpellingCorrection.updateLatestMessage(event.getMessage(), event.getUser().getNick());
+				SpellingCorrection.updateLatestMessage(event.getChannel().getName(), event.getMessage(), event.getUser().getNick());
 			else
 				SpellingCorrection.corrected = false;
 			

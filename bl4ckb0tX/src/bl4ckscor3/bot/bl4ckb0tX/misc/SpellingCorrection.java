@@ -7,28 +7,29 @@ import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
 
 public class SpellingCorrection
 {
-	//making room for 100 users to store their latest message
-	private static String[] messages = new String[100];
-	//needed to check if the message should be added to the array or not
+	//making room for 50 channels, each storing 50 users including their latest message
+	private static String[][] messages = new String[50][50];
+	//storing the position of the channels in the messages array
+	private static String[] channels = new String[50];
+	//needed to check if the message should be added to the array or not (used in Listener.java)
 	public static boolean corrected = false;
 
 	public static void correctSpelling(MessageEvent event, String[] split, boolean correctsDifferentUser, String userToCorrect)
 	{
 		String toReplace = split[1];
 		String replaceWith = split[2];
+		int channelPosition = getChannelPosition(event.getChannel().getName());
 
-		System.out.println(userToCorrect);
-
-		for(String s : messages)
+		for(String s : messages[channelPosition])
 		{
 			if(s == null)
 				break;
 
 			if(userToCorrect.equals(s.split("#")[0]))
 			{
-				String correctedMessage = getLatestMessage(userToCorrect).replaceAll(toReplace, replaceWith);
+				String correctedMessage = getLatestMessage(userToCorrect, channelPosition).replaceAll(toReplace, replaceWith);
 
-				updateLatestMessage(correctedMessage, userToCorrect);
+				updateLatestMessage(channels[channelPosition], correctedMessage, userToCorrect);
 
 				if(correctsDifferentUser)
 					Utilities.chanMsg(event, userToCorrect + " was corrected by " + event.getUser().getNick() + " and " + Colors.BOLD + " meant " + Colors.BOLD + "to say: " + correctedMessage);
@@ -43,11 +44,12 @@ public class SpellingCorrection
 	 * @param msg - The message to write into the array
 	 * @param username - The name of the user who wrote the message
 	 */
-	public static void updateLatestMessage(String msg, String username)
+	public static void updateLatestMessage(String channel, String msg, String username)
 	{
 		int i = 0;
+		int channelPosition = getChannelPosition(channel);
 
-		for(String s : messages)
+		for(String s : messages[channelPosition])
 		{ 
 			//if the current array position contains no data to replace, stop the loop and add the data
 			if(s == null)
@@ -56,16 +58,16 @@ public class SpellingCorrection
 			//checking for the correct array position to potentially replace the latest message with
 			if(s.split("#")[0].equals(username))
 			{
-				messages[i] = username + "#" + msg;
-//				System.out.println("stuff written into array position " + i + " -- stuff: " + messages[i]);
+				messages[channelPosition][i] = username + "#" + msg;
+				System.out.println("stuff written into array position [" + channelPosition + "][" + i + "] (" + channels[channelPosition] + ") -- stuff: " + messages[channelPosition][i]);
 				return;
 			}
 
 			i++;
 		}
 
-		messages[i] = username + "#" + msg;
-//		System.out.println("stuff written into array position " + i + " -- stuff: " + messages[i]);
+		messages[channelPosition][i] = username + "#" + msg;
+		System.out.println("stuff written into array position [" + channelPosition + "][" + i + "] (" + channels[channelPosition] + ") -- stuff: " + messages[channelPosition][i]);
 	}
 
 	/**
@@ -73,9 +75,9 @@ public class SpellingCorrection
 	 * @param user - The name of the user to get the latest message from
 	 * @return - The latest message from the given user
 	 */
-	private static String getLatestMessage(String user)
+	private static String getLatestMessage(String user, int channelPosition)
 	{
-		for(String s : messages)
+		for(String s : messages[channelPosition])
 		{
 			if(s.split("#")[0].equals(user))
 				return s.split("#")[1];
@@ -143,5 +145,50 @@ public class SpellingCorrection
 			else
 				return;
 		}
+	}
+
+	/**
+	 * Returns the position of the given channel in the channels array
+	 * @param channel - The channel to search for
+	 * @return - Position of the given channel in the channels array
+	 */
+	private static int getChannelPosition(String channel)
+	{
+		boolean channelNotFound = false;
+		int channelPosition = 0;
+		
+		try
+		{
+			for(String s : channels)
+			{
+				if(s.equals(channel))
+					break;
+
+				channelPosition++;
+			}
+		}
+		catch(NullPointerException e)
+		{
+			channelNotFound = true;
+		}
+
+		//writing the channel position into the array if the channel has no been found
+		if(channelNotFound)
+		{
+			channelPosition = 0;
+
+			for(String s : channels)
+			{
+				if(s == null)
+				{
+					channels[channelPosition] = channel;
+					break;
+				}
+
+				channelPosition++;
+			}
+		}
+		
+		return channelPosition;
 	}
 }
