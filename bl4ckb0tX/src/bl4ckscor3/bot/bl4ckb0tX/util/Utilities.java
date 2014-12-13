@@ -147,7 +147,9 @@ public class Utilities
 
 		for(Object o : x)
 		{
-			chans[i] = o.toString().split(",")[0].split("=")[1];
+			if(!o.toString().contains("secret=true"))
+				chans[i] = o.toString().split(",")[0].split("=")[1];
+
 			i++;
 		}
 
