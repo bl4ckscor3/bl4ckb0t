@@ -191,7 +191,10 @@ public class Listener extends ListenerAdapter
 
 		for(String s : channelsToJoin)
 		{
-			Core.bot.sendIRC().joinChannel(s);
+			if(s.equals("#akino_germany"))
+				Core.bot.sendIRC().joinChannel(s, Core.password);
+			else
+				Core.bot.sendIRC().joinChannel(s);
 		}
 	}
 }

@@ -1,10 +1,7 @@
 package bl4ckscor3.bot.bl4ckb0tX.commands;
 
-import org.pircbotx.Channel;
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
-
-import com.google.common.collect.ImmutableSortedSet;
 
 import bl4ckscor3.bot.bl4ckb0tX.core.Core;
 import bl4ckscor3.bot.bl4ckb0tX.util.Utilities;
@@ -22,7 +19,7 @@ public class Join implements ICommand<MessageEvent>
 				Utilities.respond(event, "you need to specify a channel!", true);
 			else if(args.length == 2)
 			{
-				if(args[1].equals("default"))
+				if(args[1].equals("d"))
 				{
 					Utilities.chanMsg(event, "I will join my default channels now.");
 					
