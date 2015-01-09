@@ -22,7 +22,7 @@ public class Listener extends ListenerAdapter
 	private final String p = "-";
 	public static boolean enabled = true;
 	public boolean isCounting = false;
-	public final static LinkedList<ICommand> commands = new LinkedList<>();
+	public static final LinkedList<ICommand> commands = new LinkedList<>();
 
 	public Listener()
 	{
@@ -145,7 +145,14 @@ public class Listener extends ListenerAdapter
 				String msg;
 
 				if(args[0].equalsIgnoreCase("join"))
-					Core.bot.sendIRC().joinChannel("#bl4ckscor3");
+				{
+					if(args.length > 2)
+						Core.bot.sendIRC().joinChannel(args[1].startsWith("#") ? args[1] : "#" + args[1], args[2]);
+					else
+						Core.bot.sendIRC().joinChannel(args[1].startsWith("#") ? args[1] : "#" + args[1]);
+				}
+				else if(args[0].equalsIgnoreCase("leave"))
+					Core.bot.sendRaw().rawLine("PART " + args[1] + " :My master told me that I can't be here anymore :C");
 				else if(args[0].startsWith("#"))
 				{
 					for(int i = 1; i < args.length; i++)

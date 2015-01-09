@@ -19,7 +19,7 @@ public class Leave implements ICommand<MessageEvent>
 				Core.bot.sendRaw().rawLine("PART " + event.getChannel().getName() + " :My master told me that I can't be here anymore :C");
 			else if(args.length == 2)
 			{
-				if(args[1].equals("default"))
+				if(args[1].equals("d"))
 				{
 					Utilities.chanMsg(event, "I will leave my default channels now.");
 					
