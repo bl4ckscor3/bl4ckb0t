@@ -9,6 +9,7 @@ import java.net.URL;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class LongURL implements ICommand<MessageEvent>
@@ -18,9 +19,7 @@ public class LongURL implements ICommand<MessageEvent>
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 
-		if(args.length == 1)
-			Utilities.chanMsg(event, "You need to specify a short link which you want me to expand. Usage: -longurl <shortLink>");
-		else if(args.length == 2)
+		if(args.length == 2)
 		{
 			String longUrl = "";
 			String temp;
@@ -32,7 +31,7 @@ public class LongURL implements ICommand<MessageEvent>
 			temp = longUrl;
 			longUrl = "http:" + temp.split(":")[1].split("]")[0];
 			
-			Utilities.chanMsg(event, "This is the long url of the given link: " + longUrl);
+			Utilities.chanMsg(event, L10N.strings.getString("longurl.output") + ": " + longUrl);
 		}
 		else
 			Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
@@ -47,18 +46,18 @@ public class LongURL implements ICommand<MessageEvent>
 	@Override
 	public String getSyntax()
 	{
-		return "-longurl <shortUrl>";
+		return "-longurl <" + L10N.strings.getString("longurl.help.shortUrl") + ">";
 	}
 
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-longurl <shortUrl> || Enlarges the given link if possible."};
+		return new String[]{"-longurl <" + L10N.strings.getString("longurl.help.shortUrl") + "> || " + L10N.strings.getString("longurl.explanation")};
 	}
 
 	@Override
 	public String getNotes()
 	{
-		return "Some link shorteners may not work.";
+		return L10N.strings.getString("longurl.notes");
 	}
 }

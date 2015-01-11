@@ -2,6 +2,7 @@ package bl4ckscor3.bot.bl4ckb0t.commands;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Calculate implements ICommand<MessageEvent>
@@ -29,7 +30,7 @@ public class Calculate implements ICommand<MessageEvent>
 				else if(args[1].equals("*") || args[1].equals("x"))
 					multiply(numbers, event);
 				else if(args[1].equals("/"))
-					Utilities.respond(event, "I'm too dumb to divide :(", true);
+					Utilities.respond(event, L10N.strings.getString("calc.cannotDivide"), true);
 				else if(args[1].equals("pow") || args[1].equals("^"))
 					pow(numbers, event);
 				else if(args[1].equals("%"))
@@ -38,12 +39,10 @@ public class Calculate implements ICommand<MessageEvent>
 					Utilities.chanMsg(event, "" + fact(event, Integer.parseInt(args[2])));
 			}
 			else 
-			{
 				Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
-			}
 		}
 		else
-			Utilities.respond(event, "please tell me which operation I should do, and which numbers I should calculate with. Usage: -calc <operation> <several numbers>", true);
+			Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 	}
 
 	private void add(float[] numbers, MessageEvent event)
@@ -112,9 +111,9 @@ public class Calculate implements ICommand<MessageEvent>
 	private void checkForIntAndSend(float solution, MessageEvent event)
 	{
 		if(Float.toString(solution).endsWith(".0"))
-			Utilities.chanMsg(event, "The solution is: " + (int)solution);
+			Utilities.chanMsg(event, L10N.strings.getString("calc.solution") + ": " + (int)solution);
 		else
-			Utilities.chanMsg(event, "The solution is: " + solution);
+			Utilities.chanMsg(event, L10N.strings.getString("calc.solution") + ": " + solution);
 	}
 
 	@Override
@@ -126,7 +125,7 @@ public class Calculate implements ICommand<MessageEvent>
 	@Override
 	public String getSyntax() 
 	{
-		return "-calc <+|-|*|x|/|pow|^|!> <numbers>";
+		return "-calc <+|-|*|x|/|pow|^|!> <" + L10N.strings.getString("calc.help.numbers") + ">";
 	}
 
 	@Override
@@ -134,12 +133,12 @@ public class Calculate implements ICommand<MessageEvent>
 	{
 		return new String[]
 				{
-				"-calc + 1 2 || 1 + 2 (This is an example, use as many numbers as you want.)",
-				"-calc - 1 2 || 1 - 2 (This is an example, use as many numbers as you want.)",
-				"-calc <*|x> 1 2 || 1 * 2 (One times two. This is an example, use as many numbers as you want.)",
-				"-calc / 1 2 || 1 / 2 (This is an example, use as many numbers as you want.)",
-				"-calc <^|pow> 1 2 || 1² (This is an example, use as many numbers as you want.)",
-				"-calc ! 5 || 5 * 4 * 3 * 2 * 1 (This is an example, use as many numbers as you want.)"
+				"-calc + 1 2 || 1 + 2 " + L10N.strings.getString("calc.help.example"),
+				"-calc - 1 2 || 1 - 2 " + L10N.strings.getString("calc.help.example"),
+				"-calc <*|x> 1 2 || 1 * 2 " + L10N.strings.getString("calc.help.exampleMutliply"),
+				"-calc / 1 2 || 1 / 2 " + L10N.strings.getString("calc.help.example"),
+				"-calc <^|pow> 1 2 || 1² " + L10N.strings.getString("calc.help.example"),
+				"-calc ! 5 || 5 * 4 * 3 * 2 * 1 " + L10N.strings.getString("calc.help.example")
 				};
 	}
 

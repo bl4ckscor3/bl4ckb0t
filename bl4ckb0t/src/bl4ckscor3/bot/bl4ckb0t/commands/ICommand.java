@@ -1,6 +1,7 @@
 package bl4ckscor3.bot.bl4ckb0t.commands;
 
 import org.pircbotx.hooks.Event;
+import org.pircbotx.hooks.events.MessageEvent;
 
 public interface ICommand<E extends Event>
 {

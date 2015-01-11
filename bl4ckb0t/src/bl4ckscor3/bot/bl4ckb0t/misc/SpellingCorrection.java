@@ -1,8 +1,8 @@
 package bl4ckscor3.bot.bl4ckb0t.misc;
 
-import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class SpellingCorrection
@@ -32,9 +32,9 @@ public class SpellingCorrection
 				updateLatestMessage(channels[channelPosition], correctedMessage, userToCorrect);
 
 				if(correctsDifferentUser)
-					Utilities.chanMsg(event, userToCorrect + " was corrected by " + event.getUser().getNick() + " and " + Colors.BOLD + " meant " + Colors.BOLD + "to say: " + correctedMessage);
+					Utilities.chanMsg(event, userToCorrect + L10N.strings.getString("correction.1") + event.getUser().getNick() + L10N.strings.getString("correction.2") + ": " + correctedMessage);
 				else
-					Utilities.chanMsg(event, userToCorrect + Colors.BOLD + " meant " + Colors.BOLD + "to say: " + correctedMessage);
+					Utilities.chanMsg(event, userToCorrect + L10N.strings.getString("correction.3") + ": " + correctedMessage);
 			}
 		}
 	}

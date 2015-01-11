@@ -10,6 +10,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class YouTube implements ICommand<MessageEvent>
@@ -34,18 +35,18 @@ public class YouTube implements ICommand<MessageEvent>
 	@Override
 	public String getSyntax()
 	{
-		return "-yt <channel>";
+		return "-yt <" + L10N.strings.getString("yt.help.channel") + ">";
 	}
 
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-yt <channel> || Gives you the link to the specified YouTube channel."};
+		return new String[]{"-yt <" + L10N.strings.getString("yt.help.channel") + "> || " + L10N.strings.getString("yt.explanation")};
 	}
 
 	@Override
 	public String getNotes()
 	{
-		return "Newer channels (using channel IDs) don't work.";
+		return L10N.strings.getString("yt.notes");
 	}
 }

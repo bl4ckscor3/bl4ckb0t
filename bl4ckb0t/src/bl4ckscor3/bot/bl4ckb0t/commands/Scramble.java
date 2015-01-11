@@ -5,6 +5,7 @@ import java.util.Random;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Scramble implements ICommand<MessageEvent>
@@ -100,7 +101,7 @@ public class Scramble implements ICommand<MessageEvent>
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-scramble || Gives you a 25-move-algorythm for your 3x3 Rubik's Cube to scramble."};
+		return new String[]{"-scramble || " + L10N.strings.getString("scramble.explanation")};
 	}
 
 	@Override

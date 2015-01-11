@@ -8,6 +8,7 @@ import org.pircbotx.output.OutputIRC;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Core;
 import bl4ckscor3.bot.bl4ckb0t.core.Listener;
+import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Stop implements ICommand<MessageEvent>
@@ -17,13 +18,6 @@ public class Stop implements ICommand<MessageEvent>
 	{
 		if(Utilities.isValidUser(event))
 		{
-			if(event.getMessage().equalsIgnoreCase(event.getBot().getNick() + ", sleep!"))
-			{
-				Utilities.chanMsg(event, "k");
-				Core.bot.sendRaw().rawLine("QUIT :My master sent me to sleep!");
-				return;
-			}
-
 			String[] args = Utilities.toArgs(event.getMessage());
 
 			if(args.length == 2)
@@ -31,22 +25,20 @@ public class Stop implements ICommand<MessageEvent>
 				switch(args[1])
 				{
 					case "yes":
-						Utilities.chanMsg(event, "I will reboot, sir");
-						Core.bot.sendRaw().rawLine("QUIT :My master sent me to sleep!");
+						Utilities.chanMsg(event, L10N.strings.getString("stop.reboot.yes"));
+						Core.bot.sendRaw().rawLine("QUIT :" + L10N.strings.getString("stop.reason"));
 						Core.createBot(); //creating another instance
 						break;
 					case "no":
-						Utilities.chanMsg(event, "You wished that I don't reboot. Do you still like me?");
-						Core.bot.sendRaw().rawLine("QUIT :My master sent me to sleep!");
+						Utilities.chanMsg(event, L10N.strings.getString("stop.reboot.no"));
+						Core.bot.sendRaw().rawLine("QUIT :" + L10N.strings.getString("stop.reason"));
 						break;
 					default:
 						Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 				}
 			}
 			else
-			{
 				Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
-			}
 		}
 		else
 			Utilities.sorry(event);
@@ -69,14 +61,14 @@ public class Stop implements ICommand<MessageEvent>
 	{
 		return new String[]
 				{
-				"-stop yes || Stops the bot and restarts it.",
-				"-stop no || Stops the bot but doesn't restart it."
+				"-stop yes || " + L10N.strings.getString("stop.explanation.1"),
+				"-stop no || " + L10N.strings.getString("stop.explanation.2")
 				};
 	}
 
 	@Override
 	public String getNotes()
 	{
-		return "Only useable by OPs.";
+		return L10N.strings.getString("notes.onlyOP");
 	}
 }

@@ -12,6 +12,7 @@ import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Core;
+import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 
 import com.google.common.collect.ImmutableSortedSet;
 
@@ -46,7 +47,7 @@ public class Utilities
 
 	public static void sorry(MessageEvent event)
 	{
-		chanMsg(event, "Sorry, only certain people are allowed to control me.");
+		chanMsg(event, L10N.strings.getString("noPermission"));
 	}
 
 	public static void addHelpLine(MessageEvent event, String msg)
@@ -98,17 +99,17 @@ public class Utilities
 	
 	public static void sendHelp(String nick, String syntax, String[] usage, String notes)
 	{
-		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "-------------------------Syntax--------------------------");
+		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "-----------" + L10N.strings.getString("helpMenu.syntax") + "----------");
 		Utilities.pm(nick, syntax);
-		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "--------------------------Usage--------------------------");
+		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------" + L10N.strings.getString("helpMenu.usage") + "----------");
 
 		for(String s : usage)
 		{
 			Utilities.pm(nick, s);
 		}
 
-		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "--------------------------Notes--------------------------");
-		Utilities.pm(nick, notes == null ? "None." : notes);
+		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------" + L10N.strings.getString("helpMenu.notes") + "----------");
+		Utilities.pm(nick, notes == null ? L10N.strings.getString("helpMenu.noNotes") : notes);
 	}
 	
 	public static String[] getValidUsers() throws MalformedURLException, IOException

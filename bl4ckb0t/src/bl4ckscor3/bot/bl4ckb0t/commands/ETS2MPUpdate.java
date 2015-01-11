@@ -7,6 +7,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class ETS2MPUpdate implements ICommand<MessageEvent>
@@ -23,7 +24,7 @@ public class ETS2MPUpdate implements ICommand<MessageEvent>
 		{
 			if(args.length < 2 || args.length > 2)
 			{
-				Utilities.chanMsg(event, "Invalid number of arguments. Usage: -ets2mp stop");
+				Utilities.chanMsg(event, L10N.strings.getString("ets2mp.onlyStop"));
 				Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 				return;
 			}
@@ -32,7 +33,7 @@ public class ETS2MPUpdate implements ICommand<MessageEvent>
 		{
 			if(args.length < 3)
 			{
-				Utilities.chanMsg(event, "Invalid number of arguments. Usage: -ets2mp start <current version>");
+				Utilities.chanMsg(event, L10N.strings.getString("ets2mp.onlyStart"));
 				Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 				return;
 			}
@@ -50,11 +51,11 @@ public class ETS2MPUpdate implements ICommand<MessageEvent>
 				
 				currentVersion = currentVersion.substring(0, currentVersion.length() - 1);
 				checking = true;
-				Utilities.chanMsg(event, "Successfully started update checking...");
+				Utilities.chanMsg(event, L10N.strings.getString("ets2mp.successful.start"));
 				checkForUpdates(event);
 				break;
 			case "stop":
-				Utilities.chanMsg(event, "Successfully stopped update checking...");
+				Utilities.chanMsg(event, L10N.strings.getString("ets2mp.successful.start"));
 				checking = false;
 		}
 	}
@@ -71,7 +72,7 @@ public class ETS2MPUpdate implements ICommand<MessageEvent>
 
 			if(!element.getText().equals("Current release: " + currentVersion + "Download latest version"))
 			{
-				Utilities.chanMsg(event, "New version (" + element.getText().substring(17).split("Download")[0] + ") of ETS2MP is out! Download: http://alpha.ets2mp.com");
+				Utilities.chanMsg(event, L10N.strings.getString("ets2mp.newVersion.1") + " (" + element.getText().substring(17).split("Download")[0] + ") " + L10N.strings.getString("ets2mp.newVersion.2"));
 				checking = false;
 			}
 
@@ -88,7 +89,7 @@ public class ETS2MPUpdate implements ICommand<MessageEvent>
 	@Override
 	public String getSyntax()
 	{
-		return "-ets2mp <start|stop> [currentVersion]";
+		return "-ets2mp <start|stop> [" + L10N.strings.getString("ets2mp.help.currentVersion")+ "]";
 	}
 
 	@Override
@@ -96,15 +97,14 @@ public class ETS2MPUpdate implements ICommand<MessageEvent>
 	{
 		return new String[]
 				{
-				"-ets2mp start <currentVersion> || Starts a query every minute to check if there's an update for ETS2MP.",
-				"-ets2mp stop || Stops the query."
+				"-ets2mp start <" + L10N.strings.getString("ets2mp.help.currentVersion")+ "> || " + L10N.strings.getString("ets2mp.explanation.1"),
+				"-ets2mp stop || " + L10N.strings.getString("ets2mp.explanation.2")
 				};
 	}
 
 	@Override
 	public String getNotes()
 	{
-		return "Check if you wrote the current version correctly. If you got the slightest typo, it will not work!";
+		return L10N.strings.getString("ets2mp.notes");
 	}
-
 }

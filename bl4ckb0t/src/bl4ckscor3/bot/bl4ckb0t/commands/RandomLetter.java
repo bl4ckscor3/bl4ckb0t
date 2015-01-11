@@ -4,6 +4,7 @@ import java.util.Random;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class RandomLetter implements ICommand<MessageEvent>
@@ -63,7 +64,7 @@ public class RandomLetter implements ICommand<MessageEvent>
 				Utilities.pm(event.getUser().getNick(), output.toString());
 			}
 			else
-				Utilities.chanMsg(event, "Please don't put in a number higher than 50");
+				Utilities.chanMsg(event, L10N.strings.getString("ln.fail"));
 		}
 		else
 			Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
@@ -78,18 +79,18 @@ public class RandomLetter implements ICommand<MessageEvent>
 	@Override
 	public String getSyntax()
 	{
-		return "-letter <number>";
+		return "-letter <" + L10N.strings.getString("ln.help.number") + ">";
 	}
 
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-letter <number> || Outputs as many letters as you want."};
+		return new String[]{"-letter <" + L10N.strings.getString("ln.help.number") + "> || " + L10N.strings.getString("letter.explanation")};
 	}
 
 	@Override
 	public String getNotes()
 	{
-		return "No number higher than 50 can be parsed.";
+		return L10N.strings.getString("ln.notes");
 	}
 }

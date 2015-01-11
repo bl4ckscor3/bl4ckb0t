@@ -4,6 +4,7 @@ import java.util.Random;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Select implements ICommand<MessageEvent>
@@ -33,18 +34,18 @@ public class Select implements ICommand<MessageEvent>
 	@Override
 	public String getSyntax()
 	{
-		return "-select <options>";
+		return "-select <" + L10N.strings.getString("select.help.options") + ">";
 	}
 
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-select <options> || Selects an option for you."};
+		return new String[]{"-select <" + L10N.strings.getString("select.help.options") + "> || " + L10N.strings.getString("select.explanation")};
 	}
 
 	@Override
 	public String getNotes()
 	{
-		return "Seperate multiple options with a comma. (e.g. -select 1,2,3,4,5)";
+		return L10N.strings.getString("select.notes");
 	}
 }

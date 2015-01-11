@@ -8,6 +8,7 @@ import java.net.URL;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Forge implements ICommand<MessageEvent>
@@ -26,7 +27,7 @@ public class Forge implements ICommand<MessageEvent>
 					String result = createResult("<td>Latest-1.8</td>", "Version");
 
 					if(result.equalsIgnoreCase(createResult("<td>Recommended-1.8</td>", "Version")))
-						Utilities.chanMsg(event, result + " This is also the recommended build.");
+						Utilities.chanMsg(event, result + " " + L10N.strings.getString("forge.latest.recommended"));
 					else
 						Utilities.chanMsg(event, result);
 				}
@@ -37,7 +38,7 @@ public class Forge implements ICommand<MessageEvent>
 				else if(args[2].equalsIgnoreCase("dlsrc"))
 					Utilities.chanMsg(event, createResult("<td>Latest-1.8</td>", "Src"));
 				else
-					usage(event);
+					Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 			}
 			else if(args[1].equalsIgnoreCase("rec") || args[1].equalsIgnoreCase("recommended"))
 			{
@@ -46,7 +47,7 @@ public class Forge implements ICommand<MessageEvent>
 					String result = createResult("<td>Recommended-1.8</td>", "Version");
 
 					if(result.equalsIgnoreCase(createResult("<td>Latest-1.8</td>", "Version")))
-						Utilities.chanMsg(event, result + " This is also the latest build.");
+						Utilities.chanMsg(event, result + " " + L10N.strings.getString("forge.recommended.latest"));
 					else
 						Utilities.chanMsg(event, result);
 				}
@@ -81,7 +82,7 @@ public class Forge implements ICommand<MessageEvent>
 
 					String mcVersion = (reader.readLine()).split(">")[1].split("<")[0];
 
-					return line.split(">")[1].split("<")[0] + " (For Minecraft version " + mcVersion + ")";
+					return line.split(">")[1].split("<")[0] + " (" + L10N.strings.getString("forge.forVersion") + " " + mcVersion + ")";
 				}
 			}
 		}
@@ -116,12 +117,7 @@ public class Forge implements ICommand<MessageEvent>
 				}
 			}
 		}
-		return "Couldn't create a result. Is there a recommended version already?";
-	}
-
-	private void usage(MessageEvent event)
-	{
-		Utilities.chanMsg(event, "Invalid number of arguments, or invalid argument. Usage: -forge <latest|rec|recommended> <version|changelog|dlmain|dlsrc>");
+		return L10N.strings.getString("forge.fail");
 	}
 
 	@Override
@@ -141,14 +137,14 @@ public class Forge implements ICommand<MessageEvent>
 	{
 		return new String[]
 				{
-				"-forge latest version || Tells you the latest version for Forge inclusive the Minecraft version it is for.",
-				"-forge latest changelog || Gives you a link to the changelog of the latest Forge version.",
-				"-forge latest dlmain || Gives you a link to the client download of the latest Forge version.",
-				"-forge latest dlsrc || Gives you a link to the development download of the latest Forge version.",
-				"-forge <rec|recommended> version || Tells you the latest recommended version for Forge inclusive the Minecraft version it is for.",
-				"-forge <rec|recommended> changelog || Gives you a link to the changelog of the latest recommended Forge version.",
-				"-forge <rec|recommended> dlmain || Gives you a link to the client download of the latest recommended Forge version.",
-				"-forge <rec|recommended> dlsrc || Gives you a link to the development download of the latest recommended Forge version."
+				"-forge latest version || " + L10N.strings.getString("forge.explanation.1"),
+				"-forge latest changelog || " + L10N.strings.getString("forge.explanation.2"),
+				"-forge latest dlmain || " + L10N.strings.getString("forge.explanation.3"),
+				"-forge latest dlsrc || " + L10N.strings.getString("forge.explanation.4"),
+				"-forge <rec|recommended> version || " + L10N.strings.getString("forge.explanation.5"),
+				"-forge <rec|recommended> changelog || " + L10N.strings.getString("forge.explanation.6"),
+				"-forge <rec|recommended> dlmain || " + L10N.strings.getString("forge.explanation.7"),
+				"-forge <rec|recommended> dlsrc || " + L10N.strings.getString("forge.explanation.8")
 				};
 	}
 

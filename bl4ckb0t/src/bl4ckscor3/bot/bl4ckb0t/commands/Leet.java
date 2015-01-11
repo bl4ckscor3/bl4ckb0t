@@ -2,6 +2,7 @@ package bl4ckscor3.bot.bl4ckb0t.commands;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Leet implements ICommand<MessageEvent>
@@ -40,13 +41,13 @@ public class Leet implements ICommand<MessageEvent>
 	@Override
 	public String getSyntax()
 	{
-		return "-leet <sentence>";
+		return "-leet <" + L10N.strings.getString("cmd.help.sentence") + ">";
 	}
 
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-leet <sentence> || Converts your sentence into leet speak."};
+		return new String[]{"-leet <" + L10N.strings.getString("cmd.help.sentence") + "> || " + L10N.strings.getString("leet.explanation")};
 	}
 
 	@Override

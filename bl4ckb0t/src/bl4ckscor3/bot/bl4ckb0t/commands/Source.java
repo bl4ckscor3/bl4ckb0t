@@ -2,6 +2,7 @@ package bl4ckscor3.bot.bl4ckb0t.commands;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Source implements ICommand<MessageEvent>
@@ -27,7 +28,7 @@ public class Source implements ICommand<MessageEvent>
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-source || Gives you the link to the sourcecode of the bot."};
+		return new String[]{"-source || " + L10N.strings.getString("source.explanation")};
 	}
 
 	@Override

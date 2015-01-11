@@ -2,6 +2,7 @@ package bl4ckscor3.bot.bl4ckb0t.commands;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Twitch implements ICommand<MessageEvent>
@@ -26,13 +27,13 @@ public class Twitch implements ICommand<MessageEvent>
 	@Override
 	public String getSyntax()
 	{
-		return "-tv <channel>";
+		return "-tv <" + L10N.strings.getString("tv.help.channel") + ">";
 	}
 
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-tv <channel> || Gives you the link to the specified Twitch channel."};
+		return new String[]{"-tv <" + L10N.strings.getString("tv.help.channel") + "> || " + L10N.strings.getString("tv.explanation")};
 	}
 
 	@Override

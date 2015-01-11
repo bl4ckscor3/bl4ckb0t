@@ -7,6 +7,7 @@ import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Core;
 import bl4ckscor3.bot.bl4ckb0t.core.Listener;
+import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Disable implements ICommand<MessageEvent>
@@ -19,7 +20,7 @@ public class Disable implements ICommand<MessageEvent>
 			if(Listener.enabled)
 			{
 				Listener.enabled = false;
-				Utilities.chanMsg(event, "Successfully disabled :(");
+				Utilities.chanMsg(event, L10N.strings.getString("disable.success"));
 				System.out.println(Utilities.getJoinedChannels().length);
 				if(Utilities.getJoinedChannels().length == 1)
 					return;
@@ -27,11 +28,11 @@ public class Disable implements ICommand<MessageEvent>
 				for(String s : Utilities.getJoinedChannels())
 				{
 					if(!s.equalsIgnoreCase(event.getChannel().getName()))
-						Core.bot.sendIRC().message(s, "FYI, I was disabled. Cya in a bit :)");
+						Core.bot.sendIRC().message(s, L10N.strings.getString("disable.notify"));
 				}
 			}
 			else
-				Utilities.chanMsg(event, "I am already disabled :(");
+				Utilities.chanMsg(event, L10N.strings.getString("disable.alreadyDisabled"));
 		}
 		else
 			Utilities.sorry(event);
@@ -52,12 +53,12 @@ public class Disable implements ICommand<MessageEvent>
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-disable || Disables all the bot's features."};
+		return new String[]{"-disable || " + L10N.strings.getString("disable.explanation")};
 	}
 
 	@Override
 	public String getNotes()
 	{
-		return "Only useable by OPs.";
+		return L10N.strings.getString("notes.onlyOp");
 	}
 }

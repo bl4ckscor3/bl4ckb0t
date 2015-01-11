@@ -2,6 +2,7 @@ package bl4ckscor3.bot.bl4ckb0t.commands;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Draw implements ICommand<MessageEvent>
@@ -87,7 +88,7 @@ public class Draw implements ICommand<MessageEvent>
 	@Override
 	public String getSyntax()
 	{
-		return "-draw [drawing]";
+		return "-draw [" + L10N.strings.getString("draw.help.drawing") + "]";
 	}
 
 	@Override
@@ -95,8 +96,8 @@ public class Draw implements ICommand<MessageEvent>
 	{
 		return new String[]
 				{
-				"-draw <drawing> || Draws the specified drawing for you.",
-				"-draw || Lists available drawings"
+				"-draw || " + L10N.strings.getString("draw.explanation.1"),
+				"-draw <" + L10N.strings.getString("draw.help.drawing") + "> || " + L10N.strings.getString("draw.explanation.2")
 				};
 	}
 
@@ -105,7 +106,7 @@ public class Draw implements ICommand<MessageEvent>
 	{
 		return null;
 	}
-	
+
 	private void smiley(MessageEvent event)
 	{
 		Utilities.pm(event.getUser().getNick(), "1,1          1,1          1,1          ");
@@ -422,7 +423,7 @@ public class Draw implements ICommand<MessageEvent>
 	{
 		StringBuilder output = new StringBuilder();
 
-		output.append("Available drawings: ");
+		output.append(L10N.strings.getString("draw.list") + ": ");
 
 		for(String drawing : drawings)
 		{

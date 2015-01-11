@@ -7,6 +7,7 @@ import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Core;
 import bl4ckscor3.bot.bl4ckb0t.core.Listener;
+import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Help implements ICommand<MessageEvent>
@@ -32,7 +33,7 @@ public class Help implements ICommand<MessageEvent>
 
 		if(args.length == 1)
 		{
-			Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------------------My Commands :)----------------------");
+			Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------" + L10N.strings.getString("help.header") + "----------");
 
 			for(String s : aliases)
 			{
@@ -44,13 +45,14 @@ public class Help implements ICommand<MessageEvent>
 			}
 
 			Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------------------------------------------------------");
-			Utilities.pm(nick, "Write -help <command> to get more specific help on that command.");
+			Utilities.pm(nick, L10N.strings.getString("help.moreInfo"));
 			Thread.sleep(2000);
-			Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "-------------------------Credits--------------------------");
-			Utilities.pm(nick, Colors.TEAL + "Made by bl4ckscor3!");
-			Utilities.pm(nick, Colors.TEAL + "Help from Lord_Ralex (and TehKitti, but that doesn't count)!");
-			Utilities.pm(nick, Colors.TEAL + "Made in Java 7 using PircBotX 2.0.1 (https://code.google.com/p/pircbotx/), its dependencies and Selenium (https://code.google.com/p/selenium/).");
-			Utilities.pm(nick, Colors.TEAL + "Suggestions are much appreciated! Just ping bl4ckscor3 if you want to suggest something!");
+			Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------" + L10N.strings.getString("help.credits.header") + "----------");
+			Utilities.pm(nick, Colors.TEAL + L10N.strings.getString("help.credits.1"));
+			Utilities.pm(nick, Colors.TEAL + L10N.strings.getString("help.credits.2"));
+			Utilities.pm(nick, Colors.TEAL + L10N.strings.getString("help.credits.3"));
+			Utilities.pm(nick, Colors.TEAL + L10N.strings.getString("help.credits.4"));
+			Utilities.pm(nick, Colors.TEAL + L10N.strings.getString("help.credits.5"));
 		}
 		else if(args.length == 2)
 		{
@@ -67,7 +69,7 @@ public class Help implements ICommand<MessageEvent>
 			}
 		}
 		else
-			Utilities.chanMsg(event, "Only add 1 command as an argument.");
+			Utilities.sendHelp(nick, getSyntax(), getUsage(), getNotes());;
 	}
 
 	@Override
@@ -79,7 +81,7 @@ public class Help implements ICommand<MessageEvent>
 	@Override
 	public String getSyntax()
 	{
-		return "-help [command]";
+		return "-help [" + L10N.strings.getString("help.help.command") + "]";
 	}
 
 	@Override
@@ -87,8 +89,8 @@ public class Help implements ICommand<MessageEvent>
 	{
 		return new String[]
 				{
-				"-help || Shows this menu.",
-				"-help <command> || Shows help for the specified command."
+				"-help || " + L10N.strings.getString("help.explanation.1"),
+				"-help <" + L10N.strings.getString("help.help.command") + "> || " + L10N.strings.getString("help.explanation.2")
 				};
 	}
 

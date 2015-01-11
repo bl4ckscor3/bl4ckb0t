@@ -4,17 +4,16 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.LinkedList;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
-import org.pircbotx.Colors;
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.ConnectEvent;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
-import org.pircbotx.hooks.events.QuitEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.commands.*;
-import bl4ckscor3.bot.bl4ckb0t.misc.*;
+import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
+import bl4ckscor3.bot.bl4ckb0t.misc.LinkTitle;
+import bl4ckscor3.bot.bl4ckb0t.misc.SpellingCorrection;
+import bl4ckscor3.bot.bl4ckb0t.misc.YouTubeStats;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Listener extends ListenerAdapter 
@@ -23,7 +22,7 @@ public class Listener extends ListenerAdapter
 	public static boolean enabled = true;
 	public boolean isCounting = false;
 	public static final LinkedList<ICommand> commands = new LinkedList<>();
-
+	
 	public Listener()
 	{
 		commands.add(new Calculate());
@@ -37,6 +36,7 @@ public class Listener extends ListenerAdapter
 		commands.add(new Join());
 		commands.add(new Kick());
 		commands.add(new Forge());
+		commands.add(new Language());
 		commands.add(new Leave());
 		commands.add(new Leet());
 		commands.add(new ListChans());
@@ -62,6 +62,7 @@ public class Listener extends ListenerAdapter
 	{
 		String cmdName = Utilities.toArgs(event.getMessage())[0];
 
+		L10N.setLocalization(event.getChannel().getName(), L10N.chanLangs.containsKey(event.getChannel().getName()) ? L10N.getLocalization(event.getChannel().getName()) : "english");
 		misc(event);
 
 		if(!cmdName.startsWith(p))
@@ -152,7 +153,7 @@ public class Listener extends ListenerAdapter
 						Core.bot.sendIRC().joinChannel(args[1].startsWith("#") ? args[1] : "#" + args[1]);
 				}
 				else if(args[0].equalsIgnoreCase("leave"))
-					Core.bot.sendRaw().rawLine("PART " + args[1] + " :My master told me that I can't be here anymore :C");
+					Core.bot.sendRaw().rawLine("PART " + args[1] + " :" + L10N.strings.getString("part"));
 				else if(args[0].startsWith("#"))
 				{
 					for(int i = 1; i < args.length; i++)

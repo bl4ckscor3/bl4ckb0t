@@ -2,6 +2,7 @@ package bl4ckscor3.bot.bl4ckb0t.commands;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Twitter implements ICommand<MessageEvent>
@@ -26,13 +27,13 @@ public class Twitter implements ICommand<MessageEvent>
 	@Override
 	public String getSyntax()
 	{
-		return "-tw <profile>";
+		return "-tw <" + L10N.strings.getString("tw.help.profile") + ">";
 	}
 
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-tw <profile> || Gives you the link to the specified Twitter profile."};
+		return new String[]{"-tw <" + L10N.strings.getString("tw.help.profile") + "> || " + L10N.strings.getString("tw.explanation")};
 	}
 
 	@Override

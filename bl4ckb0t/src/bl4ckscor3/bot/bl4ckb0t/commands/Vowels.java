@@ -2,6 +2,7 @@ package bl4ckscor3.bot.bl4ckb0t.commands;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Vowels implements ICommand<MessageEvent>
@@ -37,18 +38,18 @@ public class Vowels implements ICommand<MessageEvent>
 	@Override
 	public String getSyntax()
 	{
-		return "-vowels <sentence>";
+		return "-vowels <" + L10N.strings.getString("cmd.help.sentence") + ">";
 	}
 
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-vowels <sentence> || Removes all vowels from the given sentence."};
+		return new String[]{"-vowels <" + L10N.strings.getString("cmd.help.sentence") + "> || " + L10N.strings.getString("vowels.explanation")};
 	}
 
 	@Override
 	public String getNotes()
 	{
-		return "Useless.";
+		return L10N.strings.getString("vowels.notes");
 	}
 }

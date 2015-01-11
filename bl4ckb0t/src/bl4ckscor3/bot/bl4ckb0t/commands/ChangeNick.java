@@ -7,6 +7,7 @@ import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.output.OutputIRC;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Core;
+import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class ChangeNick implements ICommand<MessageEvent>
@@ -41,18 +42,18 @@ public class ChangeNick implements ICommand<MessageEvent>
 	@Override
 	public String getSyntax()
 	{
-		return "-changenick <newName>";
+		return "-changenick <" + L10N.strings.getString("changenick.newName") + ">";
 	}
 
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-changenick <newName> || Changes the name of bl4ckb0t to the specified one."};
+		return new String[]{"-changenick <" + L10N.strings.getString("changenick.newName") + "> ||" + L10N.strings.getString("changenick.explanation")};
 	}
 
 	@Override
 	public String getNotes()
 	{
-		return "If the name is \"d\" the name changes to the default one (bl4ckb0t). | This command is only useable by OPs.";
+		return L10N.strings.getString("changenick.notes");
 	}
 }

@@ -2,6 +2,7 @@ package bl4ckscor3.bot.bl4ckb0t.commands;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class ListChans implements ICommand<MessageEvent>
@@ -24,7 +25,7 @@ public class ListChans implements ICommand<MessageEvent>
 			
 			builder.deleteCharAt(builder.length() - 1);
 			builder.deleteCharAt(builder.length() - 1);
-			Utilities.chanMsg(event, "I joined these channels: " + builder.toString());
+			Utilities.chanMsg(event, L10N.strings.getString("listchans.list") + ": " + builder.toString());
 		}
 		else
 			Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
@@ -45,7 +46,7 @@ public class ListChans implements ICommand<MessageEvent>
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-listchans || Lists the channels the bot is currently in."};
+		return new String[]{"-listchans || " + L10N.strings.getString("listchans.explanation")};
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Core;
+import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Join implements ICommand<MessageEvent>
@@ -15,13 +16,11 @@ public class Join implements ICommand<MessageEvent>
 		{
 			String[] args = Utilities.toArgs(event.getMessage());	
 
-			if(args.length == 1)
-				Utilities.respond(event, "you need to specify a channel!", true);
-			else if(args.length == 2)
+			if(args.length == 2)
 			{
 				if(args[1].equals("d"))
 				{
-					Utilities.chanMsg(event, "I will join my default channels now.");
+					Utilities.chanMsg(event, L10N.strings.getString("join.success.default"));
 					
 					for(String s : Utilities.getDefaultChans())
 					{
@@ -32,18 +31,15 @@ public class Join implements ICommand<MessageEvent>
 				}
 				
 				if(!args[1].startsWith("#"))
-				{
-					Utilities.chanMsg(event, "This is not a channel. Channel names always start with a hashtag (#)");
-					return;
-				}
+					args[1] = "#" + args[1];
 				
 				if(!Utilities.hasJoinedChannel(args))
 				{
-					Utilities.chanMsg(event, "I will join the channel " + Colors.BOLD + args[1]);
+					Utilities.chanMsg(event, L10N.strings.getString("join.success.normal") + " " + Colors.BOLD + args[1]);
 					Core.bot.sendIRC().joinChannel(args[1]);
 				}
 				else
-					Utilities.chanMsg(event, "I already joined that channel.");
+					Utilities.chanMsg(event, L10N.strings.getString("join.alreadyJoined"));
 			}
 			else
 				Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
@@ -61,18 +57,18 @@ public class Join implements ICommand<MessageEvent>
 	@Override
 	public String getSyntax()
 	{
-		return "join <channel>";
+		return "join <" + L10N.strings.getString("cmd.help.channel") + ">";
 	}
 
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"join <channel> || The bot joins into the given channel if it's not already in there."};
+		return new String[]{"join <" + L10N.strings.getString("cmd.help.channel") + "> || " + L10N.strings.getString("join.explanation")};
 	}
 
 	@Override
 	public String getNotes()
 	{
-		return "Only useable by OPs.";
+		return L10N.strings.getString("notes.onlyOp");
 	}
 }

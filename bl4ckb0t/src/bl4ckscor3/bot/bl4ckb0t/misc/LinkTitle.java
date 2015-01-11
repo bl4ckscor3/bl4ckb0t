@@ -5,6 +5,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class LinkTitle
@@ -25,11 +26,7 @@ public class LinkTitle
 
 				driver.get(s);
 				title = driver.getTitle();
-
-				if(title != null || !title.equals(""))
-					Utilities.chanMsg(event, "Page title of " + s + " - " + Colors.BOLD + title);
-				else
-					Utilities.chanMsg(event, "No title available.");
+				Utilities.chanMsg(event, L10N.strings.getString("linkTitle.available") + s + " - " + Colors.BOLD + title);
 			}
 		}
 	}

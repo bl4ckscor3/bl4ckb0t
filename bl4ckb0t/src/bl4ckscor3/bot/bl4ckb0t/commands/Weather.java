@@ -4,8 +4,10 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 
+import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Weather implements ICommand<MessageEvent>
@@ -23,7 +25,7 @@ public class Weather implements ICommand<MessageEvent>
 			BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://api.openweathermap.org/data/2.5/weather?q=" + args[1] + "&mode=xml").openStream()));	
 			
 			if(reader.readLine().equalsIgnoreCase("{\"message\":\"Error: Not found city\",\"cod\":\"404\"}"))
-				Utilities.chanMsg(event, "Sorry, I couldn't find a city named \"" + args[1] + "\" :/");
+				Utilities.chanMsg(event, L10N.strings.getString("w.cityNotFound") + "\"" + args[1] + "\" :/");
 			else
 			{
 				for(int i = 0; i < 19; i++)
@@ -34,9 +36,20 @@ public class Weather implements ICommand<MessageEvent>
 				filter(data);
 				
 				if(!error)
-					Utilities.chanMsg(event, "** " + data[1] + ", " + data[3] + " ** Conditions: " + data[13] + " ** Temperature: " + data[6] + " ** Humidity: " + data[7] + " ** Pressure: " + data[8] + " ** Wind: " + data[11] + ", with " + data[10] + " ** Powered by OpenWeatherMap - http://openweathermap.org/city/" + data[1] + "/ **");
+					Utilities.chanMsg(event, Colors.BOLD + "** " + Colors.BOLD + data[1] + ", " + data[3] +
+							Colors.BOLD + " ** " + L10N.strings.getString("w.conditions") + ": " + Colors.BOLD + data[13] +
+							Colors.BOLD + " ** " + L10N.strings.getString("w.temperature") + ": " + Colors.BOLD + data[6] +
+							Colors.BOLD + " ** " + L10N.strings.getString("w.humidity") + ": " + Colors.BOLD + data[7] +
+							Colors.BOLD + " ** " + L10N.strings.getString("w.pressure") + ": " + Colors.BOLD + data[8] +
+							Colors.BOLD + " ** " + L10N.strings.getString("w.wind.1") + ": " + Colors.BOLD + data[11] + ", " + L10N.strings.getString("w.wind.2") + " " + data[10] +
+							Colors.BOLD + " ** " + L10N.strings.getString("w.credit") + data[1] + "/ **");
 				else
-					Utilities.chanMsg(event, "** " + data[1] + ", " + data[3] + " ** Conditions: " + data[13] + " ** Temperature: " + data[6] + " ** Humidity: " + data[7] + " ** Pressure: " + data[8] + " ** Wind: " + data[11] + " ** Powered by OpenWeatherMap - http://openweathermap.org/city/" + data[1] + "/ **");
+					Utilities.chanMsg(event, "** " + data[1] + ", " + data[3] + " ** " + L10N.strings.getString("w.conditions") + ": " + data[13] +
+							" ** " + L10N.strings.getString("w.temperature") + ": " + data[6] +
+							" ** " + L10N.strings.getString("w.humidity") + ": " + data[7] +
+							" ** " + L10N.strings.getString("w.pressure") + ": " + data[8] +
+							" ** " + L10N.strings.getString("w.wind.1") + ": " + data[11] +
+							" ** " + L10N.strings.getString("w.credit") + data[1] + "/ **");
 			}
 		}
 		else
@@ -83,18 +96,18 @@ public class Weather implements ICommand<MessageEvent>
 	@Override
 	public String getSyntax()
 	{
-		return "-w <city>";
+		return "-w <" + L10N.strings.getString("w.help.city") + ">";
 	}
 
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-w <city> || Shows you an up-to-date weather report for the given city."};
+		return new String[]{"-w <" + L10N.strings.getString("w.help.city") + "> || " + L10N.strings.getString("w.explanation")};
 	}
 
 	@Override
 	public String getNotes()
 	{
-		return "Some cities, such as Amsterdam, exist multiple times. Please use the country code to specify the city you want: -w amsterdam,nl (This will give the Amsterdam in the Netherlands). If your city contains a space, use an underscore (_) instead.";
+		return L10N.strings.getString("w.notes");
 	}
 }

@@ -11,6 +11,7 @@ import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.output.OutputIRC;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Core;
+import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Kick implements ICommand<MessageEvent>
@@ -47,7 +48,7 @@ public class Kick implements ICommand<MessageEvent>
 
 			if(!allowed)
 			{
-				Utilities.chanMsg(event, "Sorry, " + event.getUser().getNick() + ", you're not authorized to kick people from this channel.");
+				Utilities.chanMsg(event, "Sorry, " + event.getUser().getNick() + ", " + L10N.strings.getString("kick.notAuthorized"));
 				return;
 			}
 
@@ -66,8 +67,8 @@ public class Kick implements ICommand<MessageEvent>
 				{
 					if(args[1].equalsIgnoreCase(Core.bot.getNick()))
 					{
-						event.getChannel().send().action("kicks himself");
-						Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + args[1] + " :I'm said now :(");
+						event.getChannel().send().action(L10N.strings.getString("kick.self"));
+						Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + args[1] + " :" + L10N.strings.getString("kick.self.reason"));
 					}
 					else
 					{
@@ -83,7 +84,7 @@ public class Kick implements ICommand<MessageEvent>
 					}
 				}
 				else
-					Utilities.chanMsg(event, "This user cannot be kicked.");
+					Utilities.chanMsg(event, L10N.strings.getString("kick.cannotKick"));
 			}
 			else
 			{
@@ -96,12 +97,12 @@ public class Kick implements ICommand<MessageEvent>
 						Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 						break;
 					default:
-						Utilities.chanMsg(event, "Euuuuh: " + args.length);
+						Utilities.chanMsg(event, L10N.strings.getString("kick.fail") + " - " + args.length);
 				}
 			}
 		}
 		else
-			Utilities.respond(event, "you need to be identified to be able to kick someone.", true);
+			Utilities.respond(event, L10N.strings.getString("kick.identify"), true);
 	}
 
 	@Override
@@ -113,18 +114,18 @@ public class Kick implements ICommand<MessageEvent>
 	@Override
 	public String getSyntax()
 	{
-		return "-kick <user> <reason>";
+		return "-kick <" + L10N.strings.getString("kick.help.user") + "> <" + L10N.strings.getString("kick.help.reason") + ">";
 	}
 
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-kick <user> <reason> || Kicks the user from the channel with the given reason."};
+		return new String[]{"-kick <" + L10N.strings.getString("kick.help.user") + "> <" + L10N.strings.getString("kick.help.reason") + "> || " + L10N.strings.getString("kick.explanation")};
 	}
 	
 	@Override
 	public String getNotes()
 	{
-		return "Only useable by voiced/OPs.";
+		return L10N.strings.getString("notes.onlyVoiceOp");
 	}
 }
