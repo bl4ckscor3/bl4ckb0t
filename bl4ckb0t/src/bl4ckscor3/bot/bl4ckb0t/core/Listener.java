@@ -62,7 +62,6 @@ public class Listener extends ListenerAdapter
 	{
 		String cmdName = Utilities.toArgs(event.getMessage())[0];
 
-		L10N.setLocalization(event.getChannel().getName(), L10N.chanLangs.containsKey(event.getChannel().getName()) ? L10N.getLocalization(event.getChannel().getName()) : "english");
 		misc(event);
 
 		if(!cmdName.startsWith(p))
