@@ -10,7 +10,7 @@ public class Source implements ICommand<MessageEvent>
 	@Override
 	public void exe(MessageEvent event)
 	{
-		Utilities.chanMsg(event, "Here it is: https://github.com/bl4ckscor3/bl4ckb0tX");
+		Utilities.chanMsg(event, L10N.strings.getString("source.hereYouGo") + ": https://github.com/bl4ckscor3/bl4ckb0t");
 	}
 	
 	@Override
