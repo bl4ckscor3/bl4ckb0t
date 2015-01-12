@@ -192,9 +192,6 @@ public class Listener extends ListenerAdapter
 	@Override
 	public void onConnect(ConnectEvent event) throws Exception
 	{
-		if(!Core.bot.getNick().equals("bl4ckb0t"))
-			commands.add(new DeAds());
-
 		String[] channelsToJoin = Utilities.getAutoJoinChans();
 
 		for(String s : channelsToJoin)
