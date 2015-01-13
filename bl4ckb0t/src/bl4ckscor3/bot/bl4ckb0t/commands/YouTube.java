@@ -41,7 +41,7 @@ public class YouTube implements ICommand<MessageEvent>
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-yt <" + L10N.strings.getString("yt.help.channel") + "> || " + L10N.strings.getString("yt.explanation")};
+		return new String[]{"-yt <" + L10N.strings.getString("ytv.help.channel") + "> || " + L10N.strings.getString("yt.explanation")};
 	}
 
 	@Override

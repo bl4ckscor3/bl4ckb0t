@@ -17,7 +17,7 @@ public class Leave implements ICommand<MessageEvent>
 			String[] args = Utilities.toArgs(event.getMessage());	
 
 			if(args.length == 1)
-				Core.bot.sendRaw().rawLine("PART " + event.getChannel().getName() + " :" + L10N.strings.getString("leave.reason"));
+				Utilities.leaveChannel(event.getChannel().getName());
 			else if(args.length == 2)
 			{
 				if(args[1].equals("d"))

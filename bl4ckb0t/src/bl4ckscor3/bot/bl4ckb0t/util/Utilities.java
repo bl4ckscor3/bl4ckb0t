@@ -193,7 +193,7 @@ public class Utilities
 	
 	public static void leaveChannel(String channel)
 	{
-		Core.bot.sendRaw().rawLine("PART " + channel + " :" + L10N.strings.getString("leave.reason"));
+		Core.bot.sendRaw().rawLine("PART " + channel + " :" + L10N.strings.getString("channel.part"));
 		
 		if(L10N.chanLangs.containsKey(channel))
 			L10N.chanLangs.remove(channel);

@@ -25,7 +25,7 @@ public class Weather implements ICommand<MessageEvent>
 			BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://api.openweathermap.org/data/2.5/weather?q=" + args[1] + "&mode=xml").openStream()));	
 			
 			if(reader.readLine().equalsIgnoreCase("{\"message\":\"Error: Not found city\",\"cod\":\"404\"}"))
-				Utilities.chanMsg(event, L10N.strings.getString("w.cityNotFound") + "\"" + args[1] + "\" :/");
+				Utilities.chanMsg(event, L10N.strings.getString("w.cityNotFound") + " \"" + args[1] + "\" :/");
 			else
 			{
 				for(int i = 0; i < 19; i++)
