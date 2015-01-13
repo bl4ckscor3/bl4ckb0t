@@ -24,7 +24,7 @@ public class Join implements ICommand<MessageEvent>
 					
 					for(String s : Utilities.getDefaultChans())
 					{
-						Core.bot.sendIRC().joinChannel(s);
+						Utilities.joinChannel(s);
 					}
 					
 					return;
@@ -36,7 +36,7 @@ public class Join implements ICommand<MessageEvent>
 				if(!Utilities.hasJoinedChannel(args))
 				{
 					Utilities.chanMsg(event, L10N.strings.getString("join.success.normal") + " " + Colors.BOLD + args[1]);
-					Core.bot.sendIRC().joinChannel(args[1]);
+					Utilities.joinChannel(args[1]);
 				}
 				else
 					Utilities.chanMsg(event, L10N.strings.getString("join.alreadyJoined"));

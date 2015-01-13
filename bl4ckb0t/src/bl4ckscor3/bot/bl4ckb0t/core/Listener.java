@@ -62,6 +62,7 @@ public class Listener extends ListenerAdapter
 	{
 		String cmdName = Utilities.toArgs(event.getMessage())[0];
 
+		L10N.changeLocalization(L10N.parseLangCode(L10N.chanLangs.get(event.getChannel().getName()), 0), L10N.parseLangCode(L10N.chanLangs.get(event.getChannel().getName()), 1), event.getChannel().getName());
 		misc(event);
 
 		if(!cmdName.startsWith(p))
@@ -196,9 +197,9 @@ public class Listener extends ListenerAdapter
 		for(String s : channelsToJoin)
 		{
 			if(s.equals("#akino_germany"))
-				Core.bot.sendIRC().joinChannel(s, Core.password);
+				Utilities.joinChannel(s, Core.password);
 			else
-				Core.bot.sendIRC().joinChannel(s);
+				Utilities.joinChannel(s);
 		}
 	}
 }

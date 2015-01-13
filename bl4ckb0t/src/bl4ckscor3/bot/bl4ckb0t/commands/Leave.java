@@ -26,7 +26,7 @@ public class Leave implements ICommand<MessageEvent>
 					
 					for(String s : Utilities.getDefaultChans())
 					{	
-						Core.bot.sendRaw().rawLine("PART " + s + " :" + L10N.strings.getString("leave.reason"));
+						Utilities.leaveChannel(s);
 					}
 				}
 				
@@ -36,7 +36,7 @@ public class Leave implements ICommand<MessageEvent>
 				if(Utilities.hasJoinedChannel(args))
 				{
 					Utilities.chanMsg(event, L10N.strings.getString("leave.success.normal") + " " + Colors.BOLD + args[1] + Colors.BOLD + "!");
-					Core.bot.sendRaw().rawLine("PART " + args[1] + " :" + L10N.strings.getString("leave.reason"));
+					Utilities.leaveChannel(args[1]);
 				}
 				else
 					Utilities.chanMsg(event, L10N.strings.getString("leave.notJoined"));

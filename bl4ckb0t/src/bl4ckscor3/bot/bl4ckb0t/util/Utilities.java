@@ -174,4 +174,28 @@ public class Utilities
 		else
 			return new String[]{"#bl4ckb0tTest"};
 	}
+	
+	public static void joinChannel(String channel)
+	{
+		Core.bot.sendIRC().joinChannel(channel);
+		
+		if(!L10N.chanLangs.containsKey(channel))
+			L10N.chanLangs.put(channel, "english");
+	}
+	
+	public static void joinChannel(String channel, String password)
+	{
+		Core.bot.sendIRC().joinChannel(channel, password);
+		
+		if(!L10N.chanLangs.containsKey(channel))
+			L10N.chanLangs.put(channel, "english");
+	}
+	
+	public static void leaveChannel(String channel)
+	{
+		Core.bot.sendRaw().rawLine("PART " + channel + " :" + L10N.strings.getString("leave.reason"));
+		
+		if(L10N.chanLangs.containsKey(channel))
+			L10N.chanLangs.remove(channel);
+	}
 }

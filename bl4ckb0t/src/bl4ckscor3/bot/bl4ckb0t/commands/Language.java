@@ -9,8 +9,8 @@ public class Language implements ICommand<MessageEvent>
 {
 	String[] availableLanguages =
 		{
-			L10N.strings.getString("language.english"),
-			L10N.strings.getString("language.german")
+			"English",
+			"German"
 		};
 	
 	@Override
@@ -22,10 +22,10 @@ public class Language implements ICommand<MessageEvent>
 			Utilities.chanMsg(event, L10N.strings.getString("language.availableLanguages") + ": " + getAvailableLanguages());
 		else if(args.length == 2)
 		{
-			if(args[1].equalsIgnoreCase(L10N.strings.getString("language.english")))
-				L10N.changeLocalization("en", "US");
-			else if(args[1].equalsIgnoreCase(L10N.strings.getString("language.german")))
-				L10N.changeLocalization("de", "DE");
+			if(args[1].equalsIgnoreCase(availableLanguages[0]))
+				L10N.changeLocalization("en", "US", event.getChannel().getName());
+			else if(args[1].equalsIgnoreCase(availableLanguages[1]))
+				L10N.changeLocalization("de", "DE", event.getChannel().getName());
 			else	
 				Utilities.chanMsg(event, L10N.strings.getString("language.availableLanguages") + ": " + getAvailableLanguages());
 		}
