@@ -32,9 +32,9 @@ public class SpellingCorrection
 				updateLatestMessage(channels[channelPosition], correctedMessage, userToCorrect);
 
 				if(correctsDifferentUser)
-					Utilities.chanMsg(event, userToCorrect + L10N.strings.getString("correction.1") + event.getUser().getNick() + L10N.strings.getString("correction.2") + ": " + correctedMessage);
+					Utilities.chanMsg(event, userToCorrect + " " + L10N.strings.getString("correction.1") + " " + event.getUser().getNick() + " " + L10N.strings.getString("correction.2") + ": " + correctedMessage);
 				else
-					Utilities.chanMsg(event, userToCorrect + L10N.strings.getString("correction.3") + ": " + correctedMessage);
+					Utilities.chanMsg(event, userToCorrect + " " + L10N.strings.getString("correction.3") + ": " + correctedMessage);
 			}
 		}
 	}
