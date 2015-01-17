@@ -183,7 +183,7 @@ public class Utilities
 			L10N.chanLangs.put(channel, "english");
 	}
 	
-	public static void joinChannel(String channel, String password)
+	public static void joinChannelWithPassword(String channel, String password)
 	{
 		Core.bot.sendIRC().joinChannel(channel, password);
 		
@@ -198,7 +198,7 @@ public class Utilities
 		for(String s : channelsToJoin)
 		{
 			if(s.equals("#akino_germany"))
-				joinChannel(s, Core.password);
+				joinChannelWithPassword(s, Core.password);
 			else
 				joinChannel(s);
 		}

@@ -9,7 +9,8 @@ import org.pircbotx.hooks.events.ConnectEvent;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.commands.*;
+import bl4ckscor3.bot.bl4ckb0t.commands.channel.*;
+import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.*;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.misc.LinkTitle;
 import bl4ckscor3.bot.bl4ckb0t.misc.SpellingCorrection;
@@ -21,7 +22,8 @@ public class Listener extends ListenerAdapter
 	private final String p = "-";
 	public static boolean enabled = true;
 	public boolean isCounting = false;
-	public static final LinkedList<ICommand> commands = new LinkedList<>();
+	public static final LinkedList<ICommand> commands = new LinkedList<ICommand>();
+	public static final LinkedList<IPrivateCommand> privCommands = new LinkedList<IPrivateCommand>();
 	
 	public Listener()
 	{
@@ -53,8 +55,12 @@ public class Listener extends ListenerAdapter
 		commands.add(new Weather());
 		commands.add(new XColor());
 		commands.add(new YouTube());
-
 		Help.setupHelpMenu(commands);
+		privCommands.add(new PrivateJoin());
+		privCommands.add(new PrivateLeave());
+		privCommands.add(new Action());
+		privCommands.add(new ChanMsg());
+		privCommands.add(new UserMsg());
 	}
 
 	@Override
@@ -141,42 +147,13 @@ public class Listener extends ListenerAdapter
 		{
 			if(Utilities.isValidUser(event))
 			{
-				String[] args = Utilities.toArgs(event.getMessage());
-				StringBuilder builder = new StringBuilder();
-				String msg;
-
-				if(args[0].equalsIgnoreCase("join"))
+				for(IPrivateCommand cmd : privCommands)
 				{
-					if(args.length > 2)
-						Utilities.joinChannel(args[1].startsWith("#") ? args[1] : "#" + args[1], args[2]);
-					else
-						Utilities.joinChannel(args[1].startsWith("#") ? args[1] : "#" + args[1]);
-				}
-				else if(args[0].equalsIgnoreCase("leave"))
-					Core.bot.sendRaw().rawLine("PART " + args[1] + " :" + L10N.strings.getString("part"));
-				else if(args[0].startsWith("#"))
-				{
-					for(int i = 1; i < args.length; i++)
+					if(event.getMessage().startsWith(cmd.getAlias()))
 					{
-						builder.append(args[i] + " ");
+						cmd.exe(event);
+						return;
 					}
-
-					msg = builder.toString();
-
-					if(args[1].startsWith("*"))
-						Core.bot.sendIRC().action(args[0], msg.substring(1));
-					else
-						Core.bot.sendIRC().message(args[0], msg);
-				}
-				else if(args[0].equalsIgnoreCase("msg"))
-				{
-					for(int i = 2; i < args.length; i++)
-					{
-						builder.append(args[i] + " ");
-					}
-
-					msg = builder.toString();
-					Core.bot.sendIRC().message(args[1], msg);
 				}
 			}
 			else
