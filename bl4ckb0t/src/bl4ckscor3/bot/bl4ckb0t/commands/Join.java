@@ -21,12 +21,7 @@ public class Join implements ICommand<MessageEvent>
 				if(args[1].equals("d"))
 				{
 					Utilities.chanMsg(event, L10N.strings.getString("join.success.default"));
-					
-					for(String s : Utilities.getDefaultChans())
-					{
-						Utilities.joinChannel(s);
-					}
-					
+					Utilities.joinDefaults();
 					return;
 				}
 				

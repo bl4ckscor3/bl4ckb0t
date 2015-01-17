@@ -191,6 +191,19 @@ public class Utilities
 			L10N.chanLangs.put(channel, "english");
 	}
 	
+	public static void joinDefaults() throws MalformedURLException, IOException
+	{
+		String[] channelsToJoin = getAutoJoinChans();
+
+		for(String s : channelsToJoin)
+		{
+			if(s.equals("#akino_germany"))
+				joinChannel(s, Core.password);
+			else
+				joinChannel(s);
+		}
+	}
+	
 	public static void leaveChannel(String channel)
 	{
 		Core.bot.sendRaw().rawLine("PART " + channel + " :" + L10N.strings.getString("channel.part"));

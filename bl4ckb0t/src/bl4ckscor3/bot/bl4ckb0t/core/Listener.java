@@ -148,9 +148,9 @@ public class Listener extends ListenerAdapter
 				if(args[0].equalsIgnoreCase("join"))
 				{
 					if(args.length > 2)
-						Core.bot.sendIRC().joinChannel(args[1].startsWith("#") ? args[1] : "#" + args[1], args[2]);
+						Utilities.joinChannel(args[1].startsWith("#") ? args[1] : "#" + args[1], args[2]);
 					else
-						Core.bot.sendIRC().joinChannel(args[1].startsWith("#") ? args[1] : "#" + args[1]);
+						Utilities.joinChannel(args[1].startsWith("#") ? args[1] : "#" + args[1]);
 				}
 				else if(args[0].equalsIgnoreCase("leave"))
 					Core.bot.sendRaw().rawLine("PART " + args[1] + " :" + L10N.strings.getString("part"));
@@ -192,14 +192,6 @@ public class Listener extends ListenerAdapter
 	@Override
 	public void onConnect(ConnectEvent event) throws Exception
 	{
-		String[] channelsToJoin = Utilities.getAutoJoinChans();
-
-		for(String s : channelsToJoin)
-		{
-			if(s.equals("#akino_germany"))
-				Utilities.joinChannel(s, Core.password);
-			else
-				Utilities.joinChannel(s);
-		}
+		Utilities.joinDefaults();
 	}
 }
