@@ -69,6 +69,6 @@ public class Stop implements ICommand<MessageEvent>
 	@Override
 	public String getNotes()
 	{
-		return L10N.strings.getString("notes.onlyOP");
+		return L10N.strings.getString("notes.onlyOp");
 	}
 }
