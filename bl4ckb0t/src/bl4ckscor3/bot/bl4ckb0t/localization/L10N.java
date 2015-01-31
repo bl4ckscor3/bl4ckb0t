@@ -4,12 +4,15 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import bl4ckscor3.bot.bl4ckb0t.core.Core;
+import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
+
 public class L10N
 {
 	private static String language = "en";
 	private static String country = "US";
 	public static String langName = parseLangName(language + "_" + country);
-	private static Locale currentLocale = new Locale(language, country);
+	public static Locale currentLocale = new Locale(language, country);
 	public static ResourceBundle strings = ResourceBundle.getBundle("bl4ckscor3.bot.bl4ckb0t.localization.bb", currentLocale);
 	public static HashMap<String, String> chanLangs = new HashMap<String, String>();
 

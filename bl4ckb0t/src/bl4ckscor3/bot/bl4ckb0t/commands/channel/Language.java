@@ -1,5 +1,7 @@
 package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 
+import java.util.HashMap;
+
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
@@ -17,9 +19,9 @@ public class Language implements ICommand<MessageEvent>
 	public void exe(MessageEvent event) throws Exception
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
-
+HashMap<String,String> x =new HashMap<String,String>();
 		if(args.length == 1)
-			Utilities.chanMsg(event, L10N.strings.getString("language.availableLanguages") + ": " + getAvailableLanguages());
+			Utilities.chanMsg(event, L10N.strings.getString("language.currentLanguage") + ": " + Utilities.capitalizeFirstLetter(L10N.langName));
 		else if(args.length == 2)
 		{
 			if(args[1].equalsIgnoreCase(availableLanguages[0]))
@@ -28,6 +30,8 @@ public class Language implements ICommand<MessageEvent>
 				L10N.changeLocalization("de", "DE", event.getChannel().getName());
 			else	
 				Utilities.chanMsg(event, L10N.strings.getString("language.availableLanguages") + ": " + getAvailableLanguages());
+
+			Utilities.chanMsg(event, L10N.strings.getString("language.success") + ": " + Utilities.capitalizeFirstLetter(L10N.langName));
 		}
 		else
 			Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());

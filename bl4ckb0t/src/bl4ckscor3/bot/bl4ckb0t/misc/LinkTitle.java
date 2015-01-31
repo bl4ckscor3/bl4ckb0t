@@ -26,7 +26,11 @@ public class LinkTitle
 
 				driver.get(s);
 				title = driver.getTitle();
-				Utilities.chanMsg(event, L10N.strings.getString("linkTitle.available") + s + " - " + Colors.BOLD + title);
+				
+				if(title == null || title == "null" || title == "")
+					Utilities.chanMsg(event,L10N.strings.getString("linkTitle.notFound") + " " + s);
+				else
+					Utilities.chanMsg(event, L10N.strings.getString("linkTitle.available") + " " + s + " - " + Colors.BOLD + title);
 			}
 		}
 	}

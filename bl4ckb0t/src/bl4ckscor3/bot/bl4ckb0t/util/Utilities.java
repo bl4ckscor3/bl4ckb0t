@@ -21,7 +21,7 @@ public class Utilities
 	/*
 	 * FROM HERE ONLY MSG EVENT
 	 */
-	
+
 	public static void chanMsg(MessageEvent event, String msg)
 	{
 		event.getChannel().send().message(msg);
@@ -58,7 +58,7 @@ public class Utilities
 	public static boolean isValidUser(MessageEvent event) throws MalformedURLException, IOException
 	{
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/dyvu276rdwmbt9z/validUsers.txt?dl=1").openStream()));
-		
+
 		for(String s : reader.readLine().split(","))
 		{
 			if(event.getUser().getNick().equalsIgnoreCase(s))
@@ -75,11 +75,11 @@ public class Utilities
 	/*
 	 * FROM HERE ONLY PRIVATE MSG EVENT
 	 */
-	
+
 	public static boolean isValidUser(PrivateMessageEvent event) throws MalformedURLException, IOException
 	{	
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/dyvu276rdwmbt9z/validUsers.txt?dl=1").openStream()));
-		
+
 		for(String s : reader.readLine().split(","))
 		{
 			if(event.getUser().getNick().equalsIgnoreCase(s))
@@ -92,11 +92,11 @@ public class Utilities
 		}
 		return false;
 	}
-	
+
 	/*
 	 * FROM HERE ONLY NON MSG EVENT
 	 */
-	
+
 	public static void sendHelp(String nick, String syntax, String[] usage, String notes)
 	{
 		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "-----------" + L10N.strings.getString("helpMenu.syntax") + "----------");
@@ -111,19 +111,19 @@ public class Utilities
 		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------" + L10N.strings.getString("helpMenu.notes") + "----------");
 		Utilities.pm(nick, notes == null ? L10N.strings.getString("helpMenu.noNotes") : notes);
 	}
-	
+
 	public static String[] getValidUsers() throws MalformedURLException, IOException
 	{
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/dyvu276rdwmbt9z/validUsers.txt?dl=1").openStream()));
-		
+
 		return reader.readLine().split(",");
 	}
-	
+
 	public static String[] toArgs(String line)
 	{
 		return line.split(" ");
 	}
-	
+
 	public static boolean hasJoinedChannel(String[] args)
 	{
 		String[] chans = getJoinedChannels();
@@ -161,7 +161,7 @@ public class Utilities
 	public static String[] getDefaultChans() throws MalformedURLException, IOException
 	{
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/tishdl84z1wmcgs/bl4ckb0t%20chans.txt?dl=1").openStream()));
-		
+
 		return reader.readLine().split(",");
 	}
 
@@ -174,23 +174,23 @@ public class Utilities
 		else
 			return new String[]{"#bl4ckb0tTest"};
 	}
-	
+
 	public static void joinChannel(String channel)
 	{
 		Core.bot.sendIRC().joinChannel(channel);
-		
+
 		if(!L10N.chanLangs.containsKey(channel))
 			L10N.chanLangs.put(channel, "english");
 	}
-	
+
 	public static void joinChannelWithPassword(String channel, String password)
 	{
 		Core.bot.sendIRC().joinChannel(channel, password);
-		
+
 		if(!L10N.chanLangs.containsKey(channel))
 			L10N.chanLangs.put(channel, "english");
 	}
-	
+
 	public static void joinDefaults() throws MalformedURLException, IOException
 	{
 		String[] channelsToJoin = getAutoJoinChans();
@@ -203,12 +203,17 @@ public class Utilities
 				joinChannel(s);
 		}
 	}
-	
+
 	public static void leaveChannel(String channel)
 	{
 		Core.bot.sendRaw().rawLine("PART " + channel + " :" + L10N.strings.getString("channel.part"));
-		
+
 		if(L10N.chanLangs.containsKey(channel))
 			L10N.chanLangs.remove(channel);
+	}
+
+	public static String capitalizeFirstLetter(String s)
+	{
+		return s.substring(0, 1).toUpperCase(L10N.currentLocale) + s.substring(1);
 	}
 }
