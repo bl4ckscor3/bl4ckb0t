@@ -19,7 +19,7 @@ public class Language implements ICommand<MessageEvent>
 	public void exe(MessageEvent event) throws Exception
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
-HashMap<String,String> x =new HashMap<String,String>();
+
 		if(args.length == 1)
 			Utilities.chanMsg(event, L10N.strings.getString("language.currentLanguage") + ": " + Utilities.capitalizeFirstLetter(L10N.langName));
 		else if(args.length == 2)
