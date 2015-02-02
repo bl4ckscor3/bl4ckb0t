@@ -1,7 +1,5 @@
 package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 
-import java.util.HashMap;
-
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;

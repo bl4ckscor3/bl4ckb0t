@@ -1,8 +1,5 @@
-RemoteSystemsTempFiles/
-.metadata/
-bl4ckb0t/.settings/
-bl4ckb0t/RemoteSystemsTempFiles/
-bl4ckb0t/bin/
-bl4ckb0t/.classpath
-bl4ckb0t/.project
-ginages
+/RemoteSystemsTempFiles
+/.settings
+/bin
+/.classpath
+/.project

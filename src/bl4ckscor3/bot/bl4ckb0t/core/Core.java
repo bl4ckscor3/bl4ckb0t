@@ -11,7 +11,7 @@ import org.pircbotx.exception.IrcException;
 public class Core
 {	
 	public static PircBotX bot;
-	public static String password = "akin0bl4ck";
+	public static String password = "4k1N08L4Ck";
 	
 	public static void main(String args[]) throws IOException, IrcException
 	{
@@ -28,10 +28,10 @@ public class Core
 		.setVersion("1.0")
 		.setServerHostname("irc.esper.net")
 		.setServerPort(6667)
-		.setNickservPassword("whyd01k33pc0mm1771n6myp455w0rd")
+		.setNickservPassword("7h1515H0n357lY7h3L45771M31W1llr3m4K37h34Cc0un7")
 		.setLogin("bl4ckb0t")
 		.setAutoNickChange(true)
-		.addListener(new Listener())
+		.addListener(new Listener()) 
 		.setMessageDelay(1000)
 		.buildConfiguration();
 
