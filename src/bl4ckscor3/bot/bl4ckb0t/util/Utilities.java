@@ -11,6 +11,7 @@ import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.commands.channel.ListChans;
 import bl4ckscor3.bot.bl4ckb0t.core.Core;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 
@@ -151,7 +152,9 @@ public class Utilities
 			//if the channel has the flag +s, it does not get shown
 			if(!o.toString().contains("secret=true"))
 				chans[i] = o.toString().split(",")[0].split("=")[1];
-
+			else
+				ListChans.secretChannelAmount++;
+			
 			i++;
 		}
 

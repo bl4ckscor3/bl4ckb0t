@@ -7,6 +7,8 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class ListChans implements ICommand<MessageEvent>
 {
+	public static int secretChannelAmount = 0;
+	
 	@Override
 	public void exe(MessageEvent event) throws Exception 
 	{
@@ -25,10 +27,17 @@ public class ListChans implements ICommand<MessageEvent>
 			
 			builder.deleteCharAt(builder.length() - 1);
 			builder.deleteCharAt(builder.length() - 1);
+			builder.deleteCharAt(builder.length() - 1);
+			
+			if(secretChannelAmount != 0)
+				builder.append(" + " + secretChannelAmount + " " + L10N.strings.getString("listchans.secret"));
+			
 			Utilities.chanMsg(event, L10N.strings.getString("listchans.list") + ": " + builder.toString());
 		}
 		else
 			Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
+		
+		secretChannelAmount = 0;
 	}
 	
 	@Override
