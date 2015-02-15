@@ -1,6 +1,5 @@
 package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 
-import java.util.Arrays;
 import java.util.Random;
 
 import org.pircbotx.hooks.events.MessageEvent;

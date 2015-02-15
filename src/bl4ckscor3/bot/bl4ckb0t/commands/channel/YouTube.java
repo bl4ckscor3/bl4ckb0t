@@ -3,11 +3,6 @@ package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
-import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;

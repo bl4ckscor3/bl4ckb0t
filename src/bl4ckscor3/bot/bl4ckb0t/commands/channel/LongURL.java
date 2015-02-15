@@ -1,10 +1,7 @@
 package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.URL;
 
 import org.pircbotx.hooks.events.MessageEvent;
