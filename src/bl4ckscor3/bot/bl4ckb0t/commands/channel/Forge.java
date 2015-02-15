@@ -3,7 +3,6 @@ package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.pircbotx.hooks.events.MessageEvent;
@@ -24,19 +23,19 @@ public class Forge implements ICommand<MessageEvent>
 			{
 				if(args[2].equalsIgnoreCase("version"))
 				{
-					String result = createResult("<td>Latest-1.8</td>", "Version");
+					String result = createResult("<td>1.8-Latest</td>", "Version");
 
-					if(result.equalsIgnoreCase(createResult("<td>Recommended-1.8</td>", "Version")))
+					if(result.equalsIgnoreCase(createResult("<td>1.8-Recommended</td>", "Version")))
 						Utilities.chanMsg(event, result + " " + L10N.strings.getString("forge.latest.recommended"));
 					else
 						Utilities.chanMsg(event, result);
 				}
 				else if(args[2].equalsIgnoreCase("changelog"))
-					Utilities.chanMsg(event, createResult("<td>Latest-1.8</td>", "Changelog"));
+					Utilities.chanMsg(event, createResult("<td>1.8-Latest</td>", "Changelog"));
 				else if(args[2].equalsIgnoreCase("dlmain"))
-					Utilities.chanMsg(event, createResult("<td>Latest-1.8</td>", "Installer"));
+					Utilities.chanMsg(event, createResult("<td>1.8-Latest</td>", "Installer"));
 				else if(args[2].equalsIgnoreCase("dlsrc"))
-					Utilities.chanMsg(event, createResult("<td>Latest-1.8</td>", "Src"));
+					Utilities.chanMsg(event, createResult("<td>1.8-Latest</td>", "Src"));
 				else
 					Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 			}
@@ -44,7 +43,7 @@ public class Forge implements ICommand<MessageEvent>
 			{
 				if(args[2].equalsIgnoreCase("version"))
 				{
-					String result = createResult("<td>Recommended-1.8</td>", "Version");
+					String result = createResult("<td>1.8-Recommended</td>", "Version");
 
 					if(result.equalsIgnoreCase(createResult("<td>Latest-1.8</td>", "Version")))
 						Utilities.chanMsg(event, result + " " + L10N.strings.getString("forge.recommended.latest"));
@@ -52,11 +51,11 @@ public class Forge implements ICommand<MessageEvent>
 						Utilities.chanMsg(event, result);
 				}
 				else if(args[2].equalsIgnoreCase("changelog"))
-					Utilities.chanMsg(event, createResult("<td>Recommended-1.8</td>", "Changelog"));
+					Utilities.chanMsg(event, createResult("<td>1.8-Recommended</td>", "Changelog"));
 				else if(args[2].equalsIgnoreCase("dlmain"))
-					Utilities.chanMsg(event, createResult("<td>Recommended-1.8</td>", "Installer"));
+					Utilities.chanMsg(event, createResult("<td>1.8-Recommended</td>", "Installer"));
 				else if(args[2].equalsIgnoreCase("dlsrc"))
-					Utilities.chanMsg(event, createResult("<td>Recommended-1.8</td>", "Src"));
+					Utilities.chanMsg(event, createResult("<td>1.8-Recommended</td>", "Src"));
 				else
 					Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 			}
@@ -69,7 +68,7 @@ public class Forge implements ICommand<MessageEvent>
 
 	private String createResult(String type, String action) throws IOException
 	{
-		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://files.minecraftforge.net/minecraftforge//1.8").openStream()));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://files.minecraftforge.net").openStream()));
 		String line;
 
 		if(action.equalsIgnoreCase("Version"))
