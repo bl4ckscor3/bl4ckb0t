@@ -27,7 +27,7 @@ public class SpellingCorrection
 
 			if(userToCorrect.equals(s.split("#")[0]))
 			{
-				String correctedMessage = getLatestMessage(userToCorrect, channelPosition).replaceAll(toReplace, replaceWith);
+				String correctedMessage = getLatestMessage(userToCorrect, channelPosition).replace(toReplace, replaceWith);
 
 				updateLatestMessage(channels[channelPosition], correctedMessage, userToCorrect);
 
