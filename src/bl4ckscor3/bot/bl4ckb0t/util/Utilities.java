@@ -201,7 +201,9 @@ public class Utilities
 		for(String s : channelsToJoin)
 		{
 			if(s.equals("#akino_germany"))
-				joinChannelWithPassword(s, Core.password);
+				joinChannelWithPassword(s, Passwords.akinoChan);
+			else if(s.equals("#whatever"))
+				joinChannelWithPassword(s, Passwords.wChan);
 			else
 				joinChannel(s);
 		}

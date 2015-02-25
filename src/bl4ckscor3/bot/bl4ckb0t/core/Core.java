@@ -13,7 +13,6 @@ import bl4ckscor3.bot.bl4ckb0t.util.Passwords;
 public class Core
 {	
 	public static PircBotX bot;
-	public static String password = Passwords.akinoChan;
 	
 	public static void main(String args[]) throws IOException, IrcException
 	{
