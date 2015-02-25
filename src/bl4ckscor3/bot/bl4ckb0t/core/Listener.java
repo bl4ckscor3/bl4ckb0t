@@ -12,6 +12,7 @@ import org.pircbotx.hooks.events.PrivateMessageEvent;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.*;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.*;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
+import bl4ckscor3.bot.bl4ckb0t.misc.ChannelMirroring;
 import bl4ckscor3.bot.bl4ckb0t.misc.LinkTitle;
 import bl4ckscor3.bot.bl4ckb0t.misc.SpellingCorrection;
 import bl4ckscor3.bot.bl4ckb0t.misc.YouTubeStats;
@@ -120,6 +121,12 @@ public class Listener extends ListenerAdapter
 				SpellingCorrection.updateLatestMessage(event.getChannel().getName(), event.getMessage(), event.getUser().getNick());
 			else
 				SpellingCorrection.corrected = false;
+			
+			if(!Utilities.isUserInChannel("bl4ckscor3", event.getChannel()) && !event.getChannel().getName().equals("#whatever"))
+			{
+				Core.bot.sendIRC().message("#whatever", "[" + event.getChannel().getName() + "] " + event.getUser().getNick() + ": " + event.getMessage());
+				return;
+			}
 			
 			//sending a welcome back message
 			if(message.toLowerCase().startsWith("re ") || message.toLowerCase().equals("re"))

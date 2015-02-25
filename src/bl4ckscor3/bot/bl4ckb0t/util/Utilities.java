@@ -8,6 +8,7 @@ import java.net.URL;
 
 import org.pircbotx.Channel;
 import org.pircbotx.Colors;
+import org.pircbotx.User;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
@@ -220,5 +221,15 @@ public class Utilities
 	public static String capitalizeFirstLetter(String s)
 	{
 		return s.substring(0, 1).toUpperCase(L10N.currentLocale) + s.substring(1);
+	}
+
+	public static boolean isUserInChannel(String name, Channel channel)
+	{
+		for(User u : channel.getUsers())
+		{
+			if(u.getNick().equalsIgnoreCase(name))
+				return true;
+		}
+		return false;
 	}
 }
