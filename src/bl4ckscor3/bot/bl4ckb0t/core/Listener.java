@@ -199,7 +199,7 @@ public class Listener extends ListenerAdapter
 			{
 				for(String user : Utilities.getValidUsers())
 				{
-					Core.bot.sendIRC().message(user, event.getUser().getNick() + " just sent me this message: " + event.getMessage());
+					Core.bot.sendIRC().message(user, event.getUser().getNick() + ": " + event.getMessage());
 				}
 			}
 		}
