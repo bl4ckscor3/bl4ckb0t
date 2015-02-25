@@ -59,7 +59,6 @@ public class SpellingCorrection
 			if(s.split("#")[0].equals(username))
 			{
 				messages[channelPosition][i] = username + "#" + msg;
-				System.out.println("stuff written into array position [" + channelPosition + "][" + i + "] (" + channels[channelPosition] + ") -- stuff: " + messages[channelPosition][i]);
 				return;
 			}
 
@@ -67,7 +66,6 @@ public class SpellingCorrection
 		}
 
 		messages[channelPosition][i] = username + "#" + msg;
-		System.out.println("stuff written into array position [" + channelPosition + "][" + i + "] (" + channels[channelPosition] + ") -- stuff: " + messages[channelPosition][i]);
 	}
 
 	/**
