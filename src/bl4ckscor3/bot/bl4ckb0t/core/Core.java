@@ -24,7 +24,8 @@ public class Core
 		//turning off logging (ugh)
 		Logger.getLogger("").setLevel(Level.OFF);
 
-		Configuration config = new Configuration.Builder()	
+		Configuration config = new Configuration.Builder()
+		.setVersion("3.5.3")
 		.setName("bl4ckb0t")
 		.setVersion("1.0")
 		.setServerHostname("irc.esper.net")
