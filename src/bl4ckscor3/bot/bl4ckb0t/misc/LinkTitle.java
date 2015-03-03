@@ -19,14 +19,25 @@ public class LinkTitle
 			if(s.contains("www.") || s.contains("http://") || s.contains("https://"))
 			{
 				WebDriver driver = new HtmlUnitDriver();
-				String title = null;
+				String title = "";
 
 				if(s.startsWith("www."))
 					s = "http://" + s;
 
 				driver.get(s);
 				title = driver.getTitle();
-				
+
+				if(s.startsWith("http://"))
+					s = s.substring(7);
+				else if(s.startsWith("https://"))
+					s = s.substring(8);
+
+				if(s.length() > 21)
+				{
+					s = s.substring(0, 21);
+					s += "...";
+				}
+
 				if(title == null || title == "null" || title == "")
 					Utilities.chanMsg(event,L10N.strings.getString("linkTitle.notFound") + " " + s);
 				else
