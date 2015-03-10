@@ -1,5 +1,13 @@
 package bl4ckscor3.bot.bl4ckb0t.misc;
 
+import java.util.List;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.pircbotx.Colors;
@@ -10,7 +18,7 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class LinkTitle
 {
-	public static void checkForLinkAndSendTitle(MessageEvent event)
+	public static void checkForLinkAndSendTitle(MessageEvent event) throws MalformedURLException, IOException
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 
@@ -18,6 +26,9 @@ public class LinkTitle
 		{
 			if(s.contains("www.") || s.contains("http://") || s.contains("https://"))
 			{
+				if(isWebsiteBlacklisted(s))
+					continue;
+				
 				WebDriver driver = new HtmlUnitDriver();
 				String title = "";
 
@@ -44,5 +55,25 @@ public class LinkTitle
 					Utilities.chanMsg(event, L10N.strings.getString("linkTitle.available") + " " + s + " - " + Colors.BOLD + title);
 			}
 		}
+	}
+	
+	private static boolean isWebsiteBlacklisted(String website) throws MalformedURLException, IOException
+	{
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/x95z98frbt1r2ne/blacklistedWebsites.txt?dl=1").openStream()));
+		List<String> blacklistedWebsites = new ArrayList<String>();
+		String line = "";
+		
+		while((line = reader.readLine()) != null)
+		{
+			blacklistedWebsites.add(line);
+		}
+		
+		for(String s : blacklistedWebsites)
+		{
+			if(website.contains(s))
+				return true;
+		}
+		
+		return false;
 	}
 }
