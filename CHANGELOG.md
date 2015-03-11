@@ -1,6 +1,10 @@
 ###############################
 #          Changelog          #
 ###############################
+3.5.7
+- Removed some debug output
+- Fixed duplicate sending of help messages
+
 3.5.6
 - Fixed and added -mcstatus (again)
 

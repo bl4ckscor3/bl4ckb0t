@@ -90,53 +90,45 @@ public class YouTubeStats
 			try
 			{
 				title = driver.findElement(By.xpath("//meta[@itemprop='name']")).getAttribute("content");
-				System.out.println("title = " + title);
 			}
 			catch(NoSuchElementException e){}
 
 			try
 			{
 				duration = resolveDuration(driver);
-				System.out.println("duration = " + duration);
 			}
 			catch(NoSuchElementException e){}
 
 			try
 			{
 				views = driver.findElement(By.xpath("//div[@class='watch-view-count']")).getText();
-				System.out.println("views = " + views);
 			}
 			catch(NoSuchElementException e)
 			{
 				views = driver.findElement(By.xpath("//span[@class='watch-view-count yt-uix-hovercard-target']")).getText().split("Views")[0];
-				System.out.println("views = " + views);
 			}
 
 			try
 			{
 				likes = driver.findElement(By.xpath("//button[@id='watch-like']/span[@class='yt-uix-button-content']")).getText();
-				System.out.println("likes = " + likes);
 			}
 			catch(NoSuchElementException e){}
 
 			try
 			{
 				dislikes = driver.findElement(By.xpath("//button[@id='watch-dislike']/span[@class='yt-uix-button-content']")).getText();
-				System.out.println("dislikes = " + dislikes);
 			}
 			catch(NoSuchElementException e){}
 
 			try
 			{
 				date = driver.findElement(By.xpath("//div[@id='watch-uploader-info']/strong")).getText().split("on")[1];
-				System.out.println("date = " + date);
 			}
 			catch(NoSuchElementException e){}
 
 			try
 			{
 				uploader = driver.findElement(By.xpath("//div[@class='yt-user-info']/a")).getText();
-				System.out.println("uploader = " + uploader);
 			}
 			catch(NoSuchElementException e){}
 
