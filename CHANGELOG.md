@@ -1,6 +1,8 @@
 ###############################
 #          Changelog          #
 ###############################
+3.5.6
+- Fixed and added -mcstatus (again)
 3.5.5
 - Specific links can get blacklisted to not be shown the title of
 - Removed #whatever as a password channel

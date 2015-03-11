@@ -26,6 +26,7 @@ import bl4ckscor3.bot.bl4ckb0t.commands.channel.Leave;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Leet;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.ListChans;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.LongURL;
+import bl4ckscor3.bot.bl4ckb0t.commands.channel.MCStatus;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.RandomLetter;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.RandomNumber;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Scramble;
@@ -76,6 +77,7 @@ public class Listener extends ListenerAdapter
 		commands.add(new Leet());
 		commands.add(new ListChans());
 		commands.add(new LongURL());
+		commands.add(new MCStatus());
 		commands.add(new RandomLetter());
 		commands.add(new RandomNumber());
 		commands.add(new Scramble());
