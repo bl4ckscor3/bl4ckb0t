@@ -19,6 +19,7 @@ import bl4ckscor3.bot.bl4ckb0t.commands.channel.Enable;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Forge;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Help;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.ICommand;
+import bl4ckscor3.bot.bl4ckb0t.commands.channel.IsItDown;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Join;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Kick;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Language;
@@ -69,6 +70,7 @@ public class Listener extends ListenerAdapter<Bot>
 		commands.add(new Enable());
 		commands.add(new ETS2MPUpdate());
 		commands.add(new Help());
+		commands.add(new IsItDown());
 		commands.add(new Join());
 		commands.add(new Kick());
 		commands.add(new Forge());
