@@ -2,6 +2,7 @@ package bl4ckscor3.bot.bl4ckb0t.misc;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
@@ -14,7 +15,7 @@ public class SpellingCorrection
 	//needed to check if the message should be added to the array or not (used in Listener.java)
 	public static boolean corrected = false;
 
-	public static void correctSpelling(MessageEvent event, String[] split, boolean correctsDifferentUser, String userToCorrect)
+	public static void correctSpelling(MessageEvent<Bot> event, String[] split, boolean correctsDifferentUser, String userToCorrect)
 	{
 		String toReplace = split[1];
 		String replaceWith = split[2];
@@ -89,7 +90,7 @@ public class SpellingCorrection
 	 * @param event - The triggered MessageEvent
 	 * @param message - The message sent to the channel which triggered the event
 	 */
-	public static void checkForSpellingCorrection(MessageEvent event, String message)
+	public static void checkForSpellingCorrection(MessageEvent<Bot> event, String message)
 	{
 		//checking if someone corrects someone else
 		if(message.split(" ")[0].endsWith(":") || message.split(" ")[0].endsWith(","))

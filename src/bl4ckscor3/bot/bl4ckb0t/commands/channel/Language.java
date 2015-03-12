@@ -2,10 +2,11 @@ package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Language implements ICommand<MessageEvent>
+public class Language implements ICommand<MessageEvent<Bot>>
 {
 	String[] availableLanguages =
 		{
@@ -14,7 +15,7 @@ public class Language implements ICommand<MessageEvent>
 		};
 	
 	@Override
-	public void exe(MessageEvent event) throws Exception
+	public void exe(MessageEvent<Bot> event) throws Exception
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 

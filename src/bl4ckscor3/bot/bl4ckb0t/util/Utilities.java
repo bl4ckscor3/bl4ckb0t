@@ -13,6 +13,7 @@ import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.ListChans;
+import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.core.Core;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 
@@ -24,12 +25,12 @@ public class Utilities
 	 * FROM HERE ONLY MSG EVENT
 	 */
 
-	public static void chanMsg(MessageEvent event, String msg)
+	public static void chanMsg(MessageEvent<Bot> event, String msg)
 	{
 		event.getChannel().send().message(msg);
 	}
 
-	public static void notice(MessageEvent event, String msg)
+	public static void notice(MessageEvent<Bot> event, String msg)
 	{
 		event.getUser().send().notice(msg);
 	}
@@ -39,7 +40,7 @@ public class Utilities
 		Core.bot.sendIRC().message(name, msg);
 	}
 
-	public static void respond(MessageEvent event, String msg, boolean comma)
+	public static void respond(MessageEvent<Bot> event, String msg, boolean comma)
 	{
 		if(comma)
 			chanMsg(event, event.getUser().getNick() + ", " + msg);
@@ -47,17 +48,17 @@ public class Utilities
 			chanMsg(event, event.getUser().getNick() + ": " + msg);
 	}
 
-	public static void sorry(MessageEvent event)
+	public static void sorry(MessageEvent<Bot> event)
 	{
 		chanMsg(event, L10N.strings.getString("noPermission"));
 	}
 
-	public static void addHelpLine(MessageEvent event, String msg)
+	public static void addHelpLine(MessageEvent<Bot> event, String msg)
 	{
 		pm(event.getUser().getNick(), Colors.BOLD + Colors.RED + msg);
 	}
 
-	public static boolean isValidUser(MessageEvent event) throws MalformedURLException, IOException
+	public static boolean isValidUser(MessageEvent<Bot> event) throws MalformedURLException, IOException
 	{
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/dyvu276rdwmbt9z/validUsers.txt?dl=1").openStream()));
 
@@ -78,7 +79,7 @@ public class Utilities
 	 * FROM HERE ONLY PRIVATE MSG EVENT
 	 */
 
-	public static boolean isValidUser(PrivateMessageEvent event) throws MalformedURLException, IOException
+	public static boolean isValidUser(PrivateMessageEvent<Bot> event) throws MalformedURLException, IOException
 	{	
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/dyvu276rdwmbt9z/validUsers.txt?dl=1").openStream()));
 

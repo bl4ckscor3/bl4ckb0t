@@ -1,6 +1,9 @@
 ###############################
 #          Changelog          #
 ###############################
+3.5.8
+- Internal changes
+
 3.5.7
 - Removed some debug output
 - Fixed duplicate sending of help messages

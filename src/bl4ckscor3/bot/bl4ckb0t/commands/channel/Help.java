@@ -5,15 +5,16 @@ import java.util.LinkedList;
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.core.Listener;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Help implements ICommand<MessageEvent>
+public class Help implements ICommand<MessageEvent<Bot>>
 {
 	private static String[] aliases;
 
-	public static void setupHelpMenu(LinkedList<ICommand> cmd)
+	public static void setupHelpMenu(LinkedList<ICommand<MessageEvent<Bot>>> cmd)
 	{
 		aliases = new String[cmd.size()];
 
@@ -24,7 +25,7 @@ public class Help implements ICommand<MessageEvent>
 	}
 
 	@Override
-	public void exe(MessageEvent event) throws InterruptedException
+	public void exe(MessageEvent<Bot> event) throws InterruptedException
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 		String nick = event.getUser().getNick();
@@ -55,7 +56,7 @@ public class Help implements ICommand<MessageEvent>
 		}
 		else if(args.length == 2)
 		{
-			for(ICommand cmd : Listener.commands)
+			for(ICommand<MessageEvent<Bot>> cmd : Listener.commands)
 			{
 				if(cmd.getAlias().equals(args[1]) || ("-" + cmd.getAlias()).equals(args[1]))
 				{

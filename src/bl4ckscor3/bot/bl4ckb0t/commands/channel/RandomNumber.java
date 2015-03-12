@@ -4,13 +4,14 @@ import java.util.Random;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class RandomNumber implements ICommand<MessageEvent>
+public class RandomNumber implements ICommand<MessageEvent<Bot>>
 {
 	@Override
-	public void exe(MessageEvent event)
+	public void exe(MessageEvent<Bot> event)
 	{
 		StringBuilder output = new StringBuilder();
 		String[] args = event.getMessage().split(" ");

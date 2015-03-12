@@ -7,15 +7,16 @@ import java.net.URL;
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Weather implements ICommand<MessageEvent>
+public class Weather implements ICommand<MessageEvent<Bot>>
 {
 	private boolean error = false;
 
 	@Override
-	public void exe(MessageEvent event) throws Exception 
+	public void exe(MessageEvent<Bot> event) throws Exception 
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 		String[] data = new String[19];//1 = name | 3 = country | 6 = temperature | 7 = humidity | 8 = pressure | 10 = wind speed | 11 = wind direction | 13 = clouds

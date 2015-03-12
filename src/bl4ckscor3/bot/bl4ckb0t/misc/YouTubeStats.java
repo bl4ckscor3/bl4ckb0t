@@ -10,12 +10,13 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class YouTubeStats
 {
-	public static void sendVideoStats(MessageEvent event) throws MalformedURLException, IOException
+	public static void sendVideoStats(MessageEvent<Bot> event) throws MalformedURLException, IOException
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 		String[] links = new String[10];

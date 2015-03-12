@@ -51,13 +51,13 @@ import bl4ckscor3.bot.bl4ckb0t.misc.SpellingCorrection;
 import bl4ckscor3.bot.bl4ckb0t.misc.YouTubeStats;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Listener extends ListenerAdapter 
+public class Listener extends ListenerAdapter<Bot>
 {
 	private final String p = "-";
 	public static boolean enabled = true;
 	public boolean isCounting = false;
-	public static final LinkedList<ICommand> commands = new LinkedList<ICommand>();
-	public static final LinkedList<IPrivateCommand> privCommands = new LinkedList<IPrivateCommand>();
+	public static final LinkedList<ICommand<MessageEvent<Bot>>> commands = new LinkedList<ICommand<MessageEvent<Bot>>>();
+	public static final LinkedList<IPrivateCommand<PrivateMessageEvent<Bot>>> privCommands = new LinkedList<IPrivateCommand<PrivateMessageEvent<Bot>>>();
 	
 	public Listener()
 	{
@@ -99,7 +99,7 @@ public class Listener extends ListenerAdapter
 	}
 
 	@Override
-	public void onMessage(MessageEvent event) throws Exception
+	public void onMessage(MessageEvent<Bot> event) throws Exception
 	{
 		String cmdName = Utilities.toArgs(event.getMessage())[0];
 
@@ -111,7 +111,7 @@ public class Listener extends ListenerAdapter
 
 		if(enabled)
 		{
-			for(ICommand cmd : commands)
+			for(ICommand<MessageEvent<Bot>> cmd : commands)
 			{
 				if(cmdName.equalsIgnoreCase(p + cmd.getAlias()))
 				{
@@ -122,7 +122,7 @@ public class Listener extends ListenerAdapter
 		}
 		else
 		{
-			for(ICommand cmd : commands)
+			for(ICommand<MessageEvent<Bot>> cmd : commands)
 			{
 				if((cmd instanceof Enable || cmd instanceof Disable) && event.getMessage().equalsIgnoreCase(p + cmd.getAlias()))
 				{
@@ -133,7 +133,7 @@ public class Listener extends ListenerAdapter
 		}
 	}	
 
-	public void misc(MessageEvent event) throws Exception
+	public void misc(MessageEvent<Bot> event) throws Exception
 	{
 		String message = event.getMessage();
 		
@@ -182,13 +182,13 @@ public class Listener extends ListenerAdapter
 	}
 
 	@Override
-	public void onPrivateMessage(PrivateMessageEvent event) throws MalformedURLException, IOException
+	public void onPrivateMessage(PrivateMessageEvent<Bot> event) throws MalformedURLException, IOException
 	{
 		if(enabled)
 		{
 			if(Utilities.isValidUser(event))
 			{
-				for(IPrivateCommand cmd : privCommands)
+				for(IPrivateCommand<PrivateMessageEvent<Bot>> cmd : privCommands)
 				{
 					if(event.getMessage().startsWith(cmd.getAlias()))
 					{
@@ -208,7 +208,7 @@ public class Listener extends ListenerAdapter
 	}
 
 	@Override
-	public void onConnect(ConnectEvent event) throws Exception
+	public void onConnect(ConnectEvent<Bot> event) throws Exception
 	{
 		Utilities.joinDefaults();
 	}

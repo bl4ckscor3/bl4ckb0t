@@ -2,10 +2,11 @@ package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Draw implements ICommand<MessageEvent>
+public class Draw implements ICommand<MessageEvent<Bot>>
 {
 	private String[] drawings =
 		{
@@ -24,7 +25,7 @@ public class Draw implements ICommand<MessageEvent>
 		};
 
 	@Override
-	public void exe(MessageEvent event)
+	public void exe(MessageEvent<Bot> event)
 	{
 		String[] toArgs = Utilities.toArgs(event.getMessage());
 
@@ -107,7 +108,7 @@ public class Draw implements ICommand<MessageEvent>
 		return null;
 	}
 
-	private void smiley(MessageEvent event)
+	private void smiley(MessageEvent<Bot> event)
 	{
 		Utilities.pm(event.getUser().getNick(), "1,1          1,1          1,1          ");
 		Utilities.pm(event.getUser().getNick(), "1,1      1,1    8,8          1,1    1,1      ");
@@ -126,7 +127,7 @@ public class Draw implements ICommand<MessageEvent>
 		Utilities.pm(event.getUser().getNick(), "1,1          1,1          1,1          ");
 	}
 
-	private void mario(MessageEvent event)
+	private void mario(MessageEvent<Bot> event)
 	{
 		Utilities.pm(event.getUser().getNick(), "1,1                ");
 		Utilities.pm(event.getUser().getNick(), "1,1     4,4     1,1      ");
@@ -148,7 +149,7 @@ public class Draw implements ICommand<MessageEvent>
 		Utilities.pm(event.getUser().getNick(), "1,1                ");
 	}
 
-	private void batman(MessageEvent event)
+	private void batman(MessageEvent<Bot> event)
 	{
 		Utilities.pm(event.getUser().getNick(), "0,0                                          ");
 		Utilities.pm(event.getUser().getNick(), "0,0              1,1              0,0              ");
@@ -171,7 +172,7 @@ public class Draw implements ICommand<MessageEvent>
 		Utilities.pm(event.getUser().getNick(), "0,0                                          ");
 	}
 
-	private void bullshit(MessageEvent event)
+	private void bullshit(MessageEvent<Bot> event)
 	{
 		Utilities.pm(event.getUser().getNick(), "0,0                                                  ");
 		Utilities.pm(event.getUser().getNick(), "0,0  14,14  0,0              14,14  0,0                              ");
@@ -194,7 +195,7 @@ public class Draw implements ICommand<MessageEvent>
 		Utilities.pm(event.getUser().getNick(), "0,0                                                  ");
 	}
 
-	private void bunny(MessageEvent event)
+	private void bunny(MessageEvent<Bot> event)
 	{
 		Utilities.pm(event.getUser().getNick(), "0,0                                              ");
 		Utilities.pm(event.getUser().getNick(), "0,0      0,1      0,0                    0,1      0,0        ");
@@ -219,7 +220,7 @@ public class Draw implements ICommand<MessageEvent>
 		Utilities.pm(event.getUser().getNick(), "0,3                                              ");
 	}
 
-	private void cat(MessageEvent event)
+	private void cat(MessageEvent<Bot> event)
 	{
 		Utilities.pm(event.getUser().getNick(), "0,0                                          ");
 		Utilities.pm(event.getUser().getNick(), "0,0      0,1    0,0                      0,1    0,0      ");
@@ -241,7 +242,7 @@ public class Draw implements ICommand<MessageEvent>
 		Utilities.pm(event.getUser().getNick(), "0,0                                          ");
 	}
 
-	private void chick(MessageEvent event)
+	private void chick(MessageEvent<Bot> event)
 	{
 		Utilities.pm(event.getUser().getNick(), "0,0                                                  ");
 		Utilities.pm(event.getUser().getNick(), "0,0                0,1                  0,0                ");
@@ -268,7 +269,7 @@ public class Draw implements ICommand<MessageEvent>
 
 	}
 
-	private void fly(MessageEvent event)
+	private void fly(MessageEvent<Bot> event)
 	{
 		Utilities.pm(event.getUser().getNick(), "0,0                                                            ");
 		Utilities.pm(event.getUser().getNick(), "0,0    0,14      0,0                                      0,14        0,0    ");
@@ -293,7 +294,7 @@ public class Draw implements ICommand<MessageEvent>
 
 	}
 
-	private void invaders(MessageEvent event)
+	private void invaders(MessageEvent<Bot> event)
 	{
 		Utilities.pm(event.getUser().getNick(), "0,0                                                                                            ");
 		Utilities.pm(event.getUser().getNick(), "0,0                                          0,1            0,0                                      ");
@@ -312,7 +313,7 @@ public class Draw implements ICommand<MessageEvent>
 		Utilities.pm(event.getUser().getNick(), "0,0                                                                                            ");
 	}
 
-	private void megaman(MessageEvent event)
+	private void megaman(MessageEvent<Bot> event)
 	{
 		Utilities.pm(event.getUser().getNick(), "0,0                                              ");
 		Utilities.pm(event.getUser().getNick(), "0,0                      0,1      0,0                  ");
@@ -342,7 +343,7 @@ public class Draw implements ICommand<MessageEvent>
 		Utilities.pm(event.getUser().getNick(), "0,0                                              ");
 	}
 
-	private void phone(MessageEvent event)
+	private void phone(MessageEvent<Bot> event)
 	{
 		Utilities.pm(event.getUser().getNick(), "0,0                            ");
 		Utilities.pm(event.getUser().getNick(), "0,0                0,1      0,0      ");
@@ -373,7 +374,7 @@ public class Draw implements ICommand<MessageEvent>
 		Utilities.pm(event.getUser().getNick(), "0,0                            ");
 	}
 
-	private void superman(MessageEvent event)
+	private void superman(MessageEvent<Bot> event)
 	{
 
 		Utilities.pm(event.getUser().getNick(), "0,0                                                  ");
@@ -397,7 +398,7 @@ public class Draw implements ICommand<MessageEvent>
 		Utilities.pm(event.getUser().getNick(), "0,0                                                  ");
 	}
 
-	private void stormtrooper(MessageEvent event)
+	private void stormtrooper(MessageEvent<Bot> event)
 	{
 		Utilities.pm(event.getUser().getNick(), "0,14                                  ");
 		Utilities.pm(event.getUser().getNick(), "0,14          0,1              0,14          ");
@@ -419,7 +420,7 @@ public class Draw implements ICommand<MessageEvent>
 		Utilities.pm(event.getUser().getNick(), "0,14                                  ");
 	}
 
-	private void sendAvailableDrawings(MessageEvent event)
+	private void sendAvailableDrawings(MessageEvent<Bot> event)
 	{
 		StringBuilder output = new StringBuilder();
 

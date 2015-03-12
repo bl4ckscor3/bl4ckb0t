@@ -2,15 +2,16 @@ package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class ListChans implements ICommand<MessageEvent>
+public class ListChans implements ICommand<MessageEvent<Bot>>
 {
 	public static int secretChannelAmount = 0;
 	
 	@Override
-	public void exe(MessageEvent event) throws Exception 
+	public void exe(MessageEvent<Bot> event) throws Exception 
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 		String[] chans = Utilities.getJoinedChannels();

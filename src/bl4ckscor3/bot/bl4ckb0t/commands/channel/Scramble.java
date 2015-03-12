@@ -4,10 +4,11 @@ import java.util.Random;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Scramble implements ICommand<MessageEvent>
+public class Scramble implements ICommand<MessageEvent<Bot>>
 {
 	private Random r = new Random();
 	private String[][] actions = 
@@ -21,7 +22,7 @@ public class Scramble implements ICommand<MessageEvent>
 		};
 
 	@Override
-	public void exe(MessageEvent event)
+	public void exe(MessageEvent<Bot> event)
 	{
 		if(Utilities.toArgs(event.getMessage()).length != 1)
 			Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());

@@ -2,13 +2,14 @@ package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Calculate implements ICommand<MessageEvent>
+public class Calculate implements ICommand<MessageEvent<Bot>>
 {
 	@Override
-	public void exe(MessageEvent event)
+	public void exe(MessageEvent<Bot> event)
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 
@@ -45,7 +46,7 @@ public class Calculate implements ICommand<MessageEvent>
 			Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
 	}
 
-	private void add(float[] numbers, MessageEvent event)
+	private void add(float[] numbers, MessageEvent<Bot> event)
 	{
 		float solution = numbers[0];
 
@@ -57,7 +58,7 @@ public class Calculate implements ICommand<MessageEvent>
 		checkForIntAndSend(solution, event);
 	}
 
-	private void subtract(float[] numbers, MessageEvent event)
+	private void subtract(float[] numbers, MessageEvent<Bot> event)
 	{
 		float solution = numbers[0];
 
@@ -69,7 +70,7 @@ public class Calculate implements ICommand<MessageEvent>
 		checkForIntAndSend(solution, event);
 	}
 
-	private void multiply(float[] numbers, MessageEvent event)
+	private void multiply(float[] numbers, MessageEvent<Bot> event)
 	{
 		float solution = 1;
 
@@ -81,14 +82,14 @@ public class Calculate implements ICommand<MessageEvent>
 		checkForIntAndSend(solution, event);
 	}
 
-	private void pow(float[] numbers, MessageEvent event)
+	private void pow(float[] numbers, MessageEvent<Bot> event)
 	{
 		double solution = Math.pow(numbers[0], numbers[1]);
 
 		checkForIntAndSend((float)solution, event);
 	}
 
-	private void modulo(float[] numbers, MessageEvent event) 
+	private void modulo(float[] numbers, MessageEvent<Bot> event) 
 	{
 		float solution = numbers[0];
 
@@ -100,7 +101,7 @@ public class Calculate implements ICommand<MessageEvent>
 		checkForIntAndSend(solution, event);
 	}
 
-	private int fact(MessageEvent event, int i)
+	private int fact(MessageEvent<Bot> event, int i)
 	{
 		if(i == 1)
 			return 1;
@@ -108,7 +109,7 @@ public class Calculate implements ICommand<MessageEvent>
 			return i * fact(event, i - 1);
 	}
 
-	private void checkForIntAndSend(float solution, MessageEvent event)
+	private void checkForIntAndSend(float solution, MessageEvent<Bot> event)
 	{
 		if(Float.toString(solution).endsWith(".0"))
 			Utilities.chanMsg(event, L10N.strings.getString("calc.solution") + ": " + (int)solution);

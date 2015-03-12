@@ -2,7 +2,9 @@ package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 
 import org.pircbotx.hooks.Event;
 
-public interface ICommand<E extends Event>
+import bl4ckscor3.bot.bl4ckb0t.core.Bot;
+
+public interface ICommand<E extends Event<Bot>>
 {
 	public void exe(E event) throws Exception;
 

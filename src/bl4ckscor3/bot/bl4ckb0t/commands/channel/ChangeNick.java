@@ -5,14 +5,15 @@ import java.net.MalformedURLException;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.core.Core;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class ChangeNick implements ICommand<MessageEvent>
+public class ChangeNick implements ICommand<MessageEvent<Bot>>
 {
 	@Override
-	public void exe(MessageEvent event) throws MalformedURLException, IOException
+	public void exe(MessageEvent<Bot> event) throws MalformedURLException, IOException
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 
@@ -21,9 +22,9 @@ public class ChangeNick implements ICommand<MessageEvent>
 			if(Utilities.isValidUser(event))
 			{
 				if(!args[1].equalsIgnoreCase("d"))
-					Core.bot.sendIRC().changeNick(args[1]);
+					Core.bot.setNick(args[1]);
 				else
-					Core.bot.sendIRC().changeNick("bl4ckb0t");
+					Core.bot.setNick("bl4ckb0t");
 			}
 			else
 				Utilities.sorry(event);

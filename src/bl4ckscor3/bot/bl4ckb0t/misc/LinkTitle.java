@@ -1,24 +1,25 @@
 package bl4ckscor3.bot.bl4ckb0t.misc;
 
-import java.util.List;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class LinkTitle
 {
-	public static void checkForLinkAndSendTitle(MessageEvent event) throws MalformedURLException, IOException
+	public static void checkForLinkAndSendTitle(MessageEvent<Bot> event) throws MalformedURLException, IOException
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 
