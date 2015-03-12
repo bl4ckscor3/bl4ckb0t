@@ -24,7 +24,7 @@ public class Core
 		Logger.getLogger("").setLevel(Level.OFF);
 
 		Configuration<Bot> config = new Configuration.Builder<Bot>()
-		.setVersion("3.6.1")
+		.setVersion("3.6.2")
 		.setName("bl4ckb0t")
 		.setVersion("1.0")
 		.setServerHostname("irc.esper.net")

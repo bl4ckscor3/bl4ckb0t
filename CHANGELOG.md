@@ -1,6 +1,9 @@
 ###############################
 #          Changelog          #
 ###############################
+3.6.2
+- bl4ckb0t doesn't send a message if the corrected message is the same as before
+
 3.6.1
 - Fixed -isitdown help
 

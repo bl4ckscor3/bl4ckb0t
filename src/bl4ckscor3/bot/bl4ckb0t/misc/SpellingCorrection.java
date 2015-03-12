@@ -28,8 +28,12 @@ public class SpellingCorrection
 
 			if(userToCorrect.equals(s.split("#")[0]))
 			{
+				String previousMessage = getLatestMessage(userToCorrect, channelPosition);
 				String correctedMessage = getLatestMessage(userToCorrect, channelPosition).replace(toReplace, replaceWith);
 
+				if(previousMessage.equals(correctedMessage))
+					return;
+				
 				updateLatestMessage(channels[channelPosition], correctedMessage, userToCorrect);
 
 				if(correctsDifferentUser)
