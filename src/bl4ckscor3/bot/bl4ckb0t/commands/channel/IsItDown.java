@@ -66,7 +66,7 @@ public class IsItDown implements ICommand<MessageEvent<Bot>>
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-listchans || " + L10N.strings.getString("isitdown.explanation")};
+		return new String[]{"-isitdown || " + L10N.strings.getString("isitdown.explanation")};
 	}
 
 	@Override
