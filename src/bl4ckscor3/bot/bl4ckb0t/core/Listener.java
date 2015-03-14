@@ -36,6 +36,7 @@ import bl4ckscor3.bot.bl4ckb0t.commands.channel.Source;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Stop;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Twitch;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Twitter;
+import bl4ckscor3.bot.bl4ckb0t.commands.channel.Version;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Vowels;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Weather;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.XColor;
@@ -89,6 +90,7 @@ public class Listener extends ListenerAdapter<Bot>
 		commands.add(new Stop());
 		commands.add(new Twitch());
 		commands.add(new Twitter());
+		commands.add(new Version());
 		commands.add(new Vowels());
 		commands.add(new Weather());
 		commands.add(new XColor());

@@ -1,6 +1,9 @@
 ###############################
 #          Changelog          #
 ###############################
+3.7
+- Added -version
+
 3.6.3
 - Fixes regarding Localization
 - Revamped way of telling the user that he has done something incorrectly internally
