@@ -7,13 +7,14 @@ import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.core.Core;
+import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Stop implements ICommand<MessageEvent<Bot>>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event) throws IOException, IrcException
+	public void exe(MessageEvent<Bot> event) throws IOException, IrcException, IncorrectCommandExecutionException
 	{
 		if(Utilities.isValidUser(event))
 		{
@@ -33,11 +34,11 @@ public class Stop implements ICommand<MessageEvent<Bot>>
 						Core.bot.sendRaw().rawLine("QUIT :" + L10N.strings.getString("stop.reason"));
 						break;
 					default:
-						Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
+						throw new IncorrectCommandExecutionException(getAlias());
 				}
 			}
 			else
-				Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
+				throw new IncorrectCommandExecutionException(getAlias());
 		}
 		else
 			Utilities.sorry(event);

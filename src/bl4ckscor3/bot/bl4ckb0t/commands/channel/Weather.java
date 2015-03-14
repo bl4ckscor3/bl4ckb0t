@@ -1,6 +1,7 @@
 package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 
@@ -8,6 +9,7 @@ import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
+import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
@@ -16,7 +18,7 @@ public class Weather implements ICommand<MessageEvent<Bot>>
 	private boolean error = false;
 
 	@Override
-	public void exe(MessageEvent<Bot> event) throws Exception 
+	public void exe(MessageEvent<Bot> event) throws IOException, IncorrectCommandExecutionException
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 		String[] data = new String[19];//1 = name | 3 = country | 6 = temperature | 7 = humidity | 8 = pressure | 10 = wind speed | 11 = wind direction | 13 = clouds
@@ -54,7 +56,7 @@ public class Weather implements ICommand<MessageEvent<Bot>>
 			}
 		}
 		else
-			Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
+			throw new IncorrectCommandExecutionException(getAlias());
 	}
 
 	private void filter(String[] data)

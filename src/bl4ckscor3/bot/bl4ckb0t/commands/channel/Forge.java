@@ -8,13 +8,14 @@ import java.net.URL;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
+import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Forge implements ICommand<MessageEvent<Bot>>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event) throws IOException
+	public void exe(MessageEvent<Bot> event) throws IOException, IncorrectCommandExecutionException
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 
@@ -38,7 +39,7 @@ public class Forge implements ICommand<MessageEvent<Bot>>
 				else if(args[2].equalsIgnoreCase("dlsrc"))
 					Utilities.chanMsg(event, createResult("<td>1.8-Latest</td>", "Src"));
 				else
-					Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
+					throw new IncorrectCommandExecutionException(getAlias());
 			}
 			else if(args[1].equalsIgnoreCase("rec") || args[1].equalsIgnoreCase("recommended"))
 			{
@@ -58,13 +59,13 @@ public class Forge implements ICommand<MessageEvent<Bot>>
 				else if(args[2].equalsIgnoreCase("dlsrc"))
 					Utilities.chanMsg(event, createResult("<td>1.8-Recommended</td>", "Src"));
 				else
-					Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
+					throw new IncorrectCommandExecutionException(getAlias());
 			}
 			else
-				Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
+				throw new IncorrectCommandExecutionException(getAlias());
 		}
 		else
-			Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
+			throw new IncorrectCommandExecutionException(getAlias());
 	}
 
 	private String createResult(String type, String action) throws IOException

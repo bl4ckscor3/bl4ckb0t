@@ -1,6 +1,10 @@
 ###############################
 #          Changelog          #
 ###############################
+3.6.3
+- Fixes regarding Localization
+- Revamped way of telling the user that he has done something incorrectly internally
+
 3.6.2
 - bl4ckb0t doesn't send a message if the corrected message is the same as before
 
@@ -133,7 +137,7 @@
 - Fixed "welcome back" message
 
 2.23
-- Revamped way of telling the user htat he has done something incorrectly
+- Revamped way of telling the user that he has done something incorrectly
 
 2.22.4
 - Maximum algorythm length set to 20 (REF: God's number)

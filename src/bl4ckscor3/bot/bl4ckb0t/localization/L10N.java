@@ -27,9 +27,9 @@ public class L10N
 		update();
 		
 		if(chanLangs.containsKey(channel))
-			chanLangs.replace(channel, chanLangs.get(channel), langName);
+			chanLangs.put(channel, langName);
 		else
-			chanLangs.put(langName, channel);
+			chanLangs.put(channel, langName);
 	}
 
 	/**

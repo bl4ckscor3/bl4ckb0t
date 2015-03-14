@@ -7,6 +7,7 @@ import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.core.Listener;
+import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
@@ -25,7 +26,7 @@ public class Help implements ICommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public void exe(MessageEvent<Bot> event) throws InterruptedException
+	public void exe(MessageEvent<Bot> event) throws InterruptedException, IncorrectCommandExecutionException
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 		String nick = event.getUser().getNick();
@@ -66,7 +67,7 @@ public class Help implements ICommand<MessageEvent<Bot>>
 			}
 		}
 		else
-			Utilities.sendHelp(nick, getSyntax(), getUsage(), getNotes());;
+			throw new IncorrectCommandExecutionException(getAlias());
 	}
 
 	@Override

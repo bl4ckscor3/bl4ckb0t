@@ -3,33 +3,39 @@ package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
+import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Vowels implements ICommand<MessageEvent<Bot>>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event)
+	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException
 	{
-		char[] chars = event.getMessage().substring(8).toLowerCase().toCharArray();
-		StringBuilder builder = new StringBuilder();
-		
-		for(int i = 0; i < chars.length; i++)
+		if(Utilities.toArgs(event.getMessage()).length >= 2)
 		{
-			switch(chars[i])
+			char[] chars = event.getMessage().substring(8).toLowerCase().toCharArray();
+			StringBuilder builder = new StringBuilder();
+
+			for(int i = 0; i < chars.length; i++)
 			{
-				case 'a': builder.append(""); break;
-				case 'e': builder.append(""); break;
-				case 'i': builder.append(""); break;
-				case 'o': builder.append(""); break;
-				case 'u': builder.append(""); break;
-				default: builder.append(chars[i]);
+				switch(chars[i])
+				{
+					case 'a': builder.append(""); break;
+					case 'e': builder.append(""); break;
+					case 'i': builder.append(""); break;
+					case 'o': builder.append(""); break;
+					case 'u': builder.append(""); break;
+					default: builder.append(chars[i]);
+				}
 			}
+
+			Utilities.respond(event, builder.toString(), false);
 		}
-		
-		Utilities.respond(event, builder.toString(), false);
+		else
+			throw new IncorrectCommandExecutionException(getAlias());
 	}
-	
+
 	@Override
 	public String getAlias()
 	{

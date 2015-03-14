@@ -46,6 +46,7 @@ import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.IPrivateCommand;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.PrivateJoin;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.PrivateLeave;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.UserMsg;
+import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.misc.LinkTitle;
 import bl4ckscor3.bot.bl4ckb0t.misc.SpellingCorrection;
@@ -59,7 +60,7 @@ public class Listener extends ListenerAdapter<Bot>
 	public boolean isCounting = false;
 	public static final LinkedList<ICommand<MessageEvent<Bot>>> commands = new LinkedList<ICommand<MessageEvent<Bot>>>();
 	public static final LinkedList<IPrivateCommand<PrivateMessageEvent<Bot>>> privCommands = new LinkedList<IPrivateCommand<PrivateMessageEvent<Bot>>>();
-	
+
 	public Listener()
 	{
 		commands.add(new Calculate());
@@ -117,8 +118,15 @@ public class Listener extends ListenerAdapter<Bot>
 			{
 				if(cmdName.equalsIgnoreCase(p + cmd.getAlias()))
 				{
-					cmd.exe(event);
-					return;
+					try
+					{
+						cmd.exe(event);
+						return;
+					}
+					catch(IncorrectCommandExecutionException e)
+					{
+						Utilities.sendHelp(event.getUser().getNick(), cmd.getSyntax(), cmd.getUsage(), cmd.getNotes());
+					}
 				}
 			}
 		}
@@ -128,8 +136,15 @@ public class Listener extends ListenerAdapter<Bot>
 			{
 				if((cmd instanceof Enable || cmd instanceof Disable) && event.getMessage().equalsIgnoreCase(p + cmd.getAlias()))
 				{
-					cmd.exe(event);
-					return;
+					try
+					{
+						cmd.exe(event);
+						return;
+					}
+					catch(IncorrectCommandExecutionException e)
+					{
+						Utilities.sendHelp(event.getUser().getNick(), cmd.getSyntax(), cmd.getUsage(), cmd.getNotes());
+					}
 				}
 			}
 		}
@@ -138,7 +153,7 @@ public class Listener extends ListenerAdapter<Bot>
 	public void misc(MessageEvent<Bot> event) throws Exception
 	{
 		String message = event.getMessage();
-		
+
 		if(message.startsWith(p))
 			return;
 
@@ -151,19 +166,19 @@ public class Listener extends ListenerAdapter<Bot>
 		if(enabled)
 		{
 			SpellingCorrection.checkForSpellingCorrection(event, message);
-			
+
 			//making sure the above messages dont get added as a latest message
 			if(!SpellingCorrection.corrected)
 				SpellingCorrection.updateLatestMessage(event.getChannel().getName(), event.getMessage(), event.getUser().getNick());
 			else
 				SpellingCorrection.corrected = false;
-			
+
 			if(!Utilities.isUserInChannel("bl4ckscor3", event.getChannel()) && !event.getChannel().getName().equals("#whatever"))
 			{
 				Core.bot.sendIRC().message("#whatever", "[" + event.getChannel().getName() + "] " + event.getUser().getNick() + ": " + event.getMessage());
 				return;
 			}
-			
+
 			//sending a welcome back message
 			if(message.toLowerCase().startsWith("re ") || message.toLowerCase().equals("re"))
 			{

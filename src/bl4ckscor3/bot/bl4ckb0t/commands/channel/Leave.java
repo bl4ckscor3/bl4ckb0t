@@ -1,16 +1,20 @@
 package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
+import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Leave implements ICommand<MessageEvent<Bot>>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event) throws Exception
+	public void exe(MessageEvent<Bot> event) throws MalformedURLException, IOException, IncorrectCommandExecutionException
 	{
 		if(Utilities.isValidUser(event))
 		{
@@ -42,7 +46,7 @@ public class Leave implements ICommand<MessageEvent<Bot>>
 					Utilities.chanMsg(event, L10N.strings.getString("leave.notJoined"));
 			}
 			else
-				Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
+				throw new IncorrectCommandExecutionException(getAlias());
 		}
 		else
 			Utilities.sorry(event);

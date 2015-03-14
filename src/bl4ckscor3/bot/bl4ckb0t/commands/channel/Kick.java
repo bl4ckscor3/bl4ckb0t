@@ -10,13 +10,14 @@ import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.core.Core;
+import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Kick implements ICommand<MessageEvent<Bot>>
 {	
 	@Override
-	public void exe(MessageEvent<Bot> event) throws IOException, IrcException 
+	public void exe(MessageEvent<Bot> event) throws IOException, IrcException, IncorrectCommandExecutionException 
 	{
 		if(event.getUser().isVerified())
 		{
@@ -93,11 +94,9 @@ public class Kick implements ICommand<MessageEvent<Bot>>
 				switch(args.length)
 				{				
 					case 1:
-						Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
-						break;
+						throw new IncorrectCommandExecutionException(getAlias());
 					case 2:
-						Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
-						break;
+						throw new IncorrectCommandExecutionException(getAlias());
 					default:
 						Utilities.chanMsg(event, L10N.strings.getString("kick.fail") + " - " + args.length);
 				}

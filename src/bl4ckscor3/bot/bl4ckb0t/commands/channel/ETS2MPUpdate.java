@@ -7,6 +7,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
+import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
@@ -16,7 +17,7 @@ public class ETS2MPUpdate implements ICommand<MessageEvent<Bot>>
 	private String currentVersion;
 
 	@Override
-	public void exe(MessageEvent<Bot> event) throws Exception
+	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException, InterruptedException
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 
@@ -25,8 +26,7 @@ public class ETS2MPUpdate implements ICommand<MessageEvent<Bot>>
 			if(args.length < 2 || args.length > 2)
 			{
 				Utilities.chanMsg(event, L10N.strings.getString("ets2mp.onlyStop"));
-				Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
-				return;
+				throw new IncorrectCommandExecutionException(getAlias());
 			}
 		}
 		else 
@@ -34,8 +34,7 @@ public class ETS2MPUpdate implements ICommand<MessageEvent<Bot>>
 			if(args.length < 3)
 			{
 				Utilities.chanMsg(event, L10N.strings.getString("ets2mp.onlyStart"));
-				Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
-				return;
+				throw new IncorrectCommandExecutionException(getAlias());
 			}
 		}
 

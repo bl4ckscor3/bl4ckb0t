@@ -5,13 +5,14 @@ import java.util.Random;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
+import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class RandomLetter implements ICommand<MessageEvent<Bot>>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event)
+	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException
 	{
 		StringBuilder output = new StringBuilder();
 		String[] args = Utilities.toArgs(event.getMessage());
@@ -68,7 +69,7 @@ public class RandomLetter implements ICommand<MessageEvent<Bot>>
 				Utilities.chanMsg(event, L10N.strings.getString("ln.fail"));
 		}
 		else
-			Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
+			throw new IncorrectCommandExecutionException(getAlias());
 	}
 
 	@Override

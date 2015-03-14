@@ -3,6 +3,7 @@ package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
+import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
@@ -11,7 +12,7 @@ public class ListChans implements ICommand<MessageEvent<Bot>>
 	public static int secretChannelAmount = 0;
 	
 	@Override
-	public void exe(MessageEvent<Bot> event) throws Exception 
+	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 		String[] chans = Utilities.getJoinedChannels();
@@ -36,7 +37,7 @@ public class ListChans implements ICommand<MessageEvent<Bot>>
 			Utilities.chanMsg(event, L10N.strings.getString("listchans.list") + ": " + builder.toString());
 		}
 		else
-			Utilities.sendHelp(event.getUser().getNick(), getSyntax(), getUsage(), getNotes());
+			throw new IncorrectCommandExecutionException(getAlias());
 		
 		secretChannelAmount = 0;
 	}
