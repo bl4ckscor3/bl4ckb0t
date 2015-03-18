@@ -1,6 +1,9 @@
 ###############################
 #          Changelog          #
 ###############################
+3.7.1
+- Fixed -decide not working as intended
+
 3.7
 - Added -version
 

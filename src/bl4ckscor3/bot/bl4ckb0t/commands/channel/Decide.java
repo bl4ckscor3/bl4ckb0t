@@ -14,24 +14,20 @@ public class Decide implements ICommand<MessageEvent<Bot>>
 	@Override
 	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException
 	{
-		if(Utilities.toArgs(event.getMessage()).length == 2)
+		if(Utilities.toArgs(event.getMessage()).length >= 2 && event.getMessage().endsWith("?"))
 		{
-			if(event.getMessage().endsWith("?"))
-			{
-				Random r = new Random();
-				int decision = r.nextInt(101);
+			Random r = new Random();
+			int decision = r.nextInt(101);
 
-				if(decision >= 0 && decision <= 49)
-					Utilities.respond(event, L10N.strings.getString("decide.no"), true);
-				else if(decision >= 50 && decision <= 100)
-					Utilities.respond(event, L10N.strings.getString("decide.yes"), true);
-				else
-					Utilities.chanMsg(event, L10N.strings.getString("decide.fail") + ": " + decision);
-			}
+			if(decision >= 0 && decision <= 49)
+				Utilities.respond(event, L10N.strings.getString("decide.no"), true);
+			else if(decision >= 50 && decision <= 100)
+				Utilities.respond(event, L10N.strings.getString("decide.yes"), true);
 			else
-				throw new IncorrectCommandExecutionException(getAlias());
+				Utilities.chanMsg(event, L10N.strings.getString("decide.fail") + ": " + decision);
 		}
-		throw new IncorrectCommandExecutionException(getAlias());
+		else
+			throw new IncorrectCommandExecutionException(getAlias());
 	}
 
 	@Override
