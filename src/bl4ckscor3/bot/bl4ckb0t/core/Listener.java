@@ -52,6 +52,7 @@ import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.misc.LinkTitle;
 import bl4ckscor3.bot.bl4ckb0t.misc.SpellingCorrection;
 import bl4ckscor3.bot.bl4ckb0t.misc.YouTubeStats;
+import bl4ckscor3.bot.bl4ckb0t.util.Lists;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Listener extends ListenerAdapter<Bot>
@@ -218,7 +219,7 @@ public class Listener extends ListenerAdapter<Bot>
 			}
 			else
 			{
-				for(String user : Utilities.getValidUsers())
+				for(String user : Lists.getValidUsers())
 				{
 					Core.bot.sendIRC().message(user, event.getUser().getNick() + ": " + event.getMessage());
 				}
@@ -229,6 +230,8 @@ public class Listener extends ListenerAdapter<Bot>
 	@Override
 	public void onConnect(ConnectEvent<Bot> event) throws Exception
 	{
+		Startup.setAutoJoinChans();
+		Startup.setValidUsers();
 		Utilities.joinDefaults();
 	}
 }

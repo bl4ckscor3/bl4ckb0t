@@ -9,6 +9,7 @@ import org.pircbotx.hooks.events.MessageEvent;
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
+import bl4ckscor3.bot.bl4ckb0t.util.Lists;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Leave implements ICommand<MessageEvent<Bot>>
@@ -28,7 +29,7 @@ public class Leave implements ICommand<MessageEvent<Bot>>
 				{
 					Utilities.chanMsg(event, L10N.strings.getString("leave.success.default"));
 					
-					for(String s : Utilities.getDefaultChans())
+					for(String s : Lists.getDefaultChans())
 					{	
 						Utilities.leaveChannel(s);
 					}

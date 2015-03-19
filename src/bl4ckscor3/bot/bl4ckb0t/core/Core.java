@@ -20,6 +20,7 @@ public class Core
 
 	public static void createBot() throws IOException, IrcException
 	{
+		Passwords.setPasswords();
 		//turning off logging (ugh)
 		Logger.getLogger("").setLevel(Level.OFF);
 
@@ -28,7 +29,7 @@ public class Core
 		.setName("bl4ckb0t")
 		.setServerHostname("irc.esper.net")
 		.setServerPort(6667)
-		.setNickservPassword(Passwords.nickserv)
+		.setNickservPassword(Passwords.getPassword("nickserv"))
 		.setLogin("bl4ckb0t")
 		.setAutoNickChange(true)
 		.addListener(new Listener()) 

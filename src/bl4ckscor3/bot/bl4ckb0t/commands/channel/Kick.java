@@ -1,9 +1,6 @@
 package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
 
 import org.pircbotx.exception.IrcException;
 import org.pircbotx.hooks.events.MessageEvent;
@@ -12,6 +9,7 @@ import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.core.Core;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
+import bl4ckscor3.bot.bl4ckb0t.util.Lists;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Kick implements ICommand<MessageEvent<Bot>>
@@ -23,12 +21,10 @@ public class Kick implements ICommand<MessageEvent<Bot>>
 		{
 			boolean allowed = false;
 			boolean found = false;
-			BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/0flrfzw3ljmw3u2/allowedUsers.txt?dl=1").openStream()));
-			String[] allowedUsers = reader.readLine().split(",");
 				
 			String[] args = Utilities.toArgs(event.getMessage());
 			
-			for(String allowedUser : allowedUsers)
+			for(String allowedUser : Lists.getAllowedUsers())
 			{
 				if(event.getUser().getNick().equals(allowedUser))
 				{	
@@ -37,7 +33,7 @@ public class Kick implements ICommand<MessageEvent<Bot>>
 				}
 			}
 
-			for(String allowedUser : Utilities.getValidUsers())
+			for(String allowedUser : Lists.getValidUsers())
 			{
 				if(event.getUser().getNick().equalsIgnoreCase(allowedUser))
 				{
@@ -54,7 +50,7 @@ public class Kick implements ICommand<MessageEvent<Bot>>
 
 			if(args.length >= 3)
 			{
-				for(String userNotToKick : Utilities.getValidUsers())
+				for(String userNotToKick : Lists.getValidUsers())
 				{
 					if(args[1].equalsIgnoreCase(userNotToKick))
 					{

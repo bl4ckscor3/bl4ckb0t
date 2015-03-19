@@ -1,6 +1,9 @@
 ###############################
 #          Changelog          #
 ###############################
+3.7.2
+- Internal changes to improve performance
+
 3.7.1
 - Fixed -decide not working as intended
 

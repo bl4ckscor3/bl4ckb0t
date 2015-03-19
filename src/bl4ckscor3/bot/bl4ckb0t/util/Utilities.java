@@ -1,10 +1,8 @@
 package bl4ckscor3.bot.bl4ckb0t.util;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.MalformedURLException;
-import java.net.URL;
+import java.util.List;
 
 import org.pircbotx.Channel;
 import org.pircbotx.Colors;
@@ -60,19 +58,7 @@ public class Utilities
 
 	public static boolean isValidUser(MessageEvent<Bot> event) throws MalformedURLException, IOException
 	{
-		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/dyvu276rdwmbt9z/validUsers.txt?dl=1").openStream()));
-
-		for(String s : reader.readLine().split(","))
-		{
-			if(event.getUser().getNick().equalsIgnoreCase(s))
-			{
-				if(event.getUser().isVerified())
-					return true;
-				else
-					return false;
-			}
-		}
-		return false;
+		return event.getUser().isVerified() && Lists.getValidUsers().contains(event.getUser().getNick());
 	}
 
 	/*
@@ -81,19 +67,7 @@ public class Utilities
 
 	public static boolean isValidUser(PrivateMessageEvent<Bot> event) throws MalformedURLException, IOException
 	{	
-		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/dyvu276rdwmbt9z/validUsers.txt?dl=1").openStream()));
-
-		for(String s : reader.readLine().split(","))
-		{
-			if(event.getUser().getNick().equalsIgnoreCase(s))
-			{
-				if(event.getUser().isVerified())
-					return true;
-				else
-					return false;
-			}
-		}
-		return false;
+		return event.getUser().isVerified() && Lists.getValidUsers().contains(event.getUser().getNick());
 	}
 
 	/*
@@ -113,13 +87,6 @@ public class Utilities
 
 		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------" + L10N.strings.getString("helpMenu.notes") + "----------");
 		Utilities.pm(nick, notes == null ? L10N.strings.getString("helpMenu.noNotes") : notes);
-	}
-
-	public static String[] getValidUsers() throws MalformedURLException, IOException
-	{
-		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/dyvu276rdwmbt9z/validUsers.txt?dl=1").openStream()));
-
-		return reader.readLine().split(",");
 	}
 
 	public static String[] toArgs(String line)
@@ -163,23 +130,6 @@ public class Utilities
 		return chans;
 	}
 
-	public static String[] getDefaultChans() throws MalformedURLException, IOException
-	{
-		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/tishdl84z1wmcgs/bl4ckb0t%20chans.txt?dl=1").openStream()));
-
-		return reader.readLine().split(",");
-	}
-
-	public static String[] getAutoJoinChans() throws MalformedURLException, IOException
-	{
-		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/tishdl84z1wmcgs/bl4ckb0t%20chans.txt?dl=1").openStream()));
-
-		if(Core.bot.getNick().equals("bl4ckb0t"))
-			return reader.readLine().split(",");
-		else
-			return new String[]{"#bl4ckb0tTest"};
-	}
-
 	public static void joinChannel(String channel)
 	{
 		Core.bot.sendIRC().joinChannel(channel);
@@ -198,12 +148,12 @@ public class Utilities
 
 	public static void joinDefaults() throws MalformedURLException, IOException
 	{
-		String[] channelsToJoin = getAutoJoinChans();
+		List<String> channelsToJoin = Lists.getDefaultChans();
 
 		for(String s : channelsToJoin)
 		{
 			if(s.equals("#akino_germany"))
-				joinChannelWithPassword(s, Passwords.akinoChan);
+				joinChannelWithPassword(s, Passwords.getPassword("#akino_germany"));
 			else
 				joinChannel(s);
 		}
