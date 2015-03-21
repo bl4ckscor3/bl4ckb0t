@@ -2,8 +2,10 @@ package bl4ckscor3.bot.bl4ckb0t.core;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.HashMap;
 import java.util.LinkedList;
 
+import org.pircbotx.exception.IrcException;
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.ConnectEvent;
 import org.pircbotx.hooks.events.MessageEvent;
@@ -59,6 +61,7 @@ public class Listener extends ListenerAdapter<Bot>
 {
 	private final String p = "-";
 	public static boolean enabled = true;
+	public static final HashMap<String, Boolean> channelStates = new HashMap<String, Boolean>(); //false = disabled | true = enabled
 	public boolean isCounting = false;
 	public static final LinkedList<ICommand<MessageEvent<Bot>>> commands = new LinkedList<ICommand<MessageEvent<Bot>>>();
 	public static final LinkedList<IPrivateCommand<PrivateMessageEvent<Bot>>> privCommands = new LinkedList<IPrivateCommand<PrivateMessageEvent<Bot>>>();
@@ -105,7 +108,7 @@ public class Listener extends ListenerAdapter<Bot>
 	}
 
 	@Override
-	public void onMessage(MessageEvent<Bot> event) throws Exception
+	public void onMessage(MessageEvent<Bot> event) throws MalformedURLException, IOException, InterruptedException, IrcException
 	{
 		String cmdName = Utilities.toArgs(event.getMessage())[0];
 
@@ -115,7 +118,7 @@ public class Listener extends ListenerAdapter<Bot>
 		if(!cmdName.startsWith(p))
 			return;
 
-		if(enabled)
+		if(enabled && channelStates.get(event.getChannel().getName()))
 		{
 			for(ICommand<MessageEvent<Bot>> cmd : commands)
 			{
@@ -137,7 +140,7 @@ public class Listener extends ListenerAdapter<Bot>
 		{
 			for(ICommand<MessageEvent<Bot>> cmd : commands)
 			{
-				if((cmd instanceof Enable || cmd instanceof Disable) && event.getMessage().equalsIgnoreCase(p + cmd.getAlias()))
+				if((cmd instanceof Enable || cmd instanceof Disable) && event.getMessage().startsWith(p + cmd.getAlias()))
 				{
 					try
 					{
@@ -153,16 +156,19 @@ public class Listener extends ListenerAdapter<Bot>
 		}
 	}	
 
-	public void misc(MessageEvent<Bot> event) throws Exception
+	public void misc(MessageEvent<Bot> event) throws MalformedURLException, IOException
 	{
 		String message = event.getMessage();
 
 		if(message.startsWith(p))
 			return;
 
-		if(message.equals("?enabled"))
+		if(message.startsWith("?enabled"))
 		{
-			Utilities.chanMsg(event, "" + enabled);
+			if(message.startsWith("?enabled #") && Listener.enabled)
+				Utilities.chanMsg(event, message.split(" ")[1] + ": " + Listener.channelStates.get(message.split(" ")[1]));
+			else
+				Utilities.chanMsg(event, "global: " + Listener.enabled);
 			return;
 		}
 
@@ -228,7 +234,7 @@ public class Listener extends ListenerAdapter<Bot>
 	}
 
 	@Override
-	public void onConnect(ConnectEvent<Bot> event) throws Exception
+	public void onConnect(ConnectEvent<Bot> event) throws MalformedURLException, IOException
 	{
 		Startup.setAutoJoinChans();
 		Startup.setValidUsers();

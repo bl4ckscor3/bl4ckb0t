@@ -1,6 +1,11 @@
 ###############################
 #          Changelog          #
 ###############################
+3.8
+- Changed storage of messages in SpellingCorrection to be more flexible
+- The bot can now be disabled/enabled per channel
+- Disabled -calc
+
 3.7.2
 - Internal changes to improve performance
 

@@ -13,6 +13,7 @@ import org.pircbotx.hooks.events.PrivateMessageEvent;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.ListChans;
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.core.Core;
+import bl4ckscor3.bot.bl4ckb0t.core.Listener;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 
 import com.google.common.collect.ImmutableSortedSet;
@@ -136,6 +137,9 @@ public class Utilities
 
 		if(!L10N.chanLangs.containsKey(channel))
 			L10N.chanLangs.put(channel, "english");
+		
+		if(!Listener.channelStates.containsKey(channel))
+			Listener.channelStates.put(channel, true);
 	}
 
 	public static void joinChannelWithPassword(String channel, String password)
@@ -144,6 +148,9 @@ public class Utilities
 
 		if(!L10N.chanLangs.containsKey(channel))
 			L10N.chanLangs.put(channel, "english");
+		
+		if(!Listener.channelStates.containsKey(channel))
+			Listener.channelStates.put(channel, true);
 	}
 
 	public static void joinDefaults() throws MalformedURLException, IOException
@@ -165,6 +172,9 @@ public class Utilities
 
 		if(L10N.chanLangs.containsKey(channel))
 			L10N.chanLangs.remove(channel);
+		
+		if(Listener.channelStates.containsKey(channel))
+			Listener.channelStates.remove(channel);
 	}
 
 	public static String capitalizeFirstLetter(String s)
