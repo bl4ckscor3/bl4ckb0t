@@ -1,6 +1,10 @@
 ###############################
 #          Changelog          #
 ###############################
+3.8.1
+- Internal changes (Lambdas)
+- Made Spelling Correction changes appear in italics
+
 3.8
 - Changed storage of messages in SpellingCorrection to be more flexible
 - The bot can now be disabled/enabled per channel

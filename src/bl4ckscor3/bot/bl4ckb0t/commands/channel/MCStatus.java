@@ -22,63 +22,59 @@ public class MCStatus implements ICommand<MessageEvent<Bot>>
 	{
 		WebDriver driver = new HtmlUnitDriver(true);
 		ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
-		Runnable task = new Runnable()
-		{
-			public void run()
-			{
-				WebElement login = driver.findElement(By.cssSelector("div#login h2.status"));
-				WebElement session = driver.findElement(By.cssSelector("div#session h2.status"));
-				WebElement website = driver.findElement(By.cssSelector("div#website h2.status"));
-				WebElement skins = driver.findElement(By.cssSelector("div#skins h2.status"));
-				WebElement realms = driver.findElement(By.cssSelector("div#realms h2.status"));
-				StringBuilder builder = new StringBuilder();
+		Runnable task = () -> {
+			WebElement login = driver.findElement(By.cssSelector("div#login h2.status"));
+			WebElement session = driver.findElement(By.cssSelector("div#session h2.status"));
+			WebElement website = driver.findElement(By.cssSelector("div#website h2.status"));
+			WebElement skins = driver.findElement(By.cssSelector("div#skins h2.status"));
+			WebElement realms = driver.findElement(By.cssSelector("div#realms h2.status"));
+			StringBuilder builder = new StringBuilder();
 
-				builder.append(Colors.BOLD + "** Mojang Server Status ");
+			builder.append(Colors.BOLD + "** Mojang Server Status ");
 
-				//login
-				if(login.getText().equals("Online"))
-					builder.append("** Login: " + Colors.BOLD + Colors.DARK_GREEN + login.getText() + Colors.BLACK);
-				else if(login.getText().equals("Timed Out") || login.getText().equals("HTTP Error 503"))
-					builder.append(Colors.BOLD + " ** Login: " + Colors.BOLD + Colors.RED + login.getText() + Colors.BLACK);
-				else	
-					builder.append(Colors.BOLD + " ** Login: " + Colors.BOLD + Colors.PURPLE + login.getText() + Colors.BLACK);
+			//login
+			if(login.getText().equals("Online"))
+				builder.append("** Login: " + Colors.BOLD + Colors.DARK_GREEN + login.getText() + Colors.BLACK);
+			else if(login.getText().equals("Timed Out") || login.getText().equals("HTTP Error 503"))
+				builder.append(Colors.BOLD + " ** Login: " + Colors.BOLD + Colors.RED + login.getText() + Colors.BLACK);
+			else	
+				builder.append(Colors.BOLD + " ** Login: " + Colors.BOLD + Colors.PURPLE + login.getText() + Colors.BLACK);
 
-				//session
-				if(session.getText().equals("Online"))
-					builder.append(Colors.BOLD + " ** Session: " + Colors.BOLD + Colors.DARK_GREEN + session.getText() + Colors.BLACK);
-				else if(session.getText().equals("Timed Out") || session.getText().equals("HTTP Error 503"))
-					builder.append(Colors.BOLD + " ** Session: " + Colors.BOLD + Colors.RED + session.getText() + Colors.BLACK);
-				else	
-					builder.append(Colors.BOLD + " ** Session: " + Colors.BOLD + Colors.PURPLE + session.getText() + Colors.BLACK);
+			//session
+			if(session.getText().equals("Online"))
+				builder.append(Colors.BOLD + " ** Session: " + Colors.BOLD + Colors.DARK_GREEN + session.getText() + Colors.BLACK);
+			else if(session.getText().equals("Timed Out") || session.getText().equals("HTTP Error 503"))
+				builder.append(Colors.BOLD + " ** Session: " + Colors.BOLD + Colors.RED + session.getText() + Colors.BLACK);
+			else	
+				builder.append(Colors.BOLD + " ** Session: " + Colors.BOLD + Colors.PURPLE + session.getText() + Colors.BLACK);
 
-				//website
-				if(website.getText().equals("Online"))
-					builder.append(Colors.BOLD + " ** Website: " + Colors.BOLD + Colors.DARK_GREEN + website.getText() + Colors.BLACK);
-				else if(website.getText().equals("Timed Out") || website.getText().equals("HTTP Error 503"))
-					builder.append(Colors.BOLD + " ** Website: " + Colors.BOLD + Colors.RED + website.getText() + Colors.BLACK);
-				else	
-					builder.append(Colors.BOLD + " ** Website: " + Colors.BOLD + Colors.PURPLE + website.getText() + Colors.BLACK);
+			//website
+			if(website.getText().equals("Online"))
+				builder.append(Colors.BOLD + " ** Website: " + Colors.BOLD + Colors.DARK_GREEN + website.getText() + Colors.BLACK);
+			else if(website.getText().equals("Timed Out") || website.getText().equals("HTTP Error 503"))
+				builder.append(Colors.BOLD + " ** Website: " + Colors.BOLD + Colors.RED + website.getText() + Colors.BLACK);
+			else	
+				builder.append(Colors.BOLD + " ** Website: " + Colors.BOLD + Colors.PURPLE + website.getText() + Colors.BLACK);
 
-				//skins
-				if(skins.getText().equals("Online"))
-					builder.append(Colors.BOLD + " ** Skins: " + Colors.BOLD + Colors.DARK_GREEN + skins.getText() + Colors.BLACK);
-				else if(skins.getText().equals("Timed Out") || skins.getText().equals("HTTP Error 503"))
-					builder.append(Colors.BOLD + " ** Skins: " + Colors.BOLD + Colors.RED + skins.getText() + Colors.BLACK);
-				else	
-					builder.append(Colors.BOLD + " ** Skins: " + Colors.BOLD + Colors.PURPLE + skins.getText() + Colors.BLACK);
+			//skins
+			if(skins.getText().equals("Online"))
+				builder.append(Colors.BOLD + " ** Skins: " + Colors.BOLD + Colors.DARK_GREEN + skins.getText() + Colors.BLACK);
+			else if(skins.getText().equals("Timed Out") || skins.getText().equals("HTTP Error 503"))
+				builder.append(Colors.BOLD + " ** Skins: " + Colors.BOLD + Colors.RED + skins.getText() + Colors.BLACK);
+			else	
+				builder.append(Colors.BOLD + " ** Skins: " + Colors.BOLD + Colors.PURPLE + skins.getText() + Colors.BLACK);
 
-				//realms
-				if(realms.getText().equals("Online"))
-					builder.append(Colors.BOLD + " ** Realms: " + Colors.BOLD + Colors.DARK_GREEN + realms.getText() + Colors.BLACK);
-				else if(realms.getText().equals("Timed Out") || realms.getText().equals("HTTP Error 503"))
-					builder.append(Colors.BOLD + " ** Realms: " + Colors.BOLD + Colors.RED + realms.getText() + Colors.BLACK);
-				else	
-					builder.append(Colors.BOLD + " ** Realms: " + Colors.BOLD + Colors.PURPLE + realms.getText() + Colors.BLACK);
+			//realms
+			if(realms.getText().equals("Online"))
+				builder.append(Colors.BOLD + " ** Realms: " + Colors.BOLD + Colors.DARK_GREEN + realms.getText() + Colors.BLACK);
+			else if(realms.getText().equals("Timed Out") || realms.getText().equals("HTTP Error 503"))
+				builder.append(Colors.BOLD + " ** Realms: " + Colors.BOLD + Colors.RED + realms.getText() + Colors.BLACK);
+			else	
+				builder.append(Colors.BOLD + " ** Realms: " + Colors.BOLD + Colors.PURPLE + realms.getText() + Colors.BLACK);
 
-				builder.append(Colors.BOLD + " ** Powered by xpaw - http://xpaw.ru/mcstatus **");
-				Utilities.chanMsg(event, builder.toString());
-				driver.close();
-			}
+			builder.append(Colors.BOLD + " ** Powered by xpaw - http://xpaw.ru/mcstatus **");
+			Utilities.chanMsg(event, builder.toString());
+			driver.close();
 		};
 
 		driver.get("http://xpaw.ru/mcstatus");

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
@@ -30,7 +31,7 @@ public class SpellingCorrection
 			if(userToCorrect.equals(s.split("#")[0]))
 			{
 				String previousMessage = getLatestMessage(userToCorrect, storage.get(event.getChannel().getName()));
-				String correctedMessage = getLatestMessage(userToCorrect, storage.get(event.getChannel().getName())).replace(toReplace, replaceWith);
+				String correctedMessage = getLatestMessage(userToCorrect, storage.get(event.getChannel().getName())).replace(toReplace, "\u001d" + replaceWith + Colors.NORMAL);
 
 				if(previousMessage.equals(correctedMessage))
 					return;
@@ -38,9 +39,9 @@ public class SpellingCorrection
 				updateLatestMessage(event.getChannel().getName(), correctedMessage, userToCorrect);
 
 				if(correctsDifferentUser)
-					Utilities.chanMsg(event, userToCorrect + " " + L10N.strings.getString("correction.1") + " " + event.getUser().getNick() + " " + L10N.strings.getString("correction.2") + ": " + correctedMessage);
+					Utilities.chanMsg(event, Colors.NORMAL + userToCorrect + " " + L10N.strings.getString("correction.1") + " " + event.getUser().getNick() + " " + L10N.strings.getString("correction.2") + ": " + correctedMessage);
 				else
-					Utilities.chanMsg(event, userToCorrect + " " + L10N.strings.getString("correction.3") + ": " + correctedMessage);
+					Utilities.chanMsg(event, Colors.NORMAL + userToCorrect + " " + L10N.strings.getString("correction.3") + ": " + correctedMessage);
 			}
 		}
 	}

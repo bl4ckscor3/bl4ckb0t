@@ -24,28 +24,24 @@ public class IsItDown implements ICommand<MessageEvent<Bot>>
 		String[] args = Utilities.toArgs(event.getMessage());
 		WebDriver driver = new HtmlUnitDriver(true);
 		ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
-		Runnable task = new Runnable()
-		{
-			public void run()
+		Runnable task = () -> {
+			try
 			{
-				try
-				{
-					driver.findElement(By.xpath("//span[@class='upicon']"));
-					Utilities.chanMsg(event, args[1] + " " + L10N.strings.getString("isitdown.is") + Colors.GREEN + " UP " + Colors.BLACK + L10N.strings.getString("isitdown.reachable") + ".");
-				}
-				catch(NoSuchElementException e)
-				{
-					Utilities.chanMsg(event, args[1] + " " + L10N.strings.getString("isitdown.is") + " " + Colors.RED + "DOWN" + Colors.BLACK + ".");
-				}
-				
-				driver.close();
+				driver.findElement(By.xpath("//span[@class='upicon']"));
+				Utilities.chanMsg(event, args[1] + " " + L10N.strings.getString("isitdown.is") + Colors.GREEN + " UP " + Colors.BLACK + L10N.strings.getString("isitdown.reachable") + ".");
 			}
+			catch(NoSuchElementException e)
+			{
+				Utilities.chanMsg(event, args[1] + " " + L10N.strings.getString("isitdown.is") + " " + Colors.RED + "DOWN" + Colors.BLACK + ".");
+			}
+
+			driver.close();
 		};
-		
+
 		if(args.length != 2)
 			throw new IncorrectCommandExecutionException(getAlias());
-		
-		driver.get("http://iidrn.com/" + args[1] + ".html");
+
+		driver.get("http://isitdownrightnow.com/" + args[1] + ".html");
 		worker.schedule(task, 5, TimeUnit.SECONDS);
 	}
 
