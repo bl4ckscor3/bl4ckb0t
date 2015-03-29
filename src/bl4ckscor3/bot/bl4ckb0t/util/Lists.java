@@ -38,4 +38,11 @@ public class Lists
 	{
 		return validUsers;
 	}
+	
+	public static void clearAll()
+	{
+		defaultChans.clear();
+		allowedUsers.clear();
+		validUsers.clear();
+	}
 }

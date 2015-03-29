@@ -1,6 +1,10 @@
 ###############################
 #          Changelog          #
 ###############################
+3.8.2
+- Fixed bot trying to join channels multiple times when -stop yes is used
+- Added setup of allowed users
+
 3.8.1
 - Internal changes (Lambdas)
 - Made Spelling Correction changes appear in italics
