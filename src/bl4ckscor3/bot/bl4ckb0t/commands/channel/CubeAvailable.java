@@ -46,7 +46,6 @@ public class CubeAvailable implements ICommand<MessageEvent<Bot>>
 					{
 						String s = reader.readLine();
 						lines.add(s);
-						System.out.println(s);
 					}
 					catch (IOException e)
 					{
@@ -56,9 +55,9 @@ public class CubeAvailable implements ICommand<MessageEvent<Bot>>
 					
 				}
 				
-				if(lines.contains("        <b>Status</b> :                  Out of stock"))
+				if(!lines.contains("        <b>Status</b> :                  Out of stock"))
 				{
-					if(!lines.contains("        <b>Status</b> :                  In stock"))
+					if(lines.contains("        <b>Status</b> :                  In stock"))
 					{
 						Utilities.chanMsg(event, "bl4ckscor3, Cube ist da!");
 						t.cancel();
