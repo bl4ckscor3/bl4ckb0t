@@ -30,21 +30,24 @@ public class Help implements ICommand<MessageEvent<Bot>>
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 		String nick = event.getUser().getNick();
-		int i = 0;
+		String msg = "";
 
 		if(args.length == 1)
 		{
 			Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------" + L10N.strings.getString("help.header") + "----------");
 
-			for(String s : aliases)
+			for(int i = 0; i < aliases.length; i++)
 			{
-				if((i - 4) % 10 == 0 || (i - 9) % 10 == 0)
-					Thread.sleep(2000);
-
-				Utilities.pm(nick, s);
-				i++;
+				msg += aliases[i] + " | ";
+				
+				if((i + 1) % 10 == 0)
+				{
+					Utilities.pm(nick, msg);
+					msg = "";
+				}
 			}
-
+			
+			Utilities.pm(nick, msg.substring(0, msg.lastIndexOf(" | ")));
 			Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------------------------------------------------------");
 			Utilities.pm(nick, L10N.strings.getString("help.moreInfo"));
 			Thread.sleep(2000);

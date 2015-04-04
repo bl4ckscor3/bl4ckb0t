@@ -4,6 +4,8 @@
 3.8.3
 - Internal changes
 - Fixed italics getting negated when corrected message gets corrected again
+- Compacted help menu
+- Language adjustments
 
 3.8.2
 - Fixed bot trying to join channels multiple times when -stop yes is used
