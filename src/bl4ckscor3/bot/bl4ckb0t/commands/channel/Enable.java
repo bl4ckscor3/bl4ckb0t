@@ -34,7 +34,7 @@ public class Enable implements ICommand<MessageEvent<Bot>>
 					for(String s : Utilities.getJoinedChannels())
 					{
 						if(!s.equalsIgnoreCase(event.getChannel().getName()))
-							Core.bot.sendIRC().message(s, L10N.strings.getString("enable.notify"));
+							Core.bot.sendCustomMessage(s, L10N.strings.getString("enable.notify"));
 					}
 				}
 				else
@@ -52,10 +52,10 @@ public class Enable implements ICommand<MessageEvent<Bot>>
 					if(!Listener.channelStates.get(args[1]))
 					{
 						Listener.channelStates.put(args[1], true);
-						Core.bot.sendIRC().message(args[1], L10N.strings.getString("enable.success"));
+						Core.bot.sendCustomMessage(args[1], L10N.strings.getString("enable.success"));
 					}
 					else
-						Core.bot.sendIRC().message(args[1], L10N.strings.getString("enable.alreadyEnabled"));
+						Core.bot.sendCustomMessage(args[1], L10N.strings.getString("enable.alreadyEnabled"));
 				}
 			}
 		}

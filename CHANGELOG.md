@@ -1,6 +1,10 @@
 ###############################
 #          Changelog          #
 ###############################
+3.8.3
+- Internal changes
+- Fixed italics getting negated when corrected message gets corrected again
+
 3.8.2
 - Fixed bot trying to join channels multiple times when -stop yes is used
 - Added setup of allowed users

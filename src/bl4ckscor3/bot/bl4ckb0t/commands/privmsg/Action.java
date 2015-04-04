@@ -4,6 +4,7 @@ import org.pircbotx.hooks.events.PrivateMessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.core.Core;
+import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Action implements IPrivateCommand<PrivateMessageEvent<Bot>>
@@ -13,6 +14,12 @@ public class Action implements IPrivateCommand<PrivateMessageEvent<Bot>>
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 		String msg = "";
+		
+		if(!args[1].startsWith("#"))
+		{
+			Core.bot.sendCustomMessage(event.getUser().getNick(), L10N.strings.getString("action.noHashtag"));
+			return;
+		}
 		
 		for(int i = 2; i < args.length; i++)
 		{

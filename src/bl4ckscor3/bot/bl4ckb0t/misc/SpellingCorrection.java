@@ -31,17 +31,18 @@ public class SpellingCorrection
 			if(userToCorrect.equals(s.split("#")[0]))
 			{
 				String previousMessage = getLatestMessage(userToCorrect, storage.get(event.getChannel().getName()));
-				String correctedMessage = getLatestMessage(userToCorrect, storage.get(event.getChannel().getName())).replace(toReplace, "\u001d" + replaceWith + Colors.NORMAL);
+				String newMessage = getLatestMessage(event.getUser().getNick(), storage.get(event.getChannel().getName())).replace(toReplace, replaceWith); //w/o italics
+				String correctedMessage = getLatestMessage(userToCorrect, storage.get(event.getChannel().getName())).replace(toReplace, "\u001d" + replaceWith + Colors.NORMAL); //w/ italics
 
 				if(previousMessage.equals(correctedMessage))
 					return;
-				
-				updateLatestMessage(event.getChannel().getName(), correctedMessage, userToCorrect);
 
 				if(correctsDifferentUser)
 					Utilities.chanMsg(event, Colors.NORMAL + userToCorrect + " " + L10N.strings.getString("correction.1") + " " + event.getUser().getNick() + " " + L10N.strings.getString("correction.2") + ": " + correctedMessage);
 				else
 					Utilities.chanMsg(event, Colors.NORMAL + userToCorrect + " " + L10N.strings.getString("correction.3") + ": " + correctedMessage);
+			
+				updateLatestMessage(event.getChannel().getName(), newMessage, userToCorrect);
 			}
 		}
 	}

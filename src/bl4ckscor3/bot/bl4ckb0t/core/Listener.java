@@ -13,7 +13,6 @@ import org.pircbotx.hooks.events.PrivateMessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Calculate;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.ChangeNick;
-import bl4ckscor3.bot.bl4ckb0t.commands.channel.CubeAvailable;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Decide;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Disable;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Draw;
@@ -71,7 +70,6 @@ public class Listener extends ListenerAdapter<Bot>
 	{
 		commands.add(new Calculate());
 		commands.add(new ChangeNick());
-		commands.add(new CubeAvailable());
 		commands.add(new Decide());
 		commands.add(new Disable());
 		commands.add(new Draw());
@@ -186,7 +184,7 @@ public class Listener extends ListenerAdapter<Bot>
 
 			if(!Utilities.isUserInChannel("bl4ckscor3", event.getChannel()) && !event.getChannel().getName().equals("#whatever"))
 			{
-				Core.bot.sendIRC().message("#whatever", "[" + event.getChannel().getName() + "] " + event.getUser().getNick() + ": " + event.getMessage());
+				Core.bot.sendCustomMessage("#whatever", "[" + event.getChannel().getName() + "] " + event.getUser().getNick() + ": " + event.getMessage());
 				return;
 			}
 
@@ -229,7 +227,7 @@ public class Listener extends ListenerAdapter<Bot>
 			{
 				for(String user : Lists.getValidUsers())
 				{
-					Core.bot.sendIRC().message(user, event.getUser().getNick() + ": " + event.getMessage());
+					Core.bot.sendCustomMessage(user, event.getUser().getNick() + ": " + event.getMessage());
 				}
 			}
 		}

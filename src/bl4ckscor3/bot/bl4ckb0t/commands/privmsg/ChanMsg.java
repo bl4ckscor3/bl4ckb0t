@@ -20,7 +20,7 @@ public class ChanMsg implements IPrivateCommand<PrivateMessageEvent<Bot>>
 		}
 
 		msg = msg.substring(0, msg.length() - 1);
-		Core.bot.sendIRC().message(args[0], msg);
+		Core.bot.sendCustomMessage(args[0], msg);
 	}
 
 	@Override

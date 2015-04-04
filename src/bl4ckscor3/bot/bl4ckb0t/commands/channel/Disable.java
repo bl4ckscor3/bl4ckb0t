@@ -30,14 +30,14 @@ public class Disable implements ICommand<MessageEvent<Bot>>
 				{
 					Listener.enabled = false;
 					Utilities.chanMsg(event, L10N.strings.getString("disable.success"));
-					System.out.println(Utilities.getJoinedChannels().length);
+
 					if(Utilities.getJoinedChannels().length == 1)
 						return;
 
 					for(String s : Utilities.getJoinedChannels())
 					{
 						if(!s.equalsIgnoreCase(event.getChannel().getName()))
-							Core.bot.sendIRC().message(s, L10N.strings.getString("disable.notify"));
+							Core.bot.sendCustomMessage(s, L10N.strings.getString("disable.notify"));
 					}
 				}
 				else
@@ -55,10 +55,10 @@ public class Disable implements ICommand<MessageEvent<Bot>>
 					if(Listener.channelStates.get(args[1]))
 					{
 						Listener.channelStates.put(args[1], false);
-						Core.bot.sendIRC().message(args[1], L10N.strings.getString("disable.success"));
+						Core.bot.sendCustomMessage(args[1], L10N.strings.getString("disable.success"));
 					}
 					else
-						Core.bot.sendIRC().message(args[1], L10N.strings.getString("disable.alreadyDisabled"));
+						Core.bot.sendCustomMessage(args[1], L10N.strings.getString("disable.alreadyDisabled"));
 				}
 			}
 		}

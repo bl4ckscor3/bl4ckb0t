@@ -18,38 +18,38 @@ public class Calculate implements ICommand<MessageEvent<Bot>>
 //			throw new IncorrectCommandExecutionException(getAlias());
 	}
 
-	private static boolean validateInput(String[] args)
-	{
-		if(!isCalcOperator(args[args.length - 1]))
-		{
-			for(int i = 1; i < args.length; i++)
-			{
-				if(i % 2 == 0) //if the number is even we expect an operation symbol (+, -, *)
-				{
-					if(isCalcOperator(args[i]))
-						continue;
-				}
-				else //if the number is odd we expect a number
-				{
-					if(!Double.isNaN(Double.parseDouble(args[i])))
-						continue;
-				}
-
-				return false;
-			}
-			
-			return true;
-		}
-		else
-			return false;
-	}
-	
-	private static boolean isCalcOperator(String s)
-	{
-		if(s.equals("+") || s.equals("-") || s.equals("*"))
-			return true;
-		return false;
-	}
+//	private static boolean validateInput(String[] args)
+//	{
+//		if(!isCalcOperator(args[args.length - 1]))
+//		{
+//			for(int i = 1; i < args.length; i++)
+//			{
+//				if(i % 2 == 0) //if the number is even we expect an operation symbol (+, -, *)
+//				{
+//					if(isCalcOperator(args[i]))
+//						continue;
+//				}
+//				else //if the number is odd we expect a number
+//				{
+//					if(!Double.isNaN(Double.parseDouble(args[i])))
+//						continue;
+//				}
+//
+//				return false;
+//			}
+//			
+//			return true;
+//		}
+//		else
+//			return false;
+//	}
+//	
+//	private static boolean isCalcOperator(String s)
+//	{
+//		if(s.equals("+") || s.equals("-") || s.equals("*"))
+//			return true;
+//		return false;
+//	}
 
 	@Override
 	public String getAlias()

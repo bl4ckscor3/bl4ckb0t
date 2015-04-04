@@ -15,4 +15,9 @@ public class Bot extends PircBotX
 	{
 		super.setNick(nick);
 	}
+	
+	public void sendCustomMessage(String target, String msg)
+	{
+		sendIRC().message(target, msg);
+	}
 }

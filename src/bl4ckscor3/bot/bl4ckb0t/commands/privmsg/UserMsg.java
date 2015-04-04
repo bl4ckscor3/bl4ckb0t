@@ -20,7 +20,7 @@ public class UserMsg implements IPrivateCommand<PrivateMessageEvent<Bot>>
 		}
 
 		msg = msg.substring(0, msg.length() - 1);
-		Core.bot.sendIRC().message(args[1], msg);
+		Core.bot.sendCustomMessage(args[1], msg);
 	}
 
 	@Override
