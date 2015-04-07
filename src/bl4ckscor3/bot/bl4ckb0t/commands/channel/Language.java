@@ -1,5 +1,7 @@
 package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 
+import java.io.IOException;
+
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
@@ -9,14 +11,14 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Language implements ICommand<MessageEvent<Bot>>
 {
-	String[] availableLanguages =
+	private String[] availableLanguages =
 		{
 			"English",
 			"German"
 		};
 	
 	@Override
-	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException
+	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException, IOException
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 
@@ -25,9 +27,9 @@ public class Language implements ICommand<MessageEvent<Bot>>
 		else if(args.length == 2)
 		{
 			if(args[1].equalsIgnoreCase(availableLanguages[0]))
-				L10N.changeLocalization("en", "US", event.getChannel().getName());
+				L10N.changeLocalization("en", "US", event.getChannel().getName(), true);
 			else if(args[1].equalsIgnoreCase(availableLanguages[1]))
-				L10N.changeLocalization("de", "DE", event.getChannel().getName());
+				L10N.changeLocalization("de", "DE", event.getChannel().getName(), true);
 			else	
 				Utilities.chanMsg(event, L10N.strings.getString("language.availableLanguages") + ": " + getAvailableLanguages());
 

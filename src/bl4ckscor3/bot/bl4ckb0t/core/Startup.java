@@ -24,7 +24,7 @@ public class Startup
 		else
 		{
 			Lists.addDefaultChan("#bl4ckb0tTest");
-			Lists.addDefaultChan("#whatever");
+			Lists.addDefaultChan("#whateveragain");
 		}
 	}
 
