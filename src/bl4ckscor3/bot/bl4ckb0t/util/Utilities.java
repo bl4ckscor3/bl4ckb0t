@@ -2,6 +2,7 @@ package bl4ckscor3.bot.bl4ckb0t.util;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.pircbotx.Channel;
@@ -108,6 +109,22 @@ public class Utilities
 			}
 		}
 		return false;
+	}
+
+	public static List<String> getSecretChannels()
+	{
+		ImmutableSortedSet<Channel> list = Core.bot.getUserBot().getChannels();
+		Object[] x = list.toArray();
+		List<String> chans = new ArrayList<String>();
+
+		for(Object o : x)
+		{
+			//if the channel has the flag +s, it does not get shown
+			if(o.toString().contains("secret=true"))
+				chans.add(o.toString().split(",")[0].split("=")[1]);
+		}
+
+		return chans;
 	}
 
 	public static String[] getJoinedChannels(boolean listSecretChannels)
