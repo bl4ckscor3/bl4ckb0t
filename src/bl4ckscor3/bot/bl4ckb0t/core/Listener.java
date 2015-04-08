@@ -13,6 +13,7 @@ import org.pircbotx.hooks.events.PrivateMessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Calculate;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.ChangeNick;
+import bl4ckscor3.bot.bl4ckb0t.commands.channel.Changelog;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Decide;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Disable;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Draw;
@@ -69,6 +70,7 @@ public class Listener extends ListenerAdapter<Bot>
 	public Listener()
 	{
 		commands.add(new Calculate());
+		commands.add(new Changelog());
 		commands.add(new ChangeNick());
 		commands.add(new Decide());
 		commands.add(new Disable());
