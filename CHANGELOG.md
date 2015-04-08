@@ -1,6 +1,9 @@
 ###############################
 #          Changelog          #
 ###############################
+3.9.1_WIP
+- Fixed -select
+
 3.9
 - Added -changelog
 - Added language support to -xcolor

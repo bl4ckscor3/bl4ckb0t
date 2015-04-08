@@ -14,14 +14,15 @@ public class Select implements ICommand<MessageEvent<Bot>>
 	@Override
 	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException 
 	{
-		String[] args = event.getMessage().substring(8).split(",");
+		String[] args = Utilities.toArgs(event.getMessage());
+		String[] options = event.getMessage().substring(8).split(",");
 		
 		if(args.length == 2)
 		{
 			Random r = new Random();
-			int i = r.nextInt(args.length);
+			int i = r.nextInt(options.length);
 
-			Utilities.respond(event, args[i], false);
+			Utilities.respond(event, options[i], false);
 		}
 		else
 			throw new IncorrectCommandExecutionException(getAlias());
