@@ -29,33 +29,33 @@ public class Enable implements ICommand<MessageEvent<Bot>>
 				if(!Listener.enabled)
 				{
 					Listener.enabled = true;
-					Utilities.chanMsg(event, L10N.strings.getString("enable.success"));
+					Utilities.chanMsg(event, L10N.getString("enable.success"));
 
 					for(String s : Utilities.getJoinedChannels(true))
 					{
 						if(!s.equalsIgnoreCase(event.getChannel().getName()))
-							Core.bot.sendCustomMessage(s, L10N.strings.getString("enable.notify"));
+							Core.bot.sendCustomMessage(s, L10N.getString("enable.notify"));
 					}
 				}
 				else
-					Utilities.chanMsg(event, L10N.strings.getString("enable.alreadyEnabled"));
+					Utilities.chanMsg(event, L10N.getString("enable.alreadyEnabled"));
 			}
 			else
 			{
 				if(!Listener.channelStates.containsKey(args[1]))
 				{
 					Listener.channelStates.put(args[1], true);
-					Utilities.chanMsg(event, L10N.strings.getString("enable.success"));
+					Utilities.chanMsg(event, L10N.getString("enable.success"));
 				}
 				else
 				{
 					if(!Listener.channelStates.get(args[1]))
 					{
 						Listener.channelStates.put(args[1], true);
-						Core.bot.sendCustomMessage(args[1], L10N.strings.getString("enable.success"));
+						Core.bot.sendCustomMessage(args[1], L10N.getString("enable.success"));
 					}
 					else
-						Core.bot.sendCustomMessage(args[1], L10N.strings.getString("enable.alreadyEnabled"));
+						Core.bot.sendCustomMessage(args[1], L10N.getString("enable.alreadyEnabled"));
 				}
 			}
 		}
@@ -78,12 +78,12 @@ public class Enable implements ICommand<MessageEvent<Bot>>
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-enable || " + L10N.strings.getString("enable.explanation")};
+		return new String[]{"-enable || " + L10N.getString("enable.explanation")};
 	}
 
 	@Override
 	public String getNotes()
 	{
-		return L10N.strings.getString("notes.onlyOp");
+		return L10N.getString("notes.onlyOp");
 	}
 }

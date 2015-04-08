@@ -96,7 +96,7 @@ public class MCStatus implements ICommand<MessageEvent<Bot>>
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-mcstatus || " + L10N.strings.getString("mcsatus.explanation")};
+		return new String[]{"-mcstatus || " + L10N.getString("mcsatus.explanation")};
 	}
 
 	@Override

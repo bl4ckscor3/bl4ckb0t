@@ -28,7 +28,7 @@ public class Forge implements ICommand<MessageEvent<Bot>>
 					String result = createResult("<td>1.8-Latest</td>", "Version");
 
 					if(result.equalsIgnoreCase(createResult("<td>1.8-Recommended</td>", "Version")))
-						Utilities.chanMsg(event, result + " " + L10N.strings.getString("forge.latest.recommended"));
+						Utilities.chanMsg(event, result + " " + L10N.getString("forge.latest.recommended"));
 					else
 						Utilities.chanMsg(event, result);
 				}
@@ -48,7 +48,7 @@ public class Forge implements ICommand<MessageEvent<Bot>>
 					String result = createResult("<td>1.8-Recommended</td>", "Version");
 
 					if(result.equalsIgnoreCase(createResult("<td>Latest-1.8</td>", "Version")))
-						Utilities.chanMsg(event, result + " " + L10N.strings.getString("forge.recommended.latest"));
+						Utilities.chanMsg(event, result + " " + L10N.getString("forge.recommended.latest"));
 					else
 						Utilities.chanMsg(event, result);
 				}
@@ -83,7 +83,7 @@ public class Forge implements ICommand<MessageEvent<Bot>>
 
 					String mcVersion = (reader.readLine()).split(">")[1].split("<")[0];
 
-					return line.split(">")[1].split("<")[0] + " (" + L10N.strings.getString("forge.forVersion") + " " + mcVersion + ")";
+					return line.split(">")[1].split("<")[0] + " (" + L10N.getString("forge.forVersion") + " " + mcVersion + ")";
 				}
 			}
 		}
@@ -118,7 +118,7 @@ public class Forge implements ICommand<MessageEvent<Bot>>
 				}
 			}
 		}
-		return L10N.strings.getString("forge.fail");
+		return L10N.getString("forge.fail");
 	}
 
 	@Override
@@ -138,14 +138,14 @@ public class Forge implements ICommand<MessageEvent<Bot>>
 	{
 		return new String[]
 				{
-				"-forge latest version || " + L10N.strings.getString("forge.explanation.1"),
-				"-forge latest changelog || " + L10N.strings.getString("forge.explanation.2"),
-				"-forge latest dlmain || " + L10N.strings.getString("forge.explanation.3"),
-				"-forge latest dlsrc || " + L10N.strings.getString("forge.explanation.4"),
-				"-forge <rec|recommended> version || " + L10N.strings.getString("forge.explanation.5"),
-				"-forge <rec|recommended> changelog || " + L10N.strings.getString("forge.explanation.6"),
-				"-forge <rec|recommended> dlmain || " + L10N.strings.getString("forge.explanation.7"),
-				"-forge <rec|recommended> dlsrc || " + L10N.strings.getString("forge.explanation.8")
+				"-forge latest version || " + L10N.getString("forge.explanation.1"),
+				"-forge latest changelog || " + L10N.getString("forge.explanation.2"),
+				"-forge latest dlmain || " + L10N.getString("forge.explanation.3"),
+				"-forge latest dlsrc || " + L10N.getString("forge.explanation.4"),
+				"-forge <rec|recommended> version || " + L10N.getString("forge.explanation.5"),
+				"-forge <rec|recommended> changelog || " + L10N.getString("forge.explanation.6"),
+				"-forge <rec|recommended> dlmain || " + L10N.getString("forge.explanation.7"),
+				"-forge <rec|recommended> dlsrc || " + L10N.getString("forge.explanation.8")
 				};
 	}
 

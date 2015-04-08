@@ -29,18 +29,18 @@ public class YouTube implements ICommand<MessageEvent<Bot>>
 	@Override
 	public String getSyntax()
 	{
-		return "-yt <" + L10N.strings.getString("yt.help.channel") + ">";
+		return "-yt <" + L10N.getString("yt.help.channel") + ">";
 	}
 
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-yt <" + L10N.strings.getString("ytv.help.channel") + "> || " + L10N.strings.getString("yt.explanation")};
+		return new String[]{"-yt <" + L10N.getString("ytv.help.channel") + "> || " + L10N.getString("yt.explanation")};
 	}
 
 	@Override
 	public String getNotes()
 	{
-		return L10N.strings.getString("yt.notes");
+		return L10N.getString("yt.notes");
 	}
 }

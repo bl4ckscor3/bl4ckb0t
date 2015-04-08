@@ -102,7 +102,7 @@ public class Scramble implements ICommand<MessageEvent<Bot>>
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-scramble || " + L10N.strings.getString("scramble.explanation")};
+		return new String[]{"-scramble || " + L10N.getString("scramble.explanation")};
 	}
 
 	@Override

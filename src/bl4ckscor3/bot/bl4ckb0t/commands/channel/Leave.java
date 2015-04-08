@@ -26,7 +26,7 @@ public class Leave implements ICommand<MessageEvent<Bot>>
 			{
 				if(args[1].equals("d"))
 				{
-					Utilities.chanMsg(event, L10N.strings.getString("leave.success.default"));
+					Utilities.chanMsg(event, L10N.getString("leave.success.default"));
 					
 					for(String s : Lists.getDefaultChans())
 					{	
@@ -39,11 +39,11 @@ public class Leave implements ICommand<MessageEvent<Bot>>
 				
 				if(Utilities.hasJoinedChannel(args))
 				{
-					Utilities.chanMsg(event, L10N.strings.getString("leave.success.normal"));
+					Utilities.chanMsg(event, L10N.getString("leave.success.normal"));
 					Utilities.leaveChannel(args[1]);
 				}
 				else
-					Utilities.chanMsg(event, L10N.strings.getString("leave.notJoined"));
+					Utilities.chanMsg(event, L10N.getString("leave.notJoined"));
 			}
 			else
 				throw new IncorrectCommandExecutionException(getAlias());
@@ -61,7 +61,7 @@ public class Leave implements ICommand<MessageEvent<Bot>>
 	@Override
 	public String getSyntax()
 	{
-		return "-leave [" + L10N.strings.getString("cmd.help.channel") + "]";
+		return "-leave [" + L10N.getString("cmd.help.channel") + "]";
 	}
 
 	@Override
@@ -69,14 +69,14 @@ public class Leave implements ICommand<MessageEvent<Bot>>
 	{
 		return new String[]
 				{
-				"-leave || " + L10N.strings.getString("leave.explanation.1"),
-				"-leave <" + L10N.strings.getString("cmd.help.channel") + "> || " + L10N.strings.getString("leave.explanation.2")
+				"-leave || " + L10N.getString("leave.explanation.1"),
+				"-leave <" + L10N.getString("cmd.help.channel") + "> || " + L10N.getString("leave.explanation.2")
 				};
 	}
 
 	@Override
 	public String getNotes()
 	{
-		return L10N.strings.getString("notes.onlyOp");
+		return L10N.getString("notes.onlyOp");
 	}
 }

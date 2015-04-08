@@ -1,6 +1,9 @@
 ###############################
 #          Changelog          #
 ###############################
+3.9
+- Added -changelog
+
 3.8.4
 - No more Java 7 in Help menu
 - Fixed enable and disable notification messages not getting sent to other channels
@@ -290,7 +293,7 @@
 2.17.3
 - bl4ckb0t doesn't show .0 if the solution is a whole number in -calc
 
-2.17.2.
+2.17.2
 - Fixed YoutTubeStats not working when the video posted has "301+ views"
 
 2.17.1

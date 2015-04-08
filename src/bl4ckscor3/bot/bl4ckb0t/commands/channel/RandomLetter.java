@@ -66,7 +66,7 @@ public class RandomLetter implements ICommand<MessageEvent<Bot>>
 				Utilities.pm(event.getUser().getNick(), result);
 			}
 			else
-				Utilities.chanMsg(event, L10N.strings.getString("ln.fail"));
+				Utilities.chanMsg(event, L10N.getString("ln.fail"));
 		}
 		else
 			throw new IncorrectCommandExecutionException(getAlias());
@@ -81,18 +81,18 @@ public class RandomLetter implements ICommand<MessageEvent<Bot>>
 	@Override
 	public String getSyntax()
 	{
-		return "-letter <" + L10N.strings.getString("ln.help.number") + ">";
+		return "-letter <" + L10N.getString("ln.help.number") + ">";
 	}
 
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-letter <" + L10N.strings.getString("ln.help.number") + "> || " + L10N.strings.getString("letter.explanation")};
+		return new String[]{"-letter <" + L10N.getString("ln.help.number") + "> || " + L10N.getString("letter.explanation")};
 	}
 
 	@Override
 	public String getNotes()
 	{
-		return L10N.strings.getString("ln.notes");
+		return L10N.getString("ln.notes");
 	}
 }

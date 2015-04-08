@@ -23,7 +23,7 @@ public class Language implements ICommand<MessageEvent<Bot>>
 		String[] args = Utilities.toArgs(event.getMessage());
 
 		if(args.length == 1)
-			Utilities.chanMsg(event, L10N.strings.getString("language.currentLanguage") + ": " + Utilities.capitalizeFirstLetter(L10N.langName));
+			Utilities.chanMsg(event, L10N.getString("language.currentLanguage") + ": " + Utilities.capitalizeFirstLetter(L10N.langName));
 		else if(args.length == 2)
 		{
 			if(args[1].equalsIgnoreCase(availableLanguages[0]))
@@ -31,9 +31,9 @@ public class Language implements ICommand<MessageEvent<Bot>>
 			else if(args[1].equalsIgnoreCase(availableLanguages[1]))
 				L10N.changeLocalization("de", "DE", event.getChannel().getName());
 			else	
-				Utilities.chanMsg(event, L10N.strings.getString("language.availableLanguages") + ": " + getAvailableLanguages());
+				Utilities.chanMsg(event, L10N.getString("language.availableLanguages") + ": " + getAvailableLanguages());
 
-			Utilities.chanMsg(event, L10N.strings.getString("language.success") + ": " + Utilities.capitalizeFirstLetter(L10N.langName));
+			Utilities.chanMsg(event, L10N.getString("language.success") + ": " + Utilities.capitalizeFirstLetter(L10N.langName));
 		}
 		else
 			throw new IncorrectCommandExecutionException(getAlias());
@@ -60,7 +60,7 @@ public class Language implements ICommand<MessageEvent<Bot>>
 	@Override
 	public String getSyntax()
 	{
-		return "-language [" + L10N.strings.getString("language.help.language") + "]";
+		return "-language [" + L10N.getString("language.help.language") + "]";
 	}
 
 	@Override
@@ -68,8 +68,8 @@ public class Language implements ICommand<MessageEvent<Bot>>
 	{
 		return new String[]
 				{
-				"-language || " + L10N.strings.getString("language.explanation.1"),
-				"-language <" + L10N.strings.getString("language.help.language") + "> || " + L10N.strings.getString("language.explanation.2")
+				"-language || " + L10N.getString("language.explanation.1"),
+				"-language <" + L10N.getString("language.help.language") + "> || " + L10N.getString("language.explanation.2")
 				};
 	}
 

@@ -29,13 +29,13 @@ public class Twitch implements ICommand<MessageEvent<Bot>>
 	@Override
 	public String getSyntax()
 	{
-		return "-tv <" + L10N.strings.getString("tv.help.channel") + ">";
+		return "-tv <" + L10N.getString("tv.help.channel") + ">";
 	}
 
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-tv <" + L10N.strings.getString("tv.help.channel") + "> || " + L10N.strings.getString("tv.explanation")};
+		return new String[]{"-tv <" + L10N.getString("tv.help.channel") + "> || " + L10N.getString("tv.explanation")};
 	}
 
 	@Override

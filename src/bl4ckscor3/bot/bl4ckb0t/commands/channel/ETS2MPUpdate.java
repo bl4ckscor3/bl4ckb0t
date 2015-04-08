@@ -25,7 +25,7 @@ public class ETS2MPUpdate implements ICommand<MessageEvent<Bot>>
 		{
 			if(args.length < 2 || args.length > 2)
 			{
-				Utilities.chanMsg(event, L10N.strings.getString("ets2mp.onlyStop"));
+				Utilities.chanMsg(event, L10N.getString("ets2mp.onlyStop"));
 				throw new IncorrectCommandExecutionException(getAlias());
 			}
 		}
@@ -33,7 +33,7 @@ public class ETS2MPUpdate implements ICommand<MessageEvent<Bot>>
 		{
 			if(args.length < 3)
 			{
-				Utilities.chanMsg(event, L10N.strings.getString("ets2mp.onlyStart"));
+				Utilities.chanMsg(event, L10N.getString("ets2mp.onlyStart"));
 				throw new IncorrectCommandExecutionException(getAlias());
 			}
 		}
@@ -50,11 +50,11 @@ public class ETS2MPUpdate implements ICommand<MessageEvent<Bot>>
 				
 				currentVersion = currentVersion.substring(0, currentVersion.length() - 1);
 				checking = true;
-				Utilities.chanMsg(event, L10N.strings.getString("ets2mp.successful.start"));
+				Utilities.chanMsg(event, L10N.getString("ets2mp.successful.start"));
 				checkForUpdates(event);
 				break;
 			case "stop":
-				Utilities.chanMsg(event, L10N.strings.getString("ets2mp.successful.start"));
+				Utilities.chanMsg(event, L10N.getString("ets2mp.successful.start"));
 				checking = false;
 		}
 	}
@@ -71,7 +71,7 @@ public class ETS2MPUpdate implements ICommand<MessageEvent<Bot>>
 
 			if(!element.getText().equals("Current release: " + currentVersion + "Download latest version"))
 			{
-				Utilities.chanMsg(event, L10N.strings.getString("ets2mp.newVersion.1") + " (" + element.getText().substring(17).split("Download")[0] + ") " + L10N.strings.getString("ets2mp.newVersion.2"));
+				Utilities.chanMsg(event, L10N.getString("ets2mp.newVersion.1") + " (" + element.getText().substring(17).split("Download")[0] + ") " + L10N.getString("ets2mp.newVersion.2"));
 				checking = false;
 			}
 
@@ -88,7 +88,7 @@ public class ETS2MPUpdate implements ICommand<MessageEvent<Bot>>
 	@Override
 	public String getSyntax()
 	{
-		return "-ets2mp <start|stop> [" + L10N.strings.getString("ets2mp.help.currentVersion")+ "]";
+		return "-ets2mp <start|stop> [" + L10N.getString("ets2mp.help.currentVersion")+ "]";
 	}
 
 	@Override
@@ -96,14 +96,14 @@ public class ETS2MPUpdate implements ICommand<MessageEvent<Bot>>
 	{
 		return new String[]
 				{
-				"-ets2mp start <" + L10N.strings.getString("ets2mp.help.currentVersion")+ "> || " + L10N.strings.getString("ets2mp.explanation.1"),
-				"-ets2mp stop || " + L10N.strings.getString("ets2mp.explanation.2")
+				"-ets2mp start <" + L10N.getString("ets2mp.help.currentVersion")+ "> || " + L10N.getString("ets2mp.explanation.1"),
+				"-ets2mp stop || " + L10N.getString("ets2mp.explanation.2")
 				};
 	}
 
 	@Override
 	public String getNotes()
 	{
-		return L10N.strings.getString("ets2mp.notes");
+		return L10N.getString("ets2mp.notes");
 	}
 }

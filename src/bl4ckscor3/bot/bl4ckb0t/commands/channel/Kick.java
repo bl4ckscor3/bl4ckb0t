@@ -44,7 +44,7 @@ public class Kick implements ICommand<MessageEvent<Bot>>
 
 			if(!allowed)
 			{
-				Utilities.chanMsg(event, "Sorry, " + event.getUser().getNick() + ", " + L10N.strings.getString("kick.notAuthorized"));
+				Utilities.chanMsg(event, "Sorry, " + event.getUser().getNick() + ", " + L10N.getString("kick.notAuthorized"));
 				return;
 			}
 
@@ -63,8 +63,8 @@ public class Kick implements ICommand<MessageEvent<Bot>>
 				{
 					if(args[1].equalsIgnoreCase(Core.bot.getNick()))
 					{
-						event.getChannel().send().action(L10N.strings.getString("kick.self"));
-						Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + args[1] + " :" + L10N.strings.getString("kick.self.reason"));
+						event.getChannel().send().action(L10N.getString("kick.self"));
+						Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + args[1] + " :" + L10N.getString("kick.self.reason"));
 						
 						if(L10N.chanLangs.containsKey(event.getChannel().getName()))
 							L10N.chanLangs.remove(event.getChannel().getName());
@@ -82,7 +82,7 @@ public class Kick implements ICommand<MessageEvent<Bot>>
 					}
 				}
 				else
-					Utilities.chanMsg(event, L10N.strings.getString("kick.cannotKick"));
+					Utilities.chanMsg(event, L10N.getString("kick.cannotKick"));
 			}
 			else
 			{
@@ -93,12 +93,12 @@ public class Kick implements ICommand<MessageEvent<Bot>>
 					case 2:
 						throw new IncorrectCommandExecutionException(getAlias());
 					default:
-						Utilities.chanMsg(event, L10N.strings.getString("kick.fail") + " - " + args.length);
+						Utilities.chanMsg(event, L10N.getString("kick.fail") + " - " + args.length);
 				}
 			}
 		}
 		else
-			Utilities.respond(event, L10N.strings.getString("kick.identify"), true);
+			Utilities.respond(event, L10N.getString("kick.identify"), true);
 	}
 
 	@Override
@@ -110,18 +110,18 @@ public class Kick implements ICommand<MessageEvent<Bot>>
 	@Override
 	public String getSyntax()
 	{
-		return "-kick <" + L10N.strings.getString("kick.help.user") + "> <" + L10N.strings.getString("kick.help.reason") + ">";
+		return "-kick <" + L10N.getString("kick.help.user") + "> <" + L10N.getString("kick.help.reason") + ">";
 	}
 
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-kick <" + L10N.strings.getString("kick.help.user") + "> <" + L10N.strings.getString("kick.help.reason") + "> || " + L10N.strings.getString("kick.explanation")};
+		return new String[]{"-kick <" + L10N.getString("kick.help.user") + "> <" + L10N.getString("kick.help.reason") + "> || " + L10N.getString("kick.explanation")};
 	}
 	
 	@Override
 	public String getNotes()
 	{
-		return L10N.strings.getString("notes.onlyVoiceOp");
+		return L10N.getString("notes.onlyVoiceOp");
 	}
 }

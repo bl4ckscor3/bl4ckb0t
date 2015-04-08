@@ -28,7 +28,7 @@ public class Weather implements ICommand<MessageEvent<Bot>>
 			BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://api.openweathermap.org/data/2.5/weather?q=" + args[1] + "&mode=xml").openStream()));	
 			
 			if(reader.readLine().equalsIgnoreCase("{\"message\":\"Error: Not found city\",\"cod\":\"404\"}"))
-				Utilities.chanMsg(event, L10N.strings.getString("w.cityNotFound") + " \"" + args[1] + "\" :/");
+				Utilities.chanMsg(event, L10N.getString("w.cityNotFound") + " \"" + args[1] + "\" :/");
 			else
 			{
 				for(int i = 0; i < 19; i++)
@@ -40,19 +40,19 @@ public class Weather implements ICommand<MessageEvent<Bot>>
 				
 				if(!error)
 					Utilities.chanMsg(event, Colors.BOLD + "** " + Colors.BOLD + data[1] + ", " + data[3] +
-							Colors.BOLD + " ** " + L10N.strings.getString("w.conditions") + ": " + Colors.BOLD + data[13] +
-							Colors.BOLD + " ** " + L10N.strings.getString("w.temperature") + ": " + Colors.BOLD + data[6] +
-							Colors.BOLD + " ** " + L10N.strings.getString("w.humidity") + ": " + Colors.BOLD + data[7] +
-							Colors.BOLD + " ** " + L10N.strings.getString("w.pressure") + ": " + Colors.BOLD + data[8] +
-							Colors.BOLD + " ** " + L10N.strings.getString("w.wind.1") + ": " + Colors.BOLD + data[11] + ", " + L10N.strings.getString("w.wind.2") + " " + data[10] +
-							Colors.BOLD + " ** " + L10N.strings.getString("w.credit") + data[1] + "/ **");
+							Colors.BOLD + " ** " + L10N.getString("w.conditions") + ": " + Colors.BOLD + data[13] +
+							Colors.BOLD + " ** " + L10N.getString("w.temperature") + ": " + Colors.BOLD + data[6] +
+							Colors.BOLD + " ** " + L10N.getString("w.humidity") + ": " + Colors.BOLD + data[7] +
+							Colors.BOLD + " ** " + L10N.getString("w.pressure") + ": " + Colors.BOLD + data[8] +
+							Colors.BOLD + " ** " + L10N.getString("w.wind.1") + ": " + Colors.BOLD + data[11] + ", " + L10N.getString("w.wind.2") + " " + data[10] +
+							Colors.BOLD + " ** " + L10N.getString("w.credit") + data[1] + "/ **");
 				else
-					Utilities.chanMsg(event, "** " + data[1] + ", " + data[3] + " ** " + L10N.strings.getString("w.conditions") + ": " + data[13] +
-							" ** " + L10N.strings.getString("w.temperature") + ": " + data[6] +
-							" ** " + L10N.strings.getString("w.humidity") + ": " + data[7] +
-							" ** " + L10N.strings.getString("w.pressure") + ": " + data[8] +
-							" ** " + L10N.strings.getString("w.wind.1") + ": " + data[11] +
-							" ** " + L10N.strings.getString("w.credit") + data[1] + "/ **");
+					Utilities.chanMsg(event, "** " + data[1] + ", " + data[3] + " ** " + L10N.getString("w.conditions") + ": " + data[13] +
+							" ** " + L10N.getString("w.temperature") + ": " + data[6] +
+							" ** " + L10N.getString("w.humidity") + ": " + data[7] +
+							" ** " + L10N.getString("w.pressure") + ": " + data[8] +
+							" ** " + L10N.getString("w.wind.1") + ": " + data[11] +
+							" ** " + L10N.getString("w.credit") + data[1] + "/ **");
 			}
 		}
 		else
@@ -99,18 +99,18 @@ public class Weather implements ICommand<MessageEvent<Bot>>
 	@Override
 	public String getSyntax()
 	{
-		return "-w <" + L10N.strings.getString("w.help.city") + ">";
+		return "-w <" + L10N.getString("w.help.city") + ">";
 	}
 
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-w <" + L10N.strings.getString("w.help.city") + "> || " + L10N.strings.getString("w.explanation")};
+		return new String[]{"-w <" + L10N.getString("w.help.city") + "> || " + L10N.getString("w.explanation")};
 	}
 
 	@Override
 	public String getNotes()
 	{
-		return L10N.strings.getString("w.notes");
+		return L10N.getString("w.notes");
 	}
 }

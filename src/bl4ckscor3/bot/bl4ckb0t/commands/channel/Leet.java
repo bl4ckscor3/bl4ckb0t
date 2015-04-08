@@ -48,13 +48,13 @@ public class Leet implements ICommand<MessageEvent<Bot>>
 	@Override
 	public String getSyntax()
 	{
-		return "-leet <" + L10N.strings.getString("cmd.help.sentence") + ">";
+		return "-leet <" + L10N.getString("cmd.help.sentence") + ">";
 	}
 
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-leet <" + L10N.strings.getString("cmd.help.sentence") + "> || " + L10N.strings.getString("leet.explanation")};
+		return new String[]{"-leet <" + L10N.getString("cmd.help.sentence") + "> || " + L10N.getString("leet.explanation")};
 	}
 
 	@Override

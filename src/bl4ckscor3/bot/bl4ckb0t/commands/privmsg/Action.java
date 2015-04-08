@@ -17,7 +17,7 @@ public class Action implements IPrivateCommand<PrivateMessageEvent<Bot>>
 		
 		if(!args[1].startsWith("#"))
 		{
-			Core.bot.sendCustomMessage(event.getUser().getNick(), L10N.strings.getString("action.noHashtag"));
+			Core.bot.sendCustomMessage(event.getUser().getNick(), L10N.getString("action.noHashtag"));
 			return;
 		}
 		

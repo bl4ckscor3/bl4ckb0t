@@ -30,7 +30,7 @@ public class Version implements ICommand<MessageEvent<Bot>>
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-version || " + L10N.strings.getString("version.explanation")};
+		return new String[]{"-version || " + L10N.getString("version.explanation")};
 	}
 
 	@Override

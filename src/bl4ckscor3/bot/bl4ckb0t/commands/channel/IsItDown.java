@@ -28,11 +28,11 @@ public class IsItDown implements ICommand<MessageEvent<Bot>>
 			try
 			{
 				driver.findElement(By.xpath("//span[@class='upicon']"));
-				Utilities.chanMsg(event, args[1] + " " + L10N.strings.getString("isitdown.is") + Colors.GREEN + " UP " + Colors.BLACK + L10N.strings.getString("isitdown.reachable") + ".");
+				Utilities.chanMsg(event, args[1] + " " + L10N.getString("isitdown.is") + Colors.GREEN + " UP " + Colors.BLACK + L10N.getString("isitdown.reachable") + ".");
 			}
 			catch(NoSuchElementException e)
 			{
-				Utilities.chanMsg(event, args[1] + " " + L10N.strings.getString("isitdown.is") + " " + Colors.RED + "DOWN" + Colors.BLACK + ".");
+				Utilities.chanMsg(event, args[1] + " " + L10N.getString("isitdown.is") + " " + Colors.RED + "DOWN" + Colors.BLACK + ".");
 			}
 
 			driver.close();
@@ -60,12 +60,12 @@ public class IsItDown implements ICommand<MessageEvent<Bot>>
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-isitdown || " + L10N.strings.getString("isitdown.explanation")};
+		return new String[]{"-isitdown || " + L10N.getString("isitdown.explanation")};
 	}
 
 	@Override
 	public String getNotes()
 	{
-		return L10N.strings.getString("isitdown.notes");
+		return L10N.getString("isitdown.notes");
 	}
 }

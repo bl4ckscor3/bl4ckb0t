@@ -22,13 +22,13 @@ public class YouTubeStats
 		String[] links = new String[10];
 		boolean[] shortLink = new boolean[10];
 		WebDriver driver = new HtmlUnitDriver();
-		String title = L10N.strings.getString("youtube.noValue");
-		String duration = L10N.strings.getString("youtube.noValue");
-		String views = L10N.strings.getString("youtube.noValue");
-		String likes = L10N.strings.getString("youtube.noValue");
-		String dislikes = L10N.strings.getString("youtube.noValue");
-		String date = L10N.strings.getString("youtube.noValue");
-		String uploader = L10N.strings.getString("youtube.noValue");
+		String title = L10N.getString("youtube.noValue");
+		String duration = L10N.getString("youtube.noValue");
+		String views = L10N.getString("youtube.noValue");
+		String likes = L10N.getString("youtube.noValue");
+		String dislikes = L10N.getString("youtube.noValue");
+		String date = L10N.getString("youtube.noValue");
+		String uploader = L10N.getString("youtube.noValue");
 		int linkCounter = 0;
 		int currentLink = 0;
 
@@ -43,7 +43,7 @@ public class YouTubeStats
 				}
 				else
 				{
-					Utilities.chanMsg(event, L10N.strings.getString("youtube.noId"));
+					Utilities.chanMsg(event, L10N.getString("youtube.noId"));
 					break;
 				}
 
@@ -134,13 +134,13 @@ public class YouTubeStats
 			catch(NoSuchElementException e){}
 
 			Utilities.chanMsg(event, Colors.BLACK + Colors.BOLD + "** " + Colors.BOLD + "1,0You0,4Tube " + 
-					Colors.BOLD + "** " + L10N.strings.getString("youtube.title") + ": " + Colors.BOLD + title + 
-					Colors.BOLD + " ** " + L10N.strings.getString("youtube.duration") + ": " + Colors.BOLD + duration + 
-					Colors.BOLD + " ** " + L10N.strings.getString("youtube.views") + ": " + Colors.BOLD + views + 
-					Colors.BOLD + " ** " + L10N.strings.getString("youtube.likes") + ":3 " + Colors.BOLD + likes + 
-					Colors.BOLD + " ** " + L10N.strings.getString("youtube.dislikes") + ":4 " + Colors.BOLD + dislikes + 
-					Colors.BOLD + " ** " + L10N.strings.getString("youtube.uploader") + ": " + Colors.BOLD + uploader + 
-					Colors.BOLD + " ** " + L10N.strings.getString("youtube.date") + ":" + Colors.BOLD + date + Colors.BOLD + " **");
+					Colors.BOLD + "** " + L10N.getString("youtube.title") + ": " + Colors.BOLD + title + 
+					Colors.BOLD + " ** " + L10N.getString("youtube.duration") + ": " + Colors.BOLD + duration + 
+					Colors.BOLD + " ** " + L10N.getString("youtube.views") + ": " + Colors.BOLD + views + 
+					Colors.BOLD + " ** " + L10N.getString("youtube.likes") + ":3 " + Colors.BOLD + likes + 
+					Colors.BOLD + " ** " + L10N.getString("youtube.dislikes") + ":4 " + Colors.BOLD + dislikes + 
+					Colors.BOLD + " ** " + L10N.getString("youtube.uploader") + ": " + Colors.BOLD + uploader + 
+					Colors.BOLD + " ** " + L10N.getString("youtube.date") + ":" + Colors.BOLD + date + Colors.BOLD + " **");
 			currentLink++;
 		}
 
@@ -149,7 +149,7 @@ public class YouTubeStats
 
 	private static String resolveDuration(WebDriver driver)
 	{
-		String dur = L10N.strings.getString("youtube.noValue");
+		String dur = L10N.getString("youtube.noValue");
 		String hours;
 		String minutes = "";
 		String seconds = null;

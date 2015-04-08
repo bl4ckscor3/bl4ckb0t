@@ -23,7 +23,7 @@ public class Join implements ICommand<MessageEvent<Bot>>
 			{
 				if(args[1].equals("d"))
 				{
-					Utilities.chanMsg(event, L10N.strings.getString("join.success.default"));
+					Utilities.chanMsg(event, L10N.getString("join.success.default"));
 					Utilities.joinDefaults();
 					return;
 				}
@@ -33,11 +33,11 @@ public class Join implements ICommand<MessageEvent<Bot>>
 				
 				if(!Utilities.hasJoinedChannel(args))
 				{
-					Utilities.chanMsg(event, L10N.strings.getString("join.success.normal"));
+					Utilities.chanMsg(event, L10N.getString("join.success.normal"));
 					Utilities.joinChannel(args[1]);
 				}
 				else
-					Utilities.chanMsg(event, L10N.strings.getString("join.alreadyJoined"));
+					Utilities.chanMsg(event, L10N.getString("join.alreadyJoined"));
 			}
 			else
 				throw new IncorrectCommandExecutionException(getAlias());
@@ -55,18 +55,18 @@ public class Join implements ICommand<MessageEvent<Bot>>
 	@Override
 	public String getSyntax()
 	{
-		return "join <" + L10N.strings.getString("cmd.help.channel") + ">";
+		return "join <" + L10N.getString("cmd.help.channel") + ">";
 	}
 
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"join <" + L10N.strings.getString("cmd.help.channel") + "> || " + L10N.strings.getString("join.explanation")};
+		return new String[]{"join <" + L10N.getString("cmd.help.channel") + "> || " + L10N.getString("join.explanation")};
 	}
 
 	@Override
 	public String getNotes()
 	{
-		return L10N.strings.getString("notes.onlyOp");
+		return L10N.getString("notes.onlyOp");
 	}
 }

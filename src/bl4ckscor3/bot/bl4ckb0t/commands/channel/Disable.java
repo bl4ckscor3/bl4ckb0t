@@ -29,7 +29,7 @@ public class Disable implements ICommand<MessageEvent<Bot>>
 				if(Listener.enabled)
 				{
 					Listener.enabled = false;
-					Utilities.chanMsg(event, L10N.strings.getString("disable.success"));
+					Utilities.chanMsg(event, L10N.getString("disable.success"));
 
 					if(Utilities.getJoinedChannels(true).length == 1)
 						return;
@@ -37,28 +37,28 @@ public class Disable implements ICommand<MessageEvent<Bot>>
 					for(String s : Utilities.getJoinedChannels(true))
 					{
 						if(!s.equalsIgnoreCase(event.getChannel().getName()))
-							Core.bot.sendCustomMessage(s, L10N.strings.getString("disable.notify"));
+							Core.bot.sendCustomMessage(s, L10N.getString("disable.notify"));
 					}
 				}
 				else
-					Utilities.chanMsg(event, L10N.strings.getString("disable.alreadyDisabled"));
+					Utilities.chanMsg(event, L10N.getString("disable.alreadyDisabled"));
 			}
 			else 
 			{
 				if(!Listener.channelStates.containsKey(args[1]))
 				{
 					Listener.channelStates.put(args[1], false);
-					Utilities.chanMsg(event, L10N.strings.getString("disable.success"));
+					Utilities.chanMsg(event, L10N.getString("disable.success"));
 				}
 				else
 				{
 					if(Listener.channelStates.get(args[1]))
 					{
 						Listener.channelStates.put(args[1], false);
-						Core.bot.sendCustomMessage(args[1], L10N.strings.getString("disable.success"));
+						Core.bot.sendCustomMessage(args[1], L10N.getString("disable.success"));
 					}
 					else
-						Core.bot.sendCustomMessage(args[1], L10N.strings.getString("disable.alreadyDisabled"));
+						Core.bot.sendCustomMessage(args[1], L10N.getString("disable.alreadyDisabled"));
 				}
 			}
 		}
@@ -81,12 +81,12 @@ public class Disable implements ICommand<MessageEvent<Bot>>
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-disable || " + L10N.strings.getString("disable.explanation")};
+		return new String[]{"-disable || " + L10N.getString("disable.explanation")};
 	}
 
 	@Override
 	public String getNotes()
 	{
-		return L10N.strings.getString("notes.onlyOp");
+		return L10N.getString("notes.onlyOp");
 	}
 }

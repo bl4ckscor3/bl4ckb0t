@@ -20,11 +20,11 @@ public class Decide implements ICommand<MessageEvent<Bot>>
 			int decision = r.nextInt(101);
 
 			if(decision >= 0 && decision <= 49)
-				Utilities.respond(event, L10N.strings.getString("decide.no"), true);
+				Utilities.respond(event, L10N.getString("decide.no"), true);
 			else if(decision >= 50 && decision <= 100)
-				Utilities.respond(event, L10N.strings.getString("decide.yes"), true);
+				Utilities.respond(event, L10N.getString("decide.yes"), true);
 			else
-				Utilities.chanMsg(event, L10N.strings.getString("decide.fail") + ": " + decision);
+				Utilities.chanMsg(event, L10N.getString("decide.fail") + ": " + decision);
 		}
 		else
 			throw new IncorrectCommandExecutionException(getAlias());
@@ -39,18 +39,18 @@ public class Decide implements ICommand<MessageEvent<Bot>>
 	@Override
 	public String getSyntax()
 	{
-		return "-decide <" + L10N.strings.getString("decide.help.question") + ">";
+		return "-decide <" + L10N.getString("decide.help.question") + ">";
 	}
 
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-decide <" + L10N.strings.getString("decide.help.question") + "> || " + L10N.strings.getString("decide.explanation")};
+		return new String[]{"-decide <" + L10N.getString("decide.help.question") + "> || " + L10N.getString("decide.explanation")};
 	}
 
 	@Override
 	public String getNotes()
 	{
-		return L10N.strings.getString("decide.notes");
+		return L10N.getString("decide.notes");
 	}
 }

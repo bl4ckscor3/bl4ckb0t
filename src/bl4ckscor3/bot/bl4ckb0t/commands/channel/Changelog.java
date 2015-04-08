@@ -7,8 +7,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map.Entry;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
@@ -44,7 +42,7 @@ public class Changelog implements ICommand<MessageEvent<Bot>>
 		{
 			if(!versions.containsKey(args[1]))
 			{
-				Utilities.chanMsg(event, L10N.strings.getString("changelog.versionNotFound"));
+				Utilities.chanMsg(event, L10N.getString("changelog.versionNotFound"));
 				return;
 			}
 			
@@ -62,18 +60,6 @@ public class Changelog implements ICommand<MessageEvent<Bot>>
 		}
 	}
 
-	private void printHashmap(HashMap<String, ArrayList<String>> versions)
-	{
-		Iterator<Entry<String, ArrayList<String>>> iterator = versions.entrySet().iterator();
-		
-		while(iterator.hasNext())
-		{
-			Entry<String, ArrayList<String>> pair = iterator.next();
-			
-			System.out.println(pair.getKey() + "=" + pair.getValue());
-		}
-	}
-	
 	private boolean startsWithNumber(String line)
 	{
 		return line.startsWith("0") || line.startsWith("1") || line.startsWith("2") || line.startsWith("3") || line.startsWith("4") || line.startsWith("5") || line.startsWith("6") || line.startsWith("7") || line.startsWith("8") || line.startsWith("9");
@@ -88,7 +74,7 @@ public class Changelog implements ICommand<MessageEvent<Bot>>
 	@Override
 	public String getSyntax()
 	{
-		return "-changelog [" + L10N.strings.getString("changelog.versionNumber") + "]";
+		return "-changelog [" + L10N.getString("changelog.versionNumber") + "]";
 	}
 
 	@Override
@@ -96,14 +82,14 @@ public class Changelog implements ICommand<MessageEvent<Bot>>
 	{
 		return new String[]
 				{
-				"-changelog || " + L10N.strings.getString("changelog.explanation.1"),
-				"-changelog <" + L10N.strings.getString("changelog.versionNumber") + "> || " + L10N.strings.getString("changelog.explanation.2")
+				"-changelog || " + L10N.getString("changelog.explanation.1"),
+				"-changelog <" + L10N.getString("changelog.versionNumber") + "> || " + L10N.getString("changelog.explanation.2")
 				};
 	}
 
 	@Override
 	public String getNotes()
 	{
-		return L10N.strings.getString("changelog.notes");
+		return L10N.getString("changelog.notes");
 	}
 }

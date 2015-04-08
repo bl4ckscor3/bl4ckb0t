@@ -44,18 +44,18 @@ public class Vowels implements ICommand<MessageEvent<Bot>>
 	@Override
 	public String getSyntax()
 	{
-		return "-vowels <" + L10N.strings.getString("cmd.help.sentence") + ">";
+		return "-vowels <" + L10N.getString("cmd.help.sentence") + ">";
 	}
 
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-vowels <" + L10N.strings.getString("cmd.help.sentence") + "> || " + L10N.strings.getString("vowels.explanation")};
+		return new String[]{"-vowels <" + L10N.getString("cmd.help.sentence") + "> || " + L10N.getString("vowels.explanation")};
 	}
 
 	@Override
 	public String getNotes()
 	{
-		return L10N.strings.getString("vowels.notes");
+		return L10N.getString("vowels.notes");
 	}
 }

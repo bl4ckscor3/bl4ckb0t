@@ -90,7 +90,7 @@ public class Draw implements ICommand<MessageEvent<Bot>>
 	@Override
 	public String getSyntax()
 	{
-		return "-draw [" + L10N.strings.getString("draw.help.drawing") + "]";
+		return "-draw [" + L10N.getString("draw.help.drawing") + "]";
 	}
 
 	@Override
@@ -98,8 +98,8 @@ public class Draw implements ICommand<MessageEvent<Bot>>
 	{
 		return new String[]
 				{
-				"-draw || " + L10N.strings.getString("draw.explanation.1"),
-				"-draw <" + L10N.strings.getString("draw.help.drawing") + "> || " + L10N.strings.getString("draw.explanation.2")
+				"-draw || " + L10N.getString("draw.explanation.1"),
+				"-draw <" + L10N.getString("draw.help.drawing") + "> || " + L10N.getString("draw.explanation.2")
 				};
 	}
 
@@ -425,7 +425,7 @@ public class Draw implements ICommand<MessageEvent<Bot>>
 	{
 		String result = "";
 
-		result += L10N.strings.getString("draw.list") + ": ";
+		result += L10N.getString("draw.list") + ": ";
 
 		for(String drawing : drawings)
 		{

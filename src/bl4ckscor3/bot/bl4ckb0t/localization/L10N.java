@@ -12,7 +12,7 @@ public class L10N
 	private static String country = "US";
 	public static String langName = parseLangName(language + "_" + country);
 	public static Locale currentLocale = new Locale(language, country);
-	public static ResourceBundle strings = ResourceBundle.getBundle("bl4ckscor3.bot.bl4ckb0t.localization.bb", currentLocale);
+	private static ResourceBundle strings = ResourceBundle.getBundle("bl4ckscor3.bot.bl4ckb0t.localization.bb", currentLocale);
 	public static HashMap<String, String> chanLangs = new HashMap<String, String>();
 
 	/**
@@ -75,5 +75,10 @@ public class L10N
 		}
 
 		return langCode.split("_")[code];
+	}
+
+	public static String getString(String key)
+	{
+		return strings.getString(key);
 	}
 }

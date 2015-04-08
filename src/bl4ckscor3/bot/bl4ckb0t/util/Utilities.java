@@ -50,7 +50,7 @@ public class Utilities
 
 	public static void sorry(MessageEvent<Bot> event)
 	{
-		chanMsg(event, L10N.strings.getString("noPermission"));
+		chanMsg(event, L10N.getString("noPermission"));
 	}
 
 	public static void addHelpLine(MessageEvent<Bot> event, String msg)
@@ -78,17 +78,17 @@ public class Utilities
 
 	public static void sendHelp(String nick, String syntax, String[] usage, String notes)
 	{
-		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "-----------" + L10N.strings.getString("helpMenu.syntax") + "----------");
+		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "-----------" + L10N.getString("helpMenu.syntax") + "----------");
 		Utilities.pm(nick, syntax);
-		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------" + L10N.strings.getString("helpMenu.usage") + "----------");
+		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------" + L10N.getString("helpMenu.usage") + "----------");
 
 		for(String s : usage)
 		{
 			Utilities.pm(nick, s);
 		}
 
-		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------" + L10N.strings.getString("helpMenu.notes") + "----------");
-		Utilities.pm(nick, notes == null ? L10N.strings.getString("helpMenu.noNotes") : notes);
+		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------" + L10N.getString("helpMenu.notes") + "----------");
+		Utilities.pm(nick, notes == null ? L10N.getString("helpMenu.noNotes") : notes);
 	}
 
 	public static String[] toArgs(String line)
@@ -189,7 +189,7 @@ public class Utilities
 
 	public static void leaveChannel(String channel)
 	{
-		Core.bot.sendRaw().rawLine("PART " + channel + " :" + L10N.strings.getString("channel.part"));
+		Core.bot.sendRaw().rawLine("PART " + channel + " :" + L10N.getString("channel.part"));
 
 		if(L10N.chanLangs.containsKey(channel))
 			L10N.chanLangs.remove(channel);

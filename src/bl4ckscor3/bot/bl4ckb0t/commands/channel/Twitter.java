@@ -29,13 +29,13 @@ public class Twitter implements ICommand<MessageEvent<Bot>>
 	@Override
 	public String getSyntax()
 	{
-		return "-tw <" + L10N.strings.getString("tw.help.profile") + ">";
+		return "-tw <" + L10N.getString("tw.help.profile") + ">";
 	}
 
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-tw <" + L10N.strings.getString("tw.help.profile") + "> || " + L10N.strings.getString("tw.explanation")};
+		return new String[]{"-tw <" + L10N.getString("tw.help.profile") + "> || " + L10N.getString("tw.explanation")};
 	}
 
 	@Override

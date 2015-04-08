@@ -11,7 +11,7 @@ public class Source implements ICommand<MessageEvent<Bot>>
 	@Override
 	public void exe(MessageEvent<Bot> event)
 	{
-		Utilities.chanMsg(event, L10N.strings.getString("source.hereYouGo") + ": https://github.com/bl4ckscor3/bl4ckb0t");
+		Utilities.chanMsg(event, L10N.getString("source.hereYouGo") + ": https://github.com/bl4ckscor3/bl4ckb0t");
 	}
 	
 	@Override
@@ -29,7 +29,7 @@ public class Source implements ICommand<MessageEvent<Bot>>
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-source || " + L10N.strings.getString("source.explanation")};
+		return new String[]{"-source || " + L10N.getString("source.explanation")};
 	}
 
 	@Override

@@ -25,13 +25,13 @@ public class Stop implements ICommand<MessageEvent<Bot>>
 				switch(args[1])
 				{
 					case "yes":
-						Utilities.chanMsg(event, L10N.strings.getString("stop.reboot.yes"));
-						Core.bot.sendRaw().rawLine("QUIT :" + L10N.strings.getString("stop.reason"));
+						Utilities.chanMsg(event, L10N.getString("stop.reboot.yes"));
+						Core.bot.sendRaw().rawLine("QUIT :" + L10N.getString("stop.reason"));
 						Core.createBot(); //creating another instance
 						break;
 					case "no":
-						Utilities.chanMsg(event, L10N.strings.getString("stop.reboot.no"));
-						Core.bot.sendRaw().rawLine("QUIT :" + L10N.strings.getString("stop.reason"));
+						Utilities.chanMsg(event, L10N.getString("stop.reboot.no"));
+						Core.bot.sendRaw().rawLine("QUIT :" + L10N.getString("stop.reason"));
 						break;
 					default:
 						throw new IncorrectCommandExecutionException(getAlias());
@@ -61,14 +61,14 @@ public class Stop implements ICommand<MessageEvent<Bot>>
 	{
 		return new String[]
 				{
-				"-stop yes || " + L10N.strings.getString("stop.explanation.1"),
-				"-stop no || " + L10N.strings.getString("stop.explanation.2")
+				"-stop yes || " + L10N.getString("stop.explanation.1"),
+				"-stop no || " + L10N.getString("stop.explanation.2")
 				};
 	}
 
 	@Override
 	public String getNotes()
 	{
-		return L10N.strings.getString("notes.onlyOp");
+		return L10N.getString("notes.onlyOp");
 	}
 }

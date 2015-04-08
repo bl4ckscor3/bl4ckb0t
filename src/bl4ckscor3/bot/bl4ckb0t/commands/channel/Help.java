@@ -34,7 +34,7 @@ public class Help implements ICommand<MessageEvent<Bot>>
 
 		if(args.length == 1)
 		{
-			Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------" + L10N.strings.getString("help.header") + "----------");
+			Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------" + L10N.getString("help.header") + "----------");
 
 			for(int i = 0; i < aliases.length; i++)
 			{
@@ -49,14 +49,14 @@ public class Help implements ICommand<MessageEvent<Bot>>
 			
 			Utilities.pm(nick, msg.substring(0, msg.lastIndexOf(" | ")));
 			Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------------------------------------------------------");
-			Utilities.pm(nick, L10N.strings.getString("help.moreInfo"));
+			Utilities.pm(nick, L10N.getString("help.moreInfo"));
 			Thread.sleep(2000);
-			Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------" + L10N.strings.getString("help.credits.header") + "----------");
-			Utilities.pm(nick, Colors.TEAL + L10N.strings.getString("help.credits.1"));
-			Utilities.pm(nick, Colors.TEAL + L10N.strings.getString("help.credits.2"));
-			Utilities.pm(nick, Colors.TEAL + L10N.strings.getString("help.credits.3"));
-			Utilities.pm(nick, Colors.TEAL + L10N.strings.getString("help.credits.4"));
-			Utilities.pm(nick, Colors.TEAL + L10N.strings.getString("help.credits.5"));
+			Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------" + L10N.getString("help.credits.header") + "----------");
+			Utilities.pm(nick, Colors.TEAL + L10N.getString("help.credits.1"));
+			Utilities.pm(nick, Colors.TEAL + L10N.getString("help.credits.2"));
+			Utilities.pm(nick, Colors.TEAL + L10N.getString("help.credits.3"));
+			Utilities.pm(nick, Colors.TEAL + L10N.getString("help.credits.4"));
+			Utilities.pm(nick, Colors.TEAL + L10N.getString("help.credits.5"));
 		}
 		else if(args.length == 2)
 		{
@@ -82,7 +82,7 @@ public class Help implements ICommand<MessageEvent<Bot>>
 	@Override
 	public String getSyntax()
 	{
-		return "-help [" + L10N.strings.getString("help.help.command") + "]";
+		return "-help [" + L10N.getString("help.help.command") + "]";
 	}
 
 	@Override
@@ -90,8 +90,8 @@ public class Help implements ICommand<MessageEvent<Bot>>
 	{
 		return new String[]
 				{
-				"-help || " + L10N.strings.getString("help.explanation.1"),
-				"-help <" + L10N.strings.getString("help.help.command") + "> || " + L10N.strings.getString("help.explanation.2")
+				"-help || " + L10N.getString("help.explanation.1"),
+				"-help <" + L10N.getString("help.help.command") + "> || " + L10N.getString("help.explanation.2")
 				};
 	}
 
