@@ -25,16 +25,24 @@ public class Changelog implements ICommand<MessageEvent<Bot>>
 		HashMap<String, ArrayList<String>> versions = new HashMap<String, ArrayList<String>>();
 		String line = "";
 		String currentVersion = "";
+		boolean wip = false;
 		
 		while((line = reader.readLine()) != null)
 		{
 			if(startsWithNumber(line))
 			{
+				if(line.endsWith("_WIP"))
+				{
+					wip = true;
+					continue;
+				}
+				
+				wip = false;
 				currentVersion = line;
 				versions.put(currentVersion, new ArrayList<String>());
 			}
 			
-			if(line.startsWith("-"))
+			if(line.startsWith("-") && !wip)
 				versions.get(currentVersion).add(line);
 		}
 		
