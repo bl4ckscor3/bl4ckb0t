@@ -3,7 +3,6 @@ package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
-import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;

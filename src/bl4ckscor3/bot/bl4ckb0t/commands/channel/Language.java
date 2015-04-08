@@ -27,9 +27,9 @@ public class Language implements ICommand<MessageEvent<Bot>>
 		else if(args.length == 2)
 		{
 			if(args[1].equalsIgnoreCase(availableLanguages[0]))
-				L10N.changeLocalization("en", "US", event.getChannel().getName(), true);
+				L10N.changeLocalization("en", "US", event.getChannel().getName());
 			else if(args[1].equalsIgnoreCase(availableLanguages[1]))
-				L10N.changeLocalization("de", "DE", event.getChannel().getName(), true);
+				L10N.changeLocalization("de", "DE", event.getChannel().getName());
 			else	
 				Utilities.chanMsg(event, L10N.strings.getString("language.availableLanguages") + ": " + getAvailableLanguages());
 

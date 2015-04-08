@@ -112,7 +112,7 @@ public class Listener extends ListenerAdapter<Bot>
 	{
 		String cmdName = Utilities.toArgs(event.getMessage())[0];
 
-		L10N.changeLocalization(L10N.parseLangCode(L10N.chanLangs.get(event.getChannel().getName()), 0), L10N.parseLangCode(L10N.chanLangs.get(event.getChannel().getName()), 1), event.getChannel().getName(), false);
+		L10N.changeLocalization(L10N.parseLangCode(L10N.chanLangs.get(event.getChannel().getName()), 0), L10N.parseLangCode(L10N.chanLangs.get(event.getChannel().getName()), 1), event.getChannel().getName());
 		misc(event);
 
 		if(!cmdName.startsWith(p))
