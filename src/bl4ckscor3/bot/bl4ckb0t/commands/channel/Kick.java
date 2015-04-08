@@ -71,15 +71,14 @@ public class Kick implements ICommand<MessageEvent<Bot>>
 					}
 					else
 					{
-						StringBuilder builder = new StringBuilder();
+						String result = "";
 
 						for(int i = 3; i <= args.length; i++)
 						{
-							builder.append(args[i - 1] + " ");
+							result += args[i - 1] + " ";
 						}
 
-						builder.replace(builder.length() - 1, builder.length(), "");
-						Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + args[1] + " :" + builder.toString());
+						Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + args[1] + " :" + result.substring(0, result.lastIndexOf(' ')));
 					}
 				}
 				else

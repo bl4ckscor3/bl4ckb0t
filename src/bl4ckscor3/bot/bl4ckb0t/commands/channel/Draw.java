@@ -423,16 +423,15 @@ public class Draw implements ICommand<MessageEvent<Bot>>
 
 	private void sendAvailableDrawings(MessageEvent<Bot> event)
 	{
-		StringBuilder output = new StringBuilder();
+		String result = "";
 
-		output.append(L10N.strings.getString("draw.list") + ": ");
+		result += L10N.strings.getString("draw.list") + ": ";
 
 		for(String drawing : drawings)
 		{
-			output.append("'").append(drawing).append("' | ");
+			result += "'" + drawing + "' | ";
 		}
 
-		output.delete(output.length() - 3, output.length() - 1);
-		Utilities.notice(event, output.toString());
+		Utilities.notice(event, result.substring(0, result.lastIndexOf(" | ")));
 	}
 }

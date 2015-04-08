@@ -15,25 +15,25 @@ public class Leet implements ICommand<MessageEvent<Bot>>
 		if(Utilities.toArgs(event.getMessage()).length >= 2)
 		{
 			char[] chars = event.getMessage().substring(6).toCharArray();
-			StringBuilder builder = new StringBuilder();
+			String result = "";
 
 			for(int i = 0; i < chars.length; i++)
 			{
 				switch(chars[i])
 				{
-					case 'A': case 'a': builder.append("4"); break;
-					case 'E': case 'e': builder.append("3"); break;
-					case 'G': case 'g': builder.append("6"); break;
-					case 'H': case 'h': builder.append("h"); break;
-					case 'I': case 'i': builder.append("1"); break;
-					case 'L': case 'l': builder.append("|"); break;
-					case 'S': case 's': builder.append("5"); break;
-					case 'T': case 't': builder.append("7"); break;
-					case 'Z': case 'z': builder.append("2"); break;
-					default: builder.append(chars[i]);
+					case 'A': case 'a': result += "4"; break;
+					case 'E': case 'e': result += "3"; break;
+					case 'G': case 'g': result += "6"; break;
+					case 'H': case 'h': result += "h"; break;
+					case 'I': case 'i': result += "1"; break;
+					case 'L': case 'l': result += "|"; break;
+					case 'S': case 's': result += "5"; break;
+					case 'T': case 't': result += "7"; break;
+					case 'Z': case 'z': result += "2"; break;
+					default: result += chars[i];
 				}
 			}
-			Utilities.chanMsg(event, builder.toString());
+			Utilities.chanMsg(event, result);
 		}
 		else
 			throw new IncorrectCommandExecutionException(getAlias());

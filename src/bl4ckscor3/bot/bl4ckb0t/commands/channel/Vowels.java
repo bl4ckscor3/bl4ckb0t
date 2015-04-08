@@ -15,22 +15,21 @@ public class Vowels implements ICommand<MessageEvent<Bot>>
 		if(Utilities.toArgs(event.getMessage()).length >= 2)
 		{
 			char[] chars = event.getMessage().substring(8).toLowerCase().toCharArray();
-			StringBuilder builder = new StringBuilder();
+			String result = "";
 
 			for(int i = 0; i < chars.length; i++)
 			{
 				switch(chars[i])
 				{
-					case 'a': builder.append(""); break;
-					case 'e': builder.append(""); break;
-					case 'i': builder.append(""); break;
-					case 'o': builder.append(""); break;
-					case 'u': builder.append(""); break;
-					default: builder.append(chars[i]);
+					case 'a': case 'e': case 'i': case 'o': case 'u': 
+						result += ""; 
+						break;
+					default: 
+						result += chars[i];
 				}
 			}
 
-			Utilities.respond(event, builder.toString(), false);
+			Utilities.respond(event, result, false);
 		}
 		else
 			throw new IncorrectCommandExecutionException(getAlias());

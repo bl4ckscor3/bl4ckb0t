@@ -28,7 +28,7 @@ public class Scramble implements ICommand<MessageEvent<Bot>>
 		if(Utilities.toArgs(event.getMessage()).length == 1)
 		{
 			String[] results = new String[20];
-			StringBuilder builder = new StringBuilder();
+			String result = "";
 
 			for(int i = 0; i < 20; i++)
 			{
@@ -45,10 +45,10 @@ public class Scramble implements ICommand<MessageEvent<Bot>>
 			
 			for(String s : results)
 			{
-				builder.append(s + " ");
+				result += s + " ";
 			}
 
-			Utilities.chanMsg(event, builder.toString());
+			Utilities.chanMsg(event, result);
 		}
 		else
 			throw new IncorrectCommandExecutionException(getAlias());

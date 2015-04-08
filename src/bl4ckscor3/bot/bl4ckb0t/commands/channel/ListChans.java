@@ -6,7 +6,6 @@ import java.net.MalformedURLException;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
-import bl4ckscor3.bot.bl4ckb0t.core.Core;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
@@ -20,22 +19,20 @@ public class ListChans implements ICommand<MessageEvent<Bot>>
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 		String[] chans = Utilities.getJoinedChannels(false);
-		StringBuilder builder = new StringBuilder();
+		String result = "";
 
 		for(String s : chans)
 		{
 			if(s != null)
-				builder.append(s + " | ");
+				result += (s + " | ");
 		}
 
-		builder.deleteCharAt(builder.length() - 1);
-		builder.deleteCharAt(builder.length() - 1);
-		builder.deleteCharAt(builder.length() - 1);
-
+		result = result.substring(0, result.lastIndexOf(" | "));
+		
 		if(secretChannelAmount != 0)
-			builder.append(" + " + secretChannelAmount + " " + L10N.strings.getString("listchans.secret"));
+			result += " + " + secretChannelAmount + " " + L10N.strings.getString("listchans.secret");
 
-		Utilities.chanMsg(event, L10N.strings.getString("listchans.list") + ": " + builder.toString());
+		Utilities.chanMsg(event, L10N.strings.getString("listchans.list") + ": " + result);
 		secretChannelAmount = 0;
 		
 		if(args.length == 2 && args[1].equalsIgnoreCase("show"))

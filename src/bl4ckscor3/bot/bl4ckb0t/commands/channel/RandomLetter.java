@@ -14,7 +14,7 @@ public class RandomLetter implements ICommand<MessageEvent<Bot>>
 	@Override
 	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException
 	{
-		StringBuilder output = new StringBuilder();
+		String result = "";
 		String[] args = Utilities.toArgs(event.getMessage());
 		String[] chars = new String[50];
 
@@ -59,11 +59,11 @@ public class RandomLetter implements ICommand<MessageEvent<Bot>>
 						case 25: chars[i] = "Z"; break;
 					}
 
-					output.append(chars[i]);
-					output.append(" ");
+					result += chars[i];
+					result += " ";
 				}
 				
-				Utilities.pm(event.getUser().getNick(), output.toString());
+				Utilities.pm(event.getUser().getNick(), result);
 			}
 			else
 				Utilities.chanMsg(event, L10N.strings.getString("ln.fail"));

@@ -6,6 +6,7 @@
 - Fixed enable and disable notification messages not getting sent to other channels
 - Fixed bot not recognizing that he already joined/left a channel when being asked to join/leave
 - Added argument which allows specific users to show the secret channels the bot is in
+- Got rid of StringBuilders where not needed
 
 3.8.3
 - Internal changes
