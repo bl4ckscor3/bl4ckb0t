@@ -3,6 +3,7 @@ package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
+import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class XColor implements ICommand<MessageEvent<Bot>>
@@ -53,12 +54,12 @@ public class XColor implements ICommand<MessageEvent<Bot>>
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-xcolor || Gives you the XChat-SE color codes and their corresponding colors."};
+		return new String[]{"-xcolor || " + L10N.getString("xcolor.explanation")};
 	}
 
 	@Override
 	public String getNotes()
 	{
-		return "These colorcodes may work for other clients, too.";
+		return L10N.getString("xcolor.notes");
 	}
 }
