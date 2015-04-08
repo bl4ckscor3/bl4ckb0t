@@ -3,6 +3,8 @@
 ###############################
 3.9
 - Added -changelog
+- Added language support to -xcolor
+- Internal changes
 
 3.8.4
 - No more Java 7 in Help menu
