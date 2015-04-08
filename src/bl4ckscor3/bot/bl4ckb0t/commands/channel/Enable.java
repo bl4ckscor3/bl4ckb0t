@@ -31,7 +31,7 @@ public class Enable implements ICommand<MessageEvent<Bot>>
 					Listener.enabled = true;
 					Utilities.chanMsg(event, L10N.strings.getString("enable.success"));
 
-					for(String s : Utilities.getJoinedChannels())
+					for(String s : Utilities.getJoinedChannels(true))
 					{
 						if(!s.equalsIgnoreCase(event.getChannel().getName()))
 							Core.bot.sendCustomMessage(s, L10N.strings.getString("enable.notify"));

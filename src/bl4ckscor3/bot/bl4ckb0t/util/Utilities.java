@@ -97,7 +97,7 @@ public class Utilities
 
 	public static boolean hasJoinedChannel(String[] args)
 	{
-		String[] chans = getJoinedChannels();
+		String[] chans = getJoinedChannels(true);
 
 		for(String s : chans)
 		{
@@ -110,7 +110,7 @@ public class Utilities
 		return false;
 	}
 
-	public static String[] getJoinedChannels()
+	public static String[] getJoinedChannels(boolean listSecretChannels)
 	{
 		ImmutableSortedSet<Channel> list = Core.bot.getUserBot().getChannels();
 		Object[] x = list.toArray();
@@ -119,12 +119,16 @@ public class Utilities
 
 		for(Object o : x)
 		{
-			//if the channel has the flag +s, it does not get shown
-			if(!o.toString().contains("secret=true"))
-				chans[i] = o.toString().split(",")[0].split("=")[1];
+			if(!listSecretChannels)
+			{
+				//if the channel has the flag +s, it does not get shown
+				if(!o.toString().contains("secret=true"))
+					chans[i] = o.toString().split(",")[0].split("=")[1];
+				else
+					ListChans.secretChannelAmount++;
+			}
 			else
-				ListChans.secretChannelAmount++;
-			
+				chans[i] = o.toString().split(",")[0].split("=")[1];
 			i++;
 		}
 
@@ -137,7 +141,7 @@ public class Utilities
 
 		if(!L10N.chanLangs.containsKey(channel))
 			L10N.chanLangs.put(channel, "english");
-		
+
 		if(!Listener.channelStates.containsKey(channel))
 			Listener.channelStates.put(channel, true);
 	}
@@ -148,7 +152,7 @@ public class Utilities
 
 		if(!L10N.chanLangs.containsKey(channel))
 			L10N.chanLangs.put(channel, "english");
-		
+
 		if(!Listener.channelStates.containsKey(channel))
 			Listener.channelStates.put(channel, true);
 	}
@@ -172,7 +176,7 @@ public class Utilities
 
 		if(L10N.chanLangs.containsKey(channel))
 			L10N.chanLangs.remove(channel);
-		
+
 		if(Listener.channelStates.containsKey(channel))
 			Listener.channelStates.remove(channel);
 	}

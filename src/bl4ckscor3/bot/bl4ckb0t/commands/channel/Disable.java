@@ -31,10 +31,10 @@ public class Disable implements ICommand<MessageEvent<Bot>>
 					Listener.enabled = false;
 					Utilities.chanMsg(event, L10N.strings.getString("disable.success"));
 
-					if(Utilities.getJoinedChannels().length == 1)
+					if(Utilities.getJoinedChannels(true).length == 1)
 						return;
 
-					for(String s : Utilities.getJoinedChannels())
+					for(String s : Utilities.getJoinedChannels(true))
 					{
 						if(!s.equalsIgnoreCase(event.getChannel().getName()))
 							Core.bot.sendCustomMessage(s, L10N.strings.getString("disable.notify"));

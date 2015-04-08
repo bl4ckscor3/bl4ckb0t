@@ -34,7 +34,7 @@ public class Join implements ICommand<MessageEvent<Bot>>
 				
 				if(!Utilities.hasJoinedChannel(args))
 				{
-					Utilities.chanMsg(event, L10N.strings.getString("join.success.normal") + " " + Colors.BOLD + args[1]);
+					Utilities.chanMsg(event, L10N.strings.getString("join.success.normal"));
 					Utilities.joinChannel(args[1]);
 				}
 				else

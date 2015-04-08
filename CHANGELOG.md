@@ -1,6 +1,11 @@
 ###############################
 #          Changelog          #
 ###############################
+3.8.4
+- No more Java 7 in Help menu
+- Fixed enable and disable notification messages not getting sent to other channels
+- Fixed bot not recognizing that he already joined/left a channel when being asked to join/leave
+
 3.8.3
 - Internal changes
 - Fixed italics getting negated when corrected message gets corrected again

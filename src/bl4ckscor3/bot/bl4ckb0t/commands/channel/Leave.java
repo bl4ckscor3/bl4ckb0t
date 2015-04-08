@@ -3,7 +3,6 @@ package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
-import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
@@ -40,7 +39,7 @@ public class Leave implements ICommand<MessageEvent<Bot>>
 				
 				if(Utilities.hasJoinedChannel(args))
 				{
-					Utilities.chanMsg(event, L10N.strings.getString("leave.success.normal") + " " + Colors.BOLD + args[1] + Colors.BOLD + "!");
+					Utilities.chanMsg(event, L10N.strings.getString("leave.success.normal"));
 					Utilities.leaveChannel(args[1]);
 				}
 				else

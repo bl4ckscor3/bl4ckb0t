@@ -15,7 +15,7 @@ public class ListChans implements ICommand<MessageEvent<Bot>>
 	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
-		String[] chans = Utilities.getJoinedChannels();
+		String[] chans = Utilities.getJoinedChannels(false);
 		
 		if(args.length == 1)
 		{
