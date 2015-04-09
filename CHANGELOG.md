@@ -3,6 +3,7 @@
 ###############################
 3.9.1_WIP
 - Fixed -select
+- WIP versions can't be shown via -changelog anymore
 
 3.9
 - Added -changelog
@@ -559,7 +560,7 @@
 
 1.14.1
 - Tweaks to -calc
-- Added 2² calculations
+- Added 2Â² calculations
 - Removed * kicks <name> message
 
 1.14
