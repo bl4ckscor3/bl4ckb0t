@@ -44,10 +44,8 @@ public class YouTubeStats
 				else
 				{
 					Utilities.chanMsg(event, L10N.getString("youtube.noId"));
-					break;
+					continue;
 				}
-
-
 			}
 			else if(s.contains("youtu.be/"))
 			{
@@ -63,12 +61,8 @@ public class YouTubeStats
 				Utilities.chanMsg(event, "------------------------------------------");
 
 			if(shortLink[currentLink])
-			{
-				String videoId = links[currentLink].split("/")[3];
-
-				links[currentLink] = "www.youtube.com/watch?v=" + videoId;
-			}
-
+				links[currentLink] = "www.youtube.com/watch?v=" + links[currentLink].split("/")[3];
+			
 			//if someone posts the link without a space between the link and the word before it
 			if(!links[currentLink].startsWith("w"))
 				links[currentLink] = links[currentLink].split(":")[1].substring(2);

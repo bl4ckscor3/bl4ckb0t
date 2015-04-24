@@ -1,7 +1,7 @@
 ###############################
 #          Changelog          #
 ###############################
-3.9.1_WIP
+3.9.1
 - Fixed -select
 - WIP versions can't be shown via -changelog anymore
 
