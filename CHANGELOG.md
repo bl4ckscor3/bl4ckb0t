@@ -1,6 +1,9 @@
 ###############################
 #          Changelog          #
 ###############################
+3.9.2_WIP
+- SpellingCorrection can now replace character sequences with single spaces (s/sequence/ ")
+
 3.9.1
 - Fixed -select
 - WIP versions can't be shown via -changelog anymore

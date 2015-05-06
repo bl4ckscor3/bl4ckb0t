@@ -41,7 +41,7 @@ public class SpellingCorrection
 					Utilities.chanMsg(event, Colors.NORMAL + userToCorrect + " " + L10N.getString("correction.1") + " " + event.getUser().getNick() + " " + L10N.getString("correction.2") + ": " + correctedMessage);
 				else
 					Utilities.chanMsg(event, Colors.NORMAL + userToCorrect + " " + L10N.getString("correction.3") + ": " + correctedMessage);
-			
+
 				updateLatestMessage(event.getChannel().getName(), newMessage, userToCorrect);
 			}
 		}
@@ -58,7 +58,7 @@ public class SpellingCorrection
 
 		if(!storage.containsKey(channel))
 			storage.put(channel, new ArrayList<String>());
-		
+
 		for(String s : storage.get(channel))
 		{ 
 			//if the current array position contains no data to replace, stop the loop and add the data
@@ -128,6 +128,10 @@ public class SpellingCorrection
 
 				//removing the last character of the string to prevent 2 spaces
 				newMessage = newMessage.substring(0, newMessage.length() - 1);
+
+				if(newMessage.endsWith("/"))
+					newMessage += " ";
+				
 				split = newMessage.split("/");
 
 				if(split.length == 3 && split[0].equals("s"))
@@ -143,7 +147,12 @@ public class SpellingCorrection
 		//checking if someone is correcting himself
 		if(message.startsWith("s/"))
 		{
-			String[] split = message.split("/");
+			String[] split;
+
+			if(message.endsWith("/"))
+				message += " /";
+
+			split = message.split("/");
 
 			if(split.length == 3 && split[0].equals("s"))
 			{
