@@ -33,6 +33,7 @@ import bl4ckscor3.bot.bl4ckb0t.commands.channel.LongURL;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.MCStatus;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.RandomLetter;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.RandomNumber;
+import bl4ckscor3.bot.bl4ckb0t.commands.channel.Reverse;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Scramble;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Select;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Source;
@@ -90,6 +91,7 @@ public class Listener extends ListenerAdapter<Bot>
 		commands.add(new MCStatus());
 		commands.add(new RandomLetter());
 		commands.add(new RandomNumber());
+		commands.add(new Reverse());
 		commands.add(new Scramble());
 		commands.add(new Select());
 		commands.add(new Source());

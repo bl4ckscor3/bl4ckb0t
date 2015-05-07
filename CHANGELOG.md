@@ -3,6 +3,7 @@
 ###############################
 3.9.2_WIP
 - SpellingCorrection can now replace character sequences with single spaces (s/sequence/ ")
+- Added -reverse to reverse your sentences. .secnetnes ruoy esrever ot esrever- deddA
 
 3.9.1
 - Fixed -select
