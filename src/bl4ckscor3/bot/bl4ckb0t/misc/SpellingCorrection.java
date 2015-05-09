@@ -31,10 +31,10 @@ public class SpellingCorrection
 			if(userToCorrect.equals(s.split("#")[0]))
 			{
 				String previousMessage = getLatestMessage(userToCorrect, storage.get(event.getChannel().getName()));
-				String newMessage = getLatestMessage(event.getUser().getNick(), storage.get(event.getChannel().getName())).replace(toReplace, replaceWith); //w/o italics
-				String correctedMessage = getLatestMessage(userToCorrect, storage.get(event.getChannel().getName())).replace(toReplace, "\u001d" + replaceWith + Colors.NORMAL); //w/ italics
+				String newMessage = getLatestMessage(userToCorrect, storage.get(event.getChannel().getName())).replace(toReplace, replaceWith); //w/o italics
+				String correctedMessage = addItalics(previousMessage, newMessage);
 
-				if(previousMessage.equals(correctedMessage))
+				if(previousMessage.equals(newMessage))
 					return;
 
 				if(correctsDifferentUser)
@@ -49,6 +49,7 @@ public class SpellingCorrection
 
 	/**
 	 * Adds or updates a user with his latest message
+	 * 
 	 * @param msg - The message to write into the array
 	 * @param username - The name of the user who wrote the message
 	 */
@@ -80,6 +81,7 @@ public class SpellingCorrection
 
 	/**
 	 * Returns the latest message from the given user
+	 * 
 	 * @param user - The name of the user to get the latest message from
 	 * @return - The latest message from the given user
 	 */
@@ -96,6 +98,7 @@ public class SpellingCorrection
 
 	/**
 	 * Determine if the message contains a syntax to correct a message sent before
+	 * 
 	 * @param event - The triggered MessageEvent
 	 * @param message - The message sent to the channel which triggered the event
 	 */
@@ -131,7 +134,7 @@ public class SpellingCorrection
 
 				if(newMessage.endsWith("/"))
 					newMessage += " ";
-				
+
 				split = newMessage.split("/");
 
 				if(split.length == 3 && split[0].equals("s"))
@@ -162,5 +165,55 @@ public class SpellingCorrection
 			else
 				return;
 		}
+	}
+
+	/**
+	 * Inserts italics into the corrected parts of the message.
+	 * 
+	 * @param previousMessage - The message before it was corrected
+	 * @param newMessage - The message after it was corrected
+	 * @return - The message including italics
+	 */
+	private static String addItalics(String previousMessage, String newMessage)
+	{
+		char[] p = previousMessage.toCharArray();
+		char[] n = newMessage.toCharArray();
+		String italicsMessage = "";
+		boolean italics = false;
+
+		for(int i = 0; i < p.length; i++)
+		{
+			try
+			{
+				if(!italics)
+				{
+					if(p[i] == n[i])
+						italicsMessage += n[i];
+					else
+					{
+						italicsMessage += "\u001d";
+						italicsMessage += n[i];
+						italics = true;
+					}
+				}
+				else
+				{
+					if(p[i] != n[i])
+						italicsMessage += n[i];
+					else
+					{
+						italicsMessage += "\u001d";
+						italicsMessage += n[i];
+						italics = false;
+					}
+				}
+			}
+			catch(ArrayIndexOutOfBoundsException e)
+			{
+				break;
+			}
+		}
+
+		return italicsMessage;
 	}
 }
