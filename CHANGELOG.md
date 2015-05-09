@@ -1,7 +1,7 @@
 ###############################
 #          Changelog          #
 ###############################
-3.10_WIP
+3.10
 - Added -reverse to reverse your sentences. .secnetnes ruoy esrever ot esrever- deddA
 - Disabled -forge
 - SpellingCorrection can now replace character sequences with single spaces (s/sequence/ ")
