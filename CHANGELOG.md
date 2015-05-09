@@ -1,10 +1,11 @@
 ###############################
 #          Changelog          #
 ###############################
-3.9.2_WIP
+3.10_WIP
+- Added -reverse to reverse your sentences. .secnetnes ruoy esrever ot esrever- deddA
 - SpellingCorrection can now replace character sequences with single spaces (s/sequence/ ")
 - Only actual corrected parts become italics (e.g. if "tset" would be corrected to "test" all being italics, now only "es" is italics)
-- Added -reverse to reverse your sentences. .secnetnes ruoy esrever ot esrever- deddA
+- Weather now doesn't expect only one argument, you can freely use spaces now
 
 3.9.1
 - Fixed -select

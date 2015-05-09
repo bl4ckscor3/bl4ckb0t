@@ -22,41 +22,46 @@ public class Weather implements ICommand<MessageEvent<Bot>>
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 		String[] data = new String[19];//1 = name | 3 = country | 6 = temperature | 7 = humidity | 8 = pressure | 10 = wind speed | 11 = wind direction | 13 = clouds
-
-		if(args.length == 2)
+		BufferedReader reader;
+		String city = "";
+		
+		for(String s : args)
 		{
-			BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://api.openweathermap.org/data/2.5/weather?q=" + args[1] + "&mode=xml").openStream()));	
+			if(s.equals("-w")) //if it's the first argument, don't add it to the city string
+				continue;
 			
-			if(reader.readLine().equalsIgnoreCase("{\"message\":\"Error: Not found city\",\"cod\":\"404\"}"))
-				Utilities.chanMsg(event, L10N.getString("w.cityNotFound") + " \"" + args[1] + "\" :/");
-			else
-			{
-				for(int i = 0; i < 19; i++)
-				{
-					data[i] = reader.readLine();
-				}
-				
-				filter(data);
-				
-				if(!error)
-					Utilities.chanMsg(event, Colors.BOLD + "** " + Colors.BOLD + data[1] + ", " + data[3] +
-							Colors.BOLD + " ** " + L10N.getString("w.conditions") + ": " + Colors.BOLD + data[13] +
-							Colors.BOLD + " ** " + L10N.getString("w.temperature") + ": " + Colors.BOLD + data[6] +
-							Colors.BOLD + " ** " + L10N.getString("w.humidity") + ": " + Colors.BOLD + data[7] +
-							Colors.BOLD + " ** " + L10N.getString("w.pressure") + ": " + Colors.BOLD + data[8] +
-							Colors.BOLD + " ** " + L10N.getString("w.wind.1") + ": " + Colors.BOLD + data[11] + ", " + L10N.getString("w.wind.2") + " " + data[10] +
-							Colors.BOLD + " ** " + L10N.getString("w.credit") + data[1] + "/ **");
-				else
-					Utilities.chanMsg(event, "** " + data[1] + ", " + data[3] + " ** " + L10N.getString("w.conditions") + ": " + data[13] +
-							" ** " + L10N.getString("w.temperature") + ": " + data[6] +
-							" ** " + L10N.getString("w.humidity") + ": " + data[7] +
-							" ** " + L10N.getString("w.pressure") + ": " + data[8] +
-							" ** " + L10N.getString("w.wind.1") + ": " + data[11] +
-							" ** " + L10N.getString("w.credit") + data[1] + "/ **");
-			}
+			city += s;
 		}
+
+		reader = new BufferedReader(new InputStreamReader(new URL("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&mode=xml").openStream()));
+		
+		if(reader.readLine().equalsIgnoreCase("{\"message\":\"Error: Not found city\",\"cod\":\"404\"}"))
+			Utilities.chanMsg(event, L10N.getString("w.cityNotFound") + " \"" + city + "\" :/");
 		else
-			throw new IncorrectCommandExecutionException(getAlias());
+		{
+			for(int i = 0; i < 19; i++)
+			{
+				data[i] = reader.readLine();
+			}
+
+			filter(data);
+
+			if(!error)
+				Utilities.chanMsg(event, Colors.BOLD + "** " + Colors.BOLD + data[1] + ", " + data[3] +
+						Colors.BOLD + " ** " + L10N.getString("w.conditions") + ": " + Colors.BOLD + data[13] +
+						Colors.BOLD + " ** " + L10N.getString("w.temperature") + ": " + Colors.BOLD + data[6] +
+						Colors.BOLD + " ** " + L10N.getString("w.humidity") + ": " + Colors.BOLD + data[7] +
+						Colors.BOLD + " ** " + L10N.getString("w.pressure") + ": " + Colors.BOLD + data[8] +
+						Colors.BOLD + " ** " + L10N.getString("w.wind.1") + ": " + Colors.BOLD + data[11] + ", " + L10N.getString("w.wind.2") + " " + data[10] +
+						Colors.BOLD + " ** " + L10N.getString("w.credit") + data[1] + "/ **");
+			else
+				Utilities.chanMsg(event, "** " + data[1] + ", " + data[3] + " ** " + L10N.getString("w.conditions") + ": " + data[13] +
+						" ** " + L10N.getString("w.temperature") + ": " + data[6] +
+						" ** " + L10N.getString("w.humidity") + ": " + data[7] +
+						" ** " + L10N.getString("w.pressure") + ": " + data[8] +
+						" ** " + L10N.getString("w.wind.1") + ": " + data[11] +
+						" ** " + L10N.getString("w.credit") + data[1] + "/ **");
+		}
 	}
 
 	private void filter(String[] data)
@@ -65,7 +70,7 @@ public class Weather implements ICommand<MessageEvent<Bot>>
 		double kentucky;
 		double fried;
 		double chicken;
-		
+
 		data[1] = temp[1].split("\"")[3];
 		data[3] = temp[3].split(">")[1].split("<")[0];
 		kentucky = Double.parseDouble(temp[6].split("\"")[1]);
@@ -74,7 +79,7 @@ public class Weather implements ICommand<MessageEvent<Bot>>
 		data[6] = chicken + "°C | " + fried + "°F | " + kentucky + "K";	
 		data[7] = temp[7].split("\"")[1] + "%";
 		data[8] = temp[8].split("\"")[1] + "hPa";
-		
+
 		try
 		{
 			data[10] = temp[10].split("\"")[1] + "m/s (" + temp[10].split("\"")[3] + ")";
@@ -86,10 +91,10 @@ public class Weather implements ICommand<MessageEvent<Bot>>
 			data[10] = temp[10].split("\"")[1] + "m/s";
 			error = true;
 		}
-		
+
 		data[13] = temp[13].split("\"")[3];
 	}
-	
+
 	@Override
 	public String getAlias() 
 	{
