@@ -1,6 +1,9 @@
 ###############################
 #          Changelog          #
 ###############################
+3.10.1_WIP
+- Fixed -changenick
+
 3.10
 - Added -reverse to reverse your sentences. .secnetnes ruoy esrever ot esrever- deddA
 - Disabled -forge
