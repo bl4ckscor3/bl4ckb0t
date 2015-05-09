@@ -4,6 +4,7 @@ import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
+import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Calculate implements ICommand<MessageEvent<Bot>>
@@ -11,7 +12,7 @@ public class Calculate implements ICommand<MessageEvent<Bot>>
 	@Override
 	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException
 	{
-		Utilities.respond(event, "This command is currently being reworked and not available.", true);
+		Utilities.respond(event, L10N.getString("calc.disabled"), true);
 //		String[] args = Utilities.toArgs(event.getMessage());
 //		
 //		if(args.length == 1 || args.length == 2 || args.length == 3 || !validateInput(args))
