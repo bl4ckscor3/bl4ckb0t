@@ -180,31 +180,86 @@ public class SpellingCorrection
 		char[] n = newMessage.toCharArray();
 		String italicsMessage = "";
 		boolean italics = false;
+		int length;
+		boolean nLength;
 
-		for(int i = 0; i < p.length; i++)
+		if(p.length > n.length)
+		{
+			length = p.length;
+			nLength = false;
+		}
+		else
+		{
+			length = n.length;
+			nLength = true;
+		}
+
+		for(int i = 0; i < length; i++) //iterate through the most
 		{
 			try
 			{
-				if(!italics)
+				if(!nLength)
 				{
-					if(p[i] == n[i])
-						italicsMessage += n[i];
+					if(!italics)
+					{
+						if(p[i] == n[i])
+							italicsMessage += n[i];
+						else
+						{
+							italicsMessage += "\u001d";
+							italicsMessage += n[i];
+							italics = true;
+						}
+					}
 					else
 					{
-						italicsMessage += "\u001d";
-						italicsMessage += n[i];
-						italics = true;
+						if(p[i] != n[i])
+							italicsMessage += n[i];
+						else
+						{
+							italicsMessage += "\u001d";
+							italicsMessage += n[i];
+							italics = false;
+						}
 					}
 				}
 				else
 				{
-					if(p[i] != n[i])
-						italicsMessage += n[i];
+					if(i < p.length)
+					{
+						if(!italics)
+						{
+							if(p[i] == n[i])
+								italicsMessage += n[i];
+							else
+							{
+								italicsMessage += "\u001d";
+								italicsMessage += n[i];
+								italics = true;
+							}
+						}
+						else
+						{
+							if(p[i] != n[i])
+								italicsMessage += n[i];
+							else
+							{
+								italicsMessage += "\u001d";
+								italicsMessage += n[i];
+								italics = false;
+							}
+						}
+					}
 					else
 					{
-						italicsMessage += "\u001d";
-						italicsMessage += n[i];
-						italics = false;
+						if(!italics)
+						{
+							italicsMessage += "\u001d";
+							italicsMessage += n[i];
+							italics = true;
+						}
+						else
+							italicsMessage += n[i];
 					}
 				}
 			}
@@ -213,7 +268,9 @@ public class SpellingCorrection
 				break;
 			}
 		}
-
+		
+		italics = false; //just in case
+		
 		return italicsMessage;
 	}
 }
