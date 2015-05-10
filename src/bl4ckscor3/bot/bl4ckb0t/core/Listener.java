@@ -70,6 +70,8 @@ public class Listener extends ListenerAdapter<Bot>
 
 	public Listener()
 	{
+		channelStates.put("#whatever", false); //disabling the bot in the channel #whatever by default
+		
 		commands.add(new Calculate());
 		commands.add(new Changelog());
 		commands.add(new ChangeNick());

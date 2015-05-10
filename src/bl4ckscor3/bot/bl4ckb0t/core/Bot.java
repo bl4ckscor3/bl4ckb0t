@@ -13,7 +13,7 @@ public class Bot extends PircBotX
 	@Override
 	public void setNick(String nick)
 	{
-		Core.bot.sendIRC().changeNick(nick);
+		sendIRC().changeNick(nick);
 	}
 	
 	public void sendCustomMessage(String target, String msg)
