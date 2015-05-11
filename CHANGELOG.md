@@ -4,6 +4,7 @@
 3.10.1_WIP
 - Fixed -changenick
 - Disabled bot in channel #whatever by default
+- Bot sends all PMs to all valid users (users who are able to control the bot)
 
 3.10
 - Added -reverse to reverse your sentences. .secnetnes ruoy esrever ot esrever- deddA
