@@ -12,7 +12,7 @@ import bl4ckscor3.bot.bl4ckb0t.util.Passwords;
 public class Core
 {	
 	public static Bot bot;
-	
+
 	public static void main(String args[]) throws IOException, IrcException
 	{
 		createBot();
