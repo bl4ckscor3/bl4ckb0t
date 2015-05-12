@@ -5,6 +5,7 @@
 - Added -update
 - Disabled bot in channel #whatever by default
 - Bot sends all PMs to all valid users (users who are able to control the bot)
+- Bot connects through SSL now
 - Fixed -changenick
 
 3.10
