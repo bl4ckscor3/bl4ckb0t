@@ -14,7 +14,7 @@ public class Startup
 	{
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/tishdl84z1wmcgs/bl4ckb0t%20chans.txt?dl=1").openStream()));
 
-		if(Core.bot.getNick().equals("bl4ckb0t"))
+		if(!Core.bot.getConfiguration().getVersion().endsWith("_WIP"))
 		{
 			for(String s : reader.readLine().split(","))
 			{

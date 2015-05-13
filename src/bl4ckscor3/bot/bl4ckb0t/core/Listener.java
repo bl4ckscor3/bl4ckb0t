@@ -244,10 +244,7 @@ public class Listener extends ListenerAdapter<Bot>
 	@Override
 	public void onConnect(ConnectEvent<Bot> event) throws MalformedURLException, IOException
 	{
-		Lists.clearAll();
 		Startup.setAutoJoinChans();
-		Startup.setAllowedUsers();
-		Startup.setValidUsers();
 		Utilities.joinDefaults();
 	}
 }

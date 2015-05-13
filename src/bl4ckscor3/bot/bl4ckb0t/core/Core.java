@@ -8,10 +8,11 @@ import org.pircbotx.Configuration;
 import org.pircbotx.UtilSSLSocketFactory;
 import org.pircbotx.exception.IrcException;
 
+import bl4ckscor3.bot.bl4ckb0t.util.Lists;
 import bl4ckscor3.bot.bl4ckb0t.util.Passwords;
 
 public class Core
-{	
+{
 	public static Bot bot;
 
 	public static void main(String args[]) throws IOException, IrcException
@@ -25,12 +26,15 @@ public class Core
 
 		Logger.getLogger("").setLevel(Level.OFF); //turning off logging (ugh)
 		Passwords.setPasswords();
+		Lists.clearAll();
+		Startup.setAllowedUsers();
+		Startup.setValidUsers();
 		config = new Configuration.Builder<Bot>()
-				.setServer("irc.esper.net", 6697)
-				.setSocketFactory(new UtilSSLSocketFactory().trustAllCertificates())
+				.setVersion("3.11.1")
 				.setName("bl4ckb0t")
 				.setLogin("bl4ckb0t")
-				.setVersion("3.11.1_WIP")
+				.setServer("irc.esper.net", 6697)
+				.setSocketFactory(new UtilSSLSocketFactory().trustAllCertificates())
 				.setNickservPassword(Passwords.getPassword("nickserv"))
 				.setAutoNickChange(true)
 				.setMessageDelay(1000)
