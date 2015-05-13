@@ -69,58 +69,58 @@ public class Forge implements ICommand<MessageEvent<Bot>>
 //			throw new IncorrectCommandExecutionException(getAlias());
 	}
 
-	private String createResult(String type, String action) throws IOException
-	{
-		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://files.minecraftforge.net").openStream()));
-		String line;
-
-		if(action.equalsIgnoreCase("Version"))
-		{
-			while((line = reader.readLine()) != null)
-			{
-				if(line.contains(type))
-				{
-					line = reader.readLine();
-
-					String mcVersion = (reader.readLine()).split(">")[1].split("<")[0];
-
-					return line.split(">")[1].split("<")[0] + " (" + L10N.getString("forge.forVersion") + " " + mcVersion + ")";
-				}
-			}
-		}
-		else if(action.equalsIgnoreCase("Changelog"))
-		{
-			while((line = reader.readLine()) != null)
-			{
-				if(line.contains(type))
-				{
-					while((line = reader.readLine()) != null)
-					{
-						if(line.contains(action))
-							return line.split("\"")[1];
-					}
-				}
-			}
-		}
-		else
-		{
-			while((line = reader.readLine()) != null)
-			{
-				if(line.contains(type))
-				{
-					while((line = reader.readLine()) != null)
-					{
-						if(line.contains(action))
-						{
-							line = reader.readLine();
-							return line.split("\"")[1];
-						}
-					}
-				}
-			}
-		}
-		return L10N.getString("forge.fail");
-	}
+//	private String createResult(String type, String action) throws IOException
+//	{
+//		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://files.minecraftforge.net").openStream()));
+//		String line;
+//
+//		if(action.equalsIgnoreCase("Version"))
+//		{
+//			while((line = reader.readLine()) != null)
+//			{
+//				if(line.contains(type))
+//				{
+//					line = reader.readLine();
+//
+//					String mcVersion = (reader.readLine()).split(">")[1].split("<")[0];
+//
+//					return line.split(">")[1].split("<")[0] + " (" + L10N.getString("forge.forVersion") + " " + mcVersion + ")";
+//				}
+//			}
+//		}
+//		else if(action.equalsIgnoreCase("Changelog"))
+//		{
+//			while((line = reader.readLine()) != null)
+//			{
+//				if(line.contains(type))
+//				{
+//					while((line = reader.readLine()) != null)
+//					{
+//						if(line.contains(action))
+//							return line.split("\"")[1];
+//					}
+//				}
+//			}
+//		}
+//		else
+//		{
+//			while((line = reader.readLine()) != null)
+//			{
+//				if(line.contains(type))
+//				{
+//					while((line = reader.readLine()) != null)
+//					{
+//						if(line.contains(action))
+//						{
+//							line = reader.readLine();
+//							return line.split("\"")[1];
+//						}
+//					}
+//				}
+//			}
+//		}
+//		return L10N.getString("forge.fail");
+//	}
 
 	@Override
 	public String getAlias()

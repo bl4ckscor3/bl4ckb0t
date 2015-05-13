@@ -1,7 +1,6 @@
 package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 

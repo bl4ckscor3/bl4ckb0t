@@ -30,7 +30,7 @@ public class Core
 				.setSocketFactory(new UtilSSLSocketFactory().trustAllCertificates())
 				.setName("bl4ckb0t")
 				.setLogin("bl4ckb0t")
-				.setVersion("3.11")
+				.setVersion("3.11.1_WIP")
 				.setNickservPassword(Passwords.getPassword("nickserv"))
 				.setAutoNickChange(true)
 				.setMessageDelay(1000)
