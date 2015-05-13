@@ -1,7 +1,7 @@
 ###############################
 #          Changelog          #
 ###############################
-3.11_WIP
+3.11
 - Added -update
 - Disabled bot in channel #whatever by default
 - Bot sends all PMs to all valid users (users who are able to control the bot)
