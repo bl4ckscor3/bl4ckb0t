@@ -1,7 +1,11 @@
 ###############################
 #          Changelog          #
 ###############################
-3.11.1_WIP
+3.11.2
+- Removed spying feature due to incomplete search for users in the channel. This fixes the bot not working
+
+3.11.1
+- Fixed bot not connecting to the correct channels
 
 3.11
 - Added -update

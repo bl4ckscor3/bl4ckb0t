@@ -202,14 +202,4 @@ public class Utilities
 	{
 		return s.substring(0, 1).toUpperCase(L10N.currentLocale) + s.substring(1);
 	}
-
-	public static boolean isUserInChannel(String name, Channel channel)
-	{
-		for(User u : channel.getUsers())
-		{
-			if(u.getNick().equalsIgnoreCase(name))
-				return true;
-		}
-		return false;
-	}
 }

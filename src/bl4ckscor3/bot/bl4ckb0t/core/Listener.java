@@ -190,12 +190,6 @@ public class Listener extends ListenerAdapter<Bot>
 			else
 				SpellingCorrection.corrected = false;
 
-			if(!Utilities.isUserInChannel("bl4ckscor3", event.getChannel()) && !event.getChannel().getName().equals("#whatever"))
-			{
-				Core.bot.sendCustomMessage("#whatever", "[" + event.getChannel().getName() + "] " + event.getUser().getNick() + ": " + event.getMessage());
-				return;
-			}
-
 			//sending a welcome back message
 			if(message.toLowerCase().startsWith("re ") || message.toLowerCase().equals("re"))
 			{
