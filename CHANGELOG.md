@@ -1,6 +1,9 @@
 ###############################
 #          Changelog          #
 ###############################
+3.12
+- Added automatic kicking of users using a cracked Minecraft client in #GeforceMods
+
 3.11.2
 - Removed spying feature due to incomplete search for users in the channel. This fixes the bot not working
 

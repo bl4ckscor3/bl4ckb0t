@@ -8,7 +8,7 @@ public class Lists
 	private static final List<String> defaultChans = new ArrayList<String>();
 	private static final List<String> allowedUsers = new ArrayList<String>();
 	private static final List<String> validUsers = new ArrayList<String>();
-
+	
 	public static void addDefaultChan(String c)
 	{
 		defaultChans.add(c);

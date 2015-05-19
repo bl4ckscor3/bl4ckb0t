@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import org.pircbotx.exception.IrcException;
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.ConnectEvent;
+import org.pircbotx.hooks.events.JoinEvent;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
@@ -54,6 +55,7 @@ import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.PrivateLeave;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.UserMsg;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
+import bl4ckscor3.bot.bl4ckb0t.misc.CrackedKicker;
 import bl4ckscor3.bot.bl4ckb0t.misc.LinkTitle;
 import bl4ckscor3.bot.bl4ckb0t.misc.SpellingCorrection;
 import bl4ckscor3.bot.bl4ckb0t.misc.YouTubeStats;
@@ -235,6 +237,13 @@ public class Listener extends ListenerAdapter<Bot>
 		}
 	}
 
+	@Override
+	public void onJoin(JoinEvent<Bot> event) throws Exception
+	{
+		if(event.getChannel().getName().equals("#GeforceMods") && event.getUser().getNick().startsWith("SCUser_"))
+			CrackedKicker.check(event);
+	}
+	
 	@Override
 	public void onConnect(ConnectEvent<Bot> event) throws MalformedURLException, IOException
 	{

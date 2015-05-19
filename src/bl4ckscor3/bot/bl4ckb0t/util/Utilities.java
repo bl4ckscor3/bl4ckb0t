@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.pircbotx.Channel;
 import org.pircbotx.Colors;
-import org.pircbotx.User;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 

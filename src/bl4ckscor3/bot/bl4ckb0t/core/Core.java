@@ -30,7 +30,7 @@ public class Core
 		Startup.setAllowedUsers();
 		Startup.setValidUsers();
 		config = new Configuration.Builder<Bot>()
-				.setVersion("3.11.2")
+				.setVersion("3.12")
 				.setName("bl4ckb0t")
 				.setLogin("bl4ckb0t")
 				.setServer("irc.esper.net", 6697)
