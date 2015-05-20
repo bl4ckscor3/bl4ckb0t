@@ -29,8 +29,8 @@
 - Weather now doesn't expect only one argument, you can freely use spaces now
 
 3.9.1
-- Fixed -select
 - WIP versions can't be shown via -changelog anymore
+- Fixed -select
 
 3.9
 - Added -changelog
@@ -38,30 +38,30 @@
 - Internal changes
 
 3.8.4
+- Added argument which allows specific users to show the secret channels the bot is in
+- Got rid of StringBuilders where not needed
 - No more Java 7 in Help menu
 - Fixed enable and disable notification messages not getting sent to other channels
 - Fixed bot not recognizing that he already joined/left a channel when being asked to join/leave
-- Added argument which allows specific users to show the secret channels the bot is in
-- Got rid of StringBuilders where not needed
 
 3.8.3
-- Internal changes
 - Fixed italics getting negated when corrected message gets corrected again
 - Compacted help menu
 - Language adjustments
+- Internal changes
 
 3.8.2
-- Fixed bot trying to join channels multiple times when -stop yes is used
 - Added setup of allowed users
+- Fixed bot trying to join channels multiple times when -stop yes is used
 
 3.8.1
-- Internal changes (Lambdas)
 - Made Spelling Correction changes appear in italics
+- Internal changes (Lambdas)
 
 3.8
+- Disabled -calc
 - Changed storage of messages in SpellingCorrection to be more flexible
 - The bot can now be disabled/enabled per channel
-- Disabled -calc
 
 3.7.2
 - Internal changes to improve performance
@@ -73,8 +73,8 @@
 - Added -version
 
 3.6.3
-- Fixes regarding Localization
 - Revamped way of telling the user that he has done something incorrectly internally
+- Fixes regarding Localization
 
 3.6.2
 - bl4ckb0t doesn't send a message if the corrected message is the same as before
@@ -163,8 +163,8 @@
 - Fixed some messages not showing due to wrong localization paths
 
 3.2
-- Fixed localization not working in multiple channels
 - Started german translation
+- Fixed localization not working in multiple channels
 
 3.1.3
 - Removed faulty code
@@ -173,8 +173,8 @@
 - Updated localization for -scramble
 
 3.1.1
-- Updated -source link
 - Added localization to -source (forgot)
+- Updated -source link
 
 3.1
 - Removed -deads
@@ -479,7 +479,7 @@
 2.7.2
 - Removed -girlballs
 - Removed random "lol" response
-- Subaraki is no longer awesome
+- Subaraki is no longer awesome (Ok, he still is!)
 
 2.7.1
 - Updated help menu
@@ -490,7 +490,7 @@
 - Internal changes
 
 2.6.4
-- Fixed "re" message firing if remember or similar is posted in the chat
+- Fixed "re" message firing if "remember" or similar is posted in the chat
 
 2.6.3
 - Fixed YouTubeStats for English YouTube (because tested in German YouTube)
@@ -567,8 +567,8 @@
 
 2.0.3
 - Added % (modulo) to -calc
-- Attempt to correctly restart bot on ping timeout
 - Removed update reminder
+- Attempt to correctly restart bot on ping timeout
 - Finally fixed enable check when disabled
 
 2.0.2
@@ -591,7 +591,7 @@
 - Removed * kicks <name> message
 
 1.14
-- Added reminder for TehKitti to update bl4ckb0t
+- Added reminder for <s>TehKitti</s>Vauff to update bl4ckb0t
 
 1.13
 - Added -calc
@@ -645,6 +645,7 @@
 - Changed server from aperture.esper.net to chaos.esper.net
 - Changed way of getting bl4ckb0t's source
 - Internal changes
+
 1.10.6
 - Internal changes
 
