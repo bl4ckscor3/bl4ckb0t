@@ -7,8 +7,6 @@ import java.util.LinkedList;
 
 import org.pircbotx.exception.IrcException;
 import org.pircbotx.hooks.ListenerAdapter;
-import org.pircbotx.hooks.events.ConnectEvent;
-import org.pircbotx.hooks.events.JoinEvent;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
@@ -54,24 +52,19 @@ import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.PrivateJoin;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.PrivateLeave;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.UserMsg;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
-import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
-import bl4ckscor3.bot.bl4ckb0t.misc.CrackedKicker;
-import bl4ckscor3.bot.bl4ckb0t.misc.LinkTitle;
-import bl4ckscor3.bot.bl4ckb0t.misc.SpellingCorrection;
-import bl4ckscor3.bot.bl4ckb0t.misc.YouTubeStats;
 import bl4ckscor3.bot.bl4ckb0t.util.Lists;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Listener extends ListenerAdapter<Bot>
+public class CMDListener extends ListenerAdapter<Bot>
 {
-	private final String p = "-";
+	public static final String cmdPrefix = "-";
 	public static boolean enabled = true;
 	public static final HashMap<String, Boolean> channelStates = new HashMap<String, Boolean>(); //false = disabled | true = enabled
 	public boolean isCounting = false;
 	public static final LinkedList<ICommand<MessageEvent<Bot>>> commands = new LinkedList<ICommand<MessageEvent<Bot>>>();
 	public static final LinkedList<IPrivateCommand<PrivateMessageEvent<Bot>>> privCommands = new LinkedList<IPrivateCommand<PrivateMessageEvent<Bot>>>();
 
-	public Listener()
+	public CMDListener()
 	{
 		channelStates.put("#whatever", false); //disabling the bot in the channel #whatever by default
 		
@@ -122,17 +115,14 @@ public class Listener extends ListenerAdapter<Bot>
 	{
 		String cmdName = Utilities.toArgs(event.getMessage())[0];
 
-		L10N.changeLocalization(L10N.parseLangCode(L10N.chanLangs.get(event.getChannel().getName()), 0), L10N.parseLangCode(L10N.chanLangs.get(event.getChannel().getName()), 1), event.getChannel().getName());
-		misc(event);
-
-		if(!cmdName.startsWith(p))
+		if(!cmdName.startsWith(cmdPrefix))
 			return;
 
 		if(enabled && channelStates.get(event.getChannel().getName()))
 		{
 			for(ICommand<MessageEvent<Bot>> cmd : commands)
 			{
-				if(cmdName.equalsIgnoreCase(p + cmd.getAlias()))
+				if(cmdName.equalsIgnoreCase(cmdPrefix + cmd.getAlias()))
 				{
 					try
 					{
@@ -150,7 +140,7 @@ public class Listener extends ListenerAdapter<Bot>
 		{
 			for(ICommand<MessageEvent<Bot>> cmd : commands)
 			{
-				if((cmd instanceof Enable || cmd instanceof Disable) && event.getMessage().startsWith(p + cmd.getAlias()))
+				if((cmd instanceof Enable || cmd instanceof Disable) && event.getMessage().startsWith(cmdPrefix + cmd.getAlias()))
 				{
 					try
 					{
@@ -165,51 +155,6 @@ public class Listener extends ListenerAdapter<Bot>
 			}
 		}
 	}	
-
-	public void misc(MessageEvent<Bot> event) throws MalformedURLException, IOException
-	{
-		String message = event.getMessage();
-
-		if(message.startsWith(p))
-			return;
-
-		if(message.startsWith("?enabled"))
-		{
-			if(message.startsWith("?enabled #") && Listener.enabled)
-				Utilities.chanMsg(event, message.split(" ")[1] + ": " + Listener.channelStates.get(message.split(" ")[1]));
-			else
-				Utilities.chanMsg(event, "global: " + Listener.enabled);
-			return;
-		}
-
-		if(enabled)
-		{
-			SpellingCorrection.checkForSpellingCorrection(event, message);
-
-			//making sure the above messages dont get added as a latest message
-			if(!SpellingCorrection.corrected)
-				SpellingCorrection.updateLatestMessage(event.getChannel().getName(), event.getMessage(), event.getUser().getNick());
-			else
-				SpellingCorrection.corrected = false;
-
-			//sending a welcome back message
-			if(message.toLowerCase().startsWith("re ") || message.toLowerCase().equals("re"))
-			{
-				Utilities.chanMsg(event, "wb, " + event.getUser().getNick());
-				return;
-			}
-
-			//youtube recognition
-			if(message.contains("www.youtube.com/watch") || message.contains("youtu.be/"))
-			{
-				YouTubeStats.sendVideoStats(event);
-				return;
-			}
-
-			//checking for urls and sending the title if available
-			LinkTitle.checkForLinkAndSendTitle(event);
-		}
-	}
 
 	@Override
 	public void onPrivateMessage(PrivateMessageEvent<Bot> event) throws MalformedURLException, IOException
@@ -235,19 +180,5 @@ public class Listener extends ListenerAdapter<Bot>
 				}
 			}
 		}
-	}
-
-	@Override
-	public void onJoin(JoinEvent<Bot> event) throws Exception
-	{
-		if(event.getChannel().getName().equals("#GeforceMods") && event.getUser().getNick().startsWith("SCUser_"))
-			CrackedKicker.check(event);
-	}
-	
-	@Override
-	public void onConnect(ConnectEvent<Bot> event) throws MalformedURLException, IOException
-	{
-		Startup.setAutoJoinChans();
-		Utilities.joinDefaults();
 	}
 }

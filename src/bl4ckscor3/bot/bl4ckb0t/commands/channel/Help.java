@@ -6,7 +6,7 @@ import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
-import bl4ckscor3.bot.bl4ckb0t.core.Listener;
+import bl4ckscor3.bot.bl4ckb0t.core.CMDListener;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
@@ -60,7 +60,7 @@ public class Help implements ICommand<MessageEvent<Bot>>
 		}
 		else if(args.length == 2)
 		{
-			for(ICommand<MessageEvent<Bot>> cmd : Listener.commands)
+			for(ICommand<MessageEvent<Bot>> cmd : CMDListener.commands)
 			{
 				if(cmd.getAlias().equals(args[1]) || ("-" + cmd.getAlias()).equals(args[1]))
 				{

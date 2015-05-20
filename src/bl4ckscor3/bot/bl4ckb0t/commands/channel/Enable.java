@@ -6,8 +6,8 @@ import java.net.MalformedURLException;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
+import bl4ckscor3.bot.bl4ckb0t.core.CMDListener;
 import bl4ckscor3.bot.bl4ckb0t.core.Core;
-import bl4ckscor3.bot.bl4ckb0t.core.Listener;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
@@ -26,9 +26,9 @@ public class Enable implements ICommand<MessageEvent<Bot>>
 
 			if(args.length == 1)
 			{
-				if(!Listener.enabled)
+				if(!CMDListener.enabled)
 				{
-					Listener.enabled = true;
+					CMDListener.enabled = true;
 					Utilities.chanMsg(event, L10N.getString("enable.success"));
 
 					for(String s : Utilities.getJoinedChannels(true))
@@ -42,16 +42,16 @@ public class Enable implements ICommand<MessageEvent<Bot>>
 			}
 			else
 			{
-				if(!Listener.channelStates.containsKey(args[1]))
+				if(!CMDListener.channelStates.containsKey(args[1]))
 				{
-					Listener.channelStates.put(args[1], true);
+					CMDListener.channelStates.put(args[1], true);
 					Utilities.chanMsg(event, L10N.getString("enable.success"));
 				}
 				else
 				{
-					if(!Listener.channelStates.get(args[1]))
+					if(!CMDListener.channelStates.get(args[1]))
 					{
-						Listener.channelStates.put(args[1], true);
+						CMDListener.channelStates.put(args[1], true);
 						Core.bot.sendCustomMessage(args[1], L10N.getString("enable.success"));
 					}
 					else

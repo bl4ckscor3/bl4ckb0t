@@ -30,7 +30,7 @@ public class Core
 		Startup.setAllowedUsers();
 		Startup.setValidUsers();
 		config = new Configuration.Builder<Bot>()
-				.setVersion("3.12")
+				.setVersion("3.12.1_WIP")
 				.setName("bl4ckb0t")
 				.setLogin("bl4ckb0t")
 				.setServer("irc.esper.net", 6697)
@@ -38,7 +38,8 @@ public class Core
 				.setNickservPassword(Passwords.getPassword("nickserv"))
 				.setAutoNickChange(true)
 				.setMessageDelay(1000)
-				.addListener(new Listener())
+				.addListener(new MiscListener())
+				.addListener(new CMDListener())
 				.buildConfiguration();
 		bot = new Bot(config);
 		bot.startBot();
