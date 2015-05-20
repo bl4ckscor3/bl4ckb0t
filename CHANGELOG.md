@@ -733,7 +733,7 @@
 
 1.1
 - Changed server from irc.esper.net to aperture.esper.net
-- Added spam protection when using -say *say with TehKitti's bot in the same channel
+- Added spam protection when using -say *say with <s>TehKitti</s>Vauff's bot in the same channel
 
 1.0
 - Initial release
