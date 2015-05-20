@@ -2,6 +2,7 @@
 #          Changelog          #
 ###############################
 3.12.1_WIP
+- Fixed -select (again)
 - Internal changes
 
 3.12

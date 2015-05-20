@@ -15,11 +15,11 @@ public class Select implements ICommand<MessageEvent<Bot>>
 	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException 
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
-		String[] options = event.getMessage().substring(8).split(",");
 		
-		if(args.length == 2)
+		if(args.length != 1)
 		{
 			Random r = new Random();
+			String[] options = event.getMessage().substring(8).split(",");
 			int i = r.nextInt(options.length);
 
 			Utilities.respond(event, options[i], false);
