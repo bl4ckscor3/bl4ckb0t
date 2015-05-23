@@ -2,7 +2,9 @@
 #          Changelog          #
 ###############################
 3.12.1_WIP
+- Change in German localization
 - Fixed -select (again)
+- Fixed -listchans, -join, -leave and many others
 - Internal changes
 
 3.12
