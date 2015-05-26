@@ -113,6 +113,9 @@ public class CMDListener extends ListenerAdapter<Bot>
 	@Override
 	public void onMessage(MessageEvent<Bot> event) throws MalformedURLException, IOException, InterruptedException, IrcException
 	{
+		if(Lists.getIgnoredUsers().contains(event.getUser().getNick()))
+			return;
+		
 		String cmdName = Utilities.toArgs(event.getMessage())[0];
 
 		if(!cmdName.startsWith(cmdPrefix))
@@ -159,6 +162,9 @@ public class CMDListener extends ListenerAdapter<Bot>
 	@Override
 	public void onPrivateMessage(PrivateMessageEvent<Bot> event) throws MalformedURLException, IOException
 	{
+		if(Lists.getIgnoredUsers().contains(event.getUser().getNick()))
+			return;
+		
 		if(enabled)
 		{
 			if(Utilities.isValidUser(event))

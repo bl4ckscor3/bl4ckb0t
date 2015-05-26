@@ -13,6 +13,7 @@ import bl4ckscor3.bot.bl4ckb0t.misc.CrackedKicker;
 import bl4ckscor3.bot.bl4ckb0t.misc.LinkTitle;
 import bl4ckscor3.bot.bl4ckb0t.misc.SpellingCorrection;
 import bl4ckscor3.bot.bl4ckb0t.misc.YouTubeStats;
+import bl4ckscor3.bot.bl4ckb0t.util.Lists;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class MiscListener extends ListenerAdapter<Bot>
@@ -20,6 +21,9 @@ public class MiscListener extends ListenerAdapter<Bot>
 	@Override
 	public void onMessage(MessageEvent<Bot> event) throws Exception
 	{
+		if(Lists.getIgnoredUsers().contains(event.getUser().getNick()))
+			return;
+		
 		String message = event.getMessage();
 
 		L10N.changeLocalization(L10N.parseLangCode(L10N.chanLangs.get(event.getChannel().getName()), 0), L10N.parseLangCode(L10N.chanLangs.get(event.getChannel().getName()), 1), event.getChannel().getName());
@@ -75,7 +79,7 @@ public class MiscListener extends ListenerAdapter<Bot>
 	@Override
 	public void onConnect(ConnectEvent<Bot> event) throws MalformedURLException, IOException
 	{
-		Startup.setAutoJoinChans();
+		Startup.setDefaultChans();
 		Utilities.joinDefaults();
 	}
 }

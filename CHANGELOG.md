@@ -1,7 +1,8 @@
 ###############################
 #          Changelog          #
 ###############################
-3.12.1_WIP
+3.13_WIP
+- Added user ignore list
 - Change in German localization
 - Fixed -select (again)
 - Fixed -listchans, -join, -leave and many others

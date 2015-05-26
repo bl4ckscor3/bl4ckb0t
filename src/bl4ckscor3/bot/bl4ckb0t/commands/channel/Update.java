@@ -19,9 +19,10 @@ public class Update implements ICommand<MessageEvent<Bot>>
 		if(Utilities.isValidUser(event))
 		{
 			Lists.clearAll();
-			Startup.setAutoJoinChans();
+			Startup.setDefaultChans();
 			Startup.setAllowedUsers();
 			Startup.setValidUsers();
+			Startup.setIgnoredUsers();
 			Utilities.chanMsg(event, L10N.getString("update.success"));
 		}
 		else

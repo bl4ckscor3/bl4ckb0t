@@ -10,7 +10,7 @@ import bl4ckscor3.bot.bl4ckb0t.util.Lists;
 
 public class Startup
 {
-	public static void setAutoJoinChans() throws MalformedURLException, IOException
+	public static void setDefaultChans() throws MalformedURLException, IOException
 	{
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/tishdl84z1wmcgs/bl4ckb0t%20chans.txt?dl=1").openStream()));
 
@@ -45,6 +45,16 @@ public class Startup
 		for(String s : reader.readLine().split(","))
 		{
 			Lists.addValidUser(s);
+		}
+	}
+	
+	public static void setIgnoredUsers() throws MalformedURLException, IOException
+	{
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/n6ay2ah3itpovp6/ignoredUsers.txt?dl=1").openStream()));
+
+		for(String s : reader.readLine().split(","))
+		{
+			Lists.addIgnoredUser(s);
 		}
 	}
 }

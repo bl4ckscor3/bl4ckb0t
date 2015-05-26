@@ -8,6 +8,7 @@ public class Lists
 	private static final List<String> defaultChans = new ArrayList<String>();
 	private static final List<String> allowedUsers = new ArrayList<String>();
 	private static final List<String> validUsers = new ArrayList<String>();
+	private static final List<String> ignoredUsers = new ArrayList<String>();
 	
 	public static void addDefaultChan(String c)
 	{
@@ -22,6 +23,11 @@ public class Lists
 	public static void addValidUser(String v)
 	{
 		validUsers.add(v);
+	}
+	
+	public static void addIgnoredUser(String i)
+	{
+		ignoredUsers.add(i);
 	}
 	
 	public static List<String> getDefaultChans()
@@ -39,10 +45,16 @@ public class Lists
 		return validUsers;
 	}
 	
+	public static List<String> getIgnoredUsers()
+	{
+		return ignoredUsers;
+	}
+	
 	public static void clearAll()
 	{
 		defaultChans.clear();
 		allowedUsers.clear();
 		validUsers.clear();
+		ignoredUsers.clear();
 	}
 }

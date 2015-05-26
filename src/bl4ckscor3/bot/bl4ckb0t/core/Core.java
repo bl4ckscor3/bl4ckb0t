@@ -29,6 +29,7 @@ public class Core
 		Lists.clearAll();
 		Startup.setAllowedUsers();
 		Startup.setValidUsers();
+		Startup.setIgnoredUsers();
 		config = new Configuration.Builder<Bot>()
 				.setVersion("3.12.1_WIP")
 				.setName("bl4ckb0t")
