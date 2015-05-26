@@ -1,9 +1,10 @@
 ###############################
 #          Changelog          #
 ###############################
-3.13_WIP
+3.13
 - Added user ignore list
 - Change in German localization
+- Reverted Spelling Correction to previous italics replacement
 - Fixed -select (again)
 - Fixed -listchans, -join, -leave and many others
 - Internal changes
