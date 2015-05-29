@@ -37,6 +37,7 @@ import bl4ckscor3.bot.bl4ckb0t.commands.channel.Scramble;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Select;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Source;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Stop;
+import bl4ckscor3.bot.bl4ckb0t.commands.channel.Trello;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Twitch;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Twitter;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Update;
@@ -94,6 +95,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 		commands.add(new Select());
 		commands.add(new Source());
 		commands.add(new Stop());
+		commands.add(new Trello());
 		commands.add(new Twitch());
 		commands.add(new Twitter());
 		commands.add(new Update());
