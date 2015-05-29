@@ -3,6 +3,7 @@
 ###############################
 3.14
 - Added -trello
+- Tweets now get shown in the chat instead of the page title
 - Removed sentence from source command, only sends the link now
 
 3.13

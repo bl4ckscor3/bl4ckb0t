@@ -30,6 +30,12 @@ public class LinkTitle
 				if(isWebsiteBlacklisted(s))
 					continue;
 				
+				if(s.contains("twitter"))
+				{
+					ShowTweet.show(event, s);
+					break;
+				}
+				
 				WebDriver driver = new HtmlUnitDriver();
 				String title = "";
 
