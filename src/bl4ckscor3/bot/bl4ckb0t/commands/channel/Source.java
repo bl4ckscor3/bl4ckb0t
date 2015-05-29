@@ -11,7 +11,7 @@ public class Source implements ICommand<MessageEvent<Bot>>
 	@Override
 	public void exe(MessageEvent<Bot> event)
 	{
-		Utilities.chanMsg(event, L10N.getString("source.hereYouGo") + ": https://github.com/bl4ckscor3/bl4ckb0t");
+		Utilities.chanMsg(event, "https://github.com/bl4ckscor3/bl4ckb0t");
 	}
 	
 	@Override

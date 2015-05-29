@@ -1,6 +1,10 @@
 ###############################
 #          Changelog          #
 ###############################
+3.14
+- Added -trello
+- Removed sentence from source command, only sends the link now
+
 3.13
 - Added user ignore list
 - Change in German localization
