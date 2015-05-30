@@ -13,13 +13,16 @@ public class ShowTweet
 {
 	public static void show(MessageEvent<Bot> event, String link)
 	{
-		WebDriver driver = new HtmlUnitDriver(true);
+		WebDriver driver = new HtmlUnitDriver(false);
 		String name = "";
 		String account = "";
 		String tweet = "";
 		
 		if(link.startsWith("www."))
 			link = "http://" + link;
+
+		if(link.split("/").length < 6) //it's not a tweet
+			return;
 		
 		driver.get(link);
 		name = driver.findElement(By.xpath("//strong[@class='fullname js-action-profile-name show-popup-with-id']")).getText();
