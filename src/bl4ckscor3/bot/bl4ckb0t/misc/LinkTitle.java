@@ -35,6 +35,11 @@ public class LinkTitle
 					ShowTweet.show(event, s);
 					break;
 				}
+				else if(s.contains("github"))
+				{
+					GitHub.show(event, s);
+					break;
+				}
 				
 				WebDriver driver = new HtmlUnitDriver();
 				String title = "";
