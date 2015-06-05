@@ -16,40 +16,35 @@ public class Leave implements ICommand<MessageEvent<Bot>>
 	@Override
 	public void exe(MessageEvent<Bot> event) throws MalformedURLException, IOException, IncorrectCommandExecutionException
 	{
-		if(Utilities.isValidUser(event))
-		{
-			String[] args = Utilities.toArgs(event.getMessage());	
+		String[] args = Utilities.toArgs(event.getMessage());	
 
-			if(args.length == 1)
-				Utilities.leaveChannel(event.getChannel().getName());
-			else if(args.length == 2)
+		if(args.length == 1)
+			Utilities.leaveChannel(event.getChannel().getName());
+		else if(args.length == 2)
+		{
+			if(args[1].equals("d"))
 			{
-				if(args[1].equals("d"))
-				{
-					Utilities.chanMsg(event, L10N.getString("leave.success.default"));
-					
-					for(String s : Lists.getDefaultChans())
-					{	
-						Utilities.leaveChannel(s);
-					}
+				Utilities.chanMsg(event, L10N.getString("leave.success.default"));
+
+				for(String s : Lists.getDefaultChans())
+				{	
+					Utilities.leaveChannel(s);
 				}
-				
-				if(!args[1].startsWith("#"))
-					args[1] = "#" + args[1];
-				
-				if(Utilities.hasJoinedChannel(args))
-				{
-					Utilities.chanMsg(event, L10N.getString("leave.success.normal"));
-					Utilities.leaveChannel(args[1]);
-				}
-				else
-					Utilities.chanMsg(event, L10N.getString("leave.notJoined"));
+			}
+
+			if(!args[1].startsWith("#"))
+				args[1] = "#" + args[1];
+
+			if(Utilities.hasJoinedChannel(args))
+			{
+				Utilities.chanMsg(event, L10N.getString("leave.success.normal"));
+				Utilities.leaveChannel(args[1]);
 			}
 			else
-				throw new IncorrectCommandExecutionException(getAlias());
+				Utilities.chanMsg(event, L10N.getString("leave.notJoined"));
 		}
 		else
-			Utilities.sorry(event);
+			throw new IncorrectCommandExecutionException(getAlias());
 	}
 
 	@Override
@@ -78,5 +73,11 @@ public class Leave implements ICommand<MessageEvent<Bot>>
 	public String getNotes()
 	{
 		return L10N.getString("notes.onlyOp");
+	}
+
+	@Override
+	public int getPermissionLevel()
+	{
+		return 3;
 	}
 }

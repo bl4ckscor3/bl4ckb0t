@@ -106,4 +106,10 @@ public class ETS2MPUpdate implements ICommand<MessageEvent<Bot>>
 	{
 		return L10N.getString("ets2mp.notes");
 	}
+	
+	@Override
+	public int getPermissionLevel()
+	{
+		return 1;
+	}
 }

@@ -15,35 +15,30 @@ public class Join implements ICommand<MessageEvent<Bot>>
 	@Override
 	public void exe(MessageEvent<Bot> event) throws MalformedURLException, IOException, IncorrectCommandExecutionException
 	{
-		if(Utilities.isValidUser(event))
-		{
-			String[] args = Utilities.toArgs(event.getMessage());	
+		String[] args = Utilities.toArgs(event.getMessage());	
 
-			if(args.length == 2)
+		if(args.length == 2)
+		{
+			if(args[1].equals("d"))
 			{
-				if(args[1].equals("d"))
-				{
-					Utilities.chanMsg(event, L10N.getString("join.success.default"));
-					Utilities.joinDefaults();
-					return;
-				}
-				
-				if(!args[1].startsWith("#"))
-					args[1] = "#" + args[1];
-				
-				if(!Utilities.hasJoinedChannel(args))
-				{
-					Utilities.chanMsg(event, L10N.getString("join.success.normal"));
-					Utilities.joinChannel(args[1]);
-				}
-				else
-					Utilities.chanMsg(event, L10N.getString("join.alreadyJoined"));
+				Utilities.chanMsg(event, L10N.getString("join.success.default"));
+				Utilities.joinDefaults();
+				return;
+			}
+
+			if(!args[1].startsWith("#"))
+				args[1] = "#" + args[1];
+
+			if(!Utilities.hasJoinedChannel(args))
+			{
+				Utilities.chanMsg(event, L10N.getString("join.success.normal"));
+				Utilities.joinChannel(args[1]);
 			}
 			else
-				throw new IncorrectCommandExecutionException(getAlias());
+				Utilities.chanMsg(event, L10N.getString("join.alreadyJoined"));
 		}
 		else
-			Utilities.sorry(event);
+			throw new IncorrectCommandExecutionException(getAlias());
 	}
 
 	@Override
@@ -55,18 +50,24 @@ public class Join implements ICommand<MessageEvent<Bot>>
 	@Override
 	public String getSyntax()
 	{
-		return "join <" + L10N.getString("cmd.help.channel") + ">";
+		return "-join <" + L10N.getString("cmd.help.channel") + ">";
 	}
 
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"join <" + L10N.getString("cmd.help.channel") + "> || " + L10N.getString("join.explanation")};
+		return new String[]{"-join <" + L10N.getString("cmd.help.channel") + "> || " + L10N.getString("join.explanation")};
 	}
 
 	@Override
 	public String getNotes()
 	{
 		return L10N.getString("notes.onlyOp");
+	}
+
+	@Override
+	public int getPermissionLevel()
+	{
+		return 3;
 	}
 }

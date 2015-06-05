@@ -61,4 +61,10 @@ public class LongURL implements ICommand<MessageEvent<Bot>>
 	{
 		return L10N.getString("longurl.notes");
 	}
+	
+	@Override
+	public int getPermissionLevel()
+	{
+		return 1;
+	}
 }

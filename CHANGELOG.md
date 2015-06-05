@@ -1,11 +1,14 @@
 ###############################
 #          Changelog          #
 ###############################
-3.14_WIP
+3.14
 - Added -trello
 - Added showing GitHub repository stats if a link is posted, similar to YouTube stats.
+- Added permission system
+- Help menu only shows commands the user has permission to
 - Tweets now get shown in the chat instead of the page title
 - Removed sentence from source command, only sends the link now
+- Tweaks
 
 3.13
 - Added user ignore list

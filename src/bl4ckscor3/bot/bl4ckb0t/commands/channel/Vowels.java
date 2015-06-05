@@ -58,4 +58,10 @@ public class Vowels implements ICommand<MessageEvent<Bot>>
 	{
 		return L10N.getString("vowels.notes");
 	}
+	
+	@Override
+	public int getPermissionLevel()
+	{
+		return 1;
+	}
 }

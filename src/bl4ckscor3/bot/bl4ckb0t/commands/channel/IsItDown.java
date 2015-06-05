@@ -68,4 +68,10 @@ public class IsItDown implements ICommand<MessageEvent<Bot>>
 	{
 		return L10N.getString("isitdown.notes");
 	}
+	
+	@Override
+	public int getPermissionLevel()
+	{
+		return 1;
+	}
 }

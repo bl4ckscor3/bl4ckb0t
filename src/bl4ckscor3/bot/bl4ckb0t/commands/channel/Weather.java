@@ -118,4 +118,10 @@ public class Weather implements ICommand<MessageEvent<Bot>>
 	{
 		return L10N.getString("w.notes");
 	}
+	
+	@Override
+	public int getPermissionLevel()
+	{
+		return 1;
+	}
 }

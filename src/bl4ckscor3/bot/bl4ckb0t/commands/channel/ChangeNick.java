@@ -20,15 +20,10 @@ public class ChangeNick implements ICommand<MessageEvent<Bot>>
 
 		if(args.length == 2)
 		{
-			if(Utilities.isValidUser(event))
-			{
-				if(!args[1].equalsIgnoreCase("d"))
-					Core.bot.sendIRC().changeNick(args[1]);
-				else
-					Core.bot.sendIRC().changeNick("bl4ckb0t");
-			}
+			if(!args[1].equalsIgnoreCase("d"))
+				Core.bot.sendIRC().changeNick(args[1]);
 			else
-				Utilities.sorry(event);
+				Core.bot.sendIRC().changeNick("bl4ckb0t");
 		}
 		else
 			throw new IncorrectCommandExecutionException(getAlias());
@@ -56,5 +51,11 @@ public class ChangeNick implements ICommand<MessageEvent<Bot>>
 	public String getNotes()
 	{
 		return L10N.getString("changenick.notes");
+	}
+
+	@Override
+	public int getPermissionLevel()
+	{
+		return 3;
 	}
 }

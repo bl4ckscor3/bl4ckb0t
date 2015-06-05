@@ -19,51 +19,46 @@ public class Disable implements ICommand<MessageEvent<Bot>>
 	{	
 		String[] args = Utilities.toArgs(event.getMessage());
 
-		if(Utilities.isValidUser(event))
+		if(args.length > 2)
+			throw new IncorrectCommandExecutionException(getAlias());
+
+		if(args.length == 1)
 		{
-			if(args.length > 2)
-				throw new IncorrectCommandExecutionException(getAlias());
-
-			if(args.length == 1)
+			if(CMDListener.enabled)
 			{
-				if(CMDListener.enabled)
+				CMDListener.enabled = false;
+				Utilities.chanMsg(event, L10N.getString("disable.success"));
+
+				if(Utilities.getJoinedChannels(true).length == 1)
+					return;
+
+				for(String s : Utilities.getJoinedChannels(true))
 				{
-					CMDListener.enabled = false;
-					Utilities.chanMsg(event, L10N.getString("disable.success"));
-
-					if(Utilities.getJoinedChannels(true).length == 1)
-						return;
-
-					for(String s : Utilities.getJoinedChannels(true))
-					{
-						if(!s.equalsIgnoreCase(event.getChannel().getName()))
-							Core.bot.sendCustomMessage(s, L10N.getString("disable.notify"));
-					}
+					if(!s.equalsIgnoreCase(event.getChannel().getName()))
+						Core.bot.sendCustomMessage(s, L10N.getString("disable.notify"));
 				}
-				else
-					Utilities.chanMsg(event, L10N.getString("disable.alreadyDisabled"));
 			}
-			else 
+			else
+				Utilities.chanMsg(event, L10N.getString("disable.alreadyDisabled"));
+		}
+		else 
+		{
+			if(!CMDListener.channelStates.containsKey(args[1]))
 			{
-				if(!CMDListener.channelStates.containsKey(args[1]))
+				CMDListener.channelStates.put(args[1], false);
+				Utilities.chanMsg(event, L10N.getString("disable.success"));
+			}
+			else
+			{
+				if(CMDListener.channelStates.get(args[1]))
 				{
 					CMDListener.channelStates.put(args[1], false);
-					Utilities.chanMsg(event, L10N.getString("disable.success"));
+					Core.bot.sendCustomMessage(args[1], L10N.getString("disable.success"));
 				}
 				else
-				{
-					if(CMDListener.channelStates.get(args[1]))
-					{
-						CMDListener.channelStates.put(args[1], false);
-						Core.bot.sendCustomMessage(args[1], L10N.getString("disable.success"));
-					}
-					else
-						Core.bot.sendCustomMessage(args[1], L10N.getString("disable.alreadyDisabled"));
-				}
+					Core.bot.sendCustomMessage(args[1], L10N.getString("disable.alreadyDisabled"));
 			}
 		}
-		else
-			Utilities.sorry(event);
 	}
 
 	@Override
@@ -88,5 +83,11 @@ public class Disable implements ICommand<MessageEvent<Bot>>
 	public String getNotes()
 	{
 		return L10N.getString("notes.onlyOp");
+	}
+
+	@Override
+	public int getPermissionLevel()
+	{
+		return 3;
 	}
 }

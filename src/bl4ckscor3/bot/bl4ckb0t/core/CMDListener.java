@@ -119,7 +119,8 @@ public class CMDListener extends ListenerAdapter<Bot>
 			return;
 		
 		String cmdName = Utilities.toArgs(event.getMessage())[0];
-
+		int permissionLevel = Utilities.getUserPermissionLevel(event);
+		
 		if(!cmdName.startsWith(cmdPrefix))
 			return;
 
@@ -129,6 +130,13 @@ public class CMDListener extends ListenerAdapter<Bot>
 			{
 				if(cmdName.equalsIgnoreCase(cmdPrefix + cmd.getAlias()))
 				{
+					if(cmd.getPermissionLevel() > permissionLevel)
+					{
+						System.out.println(cmd.getPermissionLevel() + " " + permissionLevel);
+						Utilities.noPermission(event);
+						return;
+					}
+					
 					try
 					{
 						cmd.exe(event);

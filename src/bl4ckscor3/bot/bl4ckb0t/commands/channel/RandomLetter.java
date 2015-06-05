@@ -95,4 +95,10 @@ public class RandomLetter implements ICommand<MessageEvent<Bot>>
 	{
 		return L10N.getString("ln.notes");
 	}
+	
+	@Override
+	public int getPermissionLevel()
+	{
+		return 1;
+	}
 }

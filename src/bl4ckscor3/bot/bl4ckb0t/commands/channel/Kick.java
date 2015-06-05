@@ -19,30 +19,11 @@ public class Kick implements ICommand<MessageEvent<Bot>>
 	{
 		if(event.getUser().isVerified())
 		{
-			boolean allowed = false;
 			boolean found = false;
 				
 			String[] args = Utilities.toArgs(event.getMessage());
-			
-			for(String allowedUser : Lists.getAllowedUsers())
-			{
-				if(event.getUser().getNick().equals(allowedUser))
-				{	
-					allowed = true;
-					break;
-				}
-			}
 
-			for(String allowedUser : Lists.getValidUsers())
-			{
-				if(event.getUser().getNick().equalsIgnoreCase(allowedUser))
-				{
-					allowed = true;
-					break;
-				}
-			}
-
-			if(!allowed)
+			if(!(Utilities.isValidUser(event) || Utilities.isAllowedUser(event)))
 			{
 				Utilities.chanMsg(event, "Sorry, " + event.getUser().getNick() + ", " + L10N.getString("kick.notAuthorized"));
 				return;
@@ -123,5 +104,11 @@ public class Kick implements ICommand<MessageEvent<Bot>>
 	public String getNotes()
 	{
 		return L10N.getString("notes.onlyVoiceOp");
+	}
+	
+	@Override
+	public int getPermissionLevel()
+	{
+		return 2;
 	}
 }

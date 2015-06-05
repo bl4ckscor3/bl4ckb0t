@@ -51,4 +51,10 @@ public class Select implements ICommand<MessageEvent<Bot>>
 	{
 		return L10N.getString("select.notes");
 	}
+	
+	@Override
+	public int getPermissionLevel()
+	{
+		return 1;
+	}
 }

@@ -62,4 +62,10 @@ public class XColor implements ICommand<MessageEvent<Bot>>
 	{
 		return L10N.getString("xcolor.notes");
 	}
+	
+	@Override
+	public int getPermissionLevel()
+	{
+		return 1;
+	}
 }

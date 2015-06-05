@@ -16,32 +16,27 @@ public class Stop implements ICommand<MessageEvent<Bot>>
 	@Override
 	public void exe(MessageEvent<Bot> event) throws IOException, IrcException, IncorrectCommandExecutionException
 	{
-		if(Utilities.isValidUser(event))
-		{
-			String[] args = Utilities.toArgs(event.getMessage());
+		String[] args = Utilities.toArgs(event.getMessage());
 
-			if(args.length == 2)
+		if(args.length == 2)
+		{
+			switch(args[1])
 			{
-				switch(args[1])
-				{
-					case "yes":
-						Utilities.chanMsg(event, L10N.getString("stop.reboot.yes"));
-						Core.bot.sendRaw().rawLine("QUIT :" + L10N.getString("stop.reason"));
-						Core.createBot(); //creating another instance
-						break;
-					case "no":
-						Utilities.chanMsg(event, L10N.getString("stop.reboot.no"));
-						Core.bot.sendRaw().rawLine("QUIT :" + L10N.getString("stop.reason"));
-						break;
-					default:
-						throw new IncorrectCommandExecutionException(getAlias());
-				}
+				case "yes":
+					Utilities.chanMsg(event, L10N.getString("stop.reboot.yes"));
+					Core.bot.sendRaw().rawLine("QUIT :" + L10N.getString("stop.reason"));
+					Core.createBot(); //creating another instance
+					break;
+				case "no":
+					Utilities.chanMsg(event, L10N.getString("stop.reboot.no"));
+					Core.bot.sendRaw().rawLine("QUIT :" + L10N.getString("stop.reason"));
+					break;
+				default:
+					throw new IncorrectCommandExecutionException(getAlias());
 			}
-			else
-				throw new IncorrectCommandExecutionException(getAlias());
 		}
 		else
-			Utilities.sorry(event);
+			throw new IncorrectCommandExecutionException(getAlias());
 	}
 
 	@Override
@@ -70,5 +65,11 @@ public class Stop implements ICommand<MessageEvent<Bot>>
 	public String getNotes()
 	{
 		return L10N.getString("notes.onlyOp");
+	}
+
+	@Override
+	public int getPermissionLevel()
+	{
+		return 3;
 	}
 }

@@ -19,48 +19,43 @@ public class Enable implements ICommand<MessageEvent<Bot>>
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 
-		if(Utilities.isValidUser(event))
+		if(args.length > 2)
+			throw new IncorrectCommandExecutionException(getAlias());
+
+		if(args.length == 1)
 		{
-			if(args.length > 2)
-				throw new IncorrectCommandExecutionException(getAlias());
-
-			if(args.length == 1)
+			if(!CMDListener.enabled)
 			{
-				if(!CMDListener.enabled)
-				{
-					CMDListener.enabled = true;
-					Utilities.chanMsg(event, L10N.getString("enable.success"));
+				CMDListener.enabled = true;
+				Utilities.chanMsg(event, L10N.getString("enable.success"));
 
-					for(String s : Utilities.getJoinedChannels(true))
-					{
-						if(!s.equalsIgnoreCase(event.getChannel().getName()))
-							Core.bot.sendCustomMessage(s, L10N.getString("enable.notify"));
-					}
+				for(String s : Utilities.getJoinedChannels(true))
+				{
+					if(!s.equalsIgnoreCase(event.getChannel().getName()))
+						Core.bot.sendCustomMessage(s, L10N.getString("enable.notify"));
 				}
-				else
-					Utilities.chanMsg(event, L10N.getString("enable.alreadyEnabled"));
+			}
+			else
+				Utilities.chanMsg(event, L10N.getString("enable.alreadyEnabled"));
+		}
+		else
+		{
+			if(!CMDListener.channelStates.containsKey(args[1]))
+			{
+				CMDListener.channelStates.put(args[1], true);
+				Utilities.chanMsg(event, L10N.getString("enable.success"));
 			}
 			else
 			{
-				if(!CMDListener.channelStates.containsKey(args[1]))
+				if(!CMDListener.channelStates.get(args[1]))
 				{
 					CMDListener.channelStates.put(args[1], true);
-					Utilities.chanMsg(event, L10N.getString("enable.success"));
+					Core.bot.sendCustomMessage(args[1], L10N.getString("enable.success"));
 				}
 				else
-				{
-					if(!CMDListener.channelStates.get(args[1]))
-					{
-						CMDListener.channelStates.put(args[1], true);
-						Core.bot.sendCustomMessage(args[1], L10N.getString("enable.success"));
-					}
-					else
-						Core.bot.sendCustomMessage(args[1], L10N.getString("enable.alreadyEnabled"));
-				}
+					Core.bot.sendCustomMessage(args[1], L10N.getString("enable.alreadyEnabled"));
 			}
 		}
-		else
-			Utilities.sorry(event);
 	}
 
 	@Override
@@ -85,5 +80,11 @@ public class Enable implements ICommand<MessageEvent<Bot>>
 	public String getNotes()
 	{
 		return L10N.getString("notes.onlyOp");
+	}
+
+	@Override
+	public int getPermissionLevel()
+	{
+		return 3;
 	}
 }

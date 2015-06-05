@@ -28,7 +28,7 @@ public class Utilities
 	{
 		event.getChannel().send().message(msg);
 	}
-
+	
 	public static void notice(MessageEvent<Bot> event, String msg)
 	{
 		event.getUser().send().notice(msg);
@@ -47,7 +47,7 @@ public class Utilities
 			chanMsg(event, event.getUser().getNick() + ": " + msg);
 	}
 
-	public static void sorry(MessageEvent<Bot> event)
+	public static void noPermission(MessageEvent<Bot> event)
 	{
 		chanMsg(event, L10N.getString("noPermission"));
 	}
@@ -62,6 +62,16 @@ public class Utilities
 		return event.getUser().isVerified() && Lists.getValidUsers().contains(event.getUser().getNick());
 	}
 
+	public static boolean isAllowedUser(MessageEvent<Bot> event) throws MalformedURLException, IOException
+	{
+		return event.getUser().isVerified() && Lists.getAllowedUsers().contains(event.getUser().getNick());
+	}
+	
+	public static int getUserPermissionLevel(MessageEvent<Bot> event) throws MalformedURLException, IOException
+	{
+		return isValidUser(event) ? 3 : (isAllowedUser(event) ? 2 : 1);
+	}
+	
 	/*
 	 * FROM HERE ONLY PRIVATE MSG EVENT
 	 */

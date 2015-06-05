@@ -77,4 +77,10 @@ public class Calculate implements ICommand<MessageEvent<Bot>>
 	{
 		return null;
 	}
+	
+	@Override
+	public int getPermissionLevel()
+	{
+		return 1;
+	}
 }

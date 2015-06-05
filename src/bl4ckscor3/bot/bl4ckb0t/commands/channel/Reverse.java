@@ -61,4 +61,10 @@ public class Reverse implements ICommand<MessageEvent<Bot>>
 	{
 		return null;
 	}
+	
+	@Override
+	public int getPermissionLevel()
+	{
+		return 1;
+	}
 }

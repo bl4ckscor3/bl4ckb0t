@@ -16,17 +16,12 @@ public class Update implements ICommand<MessageEvent<Bot>>
 	@Override
 	public void exe(MessageEvent<Bot> event) throws MalformedURLException, IOException
 	{
-		if(Utilities.isValidUser(event))
-		{
-			Lists.clearAll();
-			Startup.setDefaultChans();
-			Startup.setAllowedUsers();
-			Startup.setValidUsers();
-			Startup.setIgnoredUsers();
-			Utilities.chanMsg(event, L10N.getString("update.success"));
-		}
-		else
-			Utilities.sorry(event);
+		Lists.clearAll();
+		Startup.setDefaultChans();
+		Startup.setAllowedUsers();
+		Startup.setValidUsers();
+		Startup.setIgnoredUsers();
+		Utilities.chanMsg(event, L10N.getString("update.success"));
 	}
 
 	@Override
@@ -54,5 +49,11 @@ public class Update implements ICommand<MessageEvent<Bot>>
 	public String getNotes()
 	{
 		return L10N.getString("notes.onlyOp");
+	}
+
+	@Override
+	public int getPermissionLevel()
+	{
+		return 3;
 	}
 }
