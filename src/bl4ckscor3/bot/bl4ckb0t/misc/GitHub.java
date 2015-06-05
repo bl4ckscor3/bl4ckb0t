@@ -34,31 +34,32 @@ public class GitHub
 		name = link.split("/")[3] + "/" + link.split("/")[4];
 		reader = new BufferedReader(new InputStreamReader(new URL("https://api.github.com/repos/" + name).openStream()));
 
-		for(String s : reader.readLine().split(","))
+		for(String s : reader.readLine().split(",\""))
 		{
 			String[] split = s.split(":");
 			
+			System.out.println(s);
 			switch(split[0])
 			{
-				case "\"description\"":
+				case "description\"":
 					description = split[1].replace(split[1].charAt(0) + "", "").replace(split[1].charAt(split[1].length() - 1) + "", "");
 					break;
-				case "\"pushed_at\"":
+				case "pushed_at\"":
 					latestPush = split[1].replace("\"", "").replace("T", " ") + ":" + split[2] + ":" + split[3].replace("Z", "").replace("\"", "") + " GMT";
 					break;
-				case "\"stargazers_count\"":
+				case "stargazers_count\"":
 					stars = split[1];
 					break;
-				case "\"watchers_count\"":
-					watching = split[1];
+				case "subscribers_count\"":
+					watching = split[1].replace("}", "");
 					break;
-				case "\"language\"":
+				case "language\"":
 					language = split[1].replace("\"", "");
 					break;
-				case "\"forks_count\"":
+				case "forks_count\"":
 					forks = split[1];
 					break;
-				case "\"open_issues_count\"":
+				case "open_issues_count\"":
 					issues = split[1];
 					break;
 			}

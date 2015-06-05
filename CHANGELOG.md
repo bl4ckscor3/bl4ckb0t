@@ -3,6 +3,7 @@
 ###############################
 3.14_WIP
 - Added -trello
+- Added showing GitHub repository stats if a link is posted, similar to YouTube stats.
 - Tweets now get shown in the chat instead of the page title
 - Removed sentence from source command, only sends the link now
 
