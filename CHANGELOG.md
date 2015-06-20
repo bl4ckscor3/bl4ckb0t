@@ -1,6 +1,9 @@
 ###############################
 #          Changelog          #
 ###############################
+3.14.1_WIP
+- Fixes
+
 3.14
 - Added -trello
 - Added showing GitHub repository stats if a link is posted, similar to YouTube stats.

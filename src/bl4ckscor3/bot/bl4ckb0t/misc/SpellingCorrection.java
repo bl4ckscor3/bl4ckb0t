@@ -25,24 +25,26 @@ public class SpellingCorrection
 	 */
 	public static void checkForSpellingCorrection(MessageEvent<Bot> event, String message)
 	{
+		String[] spaceSplit = message.split(" ");
+		
 		//checking if someone corrects someone else
-		if(message.split(" ")[0].endsWith(":") || message.split(" ")[0].endsWith(","))
+		if(spaceSplit.length > 1 && (spaceSplit[0].endsWith(":") || spaceSplit[0].endsWith(",")))
 		{
 			boolean colon;
 
-			if(message.split(" ")[0].endsWith(":"))
+			if(spaceSplit[0].endsWith(":"))
 				colon = true;
 			else
 				colon = false;
 
-			if(message.split(" ")[1].startsWith("s/"))
+			if(spaceSplit[1].startsWith("s/"))
 			{
 				String[] split;
 				String newMessage = "";
 				int i = 0;
 
 				//actually getting only the s/x/y message if it contains spaces	
-				for(String s : message.split(" "))
+				for(String s : spaceSplit)
 				{
 					if(i != 0)
 						newMessage += s + " ";
