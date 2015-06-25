@@ -12,6 +12,7 @@ import org.pircbotx.hooks.events.JoinEvent;
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.core.Core;
 
+//query code courtesy of Vauff https://github.com/Vauff/Maunz
 public class CrackedKicker
 {
 	private static final HashMap<String, Boolean> scUsers = new HashMap<String, Boolean>(); //name, is premium
