@@ -105,13 +105,13 @@ public class YouTubeStats
 
 			try
 			{
-				likes = driver.findElement(By.xpath("//button[@id='watch-like']/span[@class='yt-uix-button-content']")).getText();
+				likes = driver.findElement(By.xpath("//button[@id='yt-uix-button yt-uix-button-size-default yt-uix-button-opacity yt-uix-button-has-icon no-icon-markup like-button-renderer-like-button like-button-renderer-like-button-unclicked  yt-uix-post-anchor yt-uix-tooltip']/span[@class='yt-uix-button-content']")).getText();
 			}
 			catch(NoSuchElementException e){}
 
 			try
 			{
-				dislikes = driver.findElement(By.xpath("//button[@id='watch-dislike']/span[@class='yt-uix-button-content']")).getText();
+				dislikes = driver.findElement(By.xpath("//button[@id='yt-uix-button yt-uix-button-size-default yt-uix-button-opacity yt-uix-button-has-icon no-icon-markup like-button-renderer-dislike-button like-button-renderer-dislike-button-unclicked  yt-uix-post-anchor yt-uix-tooltip']/span[@class='yt-uix-button-content']")).getText();
 			}
 			catch(NoSuchElementException e){}
 

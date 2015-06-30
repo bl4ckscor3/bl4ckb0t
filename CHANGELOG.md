@@ -2,7 +2,8 @@
 #          Changelog          #
 ###############################
 3.14.1_WIP
-- Fixes
+- SpellingCorrection fixes & improvements
+- Fixed dis-/likes not showing
 
 3.14
 - Added -trello
