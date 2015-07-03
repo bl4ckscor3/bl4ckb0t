@@ -5,12 +5,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
+import bl4ckscor3.bot.bl4ckb0t.util.Passwords;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Weather implements ICommand<MessageEvent<Bot>>
@@ -33,7 +36,7 @@ public class Weather implements ICommand<MessageEvent<Bot>>
 			city += s;
 		}
 
-		reader = new BufferedReader(new InputStreamReader(new URL("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&mode=xml").openStream()));
+		reader = new BufferedReader(new InputStreamReader(new URL("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&mode=xml&APPID=" + Passwords.WEATHERAPIKEY.getPassword()).openStream()));
 		
 		if(reader.readLine().equalsIgnoreCase("{\"message\":\"Error: Not found city\",\"cod\":\"404\"}"))
 			Utilities.chanMsg(event, L10N.getString("w.cityNotFound") + " \"" + city + "\" :/");
@@ -61,6 +64,8 @@ public class Weather implements ICommand<MessageEvent<Bot>>
 						" ** " + L10N.getString("w.pressure") + ": " + data[8] +
 						" ** " + L10N.getString("w.wind.1") + ": " + data[11] +
 						" ** " + L10N.getString("w.credit") + data[1] + "/ **");
+			
+			reader.close();
 		}
 	}
 

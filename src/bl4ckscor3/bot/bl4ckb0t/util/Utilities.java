@@ -190,7 +190,7 @@ public class Utilities
 		for(String s : channelsToJoin)
 		{
 			if(s.equals("#akino_germany"))
-				joinChannelWithPassword(s, Passwords.getPassword("#akino_germany"));
+				joinChannelWithPassword(s, Passwords.AKINO_GERMANY.getPassword());
 			else
 				joinChannel(s);
 		}

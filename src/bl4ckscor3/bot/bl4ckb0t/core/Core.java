@@ -25,7 +25,6 @@ public class Core
 		Configuration<Bot> config;
 
 		Logger.getLogger("").setLevel(Level.OFF); //turning off logging (ugh)
-		Passwords.setPasswords();
 		Lists.clearAll();
 		Startup.setAllowedUsers();
 		Startup.setValidUsers();
@@ -36,7 +35,7 @@ public class Core
 				.setLogin("bl4ckb0t")
 				.setServer("irc.esper.net", 6697)
 				.setSocketFactory(new UtilSSLSocketFactory().trustAllCertificates())
-				.setNickservPassword(Passwords.getPassword("nickserv"))
+				.setNickservPassword(Passwords.NICKSERV.getPassword())
 				.setAutoNickChange(true)
 				.setMessageDelay(1000)
 				.addListener(new MiscListener())
