@@ -8,6 +8,7 @@ import org.pircbotx.Configuration;
 import org.pircbotx.UtilSSLSocketFactory;
 import org.pircbotx.exception.IrcException;
 
+import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Lists;
 import bl4ckscor3.bot.bl4ckb0t.util.Passwords;
 
@@ -17,20 +18,22 @@ public class Core
 
 	public static void main(String args[]) throws IOException, IrcException
 	{
+		//turning off logging (ugh)
+		Logger.getLogger("").setLevel(Level.OFF);
+		Logging.info("Disabled loggers...");
 		createBot();
 	}
 
 	public static void createBot() throws IOException, IrcException
-	{
+	{		
 		Configuration<Bot> config;
 
-		Logger.getLogger("").setLevel(Level.OFF); //turning off logging (ugh)
 		Lists.clearAll();
 		Startup.setAllowedUsers();
 		Startup.setValidUsers();
 		Startup.setIgnoredUsers();
 		config = new Configuration.Builder<Bot>()
-				.setVersion("3.14.1_WIP")
+				.setVersion("3.15")
 				.setName("bl4ckb0t")
 				.setLogin("bl4ckb0t")
 				.setServer("irc.esper.net", 6697)
@@ -38,10 +41,13 @@ public class Core
 				.setNickservPassword(Passwords.NICKSERV.getPassword())
 				.setAutoNickChange(true)
 				.setMessageDelay(1000)
+				.addListener(new Logging())
 				.addListener(new MiscListener())
 				.addListener(new CMDListener())
 				.buildConfiguration();
+		Logging.info("Created bot config...");
 		bot = new Bot(config);
+		Logging.info("Starting bot...");
 		bot.startBot();
 	}
 }

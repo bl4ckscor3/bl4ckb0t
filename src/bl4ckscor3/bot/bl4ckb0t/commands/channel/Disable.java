@@ -10,6 +10,7 @@ import bl4ckscor3.bot.bl4ckb0t.core.CMDListener;
 import bl4ckscor3.bot.bl4ckb0t.core.Core;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
+import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Disable implements ICommand<MessageEvent<Bot>>
@@ -28,7 +29,8 @@ public class Disable implements ICommand<MessageEvent<Bot>>
 			{
 				CMDListener.enabled = false;
 				Utilities.chanMsg(event, L10N.getString("disable.success"));
-
+				Logging.info("Disabled bot globally.");
+				
 				if(Utilities.getJoinedChannels(true).length == 1)
 					return;
 
@@ -47,6 +49,7 @@ public class Disable implements ICommand<MessageEvent<Bot>>
 			{
 				CMDListener.channelStates.put(args[1], false);
 				Utilities.chanMsg(event, L10N.getString("disable.success"));
+				Logging.info("Disabled bot in " + args[1]);
 			}
 			else
 			{
@@ -54,6 +57,7 @@ public class Disable implements ICommand<MessageEvent<Bot>>
 				{
 					CMDListener.channelStates.put(args[1], false);
 					Core.bot.sendCustomMessage(args[1], L10N.getString("disable.success"));
+					Logging.info("Disabled bot in " + args[1]);
 				}
 				else
 					Core.bot.sendCustomMessage(args[1], L10N.getString("disable.alreadyDisabled"));

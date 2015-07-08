@@ -9,6 +9,7 @@ import org.pircbotx.hooks.events.JoinEvent;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
+import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.misc.CrackedKicker;
 import bl4ckscor3.bot.bl4ckb0t.misc.LinkTitle;
 import bl4ckscor3.bot.bl4ckb0t.misc.SpellingCorrection;
@@ -22,7 +23,10 @@ public class MiscListener extends ListenerAdapter<Bot>
 	public void onMessage(MessageEvent<Bot> event) throws Exception
 	{
 		if(Lists.getIgnoredUsers().contains(event.getUser().getNick()))
+		{
+			Logging.warn("Ignoring user " + event.getUser().getNick());
 			return;
+		}
 		
 		String message = event.getMessage();
 
@@ -80,6 +84,8 @@ public class MiscListener extends ListenerAdapter<Bot>
 	public void onConnect(ConnectEvent<Bot> event) throws MalformedURLException, IOException
 	{
 		Startup.setDefaultChans();
+		Logging.info("Joining channels...");
 		Utilities.joinDefaults();
+		Logging.info("Bot successfully connected!");
 	}
 }

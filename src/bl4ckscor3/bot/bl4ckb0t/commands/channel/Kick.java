@@ -9,6 +9,7 @@ import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.core.Core;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
+import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Lists;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
@@ -26,6 +27,7 @@ public class Kick implements ICommand<MessageEvent<Bot>>
 			if(!(Utilities.isValidUser(event) || Utilities.isAllowedUser(event)))
 			{
 				Utilities.chanMsg(event, "Sorry, " + event.getUser().getNick() + ", " + L10N.getString("kick.notAuthorized"));
+				Logging.info("Denying command access to " + event.getUser().getNick() + "...");
 				return;
 			}
 
@@ -45,7 +47,7 @@ public class Kick implements ICommand<MessageEvent<Bot>>
 					if(args[1].equalsIgnoreCase(Core.bot.getNick()))
 					{
 						event.getChannel().send().action(L10N.getString("kick.self"));
-						Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + args[1] + " :" + L10N.getString("kick.self.reason"));
+						Core.bot.kick(event.getChannel().getName(), args[1], L10N.getString("kick.self.reason"));
 						
 						if(L10N.chanLangs.containsKey(event.getChannel().getName()))
 							L10N.chanLangs.remove(event.getChannel().getName());
@@ -59,7 +61,7 @@ public class Kick implements ICommand<MessageEvent<Bot>>
 							result += args[i - 1] + " ";
 						}
 
-						Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " " + args[1] + " :" + result.substring(0, result.lastIndexOf(' ')));
+						Core.bot.kick(event.getChannel().getName(), args[1], result.substring(0, result.lastIndexOf(' ')));
 					}
 				}
 				else
@@ -69,9 +71,7 @@ public class Kick implements ICommand<MessageEvent<Bot>>
 			{
 				switch(args.length)
 				{				
-					case 1:
-						throw new IncorrectCommandExecutionException(getAlias());
-					case 2:
+					case 1: case 2:
 						throw new IncorrectCommandExecutionException(getAlias());
 					default:
 						Utilities.chanMsg(event, L10N.getString("kick.fail") + " - " + args.length);
@@ -79,7 +79,10 @@ public class Kick implements ICommand<MessageEvent<Bot>>
 			}
 		}
 		else
+		{
 			Utilities.respond(event, L10N.getString("kick.identify"), true);
+			Logging.info("User not identified, denying command access to " + event.getUser().getNick() + "...");
+		}
 	}
 
 	@Override

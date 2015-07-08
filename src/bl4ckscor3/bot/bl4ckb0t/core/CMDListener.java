@@ -53,6 +53,7 @@ import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.PrivateJoin;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.PrivateLeave;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.UserMsg;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
+import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Lists;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
@@ -68,7 +69,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 	public CMDListener()
 	{
 		channelStates.put("#whatever", false); //disabling the bot in the channel #whatever by default
-		
+		Logging.info("Disabled bot in channel #whatever...");
 		commands.add(new Calculate());
 		commands.add(new Changelog());
 		commands.add(new ChangeNick());
@@ -104,26 +105,31 @@ public class CMDListener extends ListenerAdapter<Bot>
 		commands.add(new Weather());
 		commands.add(new XColor());
 		commands.add(new YouTube());
+		Logging.info("Registered command classes for channel messages...");
 		Help.setupHelpMenu(commands);
 		privCommands.add(new PrivateJoin());
 		privCommands.add(new PrivateLeave());
 		privCommands.add(new Action());
 		privCommands.add(new ChanMsg());
 		privCommands.add(new UserMsg());
+		Logging.info("Registered command classes for private messages...");
 	}
 
 	@Override
 	public void onMessage(MessageEvent<Bot> event) throws MalformedURLException, IOException, InterruptedException, IrcException
 	{
-		if(Lists.getIgnoredUsers().contains(event.getUser().getNick()))
-			return;
-		
 		String cmdName = Utilities.toArgs(event.getMessage())[0];
 		int permissionLevel = Utilities.getUserPermissionLevel(event);
 		
 		if(!cmdName.startsWith(cmdPrefix))
 			return;
 
+		if(Lists.getIgnoredUsers().contains(event.getUser().getNick()))
+		{
+			Logging.warn("Ignoring user " + event.getUser().getNick());
+			return;
+		}
+		
 		if(enabled && channelStates.get(event.getChannel().getName()))
 		{
 			for(ICommand<MessageEvent<Bot>> cmd : commands)
@@ -132,7 +138,6 @@ public class CMDListener extends ListenerAdapter<Bot>
 				{
 					if(cmd.getPermissionLevel() > permissionLevel)
 					{
-						System.out.println(cmd.getPermissionLevel() + " " + permissionLevel);
 						Utilities.noPermission(event);
 						return;
 					}

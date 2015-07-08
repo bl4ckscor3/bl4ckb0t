@@ -12,6 +12,7 @@ import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
+import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class YouTubeStats
@@ -86,13 +87,19 @@ public class YouTubeStats
 			{
 				title = driver.findElement(By.xpath("//meta[@itemprop='name']")).getAttribute("content");
 			}
-			catch(NoSuchElementException e){}
+			catch(NoSuchElementException e)
+			{
+				Logging.warn("Couldn't find \"title\" element.");
+			}
 
 			try
 			{
 				duration = resolveDuration(driver);
 			}
-			catch(NoSuchElementException e){}
+			catch(NoSuchElementException e)
+			{
+				Logging.warn("Couldn't find \"duration\" element.");
+			}
 
 			try
 			{
@@ -100,32 +107,53 @@ public class YouTubeStats
 			}
 			catch(NoSuchElementException e)
 			{
-				views = driver.findElement(By.xpath("//span[@class='watch-view-count yt-uix-hovercard-target']")).getText().split("Views")[0];
+				Logging.warn("Couldn't find \"views\" element, trying again.");
+				
+				try
+				{
+					views = driver.findElement(By.xpath("//span[@class='watch-view-count yt-uix-hovercard-target']")).getText().split("Views")[0];
+				}
+				catch(NoSuchElementException e2)
+				{
+					Logging.warn("Couldn't find \"views\" element.");
+				}
 			}
 
 			try
 			{
 				likes = driver.findElement(By.xpath("//button[@id='yt-uix-button yt-uix-button-size-default yt-uix-button-opacity yt-uix-button-has-icon no-icon-markup like-button-renderer-like-button like-button-renderer-like-button-unclicked  yt-uix-post-anchor yt-uix-tooltip']/span[@class='yt-uix-button-content']")).getText();
 			}
-			catch(NoSuchElementException e){}
+			catch(NoSuchElementException e)
+			{
+				Logging.warn("Couldn't find \"likes\" element.");
+			}
 
 			try
 			{
 				dislikes = driver.findElement(By.xpath("//button[@id='yt-uix-button yt-uix-button-size-default yt-uix-button-opacity yt-uix-button-has-icon no-icon-markup like-button-renderer-dislike-button like-button-renderer-dislike-button-unclicked  yt-uix-post-anchor yt-uix-tooltip']/span[@class='yt-uix-button-content']")).getText();
 			}
-			catch(NoSuchElementException e){}
+			catch(NoSuchElementException e)
+			{
+				Logging.warn("Couldn't find \"dislikes\" element.");
+			}
 
 			try
 			{
 				date = driver.findElement(By.xpath("//div[@id='watch-uploader-info']/strong")).getText().split("on")[1];
 			}
-			catch(NoSuchElementException e){}
+			catch(NoSuchElementException e)
+			{
+				Logging.warn("Couldn't find \"date\" element.");
+			}
 
 			try
 			{
 				uploader = driver.findElement(By.xpath("//div[@class='yt-user-info']/a")).getText();
 			}
-			catch(NoSuchElementException e){}
+			catch(NoSuchElementException e)
+			{
+				Logging.warn("Couldn't find \"uploader\" element.");
+			}
 
 			Utilities.chanMsg(event, Colors.BLACK + Colors.BOLD + "** " + Colors.BOLD + "1,0You0,4Tube " + 
 					Colors.BOLD + "** " + L10N.getString("youtube.title") + ": " + Colors.BOLD + title + 
@@ -150,7 +178,15 @@ public class YouTubeStats
 		int h = 0;
 		int m;
 
-		dur = driver.findElement(By.xpath("//meta[@itemprop='duration']")).getAttribute("content");
+		try
+		{
+			dur = driver.findElement(By.xpath("//meta[@itemprop='duration']")).getAttribute("content");
+		}
+		catch(NoSuchElementException e)
+		{
+			Logging.warn("Couldn't find \"duration\" element.");
+			return dur;
+		}
 
 		if(dur.contains("M"))
 			minutes = dur.split("T")[1].split("M")[0]; 

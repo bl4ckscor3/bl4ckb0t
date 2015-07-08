@@ -12,6 +12,7 @@ import bl4ckscor3.bot.bl4ckb0t.core.CMDListener;
 import bl4ckscor3.bot.bl4ckb0t.core.Core;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
+import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Help implements ICommand<MessageEvent<Bot>>
@@ -44,6 +45,8 @@ public class Help implements ICommand<MessageEvent<Bot>>
 					break;
 			}
 		}
+		
+		Logging.info("Set up help menu...");
 	}
 
 	@Override

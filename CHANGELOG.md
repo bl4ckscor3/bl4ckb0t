@@ -1,7 +1,8 @@
 ###############################
 #          Changelog          #
 ###############################
-3.14.1_WIP
+3.15
+- New Logging system
 - SpellingCorrection fixes & improvements
 - Fixed dis-/likes not showing
 - Fixed "Verified Account" showing

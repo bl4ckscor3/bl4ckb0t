@@ -10,6 +10,7 @@ import bl4ckscor3.bot.bl4ckb0t.core.CMDListener;
 import bl4ckscor3.bot.bl4ckb0t.core.Core;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
+import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Enable implements ICommand<MessageEvent<Bot>>
@@ -28,6 +29,7 @@ public class Enable implements ICommand<MessageEvent<Bot>>
 			{
 				CMDListener.enabled = true;
 				Utilities.chanMsg(event, L10N.getString("enable.success"));
+				Logging.info("Enabled bot globally.");
 
 				for(String s : Utilities.getJoinedChannels(true))
 				{
@@ -44,6 +46,7 @@ public class Enable implements ICommand<MessageEvent<Bot>>
 			{
 				CMDListener.channelStates.put(args[1], true);
 				Utilities.chanMsg(event, L10N.getString("enable.success"));
+				Logging.info("Enabled bot in " + args[1]);
 			}
 			else
 			{
@@ -51,6 +54,7 @@ public class Enable implements ICommand<MessageEvent<Bot>>
 				{
 					CMDListener.channelStates.put(args[1], true);
 					Core.bot.sendCustomMessage(args[1], L10N.getString("enable.success"));
+					Logging.info("Enabled bot in " + args[1]);
 				}
 				else
 					Core.bot.sendCustomMessage(args[1], L10N.getString("enable.alreadyEnabled"));

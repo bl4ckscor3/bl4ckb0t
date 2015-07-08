@@ -17,12 +17,13 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Changelog implements ICommand<MessageEvent<Bot>>
 {
+	private static final HashMap<String, ArrayList<String>> versions = new HashMap<String, ArrayList<String>>();
+	
 	@Override
 	public void exe(MessageEvent<Bot> event) throws MalformedURLException, IOException
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://raw.githubusercontent.com/bl4ckscor3/bl4ckb0t/master/CHANGELOG.md").openStream()));
-		HashMap<String, ArrayList<String>> versions = new HashMap<String, ArrayList<String>>();
 		String line = "";
 		String currentVersion = "";
 		boolean wip = false;

@@ -14,7 +14,7 @@ public class PrivateLeave implements IPrivateCommand<PrivateMessageEvent<Bot>>
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 		
-		Core.bot.sendRaw().rawLine("PART " + (args[1].startsWith("#") ? args[1] : "#" + args[1]) + " :" + L10N.getString("channel.part"));
+		Utilities.leaveChannel(args[1].startsWith("#") ? args[1] : "#" + args[1]);
 	}
 
 	@Override

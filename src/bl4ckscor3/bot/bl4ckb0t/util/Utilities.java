@@ -15,6 +15,7 @@ import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.core.CMDListener;
 import bl4ckscor3.bot.bl4ckb0t.core.Core;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
+import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 
 import com.google.common.collect.ImmutableSortedSet;
 
@@ -27,11 +28,13 @@ public class Utilities
 	public static void chanMsg(MessageEvent<Bot> event, String msg)
 	{
 		event.getChannel().send().message(msg);
+		Logging.message(event.getChannel().getName(), Core.bot.getNick(), msg);
 	}
 	
 	public static void notice(MessageEvent<Bot> event, String msg)
 	{
 		event.getUser().send().notice(msg);
+		Logging.noticeSent(event.getUser().getNick(), msg);
 	}
 
 	public static void pm(String name, String msg)
@@ -170,6 +173,8 @@ public class Utilities
 
 		if(!CMDListener.channelStates.containsKey(channel))
 			CMDListener.channelStates.put(channel, true);
+
+		Logging.info("Joined " + channel + "...");
 	}
 
 	public static void joinChannelWithPassword(String channel, String password)
@@ -181,6 +186,8 @@ public class Utilities
 
 		if(!CMDListener.channelStates.containsKey(channel))
 			CMDListener.channelStates.put(channel, true);
+		
+		Logging.info("Joined " + channel + "...");
 	}
 
 	public static void joinDefaults() throws MalformedURLException, IOException
@@ -205,10 +212,18 @@ public class Utilities
 
 		if(CMDListener.channelStates.containsKey(channel))
 			CMDListener.channelStates.remove(channel);
+		
+		Logging.info("Left " + channel + "...");
 	}
 
 	public static String capitalizeFirstLetter(String s)
 	{
 		return s.substring(0, 1).toUpperCase(L10N.currentLocale) + s.substring(1);
+	}
+	
+	public static void action(String target, String msg)
+	{
+		Core.bot.sendIRC().action(target, msg);
+		Logging.action(target, Core.bot.getNick(), msg);
 	}
 }

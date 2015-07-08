@@ -7,6 +7,7 @@ import org.pircbotx.hooks.events.MessageEvent;
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
+import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Language implements ICommand<MessageEvent<Bot>>
@@ -27,9 +28,15 @@ public class Language implements ICommand<MessageEvent<Bot>>
 		else if(args.length == 2)
 		{
 			if(args[1].equalsIgnoreCase(availableLanguages[0]))
+			{
 				L10N.changeLocalization("en", "US", event.getChannel().getName());
+				Logging.info("Changed localizitation in " + event.getChannel().getName() + " to " + availableLanguages[0] + ".");
+			}
 			else if(args[1].equalsIgnoreCase(availableLanguages[1]))
+			{
 				L10N.changeLocalization("de", "DE", event.getChannel().getName());
+				Logging.info("Changed localizitation in " + event.getChannel().getName() + " to " + availableLanguages[1] + ".");
+			}
 			else	
 				Utilities.chanMsg(event, L10N.getString("language.availableLanguages") + ": " + getAvailableLanguages());
 

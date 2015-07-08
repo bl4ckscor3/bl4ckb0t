@@ -27,7 +27,7 @@ public class Action implements IPrivateCommand<PrivateMessageEvent<Bot>>
 		}
 
 		msg = msg.substring(0, msg.length() - 1);
-		Core.bot.sendIRC().action(args[1], msg);
+		Utilities.action(args[1], msg);
 	}
 
 	@Override

@@ -15,6 +15,7 @@ import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
+import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class LinkTitle
@@ -28,7 +29,10 @@ public class LinkTitle
 			if(s.contains("www.") || s.contains("http://") || s.contains("https://"))
 			{
 				if(isWebsiteBlacklisted(s))
+				{
+					Logging.info("Website blacklisted: " + s);
 					continue;
+				}
 				
 				if(s.contains("twitter"))
 				{
@@ -62,7 +66,7 @@ public class LinkTitle
 				}
 
 				if(title == null || title == "null" || title == "")
-					Utilities.chanMsg(event,L10N.getString("linkTitle.notFound") + " " + s);
+					Utilities.chanMsg(event, L10N.getString("linkTitle.notFound") + " " + s);
 				else
 					Utilities.chanMsg(event, L10N.getString("linkTitle.available") + " " + s + " - " + Colors.BOLD + title);
 			}

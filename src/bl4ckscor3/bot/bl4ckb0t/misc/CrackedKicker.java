@@ -11,6 +11,7 @@ import org.pircbotx.hooks.events.JoinEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.core.Core;
+import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 
 //query code courtesy of Vauff https://github.com/Vauff/Maunz
 public class CrackedKicker
@@ -26,7 +27,7 @@ public class CrackedKicker
 		if(scUsers.containsKey(name))
 		{
 			if(!scUsers.get(name))
-				Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " SCUser_" + name + " :We don't need cracked accounts here.");
+				Core.bot.kick(event.getChannel().getName(), "SCUser_" + name, "We don't need cracked accounts here.");
 		}
 		else
 		{
@@ -36,11 +37,15 @@ public class CrackedKicker
 
 			if(status.equalsIgnoreCase("free"))
 			{
-				Core.bot.sendRaw().rawLine("KICK " + event.getChannel().getName() + " SCUser_" + name + " :We don't need cracked accounts here.");
+				Core.bot.kick(event.getChannel().getName(), "SCUser_" + name, "We don't need cracked accounts here.");
 				scUsers.put(name, false);
+				Logging.info("Added " + name + " to sc users list, disallowing access to the channel.");
 			}
 			else if(status.equalsIgnoreCase("premium"))
+			{
 				scUsers.put(name, true);
+				Logging.info("Added " + name + " to sc users list, allowing access to the channel.");
+			}
 		}
 	}
 }
