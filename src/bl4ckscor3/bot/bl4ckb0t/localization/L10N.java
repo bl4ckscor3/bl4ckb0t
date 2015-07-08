@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
-
 public class L10N
 {
 	private static String language = "en";
