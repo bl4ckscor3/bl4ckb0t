@@ -36,7 +36,6 @@ public class GitHub
 		{
 			String[] split = s.split(":");
 			
-			System.out.println(s);
 			switch(split[0])
 			{
 				case "description\"":

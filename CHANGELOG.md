@@ -1,6 +1,9 @@
 ###############################
 #          Changelog          #
 ###############################
+3.15.1
+- Removed annoying debug output in GitHub feature
+
 3.15
 - New Logging system
 - SpellingCorrection fixes & improvements

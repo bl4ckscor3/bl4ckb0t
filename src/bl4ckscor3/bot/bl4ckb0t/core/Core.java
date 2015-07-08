@@ -33,7 +33,7 @@ public class Core
 		Startup.setValidUsers();
 		Startup.setIgnoredUsers();
 		config = new Configuration.Builder<Bot>()
-				.setVersion("3.15")
+				.setVersion("3.15.1")
 				.setName("bl4ckb0t")
 				.setLogin("bl4ckb0t")
 				.setServer("irc.esper.net", 6697)
