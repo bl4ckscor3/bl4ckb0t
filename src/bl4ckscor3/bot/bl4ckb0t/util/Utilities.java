@@ -196,8 +196,10 @@ public class Utilities
 
 		for(String s : channelsToJoin)
 		{
-			if(s.equals("#akino_germany"))
+			if(s.equalsIgnoreCase("#akino_germany"))
 				joinChannelWithPassword(s, Passwords.AKINO_GERMANY.getPassword());
+			else if(s.equalsIgnoreCase("#BreakInBadStaff"))
+				joinChannelWithPassword(s, Passwords.BREAKINBADSTAFF.getPassword());
 			else
 				joinChannel(s);
 		}
