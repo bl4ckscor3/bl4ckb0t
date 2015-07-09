@@ -182,7 +182,12 @@ public class Utilities
 		Core.bot.sendIRC().joinChannel(channel, password);
 
 		if(!L10N.chanLangs.containsKey(channel))
-			L10N.chanLangs.put(channel, "english");
+		{
+			if(channel.equals("#akino_germany"))
+				L10N.chanLangs.put(channel, "german");
+			else
+				L10N.chanLangs.put(channel, "english");
+		}
 
 		if(!CMDListener.channelStates.containsKey(channel))
 			CMDListener.channelStates.put(channel, true);
