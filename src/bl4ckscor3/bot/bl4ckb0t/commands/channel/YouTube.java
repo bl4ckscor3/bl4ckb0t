@@ -15,7 +15,7 @@ public class YouTube implements ICommand<MessageEvent<Bot>>
 		String[] args = Utilities.toArgs(event.getMessage());
 
 		if(args.length == 2)
-			Utilities.respond(event, "http://www.youtube.com/" + args[1], false);
+			Utilities.chanMsg(event, "http://www.youtube.com/" + args[1]);
 		else
 			throw new IncorrectCommandExecutionException(getAlias());
 	}

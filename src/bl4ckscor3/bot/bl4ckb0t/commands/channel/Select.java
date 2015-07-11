@@ -22,7 +22,7 @@ public class Select implements ICommand<MessageEvent<Bot>>
 			String[] options = event.getMessage().substring(8).split(",");
 			int i = r.nextInt(options.length);
 
-			Utilities.respond(event, options[i], false);
+			Utilities.chanMsg(event, options[i]);
 		}
 		else
 			throw new IncorrectCommandExecutionException(getAlias());

@@ -80,7 +80,7 @@ public class Kick implements ICommand<MessageEvent<Bot>>
 		}
 		else
 		{
-			Utilities.respond(event, L10N.getString("kick.identify"), true);
+			Utilities.chanMsg(event, L10N.getString("kick.identify"));
 			Logging.info("User not identified, denying command access to " + event.getUser().getNick() + "...");
 		}
 	}

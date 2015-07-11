@@ -29,7 +29,7 @@ public class Vowels implements ICommand<MessageEvent<Bot>>
 				}
 			}
 
-			Utilities.respond(event, result, false);
+			Utilities.chanMsg(event, result);
 		}
 		else
 			throw new IncorrectCommandExecutionException(getAlias());

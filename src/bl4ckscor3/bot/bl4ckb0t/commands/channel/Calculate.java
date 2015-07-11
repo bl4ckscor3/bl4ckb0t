@@ -12,7 +12,7 @@ public class Calculate implements ICommand<MessageEvent<Bot>>
 	@Override
 	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException
 	{
-		Utilities.respond(event, L10N.getString("calc.disabled"), true);
+		Utilities.chanMsg(event, L10N.getString("calc.disabled"));
 //		String[] args = Utilities.toArgs(event.getMessage());
 //		
 //		if(args.length == 1 || args.length == 2 || args.length == 3 || !validateInput(args))

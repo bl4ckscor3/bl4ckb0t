@@ -20,9 +20,9 @@ public class Decide implements ICommand<MessageEvent<Bot>>
 			int decision = r.nextInt(101);
 
 			if(decision >= 0 && decision <= 49)
-				Utilities.respond(event, L10N.getString("decide.no"), true);
+				Utilities.chanMsg(event, L10N.getString("decide.no"));
 			else if(decision >= 50 && decision <= 100)
-				Utilities.respond(event, L10N.getString("decide.yes"), true);
+				Utilities.chanMsg(event, L10N.getString("decide.yes"));
 			else
 				Utilities.chanMsg(event, L10N.getString("decide.fail") + ": " + decision);
 		}

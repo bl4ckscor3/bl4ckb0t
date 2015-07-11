@@ -42,14 +42,6 @@ public class Utilities
 		Core.bot.sendCustomMessage(name, msg);
 	}
 
-	public static void respond(MessageEvent<Bot> event, String msg, boolean comma)
-	{
-		if(comma)
-			chanMsg(event, event.getUser().getNick() + ", " + msg);
-		else
-			chanMsg(event, event.getUser().getNick() + ": " + msg);
-	}
-
 	public static void noPermission(MessageEvent<Bot> event)
 	{
 		chanMsg(event, L10N.getString("noPermission"));

@@ -3,6 +3,7 @@
 ###############################
 3.15.2_WIP
 - Added another password channel
+- Changed up some messages of commands
 - #akino_germany language gets set automatically
 
 3.15.1

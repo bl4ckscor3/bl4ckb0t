@@ -15,7 +15,7 @@ public class Twitch implements ICommand<MessageEvent<Bot>>
 		String[] args = Utilities.toArgs(event.getMessage());
 		
 		if(args.length == 2)
-			Utilities.respond(event, "http://www.twitch.tv/" + args[1], false);
+			Utilities.chanMsg(event, "http://www.twitch.tv/" + args[1]);
 		else
 			throw new IncorrectCommandExecutionException(getAlias());
 	}
