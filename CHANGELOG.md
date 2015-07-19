@@ -5,6 +5,7 @@
 - Added another password channel
 - Changed up some messages of commands
 - #akino_germany language gets set automatically
+- Removed Cracked Kicker (was moved to [Geffy](http://github.com/Geforce132/Geffy))
 
 3.15.1
 - Removed annoying debug output in GitHub feature
