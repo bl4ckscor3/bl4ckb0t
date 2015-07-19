@@ -25,29 +25,34 @@ public class Core
 	}
 
 	public static void createBot() throws IOException, IrcException
-	{		
-		Configuration<Bot> config;
+	{
+		try
+		{
+			Configuration<Bot> config;
 
-		Lists.clearAll();
-		Startup.setAllowedUsers();
-		Startup.setValidUsers();
-		Startup.setIgnoredUsers();
-		config = new Configuration.Builder<Bot>()
-				.setVersion("3.15.2_WIP")
-				.setName("bl4ckb0t")
-				.setLogin("bl4ckb0t")
-				.setServer("irc.esper.net", 6697)
-				.setSocketFactory(new UtilSSLSocketFactory().trustAllCertificates())
-				.setNickservPassword(Passwords.NICKSERV.getPassword())
-				.setAutoNickChange(true)
-				.setMessageDelay(1000)
-				.addListener(new Logging())
-				.addListener(new MiscListener())
-				.addListener(new CMDListener())
-				.buildConfiguration();
-		Logging.info("Created bot config...");
-		bot = new Bot(config);
-		Logging.info("Starting bot...");
-		bot.startBot();
+			Lists.clearAll();
+			Startup.callMethods();
+			config = new Configuration.Builder<Bot>()
+					.setVersion("3.15.2_WIP")
+					.setName("bl4ckb0t")
+					.setLogin("bl4ckb0t")
+					.setServer("irc.esper.net", 6697)
+					.setSocketFactory(new UtilSSLSocketFactory().trustAllCertificates())
+					.setNickservPassword(Passwords.NICKSERV.getPassword())
+					.setAutoNickChange(true)
+					.setMessageDelay(1000)
+					.addListener(new Logging())
+					.addListener(new MiscListener())
+					.addListener(new CMDListener())
+					.buildConfiguration();
+			Logging.info("Created bot config...");
+			bot = new Bot(config);
+			Logging.info("Starting bot...");
+			bot.startBot();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 }

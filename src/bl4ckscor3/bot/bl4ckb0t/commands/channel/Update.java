@@ -1,6 +1,7 @@
 package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 
 import org.pircbotx.hooks.events.MessageEvent;
@@ -14,13 +15,11 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 public class Update implements ICommand<MessageEvent<Bot>>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event) throws MalformedURLException, IOException
+	public void exe(MessageEvent<Bot> event) throws MalformedURLException, IOException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
 	{
 		Lists.clearAll();
-		Startup.setDefaultChans();
-		Startup.setAllowedUsers();
-		Startup.setValidUsers();
-		Startup.setIgnoredUsers();
+		Changelog.versions.clear();
+		Startup.callMethods();
 		Utilities.chanMsg(event, L10N.getString("update.success"));
 	}
 

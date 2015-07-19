@@ -5,7 +5,6 @@ import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-import org.pircbotx.exception.IrcException;
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
@@ -116,7 +115,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 	}
 
 	@Override
-	public void onMessage(MessageEvent<Bot> event) throws MalformedURLException, IOException, InterruptedException, IrcException
+	public void onMessage(MessageEvent<Bot> event) throws Exception
 	{
 		String cmdName = Utilities.toArgs(event.getMessage())[0];
 		int permissionLevel = Utilities.getUserPermissionLevel(event);

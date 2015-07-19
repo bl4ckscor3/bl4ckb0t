@@ -17,6 +17,18 @@ import bl4ckscor3.bot.bl4ckb0t.core.Core;
 
 public class Logging extends ListenerAdapter<Bot>
 {
+	private static boolean enabled = true;
+	
+	public static void enable()
+	{
+		enabled = true;
+	}
+	
+	public static void disable()
+	{
+		enabled = false;
+	}
+	
 	public static void severe(String line)
 	{
 		log("[SEVERE] " + line);
@@ -65,7 +77,8 @@ public class Logging extends ListenerAdapter<Bot>
 	
 	private static void log(String line)
 	{
-		System.out.println(line);
+		if(enabled)
+			System.out.println(line);
 	}
 	
 	/*****************************************************/
