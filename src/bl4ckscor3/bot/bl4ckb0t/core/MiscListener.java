@@ -5,12 +5,10 @@ import java.net.MalformedURLException;
 
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.ConnectEvent;
-import org.pircbotx.hooks.events.JoinEvent;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
-import bl4ckscor3.bot.bl4ckb0t.misc.CrackedKicker;
 import bl4ckscor3.bot.bl4ckb0t.misc.LinkTitle;
 import bl4ckscor3.bot.bl4ckb0t.misc.SpellingCorrection;
 import bl4ckscor3.bot.bl4ckb0t.misc.YouTubeStats;
@@ -71,13 +69,6 @@ public class MiscListener extends ListenerAdapter<Bot>
 			//checking for urls and sending the title if available
 			LinkTitle.checkForLinkAndSendTitle(event);
 		}
-	}
-	
-	@Override
-	public void onJoin(JoinEvent<Bot> event) throws Exception
-	{
-		if(event.getChannel().getName().equals("#GeforceMods") && event.getUser().getNick().startsWith("SCUser_"))
-			CrackedKicker.check(event);
 	}
 	
 	@Override
