@@ -1,6 +1,6 @@
 #Changelog
 ---
-####3.15.2_WIP
+####3.15.2
 - Added another password channel
 - Changed up some messages of commands
 - #akino_germany language gets set automatically
