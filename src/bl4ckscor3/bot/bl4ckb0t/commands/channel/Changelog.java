@@ -3,7 +3,6 @@ package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
@@ -11,10 +10,11 @@ import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.core.Core;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
+import bl4ckscor3.bot.bl4ckb0t.util.android.ArrayMap;
 
 public class Changelog implements ICommand<MessageEvent<Bot>>
 {
-	public static final HashMap<String, ArrayList<String>> versions = new HashMap<String, ArrayList<String>>();
+	public static final ArrayMap<String, ArrayList<String>> versions = new ArrayMap<String, ArrayList<String>>();
 
 	@Override
 	public void exe(MessageEvent<Bot> event) throws MalformedURLException, IOException

@@ -1,9 +1,10 @@
 #Changelog
 ---
-##3.16_WIP
+##3.16
 - Added -ping
 - Fixed channel join logging showing twice
 - Fixed kick logging message displaying incorrect name
+- Memory improvement using ArrayMap
 
 ####3.15.2
 - Added another password channel

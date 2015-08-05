@@ -1,9 +1,10 @@
 package bl4ckscor3.bot.bl4ckb0t.localization;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Locale;
 import java.util.ResourceBundle;
+
+import bl4ckscor3.bot.bl4ckb0t.util.android.ArrayMap;
 
 public class L10N
 {
@@ -12,7 +13,7 @@ public class L10N
 	public static String langName = parseLangName(language + "_" + country);
 	public static Locale currentLocale = new Locale(language, country);
 	private static ResourceBundle strings = ResourceBundle.getBundle("bl4ckscor3.bot.bl4ckb0t.localization.bb", currentLocale);
-	public static HashMap<String, String> chanLangs = new HashMap<String, String>();
+	public static ArrayMap<String, String> chanLangs = new ArrayMap<String, String>();
 
 	/**
 	 * Changes the localization of the bot

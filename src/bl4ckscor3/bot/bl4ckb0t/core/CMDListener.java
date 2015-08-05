@@ -2,7 +2,6 @@ package bl4ckscor3.bot.bl4ckb0t.core;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.util.HashMap;
 import java.util.LinkedList;
 
 import org.pircbotx.hooks.ListenerAdapter;
@@ -56,12 +55,13 @@ import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Lists;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
+import bl4ckscor3.bot.bl4ckb0t.util.android.ArrayMap;
 
 public class CMDListener extends ListenerAdapter<Bot>
 {
 	public static final String cmdPrefix = "-";
 	public static boolean enabled = true;
-	public static final HashMap<String, Boolean> channelStates = new HashMap<String, Boolean>(); //false = disabled | true = enabled
+	public static final ArrayMap<String, Boolean> channelStates = new ArrayMap<String, Boolean>(); //false = disabled | true = enabled
 	public boolean isCounting = false;
 	public static final LinkedList<ICommand<MessageEvent<Bot>>> commands = new LinkedList<ICommand<MessageEvent<Bot>>>();
 	public static final LinkedList<IPrivateCommand<PrivateMessageEvent<Bot>>> privCommands = new LinkedList<IPrivateCommand<PrivateMessageEvent<Bot>>>();

@@ -1,7 +1,6 @@
 package bl4ckscor3.bot.bl4ckb0t.misc;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.pircbotx.Colors;
@@ -10,11 +9,12 @@ import org.pircbotx.hooks.events.MessageEvent;
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
+import bl4ckscor3.bot.bl4ckb0t.util.android.ArrayMap;
 
 public class SpellingCorrection
 {
 	//<channel, <user#message>>
-	public static HashMap<String, List<String>> storage = new HashMap<String, List<String>>();
+	public static ArrayMap<String, List<String>> storage = new ArrayMap<String, List<String>>();
 	//needed to check if the message should be added to the array or not (used in Listener.java)
 	public static boolean corrected = false;
 
