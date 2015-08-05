@@ -81,7 +81,7 @@ public class Logging extends ListenerAdapter<Bot>
 			System.out.println(line);
 	}
 	
-	/*****************************************************/
+	/***************************Listeners***************************/
 	
 	@Override
 	public void onMessage(MessageEvent<Bot> event) throws Exception
@@ -106,7 +106,7 @@ public class Logging extends ListenerAdapter<Bot>
 		if(event.getUser().getNick().equals(Core.bot.getNick()))
 			warn("Bot kicked from " + event.getChannel().getName() + " for \"" + event.getReason() + "\".");
 		else
-			info(event.getUser().getNick() + " was kicked from " + event.getChannel().getName() + " for \"" + event.getReason() + "\".");
+			info(event.getRecipient().getNick() + " was kicked from " + event.getChannel().getName() + " for \"" + event.getReason() + "\".");
 	}
 	
 	@Override
@@ -124,7 +124,8 @@ public class Logging extends ListenerAdapter<Bot>
 	@Override
 	public void onJoin(JoinEvent<Bot> event) throws Exception
 	{
-		info(event.getUser().getNick() + " joined " + event.getChannel().getName() + ".");
+		if(!event.getUser().getNick().equals(Core.bot.getNick()))
+			info(event.getUser().getNick() + " joined " + event.getChannel().getName() + ".");
 	}
 	
 	@Override

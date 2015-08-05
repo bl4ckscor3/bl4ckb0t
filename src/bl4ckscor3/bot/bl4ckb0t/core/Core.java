@@ -33,7 +33,7 @@ public class Core
 			Lists.clearAll();
 			Startup.callMethods();
 			config = new Configuration.Builder<Bot>()
-					.setVersion("3.15.2")
+					.setVersion("3.16_WIP")
 					.setName("bl4ckb0t")
 					.setLogin("bl4ckb0t")
 					.setServer("irc.esper.net", 6697)
@@ -41,9 +41,9 @@ public class Core
 					.setNickservPassword(Passwords.NICKSERV.getPassword())
 					.setAutoNickChange(true)
 					.setMessageDelay(1000)
-					.addListener(new Logging())
 					.addListener(new MiscListener())
 					.addListener(new CMDListener())
+					.addListener(new Logging())
 					.buildConfiguration();
 			Logging.info("Created bot config...");
 			bot = new Bot(config);

@@ -1,5 +1,10 @@
 #Changelog
 ---
+##3.16_WIP
+- Added -ping
+- Fixed channel join logging showing twice
+- Fixed kick logging message displaying incorrect name
+
 ####3.15.2
 - Added another password channel
 - Changed up some messages of commands

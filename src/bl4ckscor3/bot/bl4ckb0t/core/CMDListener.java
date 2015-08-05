@@ -29,6 +29,7 @@ import bl4ckscor3.bot.bl4ckb0t.commands.channel.Leet;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.ListChans;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.LongURL;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.MCStatus;
+import bl4ckscor3.bot.bl4ckb0t.commands.channel.Ping;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.RandomLetter;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.RandomNumber;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Reverse;
@@ -88,6 +89,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 		commands.add(new ListChans());
 		commands.add(new LongURL());
 		commands.add(new MCStatus());
+		commands.add(new Ping());
 		commands.add(new RandomLetter());
 		commands.add(new RandomNumber());
 		commands.add(new Reverse());
