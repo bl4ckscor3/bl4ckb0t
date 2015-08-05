@@ -26,17 +26,15 @@ public class MiscListener extends ListenerAdapter<Bot>
 			return;
 		}
 		
-		if(event.getMessage().startsWith("-ping"))
-		{
-			long elapsed = System.currentTimeMillis() - event.getTimestamp();
-			
-			Utilities.chanMsg(event, "Pong! " + elapsed + "ms | " + L10N.getString("ping.notes"));
-			return;
-		}
-		
 		String message = event.getMessage();
 
 		L10N.changeLocalization(L10N.parseLangCode(L10N.chanLangs.get(event.getChannel().getName()), 0), L10N.parseLangCode(L10N.chanLangs.get(event.getChannel().getName()), 1), event.getChannel().getName());
+		
+		if(event.getMessage().startsWith("-ping"))
+		{
+			Utilities.chanMsg(event, "Pong!");
+			return;
+		}
 		
 		if(message.startsWith(CMDListener.cmdPrefix))
 			return;
