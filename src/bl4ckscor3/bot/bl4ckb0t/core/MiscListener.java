@@ -28,7 +28,9 @@ public class MiscListener extends ListenerAdapter<Bot>
 		
 		if(event.getMessage().startsWith("-ping"))
 		{
-			Utilities.chanMsg(event, "Pong!");
+			long elapsed = System.currentTimeMillis() - event.getTimestamp();
+			
+			Utilities.chanMsg(event, "Pong! " + elapsed + "ms | " + L10N.getString("ping.notes"));
 			return;
 		}
 		
