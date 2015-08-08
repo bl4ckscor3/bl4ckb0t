@@ -33,7 +33,7 @@ public class Core
 			Lists.clearAll();
 			Startup.callMethods();
 			config = new Configuration.Builder<Bot>()
-					.setVersion("3.16.1")
+					.setVersion("3.16.1_WIP")
 					.setName("bl4ckb0t")
 					.setLogin("bl4ckb0t")
 					.setServer("irc.esper.net", 6697)

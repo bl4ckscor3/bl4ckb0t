@@ -39,6 +39,8 @@ public class Disable implements ICommand<MessageEvent<Bot>>
 					if(!s.equalsIgnoreCase(event.getChannel().getName()))
 						Core.bot.sendCustomMessage(s, L10N.getString("disable.notify"));
 				}
+				
+				Core.bot.sendRaw().rawLine("AWAY :Disabled");
 			}
 			else
 				Utilities.chanMsg(event, L10N.getString("disable.alreadyDisabled"));

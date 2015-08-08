@@ -36,6 +36,8 @@ public class Enable implements ICommand<MessageEvent<Bot>>
 					if(!s.equalsIgnoreCase(event.getChannel().getName()))
 						Core.bot.sendCustomMessage(s, L10N.getString("enable.notify"));
 				}
+				
+				Core.bot.sendRaw().rawLine("AWAY");
 			}
 			else
 				Utilities.chanMsg(event, L10N.getString("enable.alreadyEnabled"));

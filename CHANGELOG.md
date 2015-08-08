@@ -1,5 +1,8 @@
 #Changelog
 ---
+####3.16.1
+- Bot marks himself as away if disabled globally
+
 ##3.16
 - Added -ping
 - Fixed channel join logging showing twice
