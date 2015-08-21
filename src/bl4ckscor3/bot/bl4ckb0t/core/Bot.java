@@ -23,4 +23,9 @@ public class Bot extends PircBotX
 		sendRaw().rawLine("KICK " + channel + " " + target + " :" + reason);
 		Logging.warn("Kicked " + target + " from " + channel + " for \"" + reason + "\".");
 	}
+	
+	public boolean isDevelopment()
+	{
+		return getConfiguration().getVersion().endsWith("_WIP");
+	}
 }

@@ -41,6 +41,7 @@ public class Disable implements ICommand<MessageEvent<Bot>>
 				}
 				
 				Core.bot.sendRaw().rawLine("AWAY :Disabled");
+				Logging.disable();
 			}
 			else
 				Utilities.chanMsg(event, L10N.getString("disable.alreadyDisabled"));

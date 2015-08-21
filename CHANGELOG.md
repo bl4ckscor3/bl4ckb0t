@@ -1,7 +1,8 @@
 #Changelog
 ---
-####3.16.1
+##3.17
 - Bot marks himself as away if disabled globally
+- Logging to file
 
 ##3.16
 - Added -ping

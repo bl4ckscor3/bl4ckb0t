@@ -9,6 +9,7 @@ import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.core.Core;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
+import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Stop implements ICommand<MessageEvent<Bot>>
@@ -25,11 +26,14 @@ public class Stop implements ICommand<MessageEvent<Bot>>
 				case "yes":
 					Utilities.chanMsg(event, L10N.getString("stop.reboot.yes"));
 					Core.bot.sendRaw().rawLine("QUIT :" + L10N.getString("stop.reason"));
+					Logging.info("Creating new bot...");
 					Core.createBot(); //creating another instance
 					break;
 				case "no":
 					Utilities.chanMsg(event, L10N.getString("stop.reboot.no"));
 					Core.bot.sendRaw().rawLine("QUIT :" + L10N.getString("stop.reason"));
+					Logging.info("Bot stopped!");
+					Logging.disable();
 					break;
 				default:
 					throw new IncorrectCommandExecutionException(getAlias());

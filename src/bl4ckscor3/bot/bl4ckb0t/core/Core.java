@@ -30,10 +30,11 @@ public class Core
 		{
 			Configuration<Bot> config;
 
+			Logging.setup();
 			Lists.clearAll();
 			Startup.callMethods();
 			config = new Configuration.Builder<Bot>()
-					.setVersion("3.16.1_WIP")
+					.setVersion("3.17_WIP")
 					.setName("bl4ckb0t")
 					.setLogin("bl4ckb0t")
 					.setServer("irc.esper.net", 6697)

@@ -3,6 +3,7 @@ package bl4ckscor3.bot.bl4ckb0t.util;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.pircbotx.Channel;
@@ -224,5 +225,10 @@ public class Utilities
 	{
 		Core.bot.sendIRC().action(target, msg);
 		Logging.action(target, Core.bot.getNick(), msg);
+	}
+	
+	public static Date getCurrentDate()
+	{
+		return new Date(System.currentTimeMillis() * 1000);
 	}
 }

@@ -38,6 +38,7 @@ public class Enable implements ICommand<MessageEvent<Bot>>
 				}
 				
 				Core.bot.sendRaw().rawLine("AWAY");
+				Logging.enable();
 			}
 			else
 				Utilities.chanMsg(event, L10N.getString("enable.alreadyEnabled"));
