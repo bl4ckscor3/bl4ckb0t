@@ -5,8 +5,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Date;
 
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.ActionEvent;
@@ -31,11 +29,11 @@ public class Logging extends ListenerAdapter<Bot>
 	private static FileWriter writer;
 	private static boolean failed = true;
 
-	public static void setup()
+	public static void setup(String botName)
 	{
 		try
 		{
-			f = new File("bl4ckb0t.log");
+			f = new File(botName + ".log");
 
 			if(!f.exists())
 				f.createNewFile();
@@ -46,7 +44,7 @@ public class Logging extends ListenerAdapter<Bot>
 
 				copy.mkdirs();
 
-				while((copy = new File("logs/bl4ckb0t - " + Utilities.getCurrentDate().toString().replace(":", "-") + " - " + amount + ".log")).exists())
+				while((copy = new File("logs/" + botName + " - " + Utilities.getCurrentDate().toString().replace(":", "-") + " - " + amount + ".log")).exists())
 				{
 					info("Creating new file, " + copy.getName() + " already exists.");
 					amount++;

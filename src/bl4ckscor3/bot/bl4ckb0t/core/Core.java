@@ -30,7 +30,7 @@ public class Core
 		{
 			Configuration<Bot> config;
 
-			Logging.setup();
+			Logging.setup("bl4ckb0t");
 			Lists.clearAll();
 			Startup.callMethods();
 			config = new Configuration.Builder<Bot>()
