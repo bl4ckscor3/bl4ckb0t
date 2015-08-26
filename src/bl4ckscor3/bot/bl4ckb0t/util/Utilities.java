@@ -229,6 +229,6 @@ public class Utilities
 	
 	public static Date getCurrentDate()
 	{
-		return new Date(System.currentTimeMillis() * 1000);
+		return new Date(System.currentTimeMillis());
 	}
 }

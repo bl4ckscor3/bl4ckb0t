@@ -1,8 +1,12 @@
 package bl4ckscor3.bot.bl4ckb0t.logging;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Date;
 
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.ActionEvent;
@@ -35,6 +39,32 @@ public class Logging extends ListenerAdapter<Bot>
 
 			if(!f.exists())
 				f.createNewFile();
+			else
+			{
+				File copy = new File("logs/");
+				int amount = 0;
+
+				copy.mkdirs();
+
+				while((copy = new File("logs/bl4ckb0t - " + Utilities.getCurrentDate().toString().replace(":", "-") + " - " + amount + ".log")).exists())
+				{
+					info("Creating new file, " + copy.getName() + " already exists.");
+					amount++;
+				}
+
+				FileWriter copyWriter = new FileWriter(copy);
+				BufferedReader reader = new BufferedReader(new FileReader(f));
+				String line = "";
+
+				while((line = reader.readLine()) != null)
+				{
+					copyWriter.write(line + "\n");
+					copyWriter.flush();
+				}
+				
+				copyWriter.close();
+				reader.close();
+			}
 
 			writer = new FileWriter(f);
 			failed = false;
@@ -111,16 +141,14 @@ public class Logging extends ListenerAdapter<Bot>
 
 	private static void start()
 	{
-		raw("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 		raw("Started logging on " + Utilities.getCurrentDate().toString());
 	}
-	
+
 	private static void end()
 	{
 		raw("Ended logging on " + Utilities.getCurrentDate().toString());
-		raw("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 	}
-	
+
 	private static void raw(String line)
 	{
 		if(enabled)
@@ -141,7 +169,7 @@ public class Logging extends ListenerAdapter<Bot>
 			System.out.println(line);
 		}
 	}
-	
+
 	private static void log(String line)
 	{
 		if(enabled)
