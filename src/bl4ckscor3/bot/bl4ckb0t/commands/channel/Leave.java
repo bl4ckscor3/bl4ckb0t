@@ -35,7 +35,7 @@ public class Leave implements ICommand<MessageEvent<Bot>>
 			if(!args[1].startsWith("#"))
 				args[1] = "#" + args[1];
 
-			if(Utilities.hasJoinedChannel(args))
+			if(Utilities.hasJoinedChannel(args[1]))
 			{
 				Utilities.chanMsg(event, L10N.getString("leave.success.normal"));
 				Utilities.leaveChannel(args[1]);

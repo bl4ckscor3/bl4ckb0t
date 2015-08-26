@@ -29,7 +29,7 @@ public class Join implements ICommand<MessageEvent<Bot>>
 			if(!args[1].startsWith("#"))
 				args[1] = "#" + args[1];
 
-			if(!Utilities.hasJoinedChannel(args))
+			if(!Utilities.hasJoinedChannel(args[1]))
 			{
 				Utilities.chanMsg(event, L10N.getString("join.success.normal"));
 				Utilities.joinChannel(args[1]);

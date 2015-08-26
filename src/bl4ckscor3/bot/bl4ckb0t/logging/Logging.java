@@ -22,6 +22,21 @@ import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.core.Core;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
+/**
+ * To use this class, you first need to disable all loggers with "java.util.logging.Logger.getLogger("").setLevel(java.util.logging.Level.OFF);
+ * If you use slf4j, make sure that you use slf4j-nop and not anything else. If you use a different logging interface for PircBotX, use its slf4j-nop equivalent.
+ * 
+ * To set up this logger, simply add Logging.setup("yourBotsName"); before you create your bot's configuration and add this class as a Listener.
+ * Call any public method in here to log to the console and to the file.
+ * Make sure that you change the debug() method to your liking, as it is not made to work for any bot.
+ * 
+ * Upon starting, it will create a new file called yourBotsName.log in the root folder of your project/the jar location.
+ * When that file already exists, it copys the contents of it into a new file into a new folder called logs. The file name is "yourBotsName - current date and time.log"
+ * The number at the end of that file determines how often the bot has been started in that minute. It will prevent same files from being overwritten.
+ * After copying is done, the original file will get used for new logging. 
+ * 
+ * @author bl4ckscor3
+ */
 public class Logging extends ListenerAdapter<Bot>
 {
 	private static boolean enabled = true;
@@ -29,6 +44,10 @@ public class Logging extends ListenerAdapter<Bot>
 	private static FileWriter writer;
 	private static boolean failed = true;
 
+	/**
+	 * Sets up the logger and saves the previous logging file into a seperate folder
+	 * @param botName The name of the bot
+	 */
 	public static void setup(String botName)
 	{
 		try
@@ -46,7 +65,7 @@ public class Logging extends ListenerAdapter<Bot>
 
 				while((copy = new File("logs/" + botName + " - " + Utilities.getCurrentDate().toString().replace(":", "-") + " - " + amount + ".log")).exists())
 				{
-					info("Creating new file, " + copy.getName() + " already exists.");
+					info("Trying to create new file, " + copy.getName() + " already exists.");
 					amount++;
 				}
 
@@ -76,6 +95,9 @@ public class Logging extends ListenerAdapter<Bot>
 		}
 	}
 
+	/**
+	 * Enables the logger if it hasn't failed setting it up
+	 */
 	public static void enable()
 	{
 		if(!failed)
@@ -85,68 +107,125 @@ public class Logging extends ListenerAdapter<Bot>
 		}
 	}
 
+	/**
+	 * Disables the logger
+	 */
 	public static void disable()
 	{
 		end();
 		enabled = false;
 	}
 
+	/**
+	 * Logs a severe message
+	 * @param line The message to log
+	 */
 	public static void severe(String line)
 	{
 		log("[SEVERE] " + line);
 	}
 
+	/**
+	 * Logs a warning message
+	 * @param line The message to log
+	 */
 	public static void warn(String line)
 	{
 		log("[WARNING] " + line);
 	}
 
+	/**
+	 * Logs an info message
+	 * @param line The message to log
+	 */
 	public static void info(String line)
 	{
 		log("[INFO] " + line);
 	}
 
+	/**
+	 * Logs a debug message if the bot is in a development version (This is hardcoded for bl4ckb0t)
+	 * @param line The message to log
+	 */
 	public static void debug(String line)
 	{
 		if(Core.bot.isDevelopment())
 			log("[DEBUG] " + line);
 	}
 
+	/**
+	 * Logs an irc message
+	 * @param channel The channel the message got sent to
+	 * @param sender The sender of the message
+	 * @param msg The message
+	 */
 	public static void message(String channel, String sender, String msg)
 	{
 		log("[MESSAGE] " + channel + " | " + sender + ": " + msg);
 	}
 
-	public static void noticeSent(String receiver, String msg)
+	/**
+	 * Logs a sent irc notice
+	 * @param receiver The receiver of the notice
+	 * @param notice The notice
+	 */
+	public static void noticeSent(String receiver, String notice)
 	{
-		log("[NOTICE] " + receiver + " | " + Core.bot.getNick() + " - " + msg);
+		log("[NOTICE] " + receiver + " | " + Core.bot.getNick() + " - " + notice);
 	}
 
-	public static void noticeReceived(String sender, String msg)
+
+	/**
+	 * Logs a received irc notice
+	 * @param sender The sender of the notice
+	 * @param notice The notice
+	 */
+	public static void noticeReceived(String sender, String notice)
 	{
-		log("[NOTICE] " + sender + ": " + msg);
+		log("[NOTICE] " + sender + ": " + notice);
 	}
 
-	public static void pm(String sender, String msg)
+	/**
+	 * Logs an irc pm
+	 * @param sender The sender of the pm
+	 * @param pm The pm
+	 */
+	public static void pm(String sender, String pm)
 	{
-		log("[PM] " + sender + ": " + msg);
+		log("[PM] " + sender + ": " + pm);
 	}
 
-	public static void action(String channel, String sender, String msg)
+	/**
+	 * Logs an irc action (/me)
+	 * @param channel The channel the action got sent to
+	 * @param sender The sender of the action
+	 * @param action The action
+	 */
+	public static void action(String channel, String sender, String action)
 	{
-		log("[ACTION] " + channel + " | *" + sender + " " + msg);
+		log("[ACTION] " + channel + " | *" + sender + " " + action);
 	}
 
+	/**
+	 * Logs the starting point of the logging
+	 */
 	private static void start()
 	{
 		raw("Started logging on " + Utilities.getCurrentDate().toString());
 	}
 
+	/**
+	 * Logs the ending point of the logging
+	 */
 	private static void end()
 	{
 		raw("Ended logging on " + Utilities.getCurrentDate().toString());
 	}
 
+	/**
+	 * Logs a raw line (without date) if logging is enabled and it hasn't failed setting up
+	 * @param line The line
+	 */
 	private static void raw(String line)
 	{
 		if(enabled)
@@ -168,6 +247,10 @@ public class Logging extends ListenerAdapter<Bot>
 		}
 	}
 
+	/**
+	 * Logs a message
+	 * @param message The message
+	 */
 	private static void log(String line)
 	{
 		if(enabled)
