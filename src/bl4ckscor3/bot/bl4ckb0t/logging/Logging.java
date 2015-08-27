@@ -65,7 +65,7 @@ public class Logging extends ListenerAdapter<Bot>
 
 				while((copy = new File("logs/" + botName + " - " + Utilities.getCurrentDate().toString().replace(":", "-") + " - " + amount + ".log")).exists())
 				{
-					info("Trying to create new file, " + copy.getName() + " already exists.");
+					info("Trying to create new file, \"" + copy.getName() + "\" already exists.");
 					amount++;
 				}
 
