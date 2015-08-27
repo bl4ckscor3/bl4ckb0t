@@ -18,6 +18,7 @@ public class Core
 
 	public static void main(String args[]) throws IOException, IrcException
 	{
+		Logging.setup("bl4ckb0t");
 		//turning off logging (ugh)
 		Logger.getLogger("").setLevel(Level.OFF);
 		Logging.info("Disabled loggers...");
@@ -30,7 +31,6 @@ public class Core
 		{
 			Configuration<Bot> config;
 
-			Logging.setup("bl4ckb0t");
 			Lists.clearAll();
 			Startup.callMethods();
 			config = new Configuration.Builder<Bot>()
