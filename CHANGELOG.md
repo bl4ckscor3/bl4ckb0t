@@ -1,26 +1,26 @@
 #Changelog
 ---
-##3.17
+##4.2
 - Bot marks himself as away if disabled globally
 - Logging to file
 
-##3.16
+##4.1
 - Added -ping
 - Fixed channel join logging showing twice
 - Fixed kick logging message displaying incorrect name
 - Memory improvement using ArrayMap
 
-####3.15.2
+####4.0.2
 - Added another password channel
 - Changed up some messages of commands
 - #akino_germany language gets set automatically
 - Removed Cracked Kicker (was moved to [Geffy](http://github.com/Geforce132/Geffy))
 - Internal changes
 
-####3.15.1
+####4.0.1
 - Removed annoying debug output in GitHub feature
 
-##3.15
+#4.0
 - New Logging system
 - SpellingCorrection fixes & improvements
 - Fixed dis-/likes not showing
