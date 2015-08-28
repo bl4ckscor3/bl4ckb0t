@@ -15,6 +15,7 @@ import bl4ckscor3.bot.bl4ckb0t.util.Passwords;
 public class Core
 {
 	public static Bot bot;
+	public static boolean wasStartedAsWIP;
 
 	public static void main(String args[]) throws IOException, IrcException
 	{
@@ -22,10 +23,12 @@ public class Core
 		//turning off logging (ugh)
 		Logger.getLogger("").setLevel(Level.OFF);
 		Logging.info("Disabled loggers...");
-		createBot();
+		wasStartedAsWIP = args.length == 1 && args[0].equals("-wip");
+		Logging.info("Bot was started as WIP version...");
+		createBot(wasStartedAsWIP);
 	}
 
-	public static void createBot() throws IOException, IrcException
+	public static void createBot(boolean wip) throws IOException, IrcException
 	{
 		try
 		{
@@ -34,7 +37,7 @@ public class Core
 			Lists.clearAll();
 			Startup.callMethods();
 			config = new Configuration.Builder<Bot>()
-					.setVersion("4.2")
+					.setVersion("4.2.1" + (wip ? "_WIP" : ""))
 					.setName("bl4ckb0t")
 					.setLogin("bl4ckb0t")
 					.setServer("irc.esper.net", 6697)

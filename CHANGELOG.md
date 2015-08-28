@@ -1,5 +1,9 @@
 #Changelog
 ---
+####4.2.1
+- Changed logging file location to jarLocation/logs
+- WIP bot activated with program argument
+
 ##4.2
 - Bot marks himself as away if disabled globally
 - Logging to file

@@ -2,6 +2,7 @@ package bl4ckscor3.bot.bl4ckb0t.util;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -327,5 +328,13 @@ public class Utilities
 	public static Date getCurrentDate()
 	{
 		return new Date(System.currentTimeMillis());
+	}
+
+	/**
+	 * Gets the path of the running jar file
+	 */
+	public static String getJarLocation() throws URISyntaxException
+	{
+		return Core.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
 	}
 }

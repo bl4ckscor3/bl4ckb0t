@@ -52,18 +52,21 @@ public class Logging extends ListenerAdapter<Bot>
 	{
 		try
 		{
-			f = new File(botName + ".log");
+			String jarPath = Utilities.getJarLocation();
+			
+			new File(jarPath + "/logs/").mkdirs();
+			f = new File(jarPath + "/logs/" + botName + ".log");
 
 			if(!f.exists())
 				f.createNewFile();
 			else
 			{
-				File copy = new File("logs/");
+				File copy = new File(jarPath + "/logs/");
 				int amount = 0;
 
 				copy.mkdirs();
 
-				while((copy = new File("logs/" + botName + " - " + Utilities.getCurrentDate().toString().replace(":", "-") + " - " + amount + ".log")).exists())
+				while((copy = new File(jarPath + "/logs/" + botName + " - " + Utilities.getCurrentDate().toString().replace(":", "-") + " - " + amount + ".log")).exists())
 				{
 					info("Trying to create new file, \"" + copy.getName() + "\" already exists.");
 					amount++;
@@ -87,7 +90,7 @@ public class Logging extends ListenerAdapter<Bot>
 			failed = false;
 			enable();
 		}
-		catch(IOException e)
+		catch(Exception e)
 		{
 			severe("Could not create logger!");
 			e.printStackTrace();
