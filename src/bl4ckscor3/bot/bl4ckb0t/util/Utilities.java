@@ -335,6 +335,11 @@ public class Utilities
 	 */
 	public static String getJarLocation() throws URISyntaxException
 	{
-		return Core.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+		String path = Core.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+		
+		if(path.endsWith(".jar"))
+			path = path.substring(0, path.lastIndexOf("/"));
+		
+		return path;
 	}
 }

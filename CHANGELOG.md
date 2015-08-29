@@ -1,5 +1,8 @@
 #Changelog
 ---
+####4.2.2
+- Fixed log file not being created
+
 ####4.2.1
 - Changed logging file location to jarLocation/logs
 - WIP bot activated with program argument
