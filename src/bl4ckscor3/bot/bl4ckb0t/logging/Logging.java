@@ -339,9 +339,4 @@ public class Logging extends ListenerAdapter<Bot>
 	{
 		severe("Disconnected from server!");
 	}
-
-	public static FileWriter getWriter()
-	{
-		return writer;
-	}
 }

@@ -85,74 +85,94 @@ public class YouTubeStats
 
 			try
 			{
-				title = driver.findElement(By.xpath("//meta[@itemprop='name']")).getAttribute("content");
+				title = driver.findElement(By.cssSelector("#watch7-content > meta:nth-child(2)")).getAttribute("content");
 			}
-			catch(NoSuchElementException e)
+			catch(Exception e)
 			{
-				Logging.warn("Couldn't find \"title\" element.");
-			}
-
-			try
-			{
-				duration = resolveDuration(driver);
-			}
-			catch(NoSuchElementException e)
-			{
-				Logging.warn("Couldn't find \"duration\" element.");
-			}
-
-			try
-			{
-				views = driver.findElement(By.xpath("//div[@class='watch-view-count']")).getText();
-			}
-			catch(NoSuchElementException e)
-			{
-				Logging.warn("Couldn't find \"views\" element, trying again.");
-				
-				try
+				if(e instanceof NoSuchElementException)
+					Logging.warn("Couldn't find \"title\" element.");
+				else
 				{
-					views = driver.findElement(By.xpath("//span[@class='watch-view-count yt-uix-hovercard-target']")).getText().split("Views")[0];
+					Logging.warn("Error when searching for \"title\" element:");
+					e.printStackTrace();
 				}
-				catch(NoSuchElementException e2)
-				{
+			}
+
+			duration = resolveDuration(driver);
+
+			try
+			{
+				views = driver.findElement(By.cssSelector(".watch-view-count")).getText();
+			}
+			catch(Exception e)
+			{
+				if(e instanceof NoSuchElementException)
 					Logging.warn("Couldn't find \"views\" element.");
+				else
+				{
+					Logging.warn("Error when searching for \"views\" element:");
+					e.printStackTrace();
 				}
 			}
 
 			try
 			{
-				likes = driver.findElement(By.xpath("//button[@id='yt-uix-button yt-uix-button-size-default yt-uix-button-opacity yt-uix-button-has-icon no-icon-markup like-button-renderer-like-button like-button-renderer-like-button-unclicked  yt-uix-post-anchor yt-uix-tooltip']/span[@class='yt-uix-button-content']")).getText();
+				likes = driver.findElement(By.cssSelector(".like-button-renderer-like-button-unclicked > span:nth-child(1)")).getText();
 			}
-			catch(NoSuchElementException e)
+			catch(Exception e)
 			{
-				Logging.warn("Couldn't find \"likes\" element.");
-			}
-
-			try
-			{
-				dislikes = driver.findElement(By.xpath("//button[@id='yt-uix-button yt-uix-button-size-default yt-uix-button-opacity yt-uix-button-has-icon no-icon-markup like-button-renderer-dislike-button like-button-renderer-dislike-button-unclicked  yt-uix-post-anchor yt-uix-tooltip']/span[@class='yt-uix-button-content']")).getText();
-			}
-			catch(NoSuchElementException e)
-			{
-				Logging.warn("Couldn't find \"dislikes\" element.");
+				if(e instanceof NoSuchElementException)
+					Logging.warn("Couldn't find \"likes\" element.");
+				else
+				{
+					Logging.warn("Error when searching for \"likes\" element:");
+					e.printStackTrace();
+				}
 			}
 
 			try
 			{
-				date = driver.findElement(By.xpath("//div[@id='watch-uploader-info']/strong")).getText().split("on")[1];
+				dislikes = driver.findElement(By.cssSelector(".like-button-renderer-dislike-button-unclicked > span:nth-child(1)")).getText();
 			}
-			catch(NoSuchElementException e)
+			catch(Exception e)
 			{
-				Logging.warn("Couldn't find \"date\" element.");
+				if(e instanceof NoSuchElementException)
+					Logging.warn("Couldn't find \"dislikes\" element.");
+				else
+				{
+					Logging.warn("Error when searching for \"dislikes\" element:");
+					e.printStackTrace();
+				}
 			}
 
 			try
 			{
-				uploader = driver.findElement(By.xpath("//div[@class='yt-user-info']/a")).getText();
+				date = driver.findElement(By.cssSelector(".watch-time-text")).getText().split("am")[1].trim();
 			}
-			catch(NoSuchElementException e)
+			catch(Exception e)
 			{
-				Logging.warn("Couldn't find \"uploader\" element.");
+				if(e instanceof NoSuchElementException)
+					Logging.warn("Couldn't find \"date\" element.");
+				else
+				{
+					Logging.warn("Error when searching for \"date\" element:");
+					e.printStackTrace();
+				}
+			}
+
+			try
+			{
+				uploader = driver.findElement(By.cssSelector(".yt-user-info > a:nth-child(1)")).getText();
+			}
+			catch(Exception e)
+			{
+				if(e instanceof NoSuchElementException)
+					Logging.warn("Couldn't find \"uploader\" element.");
+				else
+				{
+					Logging.warn("Error when searching for \"uploader\" element:");
+					e.printStackTrace();
+				}
 			}
 
 			Utilities.chanMsg(event, Colors.BLACK + Colors.BOLD + "** " + Colors.BOLD + "1,0You0,4Tube " + 
@@ -162,7 +182,7 @@ public class YouTubeStats
 					Colors.BOLD + " ** " + L10N.getString("youtube.likes") + ":3 " + Colors.BOLD + likes + 
 					Colors.BOLD + " ** " + L10N.getString("youtube.dislikes") + ":4 " + Colors.BOLD + dislikes + 
 					Colors.BOLD + " ** " + L10N.getString("youtube.uploader") + ": " + Colors.BOLD + uploader + 
-					Colors.BOLD + " ** " + L10N.getString("youtube.date") + ":" + Colors.BOLD + date + Colors.BOLD + " **");
+					Colors.BOLD + " ** " + L10N.getString("youtube.date") + ": " + Colors.BOLD + date + Colors.BOLD + " **");
 			currentLink++;
 		}
 
@@ -180,12 +200,20 @@ public class YouTubeStats
 
 		try
 		{
-			dur = driver.findElement(By.xpath("//meta[@itemprop='duration']")).getAttribute("content");
+			dur = driver.findElement(By.cssSelector("#watch7-content > meta:nth-child(7)")).getAttribute("content");
 		}
-		catch(NoSuchElementException e)
+		catch(Exception e)
 		{
-			Logging.warn("Couldn't find \"duration\" element.");
-			return dur;
+			if(e instanceof NoSuchElementException)
+			{
+				Logging.warn("Couldn't find \"duration\" element.");
+				return dur;
+			}
+			else
+			{
+				Logging.warn("Error when searching for \"duration\" element:");
+				e.printStackTrace();
+			}
 		}
 
 		if(dur.contains("M"))
