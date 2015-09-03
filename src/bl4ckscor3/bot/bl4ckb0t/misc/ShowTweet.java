@@ -3,7 +3,7 @@ package bl4ckscor3.bot.bl4ckb0t.misc;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
@@ -15,7 +15,7 @@ public class ShowTweet
 {
 	public static void show(MessageEvent<Bot> event, String link)
 	{
-		WebDriver driver = new FirefoxDriver();
+		WebDriver driver = new HtmlUnitDriver(false);
 		String name = "";
 		String account = "";
 		String tweet = "";
@@ -30,7 +30,7 @@ public class ShowTweet
 
 		try
 		{
-			name = driver.findElement(By.xpath("//strong[@class='fullname js-action-profile-name show-popup-with-id']")).getText();
+			name = driver.findElement(By.cssSelector("strong.fullname")).getText();
 		}
 		catch(NoSuchElementException e)
 		{
@@ -42,9 +42,10 @@ public class ShowTweet
 			name = name.substring(0, name.lastIndexOf("Verified Account"));
 			name = name.substring(0, name.length() - 1);
 		}
+		
 		try
 		{
-			account = driver.findElement(By.xpath("//span[@class='username js-action-profile-name']")).getText();
+			account = driver.findElement(By.cssSelector("span.username:nth-child(4)")).getText();
 		}
 		catch(NoSuchElementException e)
 		{
@@ -53,7 +54,7 @@ public class ShowTweet
 
 		try
 		{
-			tweet = driver.findElement(By.xpath("//p[@class='TweetTextSize TweetTextSize--28px js-tweet-text tweet-text']")).getText();
+			tweet = driver.findElement(By.cssSelector("p.TweetTextSize:nth-child(2)")).getText();
 		}
 		catch(NoSuchElementException e)
 		{
