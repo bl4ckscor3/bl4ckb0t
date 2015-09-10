@@ -63,6 +63,6 @@ public class GitHub
 		}
 		
 		reader.close();
-		Utilities.chanMsg(event, Colors.BLACK + Colors.BOLD + "[GitHub] " + Colors.BOLD + name + " - " + description + " | Main language: " + language + " | Latest push: " + latestPush + " | Watching: " + watching + " | Stargazers: " + stars + " | Forks: " + forks + " | Open issues: " + issues);
+		Utilities.chanMsg(event, Colors.BOLD + "[GitHub] " + Colors.BOLD + name + " - " + description + " | Main language: " + language + " | Latest push: " + latestPush + " | Watching: " + watching + " | Stargazers: " + stars + " | Forks: " + forks + " | Open issues: " + issues);
 	}
 }
