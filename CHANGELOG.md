@@ -1,5 +1,8 @@
 #Changelog
 ---
+####4.2.3
+- Changed black colored messages to use the default color so users with a dark client can read the messages
+
 ####4.2.2
 - Fixed log file not being created
 

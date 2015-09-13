@@ -34,43 +34,43 @@ public class MCStatus implements ICommand<MessageEvent<Bot>>
 
 			//login
 			if(login.getText().equals("Online"))
-				result += "** Login: " + Colors.BOLD + Colors.DARK_GREEN + login.getText() + Colors.BLACK;
+				result += "** Login: " + Colors.BOLD + Colors.DARK_GREEN + login.getText() + Colors.NORMAL;
 			else if(login.getText().equals("Timed Out") || login.getText().equals("HTTP Error 503"))
-				result += Colors.BOLD + " ** Login: " + Colors.BOLD + Colors.RED + login.getText() + Colors.BLACK;
+				result += Colors.BOLD + " ** Login: " + Colors.BOLD + Colors.RED + login.getText() + Colors.NORMAL;
 			else	
-				result += Colors.BOLD + " ** Login: " + Colors.BOLD + Colors.PURPLE + login.getText() + Colors.BLACK;
+				result += Colors.BOLD + " ** Login: " + Colors.BOLD + Colors.PURPLE + login.getText() + Colors.NORMAL;
 
 			//session
 			if(session.getText().equals("Online"))
-				result += Colors.BOLD + " ** Session: " + Colors.BOLD + Colors.DARK_GREEN + session.getText() + Colors.BLACK;
+				result += Colors.BOLD + " ** Session: " + Colors.BOLD + Colors.DARK_GREEN + session.getText() + Colors.NORMAL;
 			else if(session.getText().equals("Timed Out") || session.getText().equals("HTTP Error 503"))
-				result += Colors.BOLD + " ** Session: " + Colors.BOLD + Colors.RED + session.getText() + Colors.BLACK;
+				result += Colors.BOLD + " ** Session: " + Colors.BOLD + Colors.RED + session.getText() + Colors.NORMAL;
 			else	
-				result += Colors.BOLD + " ** Session: " + Colors.BOLD + Colors.PURPLE + session.getText() + Colors.BLACK;
+				result += Colors.BOLD + " ** Session: " + Colors.BOLD + Colors.PURPLE + session.getText() + Colors.NORMAL;
 
 			//website
 			if(website.getText().equals("Online"))
-				result += Colors.BOLD + " ** Website: " + Colors.BOLD + Colors.DARK_GREEN + website.getText() + Colors.BLACK;
+				result += Colors.BOLD + " ** Website: " + Colors.BOLD + Colors.DARK_GREEN + website.getText() + Colors.NORMAL;
 			else if(website.getText().equals("Timed Out") || website.getText().equals("HTTP Error 503"))
-				result += Colors.BOLD + " ** Website: " + Colors.BOLD + Colors.RED + website.getText() + Colors.BLACK;
+				result += Colors.BOLD + " ** Website: " + Colors.BOLD + Colors.RED + website.getText() + Colors.NORMAL;
 			else	
-				result += Colors.BOLD + " ** Website: " + Colors.BOLD + Colors.PURPLE + website.getText() + Colors.BLACK;
+				result += Colors.BOLD + " ** Website: " + Colors.BOLD + Colors.PURPLE + website.getText() + Colors.NORMAL;
 
 			//skins
 			if(skins.getText().equals("Online"))
-				result += Colors.BOLD + " ** Skins: " + Colors.BOLD + Colors.DARK_GREEN + skins.getText() + Colors.BLACK;
+				result += Colors.BOLD + " ** Skins: " + Colors.BOLD + Colors.DARK_GREEN + skins.getText() + Colors.NORMAL;
 			else if(skins.getText().equals("Timed Out") || skins.getText().equals("HTTP Error 503"))
-				result += Colors.BOLD + " ** Skins: " + Colors.BOLD + Colors.RED + skins.getText() + Colors.BLACK;
+				result += Colors.BOLD + " ** Skins: " + Colors.BOLD + Colors.RED + skins.getText() + Colors.NORMAL;
 			else	
-				result += Colors.BOLD + " ** Skins: " + Colors.BOLD + Colors.PURPLE + skins.getText() + Colors.BLACK;
+				result += Colors.BOLD + " ** Skins: " + Colors.BOLD + Colors.PURPLE + skins.getText() + Colors.NORMAL;
 
 			//realms
 			if(realms.getText().equals("Online"))
-				result += Colors.BOLD + " ** Realms: " + Colors.BOLD + Colors.DARK_GREEN + realms.getText() + Colors.BLACK;
+				result += Colors.BOLD + " ** Realms: " + Colors.BOLD + Colors.DARK_GREEN + realms.getText() + Colors.NORMAL;
 			else if(realms.getText().equals("Timed Out") || realms.getText().equals("HTTP Error 503"))
-				result += Colors.BOLD + " ** Realms: " + Colors.BOLD + Colors.RED + realms.getText() + Colors.BLACK;
+				result += Colors.BOLD + " ** Realms: " + Colors.BOLD + Colors.RED + realms.getText() + Colors.NORMAL;
 			else	
-				result += Colors.BOLD + " ** Realms: " + Colors.BOLD + Colors.PURPLE + realms.getText() + Colors.BLACK;
+				result += Colors.BOLD + " ** Realms: " + Colors.BOLD + Colors.PURPLE + realms.getText() + Colors.NORMAL;
 
 			result += Colors.BOLD + " ** Powered by xpaw - http://xpaw.ru/mcstatus **";
 			Utilities.chanMsg(event, result);

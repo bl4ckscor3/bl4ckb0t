@@ -175,7 +175,7 @@ public class YouTubeStats
 				}
 			}
 
-			Utilities.chanMsg(event, Colors.BLACK + Colors.BOLD + "** " + Colors.BOLD + "1,0You0,4Tube " + 
+			Utilities.chanMsg(event, Colors.BOLD + "** " + Colors.BOLD + "1,0You0,4Tube " + 
 					Colors.BOLD + "** " + L10N.getString("youtube.title") + ": " + Colors.BOLD + title + 
 					Colors.BOLD + " ** " + L10N.getString("youtube.duration") + ": " + Colors.BOLD + duration + 
 					Colors.BOLD + " ** " + L10N.getString("youtube.views") + ": " + Colors.BOLD + views + 

@@ -28,11 +28,11 @@ public class IsItDown implements ICommand<MessageEvent<Bot>>
 			try
 			{
 				driver.findElement(By.xpath("//span[@class='upicon']"));
-				Utilities.chanMsg(event, args[1] + " " + L10N.getString("isitdown.is") + Colors.GREEN + " UP " + Colors.BLACK + L10N.getString("isitdown.reachable") + ".");
+				Utilities.chanMsg(event, args[1] + " " + L10N.getString("isitdown.is") + Colors.GREEN + " UP " + Colors.NORMAL + L10N.getString("isitdown.reachable") + ".");
 			}
 			catch(NoSuchElementException e)
 			{
-				Utilities.chanMsg(event, args[1] + " " + L10N.getString("isitdown.is") + " " + Colors.RED + "DOWN" + Colors.BLACK + ".");
+				Utilities.chanMsg(event, args[1] + " " + L10N.getString("isitdown.is") + " " + Colors.RED + "DOWN" + Colors.NORMAL + ".");
 			}
 
 			driver.close();
