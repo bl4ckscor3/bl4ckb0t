@@ -1,7 +1,11 @@
 #Changelog
 ---
+##4.3_WIP
+- Fixed YoutubeStats
+- Removed unused commands
+
 ####4.2.3
-- Changed black colored messages to use the default color so users with a dark client can read the messages
+- Changed black colored messages to use the default color so users with a dark client can read the messages again.
 
 ####4.2.2
 - Fixed log file not being created
