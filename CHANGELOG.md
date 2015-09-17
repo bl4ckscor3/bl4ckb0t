@@ -1,7 +1,8 @@
 #Changelog
 ---
-##4.3_WIP
+####4.2.4
 - Fixed YoutubeStats
+- Fixed showing Tweets for the most part, links etc. still don't work
 - Removed unused commands
 
 ####4.2.3
