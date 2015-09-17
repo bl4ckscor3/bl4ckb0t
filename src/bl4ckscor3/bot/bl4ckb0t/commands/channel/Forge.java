@@ -2,6 +2,9 @@ package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 
 import java.io.IOException;
 
+import org.jsoup.HttpStatusException;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
@@ -14,110 +17,69 @@ public class Forge implements ICommand<MessageEvent<Bot>>
 	@Override
 	public void exe(MessageEvent<Bot> event) throws IOException, IncorrectCommandExecutionException
 	{
-		Utilities.chanMsg(event, L10N.getString("forge.disabled"));
-//		String[] args = Utilities.toArgs(event.getMessage());
-//
-//		if(args.length == 3)
-//		{
-//			if(args[1].equalsIgnoreCase("latest") || args[1].equalsIgnoreCase("latets"))
-//			{
-//				if(args[2].equalsIgnoreCase("version"))
-//				{
-//					String result = createResult("<td>1.8-Latest</td>", "Version");
-//
-//					if(result.equalsIgnoreCase(createResult("<td>1.8-Recommended</td>", "Version")))
-//						Utilities.chanMsg(event, result + " " + L10N.getString("forge.latest.recommended"));
-//					else
-//						Utilities.chanMsg(event, result);
-//				}
-//				else if(args[2].equalsIgnoreCase("changelog"))
-//					Utilities.chanMsg(event, createResult("<td>1.8-Latest</td>", "Changelog"));
-//				else if(args[2].equalsIgnoreCase("dlmain"))
-//					Utilities.chanMsg(event, createResult("<td>1.8-Latest</td>", "Installer"));
-//				else if(args[2].equalsIgnoreCase("dlsrc"))
-//					Utilities.chanMsg(event, createResult("<td>1.8-Latest</td>", "Src"));
-//				else
-//					throw new IncorrectCommandExecutionException(getAlias());
-//			}
-//			else if(args[1].equalsIgnoreCase("rec") || args[1].equalsIgnoreCase("recommended"))
-//			{
-//				if(args[2].equalsIgnoreCase("version"))
-//				{
-//					String result = createResult("<td>1.8-Recommended</td>", "Version");
-//
-//					if(result.equalsIgnoreCase(createResult("<td>Latest-1.8</td>", "Version")))
-//						Utilities.chanMsg(event, result + " " + L10N.getString("forge.recommended.latest"));
-//					else
-//						Utilities.chanMsg(event, result);
-//				}
-//				else if(args[2].equalsIgnoreCase("changelog"))
-//					Utilities.chanMsg(event, createResult("<td>1.8-Recommended</td>", "Changelog"));
-//				else if(args[2].equalsIgnoreCase("dlmain"))
-//					Utilities.chanMsg(event, createResult("<td>1.8-Recommended</td>", "Installer"));
-//				else if(args[2].equalsIgnoreCase("dlsrc"))
-//					Utilities.chanMsg(event, createResult("<td>1.8-Recommended</td>", "Src"));
-//				else
-//					throw new IncorrectCommandExecutionException(getAlias());
-//			}
-//			else
-//				throw new IncorrectCommandExecutionException(getAlias());
-//		}
-//		else
-//			throw new IncorrectCommandExecutionException(getAlias());
-	}
+		String[] args = Utilities.toArgs(event.getMessage());
 
-//	private String createResult(String type, String action) throws IOException
-//	{
-//		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://files.minecraftforge.net").openStream()));
-//		String line;
-//
-//		if(action.equalsIgnoreCase("Version"))
-//		{
-//			while((line = reader.readLine()) != null)
-//			{
-//				if(line.contains(type))
-//				{
-//					line = reader.readLine();
-//
-//					String mcVersion = (reader.readLine()).split(">")[1].split("<")[0];
-//
-//					return line.split(">")[1].split("<")[0] + " (" + L10N.getString("forge.forVersion") + " " + mcVersion + ")";
-//				}
-//			}
-//		}
-//		else if(action.equalsIgnoreCase("Changelog"))
-//		{
-//			while((line = reader.readLine()) != null)
-//			{
-//				if(line.contains(type))
-//				{
-//					while((line = reader.readLine()) != null)
-//					{
-//						if(line.contains(action))
-//							return line.split("\"")[1];
-//					}
-//				}
-//			}
-//		}
-//		else
-//		{
-//			while((line = reader.readLine()) != null)
-//			{
-//				if(line.contains(type))
-//				{
-//					while((line = reader.readLine()) != null)
-//					{
-//						if(line.contains(action))
-//						{
-//							line = reader.readLine();
-//							return line.split("\"")[1];
-//						}
-//					}
-//				}
-//			}
-//		}
-//		return L10N.getString("forge.fail");
-//	}
+		if(args.length == 4)
+		{
+			Document doc;
+
+			try
+			{
+				doc = Jsoup.connect("http://files.minecraftforge.net/maven/net/minecraftforge/forge/index_" + args[1] + ".html").get();
+			}
+			catch(HttpStatusException e)
+			{
+				Utilities.chanMsg(event, L10N.getString("forge.incorrectMcVersion"));
+				return;
+			}
+
+			switch(args[2])
+			{
+				case "latest":
+					switch(args[3])
+					{
+						case "version":
+							Utilities.chanMsg(event, doc.select("div.download:nth-child(1) > div:nth-child(1) > small:nth-child(3)").get(0).toString().split(">")[1]);
+							break;
+						case "changelog":
+							Utilities.chanMsg(event, doc.select("div.download:nth-child(1) > div:nth-child(2) > div:nth-child(1) > a:nth-child(1)").get(0).toString().split("href=\"")[1].split("\"")[0]);
+							break;
+						case "dlmain":
+							Utilities.chanMsg(event, doc.select("div.download:nth-child(1) > div:nth-child(2) > div:nth-child(2) > a:nth-child(1)").get(0).toString().split("url=")[1].split("\"")[0]);
+							break;
+						case "dlsrc":
+							Utilities.chanMsg(event, doc.select("div.download:nth-child(1) > div:nth-child(2) > div:nth-child(4) > a:nth-child(1)").get(0).toString().split("url=")[1].split("\"")[0]);
+							break;
+						default:
+							throw new IncorrectCommandExecutionException(getAlias());
+					}
+					break;
+				case "rec": case "recommended":
+					switch(args[3])
+					{
+						case "version":
+							Utilities.chanMsg(event, doc.select("div.download:nth-child(2) > div:nth-child(1) > small:nth-child(3)").get(0).toString().split(">")[1]);
+							break;
+						case "changelog":
+							Utilities.chanMsg(event, doc.select("div.download:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(1)").get(0).toString().split("href=\"")[1].split("\"")[0]);
+							break;
+						case "dlmain":
+							Utilities.chanMsg(event, doc.select("div.download:nth-child(2) > div:nth-child(2) > div:nth-child(2) > a:nth-child(1)").get(0).toString().split("url=")[1].split("\"")[0]);
+							break;
+						case "dlsrc":
+							Utilities.chanMsg(event, doc.select("div.download:nth-child(2) > div:nth-child(2) > div:nth-child(4) > a:nth-child(1)").get(0).toString().split("url=")[1].split("\"")[0]);
+							break;
+						default:
+							throw new IncorrectCommandExecutionException(getAlias());
+					}
+					break;
+				default:
+					throw new IncorrectCommandExecutionException(getAlias());
+			}
+		}
+		else
+			throw new IncorrectCommandExecutionException(getAlias());
+	}
 
 	@Override
 	public String getAlias()
@@ -128,7 +90,7 @@ public class Forge implements ICommand<MessageEvent<Bot>>
 	@Override
 	public String getSyntax()
 	{
-		return "-forge <latest|rec|recommended> <version|changelog|dlmain|dlsrc>";
+		return "-forge <version> <latest|rec|recommended> <version|changelog|dlmain|dlsrc>";
 	}
 
 	@Override
@@ -136,14 +98,11 @@ public class Forge implements ICommand<MessageEvent<Bot>>
 	{
 		return new String[]
 				{
-				"-forge latest version || " + L10N.getString("forge.explanation.1"),
-				"-forge latest changelog || " + L10N.getString("forge.explanation.2"),
-				"-forge latest dlmain || " + L10N.getString("forge.explanation.3"),
-				"-forge latest dlsrc || " + L10N.getString("forge.explanation.4"),
-				"-forge <rec|recommended> version || " + L10N.getString("forge.explanation.5"),
-				"-forge <rec|recommended> changelog || " + L10N.getString("forge.explanation.6"),
-				"-forge <rec|recommended> dlmain || " + L10N.getString("forge.explanation.7"),
-				"-forge <rec|recommended> dlsrc || " + L10N.getString("forge.explanation.8")
+						L10N.getString("forge.explanation.1"),
+						L10N.getString("forge.explanation.2"),
+						L10N.getString("forge.explanation.3"),
+						L10N.getString("forge.explanation.4"),
+						L10N.getString("forge.explanation.5"),
 				};
 	}
 
@@ -152,7 +111,7 @@ public class Forge implements ICommand<MessageEvent<Bot>>
 	{
 		return null;
 	}
-	
+
 	@Override
 	public int getPermissionLevel()
 	{
