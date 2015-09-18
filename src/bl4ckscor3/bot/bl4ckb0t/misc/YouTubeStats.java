@@ -79,10 +79,10 @@ public class YouTubeStats
 			Document doc = Jsoup.connect(links[currentLink]).get();
 
 			title = doc.select("#eow-title").get(0).text();
-			views = doc.select(".watch-view-count").get(0).text();
+			views = doc.select(".watch-view-count").get(0).text().split(" ")[0];
 			likes = doc.select(".like-button-renderer-like-button-unclicked > span:nth-child(1)").get(0).text();
 			dislikes = doc.select(".like-button-renderer-dislike-button-unclicked > span:nth-child(1)").get(0).text();
-			date = doc.select(".watch-time-text").get(0).text().split("on")[1].trim();
+			date = doc.select(".watch-time-text").get(0).text().split(" ")[2].trim();
 			uploader = doc.select(".yt-user-info > a:nth-child(1)").get(0).text();
 			Utilities.chanMsg(event, Colors.BOLD + "** " + Colors.BOLD + "1,0You0,4Tube " + 
 					Colors.BOLD + "** " + L10N.getString("youtube.title") + ": " + Colors.BOLD + title + 

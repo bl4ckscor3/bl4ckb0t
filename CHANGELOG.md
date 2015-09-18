@@ -2,9 +2,10 @@
 ---
 ##4.3_WIP
 - Reimplemented -forge
+- Fixed YouTubeStats again...
 
 ####4.2.4
-- Fixed YoutubeStats
+- Fixed YouTubeStats
 - Fixed showing Tweets for the most part, links etc. still don't work
 - Removed unused commands
 
@@ -383,7 +384,7 @@
 - bl4ckb0t doesn't show .0 if the solution is a whole number in -calc
 
 ####2.17.2
-- Fixed YoutTubeStats not working when the video posted has "301+ views"
+- Fixed YouTubeStats not working when the video posted has "301+ views"
 
 ####2.17.1
 - Fixed YouTubeStats not showing correctly if the element could not be found
