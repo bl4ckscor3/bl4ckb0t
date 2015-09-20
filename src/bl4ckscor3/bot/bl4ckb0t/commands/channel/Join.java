@@ -6,6 +6,7 @@ import java.net.MalformedURLException;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
+import bl4ckscor3.bot.bl4ckb0t.core.Core;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
@@ -22,7 +23,7 @@ public class Join implements ICommand<MessageEvent<Bot>>
 			if(args[1].equals("d"))
 			{
 				Utilities.chanMsg(event, L10N.getString("join.success.default"));
-				Utilities.joinDefaults();
+				Core.bot.joinDefaults();
 				return;
 			}
 
@@ -32,7 +33,7 @@ public class Join implements ICommand<MessageEvent<Bot>>
 			if(!Utilities.hasJoinedChannel(args[1]))
 			{
 				Utilities.chanMsg(event, L10N.getString("join.success.normal"));
-				Utilities.joinChannel(args[1]);
+				Core.bot.joinChannel(args[1]);
 			}
 			else
 				Utilities.chanMsg(event, L10N.getString("join.alreadyJoined"));

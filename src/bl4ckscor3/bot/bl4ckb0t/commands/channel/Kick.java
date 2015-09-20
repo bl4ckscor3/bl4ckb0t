@@ -48,7 +48,7 @@ public class Kick implements ICommand<MessageEvent<Bot>>
 					{
 						event.getChannel().send().action(L10N.getString("kick.self"));
 						Core.bot.kick(event.getChannel().getName(), args[1], L10N.getString("kick.self.reason"));
-						
+
 						if(L10N.chanLangs.containsKey(event.getChannel().getName()))
 							L10N.chanLangs.remove(event.getChannel().getName());
 					}

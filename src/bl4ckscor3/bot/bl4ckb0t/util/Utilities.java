@@ -12,14 +12,13 @@ import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
+import com.google.common.collect.ImmutableSortedSet;
+
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.ListChans;
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
-import bl4ckscor3.bot.bl4ckb0t.core.CMDListener;
 import bl4ckscor3.bot.bl4ckb0t.core.Core;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
-
-import com.google.common.collect.ImmutableSortedSet;
 
 public class Utilities
 {
@@ -227,81 +226,6 @@ public class Utilities
 	}
 
 	/**
-	 * Joins a channel given the bot hasn't already joined the channel
-	 * @param channel The channel to join
-	 */
-	public static void joinChannel(String channel)
-	{
-		Core.bot.sendIRC().joinChannel(channel);
-
-		if(!L10N.chanLangs.containsKey(channel))
-			L10N.chanLangs.put(channel, "english");
-
-		if(!CMDListener.channelStates.containsKey(channel))
-			CMDListener.channelStates.put(channel, true);
-
-		Logging.info("Joined " + channel + "...");
-	}
-
-	/**
-	 * Joins a channel with a password given the bot hasn't already joined the channel
-	 * @param channel The channel to join
-	 * @param password The password of the channel
-	 */
-	public static void joinChannelWithPassword(String channel, String password)
-	{
-		Core.bot.sendIRC().joinChannel(channel, password);
-
-		if(!L10N.chanLangs.containsKey(channel))
-		{
-			if(channel.equals("#akino_germany"))
-				L10N.chanLangs.put(channel, "german");
-			else
-				L10N.chanLangs.put(channel, "english");
-		}
-
-		if(!CMDListener.channelStates.containsKey(channel))
-			CMDListener.channelStates.put(channel, true);
-		
-		Logging.info("Joined " + channel + "...");
-	}
-
-	/**
-	 * Joins the default channels given the bot hasn't already joined them
-	 */
-	public static void joinDefaults() throws MalformedURLException, IOException
-	{
-		List<String> channelsToJoin = Lists.getDefaultChans();
-
-		for(String s : channelsToJoin)
-		{
-			if(s.equalsIgnoreCase("#akino_germany"))
-				joinChannelWithPassword(s, Passwords.AKINO_GERMANY.getPassword());
-			else if(s.equalsIgnoreCase("#BreakInBadStaff"))
-				joinChannelWithPassword(s, Passwords.BREAKINBADSTAFF.getPassword());
-			else
-				joinChannel(s);
-		}
-	}
-
-	/**
-	 * Leaves a channel given the bot hasn't already left the channel
-	 * @param channel The channel to leave
-	 */
-	public static void leaveChannel(String channel)
-	{
-		Core.bot.sendRaw().rawLine("PART " + channel + " :" + L10N.getString("channel.part"));
-
-		if(L10N.chanLangs.containsKey(channel))
-			L10N.chanLangs.remove(channel);
-
-		if(CMDListener.channelStates.containsKey(channel))
-			CMDListener.channelStates.remove(channel);
-		
-		Logging.info("Left " + channel + "...");
-	}
-
-	/**
 	 * Capiatlizes the first letter of a string
 	 * @param s The string to capialize the first letter of
 	 * @return The capitalized first letter including the rest of the string
@@ -309,17 +233,6 @@ public class Utilities
 	public static String capitalizeFirstLetter(String s)
 	{
 		return s.substring(0, 1).toUpperCase(L10N.currentLocale) + s.substring(1);
-	}
-	
-	/**
-	 * Sends an action to a channel (/me)
-	 * @param target The channel to send the message to
-	 * @param msg The action to take (/me)
-	 */
-	public static void action(String target, String msg)
-	{
-		Core.bot.sendIRC().action(target, msg);
-		Logging.action(target, Core.bot.getNick(), msg);
 	}
 	
 	/**

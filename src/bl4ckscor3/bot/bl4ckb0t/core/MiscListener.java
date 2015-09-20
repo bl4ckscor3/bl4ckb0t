@@ -60,20 +60,13 @@ public class MiscListener extends ListenerAdapter<Bot>
 
 			//sending a welcome back message
 			if(message.toLowerCase().startsWith("re ") || message.toLowerCase().equals("re"))
-			{
 				Utilities.chanMsg(event, "wb, " + event.getUser().getNick());
-				return;
-			}
-
 			//youtube recognition
-			if(message.contains("www.youtube.com/watch") || message.contains("youtu.be/"))
-			{
+			else if(message.contains("www.youtube.com/watch") || message.contains("youtu.be/"))
 				YouTubeStats.sendVideoStats(event);
-				return;
-			}
-
 			//checking for urls and sending the title if available
-			LinkTitle.checkForLinkAndSendTitle(event);
+			else
+				LinkTitle.checkForLinkAndSendTitle(event);
 		}
 	}
 	
@@ -82,7 +75,7 @@ public class MiscListener extends ListenerAdapter<Bot>
 	{
 		Startup.setDefaultChans();
 		Logging.info("Joining channels...");
-		Utilities.joinDefaults();
+		Core.bot.joinDefaults();
 		Logging.info("Bot successfully connected!");
 	}
 }

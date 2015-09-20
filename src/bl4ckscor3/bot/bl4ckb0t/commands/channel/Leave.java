@@ -6,6 +6,7 @@ import java.net.MalformedURLException;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
+import bl4ckscor3.bot.bl4ckb0t.core.Core;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Lists;
@@ -19,7 +20,7 @@ public class Leave implements ICommand<MessageEvent<Bot>>
 		String[] args = Utilities.toArgs(event.getMessage());	
 
 		if(args.length == 1)
-			Utilities.leaveChannel(event.getChannel().getName());
+			Core.bot.leaveChannel(event.getChannel().getName());
 		else if(args.length == 2)
 		{
 			if(args[1].equals("d"))
@@ -28,7 +29,7 @@ public class Leave implements ICommand<MessageEvent<Bot>>
 
 				for(String s : Lists.getDefaultChans())
 				{	
-					Utilities.leaveChannel(s);
+					Core.bot.leaveChannel(s);
 				}
 			}
 
@@ -38,7 +39,7 @@ public class Leave implements ICommand<MessageEvent<Bot>>
 			if(Utilities.hasJoinedChannel(args[1]))
 			{
 				Utilities.chanMsg(event, L10N.getString("leave.success.normal"));
-				Utilities.leaveChannel(args[1]);
+				Core.bot.leaveChannel(args[1]);
 			}
 			else
 				Utilities.chanMsg(event, L10N.getString("leave.notJoined"));
