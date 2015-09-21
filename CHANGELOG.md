@@ -3,6 +3,7 @@
 ##4.3_WIP
 - Reimplemented -forge
 - Fixed YouTubeStats again...
+- Fixed space appearing instead of nothing when using s/word/
 - Internal changes
 
 ####4.2.4
