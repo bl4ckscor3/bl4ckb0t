@@ -76,13 +76,13 @@ public class SpellingCorrection
 			String[] split;
 
 			if(message.endsWith("/"))
-				message += " /";
+				message += "/"; //a not displayed character to prevent a nullpointer exception
 
 			split = message.split("/");
 
 			if(split.length == 3 && split[0].equals("s"))
 			{
-				SpellingCorrection.correctSpelling(event, split, false, event.getUser().getNick());
+				correctSpelling(event, split, false, event.getUser().getNick());
 				corrected = true;
 			}
 			else
