@@ -23,71 +23,20 @@ public class Caps implements ICommand<MessageEvent<Bot>>
 		if(lastMessage.equals(""))
 			return;
 	
-		char[] chars = lastMessage.toCharArray();
-		String s = "";
+		StringBuilder builder = new StringBuilder(lastMessage);
 		
-		for(char c : chars)
+		for(int i = 0; i < builder.length(); i++)
 		{
-			switch(c)
-			{
-				case 'A': s += "a"; break;
-				case 'B': s += "b"; break;
-				case 'C': s += "c"; break;
-				case 'D': s += "d"; break;
-				case 'E': s += "e"; break;
-				case 'F': s += "f"; break;
-				case 'G': s += "g"; break;
-				case 'H': s += "h"; break;
-				case 'I': s += "i"; break;
-				case 'J': s += "j"; break;
-				case 'K': s += "k"; break;
-				case 'L': s += "l"; break;
-				case 'M': s += "m"; break;
-				case 'N': s += "n"; break;
-				case 'O': s += "o"; break;
-				case 'P': s += "p"; break;
-				case 'Q': s += "q"; break;
-				case 'R': s += "r"; break;
-				case 'S': s += "s"; break;
-				case 'T': s += "t"; break;
-				case 'U': s += "u"; break;
-				case 'V': s += "v"; break;
-				case 'W': s += "w"; break;
-				case 'X': s += "x"; break;
-				case 'Y': s += "y"; break;
-				case 'Z': s += "z"; break;
-				case 'a': s += "A"; break;
-				case 'b': s += "B"; break;
-				case 'c': s += "C"; break;
-				case 'd': s += "D"; break;
-				case 'e': s += "E"; break;
-				case 'f': s += "F"; break;
-				case 'g': s += "G"; break;
-				case 'h': s += "H"; break;
-				case 'i': s += "I"; break;
-				case 'j': s += "J"; break;
-				case 'k': s += "K"; break;
-				case 'l': s += "L"; break;
-				case 'm': s += "M"; break;
-				case 'n': s += "N"; break;
-				case 'o': s += "O"; break;
-				case 'p': s += "P"; break;
-				case 'q': s += "Q"; break;
-				case 'r': s += "R"; break;
-				case 's': s += "S"; break;
-				case 't': s += "T"; break;
-				case 'u': s += "U"; break;
-				case 'v': s += "V"; break;
-				case 'w': s += "W"; break;
-				case 'x': s += "X"; break;
-				case 'y': s += "Y"; break;
-				case 'z': s += "Z"; break;
-				default: s += c;
-			}
+			char c = builder.charAt(i);
+			
+			if(Character.isLowerCase(c))
+				builder.setCharAt(i, Character.toUpperCase(c));
+			else if(Character.isUpperCase(c))
+				builder.setCharAt(i, Character.toLowerCase(c));
 		}
 		
-		Utilities.chanMsg(event, s);
-		SpellingCorrection.updateLatestMessage(event.getChannel().getName(), s, event.getUser().getNick());
+		Utilities.chanMsg(event, builder.toString());
+		SpellingCorrection.updateLatestMessage(event.getChannel().getName(), builder.toString(), event.getUser().getNick());
 	}
 
 	@Override
