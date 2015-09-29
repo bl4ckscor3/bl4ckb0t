@@ -9,6 +9,7 @@ import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Calculate;
+import bl4ckscor3.bot.bl4ckb0t.commands.channel.Caps;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.ChangeNick;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Changelog;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Decide;
@@ -69,6 +70,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 		channelStates.put("#whatever", false); //disabling the bot in the channel #whatever by default
 		Logging.info("Disabled bot in channel #whatever...");
 		commands.add(new Calculate());
+		commands.add(new Caps());
 		commands.add(new Changelog());
 		commands.add(new ChangeNick());
 		commands.add(new Decide());

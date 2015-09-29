@@ -1,6 +1,9 @@
 #Changelog
 ---
-##4.3_WIP
+##4.4
+- Added -caps
+
+##4.3
 - Reimplemented -forge
 - Fixed YouTubeStats again...
 - Fixed space appearing instead of nothing when using s/word/
