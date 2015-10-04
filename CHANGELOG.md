@@ -1,7 +1,8 @@
 #Changelog
 ---
-##4.4
+##4.4_WIP
 - Added -caps
+- Changed the help menu up a little.
 
 ##4.3
 - Reimplemented -forge
