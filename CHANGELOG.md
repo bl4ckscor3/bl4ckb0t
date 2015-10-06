@@ -3,6 +3,7 @@
 ##4.4_WIP
 - Added -caps
 - Changed the help menu up a little.
+- Internal changes
 
 ##4.3
 - Reimplemented -forge
