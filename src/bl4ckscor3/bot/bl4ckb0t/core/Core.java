@@ -23,7 +23,7 @@ public class Core
 		//turning off logging (ugh)
 		Logger.getLogger("").setLevel(Level.OFF);
 		Logging.info("Disabled loggers...");
-		wasStartedAsWIP = args.length == 1 && args[0].equals("-wip");
+		wasStartedAsWIP = args.length >= 1 && args[0].equals("-wip");
 		Logging.info("Bot was started as WIP version...");
 		createBot(wasStartedAsWIP);
 	}
