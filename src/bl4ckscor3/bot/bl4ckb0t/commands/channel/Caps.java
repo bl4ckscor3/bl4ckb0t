@@ -48,13 +48,13 @@ public class Caps implements ICommand<MessageEvent<Bot>>
 	@Override
 	public String getSyntax()
 	{
-		return "caps";
+		return "-caps <" + L10N.getString("cmd.help.sentence") + ">";
 	}
 
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"caps || " + L10N.getString("caps.explanation")};
+		return new String[]{"-caps <" + L10N.getString("cmd.help.sentence") + "> || " + L10N.getString("caps.explanation")};
 	}
 
 	@Override
@@ -66,6 +66,6 @@ public class Caps implements ICommand<MessageEvent<Bot>>
 	@Override
 	public int getPermissionLevel()
 	{
-		return 0;
+		return 1;
 	}
 }

@@ -2,7 +2,6 @@ package bl4ckscor3.bot.bl4ckb0t.core;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.util.LinkedList;
 
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.MessageEvent;
@@ -12,6 +11,7 @@ import bl4ckscor3.bot.bl4ckb0t.commands.channel.Calculate;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Caps;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.ChangeNick;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Changelog;
+import bl4ckscor3.bot.bl4ckb0t.commands.channel.CurseForgeWidget;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Decide;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Disable;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Draw;
@@ -52,6 +52,7 @@ import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.PrivateLeave;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.UserMsg;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
+import bl4ckscor3.bot.bl4ckb0t.util.CustomArrayList;
 import bl4ckscor3.bot.bl4ckb0t.util.Lists;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 import bl4ckscor3.bot.bl4ckb0t.util.android.ArrayMap;
@@ -62,55 +63,55 @@ public class CMDListener extends ListenerAdapter<Bot>
 	public static boolean enabled = true;
 	public static final ArrayMap<String, Boolean> channelStates = new ArrayMap<String, Boolean>(); //false = disabled | true = enabled
 	public boolean isCounting = false;
-	public static final LinkedList<ICommand<MessageEvent<Bot>>> commands = new LinkedList<ICommand<MessageEvent<Bot>>>();
-	public static final LinkedList<IPrivateCommand<PrivateMessageEvent<Bot>>> privCommands = new LinkedList<IPrivateCommand<PrivateMessageEvent<Bot>>>();
+	public static final CustomArrayList<ICommand<MessageEvent<Bot>>> commands = new CustomArrayList<ICommand<MessageEvent<Bot>>>();
+	public static final CustomArrayList<IPrivateCommand<PrivateMessageEvent<Bot>>> privCommands = new CustomArrayList<IPrivateCommand<PrivateMessageEvent<Bot>>>();
 
+	@SuppressWarnings("unchecked")
 	public CMDListener()
 	{
-		channelStates.put("#whatever", false); //disabling the bot in the channel #whatever by default
-		Logging.info("Disabled bot in channel #whatever...");
-		commands.add(new Calculate());
-		commands.add(new Caps());
-		commands.add(new Changelog());
-		commands.add(new ChangeNick());
-		commands.add(new Decide());
-		commands.add(new Disable());
-		commands.add(new Draw());
-		commands.add(new Enable());
-		commands.add(new Help());
-		commands.add(new Join());
-		commands.add(new Kick());
-		commands.add(new Forge());
-		commands.add(new Language());
-		commands.add(new Leave());
-		commands.add(new Leet());
-		commands.add(new ListChans());
-		commands.add(new LongURL());
-		commands.add(new MCStatus());
-		commands.add(new Ping());
-		commands.add(new RandomLetter());
-		commands.add(new RandomNumber());
-		commands.add(new Reverse());
-		commands.add(new Scramble());
-		commands.add(new Select());
-		commands.add(new Source());
-		commands.add(new Stop());
-		commands.add(new Trello());
-		commands.add(new Twitch());
-		commands.add(new Twitter());
-		commands.add(new Update());
-		commands.add(new Version());
-		commands.add(new Vowels());
-		commands.add(new Weather());
-		commands.add(new XColor());
-		commands.add(new YouTube());
+		commands.addEverything(new Calculate(),
+				new Caps(),
+				new CurseForgeWidget(),
+				new Changelog(),
+				new ChangeNick(),
+				new Decide(),
+				new Disable(),
+				new Draw(),
+				new Enable(),
+				new Help(),
+				new Join(),
+				new Kick(),
+				new Forge(),
+				new Language(),
+				new Leave(),
+				new Leet(),
+				new ListChans(),
+				new LongURL(),
+				new MCStatus(),
+				new Ping(),
+				new RandomLetter(),
+				new RandomNumber(),
+				new Reverse(),
+				new Scramble(),
+				new Select(),
+				new Source(),
+				new Stop(),
+				new Trello(),
+				new Twitch(),
+				new Twitter(),
+				new Update(),
+				new Version(),
+				new Vowels(),
+				new Weather(),
+				new XColor(),
+				new YouTube());
 		Logging.info("Registered command classes for channel messages...");
 		Help.setupHelpMenu(commands);
-		privCommands.add(new PrivateJoin());
-		privCommands.add(new PrivateLeave());
-		privCommands.add(new Action());
-		privCommands.add(new ChanMsg());
-		privCommands.add(new UserMsg());
+		privCommands.addEverything(new PrivateJoin(),
+				new PrivateLeave(),
+				new Action(),
+				new ChanMsg(),
+				new UserMsg());
 		Logging.info("Registered command classes for private messages...");
 	}
 
@@ -119,7 +120,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 	{
 		String cmdName = Utilities.toArgs(event.getMessage())[0];
 		int permissionLevel = Utilities.getUserPermissionLevel(event);
-		
+
 		if(!cmdName.startsWith(cmdPrefix))
 			return;
 
@@ -128,7 +129,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 			Logging.warn("Ignoring user " + event.getUser().getNick());
 			return;
 		}
-		
+
 		if(enabled && channelStates.get(event.getChannel().getName()))
 		{
 			for(ICommand<MessageEvent<Bot>> cmd : commands)
@@ -140,7 +141,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 						Utilities.noPermission(event);
 						return;
 					}
-					
+
 					try
 					{
 						cmd.exe(event);
@@ -178,7 +179,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 	{
 		if(Lists.getIgnoredUsers().contains(event.getUser().getNick()))
 			return;
-		
+
 		if(enabled)
 		{
 			if(Utilities.isValidUser(event))

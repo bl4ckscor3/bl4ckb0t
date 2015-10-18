@@ -1,7 +1,9 @@
 #Changelog
 ---
-##4.4_WIP
+##4.4
 - Added -caps
+- Added -cfwidget
+- Removed ability for other valid users to see all private messages sent to bl4ckb0t
 - Changed the help menu up a little.
 - Internal changes
 
