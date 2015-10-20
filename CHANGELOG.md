@@ -1,5 +1,8 @@
 #Changelog
 ---
+##4.4.1
+- Bot reconnects after PTO now
+
 ##4.4
 - Added -caps
 - Added -cfwidget

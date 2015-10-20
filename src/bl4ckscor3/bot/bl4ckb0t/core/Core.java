@@ -44,6 +44,7 @@ public class Core
 					.setSocketFactory(new UtilSSLSocketFactory().trustAllCertificates())
 					.setNickservPassword(Passwords.NICKSERV.getPassword())
 					.setAutoNickChange(true)
+					.setAutoReconnect(true)
 					.setMessageDelay(1000)
 					.addListener(new MiscListener())
 					.addListener(new CMDListener())
