@@ -1,6 +1,7 @@
 #Changelog
 ---
 ##4.4.1
+- Added arguments (up and low) to -caps
 - Bot reconnects after PTO now
 
 ##4.4

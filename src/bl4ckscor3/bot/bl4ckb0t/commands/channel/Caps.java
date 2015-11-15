@@ -3,6 +3,7 @@ package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
+import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.misc.SpellingCorrection;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
@@ -13,28 +14,43 @@ public class Caps implements ICommand<MessageEvent<Bot>>
 	public void exe(MessageEvent<Bot> event) throws Exception
 	{
 		String lastMessage = "";
-		
+
 		for(String s : SpellingCorrection.storage.get(event.getChannel().getName()))
 		{
 			if(s.split("#")[0].equals(event.getUser().getNick()))
 				lastMessage = s.split("#")[1];
 		}
-		
+
 		if(lastMessage.equals(""))
 			return;
-	
-		StringBuilder builder = new StringBuilder(lastMessage);
-		
-		for(int i = 0; i < builder.length(); i++)
+
+		StringBuilder builder = new StringBuilder();
+		String[] args = Utilities.toArgs(event.getMessage());
+
+		if(args.length == 1)
 		{
-			char c = builder.charAt(i);
-			
-			if(Character.isLowerCase(c))
-				builder.setCharAt(i, Character.toUpperCase(c));
-			else if(Character.isUpperCase(c))
-				builder.setCharAt(i, Character.toLowerCase(c));
+			builder.append(lastMessage);
+
+			for(int i = 0; i < builder.length(); i++)
+			{
+				char c = builder.charAt(i);
+
+				if(Character.isLowerCase(c))
+					builder.setCharAt(i, Character.toUpperCase(c));
+				else if(Character.isUpperCase(c))
+					builder.setCharAt(i, Character.toLowerCase(c));
+			}
 		}
-		
+		else
+		{
+			if(args[1].equals("up"))
+				builder.append(lastMessage.toUpperCase());
+			else if(args[1].equals("low"))
+				builder.append(lastMessage.toLowerCase());
+			else
+				throw new IncorrectCommandExecutionException(getAlias());
+		}
+
 		Utilities.chanMsg(event, builder.toString());
 		SpellingCorrection.updateLatestMessage(event.getChannel().getName(), builder.toString(), event.getUser().getNick());
 	}
@@ -48,13 +64,17 @@ public class Caps implements ICommand<MessageEvent<Bot>>
 	@Override
 	public String getSyntax()
 	{
-		return "-caps <" + L10N.getString("cmd.help.sentence") + ">";
+		return "-caps [up|low]";
 	}
 
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-caps <" + L10N.getString("cmd.help.sentence") + "> || " + L10N.getString("caps.explanation")};
+		return new String[]{
+				"-caps || " + L10N.getString("caps.explanation.1"),
+				"-caps <up> || " + L10N.getString("caps.explanation.2"),
+				"-caps <low> || " + L10N.getString("caps.explanation.3")
+		};
 	}
 
 	@Override
