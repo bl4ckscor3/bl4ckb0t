@@ -30,16 +30,6 @@ public class Disable implements ICommand<MessageEvent<Bot>>
 				CMDListener.enabled = false;
 				Utilities.chanMsg(event, L10N.getString("disable.success"));
 				Logging.info("Disabled bot globally.");
-				
-				if(Utilities.getJoinedChannels(true).length == 1)
-					return;
-
-				for(String s : Utilities.getJoinedChannels(true))
-				{
-					if(!s.equalsIgnoreCase(event.getChannel().getName()))
-						Core.bot.sendCustomMessage(s, L10N.getString("disable.notify"));
-				}
-				
 				Core.bot.sendRaw().rawLine("AWAY :Disabled");
 				Logging.disable();
 			}

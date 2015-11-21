@@ -30,13 +30,6 @@ public class Enable implements ICommand<MessageEvent<Bot>>
 				CMDListener.enabled = true;
 				Utilities.chanMsg(event, L10N.getString("enable.success"));
 				Logging.info("Enabled bot globally.");
-
-				for(String s : Utilities.getJoinedChannels(true))
-				{
-					if(!s.equalsIgnoreCase(event.getChannel().getName()))
-						Core.bot.sendCustomMessage(s, L10N.getString("enable.notify"));
-				}
-				
 				Core.bot.sendRaw().rawLine("AWAY");
 				Logging.enable();
 			}

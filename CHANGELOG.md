@@ -1,5 +1,9 @@
 #Changelog
 ---
+##4.4.2
+- Removed spammy property of -enable and -disable
+- Changed some messages
+
 ##4.4.1
 - Added arguments (up and low) to -caps
 - Bot reconnects after PTO now
