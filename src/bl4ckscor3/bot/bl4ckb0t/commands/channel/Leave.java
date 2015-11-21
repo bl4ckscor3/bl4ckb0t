@@ -25,8 +25,6 @@ public class Leave implements ICommand<MessageEvent<Bot>>
 		{
 			if(args[1].equals("d"))
 			{
-				Utilities.chanMsg(event, L10N.getString("leave.success.default"));
-
 				for(String s : Lists.getDefaultChans())
 				{	
 					Core.bot.leaveChannel(s);
@@ -37,10 +35,7 @@ public class Leave implements ICommand<MessageEvent<Bot>>
 				args[1] = "#" + args[1];
 
 			if(Utilities.hasJoinedChannel(args[1]))
-			{
-				Utilities.chanMsg(event, L10N.getString("leave.success.normal"));
 				Core.bot.leaveChannel(args[1]);
-			}
 			else
 				Utilities.chanMsg(event, L10N.getString("leave.notJoined"));
 		}

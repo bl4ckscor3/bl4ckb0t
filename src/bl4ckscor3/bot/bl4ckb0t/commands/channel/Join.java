@@ -22,7 +22,6 @@ public class Join implements ICommand<MessageEvent<Bot>>
 		{
 			if(args[1].equals("d"))
 			{
-				Utilities.chanMsg(event, L10N.getString("join.success.default"));
 				Core.bot.joinDefaults();
 				return;
 			}
@@ -31,10 +30,7 @@ public class Join implements ICommand<MessageEvent<Bot>>
 				args[1] = "#" + args[1];
 
 			if(!Utilities.hasJoinedChannel(args[1]))
-			{
-				Utilities.chanMsg(event, L10N.getString("join.success.normal"));
 				Core.bot.joinChannel(args[1]);
-			}
 			else
 				Utilities.chanMsg(event, L10N.getString("join.alreadyJoined"));
 		}

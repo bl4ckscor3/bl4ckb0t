@@ -24,14 +24,12 @@ public class Stop implements ICommand<MessageEvent<Bot>>
 			switch(args[1])
 			{
 				case "yes":
-					Utilities.chanMsg(event, L10N.getString("stop.reboot.yes"));
 					Core.bot.stopBotReconnect();
 					Core.bot.quit(L10N.getString("stop.reason"));
 					Logging.info("Creating new bot...");
 					Core.createBot(Core.wasStartedAsWIP); //creating another instance
 					break;
 				case "no":
-					Utilities.chanMsg(event, L10N.getString("stop.reboot.no"));
 					Core.bot.stopBotReconnect();
 					Core.bot.quit(L10N.getString("stop.reason"));
 					Logging.info("Bot stopped!");
