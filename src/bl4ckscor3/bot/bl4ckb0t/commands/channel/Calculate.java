@@ -9,7 +9,7 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Calculate implements ICommand<MessageEvent<Bot>>
 {
-	@Override//test
+	@Override
 	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException
 	{
 		Utilities.chanMsg(event, L10N.getString("calc.disabled"));
