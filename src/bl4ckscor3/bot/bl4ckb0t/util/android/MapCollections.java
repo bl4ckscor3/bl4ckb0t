@@ -26,6 +26,7 @@ import bl4ckscor3.bot.bl4ckb0t.util.libcore.Objects;
  * structure like {@link ArrayMap}.
  * @hide
  */
+@SuppressWarnings("unchecked")
 abstract class MapCollections<K, V> {
 	EntrySet mEntrySet;
 	KeySet mKeySet;
@@ -426,7 +427,7 @@ abstract class MapCollections<K, V> {
 	public <T> T[] toArrayHelper(T[] array, int offset) {
 		final int N  = colGetSize();
 		if (array.length < N) {
-			@SuppressWarnings("unchecked") T[] newArray
+			 T[] newArray
 			= (T[]) Array.newInstance(array.getClass().getComponentType(), N);
 			array = newArray;
 		}

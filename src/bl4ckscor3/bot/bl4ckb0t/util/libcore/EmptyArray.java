@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 package bl4ckscor3.bot.bl4ckb0t.util.libcore;
+@SuppressWarnings("rawtypes")
 public final class EmptyArray {
 	private EmptyArray() {}
 	public static final boolean[] BOOLEAN = new boolean[0];

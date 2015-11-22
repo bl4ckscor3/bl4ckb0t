@@ -41,6 +41,7 @@ import bl4ckscor3.bot.bl4ckb0t.util.libcore.EmptyArray;
  * item, it may reduce the capacity to better match the current size.  In the future an
  * explicit call to set the capacity should turn off this aggressive shrinking behavior.</p>
  */
+@SuppressWarnings({"unused", "rawtypes", "unchecked"})
 public final class ArrayMap<K, V> implements Map<K, V> {
 	private static final boolean DEBUG = false;
 	private static final String TAG = "ArrayMap";

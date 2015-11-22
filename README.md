@@ -8,3 +8,5 @@ _Software used under the [Apache-License](https://github.com/bl4ckscor3/bl4ckb0t
 - **ArrayMap.java** from android (The Android Open Source Project)
 - **ContainerHelper.java** from android (The Android Open Source Project)
 - **MapCollections.java** from android (The Android Open Source Project)
+
+Some of these classes have been slightly edited to ignore warnings eclipse shows and to adapt the packages they're placed in.
