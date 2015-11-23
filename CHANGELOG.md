@@ -1,5 +1,8 @@
 #Changelog
 ---
+##4.4.3
+- Reduced message delay
+
 ##4.4.2
 - Removed spammy property of -enable and -disable
 - Changed some messages
