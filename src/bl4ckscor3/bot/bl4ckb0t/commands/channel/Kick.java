@@ -20,8 +20,6 @@ public class Kick implements ICommand<MessageEvent<Bot>>
 	{
 		if(event.getUser().isVerified())
 		{
-			boolean found = false;
-				
 			String[] args = Utilities.toArgs(event.getMessage());
 
 			if(!(Utilities.isValidUser(event) || Utilities.isAllowedUser(event)))
@@ -31,52 +29,39 @@ public class Kick implements ICommand<MessageEvent<Bot>>
 				return;
 			}
 
-			if(args.length >= 3)
+			if(args.length >= 2)
 			{
 				for(String userNotToKick : Lists.getValidUsers())
 				{
 					if(args[1].equalsIgnoreCase(userNotToKick))
 					{
-						found = true;
-						break;
+						Utilities.chanMsg(event, L10N.getString("kick.cannotKick"));
+						return;
 					}
 				}
 
-				if(!found)
+				if(args[1].equalsIgnoreCase(Core.bot.getNick()))
 				{
-					if(args[1].equalsIgnoreCase(Core.bot.getNick()))
-					{
-						event.getChannel().send().action(L10N.getString("kick.self"));
-						Core.bot.kick(event.getChannel().getName(), args[1], L10N.getString("kick.self.reason"));
+					event.getChannel().send().action(L10N.getString("kick.self"));
+					Core.bot.kick(event.getChannel().getName(), args[1], L10N.getString("kick.self.reason"));
 
-						if(L10N.chanLangs.containsKey(event.getChannel().getName()))
-							L10N.chanLangs.remove(event.getChannel().getName());
-					}
-					else
-					{
-						String result = "";
-
-						for(int i = 3; i <= args.length; i++)
-						{
-							result += args[i - 1] + " ";
-						}
-
-						Core.bot.kick(event.getChannel().getName(), args[1], result.substring(0, result.lastIndexOf(' ')));
-					}
+					if(L10N.chanLangs.containsKey(event.getChannel().getName()))
+						L10N.chanLangs.remove(event.getChannel().getName());
 				}
 				else
-					Utilities.chanMsg(event, L10N.getString("kick.cannotKick"));
-			}
-			else
-			{
-				switch(args.length)
-				{				
-					case 1: case 2:
-						throw new IncorrectCommandExecutionException(getAlias());
-					default:
-						Utilities.chanMsg(event, L10N.getString("kick.fail") + " - " + args.length);
+				{
+					String result = "";
+
+					for(int i = 1; i < args.length; i++)
+					{
+						result += args[i] + " ";
+					}
+
+					Core.bot.kick(event.getChannel().getName(), args[1], result.substring(0, result.lastIndexOf(' ')));
 				}
 			}
+			else
+				throw new IncorrectCommandExecutionException(getAlias());
 		}
 		else
 		{
@@ -94,21 +79,21 @@ public class Kick implements ICommand<MessageEvent<Bot>>
 	@Override
 	public String getSyntax()
 	{
-		return "-kick <" + L10N.getString("kick.help.user") + "> <" + L10N.getString("kick.help.reason") + ">";
+		return "-kick <" + L10N.getString("kick.help.user") + "> [" + L10N.getString("kick.help.reason") + "]";
 	}
 
 	@Override
 	public String[] getUsage()
 	{
-		return new String[]{"-kick <" + L10N.getString("kick.help.user") + "> <" + L10N.getString("kick.help.reason") + "> || " + L10N.getString("kick.explanation")};
+		return new String[]{"-kick <" + L10N.getString("kick.help.user") + "> [" + L10N.getString("kick.help.reason") + "] || " + L10N.getString("kick.explanation")};
 	}
-	
+
 	@Override
 	public String getNotes()
 	{
 		return L10N.getString("notes.onlyVoiceOp");
 	}
-	
+
 	@Override
 	public int getPermissionLevel()
 	{

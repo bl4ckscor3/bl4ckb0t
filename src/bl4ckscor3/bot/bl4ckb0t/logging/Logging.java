@@ -297,7 +297,7 @@ public class Logging extends ListenerAdapter<Bot>
 	@Override
 	public void onKick(KickEvent<Bot> event) throws Exception
 	{
-		if(event.getUser().getNick().equals(Core.bot.getNick()))
+		if(event.getRecipient().getNick().equals(Core.bot.getNick()))
 			warn("Bot kicked from " + event.getChannel().getName() + " for \"" + event.getReason() + "\".");
 		else
 			info(event.getRecipient().getNick() + " was kicked from " + event.getChannel().getName() + " for \"" + event.getReason() + "\".");

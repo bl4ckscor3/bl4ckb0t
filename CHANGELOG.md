@@ -1,7 +1,8 @@
 #Changelog
 ---
-##4.4.3
+##4.4.3_WIP
 - Reduced message delay
+- -kick no longer requires a reason
 
 ##4.4.2
 - Removed spammy property of -enable and -disable
