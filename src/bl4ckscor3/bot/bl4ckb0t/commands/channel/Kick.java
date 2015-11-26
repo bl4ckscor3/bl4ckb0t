@@ -52,7 +52,7 @@ public class Kick implements ICommand<MessageEvent<Bot>>
 				{
 					String result = "";
 
-					for(int i = 1; i < args.length; i++)
+					for(int i = (args.length == 2 ? 1 : 2); i < args.length; i++)
 					{
 						result += args[i] + " ";
 					}
