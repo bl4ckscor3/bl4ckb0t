@@ -6,6 +6,7 @@ import java.net.MalformedURLException;
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.ConnectEvent;
 import org.pircbotx.hooks.events.MessageEvent;
+import org.pircbotx.hooks.events.PrivateMessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
@@ -25,17 +26,17 @@ public class MiscListener extends ListenerAdapter<Bot>
 			Logging.warn("Ignoring user " + event.getUser().getNick());
 			return;
 		}
-		
+
 		String message = event.getMessage();
 
 		L10N.changeLocalization(L10N.parseLangCode(L10N.chanLangs.get(event.getChannel().getName()), 0), L10N.parseLangCode(L10N.chanLangs.get(event.getChannel().getName()), 1), event.getChannel().getName());
-		
+
 		if(event.getMessage().startsWith("-ping"))
 		{
 			Utilities.chanMsg(event, "Pong!");
 			return;
 		}
-		
+
 		if(message.startsWith(CMDListener.cmdPrefix))
 			return;
 
@@ -69,7 +70,23 @@ public class MiscListener extends ListenerAdapter<Bot>
 				LinkTitle.checkForLinkAndSendTitle(event);
 		}
 	}
-	
+
+	@Override
+	public void onPrivateMessage(PrivateMessageEvent<Bot> event) throws Exception
+	{
+		if(!event.getMessage().startsWith(CMDListener.cmdPrefix))
+		{
+			for(String user : Lists.getValidUsers())
+			{
+				Core.bot.sendCustomMessage(user, event.getUser().getNick() + ": " + event.getMessage());
+			}
+		}
+		else
+		{
+			Utilities.pm(event.getUser().getNick(), L10N.getString("pm.noCommands"));
+		}
+	}
+
 	@Override
 	public void onConnect(ConnectEvent<Bot> event) throws MalformedURLException, IOException
 	{

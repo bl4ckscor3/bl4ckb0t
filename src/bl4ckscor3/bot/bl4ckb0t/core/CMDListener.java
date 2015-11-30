@@ -193,13 +193,6 @@ public class CMDListener extends ListenerAdapter<Bot>
 					}
 				}
 			}
-			else
-			{
-				for(String user : Lists.getValidUsers())
-				{
-					Core.bot.sendCustomMessage(user, event.getUser().getNick() + ": " + event.getMessage());
-				}
-			}
 		}
 	}
 }
