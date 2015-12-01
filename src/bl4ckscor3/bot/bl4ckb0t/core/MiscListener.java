@@ -74,6 +74,12 @@ public class MiscListener extends ListenerAdapter<Bot>
 	@Override
 	public void onPrivateMessage(PrivateMessageEvent<Bot> event) throws Exception
 	{
+		if(Lists.getIgnoredUsers().contains(event.getUser().getNick()))
+		{
+			Logging.warn("Ignoring user " + event.getUser().getNick());
+			return;
+		}
+		
 		if(!event.getMessage().startsWith(CMDListener.cmdPrefix))
 		{
 			for(String user : Lists.getValidUsers())

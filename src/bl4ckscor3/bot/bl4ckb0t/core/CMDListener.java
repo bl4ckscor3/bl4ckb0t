@@ -178,7 +178,10 @@ public class CMDListener extends ListenerAdapter<Bot>
 	public void onPrivateMessage(PrivateMessageEvent<Bot> event) throws MalformedURLException, IOException
 	{
 		if(Lists.getIgnoredUsers().contains(event.getUser().getNick()))
+		{
+			Logging.warn("Ignoring user " + event.getUser().getNick());
 			return;
+		}
 
 		if(enabled)
 		{

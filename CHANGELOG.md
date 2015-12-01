@@ -4,6 +4,7 @@
 - Reduced message delay
 - -kick no longer requires a reason
 - Changed how messaging commands to the bot via PM works.
+- Fixed ignored users not getting ignored in some situations
 
 ##4.4.2
 - Removed spammy property of -enable and -disable
