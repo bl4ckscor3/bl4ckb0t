@@ -1,9 +1,12 @@
 #Changelog
 ---
+#4.4.3.1
+- Reduced message delay even more
+
 ##4.4.3
 - Reduced message delay
 - -kick no longer requires a reason
-- Changed how messaging commands to the bot via PM works.
+- Changed how messaging commands to the bot via PM works
 - Fixed ignored users not getting ignored in some situations
 
 ##4.4.2
@@ -18,7 +21,7 @@
 - Added -caps
 - Added -cfwidget
 - Removed ability for other valid users to see all private messages sent to bl4ckb0t
-- Changed the help menu up a little.
+- Changed the help menu up a little
 - Internal changes
 
 ##4.3
@@ -33,7 +36,7 @@
 - Removed unused commands
 
 ####4.2.3
-- Changed black colored messages to use the default color so users with a dark client can read the messages again.
+- Changed black colored messages to use the default color so users with a dark client can read the messages again
 
 ####4.2.2
 - Fixed log file not being created
@@ -70,7 +73,7 @@
 
 ##3.14
 - Added -trello
-- Added showing GitHub repository stats if a link is posted, similar to YouTube stats.
+- Added showing GitHub repository stats if a link is posted, similar to YouTube stats
 - Added permission system
 - Help menu only shows commands the user has permission to
 - Tweets now get shown in the chat instead of the page title

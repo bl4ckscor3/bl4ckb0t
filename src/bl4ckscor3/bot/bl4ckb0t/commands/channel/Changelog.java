@@ -37,9 +37,12 @@ public class Changelog implements ICommand<MessageEvent<Bot>>
 			return;
 		}
 
-		for(String s : versions.get(Core.bot.getConfiguration().getVersion()))
+		if(!Core.bot.isDevelopment())
 		{
-			Utilities.chanMsg(event, s);
+			for(String s : versions.get(Core.bot.getConfiguration().getVersion()))
+			{
+				Utilities.chanMsg(event, s);
+			}
 		}
 	}
 

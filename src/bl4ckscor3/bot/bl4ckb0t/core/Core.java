@@ -37,7 +37,7 @@ public class Core
 			Lists.clearAll();
 			Startup.callMethods();
 			config = new Configuration.Builder<Bot>()
-					.setVersion("4.4.3" + (wip ? "_WIP" : ""))
+					.setVersion("4.4.3.1" + (wip ? "_WIP" : ""))
 					.setName("bl4ckb0t")
 					.setLogin("bl4ckb0t")
 					.setServer("irc.esper.net", 6697)
@@ -45,7 +45,7 @@ public class Core
 					.setNickservPassword(Passwords.NICKSERV.getPassword())
 					.setAutoNickChange(true)
 					.setAutoReconnect(true)
-					.setMessageDelay(400)
+					.setMessageDelay(0)
 					.addListener(new MiscListener())
 					.addListener(new CMDListener())
 					.addListener(new Logging())
