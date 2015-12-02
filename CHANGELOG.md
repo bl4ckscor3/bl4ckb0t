@@ -1,19 +1,19 @@
 #Changelog
 ---
-#4.4.3.1
+4.4.3.1
 - Reduced message delay even more
 
-##4.4.3
+####4.4.3
 - Reduced message delay
 - -kick no longer requires a reason
 - Changed how messaging commands to the bot via PM works
 - Fixed ignored users not getting ignored in some situations
 
-##4.4.2
+####4.4.2
 - Removed spammy property of -enable and -disable
 - Changed some messages
 
-##4.4.1
+####4.4.1
 - Added arguments (up and low) to -caps
 - Bot reconnects after PTO now
 
