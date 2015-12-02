@@ -1,6 +1,6 @@
 #Changelog
 ---
-4.4.3.1
+*4.4.3.1*
 - Reduced message delay even more
 
 ####4.4.3
