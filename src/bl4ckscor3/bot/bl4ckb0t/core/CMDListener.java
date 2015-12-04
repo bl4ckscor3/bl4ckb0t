@@ -1,8 +1,5 @@
 package bl4ckscor3.bot.bl4ckb0t.core;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
@@ -49,6 +46,7 @@ import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.ChanMsg;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.IPrivateCommand;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.PrivateJoin;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.PrivateLeave;
+import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.PrivateStop;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.UserMsg;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
@@ -69,7 +67,8 @@ public class CMDListener extends ListenerAdapter<Bot>
 	@SuppressWarnings("unchecked")
 	public CMDListener()
 	{
-		commands.addEverything(new Calculate(),
+		commands.addEverything(
+				new Calculate(),
 				new Caps(),
 				new CurseForgeWidget(),
 				new Changelog(),
@@ -107,11 +106,13 @@ public class CMDListener extends ListenerAdapter<Bot>
 				new YouTube());
 		Logging.info("Registered command classes for channel messages...");
 		Help.setupHelpMenu(commands);
-		privCommands.addEverything(new PrivateJoin(),
+		privCommands.addEverything(
+				new PrivateJoin(),
 				new PrivateLeave(),
 				new Action(),
 				new ChanMsg(),
-				new UserMsg());
+				new UserMsg(),
+				new PrivateStop());
 		Logging.info("Registered command classes for private messages...");
 	}
 
@@ -175,7 +176,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 	}	
 
 	@Override
-	public void onPrivateMessage(PrivateMessageEvent<Bot> event) throws MalformedURLException, IOException
+	public void onPrivateMessage(PrivateMessageEvent<Bot> event) throws Exception
 	{
 		if(Lists.getIgnoredUsers().contains(event.getUser().getNick()))
 		{

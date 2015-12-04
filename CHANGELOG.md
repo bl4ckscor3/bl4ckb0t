@@ -1,6 +1,7 @@
 #Changelog
 ---
-##4.4.4
+##4.5
+- Added stop command to private message
 - Fixed a bug where sending messages too fast would result in an incorrect language being used
 - Internal changes
 
