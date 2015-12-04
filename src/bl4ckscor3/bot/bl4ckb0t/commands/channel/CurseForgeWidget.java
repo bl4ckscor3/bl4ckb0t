@@ -25,7 +25,7 @@ public class CurseForgeWidget implements ICommand<MessageEvent<Bot>>
 			id = id.substring(id.indexOf('-') + 1);
 
 		Utilities.chanMsg(event, "[mod=\"VERSION\"]" + id + "[/mod]");
-		Utilities.chanMsg(event, L10N.getString("cfwidget.hereYouGo"));
+		Utilities.chanMsg(event, L10N.getString("cfwidget.hereYouGo", event));
 	}
 
 	@Override
@@ -35,19 +35,19 @@ public class CurseForgeWidget implements ICommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax()
+	public String getSyntax(MessageEvent<Bot> event)
 	{
-		return "-cfwidget <" + L10N.getString("cfwidget.link") + ">";
+		return "-cfwidget <" + L10N.getString("cfwidget.link", event) + ">";
 	}
 
 	@Override
-	public String[] getUsage()
+	public String[] getUsage(MessageEvent<Bot> event)
 	{
-		return new String[]{"-cfwidget <" + L10N.getString("cfwidget.link") + "> || " + L10N.getString("cfwidget.explanation")};
+		return new String[]{"-cfwidget <" + L10N.getString("cfwidget.link", event) + "> || " + L10N.getString("cfwidget.explanation", event)};
 	}
 
 	@Override
-	public String getNotes()
+	public String getNotes(MessageEvent<Bot> event)
 	{
 		return null;
 	}

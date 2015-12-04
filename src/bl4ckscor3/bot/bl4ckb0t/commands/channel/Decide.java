@@ -20,11 +20,11 @@ public class Decide implements ICommand<MessageEvent<Bot>>
 			int decision = r.nextInt(101);
 
 			if(decision >= 0 && decision <= 49)
-				Utilities.chanMsg(event, L10N.getString("decide.no"));
+				Utilities.chanMsg(event, L10N.getString("decide.no", event));
 			else if(decision >= 50 && decision <= 100)
-				Utilities.chanMsg(event, L10N.getString("decide.yes"));
+				Utilities.chanMsg(event, L10N.getString("decide.yes", event));
 			else
-				Utilities.chanMsg(event, L10N.getString("decide.fail") + ": " + decision);
+				Utilities.chanMsg(event, L10N.getString("decide.fail", event) + ": " + decision);
 		}
 		else
 			throw new IncorrectCommandExecutionException(getAlias());
@@ -37,21 +37,21 @@ public class Decide implements ICommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax()
+	public String getSyntax(MessageEvent<Bot> event)
 	{
-		return "-decide <" + L10N.getString("decide.help.question") + ">";
+		return "-decide <" + L10N.getString("decide.help.question", event) + ">";
 	}
 
 	@Override
-	public String[] getUsage()
+	public String[] getUsage(MessageEvent<Bot> event)
 	{
-		return new String[]{"-decide <" + L10N.getString("decide.help.question") + "> || " + L10N.getString("decide.explanation")};
+		return new String[]{"-decide <" + L10N.getString("decide.help.question", event) + "> || " + L10N.getString("decide.explanation", event)};
 	}
 
 	@Override
-	public String getNotes()
+	public String getNotes(MessageEvent<Bot> event)
 	{
-		return L10N.getString("decide.notes");
+		return L10N.getString("decide.notes", event);
 	}
 	
 	@Override

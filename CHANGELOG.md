@@ -1,5 +1,9 @@
 #Changelog
 ---
+##4.4.4
+- Fixed a bug where sending messages too fast would result in an incorrect language being used
+- Internal changes
+
 **4.4.3.1**
 - Reduced message delay even more
 

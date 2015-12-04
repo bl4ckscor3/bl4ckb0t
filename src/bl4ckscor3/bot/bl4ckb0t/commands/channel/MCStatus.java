@@ -88,19 +88,19 @@ public class MCStatus implements ICommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax()
+	public String getSyntax(MessageEvent<Bot> event)
 	{
 		return "-mcstatus";
 	}
 
 	@Override
-	public String[] getUsage()
+	public String[] getUsage(MessageEvent<Bot> event)
 	{
-		return new String[]{"-mcstatus || " + L10N.getString("mcsatus.explanation")};
+		return new String[]{"-mcstatus || " + L10N.getString("mcsatus.explanation", event)};
 	}
 
 	@Override
-	public String getNotes()
+	public String getNotes(MessageEvent<Bot> event)
 	{
 		return null;
 	}

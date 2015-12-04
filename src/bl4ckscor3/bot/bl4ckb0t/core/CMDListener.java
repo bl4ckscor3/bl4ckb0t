@@ -149,7 +149,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 					}
 					catch(IncorrectCommandExecutionException e)
 					{
-						Utilities.sendHelp(event.getUser().getNick(), cmd.getSyntax(), cmd.getUsage(), cmd.getNotes());
+						Utilities.sendHelp(event.getUser().getNick(), cmd.getSyntax(event), cmd.getUsage(event), cmd.getNotes(event), event);
 					}
 				}
 			}
@@ -167,7 +167,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 					}
 					catch(IncorrectCommandExecutionException e)
 					{
-						Utilities.sendHelp(event.getUser().getNick(), cmd.getSyntax(), cmd.getUsage(), cmd.getNotes());
+						Utilities.sendHelp(event.getUser().getNick(), cmd.getSyntax(event), cmd.getUsage(event), cmd.getNotes(event), event);
 					}
 				}
 			}

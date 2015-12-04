@@ -42,21 +42,21 @@ public class Vowels implements ICommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax()
+	public String getSyntax(MessageEvent<Bot> event)
 	{
-		return "-vowels <" + L10N.getString("cmd.help.sentence") + ">";
+		return "-vowels <" + L10N.getString("cmd.help.sentence", event) + ">";
 	}
 
 	@Override
-	public String[] getUsage()
+	public String[] getUsage(MessageEvent<Bot> event)
 	{
-		return new String[]{"-vowels <" + L10N.getString("cmd.help.sentence") + "> || " + L10N.getString("vowels.explanation")};
+		return new String[]{"-vowels <" + L10N.getString("cmd.help.sentence", event) + "> || " + L10N.getString("vowels.explanation", event)};
 	}
 
 	@Override
-	public String getNotes()
+	public String getNotes(MessageEvent<Bot> event)
 	{
-		return L10N.getString("vowels.notes");
+		return L10N.getString("vowels.notes", event);
 	}
 	
 	@Override

@@ -8,7 +8,6 @@ import org.pircbotx.hooks.events.ConnectEvent;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.misc.LinkTitle;
 import bl4ckscor3.bot.bl4ckb0t.misc.SpellingCorrection;
@@ -28,8 +27,6 @@ public class MiscListener extends ListenerAdapter<Bot>
 		}
 
 		String message = event.getMessage();
-
-		L10N.changeLocalization(L10N.parseLangCode(L10N.chanLangs.get(event.getChannel().getName()), 0), L10N.parseLangCode(L10N.chanLangs.get(event.getChannel().getName()), 1), event.getChannel().getName());
 
 		if(event.getMessage().startsWith("-ping"))
 		{
@@ -89,7 +86,7 @@ public class MiscListener extends ListenerAdapter<Bot>
 		}
 		else
 		{
-			Utilities.pm(event.getUser().getNick(), L10N.getString("pm.noCommands"));
+			Utilities.pm(event.getUser().getNick(), "Commands can only be sent through channel messages. Use -help in a channel to get more info.");
 		}
 	}
 

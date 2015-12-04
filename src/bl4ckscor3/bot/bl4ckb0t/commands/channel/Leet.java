@@ -46,19 +46,19 @@ public class Leet implements ICommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax()
+	public String getSyntax(MessageEvent<Bot> event)
 	{
-		return "-leet <" + L10N.getString("cmd.help.sentence") + ">";
+		return "-leet <" + L10N.getString("cmd.help.sentence", event) + ">";
 	}
 
 	@Override
-	public String[] getUsage()
+	public String[] getUsage(MessageEvent<Bot> event)
 	{
-		return new String[]{"-leet <" + L10N.getString("cmd.help.sentence") + "> || " + L10N.getString("leet.explanation")};
+		return new String[]{"-leet <" + L10N.getString("cmd.help.sentence", event) + "> || " + L10N.getString("leet.explanation", event)};
 	}
 
 	@Override
-	public String getNotes()
+	public String getNotes(MessageEvent<Bot> event)
 	{
 		return null;
 	}

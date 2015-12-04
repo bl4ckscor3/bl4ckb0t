@@ -25,7 +25,7 @@ public class Changelog implements ICommand<MessageEvent<Bot>>
 		{
 			if(!versions.containsKey(args[1]))
 			{
-				Utilities.chanMsg(event, L10N.getString("changelog.versionNotFound"));
+				Utilities.chanMsg(event, L10N.getString("changelog.versionNotFound", event));
 				return;
 			}
 
@@ -46,11 +46,6 @@ public class Changelog implements ICommand<MessageEvent<Bot>>
 		}
 	}
 
-	public static boolean startsWithNumber(String line)
-	{
-		return line.startsWith("0") || line.startsWith("1") || line.startsWith("2") || line.startsWith("3") || line.startsWith("4") || line.startsWith("5") || line.startsWith("6") || line.startsWith("7") || line.startsWith("8") || line.startsWith("9");
-	}
-
 	@Override
 	public String getAlias()
 	{
@@ -58,25 +53,25 @@ public class Changelog implements ICommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax()
+	public String getSyntax(MessageEvent<Bot> event)
 	{
-		return "-changelog [" + L10N.getString("changelog.versionNumber") + "]";
+		return "-changelog [" + L10N.getString("changelog.versionNumber", event) + "]";
 	}
 
 	@Override
-	public String[] getUsage()
+	public String[] getUsage(MessageEvent<Bot> event)
 	{
 		return new String[]
 				{
-						"-changelog || " + L10N.getString("changelog.explanation.1"),
-						"-changelog <" + L10N.getString("changelog.versionNumber") + "> || " + L10N.getString("changelog.explanation.2")
+						"-changelog || " + L10N.getString("changelog.explanation.1", event),
+						"-changelog <" + L10N.getString("changelog.versionNumber", event) + "> || " + L10N.getString("changelog.explanation.2", event)
 				};
 	}
 
 	@Override
-	public String getNotes()
+	public String getNotes(MessageEvent<Bot> event)
 	{
-		return L10N.getString("changelog.notes");
+		return L10N.getString("changelog.notes", event);
 	}
 
 	@Override

@@ -4,15 +4,16 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import org.pircbotx.hooks.events.MessageEvent;
+
+import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.util.android.ArrayMap;
 
+@SuppressWarnings("unused") //resource bundles are unused because they are called via reflection
 public class L10N
 {
-	private static String language = "en";
-	private static String country = "US";
-	public static String langName = parseLangName(language + "_" + country);
-	public static Locale currentLocale = new Locale(language, country);
-	private static ResourceBundle strings = ResourceBundle.getBundle("bl4ckscor3.bot.bl4ckb0t.localization.bb", currentLocale);
+	private static ResourceBundle english = ResourceBundle.getBundle("bl4ckscor3.bot.bl4ckb0t.localization.bb", new Locale("en", "US"));
+	private static ResourceBundle german = ResourceBundle.getBundle("bl4ckscor3.bot.bl4ckb0t.localization.bb", new Locale("de", "DE"));
 	public static ArrayMap<String, String> chanLangs = new ArrayMap<String, String>();
 
 	/**
@@ -21,64 +22,27 @@ public class L10N
 	 * @param c - The country code
 	 * @param channel - The channel the language gets changed in
 	 */
-	public static void changeLocalization(String l, String c, String channel) throws IOException
+	public static void setChannelLanguage(String channel, String langName) throws IOException
 	{
-		language = l;
-		country = c;
-		langName = parseLangName(language + "_" + country);
-		update();
-
 		chanLangs.put(channel, langName);
 	}
 
 	/**
-	 * Updates which language is used
+	 * Gets the localized message for the key with the language of the channel in the event
+	 * @param key The unlocalized message key
+	 * @param event The event which contains the channel the message get's sent to
+	 * @return The localized String
 	 */
-	public static void update()
+	public static String getString(String key, MessageEvent<Bot> event)
 	{
-		currentLocale = new Locale(language, country);
-		strings = ResourceBundle.getBundle("bl4ckscor3.bot.bl4ckb0t.localization.bb", currentLocale);
-	}
-
-	/**
-	 * Creates the language's name
-	 */
-	private static String parseLangName(String code)
-	{
-		if(code.equals("en_US"))
-			return "english";
-		else if(code.equals("de_DE"))
-			return "german";
-		else
-			return "default";
-	}
-
-	/**
-	 * Creates the language's code
-	 * @param language - The language to return the code from
-	 * @param code - The code to return (0 = language, 1 = country)
-	 */
-	public static String parseLangCode(String language, int code) throws ArrayIndexOutOfBoundsException
-	{
-		String langCode = "";
-
-		switch(language)
+		try
 		{
-			case "english":
-				langCode = "en_US";
-				break;
-			case "german":
-				langCode = "de_DE";
-				break;
-			default:
-				langCode = "none";
+			return ((ResourceBundle)L10N.class.getDeclaredField(chanLangs.get(event.getChannel().getName())).get(null)).getString(key);
 		}
-
-		return langCode.split("_")[code];
-	}
-
-	public static String getString(String key)
-	{
-		return strings.getString(key);
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return "Error in localizing message.\n"; 
+		}
 	}
 }

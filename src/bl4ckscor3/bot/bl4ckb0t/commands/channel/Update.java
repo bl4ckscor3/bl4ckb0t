@@ -20,7 +20,7 @@ public class Update implements ICommand<MessageEvent<Bot>>
 		Lists.clearAll();
 		Changelog.versions.clear();
 		Startup.callMethods();
-		Utilities.chanMsg(event, L10N.getString("update.success"));
+		Utilities.chanMsg(event, L10N.getString("update.success", event));
 	}
 
 	@Override
@@ -30,24 +30,24 @@ public class Update implements ICommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax()
+	public String getSyntax(MessageEvent<Bot> event)
 	{
 		return "-update";
 	}
 
 	@Override
-	public String[] getUsage()
+	public String[] getUsage(MessageEvent<Bot> event)
 	{
 		return new String[]
 				{
-				"-update | " + L10N.getString("update.usage")
+				"-update | " + L10N.getString("update.usage", event)
 				};
 	}
 
 	@Override
-	public String getNotes()
+	public String getNotes(MessageEvent<Bot> event)
 	{
-		return L10N.getString("notes.onlyOp");
+		return L10N.getString("notes.onlyOp", event);
 	}
 
 	@Override

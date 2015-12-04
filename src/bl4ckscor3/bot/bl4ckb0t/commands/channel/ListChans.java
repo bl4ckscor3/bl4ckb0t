@@ -30,9 +30,9 @@ public class ListChans implements ICommand<MessageEvent<Bot>>
 		result = result.substring(0, result.lastIndexOf(" | "));
 		
 		if(secretChannelAmount != 0)
-			result += " + " + secretChannelAmount + " " + L10N.getString("listchans.secret");
+			result += " + " + secretChannelAmount + " " + L10N.getString("listchans.secret", event);
 
-		Utilities.chanMsg(event, L10N.getString("listchans.list") + ": " + result);
+		Utilities.chanMsg(event, L10N.getString("listchans.list", event) + ": " + result);
 		secretChannelAmount = 0;
 		
 		if(args.length == 2 && args[1].equalsIgnoreCase("show"))
@@ -40,7 +40,7 @@ public class ListChans implements ICommand<MessageEvent<Bot>>
 			if(Utilities.isValidUser(event))
 			{
 
-				Utilities.pm(event.getUser().getNick(), L10N.getString("listchans.secret.show"));
+				Utilities.pm(event.getUser().getNick(), L10N.getString("listchans.secret.show", event));
 
 				for(String s : Utilities.getSecretChannels())
 				{
@@ -48,7 +48,7 @@ public class ListChans implements ICommand<MessageEvent<Bot>>
 				}
 			}
 			else
-				Utilities.chanMsg(event, L10N.getString("listchans.secret.show.fail"));
+				Utilities.chanMsg(event, L10N.getString("listchans.secret.show.fail", event));
 		}
 	}
 
@@ -59,23 +59,23 @@ public class ListChans implements ICommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax()
+	public String getSyntax(MessageEvent<Bot> event)
 	{
 		return "-listchans [show]";
 	}
 
 	@Override
-	public String[] getUsage()
+	public String[] getUsage(MessageEvent<Bot> event)
 	{
 		return new String[]
 				{
-				"-listchans || " + L10N.getString("listchans.explanation.1"),
-				"-listchans show || " + L10N.getString("listchans.explanation.2")
+				"-listchans || " + L10N.getString("listchans.explanation.1", event),
+				"-listchans show || " + L10N.getString("listchans.explanation.2", event)
 				};
 	}
 
 	@Override
-	public String getNotes()
+	public String getNotes(MessageEvent<Bot> event)
 	{
 		return null;
 	}

@@ -14,9 +14,9 @@ public class PrivateJoin implements IPrivateCommand<PrivateMessageEvent<Bot>>
 		String[] args = Utilities.toArgs(event.getMessage());
 		
 		if(args.length > 2)
-			Core.bot.joinChannelWithPassword(args[1].startsWith("#") ? args[1] : "#" + args[1], args[2]);
+			Core.bot.joinChannelWithPassword(args[1], args[2]);
 		else
-			Core.bot.joinChannel(args[1].startsWith("#") ? args[1] : "#" + args[1]);
+			Core.bot.joinChannel(args[1]);
 	}
 
 	@Override

@@ -20,12 +20,12 @@ public class YouTubeStats
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 		ArrayList<YouTubeLink> links = new ArrayList<YouTubeLink>();
-		String title = L10N.getString("youtube.noValue");
-		String views = L10N.getString("youtube.noValue");
-		String likes = L10N.getString("youtube.noValue");
-		String dislikes = L10N.getString("youtube.noValue");
-		String date = L10N.getString("youtube.noValue");
-		String uploader = L10N.getString("youtube.noValue");
+		String title = L10N.getString("youtube.noValue", event);
+		String views = L10N.getString("youtube.noValue", event);
+		String likes = L10N.getString("youtube.noValue", event);
+		String dislikes = L10N.getString("youtube.noValue", event);
+		String date = L10N.getString("youtube.noValue", event);
+		String uploader = L10N.getString("youtube.noValue", event);
 
 		for(String s : args)
 		{
@@ -35,7 +35,7 @@ public class YouTubeStats
 					links.add(new YouTubeLink("http://www.youtube.com/watch?v=" + s.split("v=")[1].substring(0, 11) + "/", false));
 				else
 				{
-					Utilities.chanMsg(event, L10N.getString("youtube.noId"));
+					Utilities.chanMsg(event, L10N.getString("youtube.noId", event));
 					continue;
 				}
 			}
@@ -80,12 +80,12 @@ public class YouTubeStats
 			date = doc.select(".watch-time-text").get(0).text().split(" ")[2].trim();
 			uploader = doc.select(".yt-user-info > a:nth-child(1)").get(0).text();
 			Utilities.chanMsg(event, Colors.BOLD + "** " + Colors.BOLD + "1,0You0,4Tube " + 
-					Colors.BOLD + "** " + L10N.getString("youtube.title") + ": " + Colors.BOLD + title + 
-					Colors.BOLD + " ** " + L10N.getString("youtube.views") + ": " + Colors.BOLD + views + 
-					Colors.BOLD + " ** " + L10N.getString("youtube.likes") + ":3 " + Colors.BOLD + likes + 
-					Colors.BOLD + " ** " + L10N.getString("youtube.dislikes") + ":4 " + Colors.BOLD + dislikes + 
-					Colors.BOLD + " ** " + L10N.getString("youtube.uploader") + ": " + Colors.BOLD + uploader + 
-					Colors.BOLD + " ** " + L10N.getString("youtube.date") + ": " + Colors.BOLD + date + Colors.BOLD + " **");
+					Colors.BOLD + "** " + L10N.getString("youtube.title", event) + ": " + Colors.BOLD + title + 
+					Colors.BOLD + " ** " + L10N.getString("youtube.views", event) + ": " + Colors.BOLD + views + 
+					Colors.BOLD + " ** " + L10N.getString("youtube.likes", event) + ":3 " + Colors.BOLD + likes + 
+					Colors.BOLD + " ** " + L10N.getString("youtube.dislikes", event) + ":4 " + Colors.BOLD + dislikes + 
+					Colors.BOLD + " ** " + L10N.getString("youtube.uploader", event) + ": " + Colors.BOLD + uploader + 
+					Colors.BOLD + " ** " + L10N.getString("youtube.date", event) + ": " + Colors.BOLD + date + Colors.BOLD + " **");
 		}
 		
 		links.clear();

@@ -34,7 +34,7 @@ public class RandomNumber implements ICommand<MessageEvent<Bot>>
 				Utilities.pm(event.getUser().getNick(), result);
 			}
 			else
-				Utilities.chanMsg(event, L10N.getString("ln.fail"));
+				Utilities.chanMsg(event, L10N.getString("ln.fail", event));
 		}
 		else
 			throw new IncorrectCommandExecutionException(getAlias());
@@ -47,21 +47,21 @@ public class RandomNumber implements ICommand<MessageEvent<Bot>>
 	}
 	
 	@Override
-	public String getSyntax()
+	public String getSyntax(MessageEvent<Bot> event)
 	{
-		return "-number <" + L10N.getString("ln.help.number") + ">";
+		return "-number <" + L10N.getString("ln.help.number", event) + ">";
 	}
 	
 	@Override
-	public String[] getUsage()
+	public String[] getUsage(MessageEvent<Bot> event)
 	{
-		return new String[]{"-number <" + L10N.getString("ln.help.number") + "> || " + L10N.getString("letter.explanation")};
+		return new String[]{"-number <" + L10N.getString("ln.help.number", event) + "> || " + L10N.getString("letter.explanation", event)};
 	}
 	
 	@Override
-	public String getNotes()
+	public String getNotes(MessageEvent<Bot> event)
 	{
-		return L10N.getString("ln.notes");
+		return L10N.getString("ln.notes", event);
 	}
 	
 	@Override

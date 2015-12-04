@@ -62,23 +62,23 @@ public class Caps implements ICommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax()
+	public String getSyntax(MessageEvent<Bot> event)
 	{
 		return "-caps [up|low]";
 	}
 
 	@Override
-	public String[] getUsage()
+	public String[] getUsage(MessageEvent<Bot> event)
 	{
 		return new String[]{
-				"-caps || " + L10N.getString("caps.explanation.1"),
-				"-caps <up> || " + L10N.getString("caps.explanation.2"),
-				"-caps <low> || " + L10N.getString("caps.explanation.3")
+				"-caps || " + L10N.getString("caps.explanation.1", event),
+				"-caps <up> || " + L10N.getString("caps.explanation.2", event),
+				"-caps <low> || " + L10N.getString("caps.explanation.3", event)
 		};
 	}
 
 	@Override
-	public String getNotes()
+	public String getNotes(MessageEvent<Bot> event)
 	{
 		return null;
 	}

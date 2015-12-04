@@ -66,15 +66,25 @@ public class Bot extends PircBotX
 	 */
 	public void joinChannel(String channel)
 	{
+		channel.replace("#", "");
 		sendIRC().joinChannel(channel);
 
 		if(!L10N.chanLangs.containsKey(channel))
-			L10N.chanLangs.put(channel, "english");
-
+		{
+			try
+			{
+				L10N.setChannelLanguage(channel, "english");
+			}
+			catch(IOException e)
+			{
+				e.printStackTrace();
+			}
+		}
+		
 		if(!CMDListener.channelStates.containsKey(channel))
 			CMDListener.channelStates.put(channel, true);
 
-		Logging.info("Joined " + channel + "...");
+		Logging.info("Joined #" + channel + "...");
 	}
 	
 	/**
@@ -84,20 +94,28 @@ public class Bot extends PircBotX
 	 */
 	public void joinChannelWithPassword(String channel, String password)
 	{
+		channel.replace("#", "");
 		sendIRC().joinChannel(channel, password);
 
 		if(!L10N.chanLangs.containsKey(channel))
 		{
-			if(channel.equals("#akino_germany"))
-				L10N.chanLangs.put(channel, "german");
-			else
-				L10N.chanLangs.put(channel, "english");
+			try
+			{
+				if(channel.equals("akino_germany"))
+					L10N.setChannelLanguage(channel, "german");
+				else
+					L10N.setChannelLanguage(channel, "english");
+			}
+			catch(IOException e)
+			{
+				e.printStackTrace();
+			}
 		}
 
 		if(!CMDListener.channelStates.containsKey(channel))
 			CMDListener.channelStates.put(channel, true);
 		
-		Logging.info("Joined " + channel + "...");
+		Logging.info("Joined #" + channel + "...");
 	}
 
 	/**
@@ -111,8 +129,6 @@ public class Bot extends PircBotX
 		{
 			if(s.equalsIgnoreCase("#akino_germany"))
 				joinChannelWithPassword(s, Passwords.AKINO_GERMANY.getPassword());
-			else if(s.equalsIgnoreCase("#BreakInBadStaff"))
-				joinChannelWithPassword(s, Passwords.BREAKINBADSTAFF.getPassword());
 			else
 				joinChannel(s);
 		}
@@ -124,7 +140,7 @@ public class Bot extends PircBotX
 	 */
 	public void leaveChannel(String channel)
 	{
-		sendRaw().rawLine("PART " + channel + " :" + L10N.getString("channel.part"));
+		sendRaw().rawLine("PART " + channel + " :");
 
 		if(L10N.chanLangs.containsKey(channel))
 			L10N.chanLangs.remove(channel);

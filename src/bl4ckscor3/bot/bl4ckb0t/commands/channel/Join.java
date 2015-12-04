@@ -32,7 +32,7 @@ public class Join implements ICommand<MessageEvent<Bot>>
 			if(!Utilities.hasJoinedChannel(args[1]))
 				Core.bot.joinChannel(args[1]);
 			else
-				Utilities.chanMsg(event, L10N.getString("join.alreadyJoined"));
+				Utilities.chanMsg(event, L10N.getString("join.alreadyJoined", event));
 		}
 		else
 			throw new IncorrectCommandExecutionException(getAlias());
@@ -45,21 +45,21 @@ public class Join implements ICommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax()
+	public String getSyntax(MessageEvent<Bot> event)
 	{
-		return "-join <" + L10N.getString("cmd.help.channel") + ">";
+		return "-join <" + L10N.getString("cmd.help.channel", event) + ">";
 	}
 
 	@Override
-	public String[] getUsage()
+	public String[] getUsage(MessageEvent<Bot> event)
 	{
-		return new String[]{"-join <" + L10N.getString("cmd.help.channel") + "> || " + L10N.getString("join.explanation")};
+		return new String[]{"-join <" + L10N.getString("cmd.help.channel", event) + "> || " + L10N.getString("join.explanation", event)};
 	}
 
 	@Override
-	public String getNotes()
+	public String getNotes(MessageEvent<Bot> event)
 	{
-		return L10N.getString("notes.onlyOp");
+		return L10N.getString("notes.onlyOp", event);
 	}
 
 	@Override

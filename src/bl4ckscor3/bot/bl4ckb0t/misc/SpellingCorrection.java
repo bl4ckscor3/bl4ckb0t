@@ -110,9 +110,9 @@ public class SpellingCorrection
 					return;
 
 				if(correctsDifferentUser)
-					Utilities.chanMsg(event, Colors.NORMAL + userToCorrect + " " + L10N.getString("correction.1") + " " + event.getUser().getNick() + " " + L10N.getString("correction.2") + ": " + correctedMessage);
+					Utilities.chanMsg(event, Colors.NORMAL + userToCorrect + " " + L10N.getString("correction.1", event) + " " + event.getUser().getNick() + " " + L10N.getString("correction.2", event) + ": " + correctedMessage);
 				else
-					Utilities.chanMsg(event, Colors.NORMAL + userToCorrect + " " + L10N.getString("correction.3") + ": " + correctedMessage);
+					Utilities.chanMsg(event, Colors.NORMAL + userToCorrect + " " + L10N.getString("correction.3", event) + ": " + correctedMessage);
 
 				updateLatestMessage(event.getChannel().getName(), newMessage, userToCorrect);
 			}

@@ -46,21 +46,21 @@ public class XColor implements ICommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax()
+	public String getSyntax(MessageEvent<Bot> event)
 	{
 		return "-xcolor";
 	}
 
 	@Override
-	public String[] getUsage()
+	public String[] getUsage(MessageEvent<Bot> event)
 	{
-		return new String[]{"-xcolor || " + L10N.getString("xcolor.explanation")};
+		return new String[]{"-xcolor || " + L10N.getString("xcolor.explanation", event)};
 	}
 
 	@Override
-	public String getNotes()
+	public String getNotes(MessageEvent<Bot> event)
 	{
-		return L10N.getString("xcolor.notes");
+		return L10N.getString("xcolor.notes", event);
 	}
 	
 	@Override

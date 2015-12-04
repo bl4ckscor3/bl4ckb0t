@@ -28,20 +28,20 @@ public class Disable implements ICommand<MessageEvent<Bot>>
 			if(CMDListener.enabled)
 			{
 				CMDListener.enabled = false;
-				Utilities.chanMsg(event, L10N.getString("disable.success"));
+				Utilities.chanMsg(event, L10N.getString("disable.success", event));
 				Logging.info("Disabled bot globally.");
 				Core.bot.sendRaw().rawLine("AWAY :Disabled");
 				Logging.disable();
 			}
 			else
-				Utilities.chanMsg(event, L10N.getString("disable.alreadyDisabled"));
+				Utilities.chanMsg(event, L10N.getString("disable.alreadyDisabled", event));
 		}
 		else 
 		{
 			if(!CMDListener.channelStates.containsKey(args[1]))
 			{
 				CMDListener.channelStates.put(args[1], false);
-				Utilities.chanMsg(event, L10N.getString("disable.success"));
+				Utilities.chanMsg(event, L10N.getString("disable.success", event));
 				Logging.info("Disabled bot in " + args[1]);
 			}
 			else
@@ -49,11 +49,11 @@ public class Disable implements ICommand<MessageEvent<Bot>>
 				if(CMDListener.channelStates.get(args[1]))
 				{
 					CMDListener.channelStates.put(args[1], false);
-					Core.bot.sendCustomMessage(args[1], L10N.getString("disable.success"));
+					Core.bot.sendCustomMessage(args[1], L10N.getString("disable.success", event));
 					Logging.info("Disabled bot in " + args[1]);
 				}
 				else
-					Core.bot.sendCustomMessage(args[1], L10N.getString("disable.alreadyDisabled"));
+					Core.bot.sendCustomMessage(args[1], L10N.getString("disable.alreadyDisabled", event));
 			}
 		}
 	}
@@ -65,21 +65,21 @@ public class Disable implements ICommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax()
+	public String getSyntax(MessageEvent<Bot> event)
 	{
 		return "-disable [channel]";
 	}
 
 	@Override
-	public String[] getUsage()
+	public String[] getUsage(MessageEvent<Bot> event)
 	{
-		return new String[]{"-disable || " + L10N.getString("disable.explanation")};
+		return new String[]{"-disable || " + L10N.getString("disable.explanation", event)};
 	}
 
 	@Override
-	public String getNotes()
+	public String getNotes(MessageEvent<Bot> event)
 	{
-		return L10N.getString("notes.onlyOp");
+		return L10N.getString("notes.onlyOp", event);
 	}
 
 	@Override

@@ -35,21 +35,21 @@ public class Select implements ICommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax()
+	public String getSyntax(MessageEvent<Bot> event)
 	{
-		return "-select <" + L10N.getString("select.help.options") + ">";
+		return "-select <" + L10N.getString("select.help.options", event) + ">";
 	}
 
 	@Override
-	public String[] getUsage()
+	public String[] getUsage(MessageEvent<Bot> event)
 	{
-		return new String[]{"-select <" + L10N.getString("select.help.options") + "> || " + L10N.getString("select.explanation")};
+		return new String[]{"-select <" + L10N.getString("select.help.options", event) + "> || " + L10N.getString("select.explanation", event)};
 	}
 
 	@Override
-	public String getNotes()
+	public String getNotes(MessageEvent<Bot> event)
 	{
-		return L10N.getString("select.notes");
+		return L10N.getString("select.notes", event);
 	}
 	
 	@Override

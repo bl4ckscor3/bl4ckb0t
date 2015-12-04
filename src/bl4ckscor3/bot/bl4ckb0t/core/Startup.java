@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Changelog;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Lists;
+import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Startup
 {
@@ -31,8 +32,9 @@ public class Startup
 		while((line = reader.readLine()) != null)
 		{
 			line = line.replace("#", "");
+			line = line.replace("*", "");
 			
-			if(Changelog.startsWithNumber(line))
+			if(Utilities.startsWithNumber(line))
 			{
 				if(line.endsWith("_WIP"))
 				{

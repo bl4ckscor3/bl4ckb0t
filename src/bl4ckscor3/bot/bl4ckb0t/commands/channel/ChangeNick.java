@@ -36,21 +36,21 @@ public class ChangeNick implements ICommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax()
+	public String getSyntax(MessageEvent<Bot> event)
 	{
-		return "-changenick <" + L10N.getString("changenick.newName") + ">";
+		return "-changenick <" + L10N.getString("changenick.newName", event) + ">";
 	}
 
 	@Override
-	public String[] getUsage()
+	public String[] getUsage(MessageEvent<Bot> event)
 	{
-		return new String[]{"-changenick <" + L10N.getString("changenick.newName") + "> ||" + L10N.getString("changenick.explanation")};
+		return new String[]{"-changenick <" + L10N.getString("changenick.newName", event) + "> ||" + L10N.getString("changenick.explanation", event)};
 	}
 
 	@Override
-	public String getNotes()
+	public String getNotes(MessageEvent<Bot> event)
 	{
-		return L10N.getString("changenick.notes");
+		return L10N.getString("changenick.notes", event);
 	}
 
 	@Override

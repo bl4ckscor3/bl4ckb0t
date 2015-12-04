@@ -27,19 +27,19 @@ public class Twitter implements ICommand<MessageEvent<Bot>>
 	}
 	
 	@Override
-	public String getSyntax()
+	public String getSyntax(MessageEvent<Bot> event)
 	{
-		return "-tw <" + L10N.getString("tw.help.profile") + ">";
+		return "-tw <" + L10N.getString("tw.help.profile", event) + ">";
 	}
 
 	@Override
-	public String[] getUsage()
+	public String[] getUsage(MessageEvent<Bot> event)
 	{
-		return new String[]{"-tw <" + L10N.getString("tw.help.profile") + "> || " + L10N.getString("tw.explanation")};
+		return new String[]{"-tw <" + L10N.getString("tw.help.profile", event) + "> || " + L10N.getString("tw.explanation", event)};
 	}
 
 	@Override
-	public String getNotes()
+	public String getNotes(MessageEvent<Bot> event)
 	{
 		return null;
 	}

@@ -42,22 +42,22 @@ public class Reverse implements ICommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax()
+	public String getSyntax(MessageEvent<Bot> event)
 	{
-		return "-reverse <" + L10N.getString("cmd.help.sentence") + ">";
+		return "-reverse <" + L10N.getString("cmd.help.sentence", event) + ">";
 	}
 
 	@Override
-	public String[] getUsage()
+	public String[] getUsage(MessageEvent<Bot> event)
 	{
 		return new String[]
 				{
-				"-reverse <" + L10N.getString("cmd.help.sentence") + "> | " + L10N.getString("reverse.explanation")
+				"-reverse <" + L10N.getString("cmd.help.sentence", event) + "> | " + L10N.getString("reverse.explanation", event)
 				};
 	}
 
 	@Override
-	public String getNotes()
+	public String getNotes(MessageEvent<Bot> event)
 	{
 		return null;
 	}

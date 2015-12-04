@@ -25,13 +25,13 @@ public class Stop implements ICommand<MessageEvent<Bot>>
 			{
 				case "yes":
 					Core.bot.stopBotReconnect();
-					Core.bot.quit(L10N.getString("stop.reason"));
+					Core.bot.quit("Bye");
 					Logging.info("Creating new bot...");
 					Core.createBot(Core.wasStartedAsWIP); //creating another instance
 					break;
 				case "no":
 					Core.bot.stopBotReconnect();
-					Core.bot.quit(L10N.getString("stop.reason"));
+					Core.bot.quit("Bye");
 					Logging.info("Bot stopped!");
 					Logging.disable();
 					break;
@@ -50,25 +50,25 @@ public class Stop implements ICommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax()
+	public String getSyntax(MessageEvent<Bot> event)
 	{
 		return "-stop <yes|no>";
 	}
 
 	@Override
-	public String[] getUsage()
+	public String[] getUsage(MessageEvent<Bot> event)
 	{
 		return new String[]
 				{
-				"-stop yes || " + L10N.getString("stop.explanation.1"),
-				"-stop no || " + L10N.getString("stop.explanation.2")
+				"-stop yes || " + L10N.getString("stop.explanation.1", event),
+				"-stop no || " + L10N.getString("stop.explanation.2", event)
 				};
 	}
 
 	@Override
-	public String getNotes()
+	public String getNotes(MessageEvent<Bot> event)
 	{
-		return L10N.getString("notes.onlyOp");
+		return L10N.getString("notes.onlyOp", event);
 	}
 
 	@Override

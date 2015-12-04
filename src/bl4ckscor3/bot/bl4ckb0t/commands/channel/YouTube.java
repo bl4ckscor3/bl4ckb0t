@@ -27,21 +27,21 @@ public class YouTube implements ICommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax()
+	public String getSyntax(MessageEvent<Bot> event)
 	{
-		return "-yt <" + L10N.getString("yt.help.channel") + ">";
+		return "-yt <" + L10N.getString("yt.help.channel", event) + ">";
 	}
 
 	@Override
-	public String[] getUsage()
+	public String[] getUsage(MessageEvent<Bot> event)
 	{
-		return new String[]{"-yt <" + L10N.getString("ytv.help.channel") + "> || " + L10N.getString("yt.explanation")};
+		return new String[]{"-yt <" + L10N.getString("ytv.help.channel", event) + "> || " + L10N.getString("yt.explanation", event)};
 	}
 
 	@Override
-	public String getNotes()
+	public String getNotes(MessageEvent<Bot> event)
 	{
-		return L10N.getString("yt.notes");
+		return L10N.getString("yt.notes", event);
 	}
 	
 	@Override

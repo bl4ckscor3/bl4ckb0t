@@ -60,7 +60,7 @@ public class Help implements ICommand<MessageEvent<Bot>>
 
 		if(args.length == 1)
 		{
-			Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------" + L10N.getString("help.header") + "----------");
+			Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------" + L10N.getString("help.header", event) + "----------");
 
 			for(int i = 0; i < aliases.length; i++)
 			{
@@ -78,14 +78,14 @@ public class Help implements ICommand<MessageEvent<Bot>>
 			
 			Utilities.pm(nick, msg.substring(0, msg.lastIndexOf(" | ")));
 			Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------------------------------------------------------");
-			Utilities.pm(nick, L10N.getString("help.moreInfo"));
+			Utilities.pm(nick, L10N.getString("help.moreInfo", event));
 			Thread.sleep(2000);
-			Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------" + L10N.getString("help.credits.header") + "----------");
-			Utilities.pm(nick, Colors.TEAL + L10N.getString("help.credits.1"));
-			Utilities.pm(nick, Colors.TEAL + L10N.getString("help.credits.2"));
-			Utilities.pm(nick, Colors.TEAL + L10N.getString("help.credits.3"));
-			Utilities.pm(nick, Colors.TEAL + L10N.getString("help.credits.4"));
-			Utilities.pm(nick, Colors.TEAL + L10N.getString("help.credits.5"));
+			Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------" + L10N.getString("help.credits.header", event) + "----------");
+			Utilities.pm(nick, Colors.TEAL + L10N.getString("help.credits.1", event));
+			Utilities.pm(nick, Colors.TEAL + L10N.getString("help.credits.2", event));
+			Utilities.pm(nick, Colors.TEAL + L10N.getString("help.credits.3", event));
+			Utilities.pm(nick, Colors.TEAL + L10N.getString("help.credits.4", event));
+			Utilities.pm(nick, Colors.TEAL + L10N.getString("help.credits.5", event));
 		}
 		else if(args.length == 2)
 		{
@@ -95,16 +95,16 @@ public class Help implements ICommand<MessageEvent<Bot>>
 				{
 					if(cmd.getPermissionLevel() > pLvl)
 					{
-						Core.bot.sendCustomMessage(event.getChannel().getName(), "-" + cmd.getAlias() + ": " + L10N.getString("noPermission"));
+						Core.bot.sendCustomMessage(event.getChannel().getName(), "-" + cmd.getAlias() + ": " + L10N.getString("noPermission", event));
 						return;
 					}
 					
-					Utilities.sendHelp(nick, cmd.getSyntax(), cmd.getUsage(), cmd.getNotes());
+					Utilities.sendHelp(nick, cmd.getSyntax(event), cmd.getUsage(event), cmd.getNotes(event), event);
 					return;
 				}
 			}
 			
-			Utilities.chanMsg(event, args[1] + " " + L10N.getString("help.invalidCmd"));
+			Utilities.chanMsg(event, args[1] + " " + L10N.getString("help.invalidCmd", event));
 		}
 		else
 			throw new IncorrectCommandExecutionException(getAlias());
@@ -117,23 +117,23 @@ public class Help implements ICommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax()
+	public String getSyntax(MessageEvent<Bot> event)
 	{
-		return "-help [" + L10N.getString("help.help.command") + "]";
+		return "-help [" + L10N.getString("help.help.command", event) + "]";
 	}
 
 	@Override
-	public String[] getUsage()
+	public String[] getUsage(MessageEvent<Bot> event)
 	{
 		return new String[]
 				{
-				"-help || " + L10N.getString("help.explanation.1"),
-				"-help <" + L10N.getString("help.help.command") + "> || " + L10N.getString("help.explanation.2")
+				"-help || " + L10N.getString("help.explanation.1", event),
+				"-help <" + L10N.getString("help.help.command", event) + "> || " + L10N.getString("help.explanation.2", event)
 				};
 	}
 
 	@Override
-	public String getNotes()
+	public String getNotes(MessageEvent<Bot> event)
 	{
 		return null;
 	}

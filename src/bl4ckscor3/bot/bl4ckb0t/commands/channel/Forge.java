@@ -29,7 +29,7 @@ public class Forge implements ICommand<MessageEvent<Bot>>
 			}
 			catch(HttpStatusException e)
 			{
-				Utilities.chanMsg(event, L10N.getString("forge.incorrectMcVersion"));
+				Utilities.chanMsg(event, L10N.getString("forge.incorrectMcVersion", event));
 				return;
 			}
 
@@ -88,26 +88,26 @@ public class Forge implements ICommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax()
+	public String getSyntax(MessageEvent<Bot> event)
 	{
 		return "-forge <version> <latest|rec|recommended> <version|changelog|dlmain|dlsrc>";
 	}
 
 	@Override
-	public String[] getUsage()
+	public String[] getUsage(MessageEvent<Bot> event)
 	{
 		return new String[]
 				{
-						L10N.getString("forge.explanation.1"),
-						L10N.getString("forge.explanation.2"),
-						L10N.getString("forge.explanation.3"),
-						L10N.getString("forge.explanation.4"),
-						L10N.getString("forge.explanation.5"),
+						L10N.getString("forge.explanation.1", event),
+						L10N.getString("forge.explanation.2", event),
+						L10N.getString("forge.explanation.3", event),
+						L10N.getString("forge.explanation.4", event),
+						L10N.getString("forge.explanation.5", event),
 				};
 	}
 
 	@Override
-	public String getNotes()
+	public String getNotes(MessageEvent<Bot> event)
 	{
 		return null;
 	}

@@ -37,7 +37,7 @@ public class Leave implements ICommand<MessageEvent<Bot>>
 			if(Utilities.hasJoinedChannel(args[1]))
 				Core.bot.leaveChannel(args[1]);
 			else
-				Utilities.chanMsg(event, L10N.getString("leave.notJoined"));
+				Utilities.chanMsg(event, L10N.getString("leave.notJoined", event));
 		}
 		else
 			throw new IncorrectCommandExecutionException(getAlias());
@@ -50,25 +50,25 @@ public class Leave implements ICommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax()
+	public String getSyntax(MessageEvent<Bot> event)
 	{
-		return "-leave [" + L10N.getString("cmd.help.channel") + "]";
+		return "-leave [" + L10N.getString("cmd.help.channel", event) + "]";
 	}
 
 	@Override
-	public String[] getUsage()
+	public String[] getUsage(MessageEvent<Bot> event)
 	{
 		return new String[]
 				{
-				"-leave || " + L10N.getString("leave.explanation.1"),
-				"-leave <" + L10N.getString("cmd.help.channel") + "> || " + L10N.getString("leave.explanation.2")
+				"-leave || " + L10N.getString("leave.explanation.1", event),
+				"-leave <" + L10N.getString("cmd.help.channel", event) + "> || " + L10N.getString("leave.explanation.2", event)
 				};
 	}
 
 	@Override
-	public String getNotes()
+	public String getNotes(MessageEvent<Bot> event)
 	{
-		return L10N.getString("notes.onlyOp");
+		return L10N.getString("notes.onlyOp", event);
 	}
 
 	@Override

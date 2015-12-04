@@ -12,7 +12,7 @@ public class Calculate implements ICommand<MessageEvent<Bot>>
 	@Override
 	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException
 	{
-		Utilities.chanMsg(event, L10N.getString("calc.disabled"));
+		Utilities.chanMsg(event, L10N.getString("calc.disabled", event));
 //		String[] args = Utilities.toArgs(event.getMessage());
 //		
 //		if(args.length == 1 || args.length == 2 || args.length == 3 || !validateInput(args))
@@ -59,21 +59,19 @@ public class Calculate implements ICommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax() 
+	public String getSyntax(MessageEvent<Bot> event) 
 	{
 		return "";
 	}
 
 	@Override
-	public String[] getUsage() 
+	public String[] getUsage(MessageEvent<Bot> event) 
 	{
-		return new String[]
-				{
-				};
+		return new String[]{};
 	}
 
 	@Override
-	public String getNotes() 
+	public String getNotes(MessageEvent<Bot> event) 
 	{
 		return null;
 	}

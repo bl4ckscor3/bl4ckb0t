@@ -32,7 +32,7 @@ public class LongURL implements ICommand<MessageEvent<Bot>>
 			temp = longUrl;
 			longUrl = "http:" + temp.split(":")[1].split("]")[0];
 			
-			Utilities.chanMsg(event, L10N.getString("longurl.output") + ": " + longUrl);
+			Utilities.chanMsg(event, L10N.getString("longurl.output", event) + ": " + longUrl);
 		}
 		else
 			throw new IncorrectCommandExecutionException(getAlias());
@@ -45,21 +45,21 @@ public class LongURL implements ICommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax()
+	public String getSyntax(MessageEvent<Bot> event)
 	{
-		return "-longurl <" + L10N.getString("longurl.help.shortUrl") + ">";
+		return "-longurl <" + L10N.getString("longurl.help.shortUrl", event) + ">";
 	}
 
 	@Override
-	public String[] getUsage()
+	public String[] getUsage(MessageEvent<Bot> event)
 	{
-		return new String[]{"-longurl <" + L10N.getString("longurl.help.shortUrl") + "> || " + L10N.getString("longurl.explanation")};
+		return new String[]{"-longurl <" + L10N.getString("longurl.help.shortUrl", event) + "> || " + L10N.getString("longurl.explanation", event)};
 	}
 
 	@Override
-	public String getNotes()
+	public String getNotes(MessageEvent<Bot> event)
 	{
-		return L10N.getString("longurl.notes");
+		return L10N.getString("longurl.notes", event);
 	}
 	
 	@Override

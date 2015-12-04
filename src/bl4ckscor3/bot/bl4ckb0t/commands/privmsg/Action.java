@@ -4,7 +4,6 @@ import org.pircbotx.hooks.events.PrivateMessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.core.Core;
-import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Action implements IPrivateCommand<PrivateMessageEvent<Bot>>
@@ -17,7 +16,7 @@ public class Action implements IPrivateCommand<PrivateMessageEvent<Bot>>
 		
 		if(!args[1].startsWith("#"))
 		{
-			Core.bot.sendCustomMessage(event.getUser().getNick(), L10N.getString("action.noHashtag"));
+			Core.bot.sendCustomMessage(event.getUser().getNick(), "Channel names start with a hashtag (#). Please use the following syntax: * #<channelName> <message>");
 			return;
 		}
 		

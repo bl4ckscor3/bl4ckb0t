@@ -88,23 +88,23 @@ public class Draw implements ICommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax()
+	public String getSyntax(MessageEvent<Bot> event)
 	{
-		return "-draw [" + L10N.getString("draw.help.drawing") + "]";
+		return "-draw [" + L10N.getString("draw.help.drawing", event) + "]";
 	}
 
 	@Override
-	public String[] getUsage()
+	public String[] getUsage(MessageEvent<Bot> event)
 	{
 		return new String[]
 				{
-				"-draw || " + L10N.getString("draw.explanation.1"),
-				"-draw <" + L10N.getString("draw.help.drawing") + "> || " + L10N.getString("draw.explanation.2")
+				"-draw || " + L10N.getString("draw.explanation.1", event),
+				"-draw <" + L10N.getString("draw.help.drawing", event) + "> || " + L10N.getString("draw.explanation.2", event)
 				};
 	}
 
 	@Override
-	public String getNotes()
+	public String getNotes(MessageEvent<Bot> event)
 	{
 		return null;
 	}
@@ -431,7 +431,7 @@ public class Draw implements ICommand<MessageEvent<Bot>>
 	{
 		String result = "";
 
-		result += L10N.getString("draw.list") + ": ";
+		result += L10N.getString("draw.list", event) + ": ";
 
 		for(String drawing : drawings)
 		{

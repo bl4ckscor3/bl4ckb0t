@@ -64,7 +64,7 @@ public class Utilities
 	 */
 	public static void noPermission(MessageEvent<Bot> event)
 	{
-		chanMsg(event, L10N.getString("noPermission"));
+		chanMsg(event, L10N.getString("noPermission", event));
 	}
 
 	/**
@@ -131,20 +131,21 @@ public class Utilities
 	 * @param syntax The syntax of the command which's help menu gets shown
 	 * @param usage The usage of the command
 	 * @param notes The notes of the command
+	 * @param event The MessageEvent with the channel the help command got sent in
 	 */
-	public static void sendHelp(String nick, String syntax, String[] usage, String notes)
+	public static void sendHelp(String nick, String syntax, String[] usage, String notes, MessageEvent<Bot> event)
 	{
-		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "-----------" + L10N.getString("helpMenu.syntax") + "----------");
+		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "-----------" + L10N.getString("helpMenu.syntax", event) + "----------");
 		Utilities.pm(nick, syntax);
-		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------" + L10N.getString("helpMenu.usage") + "----------");
+		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------" + L10N.getString("helpMenu.usage", event) + "----------");
 
 		for(String s : usage)
 		{
 			Utilities.pm(nick, s);
 		}
 
-		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------" + L10N.getString("helpMenu.notes") + "----------");
-		Utilities.pm(nick, notes == null ? L10N.getString("helpMenu.noNotes") : notes);
+		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------" + L10N.getString("helpMenu.notes", event) + "----------");
+		Utilities.pm(nick, notes == null ? L10N.getString("helpMenu.noNotes", event) : notes);
 	}
 
 	/**
@@ -232,7 +233,7 @@ public class Utilities
 	 */
 	public static String capitalizeFirstLetter(String s)
 	{
-		return s.substring(0, 1).toUpperCase(L10N.currentLocale) + s.substring(1);
+		return s.substring(0, 1).toUpperCase() + s.substring(1);
 	}
 	
 	/**
