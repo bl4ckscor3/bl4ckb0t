@@ -16,10 +16,12 @@ public class Core
 {
 	public static Bot bot;
 	public static boolean wasStartedAsWIP;
-
+	public static final String botName = "bl4ckb0t";
+	public static final String version = "4.5";
+	
 	public static void main(String args[]) throws IOException, IrcException
 	{
-		Logging.setup("bl4ckb0t");
+		Logging.setup(botName);
 		//turning off logging (ugh)
 		Logger.getLogger("").setLevel(Level.OFF);
 		Logging.info("Disabled loggers...");
@@ -37,9 +39,9 @@ public class Core
 			Lists.clearAll();
 			Startup.callMethods();
 			config = new Configuration.Builder<Bot>()
-					.setVersion("4.4.3.1" + (wip ? "_WIP" : ""))
-					.setName("bl4ckb0t")
-					.setLogin("bl4ckb0t")
+					.setVersion(version + (wip ? "_WIP" : ""))
+					.setName(botName)
+					.setLogin(botName)
 					.setServer("irc.esper.net", 6697)
 					.setSocketFactory(new UtilSSLSocketFactory().trustAllCertificates())
 					.setNickservPassword(Passwords.NICKSERV.getPassword())
