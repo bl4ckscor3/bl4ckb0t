@@ -58,7 +58,7 @@ public class Startup
 	{
 		if(Core.bot.isDevelopment())
 		{
-			Lists.addDefaultChan("#bl4ckb0tTest");
+			Lists.addDefaultChan("#akino_germany");
 			return;
 		}
 

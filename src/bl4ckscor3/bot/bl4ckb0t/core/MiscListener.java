@@ -41,7 +41,7 @@ public class MiscListener extends ListenerAdapter<Bot>
 		if(message.startsWith("?enabled"))
 		{
 			if(message.startsWith("?enabled #") && CMDListener.enabled)
-				Utilities.chanMsg(event, message.split(" ")[1] + ": " + CMDListener.channelStates.get(message.split(" ")[1]));
+				Utilities.chanMsg(event, message.split(" ")[1] + ": " + CMDListener.channelStates.get(message.split(" ")[1].replace("#", "")));
 			else
 				Utilities.chanMsg(event, "global: " + CMDListener.enabled);
 			return;

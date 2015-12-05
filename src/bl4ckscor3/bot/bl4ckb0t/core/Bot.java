@@ -66,8 +66,8 @@ public class Bot extends PircBotX
 	 */
 	public void joinChannel(String channel)
 	{
-		channel.replace("#", "");
 		sendIRC().joinChannel(channel);
+		channel = channel.replace("#", "");
 
 		if(!L10N.chanLangs.containsKey(channel))
 		{
@@ -94,8 +94,8 @@ public class Bot extends PircBotX
 	 */
 	public void joinChannelWithPassword(String channel, String password)
 	{
-		channel.replace("#", "");
 		sendIRC().joinChannel(channel, password);
+		channel = channel.replace("#", "");
 
 		if(!L10N.chanLangs.containsKey(channel))
 		{
@@ -141,6 +141,7 @@ public class Bot extends PircBotX
 	public void leaveChannel(String channel)
 	{
 		sendRaw().rawLine("PART " + channel + " :");
+		channel = channel.replace("#", "");
 
 		if(L10N.chanLangs.containsKey(channel))
 			L10N.chanLangs.remove(channel);

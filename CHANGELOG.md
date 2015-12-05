@@ -1,5 +1,9 @@
 #Changelog
 ---
+####4.5.1
+- Fixed language not being set in #akino_germany
+- Fixed channel states not working in some situations
+
 ##4.5
 - Added stop command to private message
 - Fixed a bug where sending messages too fast would result in an incorrect language being used

@@ -38,17 +38,17 @@ public class Enable implements ICommand<MessageEvent<Bot>>
 		}
 		else
 		{
-			if(!CMDListener.channelStates.containsKey(args[1]))
+			if(!CMDListener.channelStates.containsKey(args[1].replace("#", "")))
 			{
-				CMDListener.channelStates.put(args[1], true);
+				CMDListener.channelStates.put(args[1].replace("#", ""), true);
 				Utilities.chanMsg(event, L10N.getString("enable.success", event));
 				Logging.info("Enabled bot in " + args[1]);
 			}
 			else
 			{
-				if(!CMDListener.channelStates.get(args[1]))
+				if(!CMDListener.channelStates.get(args[1].replace("#", "")))
 				{
-					CMDListener.channelStates.put(args[1], true);
+					CMDListener.channelStates.put(args[1].replace("#", ""), true);
 					Core.bot.sendCustomMessage(args[1], L10N.getString("enable.success", event));
 					Logging.info("Enabled bot in " + args[1]);
 				}
