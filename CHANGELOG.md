@@ -3,6 +3,7 @@
 ##4.5
 - Added stop command to private message
 - Fixed a bug where sending messages too fast would result in an incorrect language being used
+- Fixed private message commands getting sent to valid users
 - Internal changes
 
 **4.4.3.1**

@@ -8,6 +8,7 @@ import org.pircbotx.hooks.events.ConnectEvent;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.IPrivateCommand;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.misc.LinkTitle;
 import bl4ckscor3.bot.bl4ckb0t.misc.SpellingCorrection;
@@ -79,6 +80,12 @@ public class MiscListener extends ListenerAdapter<Bot>
 		
 		if(!event.getMessage().startsWith(CMDListener.cmdPrefix))
 		{
+			for(IPrivateCommand<PrivateMessageEvent<Bot>> cmd : CMDListener.privCommands)
+			{
+				if(event.getMessage().startsWith(cmd.getAlias()))
+					return;
+			}
+			
 			for(String user : Lists.getValidUsers())
 			{
 				Core.bot.sendCustomMessage(user, event.getUser().getNick() + ": " + event.getMessage());
