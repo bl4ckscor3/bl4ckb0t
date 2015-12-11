@@ -37,12 +37,12 @@ public class LinkTitle
 				if(s.contains("twitter"))
 				{
 					ShowTweet.show(event, s);
-					break;
+					continue;
 				}
 				else if(s.contains("github"))
 				{
 					GitHub.show(event, s);
-					break;
+					continue;
 				}
 				
 				WebDriver driver = new HtmlUnitDriver();
