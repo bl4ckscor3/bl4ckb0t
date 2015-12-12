@@ -1,7 +1,7 @@
 #Changelog
 ---
 ####4.5.1
-- Fixed language not being set in #akino_germany
+- Fixed language not being set when joining channels
 - Fixed channel states not working in some situations
 - Fixed only showing the first link when there are multiple Tweets or multiple GitHub links in one message
 

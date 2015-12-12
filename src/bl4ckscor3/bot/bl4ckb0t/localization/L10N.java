@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
+import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.android.ArrayMap;
 
 @SuppressWarnings("unused") //resource bundles are unused because they are called via reflection
@@ -42,7 +43,17 @@ public class L10N
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			return "Error in localizing message.\n"; 
+			Logging.severe("Error in localizing message.");
+			
+			try
+			{
+				return ((ResourceBundle)L10N.class.getDeclaredField("english").get(null)).getString(key);
+			}
+			catch(Exception e1)
+			{
+				e1.printStackTrace();
+				return "Error in localizing english message.\n";
+			}
 		}
 	}
 }

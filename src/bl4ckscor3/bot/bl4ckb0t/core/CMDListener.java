@@ -131,7 +131,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 			return;
 		}
 
-		if(enabled && channelStates.get(event.getChannel().getName().replace("#", "")))
+		if(enabled && channelStates.get(event.getChannel().getName()))
 		{
 			for(ICommand<MessageEvent<Bot>> cmd : commands)
 			{

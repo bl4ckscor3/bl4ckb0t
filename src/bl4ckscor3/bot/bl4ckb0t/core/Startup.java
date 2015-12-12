@@ -52,6 +52,7 @@ public class Startup
 		}
 		
 		Logging.info("All versions added to changelog list.");
+		reader.close();
 	}
 
 	public static void setDefaultChans() throws MalformedURLException, IOException
@@ -68,6 +69,8 @@ public class Startup
 		{
 			Lists.addDefaultChan(s);
 		}
+
+		reader.close();
 	}
 
 	private static void setAllowedUsers() throws MalformedURLException, IOException
@@ -78,6 +81,8 @@ public class Startup
 		{
 			Lists.addAllowedUser(s);
 		}
+
+		reader.close();
 	}
 
 	private static void setValidUsers() throws MalformedURLException, IOException
@@ -88,6 +93,8 @@ public class Startup
 		{
 			Lists.addValidUser(s);
 		}
+		
+		reader.close();
 	}
 
 	private static void setIgnoredUsers() throws MalformedURLException, IOException
@@ -98,5 +105,7 @@ public class Startup
 		{
 			Lists.addIgnoredUser(s);
 		}
+		
+		reader.close();
 	}
 }

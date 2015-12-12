@@ -67,7 +67,6 @@ public class Bot extends PircBotX
 	public void joinChannel(String channel)
 	{
 		sendIRC().joinChannel(channel);
-		channel = channel.replace("#", "");
 
 		if(!L10N.chanLangs.containsKey(channel))
 		{
@@ -84,7 +83,7 @@ public class Bot extends PircBotX
 		if(!CMDListener.channelStates.containsKey(channel))
 			CMDListener.channelStates.put(channel, true);
 
-		Logging.info("Joined #" + channel + "...");
+		Logging.info("Joined " + channel + "...");
 	}
 	
 	/**
@@ -95,13 +94,12 @@ public class Bot extends PircBotX
 	public void joinChannelWithPassword(String channel, String password)
 	{
 		sendIRC().joinChannel(channel, password);
-		channel = channel.replace("#", "");
-
+		
 		if(!L10N.chanLangs.containsKey(channel))
 		{
 			try
 			{
-				if(channel.equals("akino_germany"))
+				if(channel.equals("#akino_germany"))
 					L10N.setChannelLanguage(channel, "german");
 				else
 					L10N.setChannelLanguage(channel, "english");
@@ -115,7 +113,7 @@ public class Bot extends PircBotX
 		if(!CMDListener.channelStates.containsKey(channel))
 			CMDListener.channelStates.put(channel, true);
 		
-		Logging.info("Joined #" + channel + "...");
+		Logging.info("Joined " + channel + "...");
 	}
 
 	/**
