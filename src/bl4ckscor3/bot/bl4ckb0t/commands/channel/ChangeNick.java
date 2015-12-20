@@ -11,7 +11,7 @@ import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class ChangeNick extends BaseCommand<MessageEvent<Bot>>
+public class ChangeNick implements ICommand<MessageEvent<Bot>>
 {
 	@Override
 	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException, MalformedURLException, IOException

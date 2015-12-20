@@ -13,7 +13,7 @@ import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Lists;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Kick extends BaseCommand<MessageEvent<Bot>>
+public class Kick implements ICommand<MessageEvent<Bot>>
 {	
 	@Override
 	public void exe(MessageEvent<Bot> event) throws IOException, IrcException, IncorrectCommandExecutionException 

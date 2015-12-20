@@ -7,7 +7,7 @@ import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Draw extends BaseCommand<MessageEvent<Bot>>
+public class Draw implements ICommand<MessageEvent<Bot>>
 {
 	private String[] drawings =
 		{

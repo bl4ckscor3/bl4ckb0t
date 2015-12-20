@@ -15,13 +15,13 @@ import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.CustomArrayList;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Help extends BaseCommand<MessageEvent<Bot>>
+public class Help implements ICommand<MessageEvent<Bot>>
 {
 	private static String[] aliasesValid;
 	private static String[] aliasesAllowed;
 	private static String[] aliasesNormal;
 
-	public static void setupHelpMenu(CustomArrayList<BaseCommand<MessageEvent<Bot>>> cmd)
+	public static void setupHelpMenu(CustomArrayList<ICommand<MessageEvent<Bot>>> cmd)
 	{
 		aliasesValid = new String[cmd.size()];
 		aliasesAllowed = new String[cmd.size()];
@@ -89,7 +89,7 @@ public class Help extends BaseCommand<MessageEvent<Bot>>
 		}
 		else if(args.length == 2)
 		{
-			for(BaseCommand<MessageEvent<Bot>> cmd : CMDListener.commands)
+			for(ICommand<MessageEvent<Bot>> cmd : CMDListener.commands)
 			{
 				if(cmd.getAlias().equals(args[1]) || ("-" + cmd.getAlias()).equals(args[1]))
 				{

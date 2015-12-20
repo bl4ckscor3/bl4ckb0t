@@ -15,7 +15,7 @@ import bl4ckscor3.bot.bl4ckb0t.commands.channel.Draw;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Enable;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Forge;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Help;
-import bl4ckscor3.bot.bl4ckb0t.commands.channel.BaseCommand;
+import bl4ckscor3.bot.bl4ckb0t.commands.channel.ICommand;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Join;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Kick;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Language;
@@ -61,7 +61,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 	public static boolean enabled = true;
 	public static final ArrayMap<String, Boolean> channelStates = new ArrayMap<String, Boolean>(); //false = disabled | true = enabled
 	public boolean isCounting = false;
-	public static final CustomArrayList<BaseCommand<MessageEvent<Bot>>> commands = new CustomArrayList<BaseCommand<MessageEvent<Bot>>>();
+	public static final CustomArrayList<ICommand<MessageEvent<Bot>>> commands = new CustomArrayList<ICommand<MessageEvent<Bot>>>();
 	public static final CustomArrayList<IPrivateCommand<PrivateMessageEvent<Bot>>> privCommands = new CustomArrayList<IPrivateCommand<PrivateMessageEvent<Bot>>>();
 
 	@SuppressWarnings("unchecked")
@@ -133,7 +133,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 
 		if(enabled && channelStates.get(event.getChannel().getName()))
 		{
-			for(BaseCommand<MessageEvent<Bot>> cmd : commands)
+			for(ICommand<MessageEvent<Bot>> cmd : commands)
 			{
 				if(cmdName.equalsIgnoreCase(cmdPrefix + cmd.getAlias()))
 				{
@@ -157,7 +157,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 		}
 		else
 		{
-			for(BaseCommand<MessageEvent<Bot>> cmd : commands)
+			for(ICommand<MessageEvent<Bot>> cmd : commands)
 			{
 				if((cmd instanceof Enable || cmd instanceof Disable) && event.getMessage().startsWith(cmdPrefix + cmd.getAlias()))
 				{
