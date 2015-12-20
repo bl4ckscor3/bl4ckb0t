@@ -108,12 +108,6 @@ public class Draw extends BaseCommand<MessageEvent<Bot>>
 	{
 		return null;
 	}
-
-	@Override
-	public int getPermissionLevel()
-	{
-		return 1;
-	}
 	
 	private void smiley(MessageEvent<Bot> event)
 	{

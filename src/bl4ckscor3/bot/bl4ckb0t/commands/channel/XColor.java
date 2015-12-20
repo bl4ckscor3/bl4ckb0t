@@ -62,10 +62,4 @@ public class XColor extends BaseCommand<MessageEvent<Bot>>
 	{
 		return L10N.getString("xcolor.notes", event);
 	}
-	
-	@Override
-	public int getPermissionLevel()
-	{
-		return 1;
-	}
 }

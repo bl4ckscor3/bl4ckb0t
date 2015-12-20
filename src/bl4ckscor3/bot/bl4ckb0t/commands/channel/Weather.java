@@ -80,10 +80,4 @@ public class Weather extends BaseCommand<MessageEvent<Bot>>
 	{
 		return L10N.getString("w.notes", event);
 	}
-
-	@Override
-	public int getPermissionLevel()
-	{
-		return 1;
-	}
 }

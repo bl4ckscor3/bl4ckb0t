@@ -43,10 +43,4 @@ public class YouTube extends BaseCommand<MessageEvent<Bot>>
 	{
 		return L10N.getString("yt.notes", event);
 	}
-	
-	@Override
-	public int getPermissionLevel()
-	{
-		return 1;
-	}
 }

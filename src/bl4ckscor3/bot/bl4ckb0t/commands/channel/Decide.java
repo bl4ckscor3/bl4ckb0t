@@ -53,10 +53,4 @@ public class Decide extends BaseCommand<MessageEvent<Bot>>
 	{
 		return L10N.getString("decide.notes", event);
 	}
-	
-	@Override
-	public int getPermissionLevel()
-	{
-		return 1;
-	}
 }

@@ -95,10 +95,4 @@ public class RandomLetter extends BaseCommand<MessageEvent<Bot>>
 	{
 		return L10N.getString("ln.notes", event);
 	}
-	
-	@Override
-	public int getPermissionLevel()
-	{
-		return 1;
-	}
 }

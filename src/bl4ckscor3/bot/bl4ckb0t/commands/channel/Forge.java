@@ -111,10 +111,4 @@ public class Forge extends BaseCommand<MessageEvent<Bot>>
 	{
 		return null;
 	}
-
-	@Override
-	public int getPermissionLevel()
-	{
-		return 1;
-	}
 }

@@ -73,10 +73,4 @@ public class Changelog extends BaseCommand<MessageEvent<Bot>>
 	{
 		return L10N.getString("changelog.notes", event);
 	}
-
-	@Override
-	public int getPermissionLevel()
-	{
-		return 1;
-	}
 }

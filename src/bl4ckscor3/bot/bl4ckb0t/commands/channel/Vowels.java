@@ -58,10 +58,4 @@ public class Vowels extends BaseCommand<MessageEvent<Bot>>
 	{
 		return L10N.getString("vowels.notes", event);
 	}
-	
-	@Override
-	public int getPermissionLevel()
-	{
-		return 1;
-	}
 }

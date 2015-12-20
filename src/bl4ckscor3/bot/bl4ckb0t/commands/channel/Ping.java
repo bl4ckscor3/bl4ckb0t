@@ -36,10 +36,4 @@ public class Ping extends BaseCommand<MessageEvent<Bot>>
 	{
 		return L10N.getString("ping.notes", event);
 	}
-
-	@Override
-	public int getPermissionLevel()
-	{
-		return 1;
-	}
 }

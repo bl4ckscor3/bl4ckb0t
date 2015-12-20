@@ -51,10 +51,4 @@ public class Select extends BaseCommand<MessageEvent<Bot>>
 	{
 		return L10N.getString("select.notes", event);
 	}
-	
-	@Override
-	public int getPermissionLevel()
-	{
-		return 1;
-	}
 }
