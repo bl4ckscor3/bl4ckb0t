@@ -27,7 +27,7 @@ public class Weather implements ICommand<MessageEvent<Bot>>
 			if(s.equals("-w")) //if it's the first argument, don't add it to the city string
 				continue;
 
-			city += s;
+			city += s + " ";
 		}
 		
 		if(city.equals(""))
@@ -35,7 +35,7 @@ public class Weather implements ICommand<MessageEvent<Bot>>
 		
 		try
 		{
-			doc = Jsoup.connect("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&mode=html&APPID=" + Passwords.WEATHERAPIKEY.getPassword()).get();
+			doc = Jsoup.connect("http://api.openweathermap.org/data/2.5/weather?q=" + city.trim() + "&mode=html&APPID=" + Passwords.WEATHERAPIKEY.getPassword()).get();
 
 			Utilities.chanMsg(event, Colors.BOLD + "** " + Colors.BOLD + doc.select("body > div:nth-child(1)").text() +
 					Colors.BOLD + " ** " + L10N.getString("w.temperature", event) + ": " + Colors.BOLD + getTemperature(doc) +
@@ -52,9 +52,9 @@ public class Weather implements ICommand<MessageEvent<Bot>>
 
 	private String getTemperature(Document doc)
 	{
-		double chicken = Double.parseDouble(doc.select("body > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1)").text().replace("°", ""));
+		double celsius = Double.parseDouble(doc.select("body > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1)").text().replace("°", ""));
 
-		return chicken + "°C | " + (chicken * (9D / 5D) + 32D) + "°F | " + (chicken + 273.15D) + "K";
+		return celsius + "°C | " + (celsius * (9D / 5D) + 32D) + "°F | " + (celsius + 273.15D) + "K";
 	}
 
 	@Override
