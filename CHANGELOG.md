@@ -1,5 +1,8 @@
 #Changelog
 ---
+####4.5.2
+- Fixed weather command
+
 ####4.5.1
 - Fixed language not being set when joining channels
 - Fixed channel states not working in some situations

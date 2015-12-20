@@ -1,10 +1,9 @@
 package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
@@ -16,86 +15,48 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Weather implements ICommand<MessageEvent<Bot>>
 {
-	private boolean error = false;
-
 	@Override
 	public void exe(MessageEvent<Bot> event) throws IOException, IncorrectCommandExecutionException
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
-		String[] data = new String[19];//1 = name | 3 = country | 6 = temperature | 7 = humidity | 8 = pressure | 10 = wind speed | 11 = wind direction | 13 = clouds
-		BufferedReader reader;
+		Document doc;
 		String city = "";
-		
+
 		for(String s : args)
 		{
 			if(s.equals("-w")) //if it's the first argument, don't add it to the city string
 				continue;
-			
+
 			city += s;
 		}
-
-		reader = new BufferedReader(new InputStreamReader(new URL("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&mode=xml&APPID=" + Passwords.WEATHERAPIKEY.getPassword()).openStream()));
 		
-		if(reader.readLine().equalsIgnoreCase("{\"message\":\"Error: Not found city\",\"cod\":\"404\"}"))
-			Utilities.chanMsg(event, L10N.getString("w.cityNotFound", event) + " \"" + city + "\" :/");
-		else
+		if(city.equals(""))
+			throw new IncorrectCommandExecutionException(getAlias());
+		
+		try
 		{
-			for(int i = 0; i < 19; i++)
-			{
-				data[i] = reader.readLine();
-			}
+			doc = Jsoup.connect("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&mode=html&APPID=" + Passwords.WEATHERAPIKEY.getPassword()).get();
 
-			filter(data);
-
-			if(!error)
-				Utilities.chanMsg(event, Colors.BOLD + "** " + Colors.BOLD + data[1] + ", " + data[3] +
-						Colors.BOLD + " ** " + L10N.getString("w.conditions", event) + ": " + Colors.BOLD + data[13] +
-						Colors.BOLD + " ** " + L10N.getString("w.temperature", event) + ": " + Colors.BOLD + data[6] +
-						Colors.BOLD + " ** " + L10N.getString("w.humidity", event) + ": " + Colors.BOLD + data[7] +
-						Colors.BOLD + " ** " + L10N.getString("w.pressure", event) + ": " + Colors.BOLD + data[8] +
-						Colors.BOLD + " ** " + L10N.getString("w.wind.1", event) + ": " + Colors.BOLD + data[11] + ", " + L10N.getString("w.wind.2", event) + " " + data[10] +
-						Colors.BOLD + " ** " + L10N.getString("w.credit", event) + data[1] + "/ **");
-			else
-				Utilities.chanMsg(event, "** " + data[1] + ", " + data[3] + " ** " + L10N.getString("w.conditions", event) + ": " + data[13] +
-						" ** " + L10N.getString("w.temperature", event) + ": " + data[6] +
-						" ** " + L10N.getString("w.humidity", event) + ": " + data[7] +
-						" ** " + L10N.getString("w.pressure", event) + ": " + data[8] +
-						" ** " + L10N.getString("w.wind.1", event) + ": " + data[11] +
-						" ** " + L10N.getString("w.credit", event) + data[1] + "/ **");
-			
-			reader.close();
+			Utilities.chanMsg(event, Colors.BOLD + "** " + Colors.BOLD + doc.select("body > div:nth-child(1)").text() +
+					Colors.BOLD + " ** " + L10N.getString("w.temperature", event) + ": " + Colors.BOLD + getTemperature(doc) +
+					Colors.BOLD + " ** " + L10N.getString("w.humidity", event) + ": " + Colors.BOLD + doc.select("body > div:nth-child(2) > div:nth-child(3)").text().split(" ")[1] +
+					Colors.BOLD + " ** " + L10N.getString("w.pressure", event) + ": " + Colors.BOLD + doc.select("body > div:nth-child(2) > div:nth-child(5)").text().split(" ")[1] +
+					Colors.BOLD + " ** " + L10N.getString("w.wind", event) + ": " + Colors.BOLD + doc.select("body > div:nth-child(2) > div:nth-child(4)").text().split(":")[1].trim() +
+					Colors.BOLD + " ** " + L10N.getString("w.credit", event) + doc.select("body > div:nth-child(1)").text() + "/ **");
+		}
+		catch(Exception e)
+		{
+			Utilities.chanMsg(event, L10N.getString("w.cityNotFound", event) + " \"" + city + "\" :/");
 		}
 	}
 
-	private void filter(String[] data)
+	private String getTemperature(Document doc)
 	{
-		String[] temp = data;
-		double kentucky;
-		double fried;
-		double chicken;
+		String chicken = doc.select("body > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1)").text().replace("°", "");
+		double kentucky = Double.parseDouble(chicken) + 273.15D;
+		double fried = Double.parseDouble(chicken) * (9D / 5D) + 32D;
 
-		data[1] = temp[1].split("\"")[3];
-		data[3] = temp[3].split(">")[1].split("<")[0];
-		kentucky = Double.parseDouble(temp[6].split("\"")[1]);
-		fried = Math.round((9D / 5D * (kentucky - 273.15D) + 32D) * 100D) / 100D;
-		chicken = Math.round((5D / 9D * (fried - 32D)) * 100D) / 100D;
-		data[6] = chicken + "°C | " + fried + "°F | " + kentucky + "K";	
-		data[7] = temp[7].split("\"")[1] + "%";
-		data[8] = temp[8].split("\"")[1] + "hPa";
-
-		try
-		{
-			data[10] = temp[10].split("\"")[1] + "m/s (" + temp[10].split("\"")[3] + ")";
-			data[11] = temp[11].split("\"")[5];
-		}
-		catch(ArrayIndexOutOfBoundsException e)
-		{
-			temp = data;
-			data[10] = temp[10].split("\"")[1] + "m/s";
-			error = true;
-		}
-
-		data[13] = temp[13].split("\"")[3];
+		return chicken + "°C | " + fried + "°F | " + kentucky + "K";
 	}
 
 	@Override
@@ -113,7 +74,7 @@ public class Weather implements ICommand<MessageEvent<Bot>>
 	@Override
 	public String[] getUsage(MessageEvent<Bot> event)
 	{
-		return new String[]{"-w <" + L10N.getString("w.help.city", event) + "> || " + L10N.getString("w.explanation", event)};
+		return new String[]{"-w " + L10N.getString("w.help.city", event) + " || " + L10N.getString("w.explanation", event)};
 	}
 
 	@Override
@@ -121,7 +82,7 @@ public class Weather implements ICommand<MessageEvent<Bot>>
 	{
 		return L10N.getString("w.notes", event);
 	}
-	
+
 	@Override
 	public int getPermissionLevel()
 	{
