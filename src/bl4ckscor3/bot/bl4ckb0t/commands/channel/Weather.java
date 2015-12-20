@@ -72,7 +72,7 @@ public class Weather extends BaseCommand<MessageEvent<Bot>>
 	@Override
 	public String[] getUsage(MessageEvent<Bot> event)
 	{
-		return new String[]{"-w " + L10N.getString("w.help.city", event) + " || " + L10N.getString("w.explanation", event)};
+		return new String[]{"-w <" + L10N.getString("w.help.city", event) + "> || " + L10N.getString("w.explanation", event)};
 	}
 
 	@Override
