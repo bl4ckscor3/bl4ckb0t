@@ -2,6 +2,7 @@
 ---
 ####4.5.2
 - Fixed weather command
+- Internal changes
 
 ####4.5.1
 - Fixed language not being set when joining channels
