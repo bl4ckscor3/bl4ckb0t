@@ -53,4 +53,10 @@ public class Decide implements ICommand<MessageEvent<Bot>>
 	{
 		return L10N.getString("decide.notes", event);
 	}
+	
+	@Override
+	public int getPermissionLevel()
+	{
+		return 1;
+	}
 }

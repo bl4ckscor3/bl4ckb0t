@@ -43,4 +43,10 @@ public class YouTube implements ICommand<MessageEvent<Bot>>
 	{
 		return L10N.getString("yt.notes", event);
 	}
+	
+	@Override
+	public int getPermissionLevel()
+	{
+		return 1;
+	}
 }

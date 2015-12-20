@@ -73,4 +73,10 @@ public class Changelog implements ICommand<MessageEvent<Bot>>
 	{
 		return L10N.getString("changelog.notes", event);
 	}
+
+	@Override
+	public int getPermissionLevel()
+	{
+		return 1;
+	}
 }

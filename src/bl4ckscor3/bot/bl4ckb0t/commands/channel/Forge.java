@@ -111,4 +111,10 @@ public class Forge implements ICommand<MessageEvent<Bot>>
 	{
 		return null;
 	}
+
+	@Override
+	public int getPermissionLevel()
+	{
+		return 1;
+	}
 }

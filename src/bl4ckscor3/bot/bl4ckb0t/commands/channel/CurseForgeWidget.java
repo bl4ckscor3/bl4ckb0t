@@ -51,4 +51,10 @@ public class CurseForgeWidget implements ICommand<MessageEvent<Bot>>
 	{
 		return null;
 	}
+
+	@Override
+	public int getPermissionLevel()
+	{
+		return 1;
+	}
 }

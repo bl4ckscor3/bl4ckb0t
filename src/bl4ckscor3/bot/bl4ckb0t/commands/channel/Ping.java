@@ -36,4 +36,10 @@ public class Ping implements ICommand<MessageEvent<Bot>>
 	{
 		return L10N.getString("ping.notes", event);
 	}
+
+	@Override
+	public int getPermissionLevel()
+	{
+		return 1;
+	}
 }

@@ -63,4 +63,10 @@ public class RandomNumber implements ICommand<MessageEvent<Bot>>
 	{
 		return L10N.getString("ln.notes", event);
 	}
+	
+	@Override
+	public int getPermissionLevel()
+	{
+		return 1;
+	}
 }
