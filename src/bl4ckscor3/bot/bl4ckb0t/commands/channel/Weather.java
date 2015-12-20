@@ -52,11 +52,9 @@ public class Weather implements ICommand<MessageEvent<Bot>>
 
 	private String getTemperature(Document doc)
 	{
-		String chicken = doc.select("body > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1)").text().replace("°", "");
-		double kentucky = Double.parseDouble(chicken) + 273.15D;
-		double fried = Double.parseDouble(chicken) * (9D / 5D) + 32D;
+		double chicken = Double.parseDouble(doc.select("body > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1)").text().replace("°", ""));
 
-		return chicken + "°C | " + fried + "°F | " + kentucky + "K";
+		return chicken + "°C | " + (chicken * (9D / 5D) + 32D) + "°F | " + (chicken + 273.15D) + "K";
 	}
 
 	@Override
