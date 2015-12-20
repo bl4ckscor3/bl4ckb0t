@@ -6,7 +6,7 @@ import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Trello implements ICommand<MessageEvent<Bot>>
+public class Trello extends BaseCommand<MessageEvent<Bot>>
 {
 	@Override
 	public void exe(MessageEvent<Bot> event)
@@ -36,11 +36,5 @@ public class Trello implements ICommand<MessageEvent<Bot>>
 	public String getNotes(MessageEvent<Bot> event)
 	{
 		return null;
-	}
-	
-	@Override
-	public int getPermissionLevel()
-	{
-		return 1;
 	}
 }

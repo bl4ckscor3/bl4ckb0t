@@ -13,7 +13,7 @@ import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Enable implements ICommand<MessageEvent<Bot>>
+public class Enable extends BaseCommand<MessageEvent<Bot>>
 {
 	@Override
 	public void exe(MessageEvent<Bot> event) throws MalformedURLException, IOException, IncorrectCommandExecutionException

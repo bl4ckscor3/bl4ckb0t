@@ -7,7 +7,7 @@ import bl4ckscor3.bot.bl4ckb0t.core.Core;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Version implements ICommand<MessageEvent<Bot>>
+public class Version extends BaseCommand<MessageEvent<Bot>>
 {
 	@Override
 	public void exe(MessageEvent<Bot> event)
@@ -37,11 +37,5 @@ public class Version implements ICommand<MessageEvent<Bot>>
 	public String getNotes(MessageEvent<Bot> event)
 	{
 		return null;
-	}
-	
-	@Override
-	public int getPermissionLevel()
-	{
-		return 1;
 	}
 }

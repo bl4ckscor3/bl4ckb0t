@@ -8,7 +8,7 @@ import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.misc.SpellingCorrection;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Caps implements ICommand<MessageEvent<Bot>>
+public class Caps extends BaseCommand<MessageEvent<Bot>>
 {
 	@Override
 	public void exe(MessageEvent<Bot> event) throws Exception
@@ -81,11 +81,5 @@ public class Caps implements ICommand<MessageEvent<Bot>>
 	public String getNotes(MessageEvent<Bot> event)
 	{
 		return null;
-	}
-
-	@Override
-	public int getPermissionLevel()
-	{
-		return 1;
 	}
 }

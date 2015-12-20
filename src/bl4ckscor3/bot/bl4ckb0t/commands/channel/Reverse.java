@@ -10,7 +10,7 @@ import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Reverse implements ICommand<MessageEvent<Bot>>
+public class Reverse extends BaseCommand<MessageEvent<Bot>>
 {
 	@Override
 	public void exe(MessageEvent<Bot> event)
@@ -60,11 +60,5 @@ public class Reverse implements ICommand<MessageEvent<Bot>>
 	public String getNotes(MessageEvent<Bot> event)
 	{
 		return null;
-	}
-	
-	@Override
-	public int getPermissionLevel()
-	{
-		return 1;
 	}
 }

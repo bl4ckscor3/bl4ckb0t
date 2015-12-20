@@ -7,7 +7,7 @@ import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Vowels implements ICommand<MessageEvent<Bot>>
+public class Vowels extends BaseCommand<MessageEvent<Bot>>
 {
 	@Override
 	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException
@@ -57,11 +57,5 @@ public class Vowels implements ICommand<MessageEvent<Bot>>
 	public String getNotes(MessageEvent<Bot> event)
 	{
 		return L10N.getString("vowels.notes", event);
-	}
-	
-	@Override
-	public int getPermissionLevel()
-	{
-		return 1;
 	}
 }

@@ -10,7 +10,7 @@ import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class ListChans implements ICommand<MessageEvent<Bot>>
+public class ListChans extends BaseCommand<MessageEvent<Bot>>
 {
 	public static int secretChannelAmount = 0;
 
@@ -78,11 +78,5 @@ public class ListChans implements ICommand<MessageEvent<Bot>>
 	public String getNotes(MessageEvent<Bot> event)
 	{
 		return null;
-	}
-	
-	@Override
-	public int getPermissionLevel()
-	{
-		return 1;
 	}
 }

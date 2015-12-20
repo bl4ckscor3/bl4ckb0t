@@ -7,7 +7,7 @@ import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Draw implements ICommand<MessageEvent<Bot>>
+public class Draw extends BaseCommand<MessageEvent<Bot>>
 {
 	private String[] drawings =
 		{
@@ -107,12 +107,6 @@ public class Draw implements ICommand<MessageEvent<Bot>>
 	public String getNotes(MessageEvent<Bot> event)
 	{
 		return null;
-	}
-
-	@Override
-	public int getPermissionLevel()
-	{
-		return 1;
 	}
 	
 	private void smiley(MessageEvent<Bot> event)

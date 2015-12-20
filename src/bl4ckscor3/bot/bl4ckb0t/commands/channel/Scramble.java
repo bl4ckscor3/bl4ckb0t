@@ -9,7 +9,7 @@ import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Scramble implements ICommand<MessageEvent<Bot>>
+public class Scramble extends BaseCommand<MessageEvent<Bot>>
 {
 	private Random r = new Random();
 	private String[][] actions = 
@@ -109,11 +109,5 @@ public class Scramble implements ICommand<MessageEvent<Bot>>
 	public String getNotes(MessageEvent<Bot> event)
 	{
 		return null;
-	}
-	
-	@Override
-	public int getPermissionLevel()
-	{
-		return 1;
 	}
 }

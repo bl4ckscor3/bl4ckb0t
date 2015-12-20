@@ -12,7 +12,7 @@ import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Forge implements ICommand<MessageEvent<Bot>>
+public class Forge extends BaseCommand<MessageEvent<Bot>>
 {
 	@Override
 	public void exe(MessageEvent<Bot> event) throws IOException, IncorrectCommandExecutionException
@@ -110,11 +110,5 @@ public class Forge implements ICommand<MessageEvent<Bot>>
 	public String getNotes(MessageEvent<Bot> event)
 	{
 		return null;
-	}
-
-	@Override
-	public int getPermissionLevel()
-	{
-		return 1;
 	}
 }

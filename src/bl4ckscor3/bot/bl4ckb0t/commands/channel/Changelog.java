@@ -12,7 +12,7 @@ import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 import bl4ckscor3.bot.bl4ckb0t.util.android.ArrayMap;
 
-public class Changelog implements ICommand<MessageEvent<Bot>>
+public class Changelog extends BaseCommand<MessageEvent<Bot>>
 {
 	public static final ArrayMap<String, ArrayList<String>> versions = new ArrayMap<String, ArrayList<String>>();
 
@@ -72,11 +72,5 @@ public class Changelog implements ICommand<MessageEvent<Bot>>
 	public String getNotes(MessageEvent<Bot> event)
 	{
 		return L10N.getString("changelog.notes", event);
-	}
-
-	@Override
-	public int getPermissionLevel()
-	{
-		return 1;
 	}
 }
