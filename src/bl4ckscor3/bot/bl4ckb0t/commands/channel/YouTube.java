@@ -7,7 +7,7 @@ import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class YouTube implements ICommand<MessageEvent<Bot>>
+public class YouTube extends BaseCommand<MessageEvent<Bot>>
 {
 	@Override
 	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException
