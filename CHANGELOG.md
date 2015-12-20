@@ -2,6 +2,8 @@
 ---
 ####4.5.2
 - Fixed weather command
+- Fixed Tweets with hashtags and mentions not showing correctly
+- Fixed pictures within Tweets not showing links in message on IRC
 - Internal changes
 
 ####4.5.1

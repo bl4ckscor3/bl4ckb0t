@@ -35,7 +35,7 @@ public class ShowTweet
 		}
 		
 		account = "@" + doc.select("a.account-group:nth-child(2) > span:nth-child(4) > b:nth-child(2)").get(0).toString().replace("<b>", "").replace("</b>", "");
-		tweet = doc.select(".TweetTextSize--28px").get(0).toString().split(">")[1].split("<")[0];
+		tweet = doc.select(".TweetTextSize--28px").get(0).text();
 		Utilities.chanMsg(event, Colors.BOLD + name + " (" + account + ") - " + Colors.BOLD + tweet);
 	}
 }
