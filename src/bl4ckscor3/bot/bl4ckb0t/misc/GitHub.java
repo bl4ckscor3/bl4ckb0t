@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
@@ -14,7 +16,7 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class GitHub
 {
-	public static void show(MessageEvent<Bot> event, String link) throws MalformedURLException, IOException
+	public static void showRepo(MessageEvent<Bot> event, String link) throws MalformedURLException, IOException
 	{
 		BufferedReader reader;
 		String name = "";
@@ -64,5 +66,24 @@ public class GitHub
 		
 		reader.close();
 		Utilities.chanMsg(event, Colors.BOLD + "[GitHub] " + Colors.BOLD + name + " - " + description + " | Main language: " + language + " | Latest push: " + latestPush + " | Watching: " + watching + " | Stargazers: " + stars + " | Forks: " + forks + " | Open issues: " + issues);
+	}
+
+	public static void showCommit(MessageEvent<Bot> event, String link) throws IOException
+	{
+		String text;
+		String changed;
+		String additions;
+		String deletions;
+		
+		if(link.startsWith("www."))
+			link = "http://" + link;
+		
+		text = Jsoup.connect(link).get().select(".toc-diff-stats").text();
+		changed = text.split(" ")[1];
+		additions = text.split(" ")[5];
+		deletions = text.split(" ")[8];
+		Utilities.chanMsg(event, Colors.BOLD + "** " + Colors.NORMAL + Colors.PURPLE + "Changed files: " + changed + Colors.NORMAL + Colors.BOLD + " ** " + Colors.NORMAL +
+				Colors.DARK_GREEN + "Additions: " + additions + Colors.NORMAL + Colors.BOLD + " ** " + Colors.NORMAL +
+				Colors.RED + "Deletions: " + deletions + Colors.NORMAL + Colors.BOLD + " ** ");
 	}
 }

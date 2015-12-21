@@ -33,15 +33,20 @@ public class LinkTitle
 					Logging.info("Website blacklisted: " + s);
 					continue;
 				}
-				
+
 				if(s.contains("twitter"))
 				{
 					ShowTweet.show(event, s);
 					continue;
 				}
-				else if(s.contains("github"))
+				else if(s.contains("github.com"))
 				{
-					GitHub.show(event, s);
+					GitHub.showRepo(event, s);
+					continue;
+				}
+				else if(s.contains("git.io"))
+				{
+					GitHub.showCommit(event, s);
 					continue;
 				}
 				
