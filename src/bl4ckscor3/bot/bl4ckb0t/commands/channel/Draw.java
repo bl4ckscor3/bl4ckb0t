@@ -78,7 +78,7 @@ public class Draw extends BaseCommand<MessageEvent<Bot>>
 			}
 		}
 		else
-			throw new IncorrectCommandExecutionException(getAlias());
+			sendAvailableDrawings(event);
 	}
 
 	@Override

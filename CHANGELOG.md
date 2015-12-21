@@ -1,5 +1,8 @@
 #Changelog
 ---
+####4.5.3_WIP
+- Fixed -draw not showing available drawings
+
 ####4.5.2
 - Fixed weather command
 - Fixed Tweets with hashtags and mentions not showing correctly
