@@ -77,7 +77,7 @@ public class SpellingCorrection
 
 			if(message.endsWith("/"))
 				message += "/"; //a not displayed character to prevent a nullpointer exception
-
+			
 			split = message.split("/");
 
 			if(split.length == 3 && split[0].equals("s"))
@@ -85,8 +85,6 @@ public class SpellingCorrection
 				correctSpelling(event, split, false, event.getUser().getNick());
 				corrected = true;
 			}
-			else
-				return;
 		}
 	}
 	
@@ -102,10 +100,25 @@ public class SpellingCorrection
 
 			if(userToCorrect.equals(s.split("#")[0]))
 			{
-				String previousMessage = getLatestMessage(userToCorrect, storage.get(event.getChannel().getName()));
-				String newMessage = getLatestMessage(event.getUser().getNick(), storage.get(event.getChannel().getName())).replace(toReplace, replaceWith); //w/o italics
-				String correctedMessage = getLatestMessage(userToCorrect, storage.get(event.getChannel().getName())).replace(toReplace, "\u001d" + replaceWith + Colors.NORMAL); //w/ italics
+				String previousMessage;
+				String newMessage;
+				String correctedMessage;
 
+				System.out.println(toReplace);
+				
+				if(toReplace.equals(""))
+				{
+					previousMessage = getLatestMessage(userToCorrect, storage.get(event.getChannel().getName()));
+					newMessage = replaceWith;
+					correctedMessage = "\u001d" + replaceWith;
+				}
+				else
+				{
+					previousMessage = getLatestMessage(userToCorrect, storage.get(event.getChannel().getName()));
+					newMessage = getLatestMessage(event.getUser().getNick(), storage.get(event.getChannel().getName())).replace(toReplace, replaceWith); //w/o italics
+					correctedMessage = getLatestMessage(userToCorrect, storage.get(event.getChannel().getName())).replace(toReplace, "\u001d" + replaceWith + Colors.NORMAL); //w/ italics
+				}
+				
 				if(previousMessage.equals(correctedMessage))
 					return;
 

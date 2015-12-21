@@ -2,6 +2,7 @@
 ---
 ####4.5.3_WIP
 - Fixed -draw not showing available drawings
+- The whole message now gets replaced if the second part in s/x/y is null
 
 ####4.5.2
 - Fixed weather command
