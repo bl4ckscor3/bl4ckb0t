@@ -26,6 +26,8 @@ public class LinkTitle
 
 		for(String s : args)
 		{
+			s = Colors.removeFormattingAndColors(s);
+			
 			if(s.contains("www.") || s.contains("http://") || s.contains("https://"))
 			{
 				if(isWebsiteBlacklisted(s))
