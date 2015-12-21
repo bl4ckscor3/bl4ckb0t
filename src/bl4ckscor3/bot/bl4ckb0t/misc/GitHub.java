@@ -7,7 +7,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
@@ -70,20 +69,13 @@ public class GitHub
 
 	public static void showCommit(MessageEvent<Bot> event, String link) throws IOException
 	{
-		String text;
-		String changed;
-		String additions;
-		String deletions;
-		
 		if(link.startsWith("www."))
 			link = "http://" + link;
 		
-		text = Jsoup.connect(link).get().select(".toc-diff-stats").text();
-		changed = text.split(" ")[1];
-		additions = text.split(" ")[5];
-		deletions = text.split(" ")[8];
-		Utilities.chanMsg(event, Colors.BOLD + "** " + Colors.NORMAL + Colors.PURPLE + "Changed files: " + changed + Colors.NORMAL + Colors.BOLD + " ** " + Colors.NORMAL +
-				Colors.DARK_GREEN + "Additions: " + additions + Colors.NORMAL + Colors.BOLD + " ** " + Colors.NORMAL +
-				Colors.RED + "Deletions: " + deletions + Colors.NORMAL + Colors.BOLD + " ** ");
+		String text = Jsoup.connect(link).get().select(".toc-diff-stats").text();
+	
+		Utilities.chanMsg(event, Colors.BOLD + "** " + Colors.NORMAL + Colors.PURPLE + "Changed files: " + text.split(" ")[1] + Colors.NORMAL + Colors.BOLD + " ** " + Colors.NORMAL +
+				Colors.DARK_GREEN + "Additions: " + text.split(" ")[5] + Colors.NORMAL + Colors.BOLD + " ** " + Colors.NORMAL +
+				Colors.RED + "Deletions: " + text.split(" ")[8] + Colors.NORMAL + Colors.BOLD + " ** ");
 	}
 }

@@ -1,6 +1,7 @@
 #Changelog
 ---
-####4.5.3_WIP
+##4.6
+- Added change stats of a commit if a git.io link is posted
 - Fixed -draw not showing available drawings
 - The whole message now gets replaced if the second part in s/x/y is null
 
