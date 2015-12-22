@@ -1,5 +1,8 @@
 #Changelog
 ---
+####4.6.1
+- Error logging improvements
+
 ##4.6
 - Added change stats of a commit if a git.io link is posted
 - Fixed -draw not showing available drawings
