@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.ActionEvent;
@@ -43,6 +45,7 @@ public class Logging extends ListenerAdapter<Bot>
 	private static File f;
 	private static FileWriter writer;
 	private static boolean failed = true;
+	private static final List<String> buffer = new ArrayList<String>();
 
 	/**
 	 * Sets up the logger and saves the previous logging file into a seperate folder
@@ -58,20 +61,19 @@ public class Logging extends ListenerAdapter<Bot>
 			f = new File(jarPath + "/logs/" + botName + ".log");
 
 			if(!f.exists())
+			{
 				f.createNewFile();
+				buffer.add("\"" + botName + ".log\" does not exist, creating new file.");
+			}
 			else
 			{
 				File copy = new File(jarPath + "/logs/");
-				int amount = 0;
 
 				copy.mkdirs();
-
-				while((copy = new File(jarPath + "/logs/" + botName + " - " + Utilities.getCurrentDate().toString().replace(":", "-") + " - " + amount + ".log")).exists())
-				{
-					info("Trying to create new file, \"" + copy.getName() + "\" already exists.");
-					amount++;
-				}
-
+				copy = new File(jarPath + "/logs/" + botName + " - " + Utilities.getCurrentDate().toString().replace(":", "-") + ".log");
+				buffer.add("Created new file \"" + copy.getName() + "\"");
+				buffer.add("Starting copy process...");
+				
 				FileWriter copyWriter = new FileWriter(copy);
 				BufferedReader reader = new BufferedReader(new FileReader(f));
 				String line = "";
@@ -84,6 +86,7 @@ public class Logging extends ListenerAdapter<Bot>
 				
 				copyWriter.close();
 				reader.close();
+				buffer.add("Successfully copied old logging file.");
 			}
 
 			writer = new FileWriter(f);
@@ -128,6 +131,20 @@ public class Logging extends ListenerAdapter<Bot>
 		log("[SEVERE] " + line);
 	}
 
+	/**
+	 * Logs a StackTrace
+	 * @param t The Throwable of which the StackTrace gets logged
+	 */
+	public static void stackTrace(Throwable t)
+	{
+		raw(t.toString());
+		
+		for(StackTraceElement e : t.getStackTrace())
+		{
+			raw("	at " + e.toString());
+		}
+	}
+	
 	/**
 	 * Logs a warning message
 	 * @param line The message to log
@@ -215,6 +232,13 @@ public class Logging extends ListenerAdapter<Bot>
 	private static void start()
 	{
 		raw("Started logging on " + Utilities.getCurrentDate().toString());
+		
+		for(String s : buffer)
+		{
+			info(s);
+		}
+		
+		buffer.clear();
 	}
 
 	/**
@@ -338,5 +362,27 @@ public class Logging extends ListenerAdapter<Bot>
 	public void onDisconnect(DisconnectEvent<Bot> event) throws Exception
 	{
 		severe("Disconnected from server!");
+	}
+	
+	/***************************Getters***************************/
+	
+	public static boolean isEnabled()
+	{
+		return enabled;
+	}
+	
+	public static File getFile()
+	{
+		return f;
+	}
+	
+	public static FileWriter getWriter()
+	{
+		return writer;
+	}
+	
+	public static boolean hasFailed()
+	{
+		return failed;
 	}
 }

@@ -24,10 +24,7 @@
  */
 package org.slf4j.impl;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.io.PrintStream;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 import java.text.DateFormat;
@@ -44,7 +41,7 @@ import org.slf4j.spi.LocationAwareLogger;
 
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 
-//file modified by bl4ckscor3 to only log errors and incorporate bl4ckb0t's own logging system + suppress a useless warning by pircbotx
+//file modified by bl4ckscor3 to use bl4ckb0t's own logging system + suppress a useless warning by pircbotx
 
 /**
  * <p>Simple implementation of {@link Logger} that sends all enabled log messages,
@@ -139,7 +136,6 @@ public class SimpleLogger extends MarkerIgnoringBase {
 	private static boolean SHOW_LOG_NAME = true;
 	private static boolean SHOW_SHORT_LOG_NAME = false;
 	private static String LOG_FILE = "System.err";
-	private static PrintStream TARGET_STREAM = null;
 	private static boolean LEVEL_IN_BRACKETS = false;
 	private static String WARN_LEVEL_STRING = "WARN";
 
@@ -198,30 +194,12 @@ public class SimpleLogger extends MarkerIgnoringBase {
 		WARN_LEVEL_STRING = getStringProperty(WARN_LEVEL_STRING_KEY, WARN_LEVEL_STRING);
 
 		LOG_FILE = getStringProperty(LOG_FILE_KEY, LOG_FILE);
-		TARGET_STREAM = computeTargetStream(LOG_FILE);
 
 		if (DATE_TIME_FORMAT_STR != null) {
 			try {
 				DATE_FORMATTER = new SimpleDateFormat(DATE_TIME_FORMAT_STR);
 			} catch (IllegalArgumentException e) {
 				Util.report("Bad date format in " + CONFIGURATION_FILE + "; will output relative time", e);
-			}
-		}
-	}
-
-	private static PrintStream computeTargetStream(String logFile) {
-		if ("System.err".equalsIgnoreCase(logFile))
-			return System.err;
-		else if ("System.out".equalsIgnoreCase(logFile)) {
-			return System.out;
-		} else {
-			try {
-				FileOutputStream fos = new FileOutputStream(logFile);
-				PrintStream printStream = new PrintStream(fos);
-				return printStream;
-			} catch (FileNotFoundException e) {
-				Util.report("Could not open [" + logFile + "]. Defaulting to System.err", e);
-				return System.err;
 			}
 		}
 	}
@@ -344,18 +322,13 @@ public class SimpleLogger extends MarkerIgnoringBase {
 
 		if(buf.toString().equals("[main] ERROR org.pircbotx.PircBotX - Exception encountered when parsing line")) //to prevent useless npes from pircbotx' stupidly overnumbered whois requests
 			return;
-		
-		write(buf, t);
-		Logging.severe(buf.toString()); //bl4ckb0t's logging to file
 
-	}
+		Logging.severe(buf.toString().split("ERROR ")[1]); //bl4ckb0t's logging to file
 
-	void write(StringBuilder buf, Throwable t) {
-		TARGET_STREAM.println(buf.toString());
 		if (t != null) {
-			t.printStackTrace(TARGET_STREAM);
+			Logging.stackTrace(t);
 		}
-		TARGET_STREAM.flush();
+
 	}
 
 	private String getFormattedDate() {
