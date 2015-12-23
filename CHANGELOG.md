@@ -2,7 +2,7 @@
 ---
 ####4.6.2
 - Stacktraces now get logged
-- More logging at while starting the bot
+- More logging while starting the bot
 
 ####4.6.1
 - Error logging improvements
