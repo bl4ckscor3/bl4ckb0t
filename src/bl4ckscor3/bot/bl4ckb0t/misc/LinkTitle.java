@@ -73,9 +73,9 @@ public class LinkTitle
 				}
 
 				if(title == null || title == "null" || title == "")
-					Utilities.chanMsg(event, L10N.getString("linkTitle.notFound", event) + " " + s);
+					Utilities.chanMsg(event, L10N.getString("linkTitle.notFound", event).replace("#link", s));
 				else
-					Utilities.chanMsg(event, L10N.getString("linkTitle.available", event) + " " + s + " - " + Colors.BOLD + title);
+					Utilities.chanMsg(event, L10N.getString("linkTitle.available", event) .replace("#link", s).replace("#title", title));
 			}
 		}
 	}
@@ -97,6 +97,7 @@ public class LinkTitle
 				return true;
 		}
 		
+		reader.close();
 		return false;
 	}
 }

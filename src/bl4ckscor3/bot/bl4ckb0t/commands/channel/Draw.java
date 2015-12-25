@@ -11,18 +11,18 @@ public class Draw extends BaseCommand<MessageEvent<Bot>>
 {
 	private String[] drawings =
 		{
-			"mario",
-			"batman",
-			"bullshit",
-			"bunny",
-			"cat",
-			"chick",
-			"fly",
-			"invaders",
-			"megaman",
-			"phone",
-			"superman",
-			"stormtrooper",
+				"mario",
+				"batman",
+				"bullshit",
+				"bunny",
+				"cat",
+				"chick",
+				"fly",
+				"invaders",
+				"megaman",
+				"phone",
+				"superman",
+				"stormtrooper",
 		};
 
 	@Override
@@ -96,19 +96,12 @@ public class Draw extends BaseCommand<MessageEvent<Bot>>
 	@Override
 	public String[] getUsage(MessageEvent<Bot> event)
 	{
-		return new String[]
-				{
+		return new String[]{
 				"-draw || " + L10N.getString("draw.explanation.1", event),
 				"-draw <" + L10N.getString("draw.help.drawing", event) + "> || " + L10N.getString("draw.explanation.2", event)
-				};
+		};
 	}
 
-	@Override
-	public String getNotes(MessageEvent<Bot> event)
-	{
-		return null;
-	}
-	
 	private void smiley(MessageEvent<Bot> event)
 	{
 		Utilities.pm(event.getUser().getNick(), "1,1          1,1          1,1          ");

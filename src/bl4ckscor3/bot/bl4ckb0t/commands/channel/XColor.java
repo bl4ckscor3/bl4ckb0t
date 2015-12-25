@@ -11,8 +11,7 @@ public class XColor extends BaseCommand<MessageEvent<Bot>>
 	@Override
 	public void exe(MessageEvent<Bot> event)
 	{
-		String[] colors =
-			{
+		String[] colors = {
 				"Grey",
 				"Black",
 				"Blue",
@@ -26,7 +25,7 @@ public class XColor extends BaseCommand<MessageEvent<Bot>>
 				"Dark Aqua",
 				"Lighter Aqua",
 				"Pink"
-			};
+		};
 
 		for(int i = 0; i < 14; i++)
 		{

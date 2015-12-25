@@ -12,15 +12,14 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 public class Scramble extends BaseCommand<MessageEvent<Bot>>
 {
 	private Random r = new Random();
-	private String[][] actions = 
-		{
+	private String[][] actions = {
 			new String[]{"R", "R'", "R2"}, 
 			new String[]{"L", "L'", "L2"}, 
 			new String[]{"D", "D'", "D2"}, 
 			new String[]{"U", "U'", "U2"}, 
 			new String[]{"F", "F'", "F2"}, 
 			new String[]{"B", "B'", "B2"}
-		};
+	};
 
 	@Override
 	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException
@@ -39,10 +38,10 @@ public class Scramble extends BaseCommand<MessageEvent<Bot>>
 			{
 				compareJumping(results, i);
 			}
-			
+
 			//comparing the last two ones (preventing an aioob exception in the for loop above)
 			compareDirectly(results, 18);
-			
+
 			for(String s : results)
 			{
 				result += s + " ";
@@ -63,7 +62,7 @@ public class Scramble extends BaseCommand<MessageEvent<Bot>>
 			compareDirectly(results, i); //revalidate in case it re-rolls to the same array value
 		}
 	}
-	
+
 	private void compareJumping(String[] results, int i)
 	{
 		//compare if both values are in the same array
@@ -72,7 +71,7 @@ public class Scramble extends BaseCommand<MessageEvent<Bot>>
 			reRoll(results, i + 2); //reroll if so
 			compareJumping(results, i); //revalidate in case it re-rolls to the same array value
 		}
-		
+
 		//make sure the above code didn't screw up
 		compareDirectly(results, i);
 	}
@@ -84,7 +83,7 @@ public class Scramble extends BaseCommand<MessageEvent<Bot>>
 
 	private void reRoll(String[] results, int i)
 	{
-		results[i] = (actions[r.nextInt(actions.length)][r.nextInt(3)]);
+		results[i] = actions[r.nextInt(actions.length)][r.nextInt(3)];
 	}
 
 	@Override
@@ -103,11 +102,5 @@ public class Scramble extends BaseCommand<MessageEvent<Bot>>
 	public String[] getUsage(MessageEvent<Bot> event)
 	{
 		return new String[]{"-scramble || " + L10N.getString("scramble.explanation", event)};
-	}
-
-	@Override
-	public String getNotes(MessageEvent<Bot> event)
-	{
-		return null;
 	}
 }

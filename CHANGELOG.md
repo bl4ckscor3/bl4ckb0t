@@ -1,5 +1,11 @@
 #Changelog
 ---
+####4.6.3
+- Fixed link at the end of the weather message not working
+- Improvements to localization to be more versatile
+- Made more messages localizable
+- Internal Changes
+
 ####4.6.2
 - Stacktraces now get logged
 - More logging while starting the bot

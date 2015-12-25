@@ -11,6 +11,7 @@ import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
+import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class GitHub
@@ -64,7 +65,13 @@ public class GitHub
 		}
 		
 		reader.close();
-		Utilities.chanMsg(event, Colors.BOLD + "[GitHub] " + Colors.BOLD + name + " - " + description + " | Main language: " + language + " | Latest push: " + latestPush + " | Watching: " + watching + " | Stargazers: " + stars + " | Forks: " + forks + " | Open issues: " + issues);
+		Utilities.chanMsg(event, Colors.BOLD + "[GitHub] " + Colors.BOLD + name + " - " + description + 
+				" | " + L10N.getString("github.mainLanguage", event).replace("#lang", language) + 
+				" | " + L10N.getString("github.latestPush", event).replace("#push", latestPush) + 
+				" | " + L10N.getString("github.watching", event).replace("#watching", watching) + 
+				" | " + L10N.getString("github.stargazers", event).replace("#stars", stars) + 
+				" | " + L10N.getString("github.forks", event).replace("#forks", forks) + 
+				" | " + L10N.getString("github.issues", event).replace("#issues", issues));
 	}
 
 	public static void showCommit(MessageEvent<Bot> event, String link) throws IOException
@@ -74,8 +81,8 @@ public class GitHub
 		
 		String text = Jsoup.connect(link).get().select(".toc-diff-stats").text();
 	
-		Utilities.chanMsg(event, Colors.BOLD + "** " + Colors.NORMAL + Colors.PURPLE + "Changed files: " + text.split(" ")[1] + Colors.NORMAL + Colors.BOLD + " ** " + Colors.NORMAL +
-				Colors.DARK_GREEN + "Additions: " + text.split(" ")[5] + Colors.NORMAL + Colors.BOLD + " ** " + Colors.NORMAL +
-				Colors.RED + "Deletions: " + text.split(" ")[8] + Colors.NORMAL + Colors.BOLD + " ** ");
+		Utilities.chanMsg(event, Colors.BOLD + "** " + Colors.NORMAL + Colors.PURPLE + L10N.getString("github.changedFiles", event).replace("#files", text.split(" ")[1]) + Colors.NORMAL + Colors.BOLD + " ** " + Colors.NORMAL +
+				Colors.DARK_GREEN + L10N.getString("github.additions", event).replace("#additions", text.split(" ")[5]) + Colors.NORMAL + Colors.BOLD + " ** " + Colors.NORMAL +
+				Colors.RED + L10N.getString("github.deletions", event).replace("#deletions", text.split(" ")[8]) + Colors.NORMAL + Colors.BOLD + " ** ");
 	}
 }

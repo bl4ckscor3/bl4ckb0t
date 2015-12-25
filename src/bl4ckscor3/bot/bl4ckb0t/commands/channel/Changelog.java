@@ -61,11 +61,10 @@ public class Changelog extends BaseCommand<MessageEvent<Bot>>
 	@Override
 	public String[] getUsage(MessageEvent<Bot> event)
 	{
-		return new String[]
-				{
-						"-changelog || " + L10N.getString("changelog.explanation.1", event),
-						"-changelog <" + L10N.getString("changelog.versionNumber", event) + "> || " + L10N.getString("changelog.explanation.2", event)
-				};
+		return new String[]{
+				"-changelog || " + L10N.getString("changelog.explanation.1", event),
+				"-changelog <" + L10N.getString("changelog.versionNumber", event) + "> || " + L10N.getString("changelog.explanation.2", event)
+		};
 	}
 
 	@Override

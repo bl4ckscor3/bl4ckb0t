@@ -37,10 +37,4 @@ public class Twitter extends BaseCommand<MessageEvent<Bot>>
 	{
 		return new String[]{"-tw <" + L10N.getString("tw.help.profile", event) + "> || " + L10N.getString("tw.explanation", event)};
 	}
-
-	@Override
-	public String getNotes(MessageEvent<Bot> event)
-	{
-		return null;
-	}
 }

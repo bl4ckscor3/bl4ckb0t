@@ -14,17 +14,17 @@ public class Language extends BaseCommand<MessageEvent<Bot>>
 {
 	private String[] availableLanguages =
 		{
-			"English",
-			"German"
+				"English",
+				"German"
 		};
-	
+
 	@Override
 	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException, IOException
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 
 		if(args.length == 1)
-			Utilities.chanMsg(event, L10N.getString("language.currentLanguage", event) + ": " + Utilities.capitalizeFirstLetter(L10N.chanLangs.get(event.getChannel().getName())));
+			Utilities.chanMsg(event, L10N.getString("language.currentLanguage", event).replace("#lang", Utilities.capitalizeFirstLetter(L10N.chanLangs.get(event.getChannel().getName()))));
 		else if(args.length == 2)
 		{
 			if(args[1].equalsIgnoreCase(availableLanguages[0]))
@@ -38,9 +38,9 @@ public class Language extends BaseCommand<MessageEvent<Bot>>
 				Logging.info("Changed localizitation in " + event.getChannel().getName() + " to " + availableLanguages[1] + ".");
 			}
 			else	
-				Utilities.chanMsg(event, L10N.getString("language.availableLanguages", event) + ": " + getAvailableLanguages());
+				Utilities.chanMsg(event, L10N.getString("language.availableLanguages", event).replace("#langs", getAvailableLanguages()));
 
-			Utilities.chanMsg(event, L10N.getString("language.success", event) + ": " + Utilities.capitalizeFirstLetter(L10N.chanLangs.get(event.getChannel().getName())));
+			Utilities.chanMsg(event, L10N.getString("language.success", event).replace("#lang", Utilities.capitalizeFirstLetter(L10N.chanLangs.get(event.getChannel().getName()))));
 		}
 		else
 			throw new IncorrectCommandExecutionException(getAlias());
@@ -54,7 +54,7 @@ public class Language extends BaseCommand<MessageEvent<Bot>>
 		{
 			langs += availableLanguages[i] + (i + 1 == availableLanguages.length ? "" : " | ");
 		}
-		
+
 		return langs;
 	}
 
@@ -73,19 +73,12 @@ public class Language extends BaseCommand<MessageEvent<Bot>>
 	@Override
 	public String[] getUsage(MessageEvent<Bot> event)
 	{
-		return new String[]
-				{
+		return new String[]{
 				"-language || " + L10N.getString("language.explanation.1", event),
 				"-language <" + L10N.getString("language.help.language", event) + "> || " + L10N.getString("language.explanation.2", event)
-				};
+		};
 	}
 
-	@Override
-	public String getNotes(MessageEvent<Bot> event)
-	{
-		return null;
-	}
-	
 	@Override
 	public int getPermissionLevel()
 	{

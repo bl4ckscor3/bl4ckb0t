@@ -37,10 +37,4 @@ public class Twitch extends BaseCommand<MessageEvent<Bot>>
 	{
 		return new String[]{"-tv <" + L10N.getString("tv.help.channel", event) + "> || " + L10N.getString("tv.explanation", event)};
 	}
-
-	@Override
-	public String getNotes(MessageEvent<Bot> event)
-	{
-		return null;
-	}
 }

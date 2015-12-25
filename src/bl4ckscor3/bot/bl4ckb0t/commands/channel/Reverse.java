@@ -50,15 +50,6 @@ public class Reverse extends BaseCommand<MessageEvent<Bot>>
 	@Override
 	public String[] getUsage(MessageEvent<Bot> event)
 	{
-		return new String[]
-				{
-				"-reverse <" + L10N.getString("cmd.help.sentence", event) + "> | " + L10N.getString("reverse.explanation", event)
-				};
-	}
-
-	@Override
-	public String getNotes(MessageEvent<Bot> event)
-	{
-		return null;
+		return new String[]{"-reverse <" + L10N.getString("cmd.help.sentence", event) + "> || " + L10N.getString("reverse.explanation", event)};
 	}
 }

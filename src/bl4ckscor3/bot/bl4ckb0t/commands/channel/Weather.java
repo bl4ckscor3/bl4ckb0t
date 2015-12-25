@@ -38,11 +38,11 @@ public class Weather extends BaseCommand<MessageEvent<Bot>>
 			doc = Jsoup.connect("http://api.openweathermap.org/data/2.5/weather?q=" + city.trim() + "&mode=html&APPID=" + Passwords.WEATHERAPIKEY.getPassword()).get();
 
 			Utilities.chanMsg(event, Colors.BOLD + "** " + Colors.BOLD + doc.select("body > div:nth-child(1)").text() +
-					Colors.BOLD + " ** " + L10N.getString("w.temperature", event) + ": " + Colors.BOLD + getTemperature(doc) +
-					Colors.BOLD + " ** " + L10N.getString("w.humidity", event) + ": " + Colors.BOLD + doc.select("body > div:nth-child(2) > div:nth-child(3)").text().split(" ")[1] +
-					Colors.BOLD + " ** " + L10N.getString("w.pressure", event) + ": " + Colors.BOLD + doc.select("body > div:nth-child(2) > div:nth-child(5)").text().split(" ")[1] +
-					Colors.BOLD + " ** " + L10N.getString("w.wind", event) + ": " + Colors.BOLD + doc.select("body > div:nth-child(2) > div:nth-child(4)").text().split(":")[1].trim() +
-					Colors.BOLD + " ** " + L10N.getString("w.credit", event) + doc.select("body > div:nth-child(1)").text() + "/ **");
+					Colors.BOLD + " ** " + L10N.getString("w.temperature", event).replace("#temperature", Colors.BOLD + getTemperature(doc)) +
+					Colors.BOLD + " ** " + L10N.getString("w.humidity", event).replace("#humidity", Colors.BOLD + doc.select("body > div:nth-child(2) > div:nth-child(3)").text().split(" ")[1]) +
+					Colors.BOLD + " ** " + L10N.getString("w.pressure", event).replace("#pressure", Colors.BOLD + doc.select("body > div:nth-child(2) > div:nth-child(5)").text().split(" ")[1]) +
+					Colors.BOLD + " ** " + L10N.getString("w.wind", event).replace("#wind", Colors.BOLD + doc.select("body > div:nth-child(2) > div:nth-child(4)").text().split(":")[1].trim()) +
+					Colors.BOLD + " ** " + L10N.getString("w.credit", event).replace("#link", doc.select("body > div:nth-child(3) > a:nth-child(1)").attr("href")) + " **");
 		}
 		catch(Exception e)
 		{

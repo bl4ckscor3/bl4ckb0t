@@ -45,10 +45,4 @@ public class CurseForgeWidget extends BaseCommand<MessageEvent<Bot>>
 	{
 		return new String[]{"-cfwidget <" + L10N.getString("cfwidget.link", event) + "> || " + L10N.getString("cfwidget.explanation", event)};
 	}
-
-	@Override
-	public String getNotes(MessageEvent<Bot> event)
-	{
-		return null;
-	}
 }

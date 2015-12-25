@@ -38,10 +38,7 @@ public class Update extends BaseCommand<MessageEvent<Bot>>
 	@Override
 	public String[] getUsage(MessageEvent<Bot> event)
 	{
-		return new String[]
-				{
-				"-update | " + L10N.getString("update.usage", event)
-				};
+		return new String[]{"-update || " + L10N.getString("update.usage", event)};
 	}
 
 	@Override

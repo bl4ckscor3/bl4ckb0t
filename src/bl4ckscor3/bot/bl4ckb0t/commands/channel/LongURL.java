@@ -32,7 +32,7 @@ public class LongURL extends BaseCommand<MessageEvent<Bot>>
 			temp = longUrl;
 			longUrl = "http:" + temp.split(":")[1].split("]")[0];
 			
-			Utilities.chanMsg(event, L10N.getString("longurl.output", event) + ": " + longUrl);
+			Utilities.chanMsg(event, L10N.getString("longurl.output", event).replace("#long", longUrl));
 		}
 		else
 			throw new IncorrectCommandExecutionException(getAlias());

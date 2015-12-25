@@ -28,13 +28,13 @@ public class ListChans extends BaseCommand<MessageEvent<Bot>>
 		}
 
 		result = result.substring(0, result.lastIndexOf(" | "));
-		
+
 		if(secretChannelAmount != 0)
 			result += " + " + secretChannelAmount + " " + L10N.getString("listchans.secret", event);
 
 		Utilities.chanMsg(event, L10N.getString("listchans.list", event) + ": " + result);
 		secretChannelAmount = 0;
-		
+
 		if(args.length == 2 && args[1].equalsIgnoreCase("show"))
 		{
 			if(Utilities.isValidUser(event))
@@ -67,16 +67,9 @@ public class ListChans extends BaseCommand<MessageEvent<Bot>>
 	@Override
 	public String[] getUsage(MessageEvent<Bot> event)
 	{
-		return new String[]
-				{
+		return new String[]{
 				"-listchans || " + L10N.getString("listchans.explanation.1", event),
 				"-listchans show || " + L10N.getString("listchans.explanation.2", event)
-				};
-	}
-
-	@Override
-	public String getNotes(MessageEvent<Bot> event)
-	{
-		return null;
+		};
 	}
 }

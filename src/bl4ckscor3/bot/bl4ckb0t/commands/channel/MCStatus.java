@@ -98,10 +98,4 @@ public class MCStatus extends BaseCommand<MessageEvent<Bot>>
 	{
 		return new String[]{"-mcstatus || " + L10N.getString("mcsatus.explanation", event)};
 	}
-
-	@Override
-	public String getNotes(MessageEvent<Bot> event)
-	{
-		return null;
-	}
 }

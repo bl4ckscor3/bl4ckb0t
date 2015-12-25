@@ -32,10 +32,4 @@ public class Version extends BaseCommand<MessageEvent<Bot>>
 	{
 		return new String[]{"-version || " + L10N.getString("version.explanation", event)};
 	}
-
-	@Override
-	public String getNotes(MessageEvent<Bot> event)
-	{
-		return null;
-	}
 }

@@ -72,14 +72,8 @@ public class Caps extends BaseCommand<MessageEvent<Bot>>
 	{
 		return new String[]{
 				"-caps || " + L10N.getString("caps.explanation.1", event),
-				"-caps <up> || " + L10N.getString("caps.explanation.2", event),
-				"-caps <low> || " + L10N.getString("caps.explanation.3", event)
+				"-caps up || " + L10N.getString("caps.explanation.2", event),
+				"-caps low || " + L10N.getString("caps.explanation.3", event)
 		};
-	}
-
-	@Override
-	public String getNotes(MessageEvent<Bot> event)
-	{
-		return null;
 	}
 }

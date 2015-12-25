@@ -96,19 +96,12 @@ public class Forge extends BaseCommand<MessageEvent<Bot>>
 	@Override
 	public String[] getUsage(MessageEvent<Bot> event)
 	{
-		return new String[]
-				{
-						L10N.getString("forge.explanation.1", event),
-						L10N.getString("forge.explanation.2", event),
-						L10N.getString("forge.explanation.3", event),
-						L10N.getString("forge.explanation.4", event),
-						L10N.getString("forge.explanation.5", event),
-				};
-	}
-
-	@Override
-	public String getNotes(MessageEvent<Bot> event)
-	{
-		return null;
+		return new String[]{
+				L10N.getString("forge.explanation.1", event),
+				L10N.getString("forge.explanation.2", event),
+				L10N.getString("forge.explanation.3", event),
+				L10N.getString("forge.explanation.4", event),
+				L10N.getString("forge.explanation.5", event),
+		};
 	}
 }

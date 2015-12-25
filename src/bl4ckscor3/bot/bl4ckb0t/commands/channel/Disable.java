@@ -67,13 +67,16 @@ public class Disable extends BaseCommand<MessageEvent<Bot>>
 	@Override
 	public String getSyntax(MessageEvent<Bot> event)
 	{
-		return "-disable [channel]";
+		return "-disable [" + L10N.getString("cmd.help.channel", event) + "]";
 	}
 
 	@Override
 	public String[] getUsage(MessageEvent<Bot> event)
 	{
-		return new String[]{"-disable || " + L10N.getString("disable.explanation", event)};
+		return new String[]{
+				"-disable || " + L10N.getString("disable.explanation.1", event),
+				"-disable <" + L10N.getString("cmd.help.channel", event) + "> || " + L10N.getString("disable.explanation.2", event)
+		};
 	}
 
 	@Override

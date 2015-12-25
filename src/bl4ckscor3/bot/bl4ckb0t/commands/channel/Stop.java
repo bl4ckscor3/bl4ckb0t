@@ -58,11 +58,10 @@ public class Stop extends BaseCommand<MessageEvent<Bot>>
 	@Override
 	public String[] getUsage(MessageEvent<Bot> event)
 	{
-		return new String[]
-				{
+		return new String[]{
 				"-stop yes || " + L10N.getString("stop.explanation.1", event),
 				"-stop no || " + L10N.getString("stop.explanation.2", event)
-				};
+		};
 	}
 
 	@Override

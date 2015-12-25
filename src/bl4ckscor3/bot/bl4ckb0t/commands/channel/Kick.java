@@ -24,7 +24,7 @@ public class Kick extends BaseCommand<MessageEvent<Bot>>
 
 			if(!(Utilities.isValidUser(event) || Utilities.isAllowedUser(event)))
 			{
-				Utilities.chanMsg(event, "Sorry, " + event.getUser().getNick() + ", " + L10N.getString("kick.notAuthorized", event));
+				Utilities.chanMsg(event, L10N.getString("kick.notAuthorized", event).replace("#user", event.getUser().getNick()));
 				Logging.info("Denying command access to " + event.getUser().getNick() + "...");
 				return;
 			}

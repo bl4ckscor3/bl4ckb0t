@@ -46,7 +46,7 @@ public class Help extends BaseCommand<MessageEvent<Bot>>
 			}
 		}
 		
-		Logging.info("Set up help menu...");
+		Logging.info("Finished setting up help menu...");
 	}
 
 	@Override
@@ -130,11 +130,5 @@ public class Help extends BaseCommand<MessageEvent<Bot>>
 				"-help || " + L10N.getString("help.explanation.1", event),
 				"-help <" + L10N.getString("help.help.command", event) + "> || " + L10N.getString("help.explanation.2", event)
 				};
-	}
-
-	@Override
-	public String getNotes(MessageEvent<Bot> event)
-	{
-		return null;
 	}
 }

@@ -33,7 +33,10 @@ public abstract class BaseCommand<E extends Event<Bot>>
 	 * Anything special the user needs to know about the command. Gets shown in the help menu.
 	 * @param event The MessageEvent which contains the channel the help command was used in
 	 */
-	public abstract String getNotes(MessageEvent<Bot> event);
+	public String getNotes(MessageEvent<Bot> event)
+	{
+		return null;
+	}
 	
 	/**
 	 * Which user can issue this command? 3 = Only valid users | 2 = Valid and allowed users | 1 = Everybody

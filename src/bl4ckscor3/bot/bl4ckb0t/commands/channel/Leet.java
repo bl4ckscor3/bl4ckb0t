@@ -56,10 +56,4 @@ public class Leet extends BaseCommand<MessageEvent<Bot>>
 	{
 		return new String[]{"-leet <" + L10N.getString("cmd.help.sentence", event) + "> || " + L10N.getString("leet.explanation", event)};
 	}
-
-	@Override
-	public String getNotes(MessageEvent<Bot> event)
-	{
-		return null;
-	}
 }

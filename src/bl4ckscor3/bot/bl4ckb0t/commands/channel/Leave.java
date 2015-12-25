@@ -58,11 +58,10 @@ public class Leave extends BaseCommand<MessageEvent<Bot>>
 	@Override
 	public String[] getUsage(MessageEvent<Bot> event)
 	{
-		return new String[]
-				{
+		return new String[]{
 				"-leave || " + L10N.getString("leave.explanation.1", event),
 				"-leave <" + L10N.getString("cmd.help.channel", event) + "> || " + L10N.getString("leave.explanation.2", event)
-				};
+		};
 	}
 
 	@Override

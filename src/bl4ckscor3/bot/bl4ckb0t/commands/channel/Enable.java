@@ -67,13 +67,16 @@ public class Enable extends BaseCommand<MessageEvent<Bot>>
 	@Override
 	public String getSyntax(MessageEvent<Bot> event)
 	{
-		return "-enable";
+		return "-enable [" + L10N.getString("cmd.help.channel", event) + "]";
 	}
 
 	@Override
 	public String[] getUsage(MessageEvent<Bot> event)
 	{
-		return new String[]{"-enable || " + L10N.getString("enable.explanation", event)};
+		return new String[]{
+				"-enable || " + L10N.getString("enable.explanation.1", event),
+				"-enable <" + L10N.getString("cmd.help.channel", event) + ">|| " + L10N.getString("enable.explanation.2", event)
+				};
 	}
 
 	@Override

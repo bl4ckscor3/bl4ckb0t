@@ -31,10 +31,4 @@ public class Trello extends BaseCommand<MessageEvent<Bot>>
 	{
 		return new String[]{"-trello | " + L10N.getString("trello.explanation", event)};
 	}
-
-	@Override
-	public String getNotes(MessageEvent<Bot> event)
-	{
-		return null;
-	}
 }
