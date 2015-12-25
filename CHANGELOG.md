@@ -4,6 +4,7 @@
 - Fixed link at the end of the weather message not working
 - Improvements to localization to be more versatile
 - Made more messages localizable
+- GitHub commit stats for long normal commit links
 - Internal Changes
 
 ####4.6.2

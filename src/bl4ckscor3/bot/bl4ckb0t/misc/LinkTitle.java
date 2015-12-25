@@ -41,16 +41,17 @@ public class LinkTitle
 					ShowTweet.show(event, s);
 					continue;
 				}
+				else if(s.contains("git.io") || (s.contains("github.com") && s.contains("commit")))
+				{
+					GitHub.showCommit(event, s);
+					continue;
+				}
 				else if(s.contains("github.com"))
 				{
 					GitHub.showRepo(event, s);
 					continue;
 				}
-				else if(s.contains("git.io"))
-				{
-					GitHub.showCommit(event, s);
-					continue;
-				}
+				
 				
 				WebDriver driver = new HtmlUnitDriver();
 				String title = "";
