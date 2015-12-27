@@ -19,6 +19,8 @@ public class Calculate extends BaseCommand<MessageEvent<Bot>>
 	@Override
 	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException, IOException
 	{
+		//+ needs to be replaced because apparently the wolfram api interpretes it as a multiplication
+		//spaces need to be replaced to prevent the appid from not being read
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://api.wolframalpha.com/v2/query?input=" + event.getMessage().split("-calc ")[1].replace("+", "plus").replace(" ", "") + "&appid=" + Passwords.WOLFRAMAPIKEY.getPassword()).openStream()));
 		String line = "";
 		
@@ -45,7 +47,7 @@ public class Calculate extends BaseCommand<MessageEvent<Bot>>
 		
 		try
 		{
-			//skipping lines then saving the wanted line into the string
+			//skipping lines to the line with the result
 			while(!((line = reader.readLine()).contains("plaintext"))){}
 		}
 		catch(NullPointerException e)
