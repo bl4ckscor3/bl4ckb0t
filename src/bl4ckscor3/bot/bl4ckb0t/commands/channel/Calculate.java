@@ -21,18 +21,24 @@ public class Calculate extends BaseCommand<MessageEvent<Bot>>
 	{
 		//+ needs to be replaced because apparently the wolfram api interpretes it as a multiplication
 		//spaces need to be replaced to prevent the appid from not being read
-		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://api.wolframalpha.com/v2/query?input=" + event.getMessage().split("-calc ")[1].replace("+", "plus").replace(" ", "") + "&appid=" + Passwords.WOLFRAMAPIKEY.getPassword()).openStream()));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://api.wolframalpha.com/v2/query?input=" + event.getMessage().split("-calc ")[1].replace("+", "plus").replace(" ", "").replace(',', '.') + "&appid=" + Passwords.WOLFRAMAPIKEY.getPassword()).openStream()));
 		String line = "";
 		
 		try
 		{
 			//skipping lines until wanted line is reached
-			while(!((line = reader.readLine()).contains("title='Result'")))
+			while(!((line = reader.readLine()).contains("position='200'")))
 			{
 				if(line.contains("Appid missing"))
 				{
 					Utilities.chanMsg(event, "appid: " + L10N.getString("calc.fail", event));
 					Logging.severe("Appid of WolframAlpha is missing. Something went horribly wrong.");
+					return;
+				}
+				else if(line.contains("success='false'"))
+				{
+					Utilities.chanMsg(event, L10N.getString("calc.apiFail", event));
+					reader.close();
 					return;
 				}
 			}
