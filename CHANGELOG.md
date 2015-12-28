@@ -1,10 +1,14 @@
 #Changelog
 ---
+####4.7.2
+- Fixed SpellingCorrection L10N being incorrect
+
 ####4.7.1
 - Commas now get replaced with dots, to prevent the API from thinking multiple equations have been entered
 - Added feedback message when the API cannot find a result
 - Fixed division not working
-####4.7
+
+##4.7
 - Reimplemented -calc
 - Fixed link at the end of the weather message not working
 - Improvements to localization to be more versatile
