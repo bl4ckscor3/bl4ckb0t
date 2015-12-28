@@ -1,6 +1,6 @@
 #Changelog
 ---
-####4.7_WIP
+####4.7
 - Reimplemented -calc
 - Fixed link at the end of the weather message not working
 - Improvements to localization to be more versatile
