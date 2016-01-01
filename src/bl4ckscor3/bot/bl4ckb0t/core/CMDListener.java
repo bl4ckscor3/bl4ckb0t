@@ -4,6 +4,7 @@ import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.commands.channel.BaseCommand;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Calculate;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Caps;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.ChangeNick;
@@ -15,7 +16,7 @@ import bl4ckscor3.bot.bl4ckb0t.commands.channel.Draw;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Enable;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Forge;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Help;
-import bl4ckscor3.bot.bl4ckb0t.commands.channel.BaseCommand;
+import bl4ckscor3.bot.bl4ckb0t.commands.channel.Info;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Join;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Kick;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Language;
@@ -36,7 +37,6 @@ import bl4ckscor3.bot.bl4ckb0t.commands.channel.Trello;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Twitch;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Twitter;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Update;
-import bl4ckscor3.bot.bl4ckb0t.commands.channel.Version;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Vowels;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Weather;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.XColor;
@@ -78,6 +78,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 				new Draw(),
 				new Enable(),
 				new Help(),
+				new Info(),
 				new Join(),
 				new Kick(),
 				new Forge(),
@@ -99,7 +100,6 @@ public class CMDListener extends ListenerAdapter<Bot>
 				new Twitch(),
 				new Twitter(),
 				new Update(),
-				new Version(),
 				new Vowels(),
 				new Weather(),
 				new XColor(),

@@ -266,4 +266,14 @@ public class Utilities
 	{
 		return s.startsWith("1") || s.startsWith("2") || s.startsWith("3") || s.startsWith("4") || s.startsWith("5") || s.startsWith("6") || s.startsWith("7") || s.startsWith("8") || s.startsWith("9") || s.startsWith("0");
 	}
+
+	public static String millisToTimestamp(long millis)
+	{
+		long seconds = millis / 1000;
+		long minutes = seconds / 60;
+		long hours = minutes / 60;
+		long days = hours / 24;
+		
+		return String.format("%s:%s:%s:%s", days, hours, minutes, seconds);
+	}
 }

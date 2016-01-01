@@ -1,6 +1,8 @@
 #Changelog
 ---
-####4.7.3_WIP
+####4.8_WIP
+- Added -info
+- Removed -version
 - Fixed -help not getting triggered all the time
 
 ####4.7.2
