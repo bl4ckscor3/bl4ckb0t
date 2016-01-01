@@ -18,8 +18,8 @@ public class Kick extends BaseCommand<MessageEvent<Bot>>
 	@Override
 	public void exe(MessageEvent<Bot> event) throws IOException, IrcException, IncorrectCommandExecutionException 
 	{
-		if(event.getUser().isVerified())
-		{
+//		if(event.getUser().isVerified())
+//		{
 			String[] args = Utilities.toArgs(event.getMessage());
 
 			if(!(Utilities.isValidUser(event) || Utilities.isAllowedUser(event)))
@@ -62,12 +62,12 @@ public class Kick extends BaseCommand<MessageEvent<Bot>>
 			}
 			else
 				throw new IncorrectCommandExecutionException(getAlias());
-		}
-		else
-		{
-			Utilities.chanMsg(event, L10N.getString("kick.identify", event));
-			Logging.info("User not identified, denying command access to " + event.getUser().getNick() + "...");
-		}
+//		}
+//		else
+//		{
+//			Utilities.chanMsg(event, L10N.getString("kick.identify", event));
+//			Logging.info("User not identified, denying command access to " + event.getUser().getNick() + "...");
+//		}
 	}
 
 	@Override

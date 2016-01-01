@@ -1,5 +1,8 @@
 #Changelog
 ---
+####4.7.3_WIP
+- Fixed -help not getting triggered all the time
+
 ####4.7.2
 - Fixed SpellingCorrection L10N being incorrect
 

@@ -84,7 +84,7 @@ public class Utilities
 	 */
 	public static boolean isValidUser(MessageEvent<Bot> event) throws MalformedURLException, IOException
 	{
-		return event.getUser().isVerified() && Lists.getValidUsers().contains(event.getUser().getNick());
+		return /*event.getUser().isVerified() &&*/ Lists.getValidUsers().contains(event.getUser().getNick()); //commented out due to esper blocking whois requests
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class Utilities
 	 */
 	public static boolean isAllowedUser(MessageEvent<Bot> event) throws MalformedURLException, IOException
 	{
-		return event.getUser().isVerified() && Lists.getAllowedUsers().contains(event.getUser().getNick());
+		return /*event.getUser().isVerified() &&*/ Lists.getAllowedUsers().contains(event.getUser().getNick()); //commented out due to esper blocking whois requests
 	}
 	
 	/**
@@ -117,8 +117,8 @@ public class Utilities
 	 * @return Wether the user is a valid user
 	 */
 	public static boolean isValidUser(PrivateMessageEvent<Bot> event) throws MalformedURLException, IOException
-	{	
-		return event.getUser().isVerified() && Lists.getValidUsers().contains(event.getUser().getNick());
+	{
+		return /*event.getUser().isVerified() &&*/ Lists.getValidUsers().contains(event.getUser().getNick()); //commented out due to esper blocking whois requests
 	}
 
 	/*

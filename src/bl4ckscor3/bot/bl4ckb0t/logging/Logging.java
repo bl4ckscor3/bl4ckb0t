@@ -167,10 +167,10 @@ public class Logging extends ListenerAdapter<Bot>
 	 * Logs a debug message if the bot is in a development version (This is hardcoded for bl4ckb0t)
 	 * @param line The message to log
 	 */
-	public static void debug(String line)
+	public static void debug(Object line)
 	{
 		if(Core.bot.isDevelopment())
-			log("[DEBUG] " + line);
+			log("[DEBUG] " + line.toString());
 	}
 
 	/**
