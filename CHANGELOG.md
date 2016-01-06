@@ -6,6 +6,7 @@
 - Removed -version
 - Fixed -help not getting triggered all the time
 - Fixed GitHub language showing null, if non existed
+- Fixed logging message showing up when it shouldn't
 
 ####4.7.2
 - Fixed SpellingCorrection L10N being incorrect
