@@ -1,9 +1,11 @@
 #Changelog
 ---
-####4.8_WIP
+####4.8
 - Added -info
+- Added specific reply to a specific action
 - Removed -version
 - Fixed -help not getting triggered all the time
+- Fixed GitHub language showing null, if non existed
 
 ####4.7.2
 - Fixed SpellingCorrection L10N being incorrect

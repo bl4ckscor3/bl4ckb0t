@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 
 import org.pircbotx.hooks.ListenerAdapter;
+import org.pircbotx.hooks.events.ActionEvent;
 import org.pircbotx.hooks.events.ConnectEvent;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
@@ -104,5 +105,12 @@ public class MiscListener extends ListenerAdapter<Bot>
 		Logging.info("Joining channels...");
 		Core.bot.joinDefaults();
 		Logging.info("Bot successfully connected!");
+	}
+	
+	@Override
+	public void onAction(ActionEvent<Bot> event) throws Exception
+	{
+		if(event.getAction().equals("shrugs"))
+			Core.bot.sendCustomMessage(event.getChannel().getName(), "¯\\_(ツ)_/¯");
 	}
 }

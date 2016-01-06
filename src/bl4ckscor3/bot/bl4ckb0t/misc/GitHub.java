@@ -64,6 +64,9 @@ public class GitHub
 			}
 		}
 		
+		if(language.equals("null") || language.equals("") || language.equals(null))
+			language = L10N.getString("helpMenu.noNotes", event).replace(".", "");
+		
 		reader.close();
 		Utilities.chanMsg(event, Colors.BOLD + "[GitHub] " + Colors.BOLD + name + " - " + description + 
 				" | " + L10N.getString("github.mainLanguage", event).replace("#lang", language) + 
