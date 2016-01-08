@@ -1,6 +1,9 @@
 #Changelog
 ---
-####4.8
+####4.8.1
+- Fixed some -calc issues
+
+##4.8
 - Added -info
 - Added specific reply to a specific action
 - Removed -version
