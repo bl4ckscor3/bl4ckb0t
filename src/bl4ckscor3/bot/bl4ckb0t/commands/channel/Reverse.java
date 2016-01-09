@@ -36,9 +36,9 @@ public class Reverse extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getAlias()
+	public String[] getAliases()
 	{
-		return "reverse";
+		return new String[]{"reverse", "esrever"};
 	}
 
 	@Override

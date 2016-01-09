@@ -48,7 +48,7 @@ public class Caps extends BaseCommand<MessageEvent<Bot>>
 			else if(args[1].equals("low"))
 				builder.append(lastMessage.toLowerCase());
 			else
-				throw new IncorrectCommandExecutionException(getAlias());
+				throw new IncorrectCommandExecutionException(getMainAlias());
 		}
 
 		Utilities.chanMsg(event, builder.toString());
@@ -56,9 +56,9 @@ public class Caps extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getAlias()
+	public String[] getAliases()
 	{
-		return "caps";
+		return new String[]{"caps"};
 	}
 
 	@Override

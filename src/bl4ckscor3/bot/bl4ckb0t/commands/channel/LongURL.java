@@ -35,13 +35,13 @@ public class LongURL extends BaseCommand<MessageEvent<Bot>>
 			Utilities.chanMsg(event, L10N.getString("longurl.output", event).replace("#long", longUrl));
 		}
 		else
-			throw new IncorrectCommandExecutionException(getAlias());
+			throw new IncorrectCommandExecutionException(getMainAlias());
 	}
 
 	@Override
-	public String getAlias() 
+	public String[] getAliases()
 	{
-		return "longurl";
+		return new String[]{"longurl"};
 	}
 
 	@Override

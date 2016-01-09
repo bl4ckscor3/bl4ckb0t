@@ -12,9 +12,9 @@ public class Ping extends BaseCommand<MessageEvent<Bot>>
 	public void exe(MessageEvent<Bot> event) throws Exception{}
 
 	@Override
-	public String getAlias()
+	public String[] getAliases()
 	{
-		return "ping";
+		return new String[]{"ping", "pong"};
 	}
 
 	@Override

@@ -61,7 +61,7 @@ public class Kick extends BaseCommand<MessageEvent<Bot>>
 				}
 			}
 			else
-				throw new IncorrectCommandExecutionException(getAlias());
+				throw new IncorrectCommandExecutionException(getMainAlias());
 //		}
 //		else
 //		{
@@ -71,9 +71,9 @@ public class Kick extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getAlias()
+	public String[] getAliases()
 	{
-		return "kick";
+		return new String[]{"kick"};
 	}
 
 	@Override

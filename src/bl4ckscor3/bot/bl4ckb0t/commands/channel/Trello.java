@@ -15,9 +15,9 @@ public class Trello extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getAlias()
+	public String[] getAliases()
 	{
-		return "trello";
+		return new String[]{"trello", "tr"};
 	}
 
 	@Override

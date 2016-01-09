@@ -21,9 +21,9 @@ public class Info extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getAlias()
+	public String[] getAliases()
 	{
-		return "info";
+		return new String[]{"info", "about"};
 	}
 
 	@Override

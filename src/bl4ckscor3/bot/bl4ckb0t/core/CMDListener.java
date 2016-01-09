@@ -5,14 +5,13 @@ import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.BaseCommand;
-import bl4ckscor3.bot.bl4ckb0t.commands.channel.Calculate;
+import bl4ckscor3.bot.bl4ckb0t.commands.channel.Evaluate;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Caps;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.ChangeNick;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Changelog;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.CurseForgeWidget;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Decide;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Disable;
-import bl4ckscor3.bot.bl4ckb0t.commands.channel.Draw;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Enable;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Forge;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Help;
@@ -68,14 +67,13 @@ public class CMDListener extends ListenerAdapter<Bot>
 	public CMDListener()
 	{
 		commands.addEverything(
-				new Calculate(),
+				new Evaluate(),
 				new Caps(),
 				new CurseForgeWidget(),
 				new Changelog(),
 				new ChangeNick(),
 				new Decide(),
 				new Disable(),
-				new Draw(),
 				new Enable(),
 				new Help(),
 				new Info(),
@@ -135,7 +133,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 		{
 			for(BaseCommand<MessageEvent<Bot>> cmd : commands)
 			{
-				if(cmdName.equalsIgnoreCase(cmdPrefix + cmd.getAlias()))
+				if(cmd.isValidAlias(cmdName))
 				{
 					if(cmd.getPermissionLevel() > permissionLevel)
 					{
@@ -150,7 +148,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 					}
 					catch(IncorrectCommandExecutionException e)
 					{
-						Utilities.sendHelp(event.getUser().getNick(), cmd.getSyntax(event), cmd.getUsage(event), cmd.getNotes(event), event);
+						Utilities.sendHelp(event.getUser().getNick(), cmd.getAliases(), cmd.getMainAlias(), cmd.getSyntax(event), cmd.getUsage(event), cmd.getNotes(event), event);
 					}
 				}
 			}
@@ -159,7 +157,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 		{
 			for(BaseCommand<MessageEvent<Bot>> cmd : commands)
 			{
-				if((cmd instanceof Enable || cmd instanceof Disable) && event.getMessage().startsWith(cmdPrefix + cmd.getAlias()))
+				if((cmd instanceof Enable || cmd instanceof Disable) && cmd.isValidAlias(cmdName))
 				{
 					try
 					{
@@ -168,7 +166,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 					}
 					catch(IncorrectCommandExecutionException e)
 					{
-						Utilities.sendHelp(event.getUser().getNick(), cmd.getSyntax(event), cmd.getUsage(event), cmd.getNotes(event), event);
+						Utilities.sendHelp(event.getUser().getNick(), cmd.getAliases(), cmd.getMainAlias(), cmd.getSyntax(event), cmd.getUsage(event), cmd.getNotes(event), event);
 					}
 				}
 			}

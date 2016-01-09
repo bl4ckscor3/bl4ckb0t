@@ -35,13 +35,13 @@ public class Join extends BaseCommand<MessageEvent<Bot>>
 				Utilities.chanMsg(event, L10N.getString("join.alreadyJoined", event));
 		}
 		else
-			throw new IncorrectCommandExecutionException(getAlias());
+			throw new IncorrectCommandExecutionException(getMainAlias());
 	}
 
 	@Override
-	public String getAlias()
+	public String[] getAliases()
 	{
-		return "join";
+		return new String[]{"join"};
 	}
 
 	@Override

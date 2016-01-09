@@ -50,7 +50,7 @@ public class Scramble extends BaseCommand<MessageEvent<Bot>>
 			Utilities.chanMsg(event, result);
 		}
 		else
-			throw new IncorrectCommandExecutionException(getAlias());
+			throw new IncorrectCommandExecutionException(getMainAlias());
 	}
 
 	private void compareDirectly(String[] results, int i)
@@ -87,9 +87,9 @@ public class Scramble extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getAlias()
+	public String[] getAliases()
 	{
-		return "scramble";
+		return new String[]{"scramble", "erlbscma"};
 	}
 
 	@Override

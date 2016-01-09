@@ -36,7 +36,7 @@ public class Utilities
 		event.getChannel().send().message(msg);
 		Logging.message(event.getChannel().getName(), Core.bot.getNick(), msg);
 	}
-	
+
 	/**
 	 * Sends a notice to a user
 	 * @param event The event which holds the user to send the notice to
@@ -96,7 +96,7 @@ public class Utilities
 	{
 		return /*event.getUser().isVerified() &&*/ Lists.getAllowedUsers().contains(event.getUser().getNick()); //commented out due to esper blocking whois requests
 	}
-	
+
 	/**
 	 * Gets the permission level of the user
 	 * @param event The event which holds the user
@@ -106,7 +106,7 @@ public class Utilities
 	{
 		return isValidUser(event) ? 3 : (isAllowedUser(event) ? 2 : 1);
 	}
-	
+
 	/*
 	 * FROM HERE ONLY PRIVATE MSG EVENT
 	 */
@@ -128,23 +128,47 @@ public class Utilities
 	/**
 	 * Sends a help menu to a user
 	 * @param nick The user to receive the menu
+	 * @param aliases The aliases of the command
+	 * @param mainAlias The main alias of the command
 	 * @param syntax The syntax of the command which's help menu gets shown
 	 * @param usage The usage of the command
 	 * @param notes The notes of the command
 	 * @param event The MessageEvent with the channel the help command got sent in
 	 */
-	public static void sendHelp(String nick, String syntax, String[] usage, String notes, MessageEvent<Bot> event)
+	public static void sendHelp(String nick, String[] aliases, String mainAlias, String syntax, String[] usage, String notes, MessageEvent<Bot> event)
 	{
-		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "-----------" + L10N.getString("helpMenu.syntax", event) + "----------");
+		String formattedAliases = "";
+
+		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "-----------" + L10N.getString("helpMenu.syntax", event) + "-----------");
 		Utilities.pm(nick, syntax);
-		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------" + L10N.getString("helpMenu.usage", event) + "----------");
+		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "-----------" + L10N.getString("helpMenu.usage", event) + "-----------");
 
 		for(String s : usage)
 		{
 			Utilities.pm(nick, s);
 		}
 
-		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------" + L10N.getString("helpMenu.notes", event) + "----------");
+		if(aliases.length != 1)
+		{
+			Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "-----------" + L10N.getString("helpMenu.aliases", event) + "-----------");
+
+			for(int i = 0; i < aliases.length; i++)
+			{
+				if(aliases[i] == null || aliases[i].equals(mainAlias))
+					continue;
+
+				formattedAliases += "-" + aliases[i] + " | ";
+
+				if((i + 1) % 10 == 0)
+				{
+					Utilities.pm(nick, formattedAliases.trim());
+					formattedAliases = "";
+				}
+			}
+		}
+
+		Utilities.pm(nick, formattedAliases.substring(0, formattedAliases.lastIndexOf(" | ")));
+		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "-----------" + L10N.getString("helpMenu.notes", event) + "-----------");
 		Utilities.pm(nick, notes == null ? L10N.getString("helpMenu.noNotes", event) : notes);
 	}
 
@@ -235,7 +259,7 @@ public class Utilities
 	{
 		return s.substring(0, 1).toUpperCase() + s.substring(1);
 	}
-	
+
 	/**
 	 * Gets the current time from UNIX
 	 */
@@ -250,10 +274,10 @@ public class Utilities
 	public static String getJarLocation() throws URISyntaxException
 	{
 		String path = Core.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
-		
+
 		if(path.endsWith(".jar"))
 			path = path.substring(0, path.lastIndexOf("/"));
-		
+
 		return path;
 	}
 
@@ -273,7 +297,7 @@ public class Utilities
 		long minutes = seconds / 60;
 		long hours = minutes / 60;
 		long days = hours / 24;
-		
+
 		return String.format("%s:%s:%s:%s", days, hours, minutes, seconds);
 	}
 }

@@ -39,9 +39,9 @@ public class XColor extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getAlias() 
+	public String[] getAliases()
 	{
-		return "xcolor";
+		return new String[]{"xcolor", "xc"};
 	}
 
 	@Override

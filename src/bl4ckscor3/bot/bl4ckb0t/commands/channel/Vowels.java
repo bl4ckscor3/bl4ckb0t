@@ -32,13 +32,13 @@ public class Vowels extends BaseCommand<MessageEvent<Bot>>
 			Utilities.chanMsg(event, result);
 		}
 		else
-			throw new IncorrectCommandExecutionException(getAlias());
+			throw new IncorrectCommandExecutionException(getMainAlias());
 	}
 
 	@Override
-	public String getAlias()
+	public String[] getAliases()
 	{
-		return "vowels";
+		return new String[]{"vowels"};
 	}
 
 	@Override

@@ -1,7 +1,12 @@
 #Changelog
 ---
-####4.8.1
-- Fixed some -calc issues
+##4.9
+- Added command aliases. For a full list, please visit [ALIASES.md](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/ALIASES.md).
+- Added one more message to versatile translation
+- Removed -draw (unneccessary)
+- Removed unused class
+- Fixed some -eval (former -calc) issues
+- Fixed Action Event not ignoring users
 
 ##4.8
 - Added -info

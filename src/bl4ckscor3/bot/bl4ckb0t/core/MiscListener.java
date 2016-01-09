@@ -35,6 +35,11 @@ public class MiscListener extends ListenerAdapter<Bot>
 			Utilities.chanMsg(event, "Pong!");
 			return;
 		}
+		else if(event.getMessage().startsWith("-pong"))
+		{
+			Utilities.chanMsg(event, "Ping!");
+			return;
+		}
 
 		if(message.startsWith(CMDListener.cmdPrefix))
 			return;
@@ -110,6 +115,12 @@ public class MiscListener extends ListenerAdapter<Bot>
 	@Override
 	public void onAction(ActionEvent<Bot> event) throws Exception
 	{
+		if(Lists.getIgnoredUsers().contains(event.getUser().getNick()))
+		{
+			Logging.warn("Ignoring user " + event.getUser().getNick());
+			return;
+		}
+		
 		if(event.getAction().equals("shrugs"))
 			Core.bot.sendCustomMessage(event.getChannel().getName(), "¯\\_(ツ)_/¯");
 	}

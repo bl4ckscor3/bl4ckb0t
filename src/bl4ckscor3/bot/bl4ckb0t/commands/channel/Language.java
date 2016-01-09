@@ -43,7 +43,7 @@ public class Language extends BaseCommand<MessageEvent<Bot>>
 			Utilities.chanMsg(event, L10N.getString("language.success", event).replace("#lang", Utilities.capitalizeFirstLetter(L10N.chanLangs.get(event.getChannel().getName()))));
 		}
 		else
-			throw new IncorrectCommandExecutionException(getAlias());
+			throw new IncorrectCommandExecutionException(getMainAlias());
 	}
 
 	private String getAvailableLanguages()
@@ -59,9 +59,9 @@ public class Language extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getAlias()
+	public String[] getAliases()
 	{
-		return "language";
+		return new String[]{"language", "lang"};
 	}
 
 	@Override

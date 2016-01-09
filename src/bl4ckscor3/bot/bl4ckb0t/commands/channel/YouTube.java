@@ -17,13 +17,13 @@ public class YouTube extends BaseCommand<MessageEvent<Bot>>
 		if(args.length == 2)
 			Utilities.chanMsg(event, "http://www.youtube.com/" + args[1]);
 		else
-			throw new IncorrectCommandExecutionException(getAlias());
+			throw new IncorrectCommandExecutionException(getMainAlias());
 	}
 
 	@Override
-	public String getAlias()
+	public String[] getAliases()
 	{
-		return "yt";
+		return new String[]{"yt", "youtube"};
 	}
 
 	@Override

@@ -26,13 +26,13 @@ public class ChangeNick extends BaseCommand<MessageEvent<Bot>>
 				Core.bot.sendIRC().changeNick("bl4ckb0t");
 		}
 		else
-			throw new IncorrectCommandExecutionException(getAlias());
+			throw new IncorrectCommandExecutionException(getMainAlias());
 	}
 
 	@Override
-	public String getAlias()
+	public String[] getAliases()
 	{
-		return "changenick";
+		return new String[]{"changenick", "cn"};
 	}
 
 	@Override

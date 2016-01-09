@@ -82,9 +82,9 @@ public class MCStatus extends BaseCommand<MessageEvent<Bot>>
 	}		
 
 	@Override
-	public String getAlias()
+	public String[] getAliases()
 	{
-		return "mcstatus";
+		return new String[]{"mcstatus"};
 	}
 
 	@Override

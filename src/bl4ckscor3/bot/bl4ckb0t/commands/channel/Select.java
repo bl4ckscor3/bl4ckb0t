@@ -25,13 +25,13 @@ public class Select extends BaseCommand<MessageEvent<Bot>>
 			Utilities.chanMsg(event, options[i]);
 		}
 		else
-			throw new IncorrectCommandExecutionException(getAlias());
+			throw new IncorrectCommandExecutionException(getMainAlias());
 	}
 
 	@Override
-	public String getAlias() 
+	public String[] getAliases()
 	{
-		return "select";
+		return new String[]{"select"};
 	}
 
 	@Override

@@ -15,9 +15,9 @@ public class Source extends BaseCommand<MessageEvent<Bot>>
 	}
 	
 	@Override
-	public String getAlias()
+	public String[] getAliases()
 	{
-		return "source";
+		return new String[]{"source"};
 	}
 
 	@Override

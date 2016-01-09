@@ -24,14 +24,14 @@ public class Weather extends BaseCommand<MessageEvent<Bot>>
 
 		for(String s : args)
 		{
-			if(s.equals("-w")) //if it's the first argument, don't add it to the city string
+			if(isValidAlias(s)) //if it's the first argument, don't add it to the city string
 				continue;
 
 			city += s + " ";
 		}
 		
 		if(city.equals(""))
-			throw new IncorrectCommandExecutionException(getAlias());
+			throw new IncorrectCommandExecutionException(getMainAlias());
 		
 		try
 		{
@@ -46,7 +46,7 @@ public class Weather extends BaseCommand<MessageEvent<Bot>>
 		}
 		catch(Exception e)
 		{
-			Utilities.chanMsg(event, L10N.getString("w.cityNotFound", event) + " \"" + city + "\" :/");
+			Utilities.chanMsg(event, L10N.getString("w.cityNotFound", event).replace("#city", city).replace("#smiley", ":/"));
 		}
 	}
 
@@ -58,9 +58,9 @@ public class Weather extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getAlias() 
+	public String[] getAliases()
 	{
-		return "w";
+		return new String[]{"w", "weather"};
 	}
 
 	@Override

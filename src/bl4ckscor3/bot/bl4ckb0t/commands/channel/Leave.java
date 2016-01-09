@@ -40,13 +40,13 @@ public class Leave extends BaseCommand<MessageEvent<Bot>>
 				Utilities.chanMsg(event, L10N.getString("leave.notJoined", event));
 		}
 		else
-			throw new IncorrectCommandExecutionException(getAlias());
+			throw new IncorrectCommandExecutionException(getMainAlias());
 	}
 
 	@Override
-	public String getAlias()
+	public String[] getAliases()
 	{
-		return "leave";
+		return new String[]{"leave"};
 	}
 
 	@Override

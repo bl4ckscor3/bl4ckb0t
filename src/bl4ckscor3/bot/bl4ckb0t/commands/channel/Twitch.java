@@ -17,13 +17,13 @@ public class Twitch extends BaseCommand<MessageEvent<Bot>>
 		if(args.length == 2)
 			Utilities.chanMsg(event, "http://www.twitch.tv/" + args[1]);
 		else
-			throw new IncorrectCommandExecutionException(getAlias());
+			throw new IncorrectCommandExecutionException(getMainAlias());
 	}
 	
 	@Override
-	public String getAlias()
+	public String[] getAliases()
 	{
-		return "tv";
+		return new String[]{"tv", "twitch"};
 	}
 
 	@Override

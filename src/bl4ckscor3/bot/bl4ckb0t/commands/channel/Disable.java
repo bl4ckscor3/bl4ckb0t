@@ -21,7 +21,7 @@ public class Disable extends BaseCommand<MessageEvent<Bot>>
 		String[] args = Utilities.toArgs(event.getMessage());
 
 		if(args.length > 2)
-			throw new IncorrectCommandExecutionException(getAlias());
+			throw new IncorrectCommandExecutionException(getMainAlias());
 
 		if(args.length == 1)
 		{
@@ -59,9 +59,9 @@ public class Disable extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getAlias()
+	public String[] getAliases()
 	{
-		return "disable";
+		return new String[]{"disable"};
 	}
 
 	@Override

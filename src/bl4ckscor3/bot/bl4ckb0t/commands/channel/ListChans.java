@@ -53,9 +53,9 @@ public class ListChans extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getAlias()
+	public String[] getAliases()
 	{
-		return "listchans";
+		return new String[]{"listchans", "lc"};
 	}
 
 	@Override

@@ -13,9 +13,9 @@ public abstract class BaseCommand<E extends Event<Bot>>
 	public abstract void exe(E event) throws Exception;
 
 	/**
-	 * The command exclusive the prefix
+	 * The lines that can be used to trigger the command exclusive the prefix. The first alias is the main one.
 	 */
-	public abstract String getAlias();
+	public abstract String[] getAliases();
 
 	/**
 	 * How the command can be used. Gets shown in the help menu.
@@ -39,10 +39,39 @@ public abstract class BaseCommand<E extends Event<Bot>>
 	}
 	
 	/**
-	 * Which user can issue this command? 3 = Only valid users | 2 = Valid and allowed users | 1 = Everybody
+	 * Which user can issue this command?
+	 * 3 = Only valid users
+	 * 2 = Valid and allowed users
+	 * 1 = Everybody (Default)
 	 */
 	public int getPermissionLevel()
 	{
 		return 1;
+	}
+	
+	/*Helpful Methods*/
+	
+	/**
+	 * Gets the main alias of the command
+	 */
+	public final String getMainAlias()
+	{
+		return getAliases()[0];
+	}
+	
+	/**
+	 * Checks if the String is a valid alias
+	 * @param check The String to check
+	 * @return Wether the checked String is a valid alias or not
+	 */
+	public final boolean isValidAlias(String check)
+	{
+		for(String s : getAliases())
+		{
+			if(s.equals(check.replace("-", "")))
+				return true;
+		}
+		
+		return false;
 	}
 }

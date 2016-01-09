@@ -29,9 +29,9 @@ public class CurseForgeWidget extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getAlias()
+	public String[] getAliases()
 	{
-		return "cfwidget";
+		return new String[]{"cfwidget", "curseforgewidget", "cfw"};
 	}
 
 	@Override

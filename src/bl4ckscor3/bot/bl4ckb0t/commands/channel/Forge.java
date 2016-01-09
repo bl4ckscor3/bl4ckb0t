@@ -51,7 +51,7 @@ public class Forge extends BaseCommand<MessageEvent<Bot>>
 							Utilities.chanMsg(event, doc.select("div.download:nth-child(1) > div:nth-child(2) > div:nth-child(4) > a:nth-child(1)").get(0).toString().split("url=")[1].split("\"")[0]);
 							break;
 						default:
-							throw new IncorrectCommandExecutionException(getAlias());
+							throw new IncorrectCommandExecutionException(getMainAlias());
 					}
 					break;
 				case "rec": case "recommended":
@@ -70,27 +70,27 @@ public class Forge extends BaseCommand<MessageEvent<Bot>>
 							Utilities.chanMsg(event, doc.select("div.download:nth-child(2) > div:nth-child(2) > div:nth-child(4) > a:nth-child(1)").get(0).toString().split("url=")[1].split("\"")[0]);
 							break;
 						default:
-							throw new IncorrectCommandExecutionException(getAlias());
+							throw new IncorrectCommandExecutionException(getMainAlias());
 					}
 					break;
 				default:
-					throw new IncorrectCommandExecutionException(getAlias());
+					throw new IncorrectCommandExecutionException(getMainAlias());
 			}
 		}
 		else
-			throw new IncorrectCommandExecutionException(getAlias());
+			throw new IncorrectCommandExecutionException(getMainAlias());
 	}
 
 	@Override
-	public String getAlias()
+	public String[] getAliases()
 	{
-		return "forge";
+		return new String[]{"forge"};
 	}
 
 	@Override
 	public String getSyntax(MessageEvent<Bot> event)
 	{
-		return "-forge <version> <latest|rec|recommended> <version|changelog|dlmain|dlsrc>";
+		return "-forge <" + L10N.getString("forge.version", event) + "> <latest|rec|recommended> <version|changelog|dlmain|dlsrc>";
 	}
 
 	@Override

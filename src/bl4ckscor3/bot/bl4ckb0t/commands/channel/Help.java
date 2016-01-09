@@ -32,20 +32,20 @@ public class Help extends BaseCommand<MessageEvent<Bot>>
 			switch(cmd.get(i).getPermissionLevel())
 			{
 				case 3:
-					aliasesValid[i] = Colors.RED + "-" + cmd.get(i).getAlias() + Colors.NORMAL;
+					aliasesValid[i] = Colors.RED + "-" + cmd.get(i).getMainAlias() + Colors.NORMAL;
 					break;
 				case 2:
-					aliasesValid[i] = Colors.DARK_GREEN + "-" + cmd.get(i).getAlias() + Colors.NORMAL;
-					aliasesAllowed[i] = Colors.DARK_GREEN + "-" + cmd.get(i).getAlias() + Colors.NORMAL;
+					aliasesValid[i] = Colors.DARK_GREEN + "-" + cmd.get(i).getMainAlias() + Colors.NORMAL;
+					aliasesAllowed[i] = Colors.DARK_GREEN + "-" + cmd.get(i).getMainAlias() + Colors.NORMAL;
 					break;
 				case 1:
-					aliasesValid[i] = "-" + cmd.get(i).getAlias();
-					aliasesAllowed[i] = "-" + cmd.get(i).getAlias();
-					aliasesNormal[i] = "-" + cmd.get(i).getAlias();
+					aliasesValid[i] = "-" + cmd.get(i).getMainAlias();
+					aliasesAllowed[i] = "-" + cmd.get(i).getMainAlias();
+					aliasesNormal[i] = "-" + cmd.get(i).getMainAlias();
 					break;
 			}
 		}
-		
+
 		Logging.info("Finished setting up help menu...");
 	}
 
@@ -66,16 +66,16 @@ public class Help extends BaseCommand<MessageEvent<Bot>>
 			{
 				if(aliases[i] == null)
 					continue;
-				
+
 				msg += aliases[i] + " | ";
-				
+
 				if((i + 1) % 10 == 0)
 				{
-					Utilities.pm(nick, msg);
+					Utilities.pm(nick, msg.trim());
 					msg = "";
 				}
 			}
-			
+
 			Utilities.pm(nick, msg.substring(0, msg.lastIndexOf(" | ")));
 			Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------------------------------------------------------");
 			Utilities.pm(nick, L10N.getString("help.moreInfo", event));
@@ -91,29 +91,29 @@ public class Help extends BaseCommand<MessageEvent<Bot>>
 		{
 			for(BaseCommand<MessageEvent<Bot>> cmd : CMDListener.commands)
 			{
-				if(cmd.getAlias().equals(args[1]) || ("-" + cmd.getAlias()).equals(args[1]))
+				if(cmd.isValidAlias(args[1]) || cmd.isValidAlias("-" + args[1]))
 				{
 					if(cmd.getPermissionLevel() > pLvl)
 					{
-						Core.bot.sendCustomMessage(event.getChannel().getName(), "-" + cmd.getAlias() + ": " + L10N.getString("noPermission", event));
+						Core.bot.sendCustomMessage(event.getChannel().getName(), "-" + cmd.getMainAlias() + ": " + L10N.getString("noPermission", event));
 						return;
 					}
-					
-					Utilities.sendHelp(nick, cmd.getSyntax(event), cmd.getUsage(event), cmd.getNotes(event), event);
+
+					Utilities.sendHelp(nick, cmd.getAliases(), cmd.getMainAlias(), cmd.getSyntax(event), cmd.getUsage(event), cmd.getNotes(event), event);
 					return;
 				}
 			}
-			
+
 			Utilities.chanMsg(event, args[1] + " " + L10N.getString("help.invalidCmd", event));
 		}
 		else
-			throw new IncorrectCommandExecutionException(getAlias());
+			throw new IncorrectCommandExecutionException(getMainAlias());
 	}
 
 	@Override
-	public String getAlias()
+	public String[] getAliases()
 	{
-		return "help";
+		return new String[]{"help"};
 	}
 
 	@Override
@@ -127,8 +127,8 @@ public class Help extends BaseCommand<MessageEvent<Bot>>
 	{
 		return new String[]
 				{
-				"-help || " + L10N.getString("help.explanation.1", event),
-				"-help <" + L10N.getString("help.help.command", event) + "> || " + L10N.getString("help.explanation.2", event)
+						"-help || " + L10N.getString("help.explanation.1", event),
+						"-help <" + L10N.getString("help.help.command", event) + "> || " + L10N.getString("help.explanation.2", event)
 				};
 	}
 }

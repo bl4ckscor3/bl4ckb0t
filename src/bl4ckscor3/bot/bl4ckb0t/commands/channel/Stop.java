@@ -36,17 +36,17 @@ public class Stop extends BaseCommand<MessageEvent<Bot>>
 					Logging.disable();
 					break;
 				default:
-					throw new IncorrectCommandExecutionException(getAlias());
+					throw new IncorrectCommandExecutionException(getMainAlias());
 			}
 		}
 		else
-			throw new IncorrectCommandExecutionException(getAlias());
+			throw new IncorrectCommandExecutionException(getMainAlias());
 	}
 
 	@Override
-	public String getAlias()
+	public String[] getAliases()
 	{
-		return "stop";
+		return new String[]{"stop"};
 	}
 
 	@Override

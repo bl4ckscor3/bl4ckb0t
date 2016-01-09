@@ -47,9 +47,9 @@ public class Changelog extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getAlias()
+	public String[] getAliases()
 	{
-		return "changelog";
+		return new String[]{"changelog", "cl"};
 	}
 
 	@Override

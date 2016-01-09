@@ -24,9 +24,9 @@ public class Update extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getAlias()
+	public String[] getAliases()
 	{
-		return "update";
+		return new String[]{"update"};
 	}
 
 	@Override

@@ -69,13 +69,13 @@ public class RandomLetter extends BaseCommand<MessageEvent<Bot>>
 				Utilities.chanMsg(event, L10N.getString("ln.fail", event));
 		}
 		else
-			throw new IncorrectCommandExecutionException(getAlias());
+			throw new IncorrectCommandExecutionException(getMainAlias());
 	}
 
 	@Override
-	public String getAlias()
+	public String[] getAliases()
 	{
-		return "letter";
+		return new String[]{"letter", "randomletter", "rl"};
 	}
 
 	@Override

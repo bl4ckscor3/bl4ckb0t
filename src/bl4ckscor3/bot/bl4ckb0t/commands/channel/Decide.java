@@ -27,13 +27,13 @@ public class Decide extends BaseCommand<MessageEvent<Bot>>
 				Utilities.chanMsg(event, L10N.getString("decide.fail", event) + ": " + decision);
 		}
 		else
-			throw new IncorrectCommandExecutionException(getAlias());
+			throw new IncorrectCommandExecutionException(getMainAlias());
 	}
 
 	@Override
-	public String getAlias()
+	public String[] getAliases()
 	{
-		return "decide";
+		return new String[]{"decide"};
 	}
 
 	@Override

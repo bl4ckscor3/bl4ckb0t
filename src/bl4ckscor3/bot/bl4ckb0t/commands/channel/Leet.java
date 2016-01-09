@@ -36,13 +36,13 @@ public class Leet extends BaseCommand<MessageEvent<Bot>>
 			Utilities.chanMsg(event, result);
 		}
 		else
-			throw new IncorrectCommandExecutionException(getAlias());
+			throw new IncorrectCommandExecutionException(getMainAlias());
 	}
 
 	@Override
-	public String getAlias()
+	public String[] getAliases()
 	{
-		return "leet";
+		return new String[]{"leet", "1337"};
 	}
 
 	@Override
