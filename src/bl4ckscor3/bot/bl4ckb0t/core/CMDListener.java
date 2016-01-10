@@ -5,7 +5,6 @@ import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.BaseCommand;
-import bl4ckscor3.bot.bl4ckb0t.commands.channel.Evaluate;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Caps;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.ChangeNick;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Changelog;
@@ -13,6 +12,7 @@ import bl4ckscor3.bot.bl4ckb0t.commands.channel.CurseForgeWidget;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Decide;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Disable;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Enable;
+import bl4ckscor3.bot.bl4ckb0t.commands.channel.Evaluate;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Forge;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Help;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Info;
@@ -52,14 +52,10 @@ import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.CustomArrayList;
 import bl4ckscor3.bot.bl4ckb0t.util.Lists;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
-import bl4ckscor3.bot.bl4ckb0t.util.android.ArrayMap;
 
 public class CMDListener extends ListenerAdapter<Bot>
 {
 	public static final String cmdPrefix = "-";
-	public static boolean enabled = true;
-	public static final ArrayMap<String, Boolean> channelStates = new ArrayMap<String, Boolean>(); //false = disabled | true = enabled
-	public boolean isCounting = false;
 	public static final CustomArrayList<BaseCommand<MessageEvent<Bot>>> commands = new CustomArrayList<BaseCommand<MessageEvent<Bot>>>();
 	public static final CustomArrayList<IPrivateCommand<PrivateMessageEvent<Bot>>> privCommands = new CustomArrayList<IPrivateCommand<PrivateMessageEvent<Bot>>>();
 
@@ -129,7 +125,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 			return;
 		}
 
-		if(enabled && channelStates.get(event.getChannel().getName()))
+		if(Core.bot.isEnabled() && Core.bot.getChannelStates().get(event.getChannel().getName()))
 		{
 			for(BaseCommand<MessageEvent<Bot>> cmd : commands)
 			{
@@ -182,7 +178,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 			return;
 		}
 
-		if(enabled)
+		if(Core.bot.isEnabled())
 		{
 			if(Utilities.isValidUser(event))
 			{

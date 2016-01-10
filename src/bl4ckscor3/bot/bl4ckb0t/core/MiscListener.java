@@ -46,14 +46,14 @@ public class MiscListener extends ListenerAdapter<Bot>
 
 		if(message.startsWith("?enabled"))
 		{
-			if(message.startsWith("?enabled #") && CMDListener.enabled)
-				Utilities.chanMsg(event, message.split(" ")[1] + ": " + CMDListener.channelStates.get(message.split(" ")[1].replace("#", "")));
+			if(message.startsWith("?enabled #") && Core.bot.isEnabled())
+				Utilities.chanMsg(event, message.split(" ")[1] + ": " + Core.bot.getChannelStates().get(message.split(" ")[1].replace("#", "")));
 			else
-				Utilities.chanMsg(event, "global: " + CMDListener.enabled);
+				Utilities.chanMsg(event, "global: " + Core.bot.isEnabled());
 			return;
 		}
 
-		if(CMDListener.enabled)
+		if(Core.bot.isEnabled())
 		{
 			SpellingCorrection.checkForSpellingCorrection(event, message);
 

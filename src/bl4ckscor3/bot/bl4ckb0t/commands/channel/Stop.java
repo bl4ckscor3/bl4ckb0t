@@ -27,7 +27,7 @@ public class Stop extends BaseCommand<MessageEvent<Bot>>
 					Core.bot.stopBotReconnect();
 					Core.bot.quit("Bye");
 					Logging.info("Creating new bot...");
-					Core.createBot(Core.wasStartedAsWIP); //creating another instance
+					Core.createBot(Core.bot.isDevelopment()); //creating another instance
 					break;
 				case "no":
 					Core.bot.stopBotReconnect();

@@ -15,9 +15,9 @@ import bl4ckscor3.bot.bl4ckb0t.util.Passwords;
 public class Core
 {
 	public static Bot bot;
-	public static boolean wasStartedAsWIP;
-	public static final String botName = "bl4ckb0t";
-	public static final String version = "4.9";
+	private static boolean wasStartedAsWIP;
+	private static final String botName = "bl4ckb0t";
+	private static final String version = "4.9";
 	
 	public static void main(String args[]) throws IOException, IrcException
 	{
@@ -55,7 +55,7 @@ public class Core
 					.addListener(new Logging())
 					.buildConfiguration();
 			Logging.info("Created bot config...");
-			bot = new Bot(config);
+			bot = new Bot(config, wip);
 			Logging.info("Starting bot...");
 			bot.startBot();
 		}

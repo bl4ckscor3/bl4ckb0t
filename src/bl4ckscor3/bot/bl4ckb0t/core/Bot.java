@@ -11,12 +11,18 @@ import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Lists;
 import bl4ckscor3.bot.bl4ckb0t.util.Passwords;
+import bl4ckscor3.bot.bl4ckb0t.util.android.ArrayMap;
 
 public class Bot extends PircBotX
 {
-	public Bot(Configuration<? extends PircBotX> configuration)
+	private static boolean enabled = true;
+	private final ArrayMap<String, Boolean> channelStates = new ArrayMap<String, Boolean>(); //false = disabled | true = enabled
+	private boolean wasStartedAsWIP;
+	
+	public Bot(Configuration<? extends PircBotX> configuration, boolean wip)
 	{
 		super(configuration);
+		wasStartedAsWIP = wip;
 	}
 	
 	/**
@@ -57,7 +63,7 @@ public class Bot extends PircBotX
 	 */
 	public boolean isDevelopment()
 	{
-		return getConfiguration().getVersion().endsWith("_WIP");
+		return wasStartedAsWIP;
 	}
 	
 	/**
@@ -80,8 +86,8 @@ public class Bot extends PircBotX
 			}
 		}
 		
-		if(!CMDListener.channelStates.containsKey(channel))
-			CMDListener.channelStates.put(channel, true);
+		if(!channelStates.containsKey(channel))
+			channelStates.put(channel, true);
 
 		Logging.info("Joined " + channel + "...");
 	}
@@ -110,8 +116,8 @@ public class Bot extends PircBotX
 			}
 		}
 
-		if(!CMDListener.channelStates.containsKey(channel))
-			CMDListener.channelStates.put(channel, true);
+		if(!channelStates.containsKey(channel))
+			channelStates.put(channel, true);
 		
 		Logging.info("Joined " + channel + "...");
 	}
@@ -144,8 +150,8 @@ public class Bot extends PircBotX
 		if(L10N.chanLangs.containsKey(channel))
 			L10N.chanLangs.remove(channel);
 
-		if(CMDListener.channelStates.containsKey(channel))
-			CMDListener.channelStates.remove(channel);
+		if(channelStates.containsKey(channel))
+			channelStates.remove(channel);
 		
 		Logging.info("Left " + channel + "...");
 	}
@@ -159,5 +165,37 @@ public class Bot extends PircBotX
 	{
 		sendIRC().action(target, msg);
 		Logging.action(target, getNick(), msg);
+	}
+	
+	/**
+	 * Checks wether the bot is enabled or not and returns that value
+	 */
+	public boolean isEnabled()
+	{
+		return enabled;
+	}
+	
+	/**
+	 * Disables the bot
+	 */
+	public void disable()
+	{
+		enabled = false;
+	}
+	
+	/**
+	 * Enables the bot
+	 */
+	public void enable()
+	{
+		enabled = true;
+	}
+	
+	/**
+	 * Gets the ArrayList of channel states (enabled/disabled per channel)
+	 */
+	public ArrayMap<String, Boolean> getChannelStates()
+	{
+		return channelStates;
 	}
 }

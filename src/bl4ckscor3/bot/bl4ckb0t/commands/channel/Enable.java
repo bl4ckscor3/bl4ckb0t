@@ -6,12 +6,12 @@ import java.net.MalformedURLException;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.core.Bot;
-import bl4ckscor3.bot.bl4ckb0t.core.CMDListener;
 import bl4ckscor3.bot.bl4ckb0t.core.Core;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
+import bl4ckscor3.bot.bl4ckb0t.util.android.ArrayMap;
 
 public class Enable extends BaseCommand<MessageEvent<Bot>>
 {
@@ -25,9 +25,9 @@ public class Enable extends BaseCommand<MessageEvent<Bot>>
 
 		if(args.length == 1)
 		{
-			if(!CMDListener.enabled)
+			if(!Core.bot.isEnabled())
 			{
-				CMDListener.enabled = true;
+				Core.bot.enable();
 				Utilities.chanMsg(event, L10N.getString("enable.success", event));
 				Logging.info("Enabled bot globally.");
 				Core.bot.sendRaw().rawLine("AWAY");
@@ -38,17 +38,19 @@ public class Enable extends BaseCommand<MessageEvent<Bot>>
 		}
 		else
 		{
-			if(!CMDListener.channelStates.containsKey(args[1].replace("#", "")))
+			ArrayMap<String,Boolean> states = Core.bot.getChannelStates();
+			
+			if(!states.containsKey(args[1].replace("#", "")))
 			{
-				CMDListener.channelStates.put(args[1].replace("#", ""), true);
+				states.put(args[1].replace("#", ""), true);
 				Utilities.chanMsg(event, L10N.getString("enable.success", event));
 				Logging.info("Enabled bot in " + args[1]);
 			}
 			else
 			{
-				if(!CMDListener.channelStates.get(args[1].replace("#", "")))
+				if(!states.get(args[1].replace("#", "")))
 				{
-					CMDListener.channelStates.put(args[1].replace("#", ""), true);
+					states.put(args[1].replace("#", ""), true);
 					Core.bot.sendCustomMessage(args[1], L10N.getString("enable.success", event));
 					Logging.info("Enabled bot in " + args[1]);
 				}
