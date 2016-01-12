@@ -2,6 +2,7 @@
 ---
 ####4.9.1
 - Internal changes
+- Fixed Uptime not displaying correctly
 
 ##4.9
 - Added command aliases. For a full list, please visit [ALIASES.md](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/ALIASES.md).

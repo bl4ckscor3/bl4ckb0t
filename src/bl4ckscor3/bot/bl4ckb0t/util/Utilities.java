@@ -298,6 +298,10 @@ public class Utilities
 		long hours = minutes / 60;
 		long days = hours / 24;
 
-		return String.format("%s:%s:%s:%s", days, hours, minutes, seconds);
+		seconds -= 60 * minutes;
+		minutes -= 60 * hours;
+		hours -= 24 * days;
+		
+		return String.format("%s:%s:%s:%s", (days < 10 ? "0" + days : days), (hours < 10 ? "0" + hours : hours), (minutes < 10 ? "0" + minutes : minutes), (seconds < 10 ? "0" + seconds : seconds));
 	}
 }
