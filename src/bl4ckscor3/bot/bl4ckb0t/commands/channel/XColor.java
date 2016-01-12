@@ -9,7 +9,7 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 public class XColor extends BaseCommand<MessageEvent<Bot>>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event)
+	public void exe(MessageEvent<Bot> event, String[] args)
 	{
 		String[] colors = {
 				"Grey",

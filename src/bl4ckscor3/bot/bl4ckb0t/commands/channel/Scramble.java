@@ -22,9 +22,9 @@ public class Scramble extends BaseCommand<MessageEvent<Bot>>
 	};
 
 	@Override
-	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException
+	public void exe(MessageEvent<Bot> event, String[] args) throws IncorrectCommandExecutionException
 	{
-		if(Utilities.toArgs(event.getMessage()).length == 1)
+		if(args.length == 1)
 		{
 			String[] results = new String[20];
 			String result = "";

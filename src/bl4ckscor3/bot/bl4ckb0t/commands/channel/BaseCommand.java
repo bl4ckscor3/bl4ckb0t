@@ -10,7 +10,7 @@ public abstract class BaseCommand<E extends Event<Bot>>
 	/**
 	 * What happens when the command gets executed
 	 */
-	public abstract void exe(E event) throws Exception;
+	public abstract void exe(E event, String[] args) throws Exception;
 
 	/**
 	 * The lines that can be used to trigger the command exclusive the prefix. The first alias is the main one.

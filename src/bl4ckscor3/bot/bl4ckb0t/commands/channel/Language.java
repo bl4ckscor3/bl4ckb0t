@@ -19,10 +19,8 @@ public class Language extends BaseCommand<MessageEvent<Bot>>
 		};
 
 	@Override
-	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException, IOException
+	public void exe(MessageEvent<Bot> event, String[] args) throws IncorrectCommandExecutionException, IOException
 	{
-		String[] args = Utilities.toArgs(event.getMessage());
-
 		if(args.length == 1)
 			Utilities.chanMsg(event, L10N.getString("language.currentLanguage", event).replace("#lang", Utilities.capitalizeFirstLetter(L10N.chanLangs.get(event.getChannel().getName()))));
 		else if(args.length == 2)

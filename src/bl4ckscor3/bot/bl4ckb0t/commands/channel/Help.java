@@ -21,38 +21,9 @@ public class Help extends BaseCommand<MessageEvent<Bot>>
 	private static String[] aliasesAllowed;
 	private static String[] aliasesNormal;
 
-	public static void setupHelpMenu(CustomArrayList<BaseCommand<MessageEvent<Bot>>> cmd)
-	{
-		aliasesValid = new String[cmd.size()];
-		aliasesAllowed = new String[cmd.size()];
-		aliasesNormal = new String[cmd.size()];
-
-		for(int i = 0; i < cmd.size(); i++)
-		{
-			switch(cmd.get(i).getPermissionLevel())
-			{
-				case 3:
-					aliasesValid[i] = Colors.RED + "-" + cmd.get(i).getMainAlias() + Colors.NORMAL;
-					break;
-				case 2:
-					aliasesValid[i] = Colors.DARK_GREEN + "-" + cmd.get(i).getMainAlias() + Colors.NORMAL;
-					aliasesAllowed[i] = Colors.DARK_GREEN + "-" + cmd.get(i).getMainAlias() + Colors.NORMAL;
-					break;
-				case 1:
-					aliasesValid[i] = "-" + cmd.get(i).getMainAlias();
-					aliasesAllowed[i] = "-" + cmd.get(i).getMainAlias();
-					aliasesNormal[i] = "-" + cmd.get(i).getMainAlias();
-					break;
-			}
-		}
-
-		Logging.info("Finished setting up help menu...");
-	}
-
 	@Override
-	public void exe(MessageEvent<Bot> event) throws InterruptedException, IncorrectCommandExecutionException, MalformedURLException, IOException
+	public void exe(MessageEvent<Bot> event, String[] args) throws InterruptedException, IncorrectCommandExecutionException, MalformedURLException, IOException
 	{
-		String[] args = Utilities.toArgs(event.getMessage());
 		String nick = event.getUser().getNick();
 		String msg = "";
 		int pLvl = Utilities.getUserPermissionLevel(event);
@@ -130,5 +101,33 @@ public class Help extends BaseCommand<MessageEvent<Bot>>
 						"-help || " + L10N.getString("help.explanation.1", event),
 						"-help <" + L10N.getString("help.help.command", event) + "> || " + L10N.getString("help.explanation.2", event)
 				};
+	}
+	
+	public static void setupHelpMenu(CustomArrayList<BaseCommand<MessageEvent<Bot>>> cmd)
+	{
+		aliasesValid = new String[cmd.size()];
+		aliasesAllowed = new String[cmd.size()];
+		aliasesNormal = new String[cmd.size()];
+
+		for(int i = 0; i < cmd.size(); i++)
+		{
+			switch(cmd.get(i).getPermissionLevel())
+			{
+				case 3:
+					aliasesValid[i] = Colors.RED + "-" + cmd.get(i).getMainAlias() + Colors.NORMAL;
+					break;
+				case 2:
+					aliasesValid[i] = Colors.DARK_GREEN + "-" + cmd.get(i).getMainAlias() + Colors.NORMAL;
+					aliasesAllowed[i] = Colors.DARK_GREEN + "-" + cmd.get(i).getMainAlias() + Colors.NORMAL;
+					break;
+				case 1:
+					aliasesValid[i] = "-" + cmd.get(i).getMainAlias();
+					aliasesAllowed[i] = "-" + cmd.get(i).getMainAlias();
+					aliasesNormal[i] = "-" + cmd.get(i).getMainAlias();
+					break;
+			}
+		}
+
+		Logging.info("Finished setting up help menu...");
 	}
 }

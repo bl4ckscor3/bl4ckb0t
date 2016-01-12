@@ -16,10 +16,8 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 public class LongURL extends BaseCommand<MessageEvent<Bot>>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event) throws MalformedURLException, IOException, IncorrectCommandExecutionException
+	public void exe(MessageEvent<Bot> event, String[] args) throws MalformedURLException, IOException, IncorrectCommandExecutionException
 	{
-		String[] args = Utilities.toArgs(event.getMessage());
-
 		if(args.length == 2)
 		{
 			String longUrl = "";
@@ -31,7 +29,6 @@ public class LongURL extends BaseCommand<MessageEvent<Bot>>
 			longUrl = reader.readLine();
 			temp = longUrl;
 			longUrl = "http:" + temp.split(":")[1].split("]")[0];
-			
 			Utilities.chanMsg(event, L10N.getString("longurl.output", event).replace("#long", longUrl));
 		}
 		else

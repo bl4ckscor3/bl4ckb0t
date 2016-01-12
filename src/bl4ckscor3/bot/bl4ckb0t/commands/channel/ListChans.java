@@ -15,9 +15,8 @@ public class ListChans extends BaseCommand<MessageEvent<Bot>>
 	public static int secretChannelAmount = 0;
 
 	@Override
-	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException, MalformedURLException, IOException
+	public void exe(MessageEvent<Bot> event, String[] args) throws IncorrectCommandExecutionException, MalformedURLException, IOException
 	{
-		String[] args = Utilities.toArgs(event.getMessage());
 		String[] chans = Utilities.getJoinedChannels(false);
 		String result = "";
 

@@ -10,10 +10,8 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 public class CurseForgeWidget extends BaseCommand<MessageEvent<Bot>>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event) throws Exception
+	public void exe(MessageEvent<Bot> event, String[] args) throws Exception
 	{
-		String[] args = Utilities.toArgs(event.getMessage());
-
 		if(args[1].startsWith("http"))
 			args[1] = args[1].substring(args[1].indexOf('/') + 2);
 

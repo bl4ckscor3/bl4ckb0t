@@ -16,12 +16,10 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 public class Kick extends BaseCommand<MessageEvent<Bot>>
 {	
 	@Override
-	public void exe(MessageEvent<Bot> event) throws IOException, IrcException, IncorrectCommandExecutionException 
+	public void exe(MessageEvent<Bot> event, String[] args) throws IOException, IrcException, IncorrectCommandExecutionException 
 	{
 //		if(event.getUser().isVerified())
 //		{
-			String[] args = Utilities.toArgs(event.getMessage());
-
 			if(!(Utilities.isValidUser(event) || Utilities.isAllowedUser(event)))
 			{
 				Utilities.chanMsg(event, L10N.getString("kick.notAuthorized", event).replace("#user", event.getUser().getNick()));

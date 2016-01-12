@@ -10,15 +10,12 @@ import bl4ckscor3.bot.bl4ckb0t.core.Core;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
-import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Stop extends BaseCommand<MessageEvent<Bot>>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event) throws IOException, IrcException, IncorrectCommandExecutionException
+	public void exe(MessageEvent<Bot> event, String[] args) throws IOException, IrcException, IncorrectCommandExecutionException
 	{
-		String[] args = Utilities.toArgs(event.getMessage());
-
 		if(args.length == 2)
 		{
 			switch(args[1])

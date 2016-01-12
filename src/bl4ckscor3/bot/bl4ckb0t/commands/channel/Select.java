@@ -12,10 +12,8 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 public class Select extends BaseCommand<MessageEvent<Bot>>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException 
+	public void exe(MessageEvent<Bot> event, String[] args) throws IncorrectCommandExecutionException 
 	{
-		String[] args = Utilities.toArgs(event.getMessage());
-		
 		if(args.length != 1)
 		{
 			Random r = new Random();

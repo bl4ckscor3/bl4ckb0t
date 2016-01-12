@@ -16,9 +16,8 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 public class Weather extends BaseCommand<MessageEvent<Bot>>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event) throws IOException, IncorrectCommandExecutionException
+	public void exe(MessageEvent<Bot> event, String[] args) throws IOException, IncorrectCommandExecutionException
 	{
-		String[] args = Utilities.toArgs(event.getMessage());
 		Document doc;
 		String city = "";
 

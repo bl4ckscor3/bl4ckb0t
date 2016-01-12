@@ -12,10 +12,9 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 public class RandomLetter extends BaseCommand<MessageEvent<Bot>>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException
+	public void exe(MessageEvent<Bot> event, String[] args) throws IncorrectCommandExecutionException
 	{
 		String result = "";
-		String[] args = Utilities.toArgs(event.getMessage());
 		String[] chars = new String[50];
 
 		if(args.length == 2)

@@ -6,15 +6,12 @@ import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.core.Core;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
-import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class PrivateStop implements IPrivateCommand<PrivateMessageEvent<Bot>>
 {
 	@Override
-	public void exe(PrivateMessageEvent<Bot> event) throws Exception
+	public void exe(PrivateMessageEvent<Bot> event, String[] args) throws Exception
 	{
-		String[] args = Utilities.toArgs(event.getMessage());
-
 		if(args.length == 2)
 		{
 			switch(args[1])

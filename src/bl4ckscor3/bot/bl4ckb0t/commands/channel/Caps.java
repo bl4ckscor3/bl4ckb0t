@@ -11,7 +11,7 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 public class Caps extends BaseCommand<MessageEvent<Bot>>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event) throws Exception
+	public void exe(MessageEvent<Bot> event, String[] args) throws Exception
 	{
 		String lastMessage = "";
 
@@ -25,7 +25,6 @@ public class Caps extends BaseCommand<MessageEvent<Bot>>
 			return;
 
 		StringBuilder builder = new StringBuilder();
-		String[] args = Utilities.toArgs(event.getMessage());
 
 		if(args.length == 1)
 		{

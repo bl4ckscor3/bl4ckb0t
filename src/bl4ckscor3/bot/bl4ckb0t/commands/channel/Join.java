@@ -14,10 +14,8 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 public class Join extends BaseCommand<MessageEvent<Bot>>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event) throws MalformedURLException, IOException, IncorrectCommandExecutionException
+	public void exe(MessageEvent<Bot> event, String[] args) throws MalformedURLException, IOException, IncorrectCommandExecutionException
 	{
-		String[] args = Utilities.toArgs(event.getMessage());	
-
 		if(args.length == 2)
 		{
 			if(args[1].equals("d"))

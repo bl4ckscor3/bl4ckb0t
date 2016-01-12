@@ -9,7 +9,7 @@ import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 public class Ping extends BaseCommand<MessageEvent<Bot>>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event) throws Exception{}
+	public void exe(MessageEvent<Bot> event, String[] args) throws Exception{}
 
 	@Override
 	public String[] getAliases()

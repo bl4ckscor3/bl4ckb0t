@@ -10,10 +10,8 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 public class YouTube extends BaseCommand<MessageEvent<Bot>>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException
+	public void exe(MessageEvent<Bot> event, String[] args) throws IncorrectCommandExecutionException
 	{
-		String[] args = Utilities.toArgs(event.getMessage());
-
 		if(args.length == 2)
 			Utilities.chanMsg(event, "http://www.youtube.com/" + args[1]);
 		else

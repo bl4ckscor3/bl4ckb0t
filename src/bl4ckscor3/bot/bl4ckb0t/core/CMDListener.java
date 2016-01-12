@@ -139,7 +139,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 
 					try
 					{
-						cmd.exe(event);
+						cmd.exe(event, Utilities.toArgs(event.getMessage()));
 						return;
 					}
 					catch(IncorrectCommandExecutionException e)
@@ -157,7 +157,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 				{
 					try
 					{
-						cmd.exe(event);
+						cmd.exe(event, Utilities.toArgs(event.getMessage()));
 						return;
 					}
 					catch(IncorrectCommandExecutionException e)
@@ -186,7 +186,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 				{
 					if(event.getMessage().startsWith(cmd.getAlias()))
 					{
-						cmd.exe(event);
+						cmd.exe(event, Utilities.toArgs(event.getMessage()));
 						return;
 					}
 				}

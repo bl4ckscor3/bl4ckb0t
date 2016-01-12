@@ -10,9 +10,9 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 public class Leet extends BaseCommand<MessageEvent<Bot>>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException
+	public void exe(MessageEvent<Bot> event, String[] args) throws IncorrectCommandExecutionException
 	{
-		if(Utilities.toArgs(event.getMessage()).length >= 2)
+		if(args.length >= 2)
 		{
 			char[] chars = event.getMessage().substring(6).toCharArray();
 			String result = "";
@@ -33,6 +33,7 @@ public class Leet extends BaseCommand<MessageEvent<Bot>>
 					default: result += chars[i];
 				}
 			}
+			
 			Utilities.chanMsg(event, result);
 		}
 		else

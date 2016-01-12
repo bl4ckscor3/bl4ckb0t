@@ -17,10 +17,8 @@ public class Changelog extends BaseCommand<MessageEvent<Bot>>
 	public static final ArrayMap<String, ArrayList<String>> versions = new ArrayMap<String, ArrayList<String>>();
 
 	@Override
-	public void exe(MessageEvent<Bot> event) throws MalformedURLException, IOException
+	public void exe(MessageEvent<Bot> event, String[] args) throws MalformedURLException, IOException
 	{
-		String[] args = Utilities.toArgs(event.getMessage());
-
 		if(args.length == 2)
 		{
 			if(!versions.containsKey(args[1]))

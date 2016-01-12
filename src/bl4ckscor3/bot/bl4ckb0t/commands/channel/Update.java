@@ -15,7 +15,7 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 public class Update extends BaseCommand<MessageEvent<Bot>>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event) throws MalformedURLException, IOException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
+	public void exe(MessageEvent<Bot> event, String[] args) throws MalformedURLException, IOException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
 	{
 		Lists.clearAll();
 		Changelog.versions.clear();

@@ -18,7 +18,7 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 public class MCStatus extends BaseCommand<MessageEvent<Bot>>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event)
+	public void exe(MessageEvent<Bot> event, String[] args)
 	{
 		WebDriver driver = new HtmlUnitDriver(true);
 		ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();

@@ -12,9 +12,9 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 public class Decide extends BaseCommand<MessageEvent<Bot>>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException
+	public void exe(MessageEvent<Bot> event, String[] args) throws IncorrectCommandExecutionException
 	{
-		if(Utilities.toArgs(event.getMessage()).length >= 2 && event.getMessage().endsWith("?"))
+		if(args.length >= 2 && event.getMessage().endsWith("?"))
 		{
 			Random r = new Random();
 			int decision = r.nextInt(101);

@@ -13,7 +13,7 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 public class Info extends BaseCommand<MessageEvent<Bot>>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event) throws Exception
+	public void exe(MessageEvent<Bot> event, String[] args) throws Exception
 	{
 		Utilities.chanMsg(event, Colors.BOLD + "** " + L10N.getString("info.version", event).replace("#version", Colors.BOLD + Core.bot.getConfiguration().getVersion()) +
 				Colors.BOLD + " ** " + L10N.getString("info.uptime", event).replace("#uptime", Colors.BOLD + Utilities.millisToTimestamp(ManagementFactory.getRuntimeMXBean().getUptime())) + 

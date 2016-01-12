@@ -9,7 +9,7 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 public class Source extends BaseCommand<MessageEvent<Bot>>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event)
+	public void exe(MessageEvent<Bot> event, String[] args)
 	{
 		Utilities.chanMsg(event, "https://github.com/bl4ckscor3/bl4ckb0t");
 	}

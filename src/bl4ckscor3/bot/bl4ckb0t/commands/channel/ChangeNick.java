@@ -9,15 +9,12 @@ import bl4ckscor3.bot.bl4ckb0t.core.Bot;
 import bl4ckscor3.bot.bl4ckb0t.core.Core;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
-import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class ChangeNick extends BaseCommand<MessageEvent<Bot>>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException, MalformedURLException, IOException
+	public void exe(MessageEvent<Bot> event, String[] args) throws IncorrectCommandExecutionException, MalformedURLException, IOException
 	{
-		String[] args = Utilities.toArgs(event.getMessage());
-
 		if(args.length == 2)
 		{
 			if(!args[1].equalsIgnoreCase("d"))

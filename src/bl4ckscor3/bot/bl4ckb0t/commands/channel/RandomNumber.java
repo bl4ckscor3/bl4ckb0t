@@ -12,10 +12,9 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 public class RandomNumber extends BaseCommand<MessageEvent<Bot>>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException
+	public void exe(MessageEvent<Bot> event, String[] args) throws IncorrectCommandExecutionException
 	{
 		String result = "";
-		String[] args = event.getMessage().split(" ");
 		int[] numbs = new int[50];
 		int n = Integer.parseInt(args[1]);
 

@@ -10,9 +10,9 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 public class Vowels extends BaseCommand<MessageEvent<Bot>>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event) throws IncorrectCommandExecutionException
+	public void exe(MessageEvent<Bot> event, String[] args) throws IncorrectCommandExecutionException
 	{
-		if(Utilities.toArgs(event.getMessage()).length >= 2)
+		if(args.length >= 2)
 		{
 			char[] chars = event.getMessage().substring(8).toLowerCase().toCharArray();
 			String result = "";
