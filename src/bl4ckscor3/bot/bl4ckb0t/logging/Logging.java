@@ -20,8 +20,8 @@ import org.pircbotx.hooks.events.PartEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 import org.pircbotx.hooks.events.QuitEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.core.Bot;
-import bl4ckscor3.bot.bl4ckb0t.core.Core;
+import bl4ckscor3.bot.bl4ckb0t.Bot;
+import bl4ckscor3.bot.bl4ckb0t.Core;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 /**

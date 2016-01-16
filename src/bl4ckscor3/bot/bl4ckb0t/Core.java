@@ -1,4 +1,4 @@
-package bl4ckscor3.bot.bl4ckb0t.core;
+package bl4ckscor3.bot.bl4ckb0t;
 
 import java.io.IOException;
 import java.util.logging.Level;

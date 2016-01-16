@@ -2,7 +2,7 @@ package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.core.Bot;
+import bl4ckscor3.bot.bl4ckb0t.Bot;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;

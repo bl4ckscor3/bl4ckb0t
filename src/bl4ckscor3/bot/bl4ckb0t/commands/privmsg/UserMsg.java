@@ -5,8 +5,8 @@ import java.net.MalformedURLException;
 
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.core.Bot;
-import bl4ckscor3.bot.bl4ckb0t.core.Core;
+import bl4ckscor3.bot.bl4ckb0t.Bot;
+import bl4ckscor3.bot.bl4ckb0t.Core;
 
 public class UserMsg implements IPrivateCommand<PrivateMessageEvent<Bot>>
 {

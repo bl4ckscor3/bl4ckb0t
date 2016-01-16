@@ -1,4 +1,4 @@
-package bl4ckscor3.bot.bl4ckb0t.core;
+package bl4ckscor3.bot.bl4ckb0t;
 
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.MessageEvent;

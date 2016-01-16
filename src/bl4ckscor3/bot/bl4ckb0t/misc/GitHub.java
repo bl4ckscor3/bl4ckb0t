@@ -10,7 +10,7 @@ import org.jsoup.Jsoup;
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.core.Bot;
+import bl4ckscor3.bot.bl4ckb0t.Bot;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 

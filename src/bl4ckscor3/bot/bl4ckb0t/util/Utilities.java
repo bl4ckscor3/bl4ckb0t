@@ -14,9 +14,9 @@ import org.pircbotx.hooks.events.PrivateMessageEvent;
 
 import com.google.common.collect.ImmutableSortedSet;
 
+import bl4ckscor3.bot.bl4ckb0t.Bot;
+import bl4ckscor3.bot.bl4ckb0t.Core;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.ListChans;
-import bl4ckscor3.bot.bl4ckb0t.core.Bot;
-import bl4ckscor3.bot.bl4ckb0t.core.Core;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 

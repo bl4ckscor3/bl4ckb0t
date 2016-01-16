@@ -3,7 +3,7 @@ package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 import org.pircbotx.hooks.Event;
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.core.Bot;
+import bl4ckscor3.bot.bl4ckb0t.Bot;
 
 public abstract class BaseCommand<E extends Event<Bot>>
 {
