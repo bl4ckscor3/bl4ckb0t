@@ -14,6 +14,7 @@ import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.Bot;
+import bl4ckscor3.bot.bl4ckb0t.Core;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
@@ -27,77 +28,79 @@ public class LinkTitle
 		for(String s : args)
 		{
 			s = Colors.removeFormattingAndColors(s);
-			
+
 			if(s.contains("www.") || s.contains("http://") || s.contains("https://"))
 			{
-				if(isWebsiteBlacklisted(s))
+				if(Core.bot.getConfig().getValue("allowBlacklistWebpages") && isWebsiteBlacklisted(s))
 				{
 					Logging.info("Website blacklisted: " + s);
 					continue;
 				}
 
-				if(s.contains("twitter"))
+				if(Core.bot.getConfig().getValue("showTweets") && s.contains("twitter"))
 				{
 					ShowTweet.show(event, s);
 					continue;
 				}
-				else if(s.contains("git.io") || (s.contains("github.com") && s.contains("commit")))
+				else if(Core.bot.getConfig().getValue("showGitHubCommitInfo") && (s.contains("git.io") || (s.contains("github.com") && s.contains("commit"))))
 				{
 					GitHub.showCommit(event, s);
 					continue;
 				}
-				else if(s.contains("github.com"))
+				else if(Core.bot.getConfig().getValue("showGitHubRepoInfo") && s.contains("github.com"))
 				{
 					GitHub.showRepo(event, s);
 					continue;
 				}
-				
-				
-				WebDriver driver = new HtmlUnitDriver();
-				String title = "";
 
-				if(s.startsWith("www."))
-					s = "http://" + s;
-
-				driver.get(s);
-				title = driver.getTitle();
-
-				if(s.startsWith("http://"))
-					s = s.substring(7);
-				else if(s.startsWith("https://"))
-					s = s.substring(8);
-
-				if(s.length() > 21)
+				if(Core.bot.getConfig().getValue("showLinkTitles"))
 				{
-					s = s.substring(0, 21);
-					s += "...";
-				}
+					WebDriver driver = new HtmlUnitDriver();
+					String title = "";
 
-				if(title == null || title == "null" || title == "")
-					Utilities.chanMsg(event, L10N.getString("linkTitle.notFound", event).replace("#link", s));
-				else
-					Utilities.chanMsg(event, L10N.getString("linkTitle.available", event) .replace("#link", s).replace("#title", title));
+					if(s.startsWith("www."))
+						s = "http://" + s;
+
+					driver.get(s);
+					title = driver.getTitle();
+
+					if(s.startsWith("http://"))
+						s = s.substring(7);
+					else if(s.startsWith("https://"))
+						s = s.substring(8);
+
+					if(s.length() > 21)
+					{
+						s = s.substring(0, 21);
+						s += "...";
+					}
+
+					if(title == null || title == "null" || title == "")
+						Utilities.chanMsg(event, L10N.getString("linkTitle.notFound", event).replace("#link", s));
+					else
+						Utilities.chanMsg(event, L10N.getString("linkTitle.available", event) .replace("#link", s).replace("#title", title));
+				}
 			}
 		}
 	}
-	
+
 	private static boolean isWebsiteBlacklisted(String website) throws MalformedURLException, IOException
 	{
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/x95z98frbt1r2ne/blacklistedWebsites.txt?dl=1").openStream()));
 		List<String> blacklistedWebsites = new ArrayList<String>();
 		String line = "";
-		
+
 		while((line = reader.readLine()) != null)
 		{
 			blacklistedWebsites.add(line);
 		}
-		
+
 		for(String s : blacklistedWebsites)
 		{
 			if(website.contains(s))
 				return true;
 		}
-		
+
 		reader.close();
 		return false;
 	}

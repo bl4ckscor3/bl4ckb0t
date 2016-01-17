@@ -18,11 +18,13 @@ public class Bot extends PircBotX
 	private static boolean enabled = true;
 	private final ArrayMap<String, Boolean> channelStates = new ArrayMap<String, Boolean>(); //false = disabled | true = enabled
 	private boolean wasStartedAsWIP;
+	private ConfigurationFile config;
 	
-	public Bot(Configuration<? extends PircBotX> configuration, boolean wip)
+	public Bot(Configuration<? extends PircBotX> configuration, boolean wip, ConfigurationFile cfg)
 	{
 		super(configuration);
 		wasStartedAsWIP = wip;
+		config = cfg;
 	}
 	
 	/**
@@ -55,7 +57,7 @@ public class Bot extends PircBotX
 	public void quit(String reason)
 	{
 		sendIRC().quitServer(reason);
-		Logging.warn("BOT LEFT THE SERVER");
+		Logging.severe("BOT LEFT THE SERVER");
 	}
 	
 	/**
@@ -197,5 +199,13 @@ public class Bot extends PircBotX
 	public ArrayMap<String, Boolean> getChannelStates()
 	{
 		return channelStates;
+	}
+	
+	/**
+	 * Gets the bot's custom configuration file
+	 */
+	public ConfigurationFile getConfig()
+	{
+		return config;
 	}
 }

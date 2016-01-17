@@ -4,6 +4,7 @@ import org.pircbotx.hooks.Event;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.Bot;
+import bl4ckscor3.bot.bl4ckb0t.Core;
 
 public abstract class BaseCommand<E extends Event<Bot>>
 {
@@ -66,12 +67,24 @@ public abstract class BaseCommand<E extends Event<Bot>>
 	 */
 	public final boolean isValidAlias(String check)
 	{
+		if(!Core.bot.getConfig().getValue("allowCommandAliases"))
+			return check.replace("-", "").equals(getMainAlias());
+		
 		for(String s : getAliases())
 		{
-			if(s.equals(check.replace("-", "")))
+			if(check.replace("-", "").equals(s))
 				return true;
 		}
 		
 		return false;
+	}
+	
+	/**
+	 * Checks wether the command is enabled in the config file
+	 */
+	public final boolean isEnabled()
+	{
+		System.out.println(getMainAlias());
+		return Core.bot.getConfig().getValue(getMainAlias());
 	}
 }

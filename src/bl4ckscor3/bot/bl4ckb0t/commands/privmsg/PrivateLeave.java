@@ -5,7 +5,7 @@ import org.pircbotx.hooks.events.PrivateMessageEvent;
 import bl4ckscor3.bot.bl4ckb0t.Bot;
 import bl4ckscor3.bot.bl4ckb0t.Core;
 
-public class PrivateLeave implements IPrivateCommand<PrivateMessageEvent<Bot>>
+public class PrivateLeave extends BasePrivateCommand<PrivateMessageEvent<Bot>>
 {
 	@Override
 	public void exe(PrivateMessageEvent<Bot> event, String[] args)
@@ -17,5 +17,13 @@ public class PrivateLeave implements IPrivateCommand<PrivateMessageEvent<Bot>>
 	public String getAlias()
 	{
 		return "leave ";
+	}
+	
+
+	
+	@Override
+	public String getConfigEntry()
+	{
+		return "privateleave";
 	}
 }

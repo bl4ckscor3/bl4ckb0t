@@ -104,8 +104,6 @@ public class SpellingCorrection
 				String newMessage;
 				String correctedMessage;
 
-				System.out.println(toReplace);
-				
 				if(toReplace.equals(""))
 				{
 					previousMessage = getLatestMessage(userToCorrect, storage.get(event.getChannel().getName()));

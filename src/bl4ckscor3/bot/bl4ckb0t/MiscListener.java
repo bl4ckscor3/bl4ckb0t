@@ -9,7 +9,7 @@ import org.pircbotx.hooks.events.ConnectEvent;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.IPrivateCommand;
+import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.BasePrivateCommand;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.misc.LinkTitle;
 import bl4ckscor3.bot.bl4ckb0t.misc.SpellingCorrection;
@@ -22,7 +22,7 @@ public class MiscListener extends ListenerAdapter<Bot>
 	@Override
 	public void onMessage(MessageEvent<Bot> event) throws Exception
 	{
-		if(Lists.getIgnoredUsers().contains(event.getUser().getNick()))
+		if(Utilities.isIgnored(event.getUser().getNick()))
 		{
 			Logging.warn("Ignoring user " + event.getUser().getNick());
 			return;
@@ -30,15 +30,18 @@ public class MiscListener extends ListenerAdapter<Bot>
 
 		String message = event.getMessage();
 
-		if(event.getMessage().startsWith("-ping"))
+		if(Core.bot.getConfig().getValue("ping"))
 		{
-			Utilities.chanMsg(event, "Pong!");
-			return;
-		}
-		else if(event.getMessage().startsWith("-pong"))
-		{
-			Utilities.chanMsg(event, "Ping!");
-			return;
+			if(event.getMessage().startsWith("-ping"))
+			{
+				Utilities.chanMsg(event, "Pong!");
+				return;
+			}
+			else if(Core.bot.getConfig().getValue("allowCommandAliases") && event.getMessage().startsWith("-pong"))
+			{
+				Utilities.chanMsg(event, "Ping!");
+				return;
+			}
 		}
 
 		if(message.startsWith(CMDListener.cmdPrefix))
@@ -64,10 +67,10 @@ public class MiscListener extends ListenerAdapter<Bot>
 				SpellingCorrection.corrected = false;
 
 			//sending a welcome back message
-			if(message.toLowerCase().startsWith("re ") || message.toLowerCase().equals("re"))
+			if(Core.bot.getConfig().getValue("showWelcomeBackMsg") && (message.toLowerCase().startsWith("re ") || message.toLowerCase().equals("re")))
 				Utilities.chanMsg(event, "wb, " + event.getUser().getNick());
 			//youtube recognition
-			else if(message.contains("www.youtube.com/watch") || message.contains("youtu.be/"))
+			else if(Core.bot.getConfig().getValue("showYouTubeStats") && (message.contains("www.youtube.com/watch") || message.contains("youtu.be/")))
 				YouTubeStats.sendVideoStats(event);
 			//checking for urls and sending the title if available
 			else
@@ -78,29 +81,27 @@ public class MiscListener extends ListenerAdapter<Bot>
 	@Override
 	public void onPrivateMessage(PrivateMessageEvent<Bot> event) throws Exception
 	{
-		if(Lists.getIgnoredUsers().contains(event.getUser().getNick()))
+		if(Utilities.isIgnored(event.getUser().getNick()))
 		{
 			Logging.warn("Ignoring user " + event.getUser().getNick());
 			return;
 		}
-		
+
 		if(!event.getMessage().startsWith(CMDListener.cmdPrefix))
 		{
-			for(IPrivateCommand<PrivateMessageEvent<Bot>> cmd : CMDListener.privCommands)
+			for(BasePrivateCommand<PrivateMessageEvent<Bot>> cmd : CMDListener.privCommands)
 			{
 				if(event.getMessage().startsWith(cmd.getAlias()))
 					return;
 			}
-			
+
 			for(String user : Lists.getValidUsers())
 			{
 				Core.bot.sendCustomMessage(user, event.getUser().getNick() + ": " + event.getMessage());
 			}
 		}
 		else
-		{
 			Utilities.pm(event.getUser().getNick(), "Commands can only be sent through channel messages. Use -help in a channel to get more info.");
-		}
 	}
 
 	@Override
@@ -111,17 +112,17 @@ public class MiscListener extends ListenerAdapter<Bot>
 		Core.bot.joinDefaults();
 		Logging.info("Bot successfully connected!");
 	}
-	
+
 	@Override
 	public void onAction(ActionEvent<Bot> event) throws Exception
 	{
-		if(Lists.getIgnoredUsers().contains(event.getUser().getNick()))
+		if(Utilities.isIgnored(event.getUser().getNick()))
 		{
 			Logging.warn("Ignoring user " + event.getUser().getNick());
 			return;
 		}
-		
-		if(event.getAction().equals("shrugs"))
+
+		if(Core.bot.getConfig().getValue("shrugs") && event.getAction().equals("shrugs"))
 			Core.bot.sendCustomMessage(event.getChannel().getName(), "¯\\_(ツ)_/¯");
 	}
 }

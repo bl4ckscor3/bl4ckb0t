@@ -96,13 +96,12 @@ public class Help extends BaseCommand<MessageEvent<Bot>>
 	@Override
 	public String[] getUsage(MessageEvent<Bot> event)
 	{
-		return new String[]
-				{
-						"-help || " + L10N.getString("help.explanation.1", event),
-						"-help <" + L10N.getString("help.help.command", event) + "> || " + L10N.getString("help.explanation.2", event)
-				};
+		return new String[]{
+				"-help || " + L10N.getString("help.explanation.1", event),
+				"-help <" + L10N.getString("help.help.command", event) + "> || " + L10N.getString("help.explanation.2", event)
+		};
 	}
-	
+
 	public static void setupHelpMenu(CustomArrayList<BaseCommand<MessageEvent<Bot>>> cmd)
 	{
 		aliasesValid = new String[cmd.size()];
@@ -114,11 +113,11 @@ public class Help extends BaseCommand<MessageEvent<Bot>>
 			switch(cmd.get(i).getPermissionLevel())
 			{
 				case 3:
-					aliasesValid[i] = Colors.RED + "-" + cmd.get(i).getMainAlias() + Colors.NORMAL;
+					aliasesValid[i] = shouldColor(Colors.RED) + "-" + cmd.get(i).getMainAlias() + Colors.NORMAL;
 					break;
 				case 2:
-					aliasesValid[i] = Colors.DARK_GREEN + "-" + cmd.get(i).getMainAlias() + Colors.NORMAL;
-					aliasesAllowed[i] = Colors.DARK_GREEN + "-" + cmd.get(i).getMainAlias() + Colors.NORMAL;
+					aliasesValid[i] = shouldColor(Colors.DARK_GREEN) + "-" + cmd.get(i).getMainAlias() + Colors.NORMAL;
+					aliasesAllowed[i] = shouldColor(Colors.DARK_GREEN) + "-" + cmd.get(i).getMainAlias() + Colors.NORMAL;
 					break;
 				case 1:
 					aliasesValid[i] = "-" + cmd.get(i).getMainAlias();
@@ -129,5 +128,10 @@ public class Help extends BaseCommand<MessageEvent<Bot>>
 		}
 
 		Logging.info("Finished setting up help menu...");
+	}
+	
+	private static String shouldColor(String c)
+	{
+		return Core.bot.getConfig().getValue("showCmdColorsInHelpMenu") ? c : "";
 	}
 }

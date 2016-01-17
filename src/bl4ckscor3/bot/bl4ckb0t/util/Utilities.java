@@ -304,4 +304,14 @@ public class Utilities
 		
 		return String.format("%s:%s:%s:%s", (days < 10 ? "0" + days : days), (hours < 10 ? "0" + hours : hours), (minutes < 10 ? "0" + minutes : minutes), (seconds < 10 ? "0" + seconds : seconds));
 	}
+
+	/**
+	 * Checks wether a user is ignored
+	 * @param nick The user to check
+	 * @return Wether the user is ignored or not
+	 */
+	public static boolean isIgnored(String nick)
+	{
+		return Core.bot.getConfig().getValue("allowIgnoringUsers") && Lists.getIgnoredUsers().contains(nick);
+	}
 }

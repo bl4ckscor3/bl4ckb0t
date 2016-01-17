@@ -1,5 +1,9 @@
 #Changelog
 ---
+#5.0
+- Added a configuration file
+- Removed unwanted debug output
+
 ####4.9.1
 - Fixed some aliases not working
 - Fixed uptime not displaying correctly

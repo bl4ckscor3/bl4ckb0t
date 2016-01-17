@@ -41,8 +41,8 @@ import bl4ckscor3.bot.bl4ckb0t.commands.channel.Weather;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.XColor;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.YouTube;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.Action;
+import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.BasePrivateCommand;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.ChanMsg;
-import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.IPrivateCommand;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.PrivateJoin;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.PrivateLeave;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.PrivateStop;
@@ -50,20 +50,21 @@ import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.UserMsg;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.CustomArrayList;
-import bl4ckscor3.bot.bl4ckb0t.util.Lists;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class CMDListener extends ListenerAdapter<Bot>
 {
 	public static final String cmdPrefix = "-";
 	public static final CustomArrayList<BaseCommand<MessageEvent<Bot>>> commands = new CustomArrayList<BaseCommand<MessageEvent<Bot>>>();
-	public static final CustomArrayList<IPrivateCommand<PrivateMessageEvent<Bot>>> privCommands = new CustomArrayList<IPrivateCommand<PrivateMessageEvent<Bot>>>();
+	public static final CustomArrayList<BasePrivateCommand<PrivateMessageEvent<Bot>>> privCommands = new CustomArrayList<BasePrivateCommand<PrivateMessageEvent<Bot>>>();
 
 	@SuppressWarnings("unchecked")
-	public CMDListener()
+	public static void setupCMDs()
 	{
+		commands.clear();
+		privCommands.clear();
+		
 		commands.addEverything(
-				new Evaluate(),
 				new Caps(),
 				new CurseForgeWidget(),
 				new Changelog(),
@@ -71,6 +72,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 				new Decide(),
 				new Disable(),
 				new Enable(),
+				new Evaluate(),
 				new Help(),
 				new Info(),
 				new Join(),
@@ -99,7 +101,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 				new XColor(),
 				new YouTube());
 		Logging.info("Registered command classes for channel messages...");
-		Help.setupHelpMenu(commands);
+		Help.setupHelpMenu(CMDListener.commands);
 		privCommands.addEverything(
 				new PrivateJoin(),
 				new PrivateLeave(),
@@ -119,17 +121,17 @@ public class CMDListener extends ListenerAdapter<Bot>
 		if(!cmdName.startsWith(cmdPrefix))
 			return;
 
-		if(Lists.getIgnoredUsers().contains(event.getUser().getNick()))
+		if(Utilities.isIgnored(event.getUser().getNick()))
 		{
 			Logging.warn("Ignoring user " + event.getUser().getNick());
 			return;
 		}
-
+		
 		if(Core.bot.isEnabled() && Core.bot.getChannelStates().get(event.getChannel().getName()))
 		{
 			for(BaseCommand<MessageEvent<Bot>> cmd : commands)
 			{
-				if(cmd.isValidAlias(cmdName))
+				if(cmd.isEnabled() && cmd.isValidAlias(cmdName))
 				{
 					if(cmd.getPermissionLevel() > permissionLevel)
 					{
@@ -153,7 +155,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 		{
 			for(BaseCommand<MessageEvent<Bot>> cmd : commands)
 			{
-				if((cmd instanceof Enable || cmd instanceof Disable) && cmd.isValidAlias(cmdName))
+				if(cmd.isEnabled() && (cmd instanceof Enable || cmd instanceof Disable) && cmd.isValidAlias(cmdName))
 				{
 					try
 					{
@@ -172,7 +174,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 	@Override
 	public void onPrivateMessage(PrivateMessageEvent<Bot> event) throws Exception
 	{
-		if(Lists.getIgnoredUsers().contains(event.getUser().getNick()))
+		if(Utilities.isIgnored(event.getUser().getNick()))
 		{
 			Logging.warn("Ignoring user " + event.getUser().getNick());
 			return;
@@ -182,9 +184,9 @@ public class CMDListener extends ListenerAdapter<Bot>
 		{
 			if(Utilities.isValidUser(event))
 			{
-				for(IPrivateCommand<PrivateMessageEvent<Bot>> cmd : privCommands)
+				for(BasePrivateCommand<PrivateMessageEvent<Bot>> cmd : privCommands)
 				{
-					if(event.getMessage().startsWith(cmd.getAlias()))
+					if(cmd.isEnabled() && event.getMessage().startsWith(cmd.getAlias()))
 					{
 						cmd.exe(event, Utilities.toArgs(event.getMessage()));
 						return;

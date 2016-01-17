@@ -20,6 +20,8 @@ public class Startup
 		setAllowedUsers();
 		setIgnoredUsers();
 		setValidUsers();
+		Core.bot.getConfig().populateHashMap();
+		CMDListener.setupCMDs();
 	}
 	
 	private static void getChangelog() throws IOException
@@ -31,8 +33,7 @@ public class Startup
 
 		while((line = reader.readLine()) != null)
 		{
-			line = line.replace("#", "");
-			line = line.replace("*", "");
+			line = line.replace("#", "").replace("*", "");
 			
 			if(Utilities.startsWithNumber(line))
 			{
