@@ -62,8 +62,9 @@ public class Logging extends ListenerAdapter<Bot>
 
 			if(!f.exists())
 			{
+				buffer.add("\"" + botName + ".log\" does not exist, creating new file...");
 				f.createNewFile();
-				buffer.add("\"" + botName + ".log\" does not exist, creating new file.");
+				buffer.add("File successfully created!");
 			}
 			else
 			{
@@ -71,7 +72,7 @@ public class Logging extends ListenerAdapter<Bot>
 
 				copy.mkdirs();
 				copy = new File(jarPath + "/logs/" + botName + " - " + Utilities.getCurrentDate().toString().replace(":", "-") + ".log");
-				buffer.add("Created new file \"" + copy.getName() + "\"");
+				buffer.add("Created new file to copy to: \"" + copy.getName() + "\"");
 				buffer.add("Starting copy process...");
 				
 				FileWriter copyWriter = new FileWriter(copy);

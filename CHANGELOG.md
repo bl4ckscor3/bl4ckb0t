@@ -1,8 +1,9 @@
 #Changelog
 ---
 #5.0
-- Added a configuration file
+- Added a configuration file to configure commands and all that jizz
 - Removed unwanted debug output
+- Small log message changes
 
 ####4.9.1
 - Fixed some aliases not working
