@@ -6,4 +6,7 @@
 /src/bl4ckscor3/bot/bl4ckb0t/util/Passwords.java
 /bl4ckb0t.log
 /logs
-/target
+/target/test-classes
+/target/classes/bl4ckscor3
+/target/classes/logs
+/target/classes/org
