@@ -1,5 +1,8 @@
 #Changelog
 ---
+####5.0.1_WIP
+- Added config option to turn of file logging
+
 #5.0
 - Added a configuration file to configure commands and all that jizz
 - Removed unwanted debug output

@@ -34,7 +34,6 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
  * 
  * Upon starting, it will create a new file called yourBotsName.log in the root folder of your project/the jar location.
  * When that file already exists, it copys the contents of it into a new file into a new folder called logs. The file name is "yourBotsName - current date and time.log"
- * The number at the end of that file determines how often the bot has been started in that minute. It will prevent same files from being overwritten.
  * After copying is done, the original file will get used for new logging. 
  * 
  * @author bl4ckscor3
@@ -56,7 +55,7 @@ public class Logging extends ListenerAdapter<Bot>
 		try
 		{
 			String jarPath = Utilities.getJarLocation();
-			
+
 			new File(jarPath + "/logs/").mkdirs();
 			f = new File(jarPath + "/logs/" + botName + ".log");
 
@@ -74,7 +73,7 @@ public class Logging extends ListenerAdapter<Bot>
 				copy = new File(jarPath + "/logs/" + botName + " - " + Utilities.getCurrentDate().toString().replace(":", "-") + ".log");
 				buffer.add("Created new file to copy to: \"" + copy.getName() + "\"");
 				buffer.add("Starting copy process...");
-				
+
 				FileWriter copyWriter = new FileWriter(copy);
 				BufferedReader reader = new BufferedReader(new FileReader(f));
 				String line = "";
@@ -84,15 +83,18 @@ public class Logging extends ListenerAdapter<Bot>
 					copyWriter.write(line + "\n");
 					copyWriter.flush();
 				}
-				
+
 				copyWriter.close();
 				reader.close();
 				buffer.add("Successfully copied old logging file.");
 			}
 
-			writer = new FileWriter(f);
-			failed = false;
-			enable();
+			if(Core.bot.getConfig().getValue("logToFile"))
+			{
+				writer = new FileWriter(f);
+				failed = false;
+				enable();
+			}
 		}
 		catch(Exception e)
 		{
@@ -139,13 +141,13 @@ public class Logging extends ListenerAdapter<Bot>
 	public static void stackTrace(Throwable t)
 	{
 		raw(t.toString());
-		
+
 		for(StackTraceElement e : t.getStackTrace())
 		{
 			raw("	at " + e.toString());
 		}
 	}
-	
+
 	/**
 	 * Logs a warning message
 	 * @param line The message to log
@@ -233,12 +235,12 @@ public class Logging extends ListenerAdapter<Bot>
 	private static void start()
 	{
 		raw("Started logging on " + Utilities.getCurrentDate().toString());
-		
+
 		for(String s : buffer)
 		{
 			info(s);
 		}
-		
+
 		buffer.clear();
 	}
 
@@ -256,7 +258,7 @@ public class Logging extends ListenerAdapter<Bot>
 	 */
 	private static void raw(String line)
 	{
-		if(enabled)
+		if(enabled && Core.bot.getConfig().getValue("logToFile"))
 		{
 			if(!failed)
 			{
@@ -281,7 +283,7 @@ public class Logging extends ListenerAdapter<Bot>
 	 */
 	private static void log(String line)
 	{
-		if(enabled)
+		if(enabled && Core.bot.getConfig().getValue("logToFile"))
 		{
 			if(!failed)
 			{
@@ -364,24 +366,24 @@ public class Logging extends ListenerAdapter<Bot>
 	{
 		severe("Disconnected from server!");
 	}
-	
+
 	/***************************Getters***************************/
-	
+
 	public static boolean isEnabled()
 	{
 		return enabled;
 	}
-	
+
 	public static File getFile()
 	{
 		return f;
 	}
-	
+
 	public static FileWriter getWriter()
 	{
 		return writer;
 	}
-	
+
 	public static boolean hasFailed()
 	{
 		return failed;
