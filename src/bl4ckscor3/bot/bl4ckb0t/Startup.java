@@ -20,7 +20,7 @@ public class Startup
 		setAllowedUsers();
 		setIgnoredUsers();
 		setValidUsers();
-		Core.bot.getConfig().populateHashMap();
+		Core.bot.getConfig().populateArrayMap();
 		CMDListener.setupCMDs();
 	}
 	

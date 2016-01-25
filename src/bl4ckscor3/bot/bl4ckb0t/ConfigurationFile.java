@@ -6,13 +6,13 @@ import java.io.RandomAccessFile;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
+import bl4ckscor3.bot.bl4ckb0t.util.android.ArrayMap;
 
 /**
  * Use the -update command to let a new configuration take place
@@ -20,7 +20,7 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 public class ConfigurationFile
 {
 	private File config;
-	public static HashMap<String,Object> values = new HashMap<String,Object>();
+	public static ArrayMap<String,Object> values = new ArrayMap<String,Object>();
 	private String[] defaultContent = new String[]{
 			"################################",
 			"#       Channel Commands       #",
@@ -103,13 +103,13 @@ public class ConfigurationFile
 				Logging.info("Custom config file doesn't exist, creating one...");
 				config.createNewFile();
 				writeDefaultValues();
-				populateHashMap();
+				populateArrayMap();
 				Logging.info("Config values successfully written into config and memory...");
 			}
 			else
 			{
 				Logging.info("Custom config file already existed...");
-				populateHashMap();
+				populateArrayMap();
 				Logging.info("Config values successfully written into memory, checking for new values to add...");
 
 				int i = 0;
@@ -165,7 +165,7 @@ public class ConfigurationFile
 				Logging.info("Restored values that got reset during any possible config additions...");
 				clear();
 				FileUtils.writeLines(config, restoredContent);
-				populateHashMap();
+				populateArrayMap();
 				Logging.info("Configuration setup complete!");
 			}
 		}
@@ -203,7 +203,7 @@ public class ConfigurationFile
 	/**
 	 * Writes the current values into the 'values' HashMap
 	 */
-	public void populateHashMap()
+	public void populateArrayMap()
 	{		
 		try
 		{
