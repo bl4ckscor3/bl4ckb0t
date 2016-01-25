@@ -2,6 +2,7 @@
 ---
 ####5.0.1_WIP
 - Added config option to turn of file logging
+- Internal changes
 
 #5.0
 - Added a configuration file to configure commands and all that jizz
