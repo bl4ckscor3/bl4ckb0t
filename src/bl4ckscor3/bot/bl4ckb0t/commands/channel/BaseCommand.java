@@ -84,7 +84,6 @@ public abstract class BaseCommand<E extends Event<Bot>>
 	 */
 	public final boolean isEnabled()
 	{
-		System.out.println(getMainAlias());
 		return Core.bot.getConfig().getValue(getMainAlias());
 	}
 }
