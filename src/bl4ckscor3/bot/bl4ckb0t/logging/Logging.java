@@ -89,12 +89,9 @@ public class Logging extends ListenerAdapter<Bot>
 				buffer.add("Successfully copied old logging file.");
 			}
 
-			if(Core.bot.getConfig().getValue("logToFile"))
-			{
-				writer = new FileWriter(f);
-				failed = false;
-				enable();
-			}
+			writer = new FileWriter(f);
+			failed = false;
+			enable();
 		}
 		catch(Exception e)
 		{
@@ -258,7 +255,7 @@ public class Logging extends ListenerAdapter<Bot>
 	 */
 	private static void raw(String line)
 	{
-		if(enabled && Core.bot.getConfig().getValue("logToFile"))
+		if(enabled)
 		{
 			if(!failed)
 			{
@@ -283,7 +280,7 @@ public class Logging extends ListenerAdapter<Bot>
 	 */
 	private static void log(String line)
 	{
-		if(enabled && Core.bot.getConfig().getValue("logToFile"))
+		if(enabled)
 		{
 			if(!failed)
 			{

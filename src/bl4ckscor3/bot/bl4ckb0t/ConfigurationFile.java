@@ -74,7 +74,6 @@ public class ConfigurationFile
 			"################################",
 			"#            Other             #",
 			"################################",
-			"logToFile=true",
 			"showCmdColorsInHelpMenu=true",
 			"allowBlacklistWebpages=true",
 			"allowIgnoringUsers=true",

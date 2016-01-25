@@ -1,7 +1,6 @@
 #Changelog
 ---
 ####5.0.1_WIP
-- Added config option to turn of file logging
 - Internal changes
 
 #5.0
