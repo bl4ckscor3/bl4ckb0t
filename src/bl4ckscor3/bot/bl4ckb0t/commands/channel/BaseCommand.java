@@ -67,7 +67,7 @@ public abstract class BaseCommand<E extends Event<Bot>>
 	 */
 	public final boolean isValidAlias(String check)
 	{
-		if(!Core.bot.getConfig().getValue("allowCommandAliases"))
+		if(!Core.bot.getConfig().getBoolean("allowCommandAliases"))
 			return check.replace("-", "").equals(getMainAlias());
 		
 		for(String s : getAliases())
@@ -84,6 +84,6 @@ public abstract class BaseCommand<E extends Event<Bot>>
 	 */
 	public final boolean isEnabled()
 	{
-		return Core.bot.getConfig().getValue(getMainAlias());
+		return Core.bot.getConfig().getBoolean(getMainAlias());
 	}
 }

@@ -132,6 +132,6 @@ public class Help extends BaseCommand<MessageEvent<Bot>>
 	
 	private static String shouldColor(String c)
 	{
-		return Core.bot.getConfig().getValue("showCmdColorsInHelpMenu") ? c : "";
+		return Core.bot.getConfig().getBoolean("showCmdColorsInHelpMenu") ? c : "";
 	}
 }

@@ -312,6 +312,6 @@ public class Utilities
 	 */
 	public static boolean isIgnored(String nick)
 	{
-		return Core.bot.getConfig().getValue("allowIgnoringUsers") && Lists.getIgnoredUsers().contains(nick);
+		return Core.bot.getConfig().getBoolean("allowIgnoringUsers") && Lists.getIgnoredUsers().contains(nick);
 	}
 }

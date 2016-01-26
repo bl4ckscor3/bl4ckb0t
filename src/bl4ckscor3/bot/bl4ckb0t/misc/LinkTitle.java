@@ -31,29 +31,29 @@ public class LinkTitle
 
 			if(s.contains("www.") || s.contains("http://") || s.contains("https://"))
 			{
-				if(Core.bot.getConfig().getValue("allowBlacklistWebpages") && isWebsiteBlacklisted(s))
+				if(Core.bot.getConfig().getBoolean("allowBlacklistWebpages") && isWebsiteBlacklisted(s))
 				{
 					Logging.info("Website blacklisted: " + s);
 					continue;
 				}
 
-				if(Core.bot.getConfig().getValue("showTweets") && s.contains("twitter"))
+				if(Core.bot.getConfig().getBoolean("showTweets") && s.contains("twitter"))
 				{
 					ShowTweet.show(event, s);
 					continue;
 				}
-				else if(Core.bot.getConfig().getValue("showGitHubCommitInfo") && (s.contains("git.io") || (s.contains("github.com") && s.contains("commit"))))
+				else if(Core.bot.getConfig().getBoolean("showGitHubCommitInfo") && (s.contains("git.io") || (s.contains("github.com") && s.contains("commit"))))
 				{
 					GitHub.showCommit(event, s);
 					continue;
 				}
-				else if(Core.bot.getConfig().getValue("showGitHubRepoInfo") && s.contains("github.com"))
+				else if(Core.bot.getConfig().getBoolean("showGitHubRepoInfo") && s.contains("github.com"))
 				{
 					GitHub.showRepo(event, s);
 					continue;
 				}
 
-				if(Core.bot.getConfig().getValue("showLinkTitles"))
+				if(Core.bot.getConfig().getBoolean("showLinkTitles"))
 				{
 					WebDriver driver = new HtmlUnitDriver();
 					String title = "";

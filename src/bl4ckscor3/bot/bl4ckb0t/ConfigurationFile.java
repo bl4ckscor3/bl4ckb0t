@@ -20,8 +20,16 @@ import bl4ckscor3.bot.bl4ckb0t.util.android.ArrayMap;
 public class ConfigurationFile
 {
 	private File config;
-	public static ArrayMap<String,Object> values = new ArrayMap<String,Object>();
+	public static ArrayMap<String,String> values = new ArrayMap<String,String>();
 	private String[] defaultContent = new String[]{
+			"################################",
+			"#       General Settings       #",
+			"################################",
+			"name='bl4ckb0t'",
+			"commandPrefix='-'",
+			"network='irc.esper.net'",
+			"sslPort=6697",
+			"",
 			"################################",
 			"#       Channel Commands       #",
 			"################################",
@@ -175,15 +183,35 @@ public class ConfigurationFile
 	}
 
 	/**
-	 * Gets the value from the given option
+	 * Gets the value from the given option as a boolean
 	 * @param option The option to get the value from
 	 * @return The value
 	 */
-	public boolean getValue(String option)
+	public boolean getBoolean(String option)
 	{
-		return values.get(option).equals("true");
+		return Boolean.parseBoolean(values.get(option));
 	}
 
+	/**
+	 * Gets the value from the given option as a string
+	 * @param option The option to get the value from
+	 * @return The value
+	 */
+	public String getString(String option)
+	{
+		return values.get(option).split("'")[1];
+	}
+	
+	/**
+	 * Gets the value from the given option as an integer
+	 * @param option The option to get the value from
+	 * @return The value
+	 */
+	public int getInt(String option)
+	{
+		return Integer.parseInt(values.get(option));
+	}
+	
 	/**
 	 * Writes the default values to the file
 	 */
