@@ -63,7 +63,6 @@ public class CMDListener extends ListenerAdapter<Bot>
 	{
 		commands.clear();
 		privCommands.clear();
-		
 		commands.addEverything(
 				new Caps(),
 				new CurseForgeWidget(),

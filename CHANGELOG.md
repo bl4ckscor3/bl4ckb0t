@@ -1,6 +1,7 @@
 #Changelog
 ---
-####5.0.1_WIP
+##5.1_WIP
+- Changed behaviour of -scramble (now scrambles letters in a word)
 - Internal changes
 
 #5.0
