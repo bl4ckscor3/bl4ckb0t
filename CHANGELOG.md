@@ -1,6 +1,6 @@
 #Changelog
 ---
-##5.1_WIP
+##5.1
 - Changed behaviour of -scramble (now scrambles letters in a word)
 - New config values
 - Fixed "O" and "o" not converting to "0" in -leet
