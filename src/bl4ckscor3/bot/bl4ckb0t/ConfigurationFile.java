@@ -26,7 +26,6 @@ public class ConfigurationFile
 			"#       General Settings       #",
 			"################################",
 			"name='bl4ckb0t'",
-			"commandPrefix='-'",
 			"network='irc.esper.net'",
 			"sslPort=6697",
 			"",
