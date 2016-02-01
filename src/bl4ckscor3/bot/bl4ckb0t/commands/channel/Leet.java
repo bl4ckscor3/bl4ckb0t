@@ -27,7 +27,7 @@ public class Leet extends BaseCommand<MessageEvent<Bot>>
 					case 'H': case 'h': result += "h"; break;
 					case 'I': case 'i': result += "1"; break;
 					case 'L': case 'l': result += "|"; break;
-					case 'O': case 'o': result += "o"; break;
+					case 'O': case 'o': result += "0"; break;
 					case 'S': case 's': result += "5"; break;
 					case 'T': case 't': result += "7"; break;
 					case 'Z': case 'z': result += "2"; break;
