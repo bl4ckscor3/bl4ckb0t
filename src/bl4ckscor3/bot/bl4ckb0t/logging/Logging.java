@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.pircbotx.Colors;
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.ActionEvent;
 import org.pircbotx.hooks.events.DisconnectEvent;
@@ -270,7 +271,7 @@ public class Logging extends ListenerAdapter<Bot>
 				}
 			}
 
-			System.out.println(line);
+			System.out.println(Colors.removeFormattingAndColors(line));
 		}
 	}
 
@@ -286,7 +287,7 @@ public class Logging extends ListenerAdapter<Bot>
 			{
 				try
 				{
-					writer.write(Utilities.getCurrentDate().toString() + " " + line + "\n");
+					writer.write(Utilities.getCurrentDate().toString() + " " + Colors.removeFormattingAndColors(line) + "\n");
 					writer.flush();
 				}
 				catch (IOException e)
@@ -295,7 +296,7 @@ public class Logging extends ListenerAdapter<Bot>
 				}
 			}
 
-			System.out.println(Utilities.getCurrentDate().toString() + " " + line);
+			System.out.println(Utilities.getCurrentDate().toString() + " " + Colors.removeFormattingAndColors(line));
 		}
 	}
 

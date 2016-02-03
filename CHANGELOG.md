@@ -1,5 +1,10 @@
 #Changelog
 ---
+####5.1.1
+- Removed new config values added in last version
+- Fixed Tweets not showing
+- Removed colors from logging
+
 ##5.1
 - Changed behaviour of -scramble (now scrambles letters in a word)
 - New config values

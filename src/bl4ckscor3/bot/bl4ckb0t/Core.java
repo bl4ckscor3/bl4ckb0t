@@ -16,8 +16,8 @@ public class Core
 {
 	public static Bot bot;
 	private static boolean wasStartedAsWIP;
-	private static String botName;
-	private static final String version = "5.1";
+	private static final String botName = "bl4ckb0t";
+	private static final String version = "5.1.1";
 	private static ConfigurationFile customConfig;
 	
 	public static void main(String args[]) throws IOException, IrcException
@@ -31,7 +31,6 @@ public class Core
 			Logging.info("Bot was started as WIP version...");
 		
 		customConfig = new ConfigurationFile();
-		botName = customConfig.getString("name");
 		createBot(wasStartedAsWIP);
 	}
 
@@ -45,7 +44,7 @@ public class Core
 					.setVersion(version + (wip ? "_WIP" : ""))
 					.setName(botName)
 					.setLogin(botName)
-					.setServer(customConfig.getString("network"), customConfig.getInt("sslPort"))
+					.setServer("irc.esper.net", 6697)
 					.setSocketFactory(new UtilSSLSocketFactory().trustAllCertificates())
 					.setNickservPassword(Passwords.NICKSERV.getPassword())
 					.setAutoNickChange(true)

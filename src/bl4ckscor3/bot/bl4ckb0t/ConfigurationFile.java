@@ -23,13 +23,6 @@ public class ConfigurationFile
 	public static ArrayMap<String,String> values = new ArrayMap<String,String>();
 	private String[] defaultContent = new String[]{
 			"################################",
-			"#       General Settings       #",
-			"################################",
-			"name='bl4ckb0t'",
-			"network='irc.esper.net'",
-			"sslPort=6697",
-			"",
-			"################################",
 			"#       Channel Commands       #",
 			"################################",
 			"caps=true",
