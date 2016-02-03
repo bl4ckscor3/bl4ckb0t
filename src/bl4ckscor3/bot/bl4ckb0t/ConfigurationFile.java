@@ -55,6 +55,7 @@ public class ConfigurationFile
 			"trello=true",
 			"tv=true",
 			"tw=true",
+			"unleet=true",
 			"update=true",
 			"vowels=true",
 			"w=true",

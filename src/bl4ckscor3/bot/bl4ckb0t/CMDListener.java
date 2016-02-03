@@ -35,6 +35,7 @@ import bl4ckscor3.bot.bl4ckb0t.commands.channel.Stop;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Trello;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Twitch;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Twitter;
+import bl4ckscor3.bot.bl4ckb0t.commands.channel.Unleet;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Update;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Vowels;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Weather;
@@ -94,6 +95,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 				new Trello(),
 				new Twitch(),
 				new Twitter(),
+				new Unleet(),
 				new Update(),
 				new Vowels(),
 				new Weather(),

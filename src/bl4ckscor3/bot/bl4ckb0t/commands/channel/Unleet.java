@@ -7,29 +7,29 @@ import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Leet extends BaseCommand<MessageEvent<Bot>>
+public class Unleet extends BaseCommand<MessageEvent<Bot>>
 {
 	@Override
 	public void exe(MessageEvent<Bot> event, String[] args) throws IncorrectCommandExecutionException
 	{
 		if(args.length >= 2)
 		{
-			char[] chars = event.getMessage().substring(6).toCharArray();
+			char[] chars = event.getMessage().substring(8).toCharArray();
 			String result = "";
 
 			for(int i = 0; i < chars.length; i++)
 			{
 				switch(chars[i])
 				{
-					case 'A': case 'a': result += "4"; break;
-					case 'E': case 'e': result += "3"; break;
-					case 'G': case 'g': result += "6"; break;
-					case 'I': case 'i': result += "1"; break;
-					case 'L': case 'l': result += "|"; break;
-					case 'O': case 'o': result += "0"; break;
-					case 'S': case 's': result += "5"; break;
-					case 'T': case 't': result += "7"; break;
-					case 'Z': case 'z': result += "2"; break;
+					case '4': result += "a"; break;
+					case '3': result += "e"; break;
+					case '6': result += "g"; break;
+					case '1': result += "i"; break;
+					case '|': result += "l"; break;
+					case '0': result += "o"; break;
+					case '5': result += "s"; break;
+					case '7': result += "t"; break;
+					case '2': result += "z"; break;
 					default: result += chars[i];
 				}
 			}
@@ -43,18 +43,18 @@ public class Leet extends BaseCommand<MessageEvent<Bot>>
 	@Override
 	public String[] getAliases()
 	{
-		return new String[]{"leet", "1337"};
+		return new String[]{"unleet"};
 	}
 
 	@Override
 	public String getSyntax(MessageEvent<Bot> event)
 	{
-		return "-leet <" + L10N.getString("cmd.help.sentence", event) + ">";
+		return "-unleet <" + L10N.getString("cmd.help.sentence", event) + ">";
 	}
 
 	@Override
 	public String[] getUsage(MessageEvent<Bot> event)
 	{
-		return new String[]{"-leet <" + L10N.getString("cmd.help.sentence", event) + "> || " + L10N.getString("leet.explanation", event)};
+		return new String[]{"-unleet <" + L10N.getString("cmd.help.sentence", event) + "> || " + L10N.getString("unleet.explanation", event)};
 	}
 }

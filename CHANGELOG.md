@@ -1,5 +1,8 @@
 #Changelog
 ---
+##5.2_WIP
+- Added -unleet
+
 ####5.1.1
 - Removed new config values added in last version
 - Fixed Tweets not showing
