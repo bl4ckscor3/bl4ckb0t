@@ -1,13 +1,14 @@
 #Changelog
 ---
 ##5.2
+- Added -unleet
 - Removed unneccessary/unused commands:
-	1. -cfwidget
-	2. -letter
-	3. -number
-	4. -reverse
-	5. -scramble
-	6. -vowels
+	- -cfwidget
+	- -letter
+	- -number
+	- -reverse
+	- -scramble
+	- -vowels
 
 ####5.1.1
 - Removed new config values added in last version
