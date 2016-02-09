@@ -8,7 +8,6 @@ import bl4ckscor3.bot.bl4ckb0t.commands.channel.BaseCommand;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Caps;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.ChangeNick;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Changelog;
-import bl4ckscor3.bot.bl4ckb0t.commands.channel.CurseForgeWidget;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Decide;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Disable;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Enable;
@@ -25,10 +24,6 @@ import bl4ckscor3.bot.bl4ckb0t.commands.channel.ListChans;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.LongURL;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.MCStatus;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Ping;
-import bl4ckscor3.bot.bl4ckb0t.commands.channel.RandomLetter;
-import bl4ckscor3.bot.bl4ckb0t.commands.channel.RandomNumber;
-import bl4ckscor3.bot.bl4ckb0t.commands.channel.Reverse;
-import bl4ckscor3.bot.bl4ckb0t.commands.channel.Scramble;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Select;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Source;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Stop;
@@ -37,7 +32,6 @@ import bl4ckscor3.bot.bl4ckb0t.commands.channel.Twitch;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Twitter;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Unleet;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Update;
-import bl4ckscor3.bot.bl4ckb0t.commands.channel.Vowels;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Weather;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.XColor;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.YouTube;
@@ -66,7 +60,6 @@ public class CMDListener extends ListenerAdapter<Bot>
 		privCommands.clear();
 		commands.addEverything(
 				new Caps(),
-				new CurseForgeWidget(),
 				new Changelog(),
 				new ChangeNick(),
 				new Decide(),
@@ -85,10 +78,6 @@ public class CMDListener extends ListenerAdapter<Bot>
 				new LongURL(),
 				new MCStatus(),
 				new Ping(),
-				new RandomLetter(),
-				new RandomNumber(),
-				new Reverse(),
-				new Scramble(),
 				new Select(),
 				new Source(),
 				new Stop(),
@@ -97,7 +86,6 @@ public class CMDListener extends ListenerAdapter<Bot>
 				new Twitter(),
 				new Unleet(),
 				new Update(),
-				new Vowels(),
 				new Weather(),
 				new XColor(),
 				new YouTube());
