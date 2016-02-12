@@ -45,13 +45,14 @@ public class Weather extends BaseCommand<MessageEvent<Bot>>
 		}
 		catch(Exception e)
 		{
+			e.printStackTrace();
 			Utilities.chanMsg(event, L10N.getString("w.cityNotFound", event).replace("#city", city).replace("#smiley", ":/"));
 		}
 	}
 
 	private String getTemperature(Document doc)
 	{
-		double celsius = Double.parseDouble(doc.select("body > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1)").text().replace("°", ""));
+		double celsius = Double.parseDouble(doc.select("body > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1)").text().replace("°C", ""));
 
 		return celsius + "°C | " + (celsius * (9D / 5D) + 32D) + "°F | " + (celsius + 273.15D) + "K";
 	}

@@ -1,5 +1,8 @@
 #Changelog
 ---
+####5.2.1
+- Fixed -w not working
+
 ##5.2
 - Added -unleet
 - Removed unneccessary/unused commands:
