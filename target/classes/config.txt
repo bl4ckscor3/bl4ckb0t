@@ -20,6 +20,7 @@ listchans=true
 longurl=true
 mcstatus=true
 ping=true
+remind=true
 select=true
 source=true
 stop=true

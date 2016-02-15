@@ -1,5 +1,9 @@
 #Changelog
 ---
+##5.3
+- Added -remind
+- Fixed help not showing completely for commands without aliases
+
 ####5.2.1
 - Fixed -w not working
 

@@ -150,8 +150,6 @@ public class Utilities
 
 		if(aliases.length != 1)
 		{
-			Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "-----------" + L10N.getString("helpMenu.aliases", event) + "-----------");
-
 			for(int i = 0; i < aliases.length; i++)
 			{
 				if(aliases[i] == null || aliases[i].equals(mainAlias))
@@ -167,7 +165,19 @@ public class Utilities
 			}
 		}
 
-		Utilities.pm(nick, formattedAliases.substring(0, formattedAliases.lastIndexOf(" | ")));
+		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "-----------" + L10N.getString("helpMenu.aliases", event) + "-----------");
+		
+		try
+		{
+			Utilities.pm(nick, formattedAliases.substring(0, formattedAliases.lastIndexOf(" | ")));
+		}
+		catch(StringIndexOutOfBoundsException e)
+		{
+			formattedAliases += L10N.getString("helpMenu.noNotes", event);
+			
+			Utilities.pm(nick, formattedAliases);
+		}
+		
 		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "-----------" + L10N.getString("helpMenu.notes", event) + "-----------");
 		Utilities.pm(nick, notes == null ? L10N.getString("helpMenu.noNotes", event) : notes);
 	}
