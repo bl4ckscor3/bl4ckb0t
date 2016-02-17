@@ -1,5 +1,13 @@
 #Changelog
 ---
+####5.3.1
+- Added ability to stop reminders
+- Added ability to gather info of reminders
+- Added ability to of reminders
+- Fixed -remind not working when only seconds have been given
+- Fixed -mcstatus explanation not working
+- Internal Changes
+
 ##5.3
 - Added -remind
 - Fixed help not showing completely for commands without aliases
