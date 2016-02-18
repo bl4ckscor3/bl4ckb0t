@@ -50,12 +50,31 @@ public class Remind extends BaseCommand<MessageEvent<Bot>>
 					{
 						if(args.length >= 3 && args[2].equals("stop"))
 						{
-							r.stop();
-							Utilities.chanMsg(event, L10N.getString("remind.stopped", event).replace("#id", "" + r.getId()));
+							if(event.getUser().getNick().equals(r.getIssuedUser()))
+							{
+								if(event.getChannel().getName().equals(r.getIssuedChannel()))
+								{
+									r.stop();
+									Utilities.chanMsg(event, L10N.getString("remind.stopped", event).replace("#id", "" + r.getId()));
+								}
+								else
+									Utilities.chanMsg(event, L10N.getString("remind.wrongChannel", event));
+							}
+							else
+								Utilities.chanMsg(event, L10N.getString("remind.notOwned", event));
+							
 							return;
 						}
 						
-						Utilities.chanMsg(event, L10N.getString("remind.timeLeft", event).replace("#event", r.getEvent()).replace("#timeLeft", new TimeParser(getMainAlias()).lts(r.getRemainingTime(), "%sd%sh%sm%ss")));
+						if(event.getUser().getNick().equals(r.getIssuedUser()))
+						{
+							if(event.getChannel().getName().equals(r.getIssuedChannel()))
+								Utilities.chanMsg(event, L10N.getString("remind.timeLeft", event).replace("#event", r.getEvent()).replace("#timeLeft", new TimeParser(getMainAlias()).lts(r.getRemainingTime(), "%sd%sh%sm%ss")));
+							else
+								Utilities.chanMsg(event, L10N.getString("remind.wrongChannel", event));
+						}
+						else
+							Utilities.chanMsg(event, L10N.getString("remind.notOwned", event));
 						return;
 					}
 				}

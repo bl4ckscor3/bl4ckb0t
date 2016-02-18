@@ -14,12 +14,16 @@ public class Reminder
 {
 	public static int latestId = 1;
 	private int id;
+	private String issuedUser;
+	private String issuedChannel;
 	private String ev;
 	private ScheduledFuture<?> thread;
 	
 	public Reminder(MessageEvent<Bot> event, String e, long timeDue)
 	{
 		id = latestId++;
+		issuedUser = event.getUser().getNick();
+		issuedChannel = event.getChannel().getName();
 		ev = e;
 		thread = Executors.newSingleThreadScheduledExecutor().schedule(() -> {
 			Utilities.chanMsg(event, L10N.getString("remind.reminder", event).replace("#user", event.getUser().getNick()).replace("#event", e));
@@ -27,14 +31,24 @@ public class Reminder
 		}, timeDue, TimeUnit.MILLISECONDS); 
 	}
 	
-	public String getEvent()
-	{
-		return ev;
-	}
-	
 	public int getId()
 	{
 		return id;
+	}
+	
+	public String getIssuedUser()
+	{
+		return issuedUser;
+	}
+	
+	public String getIssuedChannel()
+	{
+		return issuedChannel;
+	}
+	
+	public String getEvent()
+	{
+		return ev;
 	}
 	
 	public long getRemainingTime()

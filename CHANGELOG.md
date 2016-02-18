@@ -1,9 +1,13 @@
 #Changelog
 ---
+####5.3.2_WIP
+- Added restriction for users to check/stop reminders in the wrong channel
+- Added restriction for users to check/stop reminders that do not own the reminder
+
 ####5.3.1
 - Added ability to stop reminders
 - Added ability to gather info of reminders
-- Added ability to of reminders
+- Added ability to list active reminders
 - Fixed -remind not working when only seconds have been given
 - Fixed -mcstatus explanation not working
 - Internal Changes
