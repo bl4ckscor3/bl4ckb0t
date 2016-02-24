@@ -44,6 +44,7 @@ public class ConfigurationFile
 			"longurl=true",
 			"mcstatus=true",
 			"ping=true",
+			"ranks=true",
 			"remind=true",
 			"select=true",
 			"source=true",

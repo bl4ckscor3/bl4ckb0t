@@ -24,6 +24,7 @@ import bl4ckscor3.bot.bl4ckb0t.commands.channel.ListChans;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.LongURL;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.MCStatus;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Ping;
+import bl4ckscor3.bot.bl4ckb0t.commands.channel.Ranks;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Remind;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Select;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Source;
@@ -79,6 +80,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 				new LongURL(),
 				new MCStatus(),
 				new Ping(),
+				new Ranks(),
 				new Remind(),
 				new Select(),
 				new Source(),

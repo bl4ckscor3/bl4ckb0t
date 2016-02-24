@@ -1,6 +1,7 @@
 #Changelog
 ---
-####5.3.2_WIP
+####5.4_WIP
+- Added -ranks (shows CS:GO rank distribution)
 - Added restriction for users to check/stop reminders in the wrong channel
 - Added restriction for users to check/stop reminders that do not own the reminder
 
