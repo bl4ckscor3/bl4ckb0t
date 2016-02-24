@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.Bot;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.android.ArrayMap;
 
@@ -34,7 +33,7 @@ public class L10N
 	 * @param event The event which contains the channel the message get's sent to
 	 * @return The localized String
 	 */
-	public static String getString(String key, MessageEvent<Bot> event)
+	public static String getString(String key, MessageEvent event)
 	{
 		try
 		{

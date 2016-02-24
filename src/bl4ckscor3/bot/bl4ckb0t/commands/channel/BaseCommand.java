@@ -3,10 +3,9 @@ package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 import org.pircbotx.hooks.Event;
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.Bot;
 import bl4ckscor3.bot.bl4ckb0t.Core;
 
-public abstract class BaseCommand<E extends Event<Bot>>
+public abstract class BaseCommand<E extends Event>
 {
 	/**
 	 * What happens when the command gets executed
@@ -22,19 +21,19 @@ public abstract class BaseCommand<E extends Event<Bot>>
 	 * How the command can be used. Gets shown in the help menu.
 	 * @param event The MessageEvent which contains the channel the help command was used in
 	 */
-	public abstract String getSyntax(MessageEvent<Bot> event);
+	public abstract String getSyntax(MessageEvent event);
 	
 	/**
 	 * Explanation of the command. Gets shown in the help menu.
 	 * @param event The MessageEvent which contains the channel the help command was used in
 	 */
-	public abstract String[] getUsage(MessageEvent<Bot> event);
+	public abstract String[] getUsage(MessageEvent event);
 	
 	/**
 	 * Anything special the user needs to know about the command. Gets shown in the help menu.
 	 * @param event The MessageEvent which contains the channel the help command was used in
 	 */
-	public String getNotes(MessageEvent<Bot> event)
+	public String getNotes(MessageEvent event)
 	{
 		return null;
 	}

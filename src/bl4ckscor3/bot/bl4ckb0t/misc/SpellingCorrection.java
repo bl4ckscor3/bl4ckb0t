@@ -6,7 +6,6 @@ import java.util.List;
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.Bot;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 import bl4ckscor3.bot.bl4ckb0t.util.android.ArrayMap;
@@ -23,7 +22,7 @@ public class SpellingCorrection
 	 * @param event - The triggered MessageEvent
 	 * @param message - The message sent to the channel which triggered the event
 	 */
-	public static void checkForSpellingCorrection(MessageEvent<Bot> event, String message)
+	public static void checkForSpellingCorrection(MessageEvent event, String message)
 	{
 		String[] spaceSplit = message.split(" ");
 		
@@ -88,7 +87,7 @@ public class SpellingCorrection
 		}
 	}
 	
-	private static void correctSpelling(MessageEvent<Bot> event, String[] split, boolean correctsDifferentUser, String userToCorrect)
+	private static void correctSpelling(MessageEvent event, String[] split, boolean correctsDifferentUser, String userToCorrect)
 	{
 		String toReplace = split[1];
 		String replaceWith = split[2];

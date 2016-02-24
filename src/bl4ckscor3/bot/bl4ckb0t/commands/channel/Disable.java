@@ -5,7 +5,6 @@ import java.net.MalformedURLException;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.Bot;
 import bl4ckscor3.bot.bl4ckb0t.Core;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
@@ -13,10 +12,10 @@ import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 import bl4ckscor3.bot.bl4ckb0t.util.android.ArrayMap;
 
-public class Disable extends BaseCommand<MessageEvent<Bot>>
+public class Disable extends BaseCommand<MessageEvent>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event, String[] args) throws MalformedURLException, IOException, IncorrectCommandExecutionException
+	public void exe(MessageEvent event, String[] args) throws MalformedURLException, IOException, IncorrectCommandExecutionException
 	{	
 		if(args.length > 2)
 			throw new IncorrectCommandExecutionException(getMainAlias());
@@ -65,13 +64,13 @@ public class Disable extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent<Bot> event)
+	public String getSyntax(MessageEvent event)
 	{
 		return "-disable [" + L10N.getString("cmd.help.channel", event) + "]";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent<Bot> event)
+	public String[] getUsage(MessageEvent event)
 	{
 		return new String[]{
 				"-disable || " + L10N.getString("disable.explanation.1", event),
@@ -80,7 +79,7 @@ public class Disable extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getNotes(MessageEvent<Bot> event)
+	public String getNotes(MessageEvent event)
 	{
 		return L10N.getString("notes.onlyOp", event);
 	}

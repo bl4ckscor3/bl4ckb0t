@@ -2,10 +2,9 @@ package bl4ckscor3.bot.bl4ckb0t.commands.privmsg;
 
 import org.pircbotx.hooks.Event;
 
-import bl4ckscor3.bot.bl4ckb0t.Bot;
 import bl4ckscor3.bot.bl4ckb0t.Core;
 
-public abstract class BasePrivateCommand<E extends Event<Bot>>
+public abstract class BasePrivateCommand<E extends Event>
 {
 	/**
 	 * What happens when the command gets executed

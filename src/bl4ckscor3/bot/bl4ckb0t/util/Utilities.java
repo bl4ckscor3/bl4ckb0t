@@ -15,7 +15,6 @@ import org.pircbotx.hooks.events.PrivateMessageEvent;
 
 import com.google.common.collect.ImmutableSortedSet;
 
-import bl4ckscor3.bot.bl4ckb0t.Bot;
 import bl4ckscor3.bot.bl4ckb0t.Core;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.ListChans;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
@@ -32,7 +31,7 @@ public class Utilities
 	 * @param event The event which holds the channel to send the message to
 	 * @param msg The message
 	 */
-	public static void chanMsg(MessageEvent<Bot> event, String msg)
+	public static void chanMsg(MessageEvent event, String msg)
 	{
 		event.getChannel().send().message(msg);
 		Logging.message(event.getChannel().getName(), Core.bot.getNick(), msg);
@@ -43,7 +42,7 @@ public class Utilities
 	 * @param event The event which holds the user to send the notice to
 	 * @param notice The message
 	 */
-	public static void notice(MessageEvent<Bot> event, String notice)
+	public static void notice(MessageEvent event, String notice)
 	{
 		event.getUser().send().notice(notice);
 		Logging.noticeSent(event.getUser().getNick(), notice);
@@ -63,7 +62,7 @@ public class Utilities
 	 * Tells the user that he doesn't have permission for the action he wanted to take
 	 * @param event The event which holds the user and the channel from the action
 	 */
-	public static void noPermission(MessageEvent<Bot> event)
+	public static void noPermission(MessageEvent event)
 	{
 		chanMsg(event, L10N.getString("noPermission", event));
 	}
@@ -73,7 +72,7 @@ public class Utilities
 	 * @param event The event which holds the user
 	 * @param msg The help line to send
 	 */
-	public static void addHelpLine(MessageEvent<Bot> event, String msg)
+	public static void addHelpLine(MessageEvent event, String msg)
 	{
 		pm(event.getUser().getNick(), Colors.BOLD + Colors.RED + msg);
 	}
@@ -83,7 +82,7 @@ public class Utilities
 	 * @param event The event which holds the user to check
 	 * @return Wether the user is a valid user
 	 */
-	public static boolean isValidUser(MessageEvent<Bot> event) throws MalformedURLException, IOException
+	public static boolean isValidUser(MessageEvent event) throws MalformedURLException, IOException
 	{
 		return /*event.getUser().isVerified() &&*/ Lists.getValidUsers().contains(event.getUser().getNick()); //commented out due to esper blocking whois requests
 	}
@@ -93,7 +92,7 @@ public class Utilities
 	 * @param event The event which holds the user to check
 	 * @return Wether the user is an allowed user
 	 */
-	public static boolean isAllowedUser(MessageEvent<Bot> event) throws MalformedURLException, IOException
+	public static boolean isAllowedUser(MessageEvent event) throws MalformedURLException, IOException
 	{
 		return /*event.getUser().isVerified() &&*/ Lists.getAllowedUsers().contains(event.getUser().getNick()); //commented out due to esper blocking whois requests
 	}
@@ -103,7 +102,7 @@ public class Utilities
 	 * @param event The event which holds the user
 	 * @return The permission level of the user
 	 */
-	public static int getUserPermissionLevel(MessageEvent<Bot> event) throws MalformedURLException, IOException
+	public static int getUserPermissionLevel(MessageEvent event) throws MalformedURLException, IOException
 	{
 		return isValidUser(event) ? 3 : (isAllowedUser(event) ? 2 : 1);
 	}
@@ -117,7 +116,7 @@ public class Utilities
 	 * @param event The event which holds the user to check
 	 * @return Wether the user is a valid user
 	 */
-	public static boolean isValidUser(PrivateMessageEvent<Bot> event) throws MalformedURLException, IOException
+	public static boolean isValidUser(PrivateMessageEvent event) throws MalformedURLException, IOException
 	{
 		return /*event.getUser().isVerified() &&*/ Lists.getValidUsers().contains(event.getUser().getNick()); //commented out due to esper blocking whois requests
 	}
@@ -136,7 +135,7 @@ public class Utilities
 	 * @param notes The notes of the command
 	 * @param event The MessageEvent with the channel the help command got sent in
 	 */
-	public static void sendHelp(String nick, String[] aliases, String mainAlias, String syntax, String[] usage, String notes, MessageEvent<Bot> event)
+	public static void sendHelp(String nick, String[] aliases, String mainAlias, String syntax, String[] usage, String notes, MessageEvent event)
 	{
 		String formattedAliases = "";
 

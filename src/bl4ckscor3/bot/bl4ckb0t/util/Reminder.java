@@ -6,7 +6,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.Bot;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Remind;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 
@@ -19,7 +18,7 @@ public class Reminder
 	private String ev;
 	private ScheduledFuture<?> thread;
 	
-	public Reminder(MessageEvent<Bot> event, String e, long timeDue)
+	public Reminder(MessageEvent event, String e, long timeDue)
 	{
 		id = latestId++;
 		issuedUser = event.getUser().getNick();

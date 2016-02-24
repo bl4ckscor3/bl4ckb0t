@@ -5,15 +5,14 @@ import java.net.MalformedURLException;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.Bot;
 import bl4ckscor3.bot.bl4ckb0t.Core;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 
-public class ChangeNick extends BaseCommand<MessageEvent<Bot>>
+public class ChangeNick extends BaseCommand<MessageEvent>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event, String[] args) throws IncorrectCommandExecutionException, MalformedURLException, IOException
+	public void exe(MessageEvent event, String[] args) throws IncorrectCommandExecutionException, MalformedURLException, IOException
 	{
 		if(args.length == 2)
 		{
@@ -33,19 +32,19 @@ public class ChangeNick extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent<Bot> event)
+	public String getSyntax(MessageEvent event)
 	{
 		return "-changenick <" + L10N.getString("changenick.newName", event) + ">";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent<Bot> event)
+	public String[] getUsage(MessageEvent event)
 	{
 		return new String[]{"-changenick <" + L10N.getString("changenick.newName", event) + "> ||" + L10N.getString("changenick.explanation", event)};
 	}
 
 	@Override
-	public String getNotes(MessageEvent<Bot> event)
+	public String getNotes(MessageEvent event)
 	{
 		return L10N.getString("changenick.notes", event);
 	}

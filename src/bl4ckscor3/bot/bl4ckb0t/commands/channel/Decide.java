@@ -4,15 +4,14 @@ import java.util.Random;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.Bot;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Decide extends BaseCommand<MessageEvent<Bot>>
+public class Decide extends BaseCommand<MessageEvent>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event, String[] args) throws IncorrectCommandExecutionException
+	public void exe(MessageEvent event, String[] args) throws IncorrectCommandExecutionException
 	{
 		if(args.length >= 2 && event.getMessage().endsWith("?"))
 		{
@@ -36,19 +35,19 @@ public class Decide extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent<Bot> event)
+	public String getSyntax(MessageEvent event)
 	{
 		return "-decide <" + L10N.getString("decide.help.question", event) + ">";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent<Bot> event)
+	public String[] getUsage(MessageEvent event)
 	{
 		return new String[]{"-decide <" + L10N.getString("decide.help.question", event) + "> || " + L10N.getString("decide.explanation", event)};
 	}
 
 	@Override
-	public String getNotes(MessageEvent<Bot> event)
+	public String getNotes(MessageEvent event)
 	{
 		return L10N.getString("decide.notes", event);
 	}

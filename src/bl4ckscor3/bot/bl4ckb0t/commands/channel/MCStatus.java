@@ -10,14 +10,13 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.Bot;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class MCStatus extends BaseCommand<MessageEvent<Bot>>
+public class MCStatus extends BaseCommand<MessageEvent>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event, String[] args)
+	public void exe(MessageEvent event, String[] args)
 	{
 		WebDriver driver = new HtmlUnitDriver(true);
 
@@ -85,13 +84,13 @@ public class MCStatus extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent<Bot> event)
+	public String getSyntax(MessageEvent event)
 	{
 		return "-mcstatus";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent<Bot> event)
+	public String[] getUsage(MessageEvent event)
 	{
 		return new String[]{"-mcstatus || " + L10N.getString("mcstatus.explanation", event)};
 	}

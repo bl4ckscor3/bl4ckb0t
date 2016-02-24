@@ -4,19 +4,18 @@ import java.util.ArrayList;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.Bot;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Reminder;
 import bl4ckscor3.bot.bl4ckb0t.util.TimeParser;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Remind extends BaseCommand<MessageEvent<Bot>>
+public class Remind extends BaseCommand<MessageEvent>
 {
 	public static final ArrayList<Reminder> reminders = new ArrayList<Reminder>();
 
 	@Override
-	public void exe(MessageEvent<Bot> event, String[] args) throws Exception
+	public void exe(MessageEvent event, String[] args) throws Exception
 	{
 		if(args.length == 2 && args[1].equals("list"))
 		{
@@ -126,13 +125,13 @@ public class Remind extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent<Bot> event)
+	public String getSyntax(MessageEvent event)
 	{
 		return "-remind <" + L10N.getString("cmd.help.time", event) +"> <" + L10N.getString("cmd.help.sentence", event) + ">";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent<Bot> event)
+	public String[] getUsage(MessageEvent event)
 	{
 		return new String[]{
 				"-remind 1d1h1m1s abc || " + L10N.getString("remind.explanation.1", event),

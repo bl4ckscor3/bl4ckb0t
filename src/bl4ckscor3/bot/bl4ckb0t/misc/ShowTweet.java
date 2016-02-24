@@ -7,12 +7,11 @@ import org.jsoup.nodes.Document;
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.Bot;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class ShowTweet
 {
-	public static void show(MessageEvent<Bot> event, String link) throws IOException
+	public static void show(MessageEvent event, String link) throws IOException
 	{
 		String name = "";
 		String account = "";

@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>bl4ckscor3.bot</groupId>
 	<artifactId>bl4ckb0t</artifactId>
-	<version>5.4.1</version>
+	<version>5.4.1.1</version>
 	<name>bl4ckb0t</name>
 	<description>An IRC bot designed and managed by bl4ckscor3</description>
 	<url>https://github.com/bl4ckscor3/bl4ckb0t</url>
@@ -30,7 +30,7 @@
   		<dependency>
   			<groupId>org.pircbotx</groupId>
   			<artifactId>pircbotx</artifactId>
-  			<version>2.0.1</version>
+  			<version>2.1</version>
   		</dependency>
   		<dependency>
   			<groupId>org.jsoup</groupId>

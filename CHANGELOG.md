@@ -1,5 +1,8 @@
 #Changelog
 ---
+**5.4.1.1**		
+- Updated to PircBotX 2.1
+
 ####5.4.1
 - -ranks message formatting fix
 - Added mp/h to wind speed in -w

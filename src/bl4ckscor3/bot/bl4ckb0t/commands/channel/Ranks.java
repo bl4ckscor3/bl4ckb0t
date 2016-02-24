@@ -6,16 +6,15 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.Bot;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Ranks extends BaseCommand<MessageEvent<Bot>>
+public class Ranks extends BaseCommand<MessageEvent>
 {
 	private int highest;
 	
 	@Override
-	public void exe(MessageEvent<Bot> event, String[] args) throws Exception
+	public void exe(MessageEvent event, String[] args) throws Exception
 	{
 		Utilities.chanMsg(event, L10N.getString("ranks.wait", event));
 		
@@ -80,19 +79,19 @@ public class Ranks extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent<Bot> event)
+	public String getSyntax(MessageEvent event)
 	{
 		return "-ranks";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent<Bot> event)
+	public String[] getUsage(MessageEvent event)
 	{
 		return new String[]{"-ranks || " + L10N.getString("ranks.explanation", event)};
 	}
 	
 	@Override
-	public String getNotes(MessageEvent<Bot> event)
+	public String getNotes(MessageEvent event)
 	{
 		return L10N.getString("ranks.notes", event);
 	}

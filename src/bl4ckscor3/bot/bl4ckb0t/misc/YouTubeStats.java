@@ -9,14 +9,13 @@ import org.jsoup.nodes.Document;
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.Bot;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 import bl4ckscor3.bot.bl4ckb0t.util.YouTubeLink;
 
 public class YouTubeStats
 {
-	public static void sendVideoStats(MessageEvent<Bot> event) throws MalformedURLException, IOException
+	public static void sendVideoStats(MessageEvent event) throws MalformedURLException, IOException
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 		ArrayList<YouTubeLink> links = new ArrayList<YouTubeLink>();

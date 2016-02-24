@@ -6,7 +6,6 @@ import java.net.MalformedURLException;
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.Bot;
 import bl4ckscor3.bot.bl4ckb0t.CMDListener;
 import bl4ckscor3.bot.bl4ckb0t.Core;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
@@ -15,14 +14,14 @@ import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.CustomArrayList;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Help extends BaseCommand<MessageEvent<Bot>>
+public class Help extends BaseCommand<MessageEvent>
 {
 	private static String[] aliasesValid;
 	private static String[] aliasesAllowed;
 	private static String[] aliasesNormal;
 
 	@Override
-	public void exe(MessageEvent<Bot> event, String[] args) throws InterruptedException, IncorrectCommandExecutionException, MalformedURLException, IOException
+	public void exe(MessageEvent event, String[] args) throws InterruptedException, IncorrectCommandExecutionException, MalformedURLException, IOException
 	{
 		String nick = event.getUser().getNick();
 		String msg = "";
@@ -60,7 +59,7 @@ public class Help extends BaseCommand<MessageEvent<Bot>>
 		}
 		else if(args.length == 2)
 		{
-			for(BaseCommand<MessageEvent<Bot>> cmd : CMDListener.commands)
+			for(BaseCommand<MessageEvent> cmd : CMDListener.commands)
 			{
 				if(cmd.isValidAlias(args[1]) || cmd.isValidAlias("-" + args[1]))
 				{
@@ -88,13 +87,13 @@ public class Help extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent<Bot> event)
+	public String getSyntax(MessageEvent event)
 	{
 		return "-help [" + L10N.getString("help.help.command", event) + "]";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent<Bot> event)
+	public String[] getUsage(MessageEvent event)
 	{
 		return new String[]{
 				"-help || " + L10N.getString("help.explanation.1", event),
@@ -102,7 +101,7 @@ public class Help extends BaseCommand<MessageEvent<Bot>>
 		};
 	}
 
-	public static void setupHelpMenu(CustomArrayList<BaseCommand<MessageEvent<Bot>>> cmd)
+	public static void setupHelpMenu(CustomArrayList<BaseCommand<MessageEvent>> cmd)
 	{
 		aliasesValid = new String[cmd.size()];
 		aliasesAllowed = new String[cmd.size()];

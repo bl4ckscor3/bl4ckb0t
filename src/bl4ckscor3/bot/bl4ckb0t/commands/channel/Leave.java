@@ -5,17 +5,16 @@ import java.net.MalformedURLException;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.Bot;
 import bl4ckscor3.bot.bl4ckb0t.Core;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Lists;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Leave extends BaseCommand<MessageEvent<Bot>>
+public class Leave extends BaseCommand<MessageEvent>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event, String[] args) throws MalformedURLException, IOException, IncorrectCommandExecutionException
+	public void exe(MessageEvent event, String[] args) throws MalformedURLException, IOException, IncorrectCommandExecutionException
 	{
 		if(args.length == 1)
 			Core.bot.leaveChannel(event.getChannel().getName());
@@ -48,13 +47,13 @@ public class Leave extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent<Bot> event)
+	public String getSyntax(MessageEvent event)
 	{
 		return "-leave [" + L10N.getString("cmd.help.channel", event) + "]";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent<Bot> event)
+	public String[] getUsage(MessageEvent event)
 	{
 		return new String[]{
 				"-leave || " + L10N.getString("leave.explanation.1", event),
@@ -63,7 +62,7 @@ public class Leave extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getNotes(MessageEvent<Bot> event)
+	public String getNotes(MessageEvent event)
 	{
 		return L10N.getString("notes.onlyOp", event);
 	}

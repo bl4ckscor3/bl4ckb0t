@@ -17,10 +17,10 @@ import bl4ckscor3.bot.bl4ckb0t.misc.YouTubeStats;
 import bl4ckscor3.bot.bl4ckb0t.util.Lists;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class MiscListener extends ListenerAdapter<Bot>
+public class MiscListener extends ListenerAdapter
 {
 	@Override
-	public void onMessage(MessageEvent<Bot> event) throws Exception
+	public void onMessage(MessageEvent event) throws Exception
 	{
 		if(Utilities.isIgnored(event.getUser().getNick()))
 		{
@@ -79,7 +79,7 @@ public class MiscListener extends ListenerAdapter<Bot>
 	}
 
 	@Override
-	public void onPrivateMessage(PrivateMessageEvent<Bot> event) throws Exception
+	public void onPrivateMessage(PrivateMessageEvent event) throws Exception
 	{
 		if(Utilities.isIgnored(event.getUser().getNick()))
 		{
@@ -89,7 +89,7 @@ public class MiscListener extends ListenerAdapter<Bot>
 
 		if(!event.getMessage().startsWith(CMDListener.cmdPrefix))
 		{
-			for(BasePrivateCommand<PrivateMessageEvent<Bot>> cmd : CMDListener.privCommands)
+			for(BasePrivateCommand<PrivateMessageEvent> cmd : CMDListener.privCommands)
 			{
 				if(event.getMessage().startsWith(cmd.getAlias()))
 					return;
@@ -105,7 +105,7 @@ public class MiscListener extends ListenerAdapter<Bot>
 	}
 
 	@Override
-	public void onConnect(ConnectEvent<Bot> event) throws MalformedURLException, IOException
+	public void onConnect(ConnectEvent event) throws MalformedURLException, IOException
 	{
 		Startup.setDefaultChans();
 		Logging.info("Joining channels...");
@@ -114,7 +114,7 @@ public class MiscListener extends ListenerAdapter<Bot>
 	}
 
 	@Override
-	public void onAction(ActionEvent<Bot> event) throws Exception
+	public void onAction(ActionEvent event) throws Exception
 	{
 		if(Utilities.isIgnored(event.getUser().getNick()))
 		{

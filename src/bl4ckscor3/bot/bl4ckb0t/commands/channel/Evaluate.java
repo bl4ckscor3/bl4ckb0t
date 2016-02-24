@@ -7,17 +7,16 @@ import java.net.URL;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.Bot;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Passwords;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Evaluate extends BaseCommand<MessageEvent<Bot>>
+public class Evaluate extends BaseCommand<MessageEvent>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event, String[] args) throws IncorrectCommandExecutionException, IOException
+	public void exe(MessageEvent event, String[] args) throws IncorrectCommandExecutionException, IOException
 	{
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://api.wolframalpha.com/v2/query?appid=" + Passwords.WOLFRAMAPIKEY.getPassword() + "&input=" + args[1].replace("+", "%2B").replace(' ', '+').replace(',', '.')).openStream()));
 		String line = "";
@@ -73,13 +72,13 @@ public class Evaluate extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent<Bot> event) 
+	public String getSyntax(MessageEvent event) 
 	{
 		return "-evaluate <" + L10N.getString("evaluate.eval", event) + ">";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent<Bot> event) 
+	public String[] getUsage(MessageEvent event) 
 	{
 		return new String[]{"-evaluate <" + L10N.getString("evaluate.eval", event) + "> || " + L10N.getString("evaluate.explanation", event).replace("#link", "http://wolframalpha.com/")};
 	}

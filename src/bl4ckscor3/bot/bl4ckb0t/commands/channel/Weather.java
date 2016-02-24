@@ -7,16 +7,15 @@ import org.jsoup.nodes.Document;
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.Bot;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Passwords;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Weather extends BaseCommand<MessageEvent<Bot>>
+public class Weather extends BaseCommand<MessageEvent>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event, String[] args) throws IOException, IncorrectCommandExecutionException
+	public void exe(MessageEvent event, String[] args) throws IOException, IncorrectCommandExecutionException
 	{
 		String city = "";
 
@@ -70,19 +69,19 @@ public class Weather extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent<Bot> event)
+	public String getSyntax(MessageEvent event)
 	{
 		return "-w <" + L10N.getString("w.help.city", event) + ">";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent<Bot> event)
+	public String[] getUsage(MessageEvent event)
 	{
 		return new String[]{"-w <" + L10N.getString("w.help.city", event) + "> || " + L10N.getString("w.explanation", event)};
 	}
 
 	@Override
-	public String getNotes(MessageEvent<Bot> event)
+	public String getNotes(MessageEvent event)
 	{
 		return L10N.getString("w.notes", event);
 	}

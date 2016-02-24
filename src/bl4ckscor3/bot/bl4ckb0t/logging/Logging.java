@@ -21,7 +21,6 @@ import org.pircbotx.hooks.events.PartEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 import org.pircbotx.hooks.events.QuitEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.Bot;
 import bl4ckscor3.bot.bl4ckb0t.Core;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
@@ -39,7 +38,7 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
  * 
  * @author bl4ckscor3
  */
-public class Logging extends ListenerAdapter<Bot>
+public class Logging extends ListenerAdapter
 {
 	private static boolean enabled = true;
 	private static File f;
@@ -303,24 +302,24 @@ public class Logging extends ListenerAdapter<Bot>
 	/***************************Listeners***************************/
 
 	@Override
-	public void onMessage(MessageEvent<Bot> event) throws Exception
+	public void onMessage(MessageEvent event) throws Exception
 	{
 		message(event.getChannel().getName(), event.getUser().getNick(), event.getMessage());
 	}
 	@Override
-	public void onAction(ActionEvent<Bot> event) throws Exception
+	public void onAction(ActionEvent event) throws Exception
 	{
 		action(event.getChannel().getName(), event.getUser().getNick(), event.getMessage());
 	}
 
 	@Override
-	public void onNotice(NoticeEvent<Bot> event) throws Exception
+	public void onNotice(NoticeEvent event) throws Exception
 	{
 		noticeReceived(event.getUser().getNick(), event.getMessage());
 	}
 
 	@Override
-	public void onKick(KickEvent<Bot> event) throws Exception
+	public void onKick(KickEvent event) throws Exception
 	{
 		if(event.getRecipient().getNick().equals(Core.bot.getNick()))
 			warn("Bot kicked from " + event.getChannel().getName() + " for \"" + event.getReason() + "\".");
@@ -329,38 +328,38 @@ public class Logging extends ListenerAdapter<Bot>
 	}
 
 	@Override
-	public void onNickChange(NickChangeEvent<Bot> event) throws Exception
+	public void onNickChange(NickChangeEvent event) throws Exception
 	{
 		info(event.getOldNick() + " changed his nick to " + event.getNewNick() + ".");
 	}
 
 	@Override
-	public void onPart(PartEvent<Bot> event) throws Exception
+	public void onPart(PartEvent event) throws Exception
 	{
 		info(event.getUser().getNick() + " left " + event.getChannel().getName() + ": \"" + event.getReason() + "\".");
 	}
 
 	@Override
-	public void onJoin(JoinEvent<Bot> event) throws Exception
+	public void onJoin(JoinEvent event) throws Exception
 	{
 		if(!event.getUser().getNick().equals(Core.bot.getNick()))
 			info(event.getUser().getNick() + " joined " + event.getChannel().getName() + ".");
 	}
 
 	@Override
-	public void onQuit(QuitEvent<Bot> event) throws Exception
+	public void onQuit(QuitEvent event) throws Exception
 	{
 		info(event.getUser().getNick() + " quit: \"" + event.getReason() + "\".");
 	}
 
 	@Override
-	public void onPrivateMessage(PrivateMessageEvent<Bot> event) throws Exception
+	public void onPrivateMessage(PrivateMessageEvent event) throws Exception
 	{
 		pm(event.getUser().getNick(), event.getMessage());
 	}
 
 	@Override
-	public void onDisconnect(DisconnectEvent<Bot> event) throws Exception
+	public void onDisconnect(DisconnectEvent event) throws Exception
 	{
 		severe("Disconnected from server!");
 	}

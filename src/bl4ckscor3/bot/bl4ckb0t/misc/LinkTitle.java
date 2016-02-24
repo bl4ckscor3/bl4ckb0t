@@ -13,7 +13,6 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.Bot;
 import bl4ckscor3.bot.bl4ckb0t.Core;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
@@ -21,7 +20,7 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class LinkTitle
 {
-	public static void checkForLinkAndSendTitle(MessageEvent<Bot> event) throws MalformedURLException, IOException
+	public static void checkForLinkAndSendTitle(MessageEvent event) throws MalformedURLException, IOException
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 

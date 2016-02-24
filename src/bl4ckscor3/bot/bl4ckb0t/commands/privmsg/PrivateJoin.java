@@ -2,13 +2,12 @@ package bl4ckscor3.bot.bl4ckb0t.commands.privmsg;
 
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.Bot;
 import bl4ckscor3.bot.bl4ckb0t.Core;
 
-public class PrivateJoin extends BasePrivateCommand<PrivateMessageEvent<Bot>>
+public class PrivateJoin extends BasePrivateCommand<PrivateMessageEvent>
 {
 	@Override
-	public void exe(PrivateMessageEvent<Bot> event, String[] args)
+	public void exe(PrivateMessageEvent event, String[] args)
 	{
 		if(args.length > 2)
 			Core.bot.joinChannelWithPassword(args[1], args[2]);

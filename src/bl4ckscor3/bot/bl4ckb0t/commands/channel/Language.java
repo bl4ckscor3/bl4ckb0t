@@ -4,13 +4,12 @@ import java.io.IOException;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.Bot;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Language extends BaseCommand<MessageEvent<Bot>>
+public class Language extends BaseCommand<MessageEvent>
 {
 	private String[] availableLanguages = {
 				"English",
@@ -18,7 +17,7 @@ public class Language extends BaseCommand<MessageEvent<Bot>>
 		};
 
 	@Override
-	public void exe(MessageEvent<Bot> event, String[] args) throws IncorrectCommandExecutionException, IOException
+	public void exe(MessageEvent event, String[] args) throws IncorrectCommandExecutionException, IOException
 	{
 		if(args.length == 1)
 			Utilities.chanMsg(event, L10N.getString("language.currentLanguage", event).replace("#lang", Utilities.capitalizeFirstLetter(L10N.chanLangs.get(event.getChannel().getName()))));
@@ -62,13 +61,13 @@ public class Language extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent<Bot> event)
+	public String getSyntax(MessageEvent event)
 	{
 		return "-language [" + L10N.getString("language.help.language", event) + "]";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent<Bot> event)
+	public String[] getUsage(MessageEvent event)
 	{
 		return new String[]{
 				"-language || " + L10N.getString("language.explanation.1", event),

@@ -20,7 +20,7 @@ public class Bot extends PircBotX
 	private boolean wasStartedAsWIP;
 	private ConfigurationFile config;
 	
-	public Bot(Configuration<? extends PircBotX> configuration, boolean wip, ConfigurationFile cfg)
+	public Bot(Configuration configuration, boolean wip, ConfigurationFile cfg)
 	{
 		super(configuration);
 		wasStartedAsWIP = wip;

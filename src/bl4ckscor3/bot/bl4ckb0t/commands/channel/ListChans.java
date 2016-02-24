@@ -5,17 +5,16 @@ import java.net.MalformedURLException;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.Bot;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class ListChans extends BaseCommand<MessageEvent<Bot>>
+public class ListChans extends BaseCommand<MessageEvent>
 {
 	public static int secretChannelAmount = 0;
 
 	@Override
-	public void exe(MessageEvent<Bot> event, String[] args) throws IncorrectCommandExecutionException, MalformedURLException, IOException
+	public void exe(MessageEvent event, String[] args) throws IncorrectCommandExecutionException, MalformedURLException, IOException
 	{
 		String[] chans = Utilities.getJoinedChannels(false);
 		String result = "";
@@ -58,13 +57,13 @@ public class ListChans extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent<Bot> event)
+	public String getSyntax(MessageEvent event)
 	{
 		return "-listchans [show]";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent<Bot> event)
+	public String[] getUsage(MessageEvent event)
 	{
 		return new String[]{
 				"-listchans || " + L10N.getString("listchans.explanation.1", event),

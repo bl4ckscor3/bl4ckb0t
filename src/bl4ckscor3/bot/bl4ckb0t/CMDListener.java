@@ -49,11 +49,11 @@ import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.CustomArrayList;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class CMDListener extends ListenerAdapter<Bot>
+public class CMDListener extends ListenerAdapter
 {
 	public static final String cmdPrefix = "-";
-	public static final CustomArrayList<BaseCommand<MessageEvent<Bot>>> commands = new CustomArrayList<BaseCommand<MessageEvent<Bot>>>();
-	public static final CustomArrayList<BasePrivateCommand<PrivateMessageEvent<Bot>>> privCommands = new CustomArrayList<BasePrivateCommand<PrivateMessageEvent<Bot>>>();
+	public static final CustomArrayList<BaseCommand<MessageEvent>> commands = new CustomArrayList<BaseCommand<MessageEvent>>();
+	public static final CustomArrayList<BasePrivateCommand<PrivateMessageEvent>> privCommands = new CustomArrayList<BasePrivateCommand<PrivateMessageEvent>>();
 
 	@SuppressWarnings("unchecked")
 	public static void setupCMDs()
@@ -106,7 +106,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 	}
 
 	@Override
-	public void onMessage(MessageEvent<Bot> event) throws Exception
+	public void onMessage(MessageEvent event) throws Exception
 	{
 		String cmdName = Utilities.toArgs(event.getMessage())[0];
 		int permissionLevel = Utilities.getUserPermissionLevel(event);
@@ -122,7 +122,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 		
 		if(Core.bot.isEnabled() && Core.bot.getChannelStates().get(event.getChannel().getName()))
 		{
-			for(BaseCommand<MessageEvent<Bot>> cmd : commands)
+			for(BaseCommand<MessageEvent> cmd : commands)
 			{
 				if(cmd.isEnabled() && cmd.isValidAlias(cmdName))
 				{
@@ -146,7 +146,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 		}
 		else
 		{
-			for(BaseCommand<MessageEvent<Bot>> cmd : commands)
+			for(BaseCommand<MessageEvent> cmd : commands)
 			{
 				if(cmd.isEnabled() && (cmd instanceof Enable || cmd instanceof Disable) && cmd.isValidAlias(cmdName))
 				{
@@ -167,7 +167,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 	}	
 
 	@Override
-	public void onPrivateMessage(PrivateMessageEvent<Bot> event) throws Exception
+	public void onPrivateMessage(PrivateMessageEvent event) throws Exception
 	{
 		if(Utilities.isIgnored(event.getUser().getNick()))
 		{
@@ -179,7 +179,7 @@ public class CMDListener extends ListenerAdapter<Bot>
 		{
 			if(Utilities.isValidUser(event))
 			{
-				for(BasePrivateCommand<PrivateMessageEvent<Bot>> cmd : privCommands)
+				for(BasePrivateCommand<PrivateMessageEvent> cmd : privCommands)
 				{
 					if(cmd.isEnabled() && event.getMessage().startsWith(cmd.getAlias()))
 					{

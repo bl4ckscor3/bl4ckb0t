@@ -6,18 +6,17 @@ import java.util.ArrayList;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.Bot;
 import bl4ckscor3.bot.bl4ckb0t.Core;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 import bl4ckscor3.bot.bl4ckb0t.util.android.ArrayMap;
 
-public class Changelog extends BaseCommand<MessageEvent<Bot>>
+public class Changelog extends BaseCommand<MessageEvent>
 {
 	public static final ArrayMap<String, ArrayList<String>> versions = new ArrayMap<String, ArrayList<String>>();
 
 	@Override
-	public void exe(MessageEvent<Bot> event, String[] args) throws MalformedURLException, IOException
+	public void exe(MessageEvent event, String[] args) throws MalformedURLException, IOException
 	{
 		if(args.length == 2)
 		{
@@ -51,13 +50,13 @@ public class Changelog extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent<Bot> event)
+	public String getSyntax(MessageEvent event)
 	{
 		return "-changelog [" + L10N.getString("changelog.versionNumber", event) + "]";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent<Bot> event)
+	public String[] getUsage(MessageEvent event)
 	{
 		return new String[]{
 				"-changelog || " + L10N.getString("changelog.explanation.1", event),
@@ -66,7 +65,7 @@ public class Changelog extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getNotes(MessageEvent<Bot> event)
+	public String getNotes(MessageEvent event)
 	{
 		return L10N.getString("changelog.notes", event);
 	}

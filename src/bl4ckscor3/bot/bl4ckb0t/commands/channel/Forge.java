@@ -7,15 +7,14 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.Bot;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Forge extends BaseCommand<MessageEvent<Bot>>
+public class Forge extends BaseCommand<MessageEvent>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event, String[] args) throws IOException, IncorrectCommandExecutionException
+	public void exe(MessageEvent event, String[] args) throws IOException, IncorrectCommandExecutionException
 	{
 		if(args.length == 4)
 		{
@@ -86,13 +85,13 @@ public class Forge extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent<Bot> event)
+	public String getSyntax(MessageEvent event)
 	{
 		return "-forge <" + L10N.getString("forge.version", event) + "> <latest|rec|recommended> <version|changelog|dlmain|dlsrc>";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent<Bot> event)
+	public String[] getUsage(MessageEvent event)
 	{
 		return new String[]{
 				L10N.getString("forge.explanation.1", event),

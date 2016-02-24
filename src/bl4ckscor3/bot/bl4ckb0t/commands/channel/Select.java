@@ -4,15 +4,14 @@ import java.util.Random;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.Bot;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Select extends BaseCommand<MessageEvent<Bot>>
+public class Select extends BaseCommand<MessageEvent>
 {
 	@Override
-	public void exe(MessageEvent<Bot> event, String[] args) throws IncorrectCommandExecutionException 
+	public void exe(MessageEvent event, String[] args) throws IncorrectCommandExecutionException 
 	{
 		if(args.length != 1)
 		{
@@ -31,19 +30,19 @@ public class Select extends BaseCommand<MessageEvent<Bot>>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent<Bot> event)
+	public String getSyntax(MessageEvent event)
 	{
 		return "-select <" + L10N.getString("select.help.options", event) + ">";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent<Bot> event)
+	public String[] getUsage(MessageEvent event)
 	{
 		return new String[]{"-select <" + L10N.getString("select.help.options", event) + "> || " + L10N.getString("select.explanation", event)};
 	}
 
 	@Override
-	public String getNotes(MessageEvent<Bot> event)
+	public String getNotes(MessageEvent event)
 	{
 		return L10N.getString("select.notes", event);
 	}
