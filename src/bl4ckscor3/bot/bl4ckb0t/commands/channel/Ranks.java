@@ -57,9 +57,9 @@ public class Ranks extends BaseCommand<MessageEvent<Bot>>
 				Colors.BOLD + " ** " + Colors.CYAN + underline(10) + "Gold Nova Master" + Colors.NORMAL + underline(10) + Colors.BOLD + ": " + Colors.NORMAL + underline(10) + data[9] + Colors.NORMAL +
 				Colors.BOLD + " ** " + Colors.TEAL + underline(11) + "Master Guardian 1" + Colors.NORMAL + underline(11) + Colors.BOLD + ": " + Colors.NORMAL + underline(11) + data[10] + Colors.NORMAL +
 				Colors.BOLD + " ** " + Colors.TEAL + underline(12) + "Master Guardian 2" + Colors.NORMAL + underline(12) + Colors.BOLD + ": " + Colors.NORMAL + underline(12) + data[11] + Colors.NORMAL +
-				Colors.BOLD + " ** " + Colors.TEAL + underline(13) + "Master Guardian Elite" + Colors.NORMAL + underline(13) + Colors.BOLD + ": " + Colors.NORMAL + underline(13) + data[12]);
+				Colors.BOLD + " ** " + Colors.TEAL + underline(13) + "Master Guardian Elite" + Colors.NORMAL + underline(13) + Colors.BOLD + ": " + Colors.NORMAL + underline(13) + data[12] + Colors.BOLD + " **");
 		Utilities.chanMsg(event,
-				Colors.BOLD + " ** " + Colors.TEAL + underline(14) + "Distiguished Master Guardian" + Colors.NORMAL + underline(14) + Colors.BOLD + ": " + Colors.NORMAL + underline(14) + data[13] + Colors.NORMAL +
+				Colors.BOLD + "** " + Colors.TEAL + underline(14) + "Distiguished Master Guardian" + Colors.NORMAL + underline(14) + Colors.BOLD + ": " + Colors.NORMAL + underline(14) + data[13] + Colors.NORMAL +
 				Colors.BOLD + " ** " + Colors.BROWN + underline(15) + "Legendary Eagle" + Colors.NORMAL + underline(15) + Colors.BOLD + ": " + Colors.NORMAL + underline(15) + data[14] + Colors.NORMAL +
 				Colors.BOLD + " ** " + Colors.BROWN + underline(16) + "Legendary Eagle Master" + Colors.NORMAL + underline(16) + Colors.BOLD + ": " + Colors.NORMAL + underline(16) + data[15] + Colors.NORMAL +
 				Colors.BOLD + " ** " + Colors.RED + underline(17) + "Supreme Master First Class" + Colors.NORMAL + underline(17) + Colors.BOLD + ": " + Colors.NORMAL + underline(17) + data[16] + Colors.NORMAL +
