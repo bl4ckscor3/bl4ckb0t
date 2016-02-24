@@ -16,11 +16,9 @@ public class Select extends BaseCommand<MessageEvent<Bot>>
 	{
 		if(args.length != 1)
 		{
-			Random r = new Random();
 			String[] options = event.getMessage().substring(8).split(",");
-			int i = r.nextInt(options.length);
 
-			Utilities.chanMsg(event, options[i]);
+			Utilities.chanMsg(event, options[new Random().nextInt(options.length)]);
 		}
 		else
 			throw new IncorrectCommandExecutionException(getMainAlias());

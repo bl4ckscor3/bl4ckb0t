@@ -4,6 +4,7 @@
 - -ranks message formatting fix
 - Added mp/h to wind speed in -w
 - Fixed Kelvin having a long number
+- Internal changes
 
 ##5.4
 - Added -ranks (shows CS:GO rank distribution)
@@ -16,7 +17,7 @@
 - Added ability to list active reminders
 - Fixed -remind not working when only seconds have been given
 - Fixed -mcstatus explanation not working
-- Internal Changes
+- Internal changes
 
 ##5.3
 - Added -remind

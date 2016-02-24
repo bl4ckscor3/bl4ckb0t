@@ -12,8 +12,7 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Language extends BaseCommand<MessageEvent<Bot>>
 {
-	private String[] availableLanguages =
-		{
+	private String[] availableLanguages = {
 				"English",
 				"German"
 		};

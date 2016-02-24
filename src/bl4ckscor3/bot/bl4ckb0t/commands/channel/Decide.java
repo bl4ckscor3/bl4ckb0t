@@ -16,8 +16,7 @@ public class Decide extends BaseCommand<MessageEvent<Bot>>
 	{
 		if(args.length >= 2 && event.getMessage().endsWith("?"))
 		{
-			Random r = new Random();
-			int decision = r.nextInt(101);
+			int decision = new Random().nextInt(101);
 
 			if(decision >= 0 && decision <= 49)
 				Utilities.chanMsg(event, L10N.getString("decide.no", event));

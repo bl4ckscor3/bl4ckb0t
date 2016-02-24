@@ -1,7 +1,6 @@
 package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 
 import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -21,8 +20,9 @@ public class MCStatus extends BaseCommand<MessageEvent<Bot>>
 	public void exe(MessageEvent<Bot> event, String[] args)
 	{
 		WebDriver driver = new HtmlUnitDriver(true);
-		ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
-		Runnable task = () -> {
+
+		driver.get("http://xpaw.ru/mcstatus");
+		Executors.newSingleThreadScheduledExecutor().schedule(() -> {
 			WebElement login = driver.findElement(By.cssSelector("div#login h2.status"));
 			WebElement session = driver.findElement(By.cssSelector("div#session h2.status"));
 			WebElement website = driver.findElement(By.cssSelector("div#website h2.status"));
@@ -75,10 +75,7 @@ public class MCStatus extends BaseCommand<MessageEvent<Bot>>
 			result += Colors.BOLD + " ** Powered by xpaw - http://xpaw.ru/mcstatus **";
 			Utilities.chanMsg(event, result);
 			driver.close();
-		};
-
-		driver.get("http://xpaw.ru/mcstatus");
-		worker.schedule(task, 1, TimeUnit.SECONDS);
+		}, 1, TimeUnit.SECONDS);
 	}		
 
 	@Override

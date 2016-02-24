@@ -18,7 +18,6 @@ public class Weather extends BaseCommand<MessageEvent<Bot>>
 	@Override
 	public void exe(MessageEvent<Bot> event, String[] args) throws IOException, IncorrectCommandExecutionException
 	{
-		Document doc;
 		String city = "";
 
 		for(String s : args)
@@ -34,7 +33,7 @@ public class Weather extends BaseCommand<MessageEvent<Bot>>
 		
 		try
 		{
-			doc = Jsoup.connect("http://api.openweathermap.org/data/2.5/weather?q=" + city.trim() + "&mode=html&APPID=" + Passwords.WEATHERAPIKEY.getPassword()).get();
+			Document doc = Jsoup.connect("http://api.openweathermap.org/data/2.5/weather?q=" + city.trim() + "&mode=html&APPID=" + Passwords.WEATHERAPIKEY.getPassword()).get();
 
 			Utilities.chanMsg(event, Colors.BOLD + "** " + doc.select("body > div:nth-child(1)").text() +
 					" ** " + L10N.getString("w.temperature", event).replace("#temperature", Colors.BOLD + getTemperature(doc)) +
