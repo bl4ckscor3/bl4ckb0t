@@ -3,6 +3,7 @@ package bl4ckscor3.bot.bl4ckb0t.util;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -309,5 +310,15 @@ public class Utilities
 	public static boolean isIgnored(String nick)
 	{
 		return Core.bot.getConfig().getBoolean("allowIgnoringUsers") && Lists.getIgnoredUsers().contains(nick);
+	}
+	
+	/**
+	 * Formats a double to two decimal places
+	 * @param d The double to format
+	 * @return The formatted double
+	 */
+	public static String formatDouble(double d)
+	{
+		return new DecimalFormat("#.00").format(d).replace(",", ".");
 	}
 }

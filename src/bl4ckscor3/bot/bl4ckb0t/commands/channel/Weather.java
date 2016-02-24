@@ -40,7 +40,7 @@ public class Weather extends BaseCommand<MessageEvent<Bot>>
 					" ** " + L10N.getString("w.temperature", event).replace("#temperature", Colors.BOLD + getTemperature(doc)) +
 					Colors.BOLD + " ** " + L10N.getString("w.humidity", event).replace("#humidity", Colors.BOLD + doc.select("body > div:nth-child(2) > div:nth-child(3)").text().split(" ")[1]) +
 					Colors.BOLD + " ** " + L10N.getString("w.pressure", event).replace("#pressure", Colors.BOLD + doc.select("body > div:nth-child(2) > div:nth-child(5)").text().split(" ")[1]) +
-					Colors.BOLD + " ** " + L10N.getString("w.wind", event).replace("#wind", Colors.BOLD + doc.select("body > div:nth-child(2) > div:nth-child(4)").text().split(":")[1].trim()) +
+					Colors.BOLD + " ** " + L10N.getString("w.wind", event).replace("#wind", Colors.BOLD + getWindSpeed(doc)) +
 					Colors.BOLD + " ** " + L10N.getString("w.credit", event).replace("#link", doc.select("body > div:nth-child(3) > a:nth-child(1)").attr("href")) + " **");
 		}
 		catch(Exception e)
@@ -54,9 +54,16 @@ public class Weather extends BaseCommand<MessageEvent<Bot>>
 	{
 		double celsius = Double.parseDouble(doc.select("body > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1)").text().replace("°C", ""));
 
-		return celsius + "°C | " + (celsius * (9D / 5D) + 32D) + "°F | " + (celsius + 273.15D) + "K";
+		return celsius + "°C | " + Utilities.formatDouble(celsius * (9D / 5D) + 32D) + "°F | " + Utilities.formatDouble(celsius + 273.15D) + "K";
 	}
 
+	private String getWindSpeed(Document doc)
+	{
+		double ms = Double.parseDouble(doc.select("body > div:nth-child(2) > div:nth-child(4)").text().split(":")[1].trim().replace(" m/s", ""));
+		
+		return ms + " m/s | " + Utilities.formatDouble(ms * 2.2369362920544) + " mp/h";
+	}
+	
 	@Override
 	public String[] getAliases()
 	{

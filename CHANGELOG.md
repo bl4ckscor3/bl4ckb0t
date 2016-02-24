@@ -1,6 +1,11 @@
 #Changelog
 ---
-####5.4
+####5.4.1_WIP
+- -ranks message formatting fix
+- Added mp/h to wind speed in -w
+- Fixed Kelvin having a long number
+
+##5.4
 - Added -ranks (shows CS:GO rank distribution)
 - Added restriction for users to check/stop reminders in the wrong channel
 - Added restriction for users to check/stop reminders that do not own the reminder
