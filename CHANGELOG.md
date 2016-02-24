@@ -1,9 +1,10 @@
 #Changelog
 ---
-####5.4.1_WIP
+####5.4.1
 - -ranks message formatting fix
 - Added mp/h to wind speed in -w
 - Fixed Kelvin having a long number
+- Possible memory improvements
 - Internal changes
 
 ##5.4

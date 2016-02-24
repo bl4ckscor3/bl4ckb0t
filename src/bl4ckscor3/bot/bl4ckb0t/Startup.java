@@ -52,8 +52,8 @@ public class Startup
 				Changelog.versions.get(currentVersion).add(line);
 		}
 		
-		Logging.info("All versions added to changelog list.");
 		reader.close();
+		Logging.info("All versions added to changelog list.");
 	}
 
 	public static void setDefaultChans() throws MalformedURLException, IOException

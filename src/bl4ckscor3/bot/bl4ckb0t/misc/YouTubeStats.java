@@ -87,7 +87,5 @@ public class YouTubeStats
 					Colors.BOLD + " ** " + L10N.getString("youtube.uploader", event) + ": " + Colors.BOLD + uploader + 
 					Colors.BOLD + " ** " + L10N.getString("youtube.date", event) + ": " + Colors.BOLD + date + Colors.BOLD + " **");
 		}
-		
-		links.clear();
 	}
 }

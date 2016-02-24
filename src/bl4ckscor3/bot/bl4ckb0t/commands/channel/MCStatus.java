@@ -30,6 +30,7 @@ public class MCStatus extends BaseCommand<MessageEvent<Bot>>
 			WebElement realms = driver.findElement(By.cssSelector("div#realms h2.status"));
 			String result = "";
 
+			driver.close();
 			result += Colors.BOLD + "** Mojang Server Status ";
 
 			//login
@@ -74,7 +75,6 @@ public class MCStatus extends BaseCommand<MessageEvent<Bot>>
 
 			result += Colors.BOLD + " ** Powered by xpaw - http://xpaw.ru/mcstatus **";
 			Utilities.chanMsg(event, result);
-			driver.close();
 		}, 1, TimeUnit.SECONDS);
 	}		
 

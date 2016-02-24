@@ -63,7 +63,8 @@ public class LinkTitle
 
 					driver.get(s);
 					title = driver.getTitle();
-
+					driver.close();
+					
 					if(s.startsWith("http://"))
 						s = s.substring(7);
 					else if(s.startsWith("https://"))
@@ -95,13 +96,14 @@ public class LinkTitle
 			blacklistedWebsites.add(line);
 		}
 
+		reader.close();
+		
 		for(String s : blacklistedWebsites)
 		{
 			if(website.contains(s))
 				return true;
 		}
 
-		reader.close();
 		return false;
 	}
 }
