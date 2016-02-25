@@ -1,5 +1,9 @@
 #Changelog
 ---
+####5.4.2
+- Added build date to -info
+- Fixed shrugs emote not working
+
 **5.4.1.1**		
 - Updated to PircBotX 2.1
 

@@ -1,6 +1,8 @@
 package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 
 import java.lang.management.ManagementFactory;
+import java.net.JarURLConnection;
+import java.util.Date;
 
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
@@ -16,10 +18,23 @@ public class Info extends BaseCommand<MessageEvent>
 	public void exe(MessageEvent event, String[] args) throws Exception
 	{
 		Utilities.chanMsg(event, Colors.BOLD + "** " + L10N.getString("info.version", event).replace("#version", Colors.BOLD + Core.bot.getConfiguration().getVersion()) +
-				Colors.BOLD + " ** " + L10N.getString("info.uptime", event).replace("#uptime", Colors.BOLD + new TimeParser().lts(ManagementFactory.getRuntimeMXBean().getUptime(), "%s:%s:%s:%s")) + 
+				Colors.BOLD + " ** " + L10N.getString("info.uptime", event).replace("#uptime", Colors.BOLD + new TimeParser(getMainAlias()).lts(ManagementFactory.getRuntimeMXBean().getUptime(), "%s:%s:%s:%s")) + 
+				Colors.BOLD + " ** " + L10N.getString("info.buildDate", event).replace("#time", Colors.BOLD + new Date(getBuildDate())) +
 				Colors.BOLD + " ** " + L10N.getString("info.author", event).replace("#author", Colors.BOLD + "bl4ckscor3") + Colors.BOLD + " **");
 	}
 
+	private long getBuildDate()
+	{
+		try
+		{
+			return ((JarURLConnection)ClassLoader.getSystemResource(Core.class.getName().replace('.', '/') + ".class").openConnection()).getJarFile().getEntry("META-INF/MANIFEST.MF").getTime();
+		}
+		catch(Exception e)
+		{
+			return 0L;
+		}
+	}
+	
 	@Override
 	public String[] getAliases()
 	{
