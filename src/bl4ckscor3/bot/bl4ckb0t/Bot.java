@@ -102,7 +102,7 @@ public class Bot extends PircBotX
 	public void joinChannelWithPassword(String channel, String password)
 	{
 		sendIRC().joinChannel(channel, password);
-		
+
 		if(!L10N.chanLangs.containsKey(channel))
 		{
 			try
@@ -120,7 +120,7 @@ public class Bot extends PircBotX
 
 		if(!channelStates.containsKey(channel))
 			channelStates.put(channel, true);
-		
+
 		Logging.info("Joined " + channel + "...");
 	}
 

@@ -9,12 +9,12 @@ import org.pircbotx.hooks.events.MessageEvent;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.android.ArrayMap;
 
-@SuppressWarnings("unused") //resource bundles are unused because they are called via reflection
+@SuppressWarnings("unused") //ResourceBundles are seen as unused because they are called via reflection
 public class L10N
 {
-	private static ResourceBundle english = ResourceBundle.getBundle("bl4ckscor3.bot.bl4ckb0t.localization.bb", new Locale("en", "US"));
-	private static ResourceBundle german = ResourceBundle.getBundle("bl4ckscor3.bot.bl4ckb0t.localization.bb", new Locale("de", "DE"));
-	public static ArrayMap<String, String> chanLangs = new ArrayMap<String, String>();
+	private static final ResourceBundle english = ResourceBundle.getBundle("bl4ckscor3.bot.bl4ckb0t.localization.bb", new Locale("en", "US"));
+	private static final ResourceBundle german = ResourceBundle.getBundle("bl4ckscor3.bot.bl4ckb0t.localization.bb", new Locale("de", "DE"));
+	public static final ArrayMap<String,String> chanLangs = new ArrayMap<String,String>();
 
 	/**
 	 * Changes the localization of the bot

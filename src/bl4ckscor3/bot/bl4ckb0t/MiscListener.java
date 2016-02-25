@@ -123,6 +123,6 @@ public class MiscListener extends ListenerAdapter
 		}
 
 		if(Core.bot.getConfig().getBoolean("shrugs") && event.getAction().equals("shrugs"))
-			Core.bot.sendCustomMessage(event.getChannel().getName(), "¯\\_(ツ)_/¯");
+			Core.bot.sendCustomMessage(event.getChannel().getName(), "Â¯\\_(ãƒ„)_/Â¯");
 	}
 }
