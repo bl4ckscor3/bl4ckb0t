@@ -1,5 +1,8 @@
 #Changelog
 ---
+####5.4.3_WIP
+- Re-enabled isVerified checks because of fix in PBX 2.1
+
 ####5.4.2
 - Added build date to -info
 - Fixed shrugs emote not working
