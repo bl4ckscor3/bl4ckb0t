@@ -78,13 +78,14 @@ public class YouTubeStats
 			dislikes = doc.select(".like-button-renderer-dislike-button-unclicked > span:nth-child(1)").get(0).text();
 			date = doc.select(".watch-time-text").get(0).text().split(" ")[2].trim();
 			uploader = doc.select(".yt-user-info > a:nth-child(1)").get(0).text();
-			Utilities.chanMsg(event, Colors.BOLD + "** " + Colors.BOLD + "1,0You0,4Tube " + 
-					Colors.BOLD + "** " + L10N.getString("youtube.title", event) + ": " + Colors.BOLD + title + 
-					Colors.BOLD + " ** " + L10N.getString("youtube.views", event) + ": " + Colors.BOLD + views + 
-					Colors.BOLD + " ** " + L10N.getString("youtube.likes", event) + ":3 " + Colors.BOLD + likes + 
-					Colors.BOLD + " ** " + L10N.getString("youtube.dislikes", event) + ":4 " + Colors.BOLD + dislikes + 
-					Colors.BOLD + " ** " + L10N.getString("youtube.uploader", event) + ": " + Colors.BOLD + uploader + 
-					Colors.BOLD + " ** " + L10N.getString("youtube.date", event) + ": " + Colors.BOLD + date + Colors.BOLD + " **");
+			Utilities.sendStarMsg(event,
+					Colors.BOLD + "1,0You0,4Tube " + Colors.NORMAL,
+					Colors.BOLD + L10N.getString("youtube.title", event) + ": " + Colors.NORMAL + title,
+					Colors.BOLD + L10N.getString("youtube.views", event) + ": " + Colors.NORMAL + views,
+					Colors.BOLD + L10N.getString("youtube.likes", event) + ": " + Colors.NORMAL + Colors.DARK_GREEN + likes + Colors.NORMAL,
+					Colors.BOLD + L10N.getString("youtube.dislikes", event) + ": " + Colors.NORMAL + Colors.RED + dislikes + Colors.NORMAL,
+					Colors.BOLD + L10N.getString("youtube.uploader", event) + ": " + Colors.NORMAL + uploader + Colors.NORMAL,
+					Colors.BOLD + L10N.getString("youtube.date", event) + ": " + Colors.NORMAL + date + Colors.NORMAL);
 		}
 	}
 }

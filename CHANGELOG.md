@@ -2,6 +2,7 @@
 ---
 ####5.4.3_WIP
 - Re-enabled isVerified checks because of fix in PBX 2.1
+- Internal changes
 
 ####5.4.2
 - Added build date to -info
@@ -98,7 +99,7 @@
 - Improvements to localization to be more versatile
 - Made more messages localizable
 - GitHub commit stats for long normal commit links
-- Internal Changes
+- Internal changes
 
 ####4.6.2
 - Stacktraces now get logged

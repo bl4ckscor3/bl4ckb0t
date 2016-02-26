@@ -107,6 +107,25 @@ public class Utilities
 		return isValidUser(event) ? 3 : (isAllowedUser(event) ? 2 : 1);
 	}
 
+	/**
+	 * Sends a message in the following format:
+	 * 		** x1 ** x2 ** ... ** xn **
+	 * Where x1...xn are is the data array in order
+	 * @param event The event of which's channel to send the message to
+	 * @param args The contents of the message seperated by **
+	 */
+	public static void sendStarMsg(MessageEvent event, String... data)
+	{
+		String result = Colors.NORMAL + "";
+		
+		for(String s : data)
+		{
+			result += Colors.BOLD + " ** " + Colors.NORMAL + s;
+		}
+		
+		chanMsg(event, result.replaceFirst(" ", "") + Colors.BOLD + " **");
+	}
+	
 	/*
 	 * FROM HERE ONLY PRIVATE MSG EVENT
 	 */

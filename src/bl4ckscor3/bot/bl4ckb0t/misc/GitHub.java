@@ -84,8 +84,9 @@ public class GitHub
 		
 		String text = Jsoup.connect(link).get().select(".toc-diff-stats").text();
 	
-		Utilities.chanMsg(event, Colors.BOLD + "** " + Colors.NORMAL + Colors.PURPLE + L10N.getString("github.changedFiles", event).replace("#files", text.split(" ")[1]) + Colors.NORMAL + Colors.BOLD + " ** " + Colors.NORMAL +
-				Colors.DARK_GREEN + L10N.getString("github.additions", event).replace("#additions", text.split(" ")[5]) + Colors.NORMAL + Colors.BOLD + " ** " + Colors.NORMAL +
-				Colors.RED + L10N.getString("github.deletions", event).replace("#deletions", text.split(" ")[8]) + Colors.NORMAL + Colors.BOLD + " ** ");
+		Utilities.sendStarMsg(event,
+				Colors.PURPLE + L10N.getString("github.changedFiles", event).replace("#files", text.split(" ")[1]) + Colors.NORMAL,
+				Colors.DARK_GREEN + L10N.getString("github.additions", event).replace("#additions", text.split(" ")[5]) + Colors.NORMAL,
+				Colors.RED + L10N.getString("github.deletions", event).replace("#deletions", text.split(" ")[8]) + Colors.NORMAL);
 	}
 }
