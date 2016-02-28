@@ -60,7 +60,7 @@ public class Weather extends BaseCommand<MessageEvent>
 	{
 		double ms = Double.parseDouble(doc.select("body > div:nth-child(2) > div:nth-child(4)").text().split(":")[1].trim().replace(" m/s", ""));
 		
-		return ms + " m/s | " + Utilities.formatDouble(ms * 2.2369362920544) + " mp/h";
+		return ms + " m/s | " + Utilities.formatDouble(ms * 2.2369362920544) + " mph";
 	}
 	
 	@Override
