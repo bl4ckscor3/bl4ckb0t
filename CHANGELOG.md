@@ -2,6 +2,7 @@
 ---
 ####5.4.3_WIP
 - Re-enabled isVerified checks because of fix in PBX 2.1
+- Fixed typo in -w message
 - Internal changes
 
 ####5.4.2
