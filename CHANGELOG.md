@@ -1,8 +1,9 @@
 #Changelog
 ---
-####5.4.3_WIP
+####5.4.3
 - Re-enabled isVerified checks because of fix in PBX 2.1
 - Fixed typo in -w message
+- RAM improvements (?)
 - Internal changes
 
 ####5.4.2
