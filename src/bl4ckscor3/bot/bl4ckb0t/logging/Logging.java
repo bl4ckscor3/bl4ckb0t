@@ -272,6 +272,8 @@ public class Logging extends ListenerAdapter
 
 			System.out.println(Colors.removeFormattingAndColors(line));
 		}
+		
+		System.gc();
 	}
 
 	/**
@@ -297,6 +299,8 @@ public class Logging extends ListenerAdapter
 
 			System.out.println(Utilities.getCurrentDate().toString() + " " + Colors.removeFormattingAndColors(line));
 		}
+		
+		System.gc();
 	}
 
 	/***************************Listeners***************************/
