@@ -45,7 +45,7 @@ public class Weather extends BaseCommand<MessageEvent>
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			Utilities.chanMsg(event, L10N.getString("w.cityNotFound", event).replace("#city", city).replace("#smiley", ":/"));
+			Utilities.chanMsg(event, L10N.getString("w.cityNotFound", event).replace("#city", city.trim()).replace("#smiley", ":/"));
 		}
 	}
 
