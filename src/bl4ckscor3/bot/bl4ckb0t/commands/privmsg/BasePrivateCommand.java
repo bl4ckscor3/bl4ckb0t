@@ -27,6 +27,6 @@ public abstract class BasePrivateCommand<E extends Event>
 	 */
 	public final boolean isEnabled()
 	{
-		return Core.bot.getConfig().getBoolean(getConfigEntry());
+		return Core.bot.getConfig().isEnabled(getConfigEntry());
 	}
 }

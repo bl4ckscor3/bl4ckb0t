@@ -30,14 +30,14 @@ public class MiscListener extends ListenerAdapter
 
 		String message = event.getMessage();
 
-		if(Core.bot.getConfig().getBoolean("ping"))
+		if(Core.bot.getConfig().isEnabled("ping"))
 		{
 			if(event.getMessage().startsWith("-ping"))
 			{
 				Utilities.chanMsg(event, "Pong!");
 				return;
 			}
-			else if(Core.bot.getConfig().getBoolean("allowCommandAliases") && event.getMessage().startsWith("-pong"))
+			else if(Core.bot.getConfig().isEnabled("allowCommandAliases") && event.getMessage().startsWith("-pong"))
 			{
 				Utilities.chanMsg(event, "Ping!");
 				return;
@@ -58,19 +58,22 @@ public class MiscListener extends ListenerAdapter
 
 		if(Core.bot.isEnabled())
 		{
-			SpellingCorrection.checkForSpellingCorrection(event, message);
+			if(Core.bot.getConfig().isEnabled("spellingCorrection"))
+			{
+				SpellingCorrection.checkForSpellingCorrection(event, message);
 
-			//making sure the above messages dont get added as a latest message
-			if(!SpellingCorrection.corrected)
-				SpellingCorrection.updateLatestMessage(event.getChannel().getName(), event.getMessage(), event.getUser().getNick());
-			else
-				SpellingCorrection.corrected = false;
-
+				//making sure the above messages dont get added as a latest message
+				if(!SpellingCorrection.corrected)
+					SpellingCorrection.updateLatestMessage(event.getChannel().getName(), event.getMessage(), event.getUser().getNick());
+				else
+					SpellingCorrection.corrected = false;
+			}
+			
 			//sending a welcome back message
-			if(Core.bot.getConfig().getBoolean("showWelcomeBackMsg") && (message.toLowerCase().startsWith("re ") || message.toLowerCase().equals("re")))
+			if(Core.bot.getConfig().isEnabled("showWelcomeBackMsg") && (message.toLowerCase().startsWith("re ") || message.toLowerCase().equals("re")))
 				Utilities.chanMsg(event, "wb, " + event.getUser().getNick());
 			//youtube recognition
-			else if(Core.bot.getConfig().getBoolean("showYouTubeStats") && (message.contains("www.youtube.com/watch") || message.contains("youtu.be/")))
+			else if(Core.bot.getConfig().isEnabled("showYouTubeStats") && (message.contains("www.youtube.com/watch") || message.contains("youtu.be/")))
 				YouTubeStats.sendVideoStats(event);
 			//checking for urls and sending the title if available
 			else
@@ -122,7 +125,7 @@ public class MiscListener extends ListenerAdapter
 			return;
 		}
 
-		if(Core.bot.getConfig().getBoolean("shrugs") && event.getAction().equals("shrugs"))
+		if(Core.bot.getConfig().isEnabled("shrugs") && event.getAction().equals("shrugs"))
 			Core.bot.sendCustomMessage(event.getChannel().getName(), "¯\\_(ツ)_/¯");
 	}
 }

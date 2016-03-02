@@ -14,7 +14,7 @@ public class SpellingCorrection
 {
 	//<channel, <user#message>>
 	public static ArrayMap<String, List<String>> storage = new ArrayMap<String, List<String>>();
-	//needed to check if the message should be added to the array or not (used in Listener.java)
+	//needed to check if the message should be added to the array or not (used in MiscListener.java)
 	public static boolean corrected = false;
 
 	/**
