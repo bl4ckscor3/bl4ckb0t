@@ -125,7 +125,7 @@ public class MiscListener extends ListenerAdapter
 			return;
 		}
 
-		if(Core.bot.getConfig().isEnabled("shrugs") && event.getAction().equals("shrugs"))
+		if(Core.bot.getConfig().isEnabled("shrugs") && event.getAction().startsWith("shrugs"))
 			Core.bot.sendCustomMessage(event.getChannel().getName(), "¯\\_(ツ)_/¯");
 	}
 }
