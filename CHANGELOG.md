@@ -1,5 +1,8 @@
 #Changelog
 ---
+####5.4.4_WIP
+- Added new alias to -select (-choose)
+
 ####5.4.3
 - Re-enabled isVerified checks because of fix in PBX 2.1
 - Fixed typos and formatting in -w messages

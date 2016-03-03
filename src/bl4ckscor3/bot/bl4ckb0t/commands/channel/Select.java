@@ -26,7 +26,7 @@ public class Select extends BaseCommand<MessageEvent>
 	@Override
 	public String[] getAliases()
 	{
-		return new String[]{"select"};
+		return new String[]{"select", "choose"};
 	}
 
 	@Override
