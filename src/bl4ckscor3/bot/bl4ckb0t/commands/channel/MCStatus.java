@@ -27,53 +27,59 @@ public class MCStatus extends BaseCommand<MessageEvent>
 			WebElement website = driver.findElement(By.cssSelector("div#website h2.status"));
 			WebElement skins = driver.findElement(By.cssSelector("div#skins h2.status"));
 			WebElement realms = driver.findElement(By.cssSelector("div#realms h2.status"));
-			String result = "";
+			String result = Colors.BOLD + "** Mojang Server Status ** Login: " + Colors.BOLD;
 
 			driver.close();
-			result += Colors.BOLD + "** Mojang Server Status ";
 
 			//login
 			if(login.getText().equals("Online"))
-				result += "** Login: " + Colors.BOLD + Colors.DARK_GREEN + login.getText() + Colors.NORMAL;
+				result += Colors.DARK_GREEN + login.getText();
 			else if(login.getText().equals("Timed Out") || login.getText().equals("HTTP Error 503"))
-				result += Colors.BOLD + " ** Login: " + Colors.BOLD + Colors.RED + login.getText() + Colors.NORMAL;
+				result += Colors.RED + login.getText();
 			else	
-				result += Colors.BOLD + " ** Login: " + Colors.BOLD + Colors.PURPLE + login.getText() + Colors.NORMAL;
+				result += Colors.PURPLE + login.getText();
 
+			result += Colors.NORMAL + Colors.BOLD + " ** Session: " + Colors.BOLD;
+			
 			//session
 			if(session.getText().equals("Online"))
-				result += Colors.BOLD + " ** Session: " + Colors.BOLD + Colors.DARK_GREEN + session.getText() + Colors.NORMAL;
+				result += Colors.DARK_GREEN + session.getText();
 			else if(session.getText().equals("Timed Out") || session.getText().equals("HTTP Error 503"))
-				result += Colors.BOLD + " ** Session: " + Colors.BOLD + Colors.RED + session.getText() + Colors.NORMAL;
+				result += Colors.RED + session.getText();
 			else	
-				result += Colors.BOLD + " ** Session: " + Colors.BOLD + Colors.PURPLE + session.getText() + Colors.NORMAL;
+				result += Colors.PURPLE + session.getText();
 
+			result += Colors.NORMAL + Colors.BOLD + " ** Website: " + Colors.BOLD;
+			
 			//website
 			if(website.getText().equals("Online"))
-				result += Colors.BOLD + " ** Website: " + Colors.BOLD + Colors.DARK_GREEN + website.getText() + Colors.NORMAL;
+				result += Colors.DARK_GREEN + website.getText();
 			else if(website.getText().equals("Timed Out") || website.getText().equals("HTTP Error 503"))
-				result += Colors.BOLD + " ** Website: " + Colors.BOLD + Colors.RED + website.getText() + Colors.NORMAL;
+				result += Colors.RED + website.getText();
 			else	
-				result += Colors.BOLD + " ** Website: " + Colors.BOLD + Colors.PURPLE + website.getText() + Colors.NORMAL;
+				result += Colors.PURPLE + website.getText();
 
+			result += Colors.NORMAL + Colors.BOLD + " ** Skins: " + Colors.BOLD;
+			
 			//skins
 			if(skins.getText().equals("Online"))
-				result += Colors.BOLD + " ** Skins: " + Colors.BOLD + Colors.DARK_GREEN + skins.getText() + Colors.NORMAL;
+				result += Colors.DARK_GREEN + skins.getText();
 			else if(skins.getText().equals("Timed Out") || skins.getText().equals("HTTP Error 503"))
-				result += Colors.BOLD + " ** Skins: " + Colors.BOLD + Colors.RED + skins.getText() + Colors.NORMAL;
+				result += Colors.RED + skins.getText();
 			else	
-				result += Colors.BOLD + " ** Skins: " + Colors.BOLD + Colors.PURPLE + skins.getText() + Colors.NORMAL;
-
+				result += Colors.PURPLE + skins.getText();
+			
+			result += Colors.BOLD + " ** Realms: " + Colors.BOLD;
+			
 			//realms
 			if(realms.getText().equals("Online"))
-				result += Colors.BOLD + " ** Realms: " + Colors.BOLD + Colors.DARK_GREEN + realms.getText() + Colors.NORMAL;
+				result += Colors.DARK_GREEN + realms.getText();
 			else if(realms.getText().equals("Timed Out") || realms.getText().equals("HTTP Error 503"))
-				result += Colors.BOLD + " ** Realms: " + Colors.BOLD + Colors.RED + realms.getText() + Colors.NORMAL;
+				result += Colors.RED + realms.getText();
 			else	
-				result += Colors.BOLD + " ** Realms: " + Colors.BOLD + Colors.PURPLE + realms.getText() + Colors.NORMAL;
+				result += Colors.PURPLE + realms.getText();
 
-			result += Colors.BOLD + " ** Powered by xpaw - http://xpaw.ru/mcstatus **";
-			Utilities.chanMsg(event, result);
+			Utilities.chanMsg(event, result + Colors.NORMAL + Colors.BOLD + " ** Powered by xpaw - http://xpaw.ru/mcstatus **");
 		}, 1, TimeUnit.SECONDS);
 	}		
 

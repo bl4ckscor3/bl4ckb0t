@@ -26,11 +26,11 @@ public class Ranks extends BaseCommand<MessageEvent>
 		
 		for(int i = 0; i < data.length; i++)
 		{
-			String text = driver.findElement(By.cssSelector("#rank-" + (i + 1))).getText();
+			data[i] = driver.findElement(By.cssSelector("#rank-" + (i + 1))).getText();
 			
 			try
 			{
-				double d = Double.parseDouble(text.replace("%", ""));
+				double d = Double.parseDouble(data[i].replace("%", ""));
 				
 				if(d > highestValue)
 				{
@@ -39,8 +39,6 @@ public class Ranks extends BaseCommand<MessageEvent>
 				}
 			}
 			catch(Exception e){}
-			
-			data[i] = driver.findElement(By.cssSelector("#rank-" + (i + 1))).getText();
 		}
 		
 		driver.close();
@@ -56,9 +54,9 @@ public class Ranks extends BaseCommand<MessageEvent>
 				Colors.BOLD + Colors.CYAN + underline(9) + "Gold Nova 3" + Colors.NORMAL + underline(9) + Colors.BOLD + ": " + Colors.NORMAL + underline(9) + data[8] + Colors.NORMAL,
 				Colors.BOLD + Colors.CYAN + underline(10) + "Gold Nova Master" + Colors.NORMAL + underline(10) + Colors.BOLD + ": " + Colors.NORMAL + underline(10) + data[9] + Colors.NORMAL,
 				Colors.BOLD + Colors.TEAL + underline(11) + "Master Guardian 1" + Colors.NORMAL + underline(11) + Colors.BOLD + ": " + Colors.NORMAL + underline(11) + data[10] + Colors.NORMAL,
-				Colors.BOLD + Colors.TEAL + underline(12) + "Master Guardian 2" + Colors.NORMAL + underline(12) + Colors.BOLD + ": " + Colors.NORMAL + underline(12) + data[11] + Colors.NORMAL,
-				Colors.BOLD + Colors.TEAL + underline(13) + "Master Guardian Elite" + Colors.NORMAL + underline(13) + Colors.BOLD + ": " + Colors.NORMAL + underline(13) + data[12]);
+				Colors.BOLD + Colors.TEAL + underline(12) + "Master Guardian 2" + Colors.NORMAL + underline(12) + Colors.BOLD + ": " + Colors.NORMAL + underline(12) + data[11]);
 		Utilities.sendStarMsg(event,
+				Colors.BOLD + Colors.TEAL + underline(13) + "Master Guardian Elite" + Colors.NORMAL + underline(13) + Colors.BOLD + ": " + Colors.NORMAL + underline(13) + data[12] + Colors.NORMAL,
 				Colors.BOLD + Colors.TEAL + underline(14) + "Distiguished Master Guardian" + Colors.NORMAL + underline(14) + Colors.BOLD + ": " + Colors.NORMAL + underline(14) + data[13] + Colors.NORMAL,
 				Colors.BOLD + Colors.BROWN + underline(15) + "Legendary Eagle" + Colors.NORMAL + underline(15) + Colors.BOLD + ": " + Colors.NORMAL + underline(15) + data[14] + Colors.NORMAL,
 				Colors.BOLD + Colors.BROWN + underline(16) + "Legendary Eagle Master" + Colors.NORMAL + underline(16) + Colors.BOLD + ": " + Colors.NORMAL + underline(16) + data[15] + Colors.NORMAL,
