@@ -18,7 +18,14 @@ public class Evaluate extends BaseCommand<MessageEvent>
 	@Override
 	public void exe(MessageEvent event, String[] args) throws IncorrectCommandExecutionException, IOException
 	{
-		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://api.wolframalpha.com/v2/query?appid=" + Passwords.WOLFRAMAPIKEY.getPassword() + "&input=" + args[1].replace("+", "%2B").replace(' ', '+').replace(',', '.')).openStream()));
+		String input = "";
+		
+		for(int i = 1; i < args.length; i++)
+		{
+			input += args[i] + " ";
+		}
+		
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://api.wolframalpha.com/v2/query?appid=" + Passwords.WOLFRAMAPIKEY.getPassword() + "&input=" + input.trim().replace("+", "%2B").replace(' ', '+').replace(',', '.')).openStream()));
 		String line = "";
 		
 		try

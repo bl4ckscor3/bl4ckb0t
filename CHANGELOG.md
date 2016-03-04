@@ -1,8 +1,9 @@
 #Changelog
 ---
-####5.4.4_WIP
+####5.4.4
 - Added new alias to -select (-choose)
 - Fixed shrugs not always triggering
+- Fixed -evaluate only using first argument for the request
 - Internal changes
 
 ####5.4.3
