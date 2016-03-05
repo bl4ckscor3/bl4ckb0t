@@ -1,5 +1,9 @@
 #Changelog
 ---
+####5.4.5
+- Colors can now be used within language files
+- Internal changes
+
 ####5.4.4
 - Added new alias to -select (-choose)
 - Fixed shrugs not always triggering

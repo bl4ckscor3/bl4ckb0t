@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
@@ -46,7 +47,30 @@ public class L10N
 			
 			try
 			{
-				return ((ResourceBundle)L10N.class.getDeclaredField("english").get(null)).getString(key);
+				return ((ResourceBundle)L10N.class.getDeclaredField("english").get(null)).getString(key)
+						/*Colors*/
+						.replace("&0", Colors.WHITE)
+						.replace("&1", Colors.BLACK)
+						.replace("&2", Colors.DARK_BLUE)
+						.replace("&3", Colors.DARK_GREEN)
+						.replace("&4", Colors.RED)
+						.replace("&5", Colors.BROWN)
+						.replace("&6", Colors.PURPLE)
+						.replace("&7", Colors.OLIVE)
+						.replace("&8", Colors.YELLOW)
+						.replace("&9", Colors.GREEN)
+						.replace("&a", Colors.TEAL)
+						.replace("&b", Colors.CYAN)
+						.replace("&c", Colors.BLUE)
+						.replace("&d", Colors.MAGENTA)
+						.replace("&e", Colors.DARK_GRAY)
+						.replace("&f", Colors.LIGHT_GRAY)
+						.replace("&g", Colors.NORMAL)
+						.replace("&h", Colors.BOLD)
+						.replace("&i", Colors.UNDERLINE)
+						.replace("&j", Colors.REVERSE)
+						.replace("&k", Colors.ITALICS)
+						/*Colors end*/;
 			}
 			catch(Exception e1)
 			{

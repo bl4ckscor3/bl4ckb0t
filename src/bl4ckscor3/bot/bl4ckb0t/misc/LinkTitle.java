@@ -37,22 +37,12 @@ public class LinkTitle
 				}
 
 				if(Core.bot.getConfig().isEnabled("showTweets") && s.contains("twitter"))
-				{
 					ShowTweet.show(event, s);
-					continue;
-				}
 				else if(Core.bot.getConfig().isEnabled("showGitHubCommitInfo") && (s.contains("git.io") || (s.contains("github.com") && s.contains("commit"))))
-				{
 					GitHub.showCommit(event, s);
-					continue;
-				}
 				else if(Core.bot.getConfig().isEnabled("showGitHubRepoInfo") && s.contains("github.com"))
-				{
 					GitHub.showRepo(event, s);
-					continue;
-				}
-
-				if(Core.bot.getConfig().isEnabled("showLinkTitles"))
+				else if(Core.bot.getConfig().isEnabled("showLinkTitles"))
 				{
 					WebDriver driver = new HtmlUnitDriver();
 					String title = "";
@@ -78,7 +68,7 @@ public class LinkTitle
 					if(title == null || title == "null" || title == "")
 						Utilities.chanMsg(event, L10N.getString("linkTitle.notFound", event).replace("#link", s));
 					else
-						Utilities.chanMsg(event, L10N.getString("linkTitle.available", event) .replace("#link", s).replace("#title", title));
+						Utilities.chanMsg(event, L10N.getString("linkTitle.available", event).replace("#link", s).replace("#title", title));
 				}
 			}
 		}
