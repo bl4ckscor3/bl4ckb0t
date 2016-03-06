@@ -1,6 +1,7 @@
 #Changelog
 ---
 ####5.4.5
+- Added auto-kick in #bl4ckscor3 when a non i.imgur.com link is used.
 - Colors can now be used within language files
 - Internal changes
 
