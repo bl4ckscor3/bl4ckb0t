@@ -82,7 +82,8 @@ public class ConfigurationFile
 			"showGitHubCommitInfo=true",
 			"showWelcomeBackMsg=true",
 			"spellingCorrection=true",
-			"shrugs=true"
+			"shrugs=true",
+			"kickOnBannedImgurLink=true"
 	};
 
 	/**
