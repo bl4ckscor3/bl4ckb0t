@@ -40,6 +40,7 @@ import bl4ckscor3.bot.bl4ckb0t.commands.channel.YouTube;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.Action;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.BasePrivateCommand;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.ChanMsg;
+import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.ConfigEdit;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.PrivateJoin;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.PrivateLeave;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.PrivateStop;
@@ -96,12 +97,13 @@ public class CMDListener extends ListenerAdapter
 		Logging.info("Registered command classes for channel messages...");
 		Help.setupHelpMenu(CMDListener.commands);
 		privCommands.addEverything(
-				new PrivateJoin(),
-				new PrivateLeave(),
 				new Action(),
 				new ChanMsg(),
-				new UserMsg(),
-				new PrivateStop());
+				new ConfigEdit(),
+				new PrivateJoin(),
+				new PrivateLeave(),
+				new PrivateStop(),
+				new UserMsg());
 		Logging.info("Registered command classes for private messages...");
 	}
 

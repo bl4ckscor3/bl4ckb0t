@@ -1,7 +1,12 @@
 #Changelog
 ---
+##5.5_WIP
+- Added private command to edit the config
+- Removed private messaging other OPs
+- Internal changes
+
 ####5.4.5
-- Added auto-kick in \#bl4ckscor3 when a non i.imgur.com link is used.
+- Added auto-kick in \#bl4ckscor3 when a non i.imgur.com link is used
 - Colors can now be used within language files
 - Internal changes
 

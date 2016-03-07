@@ -19,8 +19,8 @@ import bl4ckscor3.bot.bl4ckb0t.util.android.ArrayMap;
  */
 public class ConfigurationFile
 {
-	private File config;
-	public static ArrayMap<String,String> values = new ArrayMap<String,String>();
+	public File config;
+	public ArrayMap<String,String> values = new ArrayMap<String,String>();
 	private String[] defaultContent = new String[]{
 			"################################",
 			"#       Channel Commands       #",
@@ -63,6 +63,7 @@ public class ConfigurationFile
 			"################################",
 			"action=true",
 			"chanmsg=true",
+			"configEdit=true",
 			"privatejoin=true",
 			"privateleave=true",
 			"privatestop=true",

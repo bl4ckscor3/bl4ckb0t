@@ -39,6 +39,7 @@ yt=true
 ################################
 action=true
 chanmsg=true
+configEdit=true
 privatejoin=true
 privateleave=true
 privatestop=true
