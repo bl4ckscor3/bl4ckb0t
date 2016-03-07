@@ -196,26 +196,6 @@ public class ConfigurationFile
 	}
 
 	/**
-	 * Gets the value from the given option as a string
-	 * @param option The option to get the value from
-	 * @return The value
-	 */
-	public String getString(String option)
-	{
-		return values.get(option).split("'")[1];
-	}
-	
-	/**
-	 * Gets the value from the given option as an integer
-	 * @param option The option to get the value from
-	 * @return The value
-	 */
-	public int getInt(String option)
-	{
-		return Integer.parseInt(values.get(option));
-	}
-	
-	/**
 	 * Writes the default values to the file
 	 */
 	public void writeDefaultValues()
