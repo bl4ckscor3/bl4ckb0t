@@ -9,12 +9,10 @@ import org.pircbotx.hooks.events.ConnectEvent;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.BasePrivateCommand;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.misc.LinkTitle;
 import bl4ckscor3.bot.bl4ckb0t.misc.SpellingCorrection;
 import bl4ckscor3.bot.bl4ckb0t.misc.YouTubeStats;
-import bl4ckscor3.bot.bl4ckb0t.util.Lists;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class MiscListener extends ListenerAdapter
@@ -90,21 +88,8 @@ public class MiscListener extends ListenerAdapter
 			return;
 		}
 
-		if(!event.getMessage().startsWith(CMDListener.cmdPrefix))
-		{
-			for(BasePrivateCommand<PrivateMessageEvent> cmd : CMDListener.privCommands)
-			{
-				if(event.getMessage().startsWith(cmd.getAlias()))
-					return;
-			}
-
-			for(String user : Lists.getValidUsers())
-			{
-				Core.bot.sendCustomMessage(user, event.getUser().getNick() + ": " + event.getMessage());
-			}
-		}
-		else
-			Utilities.pm(event.getUser().getNick(), "Commands can only be sent through channel messages. Use -help in a channel to get more info.");
+		if(event.getMessage().startsWith(CMDListener.cmdPrefix))
+				Utilities.pm(event.getUser().getNick(), "Commands can only be sent through channel messages. Use -help in a channel to get more info.");
 	}
 
 	@Override
