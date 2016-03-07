@@ -13,7 +13,7 @@ public class Action extends BasePrivateCommand<PrivateMessageEvent>
 		
 		if(!args[1].startsWith("#"))
 		{
-			Core.bot.sendCustomMessage(event.getUser().getNick(), "Channel names start with a hashtag (#). Please use the following syntax: * #<channelName> <message>");
+			Core.bot.sendCustomMessage(event.getUser().getNick(), "Channel names start with #. Please use the following syntax: * #<channelName> <message>");
 			return;
 		}
 		
