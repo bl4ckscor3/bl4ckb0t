@@ -29,7 +29,7 @@ public class MCStatus extends BaseCommand<MessageEvent>
 			WebElement realms = driver.findElement(By.cssSelector("div#realms h2.status"));
 			String result = Colors.BOLD + "** Mojang Server Status ** Login: " + Colors.BOLD;
 
-			driver.close();
+			driver.quit();
 
 			//login
 			if(login.getText().equals("Online"))

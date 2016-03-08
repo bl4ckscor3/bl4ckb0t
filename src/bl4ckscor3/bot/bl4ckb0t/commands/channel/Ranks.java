@@ -41,7 +41,7 @@ public class Ranks extends BaseCommand<MessageEvent>
 			catch(Exception e){}
 		}
 		
-		driver.close();
+		driver.quit();
 		Utilities.sendStarMsg(event,
 				Colors.BOLD + Colors.LIGHT_GRAY + underline(1) + "Silver 1" + Colors.NORMAL + underline(1) + Colors.BOLD + ": " + Colors.NORMAL + underline(1) + data[0] + Colors.NORMAL,
 				Colors.BOLD + Colors.LIGHT_GRAY + underline(2) + "Silver 2" + Colors.NORMAL + underline(2) + Colors.BOLD + ": " + Colors.NORMAL + underline(2) + data[1] + Colors.NORMAL,

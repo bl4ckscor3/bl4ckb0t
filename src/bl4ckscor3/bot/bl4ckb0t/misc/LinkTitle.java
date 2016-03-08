@@ -54,7 +54,7 @@ public class LinkTitle
 
 					driver.get(s);
 					title = driver.getTitle();
-					driver.close();
+					driver.quit();
 					
 					if(s.startsWith("http://"))
 						s = s.substring(7);
