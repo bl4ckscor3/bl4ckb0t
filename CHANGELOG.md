@@ -1,6 +1,6 @@
 #Changelog
 ---
-##5.5_WIP
+##5.5
 - Added private command to edit the config
 - Removed private messaging other OPs
 - Internal changes
