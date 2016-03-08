@@ -3,6 +3,8 @@
 ##5.5
 - Added private command to edit the config
 - Removed private messaging other OPs
+- Fixed typo in -ranks
+- More RAM fix attempts
 - Internal changes
 
 ####5.4.5
