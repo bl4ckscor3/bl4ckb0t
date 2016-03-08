@@ -2,6 +2,8 @@
 ---
 ##5.5
 - Added private command to edit the config
+- Added message to -changenick if the nick is already in use
+- Added message to -changenick if the nick is the same the bot is named at the moment
 - Removed private messaging other OPs
 - Fixed typo in -ranks
 - More RAM fix attempts

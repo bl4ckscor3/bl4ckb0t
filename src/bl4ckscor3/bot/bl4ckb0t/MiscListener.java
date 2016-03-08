@@ -7,8 +7,10 @@ import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.ActionEvent;
 import org.pircbotx.hooks.events.ConnectEvent;
 import org.pircbotx.hooks.events.MessageEvent;
+import org.pircbotx.hooks.events.NickAlreadyInUseEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.commands.channel.ChangeNick;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.misc.LinkTitle;
 import bl4ckscor3.bot.bl4ckb0t.misc.SpellingCorrection;
@@ -112,5 +114,11 @@ public class MiscListener extends ListenerAdapter
 
 		if(Core.bot.getConfig().isEnabled("shrugs") && event.getAction().startsWith("shrugs"))
 			Core.bot.sendCustomMessage(event.getChannel().getName(), "¯\\_(ツ)_/¯");
+	}
+	
+	@Override
+	public void onNickAlreadyInUse(NickAlreadyInUseEvent event) throws Exception
+	{
+		ChangeNick.isInUse = true;
 	}
 }

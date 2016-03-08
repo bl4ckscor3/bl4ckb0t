@@ -8,18 +8,32 @@ import org.pircbotx.hooks.events.MessageEvent;
 import bl4ckscor3.bot.bl4ckb0t.Core;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
+import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class ChangeNick extends BaseCommand<MessageEvent>
 {
+	public static boolean isInUse = false;
+	
 	@Override
-	public void exe(MessageEvent event, String[] args) throws IncorrectCommandExecutionException, MalformedURLException, IOException
+	public void exe(MessageEvent event, String[] args) throws IncorrectCommandExecutionException, MalformedURLException, IOException, InterruptedException
 	{
 		if(args.length == 2)
 		{
+			if(args[1].equals(Core.bot.getNick()))
+				Utilities.chanMsg(event, L10N.getString("changenick.same", event));
+
 			if(!args[1].equalsIgnoreCase("d"))
 				Core.bot.sendIRC().changeNick(args[1]);
 			else
 				Core.bot.sendIRC().changeNick("bl4ckb0t");
+			
+			Thread.sleep(1000);
+
+			if(isInUse)
+			{
+				isInUse = false;
+				Utilities.chanMsg(event, L10N.getString("changenick.inUse", event));
+			}
 		}
 		else
 			throw new IncorrectCommandExecutionException(getMainAlias());
