@@ -199,6 +199,7 @@ public class Utilities
 		
 		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "-----------" + L10N.getString("helpMenu.notes", event) + "-----------");
 		Utilities.pm(nick, notes == null ? L10N.getString("helpMenu.noNotes", event) : notes);
+		System.gc();
 	}
 
 	/**

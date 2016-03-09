@@ -4,7 +4,8 @@ import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.commands.channel.BaseCommand;
+import bl4ckscor3.bot.bl4ckb0t.commands.BaseChannelCommand;
+import bl4ckscor3.bot.bl4ckb0t.commands.BasePrivateCommand;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Caps;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.ChangeNick;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Changelog;
@@ -38,7 +39,6 @@ import bl4ckscor3.bot.bl4ckb0t.commands.channel.Weather;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.XColor;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.YouTube;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.Action;
-import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.BasePrivateCommand;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.ChanMsg;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.ConfigEdit;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.PrivateJoin;
@@ -53,7 +53,7 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 public class CMDListener extends ListenerAdapter
 {
 	public static final String cmdPrefix = "-";
-	public static final CustomArrayList<BaseCommand<MessageEvent>> commands = new CustomArrayList<BaseCommand<MessageEvent>>();
+	public static final CustomArrayList<BaseChannelCommand<MessageEvent>> commands = new CustomArrayList<BaseChannelCommand<MessageEvent>>();
 	public static final CustomArrayList<BasePrivateCommand<PrivateMessageEvent>> privCommands = new CustomArrayList<BasePrivateCommand<PrivateMessageEvent>>();
 
 	@SuppressWarnings("unchecked")
@@ -124,7 +124,7 @@ public class CMDListener extends ListenerAdapter
 		
 		if(Core.bot.isEnabled() && Core.bot.getChannelStates().get(event.getChannel().getName()))
 		{
-			for(BaseCommand<MessageEvent> cmd : commands)
+			for(BaseChannelCommand<MessageEvent> cmd : commands)
 			{
 				if(cmd.isEnabled() && cmd.isValidAlias(cmdName))
 				{
@@ -136,7 +136,7 @@ public class CMDListener extends ListenerAdapter
 
 					try
 					{
-						cmd.exe(event, Utilities.toArgs(event.getMessage()));
+						Core.bot.dispatchCommand(event, cmd, Utilities.toArgs(event.getMessage()));
 						return;
 					}
 					catch(IncorrectCommandExecutionException e)
@@ -148,20 +148,18 @@ public class CMDListener extends ListenerAdapter
 		}
 		else
 		{
-			for(BaseCommand<MessageEvent> cmd : commands)
+			for(BaseChannelCommand<MessageEvent> cmd : commands)
 			{
 				if(cmd.isEnabled() && (cmd instanceof Enable || cmd instanceof Disable) && cmd.isValidAlias(cmdName))
 				{
 					try
 					{
-						cmd.exe(event, Utilities.toArgs(event.getMessage()));
-						System.gc();
+						Core.bot.dispatchCommand(event, cmd, Utilities.toArgs(event.getMessage()));
 						return;
 					}
 					catch(IncorrectCommandExecutionException e)
 					{
 						Utilities.sendHelp(event.getUser().getNick(), cmd.getAliases(), cmd.getMainAlias(), cmd.getSyntax(event), cmd.getUsage(event), cmd.getNotes(event), event);
-						System.gc();
 					}
 				}
 			}
@@ -183,10 +181,9 @@ public class CMDListener extends ListenerAdapter
 			{
 				for(BasePrivateCommand<PrivateMessageEvent> cmd : privCommands)
 				{
-					if(cmd.isEnabled() && event.getMessage().startsWith(cmd.getAlias()))
+					if(cmd.isEnabled() && event.getMessage().startsWith(cmd.getMainAlias()))
 					{
-						cmd.exe(event, Utilities.toArgs(event.getMessage()));
-						System.gc();
+						Core.bot.dispatchCommand(event, cmd, Utilities.toArgs(event.getMessage()));
 						return;
 					}
 				}

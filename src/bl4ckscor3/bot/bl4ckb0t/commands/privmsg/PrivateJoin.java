@@ -3,6 +3,7 @@ package bl4ckscor3.bot.bl4ckb0t.commands.privmsg;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.Core;
+import bl4ckscor3.bot.bl4ckb0t.commands.BasePrivateCommand;
 
 public class PrivateJoin extends BasePrivateCommand<PrivateMessageEvent>
 {
@@ -16,7 +17,7 @@ public class PrivateJoin extends BasePrivateCommand<PrivateMessageEvent>
 	}
 
 	@Override
-	public String getAlias()
+	public String getMainAlias()
 	{
 		return "join ";
 	}

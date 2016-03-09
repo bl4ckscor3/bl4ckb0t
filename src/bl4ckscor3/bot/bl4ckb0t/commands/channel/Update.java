@@ -7,11 +7,12 @@ import java.net.MalformedURLException;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.Startup;
+import bl4ckscor3.bot.bl4ckb0t.commands.BaseChannelCommand;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Lists;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Update extends BaseCommand<MessageEvent>
+public class Update extends BaseChannelCommand<MessageEvent>
 {
 	@Override
 	public void exe(MessageEvent event, String[] args) throws MalformedURLException, IOException, IllegalAccessException, IllegalArgumentException, InvocationTargetException

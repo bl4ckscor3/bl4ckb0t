@@ -6,13 +6,14 @@ import org.pircbotx.exception.IrcException;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.Core;
+import bl4ckscor3.bot.bl4ckb0t.commands.BaseChannelCommand;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Lists;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Kick extends BaseCommand<MessageEvent>
+public class Kick extends BaseChannelCommand<MessageEvent>
 {	
 	@Override
 	public void exe(MessageEvent event, String[] args) throws IOException, IrcException, IncorrectCommandExecutionException 

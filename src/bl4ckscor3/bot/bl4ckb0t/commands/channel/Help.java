@@ -8,13 +8,14 @@ import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.CMDListener;
 import bl4ckscor3.bot.bl4ckb0t.Core;
+import bl4ckscor3.bot.bl4ckb0t.commands.BaseChannelCommand;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.CustomArrayList;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Help extends BaseCommand<MessageEvent>
+public class Help extends BaseChannelCommand<MessageEvent>
 {
 	private static String[] aliasesValid;
 	private static String[] aliasesAllowed;
@@ -59,7 +60,7 @@ public class Help extends BaseCommand<MessageEvent>
 		}
 		else if(args.length == 2)
 		{
-			for(BaseCommand<MessageEvent> cmd : CMDListener.commands)
+			for(BaseChannelCommand<MessageEvent> cmd : CMDListener.commands)
 			{
 				if(cmd.isValidAlias(args[1]) || cmd.isValidAlias("-" + args[1]))
 				{
@@ -101,7 +102,7 @@ public class Help extends BaseCommand<MessageEvent>
 		};
 	}
 
-	public static void setupHelpMenu(CustomArrayList<BaseCommand<MessageEvent>> cmd)
+	public static void setupHelpMenu(CustomArrayList<BaseChannelCommand<MessageEvent>> cmd)
 	{
 		aliasesValid = new String[cmd.size()];
 		aliasesAllowed = new String[cmd.size()];

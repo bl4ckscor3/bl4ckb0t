@@ -2,10 +2,11 @@ package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.commands.BaseChannelCommand;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 
 //placeholder class to be able to set the help menu...
-public class Ping extends BaseCommand<MessageEvent>
+public class Ping extends BaseChannelCommand<MessageEvent>
 {
 	@Override
 	public void exe(MessageEvent event, String[] args) throws Exception{}

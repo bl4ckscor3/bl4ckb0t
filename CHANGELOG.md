@@ -1,6 +1,6 @@
 #Changelog
 ---
-**5.5.0.1**
+**5.5.1**
 - Hotfix for imgur albums
 - Internal changes
 

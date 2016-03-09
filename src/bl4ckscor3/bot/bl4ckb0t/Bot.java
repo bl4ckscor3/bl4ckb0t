@@ -6,7 +6,9 @@ import java.util.List;
 
 import org.pircbotx.Configuration;
 import org.pircbotx.PircBotX;
+import org.pircbotx.hooks.Event;
 
+import bl4ckscor3.bot.bl4ckb0t.commands.ICommand;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Lists;
@@ -207,5 +209,17 @@ public class Bot extends PircBotX
 	public ConfigurationFile getConfig()
 	{
 		return config;
+	}
+	
+	/**
+	 * Executes a command
+	 * @param e The type of Event the command got sent from (either PrivateMessageEvent or MessageEvent)
+	 * @param cmd The command that should get issued
+	 * @param args The argumetns the command should get issued with
+	 */
+	public <E extends Event> void dispatchCommand(E e, ICommand<E> cmd, String[] args) throws Exception
+	{
+		cmd.exe(e, args);
+		System.gc();
 	}
 }

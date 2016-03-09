@@ -6,6 +6,7 @@ import java.net.MalformedURLException;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.Core;
+import bl4ckscor3.bot.bl4ckb0t.commands.BasePrivateCommand;
 
 public class UserMsg extends BasePrivateCommand<PrivateMessageEvent>
 {
@@ -24,7 +25,7 @@ public class UserMsg extends BasePrivateCommand<PrivateMessageEvent>
 	}
 
 	@Override
-	public String getAlias()
+	public String getMainAlias()
 	{
 		return "msg ";
 	}

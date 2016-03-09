@@ -4,12 +4,13 @@ import java.io.IOException;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.commands.BaseChannelCommand;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Language extends BaseCommand<MessageEvent>
+public class Language extends BaseChannelCommand<MessageEvent>
 {
 	private String[] availableLanguages = {
 				"English",

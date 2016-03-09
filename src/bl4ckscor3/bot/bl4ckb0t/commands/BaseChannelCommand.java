@@ -1,17 +1,12 @@
-package bl4ckscor3.bot.bl4ckb0t.commands.channel;
+package bl4ckscor3.bot.bl4ckb0t.commands;
 
 import org.pircbotx.hooks.Event;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.Core;
 
-public abstract class BaseCommand<E extends Event>
+public abstract class BaseChannelCommand<E extends Event> implements ICommand<E>
 {
-	/**
-	 * What happens when the command gets executed
-	 */
-	public abstract void exe(E event, String[] args) throws Exception;
-
 	/**
 	 * The lines that can be used to trigger the command exclusive the prefix. The first alias is the main one.
 	 */
@@ -54,6 +49,7 @@ public abstract class BaseCommand<E extends Event>
 	/**
 	 * Gets the main alias of the command
 	 */
+	@Override
 	public final String getMainAlias()
 	{
 		return getAliases()[0];
@@ -81,6 +77,7 @@ public abstract class BaseCommand<E extends Event>
 	/**
 	 * Checks wether the command is enabled in the config file
 	 */
+	@Override
 	public final boolean isEnabled()
 	{
 		return Core.bot.getConfig().isEnabled(getMainAlias());

@@ -4,13 +4,14 @@ import java.util.ArrayList;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.commands.BaseChannelCommand;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Reminder;
 import bl4ckscor3.bot.bl4ckb0t.util.TimeParser;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Remind extends BaseCommand<MessageEvent>
+public class Remind extends BaseChannelCommand<MessageEvent>
 {
 	public static final ArrayList<Reminder> reminders = new ArrayList<Reminder>();
 

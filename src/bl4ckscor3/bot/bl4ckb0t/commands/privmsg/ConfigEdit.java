@@ -8,6 +8,7 @@ import org.pircbotx.hooks.events.PrivateMessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.ConfigurationFile;
 import bl4ckscor3.bot.bl4ckb0t.Core;
+import bl4ckscor3.bot.bl4ckb0t.commands.BasePrivateCommand;
 import bl4ckscor3.bot.bl4ckb0t.util.android.ArrayMap;
 
 public class ConfigEdit extends BasePrivateCommand<PrivateMessageEvent>
@@ -100,7 +101,7 @@ public class ConfigEdit extends BasePrivateCommand<PrivateMessageEvent>
 	}
 
 	@Override
-	public String getAlias()
+	public String getMainAlias()
 	{
 		return "config ";
 	}

@@ -2,11 +2,12 @@ package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.commands.BaseChannelCommand;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Unleet extends BaseCommand<MessageEvent>
+public class Unleet extends BaseChannelCommand<MessageEvent>
 {
 	@Override
 	public void exe(MessageEvent event, String[] args) throws IncorrectCommandExecutionException

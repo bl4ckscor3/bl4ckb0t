@@ -8,11 +8,12 @@ import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.Core;
+import bl4ckscor3.bot.bl4ckb0t.commands.BaseChannelCommand;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.TimeParser;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Info extends BaseCommand<MessageEvent>
+public class Info extends BaseChannelCommand<MessageEvent>
 {
 	@Override
 	public void exe(MessageEvent event, String[] args) throws Exception
