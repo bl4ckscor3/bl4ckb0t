@@ -1,7 +1,9 @@
 #Changelog
 ---
-**5.5.1**
-- Hotfix for imgur albums
+####5.5.1
+- Added private command to identify with nickserv
+- Typo fixes
+- Fix for imgur albums
 - Internal changes
 
 ##5.5
