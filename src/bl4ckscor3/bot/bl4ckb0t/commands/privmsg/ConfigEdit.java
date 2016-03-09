@@ -96,7 +96,7 @@ public class ConfigEdit extends BasePrivateCommand<PrivateMessageEvent>
 		{
 			config.values.clear();
 			config.populateArrayMap();
-			event.respond("Configuration file updates successfully.");
+			event.respond("Configuration file updated successfully.");
 		}
 	}
 
