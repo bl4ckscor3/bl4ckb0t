@@ -41,6 +41,7 @@ import bl4ckscor3.bot.bl4ckb0t.commands.channel.YouTube;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.Action;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.ChanMsg;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.ConfigEdit;
+import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.Identify;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.PrivateJoin;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.PrivateLeave;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.PrivateStop;
@@ -100,6 +101,7 @@ public class CMDListener extends ListenerAdapter
 				new Action(),
 				new ChanMsg(),
 				new ConfigEdit(),
+				new Identify(),
 				new PrivateJoin(),
 				new PrivateLeave(),
 				new PrivateStop(),

@@ -64,6 +64,7 @@ public class ConfigurationFile
 			"action=true",
 			"chanmsg=true",
 			"configEdit=true",
+			"identify=true",
 			"privatejoin=true",
 			"privateleave=true",
 			"privatestop=true",
