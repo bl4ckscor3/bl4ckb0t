@@ -334,7 +334,7 @@ public class Logging extends ListenerAdapter
 	@Override
 	public void onNickChange(NickChangeEvent event) throws Exception
 	{
-		info(event.getOldNick() + " changed his nick to " + event.getNewNick() + ".");
+		info(event.getOldNick() + " changed their nick to " + event.getNewNick() + ".");
 	}
 
 	@Override
