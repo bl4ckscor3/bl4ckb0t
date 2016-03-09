@@ -12,7 +12,7 @@ import org.pircbotx.hooks.events.PrivateMessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.ChangeNick;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
-import bl4ckscor3.bot.bl4ckb0t.misc.LinkTitle;
+import bl4ckscor3.bot.bl4ckb0t.misc.LinkManager;
 import bl4ckscor3.bot.bl4ckb0t.misc.SpellingCorrection;
 import bl4ckscor3.bot.bl4ckb0t.misc.YouTubeStats;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
@@ -77,7 +77,7 @@ public class MiscListener extends ListenerAdapter
 				YouTubeStats.sendVideoStats(event);
 			//checking for urls and sending the title if available
 			else
-				LinkTitle.checkForLinkAndSendTitle(event);
+				LinkManager.checkForLinkAndSendTitle(event);
 		}
 	}
 

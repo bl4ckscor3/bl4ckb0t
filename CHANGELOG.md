@@ -1,5 +1,9 @@
 #Changelog
 ---
+**5.5.0.1**
+- Hotfix for imgur albums
+- Internal changes
+
 ##5.5
 - Added private command to edit the config
 - Added message to -changenick if the nick is already in use

@@ -18,7 +18,7 @@ import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class LinkTitle
+public class LinkManager
 {
 	public static void checkForLinkAndSendTitle(MessageEvent event) throws MalformedURLException, IOException
 	{
@@ -42,7 +42,7 @@ public class LinkTitle
 					GitHub.showCommit(event, s);
 				else if(Core.bot.getConfig().isEnabled("showGitHubRepoInfo") && s.contains("github.com"))
 					GitHub.showRepo(event, s);
-				else if(Core.bot.getConfig().isEnabled("kickOnBannedImgurLink") && event.getChannel().getName().equals("#bl4ckscor3") && (s.contains("imgur") && !s.contains("i.imgur") && !s.contains("gallery")))
+				else if(Core.bot.getConfig().isEnabled("kickOnBannedImgurLink") && event.getChannel().getName().equals("#bl4ckscor3") && (s.contains("imgur") && !s.contains("i.imgur") && !s.contains("/gallery/") && !s.contains("/a/")))
 					Core.bot.kick(event.getChannel().getName(), event.getUser().getNick(), "Only use i.imgur.com links.");
 				else if(Core.bot.getConfig().isEnabled("showLinkTitles"))
 				{
