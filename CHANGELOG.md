@@ -1,6 +1,9 @@
 #Changelog
 ---
-####5.5.1
+####5.6.1
+- Added message if CSGOSquad is in maintenance mode
+
+####5.6
 - Added private command to identify with nickserv
 - Typo fixes
 - Fix for imgur albums
