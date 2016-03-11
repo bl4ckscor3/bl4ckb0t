@@ -2,6 +2,7 @@
 ---
 ####5.6.1
 - Added message if CSGOSquad is in maintenance mode
+- Added automatic conversion to decimal if WolframAlpha's result is a fraction
 
 ####5.6
 - Added private command to identify with nickserv

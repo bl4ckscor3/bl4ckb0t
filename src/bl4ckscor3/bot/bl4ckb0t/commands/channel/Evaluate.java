@@ -3,6 +3,7 @@ package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.pircbotx.hooks.events.MessageEvent;
@@ -26,6 +27,11 @@ public class Evaluate extends BaseChannelCommand<MessageEvent>
 			input += args[i] + " ";
 		}
 		
+		evaluate(event, input);
+	}
+	
+	private void evaluate(MessageEvent event, String input) throws MalformedURLException, IOException
+	{
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://api.wolframalpha.com/v2/query?appid=" + Passwords.WOLFRAMAPIKEY.getPassword() + "&input=" + input.trim().replace("+", "%2B").replace(' ', '+').replace(',', '.')).openStream()));
 		String line = "";
 		
@@ -70,6 +76,15 @@ public class Evaluate extends BaseChannelCommand<MessageEvent>
 		}
 		
 		reader.close();
+		
+		String result = line.split(">")[1].split("<")[0];
+		
+		if(result.contains("/"))
+		{
+			evaluate(event, input + " in decimal");
+			return;
+		}
+		
 		Utilities.chanMsg(event, line.split(">")[1].split("<")[0]);
 	}
 
