@@ -1,6 +1,7 @@
 #Changelog
 ---
-####5.6.1
+####5.6.1_WIP
+- Fixed l in un-/leet being displayed as | instead of 1
 - Added message if CSGOSquad is in maintenance mode
 - Added automatic conversion to decimal if WolframAlpha's result is a fraction
 

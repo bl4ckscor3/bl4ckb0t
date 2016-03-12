@@ -24,8 +24,7 @@ public class Unleet extends BaseChannelCommand<MessageEvent>
 					case '4': result += "a"; break;
 					case '3': result += "e"; break;
 					case '6': result += "g"; break;
-					case '1': result += "i"; break;
-					case '|': result += "l"; break;
+					case '1': result += "l"; break;
 					case '0': result += "o"; break;
 					case '5': result += "s"; break;
 					case '7': result += "t"; break;

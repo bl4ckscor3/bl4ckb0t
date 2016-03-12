@@ -24,8 +24,7 @@ public class Leet extends BaseChannelCommand<MessageEvent>
 					case 'A': case 'a': result += "4"; break;
 					case 'E': case 'e': result += "3"; break;
 					case 'G': case 'g': result += "6"; break;
-					case 'I': case 'i': result += "1"; break;
-					case 'L': case 'l': result += "|"; break;
+					case 'L': case 'l': result += "1"; break;
 					case 'O': case 'o': result += "0"; break;
 					case 'S': case 's': result += "5"; break;
 					case 'T': case 't': result += "7"; break;
