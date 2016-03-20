@@ -5,7 +5,7 @@
 - Added automatic conversion to decimal if WolframAlpha's result is a fraction
 - Fixed l in un-/leet being displayed as | instead of 1
 
-####5.6
+##5.6
 - Added private command to identify with nickserv
 - Typo fixes
 - Fix for imgur albums
