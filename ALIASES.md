@@ -7,8 +7,6 @@
 
 [**-changenick**: -cn](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/ChangeNick.java)
 
-[**-cfwidget**: -curseforgewidget | -cfw](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/CurseForgeWidget.java)
-
 [**-decide**: None.](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/Decide.java)
 
 [**-disable**: None.](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/Disable.java)
@@ -41,15 +39,11 @@
 
 [**-ping**: -pong](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/Ping.java)
 
-[**-letter**: -randomletter | -rl](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/RandomLetter.java)
+[**-ranks**: -rank](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/Ranks.java)
 
-[**-number**: -randomnumber | -rn](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/RandomNumber.java)
+[**-remind**: None.](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/Remind.java)
 
-[**-reverse**: -esrever](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/Reverse.java)
-
-[**-scramble**: -blrscame | -shuffle](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/Scramble.java)
-
-[**-select**: None.](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/Select.java)
+[**-select**: -choose](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/Select.java)
 
 [**-source**: -src](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/Source.java)
 
@@ -61,9 +55,9 @@
 
 [**-tw**: -twitter](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/Twitter.java)
 
-[**-update**: None.](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/Update.java)
+[**-unleet**: None.](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/Unleet.java)
 
-[**-vowels**: None.](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/Vowels.java)
+[**-update**: None.](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/Update.java)
 
 [**-w**: -weather](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/Weather.java)
 

@@ -37,16 +37,44 @@ public class Forge extends BaseChannelCommand<MessageEvent>
 					switch(args[3])
 					{
 						case "version":
-							Utilities.chanMsg(event, doc.select("div.download:nth-child(1) > div:nth-child(1) > small:nth-child(3)").get(0).toString().split(">")[1]);
+							try
+							{
+								Utilities.chanMsg(event, doc.select("div.download:nth-child(1) > div:nth-child(1) > small:nth-child(3)").get(0).toString().split(">")[1]);
+							}
+							catch(Exception e)
+							{
+								Utilities.chanMsg(event, L10N.getString("forge.versionNotFound", event));
+							}
 							break;
 						case "changelog":
-							Utilities.chanMsg(event, doc.select("div.download:nth-child(1) > div:nth-child(2) > div:nth-child(1) > a:nth-child(1)").get(0).toString().split("href=\"")[1].split("\"")[0]);
+							try
+							{
+								Utilities.chanMsg(event, doc.select("div.download:nth-child(1) > div:nth-child(2) > div:nth-child(1) > a:nth-child(1)").get(0).toString().split("href=\"")[1].split("\"")[0]);
+							}
+							catch(Exception e)
+							{
+								Utilities.chanMsg(event, L10N.getString("forge.changelogNotFound", event));
+							}
 							break;
 						case "dlmain":
-							Utilities.chanMsg(event, doc.select("div.download:nth-child(1) > div:nth-child(2) > div:nth-child(2) > a:nth-child(1)").get(0).toString().split("url=")[1].split("\"")[0]);
+							try
+							{
+								Utilities.chanMsg(event, doc.select("div.download:nth-child(1) > div:nth-child(2) > div:nth-child(2) > a:nth-child(1)").get(0).toString().split("url=")[1].split("\"")[0]);
+							}
+							catch(Exception e)
+							{
+								Utilities.chanMsg(event, L10N.getString("forge.mainNotFound", event));
+							}
 							break;
-						case "dlsrc":
-							Utilities.chanMsg(event, doc.select("div.download:nth-child(1) > div:nth-child(2) > div:nth-child(4) > a:nth-child(1)").get(0).toString().split("url=")[1].split("\"")[0]);
+						case "dlsrc": case "dlmdk":
+							try
+							{
+								Utilities.chanMsg(event, doc.select("div.download:nth-child(1) > div:nth-child(2) > div:nth-child(4) > a:nth-child(1)").get(0).toString().split("url=")[1].split("\"")[0]);
+							}
+							catch(Exception e)
+							{
+								Utilities.chanMsg(event, L10N.getString("forge.srcNotFound", event));
+							}
 							break;
 						default:
 							throw new IncorrectCommandExecutionException(getMainAlias());
@@ -56,16 +84,44 @@ public class Forge extends BaseChannelCommand<MessageEvent>
 					switch(args[3])
 					{
 						case "version":
-							Utilities.chanMsg(event, doc.select("div.download:nth-child(2) > div:nth-child(1) > small:nth-child(3)").get(0).toString().split(">")[1]);
+							try
+							{
+								Utilities.chanMsg(event, doc.select("div.download:nth-child(2) > div:nth-child(1) > small:nth-child(3)").get(0).toString().split(">")[1]);
+							}
+							catch(Exception e)
+							{
+								Utilities.chanMsg(event, L10N.getString("forge.versionNotFound", event));
+							}
 							break;
 						case "changelog":
-							Utilities.chanMsg(event, doc.select("div.download:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(1)").get(0).toString().split("href=\"")[1].split("\"")[0]);
+							try
+							{
+								Utilities.chanMsg(event, doc.select("div.download:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(1)").get(0).toString().split("href=\"")[1].split("\"")[0]);
+							}
+							catch(Exception e)
+							{
+								Utilities.chanMsg(event, L10N.getString("forge.changelogNotFound", event));
+							}
 							break;
 						case "dlmain":
-							Utilities.chanMsg(event, doc.select("div.download:nth-child(2) > div:nth-child(2) > div:nth-child(2) > a:nth-child(1)").get(0).toString().split("url=")[1].split("\"")[0]);
+							try
+							{
+								Utilities.chanMsg(event, doc.select("div.download:nth-child(2) > div:nth-child(2) > div:nth-child(2) > a:nth-child(1)").get(0).toString().split("url=")[1].split("\"")[0]);
+							}
+							catch(Exception e)
+							{
+								Utilities.chanMsg(event, L10N.getString("forge.mainNotFound", event));
+							}
 							break;
-						case "dlsrc":
-							Utilities.chanMsg(event, doc.select("div.download:nth-child(2) > div:nth-child(2) > div:nth-child(4) > a:nth-child(1)").get(0).toString().split("url=")[1].split("\"")[0]);
+						case "dlsrc": case "dlmdk":
+							try
+							{
+								Utilities.chanMsg(event, doc.select("div.download:nth-child(2) > div:nth-child(2) > div:nth-child(4) > a:nth-child(1)").get(0).toString().split("url=")[1].split("\"")[0]);
+							}
+							catch(Exception e)
+							{
+								Utilities.chanMsg(event, L10N.getString("forge.srcNotFound", event));
+							}
 							break;
 						default:
 							throw new IncorrectCommandExecutionException(getMainAlias());

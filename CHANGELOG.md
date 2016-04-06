@@ -1,5 +1,9 @@
 #Changelog
 ---
+####5.6.2
+- Added alias for "dlsrc" in -forge ("dlmdk")
+- Fixed -forge not giving a reply when there was nothing found
+
 ####5.6.1
 - Added message if CSGOSquad is in maintenance mode
 - Added automatic conversion to decimal if WolframAlpha's result is a fraction
