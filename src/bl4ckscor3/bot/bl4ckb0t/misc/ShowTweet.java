@@ -11,7 +11,7 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class ShowTweet
 {
-	public static void show(MessageEvent event, String link) throws IOException
+	public static void show(MessageEvent event, String link, int depth) throws IOException
 	{
 		String name = "";
 		String account = "";
@@ -34,7 +34,24 @@ public class ShowTweet
 		}
 		
 		account = "@" + doc.select("a.account-group:nth-child(2) > span:nth-child(4) > b:nth-child(2)").get(0).toString().replace("<b>", "").replace("</b>", "");
-		tweet = doc.select(".TweetTextSize--26px").get(0).text();
-		Utilities.chanMsg(event, Colors.BOLD + name + " (" + account + ") - " + Colors.BOLD + tweet);
+		tweet = doc.select(".TweetTextSize--26px").get(0).text().replace("https://twitter.com", " https://twitter.com").replace("pic.twitter", " pic.twitter").trim();
+		
+		String msg = Colors.BOLD + name + " (" + account + ") - " + Colors.BOLD + tweet;
+		
+		for(int i = depth; i > 0; i--)
+		{
+			if(i == depth)
+				msg = " > " + msg;
+			else
+				msg = " " + msg;
+		}
+		
+		Utilities.chanMsg(event, msg);
+		
+		for(String s : tweet.split(" "))
+		{
+			if(s.endsWith(" …"))
+				show(event, "https://twitter.com" + s.split("https://twitter.com")[1], ++depth);
+		}
 	}
 }

@@ -37,7 +37,7 @@ public class LinkManager
 				}
 
 				if(Core.bot.getConfig().isEnabled("showTweets") && s.contains("twitter"))
-					ShowTweet.show(event, s);
+					ShowTweet.show(event, s, 0);
 				else if(Core.bot.getConfig().isEnabled("showGitHubCommitInfo") && (s.contains("git.io") || (s.contains("github.com") && s.contains("commit"))))
 					GitHub.showCommit(event, s);
 				else if(Core.bot.getConfig().isEnabled("showGitHubRepoInfo") && s.contains("github.com"))

@@ -1,6 +1,8 @@
 #Changelog
 ---
 ####5.6.2
+- Embedded Tweets (Tweets within Tweets) now get sent to the channel, too
+- Added space infront of some links in Tweets for readability
 - Added alias for "dlsrc" in -forge ("dlmdk")
 - Fixed -forge not giving a reply when there was nothing found
 
