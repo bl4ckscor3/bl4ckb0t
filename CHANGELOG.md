@@ -5,6 +5,7 @@
 - Added space infront of some links in Tweets for readability
 - Added alias for "dlsrc" in -forge ("dlmdk")
 - Fixed -forge not giving a reply when there was nothing found
+- Fixed -ranks not working
 
 ####5.6.1
 - Added message if CSGOSquad is in maintenance mode

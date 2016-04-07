@@ -1,7 +1,5 @@
 package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 
-import java.util.NoSuchElementException;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
@@ -33,7 +31,7 @@ public class Ranks extends BaseChannelCommand<MessageEvent>
 			Utilities.chanMsg(event, L10N.getString("ranks.maintenance", event));
 			driver.quit();
 		}
-		catch(NoSuchElementException e)
+		catch(Exception e)
 		{
 			for(int i = 0; i < data.length; i++)
 			{
