@@ -320,7 +320,7 @@ public class SimpleLogger extends MarkerIgnoringBase {
 		// Append the message
 		buf.append(message);
 
-		if(buf.toString().equals("[main] ERROR org.pircbotx.PircBotX - Exception encountered when parsing line")) //to prevent useless npes from pircbotx' stupidly overnumbered whois requests
+		if(buf.toString().contains("org.pircbotx.PircBotX - Exception encountered when parsing line")) //to prevent useless npes from pircbotx' stupidly overnumbered whois requests
 			return;
 
 		Logging.severe(buf.toString().split("ERROR ")[1]); //bl4ckb0t's logging to file
