@@ -30,8 +30,6 @@ public class MCStatus extends BaseChannelCommand<MessageEvent>
 			WebElement realms = driver.findElement(By.cssSelector("div#realms h2.status"));
 			String result = Colors.BOLD + "** Mojang Server Status ** Login: " + Colors.BOLD;
 
-			driver.quit();
-
 			//login
 			if(login.getText().equals("Online"))
 				result += Colors.DARK_GREEN + login.getText();
@@ -41,7 +39,7 @@ public class MCStatus extends BaseChannelCommand<MessageEvent>
 				result += Colors.PURPLE + login.getText();
 
 			result += Colors.NORMAL + Colors.BOLD + " ** Session: " + Colors.BOLD;
-			
+
 			//session
 			if(session.getText().equals("Online"))
 				result += Colors.DARK_GREEN + session.getText();
@@ -51,7 +49,7 @@ public class MCStatus extends BaseChannelCommand<MessageEvent>
 				result += Colors.PURPLE + session.getText();
 
 			result += Colors.NORMAL + Colors.BOLD + " ** Website: " + Colors.BOLD;
-			
+
 			//website
 			if(website.getText().equals("Online"))
 				result += Colors.DARK_GREEN + website.getText();
@@ -61,7 +59,7 @@ public class MCStatus extends BaseChannelCommand<MessageEvent>
 				result += Colors.PURPLE + website.getText();
 
 			result += Colors.NORMAL + Colors.BOLD + " ** Skins: " + Colors.BOLD;
-			
+
 			//skins
 			if(skins.getText().equals("Online"))
 				result += Colors.DARK_GREEN + skins.getText();
@@ -69,9 +67,9 @@ public class MCStatus extends BaseChannelCommand<MessageEvent>
 				result += Colors.RED + skins.getText();
 			else	
 				result += Colors.PURPLE + skins.getText();
-			
-			result += Colors.BOLD + " ** Realms: " + Colors.BOLD;
-			
+
+			result += Colors.NORMAL + Colors.BOLD + " ** Realms: " + Colors.BOLD;
+
 			//realms
 			if(realms.getText().equals("Online"))
 				result += Colors.DARK_GREEN + realms.getText();
@@ -81,6 +79,7 @@ public class MCStatus extends BaseChannelCommand<MessageEvent>
 				result += Colors.PURPLE + realms.getText();
 
 			Utilities.chanMsg(event, result + Colors.NORMAL + Colors.BOLD + " ** Powered by xpaw - http://xpaw.ru/mcstatus **");
+			driver.quit();
 		}, 1, TimeUnit.SECONDS);
 	}		
 

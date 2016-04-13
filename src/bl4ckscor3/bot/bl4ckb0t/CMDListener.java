@@ -139,11 +139,14 @@ public class CMDListener extends ListenerAdapter
 					try
 					{
 						Core.bot.dispatchCommand(event, cmd, Utilities.toArgs(event.getMessage()));
-						return;
 					}
 					catch(IncorrectCommandExecutionException e)
 					{
 						Utilities.sendHelp(event.getUser().getNick(), cmd.getAliases(), cmd.getMainAlias(), cmd.getSyntax(event), cmd.getUsage(event), cmd.getNotes(event), event);
+					}
+					catch(Exception e)
+					{
+						e.printStackTrace();
 					}
 				}
 			}

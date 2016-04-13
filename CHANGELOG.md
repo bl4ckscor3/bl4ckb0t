@@ -1,5 +1,8 @@
 #Changelog
 ---
+####5.6.3
+- Misc. fixes
+
 ####5.6.2
 - Embedded Tweets (Tweets within Tweets) now get sent to the channel, too
 - Added space infront of some links in Tweets for readability
