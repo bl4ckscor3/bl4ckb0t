@@ -3,7 +3,6 @@ package bl4ckscor3.bot.bl4ckb0t;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -169,7 +168,7 @@ public class ConfigurationFile
 				Logging.info("Configuration setup complete!");
 			}
 		}
-		catch(URISyntaxException | IOException e)
+		catch(Exception e)
 		{
 			e.printStackTrace();
 		}

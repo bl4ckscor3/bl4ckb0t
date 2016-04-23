@@ -196,7 +196,7 @@ public class Bot extends PircBotX
 	}
 	
 	/**
-	 * Gets the ArrayList of channel states (enabled/disabled per channel)
+	 * Gets the ArrayMap of channel states (enabled/disabled per channel)
 	 */
 	public ArrayMap<String, Boolean> getChannelStates()
 	{

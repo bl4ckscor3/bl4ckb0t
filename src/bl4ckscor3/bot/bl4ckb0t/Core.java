@@ -19,52 +19,52 @@ public class Core
 	private static final String botName = "bl4ckb0t";
 	private static final String version = "5.6.3";
 	private static ConfigurationFile customConfig;
-	
-	public static void main(String args[]) throws IOException, IrcException
-	{
-		Logging.setup(botName);
-		Logger.getLogger("").setLevel(Level.OFF);
-		Logging.info("Disabled loggers...");
-		wasStartedAsWIP = args.length >= 1 && args[0].equals("-wip");
-		
-		if(wasStartedAsWIP)
-			Logging.info("Bot was started as WIP version...");
-		
-		customConfig = new ConfigurationFile();
-		createBot(wasStartedAsWIP);
-	}
 
-	public static void createBot(boolean wip) throws IOException, IrcException
+	public static void main(String args[]) throws IOException, IrcException
 	{
 		try
 		{
-			Configuration config;
+			Logging.setup(botName);
+			Logger.getLogger("").setLevel(Level.OFF);
+			Logging.info("Disabled loggers...");
+			wasStartedAsWIP = args.length >= 1 && args[0].equals("-wip");
 
-			config = new Configuration.Builder()
-					.setVersion(version + (wip ? "_WIP" : ""))
-					.setName(botName)
-					.setLogin(botName)
-					.addServer("irc.esper.net", 6697)
-					.setSocketFactory(new UtilSSLSocketFactory().trustAllCertificates())
-					.setNickservPassword(Passwords.NICKSERV.getPassword())
-					.setAutoNickChange(true)
-					.setAutoReconnect(true)
-					.setMessageDelay(0)
-					.addListener(new MiscListener())
-					.addListener(new CMDListener())
-					.addListener(new Logging())
-					.buildConfiguration();
-			Logging.info("Created PircBotX config...");
-			bot = new Bot(config, wip, customConfig);
-			Lists.clearAll();
-			Startup.callMethods();
-			Logging.info("Completed last setup steps...");
-			Logging.info("Starting bot...");
-			bot.startBot();
+			if(wasStartedAsWIP)
+				Logging.info("Bot was started as WIP version...");
+
+			customConfig = new ConfigurationFile();
+			createBot(wasStartedAsWIP);
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
+	}
+
+	public static void createBot(boolean wip) throws IOException, IrcException
+	{
+		Configuration config;
+
+		config = new Configuration.Builder()
+				.setVersion(version + (wip ? "_WIP" : ""))
+				.setName(botName)
+				.setLogin(botName)
+				.addServer("irc.esper.net", 6697)
+				.setSocketFactory(new UtilSSLSocketFactory().trustAllCertificates())
+				.setNickservPassword(Passwords.NICKSERV.getPassword())
+				.setAutoNickChange(true)
+				.setAutoReconnect(true)
+				.setMessageDelay(0)
+				.addListener(new MiscListener())
+				.addListener(new CMDListener())
+				.addListener(new Logging())
+				.buildConfiguration();
+		Logging.info("Created PircBotX config...");
+		bot = new Bot(config, wip, customConfig);
+		Lists.clearAll();
+		Startup.callMethods();
+		Logging.info("Completed last setup steps...");
+		Logging.info("Starting bot...");
+		bot.startBot();
 	}
 }

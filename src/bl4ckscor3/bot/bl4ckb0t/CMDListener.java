@@ -112,87 +112,101 @@ public class CMDListener extends ListenerAdapter
 	@Override
 	public void onMessage(MessageEvent event) throws Exception
 	{
-		String cmdName = Utilities.toArgs(event.getMessage())[0];
-		int permissionLevel = Utilities.getUserPermissionLevel(event);
-
-		if(!cmdName.startsWith(cmdPrefix))
-			return;
-
-		if(Utilities.isIgnored(event.getUser().getNick()))
+		try
 		{
-			Logging.warn("Ignoring user " + event.getUser().getNick());
-			return;
-		}
-		
-		if(Core.bot.isEnabled() && Core.bot.getChannelStates().get(event.getChannel().getName()))
-		{
-			for(BaseChannelCommand<MessageEvent> cmd : commands)
+			String cmdName = Utilities.toArgs(event.getMessage())[0];
+			int permissionLevel = Utilities.getUserPermissionLevel(event);
+
+			if(!cmdName.startsWith(cmdPrefix))
+				return;
+
+			if(Utilities.isIgnored(event.getUser().getNick()))
 			{
-				if(cmd.isEnabled() && cmd.isValidAlias(cmdName))
-				{
-					if(cmd.getPermissionLevel() > permissionLevel)
-					{
-						Utilities.noPermission(event);
-						return;
-					}
+				Logging.warn("Ignoring user " + event.getUser().getNick());
+				return;
+			}
 
-					try
+			if(Core.bot.isEnabled() && Core.bot.getChannelStates().get(event.getChannel().getName()))
+			{
+				for(BaseChannelCommand<MessageEvent> cmd : commands)
+				{
+					if(cmd.isEnabled() && cmd.isValidAlias(cmdName))
 					{
-						Core.bot.dispatchCommand(event, cmd, Utilities.toArgs(event.getMessage()));
+						if(cmd.getPermissionLevel() > permissionLevel)
+						{
+							Utilities.noPermission(event);
+							return;
+						}
+
+						try
+						{
+							Core.bot.dispatchCommand(event, cmd, Utilities.toArgs(event.getMessage()));
+						}
+						catch(IncorrectCommandExecutionException e)
+						{
+							Utilities.sendHelp(event.getUser().getNick(), cmd.getAliases(), cmd.getMainAlias(), cmd.getSyntax(event), cmd.getUsage(event), cmd.getNotes(event), event);
+						}
+						catch(Exception e)
+						{
+							e.printStackTrace();
+						}
 					}
-					catch(IncorrectCommandExecutionException e)
+				}
+			}
+			else
+			{
+				for(BaseChannelCommand<MessageEvent> cmd : commands)
+				{
+					if(cmd.isEnabled() && (cmd instanceof Enable || cmd instanceof Disable) && cmd.isValidAlias(cmdName))
 					{
-						Utilities.sendHelp(event.getUser().getNick(), cmd.getAliases(), cmd.getMainAlias(), cmd.getSyntax(event), cmd.getUsage(event), cmd.getNotes(event), event);
-					}
-					catch(Exception e)
-					{
-						e.printStackTrace();
+						try
+						{
+							Core.bot.dispatchCommand(event, cmd, Utilities.toArgs(event.getMessage()));
+							return;
+						}
+						catch(IncorrectCommandExecutionException e)
+						{
+							Utilities.sendHelp(event.getUser().getNick(), cmd.getAliases(), cmd.getMainAlias(), cmd.getSyntax(event), cmd.getUsage(event), cmd.getNotes(event), event);
+						}
 					}
 				}
 			}
 		}
-		else
+		catch(Exception e)
 		{
-			for(BaseChannelCommand<MessageEvent> cmd : commands)
-			{
-				if(cmd.isEnabled() && (cmd instanceof Enable || cmd instanceof Disable) && cmd.isValidAlias(cmdName))
-				{
-					try
-					{
-						Core.bot.dispatchCommand(event, cmd, Utilities.toArgs(event.getMessage()));
-						return;
-					}
-					catch(IncorrectCommandExecutionException e)
-					{
-						Utilities.sendHelp(event.getUser().getNick(), cmd.getAliases(), cmd.getMainAlias(), cmd.getSyntax(event), cmd.getUsage(event), cmd.getNotes(event), event);
-					}
-				}
-			}
+			e.printStackTrace();
 		}
 	}	
 
 	@Override
 	public void onPrivateMessage(PrivateMessageEvent event) throws Exception
 	{
-		if(Utilities.isIgnored(event.getUser().getNick()))
+		try
 		{
-			Logging.warn("Ignoring user " + event.getUser().getNick());
-			return;
-		}
-
-		if(Core.bot.isEnabled())
-		{
-			if(Utilities.isValidUser(event))
+			if(Utilities.isIgnored(event.getUser().getNick()))
 			{
-				for(BasePrivateCommand<PrivateMessageEvent> cmd : privCommands)
+				Logging.warn("Ignoring user " + event.getUser().getNick());
+				return;
+			}
+
+			if(Core.bot.isEnabled())
+			{
+				if(Utilities.isValidUser(event))
 				{
-					if(cmd.isEnabled() && event.getMessage().startsWith(cmd.getMainAlias()))
+					for(BasePrivateCommand<PrivateMessageEvent> cmd : privCommands)
 					{
-						Core.bot.dispatchCommand(event, cmd, Utilities.toArgs(event.getMessage()));
-						return;
+						if(cmd.isEnabled() && event.getMessage().startsWith(cmd.getMainAlias()))
+						{
+							Core.bot.dispatchCommand(event, cmd, Utilities.toArgs(event.getMessage()));
+							return;
+						}
 					}
 				}
 			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
 		}
 	}
 }

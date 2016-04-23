@@ -22,103 +22,138 @@ public class MiscListener extends ListenerAdapter
 	@Override
 	public void onMessage(MessageEvent event) throws Exception
 	{
-		if(Utilities.isIgnored(event.getUser().getNick()))
+		try
 		{
-			Logging.warn("Ignoring user " + event.getUser().getNick());
-			return;
-		}
-
-		String message = event.getMessage();
-
-		if(Core.bot.getConfig().isEnabled("ping"))
-		{
-			if(event.getMessage().startsWith("-ping"))
+			if(Utilities.isIgnored(event.getUser().getNick()))
 			{
-				Utilities.chanMsg(event, "Pong!");
+				Logging.warn("Ignoring user " + event.getUser().getNick());
 				return;
 			}
-			else if(Core.bot.getConfig().isEnabled("allowCommandAliases") && event.getMessage().startsWith("-pong"))
+
+			String message = event.getMessage();
+
+			if(Core.bot.getConfig().isEnabled("ping"))
 			{
-				Utilities.chanMsg(event, "Ping!");
-				return;
+				if(event.getMessage().startsWith("-ping"))
+				{
+					Utilities.chanMsg(event, "Pong!");
+					return;
+				}
+				else if(Core.bot.getConfig().isEnabled("allowCommandAliases") && event.getMessage().startsWith("-pong"))
+				{
+					Utilities.chanMsg(event, "Ping!");
+					return;
+				}
 			}
-		}
 
-		if(message.startsWith(CMDListener.cmdPrefix))
-			return;
+			if(message.startsWith(CMDListener.cmdPrefix))
+				return;
 
-		if(message.startsWith("?enabled"))
-		{
-			if(message.startsWith("?enabled #") && Core.bot.isEnabled())
-				Utilities.chanMsg(event, message.split(" ")[1] + ": " + Core.bot.getChannelStates().get(message.split(" ")[1].replace("#", "")));
-			else
-				Utilities.chanMsg(event, "global: " + Core.bot.isEnabled());
-			return;
-		}
-
-		if(Core.bot.isEnabled())
-		{
-			if(Core.bot.getConfig().isEnabled("spellingCorrection"))
+			if(message.startsWith("?enabled"))
 			{
-				SpellingCorrection.checkForSpellingCorrection(event, message);
-
-				//making sure the above messages dont get added as a latest message
-				if(!SpellingCorrection.corrected)
-					SpellingCorrection.updateLatestMessage(event.getChannel().getName(), event.getMessage(), event.getUser().getNick());
+				if(message.startsWith("?enabled #") && Core.bot.isEnabled())
+					Utilities.chanMsg(event, message.split(" ")[1] + ": " + Core.bot.getChannelStates().get(message.split(" ")[1].replace("#", "")));
 				else
-					SpellingCorrection.corrected = false;
+					Utilities.chanMsg(event, "global: " + Core.bot.isEnabled());
+				return;
 			}
-			
-			//sending a welcome back message
-			if(Core.bot.getConfig().isEnabled("showWelcomeBackMsg") && (message.toLowerCase().startsWith("re ") || message.toLowerCase().equals("re")))
-				Utilities.chanMsg(event, "wb, " + event.getUser().getNick());
-			//youtube recognition
-			else if(Core.bot.getConfig().isEnabled("showYouTubeStats") && (message.contains("www.youtube.com/watch") || message.contains("youtu.be/")))
-				YouTubeStats.sendVideoStats(event);
-			//checking for urls and sending the title if available
-			else
-				LinkManager.checkForLinkAndSendTitle(event);
+
+			if(Core.bot.isEnabled())
+			{
+				if(Core.bot.getConfig().isEnabled("spellingCorrection"))
+				{
+					SpellingCorrection.checkForSpellingCorrection(event, message);
+
+					//making sure the above messages dont get added as a latest message
+					if(!SpellingCorrection.corrected)
+						SpellingCorrection.updateLatestMessage(event.getChannel().getName(), event.getMessage(), event.getUser().getNick());
+					else
+						SpellingCorrection.corrected = false;
+				}
+
+				//sending a welcome back message
+				if(Core.bot.getConfig().isEnabled("showWelcomeBackMsg") && (message.toLowerCase().startsWith("re ") || message.toLowerCase().equals("re")))
+					Utilities.chanMsg(event, "wb, " + event.getUser().getNick());
+				//youtube recognition
+				else if(Core.bot.getConfig().isEnabled("showYouTubeStats") && (message.contains("www.youtube.com/watch") || message.contains("youtu.be/")))
+					YouTubeStats.sendVideoStats(event);
+				//checking for urls and sending the title if available
+				else
+					LinkManager.checkForLinkAndSendTitle(event);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
 		}
 	}
 
 	@Override
 	public void onPrivateMessage(PrivateMessageEvent event) throws Exception
 	{
-		if(Utilities.isIgnored(event.getUser().getNick()))
+		try
 		{
-			Logging.warn("Ignoring user " + event.getUser().getNick());
-			return;
-		}
+			if(Utilities.isIgnored(event.getUser().getNick()))
+			{
+				Logging.warn("Ignoring user " + event.getUser().getNick());
+				return;
+			}
 
-		if(event.getMessage().startsWith(CMDListener.cmdPrefix))
+			if(event.getMessage().startsWith(CMDListener.cmdPrefix))
 				Utilities.pm(event.getUser().getNick(), "Commands can only be sent through channel messages. Use -help in a channel to get more info.");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void onConnect(ConnectEvent event) throws MalformedURLException, IOException
 	{
-		Startup.setDefaultChans();
-		Logging.info("Joining channels...");
-		Core.bot.joinDefaults();
-		Logging.info("Bot successfully connected!");
+		try
+		{
+			Startup.setDefaultChans();
+			Logging.info("Joining channels...");
+			Core.bot.joinDefaults();
+			Logging.info("Bot successfully connected!");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void onAction(ActionEvent event) throws Exception
 	{
-		if(Utilities.isIgnored(event.getUser().getNick()))
+		try
 		{
-			Logging.warn("Ignoring user " + event.getUser().getNick());
-			return;
-		}
+			if(Utilities.isIgnored(event.getUser().getNick()))
+			{
+				Logging.warn("Ignoring user " + event.getUser().getNick());
+				return;
+			}
 
-		if(Core.bot.getConfig().isEnabled("shrugs") && event.getAction().startsWith("shrugs"))
-			Core.bot.sendCustomMessage(event.getChannel().getName(), "¯\\_(ツ)_/¯");
+			if(Core.bot.getConfig().isEnabled("shrugs") && event.getAction().startsWith("shrugs"))
+				Core.bot.sendCustomMessage(event.getChannel().getName(), "¯\\_(ツ)_/¯");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
-	
+
 	@Override
 	public void onNickAlreadyInUse(NickAlreadyInUseEvent event) throws Exception
 	{
-		ChangeNick.isInUse = true;
+		try
+		{
+			ChangeNick.isInUse = true;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 }
