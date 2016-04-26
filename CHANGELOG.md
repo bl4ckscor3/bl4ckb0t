@@ -1,5 +1,8 @@
 #Changelog
 ---
+####5.6.4_WIP
+- Fixed YT Video info not showing "0" when the video hasn't been viewed yet
+
 ####5.6.3
 - Misc. fixes
 

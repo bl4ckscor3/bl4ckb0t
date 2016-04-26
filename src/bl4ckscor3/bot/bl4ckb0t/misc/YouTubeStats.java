@@ -78,6 +78,16 @@ public class YouTubeStats
 			dislikes = doc.select(".like-button-renderer-dislike-button-unclicked > span:nth-child(1)").get(0).text();
 			date = doc.select(".watch-time-text").get(0).text().split(" ")[2].trim();
 			uploader = doc.select(".yt-user-info > a:nth-child(1)").get(0).text();
+			
+			try
+			{
+				Double.parseDouble(views);
+			}
+			catch(Exception e)
+			{
+				views = "0";
+			}
+			
 			Utilities.sendStarMsg(event,
 					Colors.BOLD + "1,0You0,4Tube " + Colors.NORMAL,
 					Colors.BOLD + L10N.getString("youtube.title", event) + ": " + Colors.NORMAL + title,
