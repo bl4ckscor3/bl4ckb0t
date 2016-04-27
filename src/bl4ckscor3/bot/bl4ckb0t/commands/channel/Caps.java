@@ -14,8 +14,9 @@ public class Caps extends BaseChannelCommand<MessageEvent>
 	public void exe(MessageEvent event, String[] args) throws Exception
 	{
 		String lastMessage = "";
-
-		for(String s : SpellingCorrection.storage.get(event.getChannel().getName()))
+		String channel = event.getChannel().getName();
+		
+		for(String s : SpellingCorrection.storage.get(channel))
 		{
 			if(s.split("#")[0].equals(event.getUser().getNick()))
 				lastMessage = s.split("#")[1];
@@ -50,8 +51,8 @@ public class Caps extends BaseChannelCommand<MessageEvent>
 				throw new IncorrectCommandExecutionException(getMainAlias());
 		}
 
-		Utilities.chanMsg(event, builder.toString());
-		SpellingCorrection.updateLatestMessage(event.getChannel().getName(), builder.toString(), event.getUser().getNick());
+		Utilities.sendMessage(event.getUser().getNick(), builder.toString());
+		SpellingCorrection.updateLatestMessage(channel, builder.toString(), event.getUser().getNick());
 	}
 
 	@Override
@@ -61,18 +62,18 @@ public class Caps extends BaseChannelCommand<MessageEvent>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent event)
+	public String getSyntax(String channel)
 	{
 		return "-caps [up|low]";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent event)
+	public String[] getUsage(String channel)
 	{
 		return new String[]{
-				"-caps || " + L10N.getString("caps.explanation.1", event),
-				"-caps up || " + L10N.getString("caps.explanation.2", event),
-				"-caps low || " + L10N.getString("caps.explanation.3", event)
+				"-caps || " + L10N.getString("caps.explanation.1", channel),
+				"-caps up || " + L10N.getString("caps.explanation.2", channel),
+				"-caps low || " + L10N.getString("caps.explanation.3", channel)
 		};
 	}
 }

@@ -13,7 +13,7 @@ public class YouTube extends BaseChannelCommand<MessageEvent>
 	public void exe(MessageEvent event, String[] args) throws IncorrectCommandExecutionException
 	{
 		if(args.length == 2)
-			Utilities.chanMsg(event, "http://www.youtube.com/" + args[1]);
+			Utilities.sendMessage(event.getChannel().getName(), "http://www.youtube.com/" + args[1]);
 		else
 			throw new IncorrectCommandExecutionException(getMainAlias());
 	}
@@ -25,20 +25,20 @@ public class YouTube extends BaseChannelCommand<MessageEvent>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent event)
+	public String getSyntax(String channel)
 	{
-		return "-yt <" + L10N.getString("yt.help.channel", event) + ">";
+		return "-yt <" + L10N.getString("yt.help.channel", channel) + ">";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent event)
+	public String[] getUsage(String channel)
 	{
-		return new String[]{"-yt <" + L10N.getString("ytv.help.channel", event) + "> || " + L10N.getString("yt.explanation", event)};
+		return new String[]{"-yt <" + L10N.getString("ytv.help.channel", channel) + "> || " + L10N.getString("yt.explanation", channel)};
 	}
 
 	@Override
-	public String getNotes(MessageEvent event)
+	public String getNotes(String channel)
 	{
-		return L10N.getString("yt.notes", event);
+		return L10N.getString("yt.notes", channel);
 	}
 }

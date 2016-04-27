@@ -5,7 +5,9 @@ import org.pircbotx.hooks.events.MessageEvent;
 import bl4ckscor3.bot.bl4ckb0t.commands.BaseChannelCommand;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 
-//placeholder class to be able to set the help menu...
+/**
+ * 'PlaceholderÄ class to be able to set the help menu
+ */
 public class Ping extends BaseChannelCommand<MessageEvent>
 {
 	@Override
@@ -18,22 +20,22 @@ public class Ping extends BaseChannelCommand<MessageEvent>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent event)
+	public String getSyntax(String channel)
 	{
 		return "-ping";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent event)
+	public String[] getUsage(String channel)
 	{
 		return new String[]{
-				"-ping || " + L10N.getString("ping.explanation", event)
+				"-ping || " + L10N.getString("ping.explanation", channel)
 		};
 	}
 
 	@Override
-	public String getNotes(MessageEvent event)
+	public String getNotes(String channel)
 	{
-		return L10N.getString("ping.notes", event);
+		return L10N.getString("ping.notes", channel);
 	}
 }

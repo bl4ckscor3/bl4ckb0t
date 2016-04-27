@@ -14,6 +14,9 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Startup
 {
+	/**
+	 * Calls all methods in this class
+	 */
 	public static void callMethods() throws MalformedURLException, IOException
 	{
 		getChangelog();
@@ -24,6 +27,9 @@ public class Startup
 		CMDListener.setupCMDs();
 	}
 	
+	/**
+	 * Retrieves the changelog of the bot and saves it in the list Changelog.versions
+	 */
 	private static void getChangelog() throws IOException
 	{
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://raw.githubusercontent.com/bl4ckscor3/bl4ckb0t/master/CHANGELOG.md").openStream()));
@@ -56,6 +62,9 @@ public class Startup
 		Logging.info("All versions added to changelog list.");
 	}
 
+	/**
+	 * Sets the default channels of the bot
+	 */
 	public static void setDefaultChans() throws MalformedURLException, IOException
 	{
 		if(Core.bot.isDevelopment())
@@ -74,6 +83,9 @@ public class Startup
 		reader.close();
 	}
 
+	/**
+	 * Sets the users with a permission level of 2
+	 */
 	private static void setAllowedUsers() throws MalformedURLException, IOException
 	{
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/0flrfzw3ljmw3u2/allowedUsers.txt?dl=1").openStream()));
@@ -86,6 +98,9 @@ public class Startup
 		reader.close();
 	}
 
+	/**
+	 * Sets the users with a permission level of 3
+	 */
 	private static void setValidUsers() throws MalformedURLException, IOException
 	{
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/dyvu276rdwmbt9z/validUsers.txt?dl=1").openStream()));
@@ -98,6 +113,9 @@ public class Startup
 		reader.close();
 	}
 
+	/**
+	 * Sets the user the bot ignores
+	 */
 	private static void setIgnoredUsers() throws MalformedURLException, IOException
 	{
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://www.dropbox.com/s/n6ay2ah3itpovp6/ignoredUsers.txt?dl=1").openStream()));

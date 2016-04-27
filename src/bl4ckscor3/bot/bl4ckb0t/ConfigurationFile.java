@@ -175,18 +175,6 @@ public class ConfigurationFile
 	}
 
 	/**
-	 * Gets the value from the given option as a boolean
-	 * @deprecated Renamed, use ConfigurationFile.isEnabled(String option) instead.
-	 * @param option The option to get the value from
-	 * @return The value
-	 */
-	@Deprecated
-	public boolean getBoolean(String option)
-	{
-		return isEnabled(option);
-	}
-	
-	/**
 	 * Checks wether a boolean value from a config option is true
 	 * @param option The option to get the value from
 	 * @return true if true, false if not

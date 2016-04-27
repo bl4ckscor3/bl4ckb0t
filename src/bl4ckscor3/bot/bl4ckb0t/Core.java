@@ -17,7 +17,7 @@ public class Core
 	public static Bot bot;
 	private static boolean wasStartedAsWIP;
 	private static final String botName = "bl4ckb0t";
-	private static final String version = "5.6.4";
+	private static final String version = "5.7";
 	private static ConfigurationFile customConfig;
 
 	public static void main(String args[]) throws IOException, IrcException
@@ -41,6 +41,10 @@ public class Core
 		}
 	}
 
+	/**
+	 * Creates the bot and starts it
+	 * @param wip Wether or not the bot should be started as a development version
+	 */
 	public static void createBot(boolean wip) throws IOException, IrcException
 	{
 		Configuration config;
@@ -60,7 +64,7 @@ public class Core
 				.addListener(new Logging())
 				.buildConfiguration();
 		Logging.info("Created PircBotX config...");
-		bot = new Bot(config, wip, customConfig);
+		bot = new Bot(config, wip, customConfig, "-");
 		Lists.clearAll();
 		Startup.callMethods();
 		Logging.info("Completed last setup steps...");

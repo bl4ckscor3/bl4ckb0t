@@ -6,18 +6,30 @@ public class TimeParser
 {
 	private String cmdName;
 
+	/**
+	 * Initializes a TimeParser
+	 */
 	public TimeParser()
 	{
 		this("None.");
 	}
 	
+	/**
+	 * Initializes a TimeParser with a command alias that is used to send help if something goes wrong
+	 * @param cmdN
+	 */
 	public TimeParser(String cmdN)
 	{
 		cmdName = cmdN;
 	}
 	
 	//----------------CHANGE STRING TO LONG----------------\\
-	
+
+	/**
+	 * Changes a String of the format xdxhxmxs (where x is a positive number) to a timestamp
+	 * @param s The String to convert
+	 * @return The converted String in milliseconds
+	 */
 	public long stl(String s) throws IncorrectCommandExecutionException
 	{
 		if(s.contains("d"))
@@ -32,6 +44,11 @@ public class TimeParser
 			throw new IncorrectCommandExecutionException(cmdName);
 	}
 
+	/**
+	 * Sub-method of stl() handling days
+	 * @param s The String to convert
+	 * @return The converted String
+	 */
 	private long d(String s)
 	{
 		long value = Long.parseLong(s.split("d")[0]);
@@ -47,7 +64,12 @@ public class TimeParser
 		else
 			return value;
 	}
-
+	
+	/**
+	 * Sub-method of stl() handling hours
+	 * @param s The String to convert
+	 * @return The converted String
+	 */
 	private long h(String s)
 	{
 		long value = 0;
@@ -66,7 +88,12 @@ public class TimeParser
 		else
 			return value;
 	}
-
+	
+	/**
+	 * Sub-method of stl() handling minutes
+	 * @param s The String to convert
+	 * @return The converted String
+	 */
 	private long m(String s)
 	{
 		long value = 0;
@@ -90,7 +117,12 @@ public class TimeParser
 		else
 			return value;
 	}
-
+	
+	/**
+	 * Sub-method of stl() handling seconds
+	 * @param s The String to convert
+	 * @return The converted String
+	 */
 	private long s(String s)
 	{
 		long value = 0;
@@ -129,6 +161,12 @@ public class TimeParser
 
 	//----------------CHANGE LONG TO STRING----------------\\
 	
+	/**
+	 * Changes a timestamp into a String with the given format
+	 * @param l The timestamp in milliseconds to convert
+	 * @param format The format the String will have. Use %s as a placeholder for days/hours/minutes/seconds
+	 * @return The converted timestamp as a String
+	 */
 	public String lts(long l, String format)
 	{
 		long s = l / 1000;

@@ -8,14 +8,18 @@ import java.net.URL;
 
 import org.jsoup.Jsoup;
 import org.pircbotx.Colors;
-import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class GitHub
 {
-	public static void showRepo(MessageEvent event, String link) throws MalformedURLException, IOException
+	/**
+	 * Shows information about a GitHub repository
+	 * @param channel The channel to show the info in
+	 * @param link The link to the repo
+	 */
+	public static void showRepo(String channel, String link) throws MalformedURLException, IOException
 	{
 		BufferedReader reader;
 		String name = "";
@@ -66,27 +70,32 @@ public class GitHub
 		reader.close();
 		
 		if(language.equals("null") || language.equals("") || language.equals(null))
-			language = L10N.getString("helpMenu.noNotes", event).replace(".", "");
+			language = L10N.getString("helpMenu.noNotes", channel).replace(".", "");
 		
-		Utilities.chanMsg(event, Colors.BOLD + "[GitHub] " + Colors.BOLD + name + " - " + description + 
-				" | " + L10N.getString("github.mainLanguage", event).replace("#lang", language) + 
-				" | " + L10N.getString("github.latestPush", event).replace("#push", latestPush) + 
-				" | " + L10N.getString("github.watching", event).replace("#watching", watching) + 
-				" | " + L10N.getString("github.stargazers", event).replace("#stars", stars) + 
-				" | " + L10N.getString("github.forks", event).replace("#forks", forks) + 
-				" | " + L10N.getString("github.issues", event).replace("#issues", issues));
+		Utilities.sendMessage(channel, Colors.BOLD + "[GitHub] " + Colors.BOLD + name + " - " + description + 
+				" | " + L10N.getString("github.mainLanguage", channel).replace("#lang", language) + 
+				" | " + L10N.getString("github.latestPush", channel).replace("#push", latestPush) + 
+				" | " + L10N.getString("github.watching", channel).replace("#watching", watching) + 
+				" | " + L10N.getString("github.stargazers", channel).replace("#stars", stars) + 
+				" | " + L10N.getString("github.forks", channel).replace("#forks", forks) + 
+				" | " + L10N.getString("github.issues", channel).replace("#issues", issues));
 	}
 
-	public static void showCommit(MessageEvent event, String link) throws IOException
+	/**
+	 * Shows information about a git commit
+	 * @param channel The channel to show the information in
+	 * @param link The link to the commit
+	 */
+	public static void showCommit(String channel, String link) throws IOException
 	{
 		if(link.startsWith("www."))
 			link = "http://" + link;
 		
 		String text = Jsoup.connect(link).get().select(".toc-diff-stats").text();
 	
-		Utilities.sendStarMsg(event,
-				Colors.PURPLE + L10N.getString("github.changedFiles", event).replace("#files", text.split(" ")[1]) + Colors.NORMAL,
-				Colors.DARK_GREEN + L10N.getString("github.additions", event).replace("#additions", text.split(" ")[5]) + Colors.NORMAL,
-				Colors.RED + L10N.getString("github.deletions", event).replace("#deletions", text.split(" ")[8]) + Colors.NORMAL);
+		Utilities.sendStarMsg(channel,
+				Colors.PURPLE + L10N.getString("github.changedFiles", channel).replace("#files", text.split(" ")[1]) + Colors.NORMAL,
+				Colors.DARK_GREEN + L10N.getString("github.additions", channel).replace("#additions", text.split(" ")[5]) + Colors.NORMAL,
+				Colors.RED + L10N.getString("github.deletions", channel).replace("#deletions", text.split(" ")[8]) + Colors.NORMAL);
 	}
 }

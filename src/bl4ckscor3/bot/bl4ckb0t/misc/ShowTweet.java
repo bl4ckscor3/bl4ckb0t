@@ -5,13 +5,18 @@ import java.io.IOException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.pircbotx.Colors;
-import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class ShowTweet
 {
-	public static void show(MessageEvent event, String link, int depth) throws IOException
+	/**
+	 * Shows a Tweet
+	 * @param channel The channel to show the Tweet in
+	 * @param link The link to the Tweet
+	 * @param depth Recursive depth
+	 */
+	public static void show(String channel, String link, int depth) throws IOException
 	{
 		String name = "";
 		String account = "";
@@ -46,12 +51,12 @@ public class ShowTweet
 				msg = " " + msg;
 		}
 		
-		Utilities.chanMsg(event, msg);
+		Utilities.sendMessage(channel, msg);
 		
 		for(String s : tweet.split(" "))
 		{
 			if(s.endsWith(" …"))
-				show(event, "https://twitter.com" + s.split("https://twitter.com")[1], ++depth);
+				show(channel, "https://twitter.com" + s.split("https://twitter.com")[1], ++depth);
 		}
 	}
 }

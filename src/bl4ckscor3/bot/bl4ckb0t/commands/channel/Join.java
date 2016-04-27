@@ -30,7 +30,11 @@ public class Join extends BaseChannelCommand<MessageEvent>
 			if(!Utilities.hasJoinedChannel(args[1]))
 				Core.bot.joinChannel(args[1]);
 			else
-				Utilities.chanMsg(event, L10N.getString("join.alreadyJoined", event));
+			{
+				String channel = event.getChannel().getName();
+				
+				Utilities.sendMessage(channel, L10N.getString("join.alreadyJoined", channel));
+			}
 		}
 		else
 			throw new IncorrectCommandExecutionException(getMainAlias());
@@ -43,21 +47,21 @@ public class Join extends BaseChannelCommand<MessageEvent>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent event)
+	public String getSyntax(String channel)
 	{
-		return "-join <" + L10N.getString("cmd.help.channel", event) + ">";
+		return "-join <" + L10N.getString("cmd.help.channel", channel) + ">";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent event)
+	public String[] getUsage(String channel)
 	{
-		return new String[]{"-join <" + L10N.getString("cmd.help.channel", event) + "> || " + L10N.getString("join.explanation", event)};
+		return new String[]{"-join <" + L10N.getString("cmd.help.channel", channel) + "> || " + L10N.getString("join.explanation", channel)};
 	}
 
 	@Override
-	public String getNotes(MessageEvent event)
+	public String getNotes(String channel)
 	{
-		return L10N.getString("notes.onlyOp", event);
+		return L10N.getString("notes.onlyOp", channel);
 	}
 
 	@Override

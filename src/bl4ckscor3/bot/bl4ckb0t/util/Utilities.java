@@ -10,8 +10,7 @@ import java.util.List;
 
 import org.pircbotx.Channel;
 import org.pircbotx.Colors;
-import org.pircbotx.hooks.events.MessageEvent;
-import org.pircbotx.hooks.events.PrivateMessageEvent;
+import org.pircbotx.User;
 
 import com.google.common.collect.ImmutableSortedSet;
 
@@ -22,99 +21,85 @@ import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 
 public class Utilities
 {
-	/*
-	 * FROM HERE ONLY MSG EVENT
-	 */
-
 	/**
-	 * Sends a message to a channel
-	 * @param event The event which holds the channel to send the message to
+	 * Sends a message to a channel or user
+	 * @param target The message receiver
 	 * @param msg The message
 	 */
-	public static void chanMsg(MessageEvent event, String msg)
+	public static void sendMessage(String target, String msg)
 	{
-		event.getChannel().send().message(msg);
-		Logging.message(event.getChannel().getName(), Core.bot.getNick(), msg);
+		Core.bot.sendIRC().message(target, msg);
+		Logging.message(target, Core.bot.getNick(), msg);
 	}
 
 	/**
 	 * Sends a notice to a user
-	 * @param event The event which holds the user to send the notice to
+	 * @param user The user to send the notice to
 	 * @param notice The message
 	 */
-	public static void notice(MessageEvent event, String notice)
+	public static void notice(User user, String notice)
 	{
-		event.getUser().send().notice(notice);
-		Logging.noticeSent(event.getUser().getNick(), notice);
-	}
-
-	/**
-	 * Sends a pm to a user
-	 * @param name The user who receives the pm
-	 * @param msg The message to send
-	 */
-	public static void pm(String name, String msg)
-	{
-		Core.bot.sendCustomMessage(name, msg);
+		user.send().notice(notice);
+		Logging.noticeSent(user.getNick(), notice);
 	}
 
 	/**
 	 * Tells the user that he doesn't have permission for the action he wanted to take
-	 * @param event The event which holds the user and the channel from the action
+	 * @param channel The channel to send the message to
 	 */
-	public static void noPermission(MessageEvent event)
+	public static void noPermission(String channel)
 	{
-		chanMsg(event, L10N.getString("noPermission", event));
+		sendMessage(channel, L10N.getString("noPermission", channel));
 	}
 
 	/**
 	 * Sends a help line to a user
-	 * @param event The event which holds the user
+	 * @param user The user to send the help line to
 	 * @param msg The help line to send
 	 */
-	public static void addHelpLine(MessageEvent event, String msg)
+	public static void addHelpLine(String user, String msg)
 	{
-		pm(event.getUser().getNick(), Colors.BOLD + Colors.RED + msg);
+		sendMessage(user, Colors.BOLD + Colors.RED + msg);
 	}
 
 	/**
 	 * Checks wether a user is a valid user (equal to admin)
-	 * @param event The event which holds the user to check
+	 * @param user The user to check
 	 * @return Wether the user is a valid user
 	 */
-	public static boolean isValidUser(MessageEvent event) throws MalformedURLException, IOException
+	public static boolean isValidUser(User user) throws MalformedURLException, IOException
 	{
-		return event.getUser().isVerified() && Lists.getValidUsers().contains(event.getUser().getNick()); //commented out due to esper blocking whois requests
+		return user.isVerified() && Lists.getValidUsers().contains(user.getNick()); //commented out due to esper blocking whois requests
 	}
 
 	/**
 	 * Checks wether a user is an allowed user (equal to moderator)
-	 * @param event The event which holds the user to check
+	 * @param user The user to check
 	 * @return Wether the user is an allowed user
 	 */
-	public static boolean isAllowedUser(MessageEvent event) throws MalformedURLException, IOException
+	public static boolean isAllowedUser(User user) throws MalformedURLException, IOException
 	{
-		return event.getUser().isVerified() && Lists.getAllowedUsers().contains(event.getUser().getNick()); //commented out due to esper blocking whois requests
+		return user.isVerified() && Lists.getAllowedUsers().contains(user.getNick()); //commented out due to esper blocking whois requests
 	}
 
 	/**
 	 * Gets the permission level of the user
-	 * @param event The event which holds the user
+	 * @param user The user to check
 	 * @return The permission level of the user
 	 */
-	public static int getUserPermissionLevel(MessageEvent event) throws MalformedURLException, IOException
+	public static int getUserPermissionLevel(User user) throws MalformedURLException, IOException
 	{
-		return isValidUser(event) ? 3 : (isAllowedUser(event) ? 2 : 1);
+		return isValidUser(user) ? 3 : (isAllowedUser(user) ? 2 : 1);
 	}
 
 	/**
 	 * Sends a message in the following format:
 	 * 		** x1 ** x2 ** ... ** xn **
 	 * Where x1...xn are is the data array in order
-	 * @param event The event of which's channel to send the message to
+	 * @param event The channel to send the message to
 	 * @param args The contents of the message seperated by **
 	 */
-	public static void sendStarMsg(MessageEvent event, String... data)
+	public static void sendStarMsg(String channel, String... data)
 	{
 		String result = Colors.NORMAL + "";
 		
@@ -123,27 +108,9 @@ public class Utilities
 			result += Colors.BOLD + " ** " + Colors.NORMAL + s;
 		}
 		
-		chanMsg(event, result.replaceFirst(" ", "") + Colors.BOLD + " **");
+		sendMessage(channel, result.replaceFirst(" ", "") + Colors.BOLD + " **");
 	}
 	
-	/*
-	 * FROM HERE ONLY PRIVATE MSG EVENT
-	 */
-
-	/**
-	 * Checks wether a user is a valid user (equal to admin)
-	 * @param event The event which holds the user to check
-	 * @return Wether the user is a valid user
-	 */
-	public static boolean isValidUser(PrivateMessageEvent event) throws MalformedURLException, IOException
-	{
-		return event.getUser().isVerified() && Lists.getValidUsers().contains(event.getUser().getNick()); //commented out due to esper blocking whois requests
-	}
-
-	/*
-	 * FROM HERE ONLY NON MSG EVENT
-	 */
-
 	/**
 	 * Sends a help menu to a user
 	 * @param nick The user to receive the menu
@@ -152,19 +119,19 @@ public class Utilities
 	 * @param syntax The syntax of the command which's help menu gets shown
 	 * @param usage The usage of the command
 	 * @param notes The notes of the command
-	 * @param event The MessageEvent with the channel the help command got sent in
+	 * @param channel The channel the help command got sent in
 	 */
-	public static void sendHelp(String nick, String[] aliases, String mainAlias, String syntax, String[] usage, String notes, MessageEvent event)
+	public static void sendHelp(String nick, String[] aliases, String mainAlias, String syntax, String[] usage, String notes, String channel)
 	{
 		String formattedAliases = "";
 
-		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "-----------" + L10N.getString("helpMenu.syntax", event) + "-----------");
-		Utilities.pm(nick, syntax);
-		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "-----------" + L10N.getString("helpMenu.usage", event) + "-----------");
+		sendMessage(nick, Colors.BOLD + Colors.OLIVE + "-----------" + L10N.getString("helpMenu.syntax", channel) + "-----------");
+		sendMessage(nick, syntax);
+		sendMessage(nick, Colors.BOLD + Colors.OLIVE + "-----------" + L10N.getString("helpMenu.usage", channel) + "-----------");
 
 		for(String s : usage)
 		{
-			Utilities.pm(nick, s);
+			sendMessage(nick, s);
 		}
 
 		if(aliases.length != 1)
@@ -178,27 +145,27 @@ public class Utilities
 
 				if((i + 1) % 10 == 0)
 				{
-					Utilities.pm(nick, formattedAliases.trim());
+					sendMessage(nick, formattedAliases.trim());
 					formattedAliases = "";
 				}
 			}
 		}
 
-		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "-----------" + L10N.getString("helpMenu.aliases", event) + "-----------");
+		sendMessage(nick, Colors.BOLD + Colors.OLIVE + "-----------" + L10N.getString("helpMenu.aliases", channel) + "-----------");
 		
 		try
 		{
-			Utilities.pm(nick, formattedAliases.substring(0, formattedAliases.lastIndexOf(" | ")));
+			sendMessage(nick, formattedAliases.substring(0, formattedAliases.lastIndexOf(" | ")));
 		}
 		catch(StringIndexOutOfBoundsException e)
 		{
-			formattedAliases += L10N.getString("helpMenu.noNotes", event);
+			formattedAliases += L10N.getString("helpMenu.noNotes", channel);
 			
-			Utilities.pm(nick, formattedAliases);
+			sendMessage(nick, formattedAliases);
 		}
 		
-		Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "-----------" + L10N.getString("helpMenu.notes", event) + "-----------");
-		Utilities.pm(nick, notes == null ? L10N.getString("helpMenu.noNotes", event) : notes);
+		sendMessage(nick, Colors.BOLD + Colors.OLIVE + "-----------" + L10N.getString("helpMenu.notes", channel) + "-----------");
+		sendMessage(nick, notes == null ? L10N.getString("helpMenu.noNotes", channel) : notes);
 		System.gc();
 	}
 

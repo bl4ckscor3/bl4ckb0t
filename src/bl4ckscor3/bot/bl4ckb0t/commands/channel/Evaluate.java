@@ -34,6 +34,7 @@ public class Evaluate extends BaseChannelCommand<MessageEvent>
 	{
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://api.wolframalpha.com/v2/query?appid=" + Passwords.WOLFRAMAPIKEY.getPassword() + "&input=" + input.trim().replace("+", "%2B").replace(' ', '+').replace(',', '.')).openStream()));
 		String line = "";
+		String channel = event.getChannel().getName();
 		
 		try
 		{
@@ -42,13 +43,13 @@ public class Evaluate extends BaseChannelCommand<MessageEvent>
 			{
 				if(line.contains("Appid missing"))
 				{
-					Utilities.chanMsg(event, "appid: " + L10N.getString("evaluate.fail", event));
+					Utilities.sendMessage(channel, "appid: " + L10N.getString("evaluate.fail", channel));
 					Logging.severe("Appid of WolframAlpha is missing. Something went horribly wrong.");
 					return;
 				}
 				else if(line.contains("success='false'"))
 				{
-					Utilities.chanMsg(event, L10N.getString("evaluate.apiFail", event));
+					Utilities.sendMessage(channel, L10N.getString("evaluate.apiFail", channel));
 					reader.close();
 					return;
 				}
@@ -56,7 +57,7 @@ public class Evaluate extends BaseChannelCommand<MessageEvent>
 		}
 		catch(NullPointerException e)
 		{
-			Utilities.chanMsg(event, "title: " + L10N.getString("evaluate.fail", event));
+			Utilities.sendMessage(channel, "title: " + L10N.getString("evaluate.fail", channel));
 			Logging.warn("-evaluate: Result line could not be found.");
 			reader.close();
 			return;
@@ -69,7 +70,7 @@ public class Evaluate extends BaseChannelCommand<MessageEvent>
 		}
 		catch(NullPointerException e)
 		{
-			Utilities.chanMsg(event, "plaintext: " + L10N.getString("evaluate.fail", event));
+			Utilities.sendMessage(channel, "plaintext: " + L10N.getString("evaluate.fail", channel));
 			Logging.warn("-evaluate: Actual result not found.");
 			reader.close();
 			return;
@@ -85,7 +86,7 @@ public class Evaluate extends BaseChannelCommand<MessageEvent>
 			return;
 		}
 		
-		Utilities.chanMsg(event, line.split(">")[1].split("<")[0]);
+		Utilities.sendMessage(channel, line.split(">")[1].split("<")[0]);
 	}
 
 	@Override
@@ -95,14 +96,14 @@ public class Evaluate extends BaseChannelCommand<MessageEvent>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent event) 
+	public String getSyntax(String channel) 
 	{
-		return "-evaluate <" + L10N.getString("evaluate.eval", event) + ">";
+		return "-evaluate <" + L10N.getString("evaluate.eval", channel) + ">";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent event) 
+	public String[] getUsage(String channel) 
 	{
-		return new String[]{"-evaluate <" + L10N.getString("evaluate.eval", event) + "> || " + L10N.getString("evaluate.explanation", event).replace("#link", "http://wolframalpha.com/")};
+		return new String[]{"-evaluate <" + L10N.getString("evaluate.eval", channel) + "> || " + L10N.getString("evaluate.explanation", channel).replace("#link", "http://wolframalpha.com/")};
 	}
 }

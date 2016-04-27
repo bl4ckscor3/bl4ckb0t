@@ -19,17 +19,19 @@ public class Changelog extends BaseChannelCommand<MessageEvent>
 	@Override
 	public void exe(MessageEvent event, String[] args) throws MalformedURLException, IOException
 	{
+		String channel = event.getChannel().getName();
+		
 		if(args.length == 2)
 		{
 			if(!versions.containsKey(args[1]))
 			{
-				Utilities.chanMsg(event, L10N.getString("changelog.versionNotFound", event));
+				Utilities.sendMessage(channel, L10N.getString("changelog.versionNotFound", channel));
 				return;
 			}
 
 			for(String s : versions.get(args[1]))
 			{
-				Utilities.chanMsg(event, s);
+				Utilities.sendMessage(channel, s);
 			}
 
 			return;
@@ -39,7 +41,7 @@ public class Changelog extends BaseChannelCommand<MessageEvent>
 		{
 			for(String s : versions.get(Core.bot.getConfiguration().getVersion()))
 			{
-				Utilities.chanMsg(event, s);
+				Utilities.sendMessage(channel, s);
 			}
 		}
 	}
@@ -51,23 +53,23 @@ public class Changelog extends BaseChannelCommand<MessageEvent>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent event)
+	public String getSyntax(String channel)
 	{
-		return "-changelog [" + L10N.getString("changelog.versionNumber", event) + "]";
+		return "-changelog [" + L10N.getString("changelog.versionNumber", channel) + "]";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent event)
+	public String[] getUsage(String channel)
 	{
 		return new String[]{
-				"-changelog || " + L10N.getString("changelog.explanation.1", event),
-				"-changelog <" + L10N.getString("changelog.versionNumber", event) + "> || " + L10N.getString("changelog.explanation.2", event)
+				"-changelog || " + L10N.getString("changelog.explanation.1", channel),
+				"-changelog <" + L10N.getString("changelog.versionNumber", channel) + "> || " + L10N.getString("changelog.explanation.2", channel)
 		};
 	}
 
 	@Override
-	public String getNotes(MessageEvent event)
+	public String getNotes(String channel)
 	{
-		return L10N.getString("changelog.notes", event);
+		return L10N.getString("changelog.notes", channel);
 	}
 }

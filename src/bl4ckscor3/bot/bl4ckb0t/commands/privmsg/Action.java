@@ -4,6 +4,7 @@ import org.pircbotx.hooks.events.PrivateMessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.Core;
 import bl4ckscor3.bot.bl4ckb0t.commands.BasePrivateCommand;
+import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Action extends BasePrivateCommand<PrivateMessageEvent>
 {
@@ -14,7 +15,7 @@ public class Action extends BasePrivateCommand<PrivateMessageEvent>
 		
 		if(!args[1].startsWith("#"))
 		{
-			Core.bot.sendCustomMessage(event.getUser().getNick(), "Channel names start with #. Please use the following syntax: * #<channelName> <message>");
+			Utilities.sendMessage(event.getUser().getNick(), "Channel names start with #. Please use the following syntax: * #<channelName> <message>");
 			return;
 		}
 		

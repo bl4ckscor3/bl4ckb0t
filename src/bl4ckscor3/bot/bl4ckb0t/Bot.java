@@ -17,27 +17,18 @@ import bl4ckscor3.bot.bl4ckb0t.util.android.ArrayMap;
 
 public class Bot extends PircBotX
 {
-	private static boolean enabled = true;
+	private boolean enabled = true;
 	private final ArrayMap<String, Boolean> channelStates = new ArrayMap<String, Boolean>(); //false = disabled | true = enabled
 	private boolean wasStartedAsWIP;
 	private ConfigurationFile config;
+	private final String cmdPrefix;
 	
-	public Bot(Configuration configuration, boolean wip, ConfigurationFile cfg)
+	public Bot(Configuration configuration, boolean wip, ConfigurationFile cfg, String prefix)
 	{
 		super(configuration);
 		wasStartedAsWIP = wip;
 		config = cfg;
-	}
-	
-	/**
-	 * Sends a message to someone
-	 * @param target The message receiver
-	 * @param msg The message
-	 */
-	public void sendCustomMessage(String target, String msg)
-	{
-		sendIRC().message(target, msg);
-		Logging.info("Sent message \"" + msg + "\" to " + target + ".");
+		cmdPrefix = prefix;
 	}
 	
 	/**
@@ -221,5 +212,13 @@ public class Bot extends PircBotX
 	{
 		cmd.exe(e, args);
 		System.gc();
+	}
+	
+	/**
+	 * @return The prefix the commands of this bot should start with
+	 */
+	public String getCmdPrefix()
+	{
+		return cmdPrefix;
 	}
 }

@@ -18,6 +18,8 @@ public class Remind extends BaseChannelCommand<MessageEvent>
 	@Override
 	public void exe(MessageEvent event, String[] args) throws Exception
 	{
+		String channel = event.getChannel().getName();
+		
 		if(args.length == 2 && args[1].equals("list"))
 		{
 			if(reminders.size() > 0)
@@ -30,10 +32,10 @@ public class Remind extends BaseChannelCommand<MessageEvent>
 				}
 				
 				ids = ids.substring(0, ids.lastIndexOf(','));
-				Utilities.chanMsg(event, L10N.getString("remind.amount", event).replace("#amount", "" + reminders.size()).replace("#ids", ids));
+				Utilities.sendMessage(channel, L10N.getString("remind.amount", channel).replace("#amount", "" + reminders.size()).replace("#ids", ids));
 			}
 			else
-				Utilities.chanMsg(event, L10N.getString("remind.none", event));
+				Utilities.sendMessage(channel, L10N.getString("remind.none", channel));
 			
 			return;
 		}
@@ -52,35 +54,35 @@ public class Remind extends BaseChannelCommand<MessageEvent>
 						{
 							if(event.getUser().getNick().equals(r.getIssuedUser()))
 							{
-								if(event.getChannel().getName().equals(r.getIssuedChannel()))
+								if(channel.equals(r.getIssuedChannel()))
 								{
 									r.stop();
-									Utilities.chanMsg(event, L10N.getString("remind.stopped", event).replace("#id", "" + r.getId()));
+									Utilities.sendMessage(channel, L10N.getString("remind.stopped", channel).replace("#id", "" + r.getId()));
 								}
 								else
-									Utilities.chanMsg(event, L10N.getString("remind.wrongChannel", event));
+									Utilities.sendMessage(channel, L10N.getString("remind.wrongChannel", channel));
 							}
 							else
-								Utilities.chanMsg(event, L10N.getString("remind.notOwned", event));
+								Utilities.sendMessage(channel, L10N.getString("remind.notOwned", channel));
 							
 							return;
 						}
 						
 						if(event.getUser().getNick().equals(r.getIssuedUser()))
 						{
-							if(event.getChannel().getName().equals(r.getIssuedChannel()))
-								Utilities.chanMsg(event, L10N.getString("remind.timeLeft", event).replace("#event", r.getEvent()).replace("#timeLeft", new TimeParser(getMainAlias()).lts(r.getRemainingTime(), "%sd%sh%sm%ss")));
+							if(channel.equals(r.getIssuedChannel()))
+								Utilities.sendMessage(channel, L10N.getString("remind.timeLeft", channel).replace("#event", r.getEvent()).replace("#timeLeft", new TimeParser(getMainAlias()).lts(r.getRemainingTime(), "%sd %sh %sm %ss")));
 							else
-								Utilities.chanMsg(event, L10N.getString("remind.wrongChannel", event));
+								Utilities.sendMessage(channel, L10N.getString("remind.wrongChannel", channel));
 						}
 						else
-							Utilities.chanMsg(event, L10N.getString("remind.notOwned", event));
+							Utilities.sendMessage(channel, L10N.getString("remind.notOwned", channel));
 						return;
 					}
 				}
 			}
 			
-			Utilities.chanMsg(event, L10N.getString("remind.noId", event));
+			Utilities.sendMessage(channel, L10N.getString("remind.noId", channel));
 		}
 		catch(NumberFormatException ex)
 		{
@@ -109,9 +111,9 @@ public class Remind extends BaseChannelCommand<MessageEvent>
 					return;
 				}
 
-				Reminder reminder = new Reminder(event, ev, timeDue);
+				Reminder reminder = new Reminder(event.getUser().getNick(), channel, ev, timeDue, false);
 				
-				Utilities.chanMsg(event, L10N.getString("remind.success", event).replace("#id", "" + reminder.getId()));
+				Utilities.sendMessage(channel, L10N.getString("remind.success", channel).replace("#id", "" + reminder.getId()));
 				reminders.add(reminder);
 			}
 			else
@@ -126,17 +128,17 @@ public class Remind extends BaseChannelCommand<MessageEvent>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent event)
+	public String getSyntax(String channel)
 	{
-		return "-remind <" + L10N.getString("cmd.help.time", event) +"> <" + L10N.getString("cmd.help.sentence", event) + ">";
+		return "-remind <" + L10N.getString("cmd.help.time", channel) +"> <" + L10N.getString("cmd.help.sentence", channel) + ">";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent event)
+	public String[] getUsage(String channel)
 	{
 		return new String[]{
-				"-remind 1d1h1m1s abc || " + L10N.getString("remind.explanation.1", event),
-				"-remind 5 || " + L10N.getString("remind.explanation.2", event)
+				"-remind 1d1h1m1s abc || " + L10N.getString("remind.explanation.1", channel),
+				"-remind 5 || " + L10N.getString("remind.explanation.2", channel)
 		};
 	}
 }

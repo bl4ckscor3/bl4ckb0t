@@ -18,11 +18,13 @@ public class Info extends BaseChannelCommand<MessageEvent>
 	@Override
 	public void exe(MessageEvent event, String[] args) throws Exception
 	{
-		Utilities.sendStarMsg(event,
-				Colors.BOLD + L10N.getString("info.version", event).replace("#version", Colors.NORMAL + Core.bot.getConfiguration().getVersion()),
-				Colors.BOLD + L10N.getString("info.uptime", event).replace("#uptime", Colors.NORMAL + new TimeParser(getMainAlias()).lts(ManagementFactory.getRuntimeMXBean().getUptime(), "%s:%s:%s:%s")), 
-				Colors.BOLD + L10N.getString("info.buildDate", event).replace("#time", Colors.NORMAL + new Date(getBuildDate())),
-				Colors.BOLD + L10N.getString("info.author", event).replace("#author", Colors.NORMAL + "bl4ckscor3"));
+		String channel = event.getChannel().getName();
+		
+		Utilities.sendStarMsg(channel,
+				Colors.BOLD + L10N.getString("info.version", channel).replace("#version", Colors.NORMAL + Core.bot.getConfiguration().getVersion()),
+				Colors.BOLD + L10N.getString("info.uptime", channel).replace("#uptime", Colors.NORMAL + new TimeParser(getMainAlias()).lts(ManagementFactory.getRuntimeMXBean().getUptime(), "%s:%s:%s:%s")), 
+				Colors.BOLD + L10N.getString("info.buildDate", channel).replace("#time", Colors.NORMAL + new Date(getBuildDate())),
+				Colors.BOLD + L10N.getString("info.author", channel).replace("#author", Colors.NORMAL + "bl4ckscor3"));
 	}
 
 	private long getBuildDate()
@@ -44,14 +46,14 @@ public class Info extends BaseChannelCommand<MessageEvent>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent event)
+	public String getSyntax(String channel)
 	{
 		return "-info";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent event)
+	public String[] getUsage(String channel)
 	{
-		return new String[]{"-info || " + L10N.getString("info.explanation", event)};
+		return new String[]{"-info || " + L10N.getString("info.explanation", channel)};
 	}
 }

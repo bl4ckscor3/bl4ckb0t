@@ -78,7 +78,7 @@ public class MCStatus extends BaseChannelCommand<MessageEvent>
 			else	
 				result += Colors.PURPLE + realms.getText();
 
-			Utilities.chanMsg(event, result + Colors.NORMAL + Colors.BOLD + " ** Powered by xpaw - http://xpaw.ru/mcstatus **");
+			Utilities.sendMessage(event.getChannel().getName(), result + Colors.NORMAL + Colors.BOLD + " ** Powered by xpaw - http://xpaw.ru/mcstatus **");
 			driver.quit();
 		}, 1, TimeUnit.SECONDS);
 	}		
@@ -90,14 +90,14 @@ public class MCStatus extends BaseChannelCommand<MessageEvent>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent event)
+	public String getSyntax(String channel)
 	{
 		return "-mcstatus";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent event)
+	public String[] getUsage(String channel)
 	{
-		return new String[]{"-mcstatus || " + L10N.getString("mcstatus.explanation", event)};
+		return new String[]{"-mcstatus || " + L10N.getString("mcstatus.explanation", channel)};
 	}
 }

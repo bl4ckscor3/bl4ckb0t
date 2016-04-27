@@ -23,6 +23,7 @@ public class LongURL extends BaseChannelCommand<MessageEvent>
 			String longUrl = "";
 			String temp;
 			BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://api.longurl.org/v2/expand?url=" + args[1]).openStream()));
+			String channel = event.getChannel().getName();
 			
 			reader.readLine();
 			reader.readLine();
@@ -30,7 +31,7 @@ public class LongURL extends BaseChannelCommand<MessageEvent>
 			reader.close();
 			temp = longUrl;
 			longUrl = "http:" + temp.split(":")[1].split("]")[0];
-			Utilities.chanMsg(event, L10N.getString("longurl.output", event).replace("#long", longUrl));
+			Utilities.sendMessage(channel, L10N.getString("longurl.output", channel).replace("#long", longUrl));
 		}
 		else
 			throw new IncorrectCommandExecutionException(getMainAlias());
@@ -43,20 +44,20 @@ public class LongURL extends BaseChannelCommand<MessageEvent>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent event)
+	public String getSyntax(String channel)
 	{
-		return "-longurl <" + L10N.getString("longurl.help.shortUrl", event) + ">";
+		return "-longurl <" + L10N.getString("longurl.help.shortUrl", channel) + ">";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent event)
+	public String[] getUsage(String channel)
 	{
-		return new String[]{"-longurl <" + L10N.getString("longurl.help.shortUrl", event) + "> || " + L10N.getString("longurl.explanation", event)};
+		return new String[]{"-longurl <" + L10N.getString("longurl.help.shortUrl", channel) + "> || " + L10N.getString("longurl.explanation", channel)};
 	}
 
 	@Override
-	public String getNotes(MessageEvent event)
+	public String getNotes(String channel)
 	{
-		return L10N.getString("longurl.notes", event);
+		return L10N.getString("longurl.notes", channel);
 	}
 }

@@ -20,14 +20,15 @@ public class Forge extends BaseChannelCommand<MessageEvent>
 		if(args.length == 4)
 		{
 			Document doc;
-
+			String channel = event.getChannel().getName();
+			
 			try
 			{
 				doc = Jsoup.connect("http://files.minecraftforge.net/maven/net/minecraftforge/forge/index_" + args[1] + ".html").get();
 			}
 			catch(HttpStatusException e)
 			{
-				Utilities.chanMsg(event, L10N.getString("forge.incorrectMcVersion", event));
+				Utilities.sendMessage(channel, L10N.getString("forge.incorrectMcVersion", channel));
 				return;
 			}
 
@@ -39,41 +40,41 @@ public class Forge extends BaseChannelCommand<MessageEvent>
 						case "version":
 							try
 							{
-								Utilities.chanMsg(event, doc.select("div.download:nth-child(1) > div:nth-child(1) > small:nth-child(3)").get(0).toString().split(">")[1]);
+								Utilities.sendMessage(channel, doc.select("div.download:nth-child(1) > div:nth-child(1) > small:nth-child(3)").get(0).toString().split(">")[1]);
 							}
 							catch(Exception e)
 							{
-								Utilities.chanMsg(event, L10N.getString("forge.versionNotFound", event));
+								Utilities.sendMessage(channel, L10N.getString("forge.versionNotFound", channel));
 							}
 							break;
 						case "changelog":
 							try
 							{
-								Utilities.chanMsg(event, doc.select("div.download:nth-child(1) > div:nth-child(2) > div:nth-child(1) > a:nth-child(1)").get(0).toString().split("href=\"")[1].split("\"")[0]);
+								Utilities.sendMessage(channel, doc.select("div.download:nth-child(1) > div:nth-child(2) > div:nth-child(1) > a:nth-child(1)").get(0).toString().split("href=\"")[1].split("\"")[0]);
 							}
 							catch(Exception e)
 							{
-								Utilities.chanMsg(event, L10N.getString("forge.changelogNotFound", event));
+								Utilities.sendMessage(channel, L10N.getString("forge.changelogNotFound", channel));
 							}
 							break;
 						case "dlmain":
 							try
 							{
-								Utilities.chanMsg(event, doc.select("div.download:nth-child(1) > div:nth-child(2) > div:nth-child(2) > a:nth-child(1)").get(0).toString().split("url=")[1].split("\"")[0]);
+								Utilities.sendMessage(channel, doc.select("div.download:nth-child(1) > div:nth-child(2) > div:nth-child(2) > a:nth-child(1)").get(0).toString().split("url=")[1].split("\"")[0]);
 							}
 							catch(Exception e)
 							{
-								Utilities.chanMsg(event, L10N.getString("forge.mainNotFound", event));
+								Utilities.sendMessage(channel, L10N.getString("forge.mainNotFound", channel));
 							}
 							break;
 						case "dlsrc": case "dlmdk":
 							try
 							{
-								Utilities.chanMsg(event, doc.select("div.download:nth-child(1) > div:nth-child(2) > div:nth-child(4) > a:nth-child(1)").get(0).toString().split("url=")[1].split("\"")[0]);
+								Utilities.sendMessage(channel, doc.select("div.download:nth-child(1) > div:nth-child(2) > div:nth-child(4) > a:nth-child(1)").get(0).toString().split("url=")[1].split("\"")[0]);
 							}
 							catch(Exception e)
 							{
-								Utilities.chanMsg(event, L10N.getString("forge.srcNotFound", event));
+								Utilities.sendMessage(channel, L10N.getString("forge.srcNotFound", channel));
 							}
 							break;
 						default:
@@ -86,41 +87,41 @@ public class Forge extends BaseChannelCommand<MessageEvent>
 						case "version":
 							try
 							{
-								Utilities.chanMsg(event, doc.select("div.download:nth-child(2) > div:nth-child(1) > small:nth-child(3)").get(0).toString().split(">")[1]);
+								Utilities.sendMessage(channel, doc.select("div.download:nth-child(2) > div:nth-child(1) > small:nth-child(3)").get(0).toString().split(">")[1]);
 							}
 							catch(Exception e)
 							{
-								Utilities.chanMsg(event, L10N.getString("forge.versionNotFound", event));
+								Utilities.sendMessage(channel, L10N.getString("forge.versionNotFound", channel));
 							}
 							break;
 						case "changelog":
 							try
 							{
-								Utilities.chanMsg(event, doc.select("div.download:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(1)").get(0).toString().split("href=\"")[1].split("\"")[0]);
+								Utilities.sendMessage(channel, doc.select("div.download:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(1)").get(0).toString().split("href=\"")[1].split("\"")[0]);
 							}
 							catch(Exception e)
 							{
-								Utilities.chanMsg(event, L10N.getString("forge.changelogNotFound", event));
+								Utilities.sendMessage(channel, L10N.getString("forge.changelogNotFound", channel));
 							}
 							break;
 						case "dlmain":
 							try
 							{
-								Utilities.chanMsg(event, doc.select("div.download:nth-child(2) > div:nth-child(2) > div:nth-child(2) > a:nth-child(1)").get(0).toString().split("url=")[1].split("\"")[0]);
+								Utilities.sendMessage(channel, doc.select("div.download:nth-child(2) > div:nth-child(2) > div:nth-child(2) > a:nth-child(1)").get(0).toString().split("url=")[1].split("\"")[0]);
 							}
 							catch(Exception e)
 							{
-								Utilities.chanMsg(event, L10N.getString("forge.mainNotFound", event));
+								Utilities.sendMessage(channel, L10N.getString("forge.mainNotFound", channel));
 							}
 							break;
 						case "dlsrc": case "dlmdk":
 							try
 							{
-								Utilities.chanMsg(event, doc.select("div.download:nth-child(2) > div:nth-child(2) > div:nth-child(4) > a:nth-child(1)").get(0).toString().split("url=")[1].split("\"")[0]);
+								Utilities.sendMessage(channel, doc.select("div.download:nth-child(2) > div:nth-child(2) > div:nth-child(4) > a:nth-child(1)").get(0).toString().split("url=")[1].split("\"")[0]);
 							}
 							catch(Exception e)
 							{
-								Utilities.chanMsg(event, L10N.getString("forge.srcNotFound", event));
+								Utilities.sendMessage(channel, L10N.getString("forge.srcNotFound", channel));
 							}
 							break;
 						default:
@@ -142,20 +143,20 @@ public class Forge extends BaseChannelCommand<MessageEvent>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent event)
+	public String getSyntax(String channel)
 	{
-		return "-forge <" + L10N.getString("forge.version", event) + "> <latest|rec|recommended> <version|changelog|dlmain|dlsrc>";
+		return "-forge <" + L10N.getString("forge.version", channel) + "> <latest|rec|recommended> <version|changelog|dlmain|dlsrc>";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent event)
+	public String[] getUsage(String channel)
 	{
 		return new String[]{
-				L10N.getString("forge.explanation.1", event),
-				L10N.getString("forge.explanation.2", event),
-				L10N.getString("forge.explanation.3", event),
-				L10N.getString("forge.explanation.4", event),
-				L10N.getString("forge.explanation.5", event),
+				L10N.getString("forge.explanation.1", channel),
+				L10N.getString("forge.explanation.2", channel),
+				L10N.getString("forge.explanation.3", channel),
+				L10N.getString("forge.explanation.4", channel),
+				L10N.getString("forge.explanation.5", channel),
 		};
 	}
 }

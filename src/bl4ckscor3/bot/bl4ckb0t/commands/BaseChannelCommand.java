@@ -1,7 +1,6 @@
 package bl4ckscor3.bot.bl4ckb0t.commands;
 
 import org.pircbotx.hooks.Event;
-import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.Core;
 
@@ -14,21 +13,21 @@ public abstract class BaseChannelCommand<E extends Event> implements ICommand<E>
 
 	/**
 	 * How the command can be used. Gets shown in the help menu.
-	 * @param event The MessageEvent which contains the channel the help command was used in
+	 * @param event The channel the help command was used in
 	 */
-	public abstract String getSyntax(MessageEvent event);
+	public abstract String getSyntax(String channel);
 	
 	/**
 	 * Explanation of the command. Gets shown in the help menu.
-	 * @param event The MessageEvent which contains the channel the help command was used in
+	 * @param event The channel the help command was used in
 	 */
-	public abstract String[] getUsage(MessageEvent event);
+	public abstract String[] getUsage(String channel);
 	
 	/**
 	 * Anything special the user needs to know about the command. Gets shown in the help menu.
-	 * @param event The MessageEvent which contains the channel the help command was used in
+	 * @param event The channel the help command was used in
 	 */
-	public String getNotes(MessageEvent event)
+	public String getNotes(String channel)
 	{
 		return null;
 	}

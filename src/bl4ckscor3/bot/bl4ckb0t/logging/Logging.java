@@ -175,13 +175,13 @@ public class Logging extends ListenerAdapter
 
 	/**
 	 * Logs an irc message
-	 * @param channel The channel the message got sent to
+	 * @param target The channel/user the message got sent to
 	 * @param sender The sender of the message
 	 * @param msg The message
 	 */
-	public static void message(String channel, String sender, String msg)
+	public static void message(String target, String sender, String msg)
 	{
-		log("[MESSAGE] " + channel + " | " + sender + ": " + msg);
+		log("[MESSAGE] " + target + " | " + sender + ": " + msg);
 	}
 
 	/**

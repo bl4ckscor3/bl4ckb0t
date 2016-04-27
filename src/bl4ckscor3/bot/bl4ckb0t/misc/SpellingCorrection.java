@@ -87,12 +87,20 @@ public class SpellingCorrection
 		}
 	}
 	
+	/**
+	 * Prepares and sends the message of the corrected spelling
+	 * @param event The MessageEvent this spelling correction originated from
+	 * @param split The message split by slashes
+	 * @param correctsDifferentUser Wether or not the issuer corrects their own or another person's spelling
+	 * @param userToCorrect The user to correct the spelling of
+	 */
 	private static void correctSpelling(MessageEvent event, String[] split, boolean correctsDifferentUser, String userToCorrect)
 	{
 		String toReplace = split[1];
 		String replaceWith = split[2];
-
-		for(String s : storage.get(event.getChannel().getName()))
+		String channel = event.getChannel().getName();
+		
+		for(String s : storage.get(channel))
 		{
 			if(s == null)
 				break;
@@ -105,26 +113,26 @@ public class SpellingCorrection
 
 				if(toReplace.equals(""))
 				{
-					previousMessage = getLatestMessage(userToCorrect, storage.get(event.getChannel().getName()));
+					previousMessage = getLatestMessage(userToCorrect, storage.get(channel));
 					newMessage = replaceWith;
 					correctedMessage = "\u001d" + replaceWith;
 				}
 				else
 				{
-					previousMessage = getLatestMessage(userToCorrect, storage.get(event.getChannel().getName()));
-					newMessage = getLatestMessage(event.getUser().getNick(), storage.get(event.getChannel().getName())).replace(toReplace, replaceWith); //w/o italics
-					correctedMessage = getLatestMessage(userToCorrect, storage.get(event.getChannel().getName())).replace(toReplace, "\u001d" + replaceWith + Colors.NORMAL); //w/ italics
+					previousMessage = getLatestMessage(userToCorrect, storage.get(channel));
+					newMessage = getLatestMessage(event.getUser().getNick(), storage.get(channel)).replace(toReplace, replaceWith); //w/o italics
+					correctedMessage = getLatestMessage(userToCorrect, storage.get(channel)).replace(toReplace, "\u001d" + replaceWith + Colors.NORMAL); //w/ italics
 				}
 				
 				if(previousMessage.equals(correctedMessage))
 					return;
 
 				if(correctsDifferentUser)
-					Utilities.chanMsg(event, Colors.NORMAL + L10N.getString("correction.1", event).replace("#user1", userToCorrect).replace("#user2", event.getUser().getNick()).replace("#correctedMsg", correctedMessage));
+					Utilities.sendMessage(channel, Colors.NORMAL + L10N.getString("correction.1", channel).replace("#user1", userToCorrect).replace("#user2", event.getUser().getNick()).replace("#correctedMsg", correctedMessage));
 				else
-					Utilities.chanMsg(event, Colors.NORMAL + L10N.getString("correction.2", event).replace("#user", userToCorrect).replace("#correctedMsg", correctedMessage));
+					Utilities.sendMessage(channel, Colors.NORMAL + L10N.getString("correction.2", channel).replace("#user", userToCorrect).replace("#correctedMsg", correctedMessage));
 
-				updateLatestMessage(event.getChannel().getName(), newMessage, userToCorrect);
+				updateLatestMessage(channel, newMessage, userToCorrect);
 			}
 		}
 	}

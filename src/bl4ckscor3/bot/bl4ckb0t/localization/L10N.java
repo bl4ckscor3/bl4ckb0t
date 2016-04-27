@@ -35,11 +35,11 @@ public class L10N
 	 * @param event The event which contains the channel the message get's sent to
 	 * @return The localized String
 	 */
-	public static String getString(String key, MessageEvent event)
+	public static String getString(String key, String channel)
 	{
 		try
 		{
-			return ((ResourceBundle)L10N.class.getDeclaredField(chanLangs.get(event.getChannel().getName())).get(null)).getString(key);
+			return ((ResourceBundle)L10N.class.getDeclaredField(chanLangs.get(channel)).get(null)).getString(key);
 		}
 		catch(Exception e)
 		{

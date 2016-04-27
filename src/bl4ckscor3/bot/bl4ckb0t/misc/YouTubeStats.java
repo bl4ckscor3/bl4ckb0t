@@ -15,16 +15,21 @@ import bl4ckscor3.bot.bl4ckb0t.util.YouTubeLink;
 
 public class YouTubeStats
 {
+	/**
+	 * Sends information about a YouTube video
+	 * @param event The MessageEvent holding the YouTube link and the channel
+	 */
 	public static void sendVideoStats(MessageEvent event) throws MalformedURLException, IOException
 	{
+		String channel = event.getChannel().getName();
 		String[] args = Utilities.toArgs(event.getMessage());
 		ArrayList<YouTubeLink> links = new ArrayList<YouTubeLink>();
-		String title = L10N.getString("youtube.noValue", event);
-		String views = L10N.getString("youtube.noValue", event);
-		String likes = L10N.getString("youtube.noValue", event);
-		String dislikes = L10N.getString("youtube.noValue", event);
-		String date = L10N.getString("youtube.noValue", event);
-		String uploader = L10N.getString("youtube.noValue", event);
+		String title = L10N.getString("youtube.noValue", channel);
+		String views = L10N.getString("youtube.noValue", channel);
+		String likes = L10N.getString("youtube.noValue", channel);
+		String dislikes = L10N.getString("youtube.noValue", channel);
+		String date = L10N.getString("youtube.noValue", channel);
+		String uploader = L10N.getString("youtube.noValue", channel);
 
 		for(String s : args)
 		{
@@ -34,7 +39,7 @@ public class YouTubeStats
 					links.add(new YouTubeLink("http://www.youtube.com/watch?v=" + s.split("v=")[1].substring(0, 11) + "/", false));
 				else
 				{
-					Utilities.chanMsg(event, L10N.getString("youtube.noId", event));
+					Utilities.sendMessage(channel, L10N.getString("youtube.noId", channel));
 					continue;
 				}
 			}
@@ -47,7 +52,7 @@ public class YouTubeStats
 			YouTubeLink link = links.get(currentLink);
 			
 			if(currentLink != 0)
-				Utilities.chanMsg(event, "------------------------------------------");
+				Utilities.sendMessage(channel, "------------------------------------------");
 
 			if(link.isShortLink())
 				link.setLink("www.youtube.com/watch?v=" + link.getLink().split("/")[3]);
@@ -88,14 +93,14 @@ public class YouTubeStats
 				views = "0";
 			}
 			
-			Utilities.sendStarMsg(event,
+			Utilities.sendStarMsg(channel,
 					Colors.BOLD + Utilities.backgroundColor(Colors.WHITE, Colors.BLACK) + "You" + Utilities.backgroundColor(Colors.RED, Colors.WHITE) + "Tube" + Colors.NORMAL,
-					Colors.BOLD + L10N.getString("youtube.title", event) + ": " + Colors.NORMAL + title,
-					Colors.BOLD + L10N.getString("youtube.views", event) + ": " + Colors.NORMAL + views,
-					Colors.BOLD + L10N.getString("youtube.likes", event) + ": " + Colors.NORMAL + Colors.DARK_GREEN + likes + Colors.NORMAL,
-					Colors.BOLD + L10N.getString("youtube.dislikes", event) + ": " + Colors.NORMAL + Colors.RED + dislikes + Colors.NORMAL,
-					Colors.BOLD + L10N.getString("youtube.uploader", event) + ": " + Colors.NORMAL + uploader + Colors.NORMAL,
-					Colors.BOLD + L10N.getString("youtube.date", event) + ": " + Colors.NORMAL + date + Colors.NORMAL);
+					Colors.BOLD + L10N.getString("youtube.title", channel) + ": " + Colors.NORMAL + title,
+					Colors.BOLD + L10N.getString("youtube.views", channel) + ": " + Colors.NORMAL + views,
+					Colors.BOLD + L10N.getString("youtube.likes", channel) + ": " + Colors.NORMAL + Colors.DARK_GREEN + likes + Colors.NORMAL,
+					Colors.BOLD + L10N.getString("youtube.dislikes", channel) + ": " + Colors.NORMAL + Colors.RED + dislikes + Colors.NORMAL,
+					Colors.BOLD + L10N.getString("youtube.uploader", channel) + ": " + Colors.NORMAL + uploader + Colors.NORMAL,
+					Colors.BOLD + L10N.getString("youtube.date", channel) + ": " + Colors.NORMAL + date + Colors.NORMAL);
 		}
 	}
 }

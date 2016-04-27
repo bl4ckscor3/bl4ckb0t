@@ -47,24 +47,24 @@ public class Stop extends BaseChannelCommand<MessageEvent>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent event)
+	public String getSyntax(String channel)
 	{
 		return "-stop <yes|no>";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent event)
+	public String[] getUsage(String channel)
 	{
 		return new String[]{
-				"-stop yes || " + L10N.getString("stop.explanation.1", event),
-				"-stop no || " + L10N.getString("stop.explanation.2", event)
+				"-stop yes || " + L10N.getString("stop.explanation.1", channel),
+				"-stop no || " + L10N.getString("stop.explanation.2", channel)
 		};
 	}
 
 	@Override
-	public String getNotes(MessageEvent event)
+	public String getNotes(String channel)
 	{
-		return L10N.getString("notes.onlyOp", event);
+		return L10N.getString("notes.onlyOp", channel);
 	}
 
 	@Override

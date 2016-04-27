@@ -15,6 +15,7 @@ import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.misc.LinkManager;
 import bl4ckscor3.bot.bl4ckb0t.misc.SpellingCorrection;
 import bl4ckscor3.bot.bl4ckb0t.misc.YouTubeStats;
+import bl4ckscor3.bot.bl4ckb0t.util.Reminder;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class MiscListener extends ListenerAdapter
@@ -31,30 +32,31 @@ public class MiscListener extends ListenerAdapter
 			}
 
 			String message = event.getMessage();
+			String channel = event.getChannel().getName();
 
 			if(Core.bot.getConfig().isEnabled("ping"))
 			{
 				if(event.getMessage().startsWith("-ping"))
 				{
-					Utilities.chanMsg(event, "Pong!");
+					Utilities.sendMessage(channel, "Pong!");
 					return;
 				}
 				else if(Core.bot.getConfig().isEnabled("allowCommandAliases") && event.getMessage().startsWith("-pong"))
 				{
-					Utilities.chanMsg(event, "Ping!");
+					Utilities.sendMessage(channel, "Ping!");
 					return;
 				}
 			}
 
-			if(message.startsWith(CMDListener.cmdPrefix))
+			if(message.startsWith(Core.bot.getCmdPrefix()))
 				return;
 
 			if(message.startsWith("?enabled"))
 			{
 				if(message.startsWith("?enabled #") && Core.bot.isEnabled())
-					Utilities.chanMsg(event, message.split(" ")[1] + ": " + Core.bot.getChannelStates().get(message.split(" ")[1].replace("#", "")));
+					Utilities.sendMessage(channel, message.split(" ")[1] + ": " + Core.bot.getChannelStates().get(message.split(" ")[1].replace("#", "")));
 				else
-					Utilities.chanMsg(event, "global: " + Core.bot.isEnabled());
+					Utilities.sendMessage(channel, "global: " + Core.bot.isEnabled());
 				return;
 			}
 
@@ -66,14 +68,14 @@ public class MiscListener extends ListenerAdapter
 
 					//making sure the above messages dont get added as a latest message
 					if(!SpellingCorrection.corrected)
-						SpellingCorrection.updateLatestMessage(event.getChannel().getName(), event.getMessage(), event.getUser().getNick());
+						SpellingCorrection.updateLatestMessage(channel, event.getMessage(), event.getUser().getNick());
 					else
 						SpellingCorrection.corrected = false;
 				}
 
 				//sending a welcome back message
 				if(Core.bot.getConfig().isEnabled("showWelcomeBackMsg") && (message.toLowerCase().startsWith("re ") || message.toLowerCase().equals("re")))
-					Utilities.chanMsg(event, "wb, " + event.getUser().getNick());
+					Utilities.sendMessage(channel, "wb, " + event.getUser().getNick());
 				//youtube recognition
 				else if(Core.bot.getConfig().isEnabled("showYouTubeStats") && (message.contains("www.youtube.com/watch") || message.contains("youtu.be/")))
 					YouTubeStats.sendVideoStats(event);
@@ -99,8 +101,8 @@ public class MiscListener extends ListenerAdapter
 				return;
 			}
 
-			if(event.getMessage().startsWith(CMDListener.cmdPrefix))
-				Utilities.pm(event.getUser().getNick(), "Commands can only be sent through channel messages. Use -help in a channel to get more info.");
+			if(event.getMessage().startsWith(Core.bot.getCmdPrefix()))
+				Utilities.sendMessage(event.getUser().getNick(), "Commands can only be sent through channel messages. Use -help in a channel to get more info.");
 		}
 		catch(Exception e)
 		{
@@ -117,6 +119,7 @@ public class MiscListener extends ListenerAdapter
 			Logging.info("Joining channels...");
 			Core.bot.joinDefaults();
 			Logging.info("Bot successfully connected!");
+			Reminder.loadReminders();
 		}
 		catch(Exception e)
 		{
@@ -136,7 +139,7 @@ public class MiscListener extends ListenerAdapter
 			}
 
 			if(Core.bot.getConfig().isEnabled("shrugs") && event.getAction().startsWith("shrugs"))
-				Core.bot.sendCustomMessage(event.getChannel().getName(), "¯\\_(ツ)_/¯");
+				Utilities.sendMessage(event.getChannel().getName(), "¯\\_(ツ)_/¯");
 		}
 		catch(Exception e)
 		{

@@ -33,7 +33,7 @@ public class Leet extends BaseChannelCommand<MessageEvent>
 				}
 			}
 			
-			Utilities.chanMsg(event, result);
+			Utilities.sendMessage(event.getChannel().getName(), result);
 		}
 		else
 			throw new IncorrectCommandExecutionException(getMainAlias());
@@ -46,14 +46,14 @@ public class Leet extends BaseChannelCommand<MessageEvent>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent event)
+	public String getSyntax(String channel)
 	{
-		return "-leet <" + L10N.getString("cmd.help.sentence", event) + ">";
+		return "-leet <" + L10N.getString("cmd.help.sentence", channel) + ">";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent event)
+	public String[] getUsage(String channel)
 	{
-		return new String[]{"-leet <" + L10N.getString("cmd.help.sentence", event) + "> || " + L10N.getString("leet.explanation", event)};
+		return new String[]{"-leet <" + L10N.getString("cmd.help.sentence", channel) + "> || " + L10N.getString("leet.explanation", channel)};
 	}
 }

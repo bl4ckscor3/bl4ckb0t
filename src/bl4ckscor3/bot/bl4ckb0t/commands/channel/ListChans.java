@@ -19,7 +19,8 @@ public class ListChans extends BaseChannelCommand<MessageEvent>
 	{
 		String[] chans = Utilities.getJoinedChannels(false);
 		String result = "";
-
+		String channel = event.getChannel().getName();
+		
 		for(String s : chans)
 		{
 			if(s != null)
@@ -29,25 +30,25 @@ public class ListChans extends BaseChannelCommand<MessageEvent>
 		result = result.substring(0, result.lastIndexOf(" | "));
 
 		if(secretChannelAmount != 0)
-			result += " + " + secretChannelAmount + " " + L10N.getString("listchans.secret", event);
+			result += " + " + secretChannelAmount + " " + L10N.getString("listchans.secret", channel);
 
-		Utilities.chanMsg(event, L10N.getString("listchans.list", event) + ": " + result);
+		Utilities.sendMessage(channel, L10N.getString("listchans.list", channel) + ": " + result);
 		secretChannelAmount = 0;
 
 		if(args.length == 2 && args[1].equalsIgnoreCase("show"))
 		{
-			if(Utilities.isValidUser(event))
+			if(Utilities.isValidUser(event.getUser()))
 			{
 
-				Utilities.pm(event.getUser().getNick(), L10N.getString("listchans.secret.show", event));
+				Utilities.sendMessage(event.getUser().getNick(), L10N.getString("listchans.secret.show", channel));
 
 				for(String s : Utilities.getSecretChannels())
 				{
-					Utilities.pm(event.getUser().getNick(), s);
+					Utilities.sendMessage(event.getUser().getNick(), s);
 				}
 			}
 			else
-				Utilities.chanMsg(event, L10N.getString("listchans.secret.show.fail", event));
+				Utilities.sendMessage(channel, L10N.getString("listchans.secret.show.fail", channel));
 		}
 	}
 
@@ -58,17 +59,17 @@ public class ListChans extends BaseChannelCommand<MessageEvent>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent event)
+	public String getSyntax(String channel)
 	{
 		return "-listchans [show]";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent event)
+	public String[] getUsage(String channel)
 	{
 		return new String[]{
-				"-listchans || " + L10N.getString("listchans.explanation.1", event),
-				"-listchans show || " + L10N.getString("listchans.explanation.2", event)
+				"-listchans || " + L10N.getString("listchans.explanation.1", channel),
+				"-listchans show || " + L10N.getString("listchans.explanation.2", channel)
 		};
 	}
 }

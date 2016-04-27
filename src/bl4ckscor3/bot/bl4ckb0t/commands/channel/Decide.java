@@ -17,13 +17,14 @@ public class Decide extends BaseChannelCommand<MessageEvent>
 		if(args.length >= 2 && event.getMessage().endsWith("?"))
 		{
 			int decision = new Random().nextInt(101);
-
+			String channel = event.getChannel().getName();
+			
 			if(decision >= 0 && decision <= 49)
-				Utilities.chanMsg(event, L10N.getString("decide.no", event));
+				Utilities.sendMessage(channel, L10N.getString("decide.no", channel));
 			else if(decision >= 50 && decision <= 100)
-				Utilities.chanMsg(event, L10N.getString("decide.yes", event));
+				Utilities.sendMessage(channel, L10N.getString("decide.yes", channel));
 			else
-				Utilities.chanMsg(event, L10N.getString("decide.fail", event) + ": " + decision);
+				Utilities.sendMessage(channel, L10N.getString("decide.fail", channel) + ": " + decision);
 		}
 		else
 			throw new IncorrectCommandExecutionException(getMainAlias());
@@ -36,20 +37,20 @@ public class Decide extends BaseChannelCommand<MessageEvent>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent event)
+	public String getSyntax(String channel)
 	{
-		return "-decide <" + L10N.getString("decide.help.question", event) + ">";
+		return "-decide <" + L10N.getString("decide.help.question", channel) + ">";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent event)
+	public String[] getUsage(String channel)
 	{
-		return new String[]{"-decide <" + L10N.getString("decide.help.question", event) + "> || " + L10N.getString("decide.explanation", event)};
+		return new String[]{"-decide <" + L10N.getString("decide.help.question", channel) + "> || " + L10N.getString("decide.explanation", channel)};
 	}
 
 	@Override
-	public String getNotes(MessageEvent event)
+	public String getNotes(String channel)
 	{
-		return L10N.getString("decide.notes", event);
+		return L10N.getString("decide.notes", channel);
 	}
 }

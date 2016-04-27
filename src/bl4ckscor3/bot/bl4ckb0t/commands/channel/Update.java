@@ -17,10 +17,12 @@ public class Update extends BaseChannelCommand<MessageEvent>
 	@Override
 	public void exe(MessageEvent event, String[] args) throws MalformedURLException, IOException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
 	{
+		String channel = event.getChannel().getName();
+		
 		Lists.clearAll();
 		Changelog.versions.clear();
 		Startup.callMethods();
-		Utilities.chanMsg(event, L10N.getString("update.success", event));
+		Utilities.sendMessage(channel, L10N.getString("update.success", channel));
 	}
 
 	@Override
@@ -30,21 +32,21 @@ public class Update extends BaseChannelCommand<MessageEvent>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent event)
+	public String getSyntax(String channel)
 	{
 		return "-update";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent event)
+	public String[] getUsage(String channel)
 	{
-		return new String[]{"-update || " + L10N.getString("update.usage", event)};
+		return new String[]{"-update || " + L10N.getString("update.usage", channel)};
 	}
 
 	@Override
-	public String getNotes(MessageEvent event)
+	public String getNotes(String channel)
 	{
-		return L10N.getString("notes.onlyOp", event);
+		return L10N.getString("notes.onlyOp", channel);
 	}
 
 	@Override

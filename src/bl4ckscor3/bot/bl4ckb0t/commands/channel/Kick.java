@@ -18,11 +18,13 @@ public class Kick extends BaseChannelCommand<MessageEvent>
 	@Override
 	public void exe(MessageEvent event, String[] args) throws IOException, IrcException, IncorrectCommandExecutionException 
 	{
+		String channel = event.getChannel().getName();
+		
 		if(event.getUser().isVerified())
-		{
-			if(!(Utilities.isValidUser(event) || Utilities.isAllowedUser(event)))
+		{			
+			if(!(Utilities.isValidUser(event.getUser()) || Utilities.isAllowedUser(event.getUser())))
 			{
-				Utilities.chanMsg(event, L10N.getString("kick.notAuthorized", event).replace("#user", event.getUser().getNick()));
+				Utilities.sendMessage(channel, L10N.getString("kick.notAuthorized", channel).replace("#user", event.getUser().getNick()));
 				Logging.info("Denying command access to " + event.getUser().getNick() + "...");
 				return;
 			}
@@ -33,18 +35,18 @@ public class Kick extends BaseChannelCommand<MessageEvent>
 				{
 					if(args[1].equalsIgnoreCase(userNotToKick))
 					{
-						Utilities.chanMsg(event, L10N.getString("kick.cannotKick", event));
+						Utilities.sendMessage(channel, L10N.getString("kick.cannotKick", channel));
 						return;
 					}
 				}
 
 				if(args[1].equalsIgnoreCase(Core.bot.getNick()))
 				{
-					event.getChannel().send().action(L10N.getString("kick.self", event));
-					Core.bot.kick(event.getChannel().getName(), args[1], L10N.getString("kick.self.reason", event));
+					event.getChannel().send().action(L10N.getString("kick.self", channel));
+					Core.bot.kick(channel, args[1], L10N.getString("kick.self.reason", channel));
 
-					if(L10N.chanLangs.containsKey(event.getChannel().getName()))
-						L10N.chanLangs.remove(event.getChannel().getName());
+					if(L10N.chanLangs.containsKey(channel))
+						L10N.chanLangs.remove(channel);
 				}
 				else
 				{
@@ -55,7 +57,7 @@ public class Kick extends BaseChannelCommand<MessageEvent>
 						result += args[i] + " ";
 					}
 
-					Core.bot.kick(event.getChannel().getName(), args[1], result.substring(0, result.lastIndexOf(' ')));
+					Core.bot.kick(channel, args[1], result.substring(0, result.lastIndexOf(' ')));
 				}
 			}
 			else
@@ -63,7 +65,7 @@ public class Kick extends BaseChannelCommand<MessageEvent>
 		}
 		else
 		{
-			Utilities.chanMsg(event, L10N.getString("kick.identify", event));
+			Utilities.sendMessage(channel, L10N.getString("kick.identify", channel));
 			Logging.info("User not identified, denying command access to " + event.getUser().getNick() + "...");
 		}
 	}
@@ -75,21 +77,21 @@ public class Kick extends BaseChannelCommand<MessageEvent>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent event)
+	public String getSyntax(String channel)
 	{
-		return "-kick <" + L10N.getString("kick.help.user", event) + "> [" + L10N.getString("kick.help.reason", event) + "]";
+		return "-kick <" + L10N.getString("kick.help.user", channel) + "> [" + L10N.getString("kick.help.reason", channel) + "]";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent event)
+	public String[] getUsage(String channel)
 	{
-		return new String[]{"-kick <" + L10N.getString("kick.help.user", event) + "> [" + L10N.getString("kick.help.reason", event) + "] || " + L10N.getString("kick.explanation", event)};
+		return new String[]{"-kick <" + L10N.getString("kick.help.user", channel) + "> [" + L10N.getString("kick.help.reason", channel) + "] || " + L10N.getString("kick.explanation", channel)};
 	}
 
 	@Override
-	public String getNotes(MessageEvent event)
+	public String getNotes(String channel)
 	{
-		return L10N.getString("notes.onlyVoiceOp", event);
+		return L10N.getString("notes.onlyVoiceOp", channel);
 	}
 
 	@Override

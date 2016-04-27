@@ -17,8 +17,10 @@ public class Leave extends BaseChannelCommand<MessageEvent>
 	@Override
 	public void exe(MessageEvent event, String[] args) throws MalformedURLException, IOException, IncorrectCommandExecutionException
 	{
+		String channel = event.getChannel().getName();
+		
 		if(args.length == 1)
-			Core.bot.leaveChannel(event.getChannel().getName());
+			Core.bot.leaveChannel(channel);
 		else if(args.length == 2)
 		{
 			if(args[1].equals("d"))
@@ -35,7 +37,7 @@ public class Leave extends BaseChannelCommand<MessageEvent>
 			if(Utilities.hasJoinedChannel(args[1]))
 				Core.bot.leaveChannel(args[1]);
 			else
-				Utilities.chanMsg(event, L10N.getString("leave.notJoined", event));
+				Utilities.sendMessage(channel, L10N.getString("leave.notJoined", channel));
 		}
 		else
 			throw new IncorrectCommandExecutionException(getMainAlias());
@@ -48,24 +50,24 @@ public class Leave extends BaseChannelCommand<MessageEvent>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent event)
+	public String getSyntax(String channel)
 	{
-		return "-leave [" + L10N.getString("cmd.help.channel", event) + "]";
+		return "-leave [" + L10N.getString("cmd.help.channel", channel) + "]";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent event)
+	public String[] getUsage(String channel)
 	{
 		return new String[]{
-				"-leave || " + L10N.getString("leave.explanation.1", event),
-				"-leave <" + L10N.getString("cmd.help.channel", event) + "> || " + L10N.getString("leave.explanation.2", event)
+				"-leave || " + L10N.getString("leave.explanation.1", channel),
+				"-leave <" + L10N.getString("cmd.help.channel", channel) + "> || " + L10N.getString("leave.explanation.2", channel)
 		};
 	}
 
 	@Override
-	public String getNotes(MessageEvent event)
+	public String getNotes(String channel)
 	{
-		return L10N.getString("notes.onlyOp", event);
+		return L10N.getString("notes.onlyOp", channel);
 	}
 
 	@Override

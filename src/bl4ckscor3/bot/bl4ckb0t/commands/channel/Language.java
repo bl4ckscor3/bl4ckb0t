@@ -20,24 +20,26 @@ public class Language extends BaseChannelCommand<MessageEvent>
 	@Override
 	public void exe(MessageEvent event, String[] args) throws IncorrectCommandExecutionException, IOException
 	{
+		String channel = event.getChannel().getName();
+		
 		if(args.length == 1)
-			Utilities.chanMsg(event, L10N.getString("language.currentLanguage", event).replace("#lang", Utilities.capitalizeFirstLetter(L10N.chanLangs.get(event.getChannel().getName()))));
+			Utilities.sendMessage(channel, L10N.getString("language.currentLanguage", channel).replace("#lang", Utilities.capitalizeFirstLetter(L10N.chanLangs.get(channel))));
 		else if(args.length == 2)
 		{
 			if(args[1].equalsIgnoreCase(availableLanguages[0]))
 			{
-				L10N.setChannelLanguage(event.getChannel().getName(), "english");
-				Logging.info("Changed localizitation in " + event.getChannel().getName() + " to " + availableLanguages[0] + ".");
+				L10N.setChannelLanguage(channel, "english");
+				Logging.info("Changed localizitation in " + channel + " to " + availableLanguages[0] + ".");
 			}
 			else if(args[1].equalsIgnoreCase(availableLanguages[1]))
 			{
-				L10N.setChannelLanguage(event.getChannel().getName(), "german");
-				Logging.info("Changed localizitation in " + event.getChannel().getName() + " to " + availableLanguages[1] + ".");
+				L10N.setChannelLanguage(channel, "german");
+				Logging.info("Changed localizitation in " + channel + " to " + availableLanguages[1] + ".");
 			}
 			else	
-				Utilities.chanMsg(event, L10N.getString("language.availableLanguages", event).replace("#langs", getAvailableLanguages()));
+				Utilities.sendMessage(channel, L10N.getString("language.availableLanguages", channel).replace("#langs", getAvailableLanguages()));
 
-			Utilities.chanMsg(event, L10N.getString("language.success", event).replace("#lang", Utilities.capitalizeFirstLetter(L10N.chanLangs.get(event.getChannel().getName()))));
+			Utilities.sendMessage(channel, L10N.getString("language.success", channel).replace("#lang", Utilities.capitalizeFirstLetter(L10N.chanLangs.get(channel))));
 		}
 		else
 			throw new IncorrectCommandExecutionException(getMainAlias());
@@ -62,17 +64,17 @@ public class Language extends BaseChannelCommand<MessageEvent>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent event)
+	public String getSyntax(String channel)
 	{
-		return "-language [" + L10N.getString("language.help.language", event) + "]";
+		return "-language [" + L10N.getString("language.help.language", channel) + "]";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent event)
+	public String[] getUsage(String channel)
 	{
 		return new String[]{
-				"-language || " + L10N.getString("language.explanation.1", event),
-				"-language <" + L10N.getString("language.help.language", event) + "> || " + L10N.getString("language.explanation.2", event)
+				"-language || " + L10N.getString("language.explanation.1", channel),
+				"-language <" + L10N.getString("language.help.language", channel) + "> || " + L10N.getString("language.explanation.2", channel)
 		};
 	}
 

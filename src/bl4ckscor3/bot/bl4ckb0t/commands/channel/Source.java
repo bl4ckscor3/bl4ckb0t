@@ -11,7 +11,7 @@ public class Source extends BaseChannelCommand<MessageEvent>
 	@Override
 	public void exe(MessageEvent event, String[] args)
 	{
-		Utilities.chanMsg(event, "https://github.com/bl4ckscor3/bl4ckb0t");
+		Utilities.sendMessage(event.getChannel().getName(), "https://github.com/bl4ckscor3/bl4ckb0t");
 	}
 	
 	@Override
@@ -21,14 +21,14 @@ public class Source extends BaseChannelCommand<MessageEvent>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent event)
+	public String getSyntax(String channel)
 	{
 		return "-source";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent event)
+	public String[] getUsage(String channel)
 	{
-		return new String[]{"-source || " + L10N.getString("source.explanation", event)};
+		return new String[]{"-source || " + L10N.getString("source.explanation", channel)};
 	}
 }

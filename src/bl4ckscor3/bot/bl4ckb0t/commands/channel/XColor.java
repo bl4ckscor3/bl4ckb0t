@@ -1,5 +1,6 @@
 package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 
+import org.pircbotx.User;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.commands.BaseChannelCommand;
@@ -26,15 +27,16 @@ public class XColor extends BaseChannelCommand<MessageEvent>
 				"Lighter Aqua",
 				"Pink"
 		};
+		User user = event.getUser();
 
 		for(int i = 0; i < 14; i++)
 		{
 			if(i < 4)
-				Utilities.notice(event, "%C" + i + ": " + colors[i]);
+				Utilities.notice(user, "%C" + i + ": " + colors[i]);
 			else if(i > 4 && i < 12)
-				Utilities.notice(event, "%C" + i + ": " + colors[i]);
+				Utilities.notice(user, "%C" + i + ": " + colors[i]);
 			else if(i == 13)
-				Utilities.notice(event, "%C" + i + ": " + colors[i - 1]);
+				Utilities.notice(user, "%C" + i + ": " + colors[i - 1]);
 		}
 	}
 
@@ -45,20 +47,20 @@ public class XColor extends BaseChannelCommand<MessageEvent>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent event)
+	public String getSyntax(String channel)
 	{
 		return "-xcolor";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent event)
+	public String[] getUsage(String channel)
 	{
-		return new String[]{"-xcolor || " + L10N.getString("xcolor.explanation", event)};
+		return new String[]{"-xcolor || " + L10N.getString("xcolor.explanation", channel)};
 	}
 
 	@Override
-	public String getNotes(MessageEvent event)
+	public String getNotes(String channel)
 	{
-		return L10N.getString("xcolor.notes", event);
+		return L10N.getString("xcolor.notes", channel);
 	}
 }

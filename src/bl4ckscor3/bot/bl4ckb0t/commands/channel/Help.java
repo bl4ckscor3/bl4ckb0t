@@ -26,12 +26,13 @@ public class Help extends BaseChannelCommand<MessageEvent>
 	{
 		String nick = event.getUser().getNick();
 		String msg = "";
-		int pLvl = Utilities.getUserPermissionLevel(event);
+		int pLvl = Utilities.getUserPermissionLevel(event.getUser());
 		String[] aliases = pLvl == 3 ? aliasesValid : (pLvl == 2 ? aliasesAllowed : aliasesNormal);
-
+		String channel = event.getChannel().getName();
+		
 		if(args.length == 1)
 		{
-			Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------" + L10N.getString("help.header", event) + "----------");
+			Utilities.sendMessage(nick, Colors.BOLD + Colors.OLIVE + "----------" + L10N.getString("help.header", channel) + "----------");
 
 			for(int i = 0; i < aliases.length; i++)
 			{
@@ -42,21 +43,21 @@ public class Help extends BaseChannelCommand<MessageEvent>
 
 				if((i + 1) % 10 == 0)
 				{
-					Utilities.pm(nick, msg.trim());
+					Utilities.sendMessage(nick, msg.trim());
 					msg = "";
 				}
 			}
 
-			Utilities.pm(nick, msg.substring(0, msg.lastIndexOf(" | ")));
-			Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------------------------------------------------------");
-			Utilities.pm(nick, L10N.getString("help.moreInfo", event));
+			Utilities.sendMessage(nick, msg.substring(0, msg.lastIndexOf(" | ")));
+			Utilities.sendMessage(nick, Colors.BOLD + Colors.OLIVE + "----------------------------------------------------------");
+			Utilities.sendMessage(nick, L10N.getString("help.moreInfo", channel));
 			Thread.sleep(2000);
-			Utilities.pm(nick, Colors.BOLD + Colors.OLIVE + "----------" + L10N.getString("help.credits.header", event) + "----------");
-			Utilities.pm(nick, Colors.TEAL + L10N.getString("help.credits.1", event));
-			Utilities.pm(nick, Colors.TEAL + L10N.getString("help.credits.2", event));
-			Utilities.pm(nick, Colors.TEAL + L10N.getString("help.credits.3", event));
-			Utilities.pm(nick, Colors.TEAL + L10N.getString("help.credits.4", event));
-			Utilities.pm(nick, Colors.TEAL + L10N.getString("help.credits.5", event));
+			Utilities.sendMessage(nick, Colors.BOLD + Colors.OLIVE + "----------" + L10N.getString("help.credits.header", channel) + "----------");
+			Utilities.sendMessage(nick, Colors.TEAL + L10N.getString("help.credits.1", channel));
+			Utilities.sendMessage(nick, Colors.TEAL + L10N.getString("help.credits.2", channel));
+			Utilities.sendMessage(nick, Colors.TEAL + L10N.getString("help.credits.3", channel));
+			Utilities.sendMessage(nick, Colors.TEAL + L10N.getString("help.credits.4", channel));
+			Utilities.sendMessage(nick, Colors.TEAL + L10N.getString("help.credits.5", channel));
 		}
 		else if(args.length == 2)
 		{
@@ -66,16 +67,16 @@ public class Help extends BaseChannelCommand<MessageEvent>
 				{
 					if(cmd.getPermissionLevel() > pLvl)
 					{
-						Core.bot.sendCustomMessage(event.getChannel().getName(), "-" + cmd.getMainAlias() + ": " + L10N.getString("noPermission", event));
+						Utilities.sendMessage(channel, "-" + cmd.getMainAlias() + ": " + L10N.getString("noPermission", channel));
 						return;
 					}
 
-					Utilities.sendHelp(nick, cmd.getAliases(), cmd.getMainAlias(), cmd.getSyntax(event), cmd.getUsage(event), cmd.getNotes(event), event);
+					Utilities.sendHelp(nick, cmd.getAliases(), cmd.getMainAlias(), cmd.getSyntax(channel), cmd.getUsage(channel), cmd.getNotes(channel), channel);
 					return;
 				}
 			}
 
-			Utilities.chanMsg(event, args[1] + " " + L10N.getString("help.invalidCmd", event));
+			Utilities.sendMessage(channel, args[1] + " " + L10N.getString("help.invalidCmd", channel));
 		}
 		else
 			throw new IncorrectCommandExecutionException(getMainAlias());
@@ -88,17 +89,17 @@ public class Help extends BaseChannelCommand<MessageEvent>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent event)
+	public String getSyntax(String channel)
 	{
-		return "-help [" + L10N.getString("help.help.command", event) + "]";
+		return "-help [" + L10N.getString("help.help.command", channel) + "]";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent event)
+	public String[] getUsage(String channel)
 	{
 		return new String[]{
-				"-help || " + L10N.getString("help.explanation.1", event),
-				"-help <" + L10N.getString("help.help.command", event) + "> || " + L10N.getString("help.explanation.2", event)
+				"-help || " + L10N.getString("help.explanation.1", channel),
+				"-help <" + L10N.getString("help.help.command", channel) + "> || " + L10N.getString("help.explanation.2", channel)
 		};
 	}
 

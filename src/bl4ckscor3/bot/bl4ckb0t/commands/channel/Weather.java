@@ -19,7 +19,8 @@ public class Weather extends BaseChannelCommand<MessageEvent>
 	public void exe(MessageEvent event, String[] args) throws IOException, IncorrectCommandExecutionException
 	{
 		String city = "";
-
+		String channel = event.getChannel().getName();
+		
 		for(String s : args)
 		{
 			if(isValidAlias(s)) //if it's the first argument, don't add it to the city string
@@ -35,18 +36,18 @@ public class Weather extends BaseChannelCommand<MessageEvent>
 		{
 			Document doc = Jsoup.connect("http://api.openweathermap.org/data/2.5/weather?q=" + city.trim() + "&mode=html&APPID=" + Passwords.WEATHERAPIKEY.getPassword()).get();
 
-			Utilities.sendStarMsg(event, 
+			Utilities.sendStarMsg(channel, 
 					Colors.BOLD + doc.select("body > div:nth-child(1)").text() + Colors.NORMAL,
-					Colors.BOLD + L10N.getString("w.temperature", event).replace("#temperature", Colors.BOLD + getTemperature(doc)),
-					Colors.BOLD + L10N.getString("w.humidity", event).replace("#humidity", Colors.BOLD + doc.select("body > div:nth-child(2) > div:nth-child(3)").text().split(" ")[1]),
-					Colors.BOLD + L10N.getString("w.pressure", event).replace("#pressure", Colors.BOLD + doc.select("body > div:nth-child(2) > div:nth-child(5)").text().split(" ")[1]),
-					Colors.BOLD + L10N.getString("w.wind", event).replace("#wind", Colors.BOLD + getWindSpeed(doc)),
-					Colors.BOLD + L10N.getString("w.credit", event).replace("#link", doc.select("body > div:nth-child(3) > a:nth-child(1)").attr("href")));
+					Colors.BOLD + L10N.getString("w.temperature", channel).replace("#temperature", Colors.BOLD + getTemperature(doc)),
+					Colors.BOLD + L10N.getString("w.humidity", channel).replace("#humidity", Colors.BOLD + doc.select("body > div:nth-child(2) > div:nth-child(3)").text().split(" ")[1]),
+					Colors.BOLD + L10N.getString("w.pressure", channel).replace("#pressure", Colors.BOLD + doc.select("body > div:nth-child(2) > div:nth-child(5)").text().split(" ")[1]),
+					Colors.BOLD + L10N.getString("w.wind", channel).replace("#wind", Colors.BOLD + getWindSpeed(doc)),
+					Colors.BOLD + L10N.getString("w.credit", channel).replace("#link", doc.select("body > div:nth-child(3) > a:nth-child(1)").attr("href")));
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			Utilities.chanMsg(event, L10N.getString("w.cityNotFound", event).replace("#city", city.trim()).replace("#smiley", ":/"));
+			Utilities.sendMessage(channel, L10N.getString("w.cityNotFound", channel).replace("#city", city.trim()).replace("#smiley", ":/"));
 		}
 	}
 
@@ -71,20 +72,20 @@ public class Weather extends BaseChannelCommand<MessageEvent>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent event)
+	public String getSyntax(String channel)
 	{
-		return "-w <" + L10N.getString("w.help.city", event) + ">";
+		return "-w <" + L10N.getString("w.help.city", channel) + ">";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent event)
+	public String[] getUsage(String channel)
 	{
-		return new String[]{"-w <" + L10N.getString("w.help.city", event) + "> || " + L10N.getString("w.explanation", event)};
+		return new String[]{"-w <" + L10N.getString("w.help.city", channel) + "> || " + L10N.getString("w.explanation", channel)};
 	}
 
 	@Override
-	public String getNotes(MessageEvent event)
+	public String getNotes(String channel)
 	{
-		return L10N.getString("w.notes", event);
+		return L10N.getString("w.notes", channel);
 	}
 }

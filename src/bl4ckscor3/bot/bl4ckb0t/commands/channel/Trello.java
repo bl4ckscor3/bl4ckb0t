@@ -11,7 +11,7 @@ public class Trello extends BaseChannelCommand<MessageEvent>
 	@Override
 	public void exe(MessageEvent event, String[] args)
 	{
-		Utilities.chanMsg(event, "https://trello.com/b/039j1jFa/bl4ckb0t");
+		Utilities.sendMessage(event.getChannel().getName(), "https://trello.com/b/039j1jFa/bl4ckb0t");
 	}
 
 	@Override
@@ -21,14 +21,14 @@ public class Trello extends BaseChannelCommand<MessageEvent>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent event)
+	public String getSyntax(String channel)
 	{
 		return "-trello";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent event)
+	public String[] getUsage(String channel)
 	{
-		return new String[]{"-trello | " + L10N.getString("trello.explanation", event)};
+		return new String[]{"-trello | " + L10N.getString("trello.explanation", channel)};
 	}
 }

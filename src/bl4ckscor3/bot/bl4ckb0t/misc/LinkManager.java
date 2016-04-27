@@ -23,7 +23,8 @@ public class LinkManager
 	public static void checkForLinkAndSendTitle(MessageEvent event) throws MalformedURLException, IOException
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
-
+		String channel = event.getChannel().getName();
+		
 		for(String s : args)
 		{
 			s = Colors.removeFormattingAndColors(s);
@@ -37,13 +38,13 @@ public class LinkManager
 				}
 
 				if(Core.bot.getConfig().isEnabled("showTweets") && s.contains("twitter"))
-					ShowTweet.show(event, s, 0);
+					ShowTweet.show(channel, s, 0);
 				else if(Core.bot.getConfig().isEnabled("showGitHubCommitInfo") && (s.contains("git.io") || (s.contains("github.com") && s.contains("commit"))))
-					GitHub.showCommit(event, s);
+					GitHub.showCommit(channel, s);
 				else if(Core.bot.getConfig().isEnabled("showGitHubRepoInfo") && s.contains("github.com"))
-					GitHub.showRepo(event, s);
-				else if(Core.bot.getConfig().isEnabled("kickOnBannedImgurLink") && event.getChannel().getName().equals("#bl4ckscor3") && (s.contains("imgur") && !s.contains("i.imgur") && !s.contains("/gallery/") && !s.contains("/a/")))
-					Core.bot.kick(event.getChannel().getName(), event.getUser().getNick(), "Only use i.imgur.com links.");
+					GitHub.showRepo(channel, s);
+				else if(Core.bot.getConfig().isEnabled("kickOnBannedImgurLink") && channel.equals("#bl4ckscor3") && (s.contains("imgur") && !s.contains("i.imgur") && !s.contains("/gallery/") && !s.contains("/a/")))
+					Core.bot.kick(channel, event.getUser().getNick(), "Only use i.imgur.com links.");
 				else if(Core.bot.getConfig().isEnabled("showLinkTitles"))
 				{
 					WebDriver driver = new HtmlUnitDriver();
@@ -68,9 +69,9 @@ public class LinkManager
 					}
 
 					if(title == null || title == "null" || title == "")
-						Utilities.chanMsg(event, L10N.getString("linkTitle.notFound", event).replace("#link", s));
+						Utilities.sendMessage(channel, L10N.getString("linkTitle.notFound", channel).replace("#link", s));
 					else
-						Utilities.chanMsg(event, L10N.getString("linkTitle.available", event).replace("#link", s).replace("#title", title));
+						Utilities.sendMessage(channel, L10N.getString("linkTitle.available", channel).replace("#link", s).replace("#title", title));
 				}
 			}
 		}

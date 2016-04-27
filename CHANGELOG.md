@@ -1,7 +1,10 @@
 #Changelog
 ---
-####5.6.4_WIP
+####5.7
+- Reminders now get saved over downtimes
 - Fixed YT Video info not showing "0" when the video hasn't been viewed yet
+- de_DE fixes
+- Internal changes
 
 ####5.6.3
 - Misc. fixes

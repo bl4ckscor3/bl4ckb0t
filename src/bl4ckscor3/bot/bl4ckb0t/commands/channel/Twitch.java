@@ -13,7 +13,7 @@ public class Twitch extends BaseChannelCommand<MessageEvent>
 	public void exe(MessageEvent event, String[] args) throws IncorrectCommandExecutionException
 	{
 		if(args.length == 2)
-			Utilities.chanMsg(event, "http://www.twitch.tv/" + args[1]);
+			Utilities.sendMessage(event.getChannel().getName(), "http://www.twitch.tv/" + args[1]);
 		else
 			throw new IncorrectCommandExecutionException(getMainAlias());
 	}
@@ -25,14 +25,14 @@ public class Twitch extends BaseChannelCommand<MessageEvent>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent event)
+	public String getSyntax(String channel)
 	{
-		return "-tv <" + L10N.getString("tv.help.channel", event) + ">";
+		return "-tv <" + L10N.getString("tv.help.channel", channel) + ">";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent event)
+	public String[] getUsage(String channel)
 	{
-		return new String[]{"-tv <" + L10N.getString("tv.help.channel", event) + "> || " + L10N.getString("tv.explanation", event)};
+		return new String[]{"-tv <" + L10N.getString("tv.help.channel", channel) + "> || " + L10N.getString("tv.explanation", channel)};
 	}
 }

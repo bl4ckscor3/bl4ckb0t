@@ -18,10 +18,12 @@ public class ChangeNick extends BaseChannelCommand<MessageEvent>
 	@Override
 	public void exe(MessageEvent event, String[] args) throws IncorrectCommandExecutionException, MalformedURLException, IOException, InterruptedException
 	{
+		String channel = event.getChannel().getName();
+		
 		if(args.length == 2)
 		{
 			if(args[1].equals(Core.bot.getNick()))
-				Utilities.chanMsg(event, L10N.getString("changenick.same", event));
+				Utilities.sendMessage(channel, L10N.getString("changenick.same", channel));
 
 			if(!args[1].equalsIgnoreCase("d"))
 				Core.bot.sendIRC().changeNick(args[1]);
@@ -33,7 +35,7 @@ public class ChangeNick extends BaseChannelCommand<MessageEvent>
 			if(isInUse)
 			{
 				isInUse = false;
-				Utilities.chanMsg(event, L10N.getString("changenick.inUse", event));
+				Utilities.sendMessage(channel, L10N.getString("changenick.inUse", channel));
 			}
 		}
 		else
@@ -47,21 +49,21 @@ public class ChangeNick extends BaseChannelCommand<MessageEvent>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent event)
+	public String getSyntax(String channel)
 	{
-		return "-changenick <" + L10N.getString("changenick.newName", event) + ">";
+		return "-changenick <" + L10N.getString("changenick.newName", channel) + ">";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent event)
+	public String[] getUsage(String channel)
 	{
-		return new String[]{"-changenick <" + L10N.getString("changenick.newName", event) + "> ||" + L10N.getString("changenick.explanation", event)};
+		return new String[]{"-changenick <" + L10N.getString("changenick.newName", channel) + "> ||" + L10N.getString("changenick.explanation", channel)};
 	}
 
 	@Override
-	public String getNotes(MessageEvent event)
+	public String getNotes(String channel)
 	{
-		return L10N.getString("changenick.notes", event);
+		return L10N.getString("changenick.notes", channel);
 	}
 
 	@Override

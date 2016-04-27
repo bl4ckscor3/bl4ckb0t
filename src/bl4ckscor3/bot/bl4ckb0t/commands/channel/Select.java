@@ -18,7 +18,7 @@ public class Select extends BaseChannelCommand<MessageEvent>
 		{
 			String[] options = event.getMessage().substring(8).split(",");
 
-			Utilities.chanMsg(event, options[new Random().nextInt(options.length)]);
+			Utilities.sendMessage(event.getChannel().getName(), options[new Random().nextInt(options.length)]);
 		}
 		else
 			throw new IncorrectCommandExecutionException(getMainAlias());
@@ -31,20 +31,20 @@ public class Select extends BaseChannelCommand<MessageEvent>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent event)
+	public String getSyntax(String channel)
 	{
-		return "-select <" + L10N.getString("select.help.options", event) + ">";
+		return "-select <" + L10N.getString("select.help.options", channel) + ">";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent event)
+	public String[] getUsage(String channel)
 	{
-		return new String[]{"-select <" + L10N.getString("select.help.options", event) + "> || " + L10N.getString("select.explanation", event)};
+		return new String[]{"-select <" + L10N.getString("select.help.options", channel) + "> || " + L10N.getString("select.explanation", channel)};
 	}
 
 	@Override
-	public String getNotes(MessageEvent event)
+	public String getNotes(String channel)
 	{
-		return L10N.getString("select.notes", event);
+		return L10N.getString("select.notes", channel);
 	}
 }

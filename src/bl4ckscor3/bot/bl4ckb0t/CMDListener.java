@@ -53,7 +53,6 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class CMDListener extends ListenerAdapter
 {
-	public static final String cmdPrefix = "-";
 	public static final CustomArrayList<BaseChannelCommand<MessageEvent>> commands = new CustomArrayList<BaseChannelCommand<MessageEvent>>();
 	public static final CustomArrayList<BasePrivateCommand<PrivateMessageEvent>> privCommands = new CustomArrayList<BasePrivateCommand<PrivateMessageEvent>>();
 
@@ -115,9 +114,9 @@ public class CMDListener extends ListenerAdapter
 		try
 		{
 			String cmdName = Utilities.toArgs(event.getMessage())[0];
-			int permissionLevel = Utilities.getUserPermissionLevel(event);
+			int permissionLevel = Utilities.getUserPermissionLevel(event.getUser());
 
-			if(!cmdName.startsWith(cmdPrefix))
+			if(!cmdName.startsWith(Core.bot.getCmdPrefix()))
 				return;
 
 			if(Utilities.isIgnored(event.getUser().getNick()))
@@ -125,8 +124,10 @@ public class CMDListener extends ListenerAdapter
 				Logging.warn("Ignoring user " + event.getUser().getNick());
 				return;
 			}
+			
+			String channel = event.getChannel().getName();
 
-			if(Core.bot.isEnabled() && Core.bot.getChannelStates().get(event.getChannel().getName()))
+			if(Core.bot.isEnabled() && Core.bot.getChannelStates().get(channel))
 			{
 				for(BaseChannelCommand<MessageEvent> cmd : commands)
 				{
@@ -134,7 +135,7 @@ public class CMDListener extends ListenerAdapter
 					{
 						if(cmd.getPermissionLevel() > permissionLevel)
 						{
-							Utilities.noPermission(event);
+							Utilities.noPermission(event.getUser().getNick());
 							return;
 						}
 
@@ -144,7 +145,7 @@ public class CMDListener extends ListenerAdapter
 						}
 						catch(IncorrectCommandExecutionException e)
 						{
-							Utilities.sendHelp(event.getUser().getNick(), cmd.getAliases(), cmd.getMainAlias(), cmd.getSyntax(event), cmd.getUsage(event), cmd.getNotes(event), event);
+							Utilities.sendHelp(event.getUser().getNick(), cmd.getAliases(), cmd.getMainAlias(), cmd.getSyntax(channel), cmd.getUsage(channel), cmd.getNotes(channel), channel);
 						}
 						catch(Exception e)
 						{
@@ -166,7 +167,7 @@ public class CMDListener extends ListenerAdapter
 						}
 						catch(IncorrectCommandExecutionException e)
 						{
-							Utilities.sendHelp(event.getUser().getNick(), cmd.getAliases(), cmd.getMainAlias(), cmd.getSyntax(event), cmd.getUsage(event), cmd.getNotes(event), event);
+							Utilities.sendHelp(event.getUser().getNick(), cmd.getAliases(), cmd.getMainAlias(), cmd.getSyntax(channel), cmd.getUsage(channel), cmd.getNotes(channel), channel);
 						}
 					}
 				}
@@ -191,7 +192,7 @@ public class CMDListener extends ListenerAdapter
 
 			if(Core.bot.isEnabled())
 			{
-				if(Utilities.isValidUser(event))
+				if(Utilities.isValidUser(event.getUser()))
 				{
 					for(BasePrivateCommand<PrivateMessageEvent> cmd : privCommands)
 					{

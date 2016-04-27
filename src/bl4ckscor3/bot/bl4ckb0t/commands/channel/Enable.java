@@ -21,18 +21,20 @@ public class Enable extends BaseChannelCommand<MessageEvent>
 		if(args.length > 2)
 			throw new IncorrectCommandExecutionException(getMainAlias());
 
+		String channel = event.getChannel().getName();
+		
 		if(args.length == 1)
 		{
 			if(!Core.bot.isEnabled())
 			{
 				Core.bot.enable();
-				Utilities.chanMsg(event, L10N.getString("enable.success", event));
+				Utilities.sendMessage(channel, L10N.getString("enable.success", channel));
 				Logging.info("Enabled bot globally.");
 				Core.bot.sendRaw().rawLine("AWAY");
 				Logging.enable();
 			}
 			else
-				Utilities.chanMsg(event, L10N.getString("enable.alreadyEnabled", event));
+				Utilities.sendMessage(channel, L10N.getString("enable.alreadyEnabled", channel));
 		}
 		else
 		{
@@ -41,7 +43,7 @@ public class Enable extends BaseChannelCommand<MessageEvent>
 			if(!states.containsKey(args[1].replace("#", "")))
 			{
 				states.put(args[1].replace("#", ""), true);
-				Utilities.chanMsg(event, L10N.getString("enable.success", event));
+				Utilities.sendMessage(channel, L10N.getString("enable.success", channel));
 				Logging.info("Enabled bot in " + args[1]);
 			}
 			else
@@ -49,11 +51,11 @@ public class Enable extends BaseChannelCommand<MessageEvent>
 				if(!states.get(args[1].replace("#", "")))
 				{
 					states.put(args[1].replace("#", ""), true);
-					Core.bot.sendCustomMessage(args[1], L10N.getString("enable.success", event));
+					Utilities.sendMessage(args[1], L10N.getString("enable.success", channel));
 					Logging.info("Enabled bot in " + args[1]);
 				}
 				else
-					Core.bot.sendCustomMessage(args[1], L10N.getString("enable.alreadyEnabled", event));
+					Utilities.sendMessage(args[1], L10N.getString("enable.alreadyEnabled", channel));
 			}
 		}
 	}
@@ -65,24 +67,24 @@ public class Enable extends BaseChannelCommand<MessageEvent>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent event)
+	public String getSyntax(String channel)
 	{
-		return "-enable [" + L10N.getString("cmd.help.channel", event) + "]";
+		return "-enable [" + L10N.getString("cmd.help.channel", channel) + "]";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent event)
+	public String[] getUsage(String channel)
 	{
 		return new String[]{
-				"-enable || " + L10N.getString("enable.explanation.1", event),
-				"-enable <" + L10N.getString("cmd.help.channel", event) + ">|| " + L10N.getString("enable.explanation.2", event)
+				"-enable || " + L10N.getString("enable.explanation.1", channel),
+				"-enable <" + L10N.getString("cmd.help.channel", channel) + ">|| " + L10N.getString("enable.explanation.2", channel)
 				};
 	}
 
 	@Override
-	public String getNotes(MessageEvent event)
+	public String getNotes(String channel)
 	{
-		return L10N.getString("notes.onlyOp", event);
+		return L10N.getString("notes.onlyOp", channel);
 	}
 
 	@Override

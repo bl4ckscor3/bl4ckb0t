@@ -13,7 +13,7 @@ public class Twitter extends BaseChannelCommand<MessageEvent>
 	public void exe(MessageEvent event, String[] args) throws IncorrectCommandExecutionException
 	{
 		if(args.length == 2)
-			Utilities.chanMsg(event, "http://www.twitter.com/" + args[1]);
+			Utilities.sendMessage(event.getChannel().getName(), "http://www.twitter.com/" + args[1]);
 		else
 			throw new IncorrectCommandExecutionException(getMainAlias());
 	}
@@ -25,14 +25,14 @@ public class Twitter extends BaseChannelCommand<MessageEvent>
 	}
 	
 	@Override
-	public String getSyntax(MessageEvent event)
+	public String getSyntax(String channel)
 	{
-		return "-tw <" + L10N.getString("tw.help.profile", event) + ">";
+		return "-tw <" + L10N.getString("tw.help.profile", channel) + ">";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent event)
+	public String[] getUsage(String channel)
 	{
-		return new String[]{"-tw <" + L10N.getString("tw.help.profile", event) + "> || " + L10N.getString("tw.explanation", event)};
+		return new String[]{"-tw <" + L10N.getString("tw.help.profile", channel) + "> || " + L10N.getString("tw.explanation", channel)};
 	}
 }

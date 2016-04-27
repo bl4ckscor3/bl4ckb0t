@@ -17,7 +17,9 @@ public class Ranks extends BaseChannelCommand<MessageEvent>
 	@Override
 	public void exe(MessageEvent event, String[] args) throws Exception
 	{
-		Utilities.chanMsg(event, L10N.getString("ranks.wait", event));
+		String channel = event.getChannel().getName();
+		
+		Utilities.sendMessage(channel, L10N.getString("ranks.wait", channel));
 
 		WebDriver driver = new HtmlUnitDriver(true);
 		String[] data = new String[18];
@@ -28,7 +30,7 @@ public class Ranks extends BaseChannelCommand<MessageEvent>
 		try
 		{
 			driver.findElement(By.cssSelector(".maintenance-text"));
-			Utilities.chanMsg(event, L10N.getString("ranks.maintenance", event));
+			Utilities.sendMessage(channel, L10N.getString("ranks.maintenance", channel));
 			driver.quit();
 		}
 		catch(Exception e)
@@ -51,7 +53,7 @@ public class Ranks extends BaseChannelCommand<MessageEvent>
 			}
 
 			driver.quit();
-			Utilities.sendStarMsg(event,
+			Utilities.sendStarMsg(channel,
 					Colors.BOLD + Colors.LIGHT_GRAY + underline(1) + "Silver 1" + Colors.NORMAL + underline(1) + Colors.BOLD + ": " + Colors.NORMAL + underline(1) + data[0] + Colors.NORMAL,
 					Colors.BOLD + Colors.LIGHT_GRAY + underline(2) + "Silver 2" + Colors.NORMAL + underline(2) + Colors.BOLD + ": " + Colors.NORMAL + underline(2) + data[1] + Colors.NORMAL,
 					Colors.BOLD + Colors.LIGHT_GRAY + underline(3) + "Silver 3" + Colors.NORMAL + underline(3) + Colors.BOLD + ": " + Colors.NORMAL + underline(3) + data[2] + Colors.NORMAL,
@@ -64,7 +66,7 @@ public class Ranks extends BaseChannelCommand<MessageEvent>
 					Colors.BOLD + Colors.CYAN + underline(10) + "Gold Nova Master" + Colors.NORMAL + underline(10) + Colors.BOLD + ": " + Colors.NORMAL + underline(10) + data[9] + Colors.NORMAL,
 					Colors.BOLD + Colors.TEAL + underline(11) + "Master Guardian 1" + Colors.NORMAL + underline(11) + Colors.BOLD + ": " + Colors.NORMAL + underline(11) + data[10] + Colors.NORMAL,
 					Colors.BOLD + Colors.TEAL + underline(12) + "Master Guardian 2" + Colors.NORMAL + underline(12) + Colors.BOLD + ": " + Colors.NORMAL + underline(12) + data[11]);
-			Utilities.sendStarMsg(event,
+			Utilities.sendStarMsg(channel,
 					Colors.BOLD + Colors.TEAL + underline(13) + "Master Guardian Elite" + Colors.NORMAL + underline(13) + Colors.BOLD + ": " + Colors.NORMAL + underline(13) + data[12] + Colors.NORMAL,
 					Colors.BOLD + Colors.TEAL + underline(14) + "Distinguished Master Guardian" + Colors.NORMAL + underline(14) + Colors.BOLD + ": " + Colors.NORMAL + underline(14) + data[13] + Colors.NORMAL,
 					Colors.BOLD + Colors.BROWN + underline(15) + "Legendary Eagle" + Colors.NORMAL + underline(15) + Colors.BOLD + ": " + Colors.NORMAL + underline(15) + data[14] + Colors.NORMAL,
@@ -87,20 +89,20 @@ public class Ranks extends BaseChannelCommand<MessageEvent>
 	}
 
 	@Override
-	public String getSyntax(MessageEvent event)
+	public String getSyntax(String channel)
 	{
 		return "-ranks";
 	}
 
 	@Override
-	public String[] getUsage(MessageEvent event)
+	public String[] getUsage(String channel)
 	{
-		return new String[]{"-ranks || " + L10N.getString("ranks.explanation", event)};
+		return new String[]{"-ranks || " + L10N.getString("ranks.explanation", channel)};
 	}
 
 	@Override
-	public String getNotes(MessageEvent event)
+	public String getNotes(String channel)
 	{
-		return L10N.getString("ranks.notes", event);
+		return L10N.getString("ranks.notes", channel);
 	}
 }
