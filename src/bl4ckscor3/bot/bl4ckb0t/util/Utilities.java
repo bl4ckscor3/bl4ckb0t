@@ -345,8 +345,7 @@ public class Utilities
 	 * Generates a String which represents a background and foreground color
 	 * @param background The background color to use (use PircBotX's Colors class)
 	 * @param foreground The foreground color to use (use PircBotX's Colors class)
-	 * @return The String to be used in coloring back- and foreground of a message.
-	 * 			An empty String if either background or foreground is not a color (aka bold/underline/reverse etc.)
+	 * @return The String to be used in coloring back- and foreground of a message or an empty String if either background or foreground is not a color (aka bold/underline/reverse etc.)
 	 */
 	public static String backgroundColor(String background, String foreground)
 	{
