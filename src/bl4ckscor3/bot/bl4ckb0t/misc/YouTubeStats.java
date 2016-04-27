@@ -89,7 +89,7 @@ public class YouTubeStats
 			}
 			
 			Utilities.sendStarMsg(event,
-					Colors.BOLD + "1,0You0,4Tube " + Colors.NORMAL,
+					Colors.BOLD + Utilities.backgroundColor(Colors.WHITE, Colors.BLACK) + "You" + Utilities.backgroundColor(Colors.RED, Colors.WHITE) + "Tube" + Colors.NORMAL,
 					Colors.BOLD + L10N.getString("youtube.title", event) + ": " + Colors.NORMAL + title,
 					Colors.BOLD + L10N.getString("youtube.views", event) + ": " + Colors.NORMAL + views,
 					Colors.BOLD + L10N.getString("youtube.likes", event) + ": " + Colors.NORMAL + Colors.DARK_GREEN + likes + Colors.NORMAL,
