@@ -200,7 +200,7 @@ public class ConfigurationFile
 	}
 
 	/**
-	 * Writes the current values into the 'values' HashMap
+	 * Writes the current values into the 'values' ArrayMap
 	 */
 	public void populateArrayMap()
 	{		
