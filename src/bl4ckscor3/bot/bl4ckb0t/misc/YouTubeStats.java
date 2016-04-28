@@ -83,15 +83,9 @@ public class YouTubeStats
 			dislikes = doc.select(".like-button-renderer-dislike-button-unclicked > span:nth-child(1)").get(0).text();
 			date = doc.select(".watch-time-text").get(0).text().split(" ")[2].trim();
 			uploader = doc.select(".yt-user-info > a:nth-child(1)").get(0).text();
-			
-			try
-			{
-				Double.parseDouble(views);
-			}
-			catch(Exception e)
-			{
+
+			if(!views.matches("[0-9.\\+]*")) //any amount of numbers with . and + inbetween
 				views = "0";
-			}
 			
 			Utilities.sendStarMsg(channel,
 					Colors.BOLD + Utilities.backgroundColor(Colors.WHITE, Colors.BLACK) + "You" + Utilities.backgroundColor(Colors.RED, Colors.WHITE) + "Tube" + Colors.NORMAL,
