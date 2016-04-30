@@ -22,7 +22,6 @@ import bl4ckscor3.bot.bl4ckb0t.commands.channel.Language;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Leave;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Leet;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.ListChans;
-import bl4ckscor3.bot.bl4ckb0t.commands.channel.LongURL;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.MCStatus;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Ping;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Ranks;
@@ -34,6 +33,7 @@ import bl4ckscor3.bot.bl4ckb0t.commands.channel.Trello;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Twitch;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Twitter;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Unleet;
+import bl4ckscor3.bot.bl4ckb0t.commands.channel.Unshorten;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Update;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Weather;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.XColor;
@@ -78,7 +78,6 @@ public class CMDListener extends ListenerAdapter
 				new Leave(),
 				new Leet(),
 				new ListChans(),
-				new LongURL(),
 				new MCStatus(),
 				new Ping(),
 				new Ranks(),
@@ -90,6 +89,7 @@ public class CMDListener extends ListenerAdapter
 				new Twitch(),
 				new Twitter(),
 				new Unleet(),
+				new Unshorten(),
 				new Update(),
 				new Weather(),
 				new XColor(),
@@ -151,6 +151,11 @@ public class CMDListener extends ListenerAdapter
 						{
 							e.printStackTrace();
 						}
+					}
+					else
+					{
+						if(!cmd.isEnabled() && Core.bot.isDevelopment())
+							Logging.warn("Did you add the command to the config file?");
 					}
 				}
 			}

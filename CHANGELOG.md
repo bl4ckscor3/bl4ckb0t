@@ -1,6 +1,10 @@
 #Changelog
 ---
-####5.7
+####5.7.1_WIP
+- -longurl now uses the unshorten.it API
+- Changed -longurl to -unshorten
+
+##5.7
 - Reminders now get saved over downtimes
 - Fixed YT Video info not showing "0" when the video hasn't been viewed yet
 - de_DE fixes
