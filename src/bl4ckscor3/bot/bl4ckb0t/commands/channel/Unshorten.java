@@ -24,7 +24,9 @@ public class Unshorten extends BaseChannelCommand<MessageEvent>
 			String channel = event.getChannel().getName();
 			String output = doc.text();
 			
-			if(output.equals("error (3)"))
+			if(output.equals("error (0)"))
+				Utilities.sendMessage(channel, L10N.getString("unshorten.invalidURL", channel));
+			else if(output.equals("error (3)"))
 				Utilities.sendMessage(channel, L10N.getString("unshorten.couldntUnshort", channel));
 			else
 				Utilities.sendMessage(channel, L10N.getString("unshorten.output", channel).replace("#url", doc.text()));
