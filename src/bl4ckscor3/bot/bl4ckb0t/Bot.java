@@ -126,10 +126,17 @@ public class Bot extends PircBotX
 
 		for(String s : channelsToJoin)
 		{
-			if(s.equalsIgnoreCase("#akino_germany"))
-				joinChannelWithPassword(s, Passwords.AKINO_GERMANY.getPassword());
-			else
-				joinChannel(s);
+			inner:
+			for(Passwords p : Passwords.class.getEnumConstants())
+			{
+				if(s.replace("#", "").equalsIgnoreCase(p.toString()))
+				{
+					joinChannelWithPassword(s, p.getPassword());
+					break inner;
+				}
+			}
+			
+			joinChannel(s);
 		}
 	}
 	
