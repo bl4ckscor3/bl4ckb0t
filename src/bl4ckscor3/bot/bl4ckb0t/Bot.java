@@ -124,15 +124,15 @@ public class Bot extends PircBotX
 	{
 		List<String> channelsToJoin = Lists.getDefaultChans();
 
+		outer:
 		for(String s : channelsToJoin)
 		{
-			inner:
 			for(Passwords p : Passwords.class.getEnumConstants())
 			{
 				if(s.replace("#", "").equalsIgnoreCase(p.toString()))
 				{
 					joinChannelWithPassword(s, p.getPassword());
-					break inner;
+					continue outer;
 				}
 			}
 			
