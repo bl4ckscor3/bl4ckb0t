@@ -3,6 +3,7 @@
 ####5.7.1_WIP
 - -longurl now uses the unshorten.it API
 - Changed -longurl to -unshorten
+- Internal changes
 
 ##5.7
 - Reminders now get saved over downtimes
@@ -140,7 +141,7 @@
 - Fixed logging message showing up when it shouldn't
 
 ####4.7.2
-- Fixed SpellingCorrection L10N being incorrect
+- Fixed SpellingCorrection localization being incorrect
 
 ####4.7.1
 - Commas now get replaced with dots, to prevent the API from thinking multiple equations have been entered
@@ -168,9 +169,9 @@
 - The whole message now gets replaced if the second part in s/x/y is null
 
 ####4.5.2
-- Fixed weather command
+- Fixed -w
 - Fixed Tweets with hashtags and mentions not showing correctly
-- Fixed pictures within Tweets not showing links in message on IRC
+- Fixed pictures within Tweets not showing links in message
 - Internal changes
 
 ####4.5.1
@@ -210,7 +211,7 @@
 
 ##4.3
 - Reimplemented -forge
-- Fixed YouTubeStats again...
+- Fixed YouTubeStats again
 - Fixed space appearing instead of nothing when using s/word/
 - Internal changes
 
@@ -220,7 +221,7 @@
 - Removed unused commands
 
 ####4.2.3
-- Changed black colored messages to use the default color so users with a dark client can read the messages again
+- Changed black colored messages to use the default color so users with a dark client can read the messages
 
 ####4.2.2
 - Fixed log file not being created
@@ -268,8 +269,7 @@
 - Added user ignore list
 - Change in German localization
 - Reverted Spelling Correction to previous italics replacement
-- Fixed -select (again)
-- Fixed -listchans, -join, -leave and many others
+- Fixed -select, -listchans, -join, -leave and many others
 - Internal changes
 
 ##3.12
@@ -289,11 +289,11 @@
 - Fixed -changenick
 
 ##3.10
-- Added -reverse to reverse your sentences. .secnetnes ruoy esrever ot esrever- deddA
+- Added -reverse to reverse your sentences
 - Disabled -forge
 - SpellingCorrection can now replace character sequences with single spaces (s/sequence/ ")
 - Only actual corrected parts become italics (e.g. if "tset" would be corrected to "test" all being italics, now only "es" is italics)
-- Weather now doesn't expect only one argument, you can freely use spaces now
+- -w now doesn't expect only one argument, you can freely use spaces now
 
 ####3.9.1
 - WIP versions can't be shown via -changelog anymore
@@ -307,7 +307,7 @@
 ####3.8.4
 - Added argument which allows specific users to show the secret channels the bot is in
 - Got rid of StringBuilders where not needed
-- No more Java 7 in Help menu
+- No more Java 7 in help menu
 - Fixed enable and disable notification messages not getting sent to other channels
 - Fixed bot not recognizing that he already joined/left a channel when being asked to join/leave
 
@@ -341,7 +341,7 @@
 
 ####3.6.3
 - Revamped way of telling the user that he has done something incorrectly internally
-- Fixes regarding Localization
+- Fixes regarding localization
 
 ####3.6.2
 - bl4ckb0t doesn't send a message if the corrected message is the same as before
@@ -373,7 +373,7 @@
 - Version is now shown within the code
 
 ####3.5.2
-- Changed onOrivateMessage message
+- Changed onPrivateMessage message
 
 ####3.5.1
 - Removed unneccessary debug code
@@ -440,7 +440,7 @@
 - Updated localization for -scramble
 
 ####3.1.1
-- Added localization to -source (forgot)
+- Added localization to -source
 - Updated -source link
 
 ##3.1
@@ -478,10 +478,10 @@
 - Revamped way of telling the user that he has done something incorrectly
 
 ####2.22.4
-- Maximum algorythm length set to 20 (REF: God's number)
+- Maximum algorithm length set to 20 (REF: God's number)
 
 ####2.22.3
-- Revamped scrambling algorythm
+- Revamped scrambling algorithm
 
 ####2.22.2
 - Fixed 2.22.1
@@ -630,7 +630,7 @@
 - Internal changes
 
 ####2.15.10
-- Fixed channel file link not working
+- Fixed channel file link still not working
 
 ####2.15.9
 - Fixed channel file link not working
@@ -653,7 +653,7 @@
 - Fixed registeristering added in 2.15.3
 
 ####2.15.3
-- The testbot now registers commands by itself
+- The testbot now registers commands by himself
 
 ####2.15.2
 - Internal changes
@@ -784,7 +784,7 @@
 - Fixed bumped up limit
 
 ####2.4.4
-- Fixed -w not showing any results when the website did not show a winddirection
+- Fixed -w not showing any results when the website did not show a wind direction
 
 ####2.4.3
 - Updated help menu
@@ -797,7 +797,7 @@
 - Fixed resource leaks
 
 ##2.4
-- Added -w
+- Added -w to retrieve the current weather of a city
 - Changed server again
 
 ####2.3.2
@@ -833,7 +833,7 @@
 - Added sending a picture if someone "* kills himself"
 
 ####2.0.3
-- Added % (modulo) to -calc
+- Added modulo calculations to -calc
 - Removed update reminder
 - Attempt to correctly restart bot on ping timeout
 - Finally fixed enable check when disabled
@@ -847,14 +847,14 @@
 - Internal changes
 
 #2.0
-- New way of handling commands
+- New way of handling commands (Thanks [Lord_Ralex](https://github.com/AE97/)!)
 
 ####1.14.2
 - Bot now reconnects on a ping timeout
 
 ####1.14.1
 - Tweaks to -calc
-- Added 2² calculations
+- Added 2²-type calculations
 - Removed * kicks <name> message
 
 ####1.14
