@@ -1,6 +1,6 @@
 #Changelog
 ---
-####5.7.1_WIP
+####5.7.1
 - -longurl now uses the unshorten.it API
 - Changed -longurl to -unshorten
 - Internal changes
