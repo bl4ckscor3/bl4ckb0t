@@ -25,6 +25,12 @@ public class MiscListener extends ListenerAdapter
 	{
 		try
 		{
+			if(event.getUser().getNick().equals("Maunz") && event.getMessage().contains("SteamDB has spotted an update for CS:GO on the 730 branch that was pushed to the Steam client!"))
+			{
+				Utilities.sendMessage(event.getChannel().getName(), "bl4ckscor3, ^");
+				return;
+			}
+			
 			if(Utilities.isIgnored(event.getUser().getNick()))
 			{
 				Logging.warn("Ignoring user " + event.getUser().getNick());
