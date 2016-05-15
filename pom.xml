@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>bl4ckscor3.bot</groupId>
 	<artifactId>bl4ckb0t</artifactId>
-	<version>5.7.1</version>
+	<version>5.7.1.1</version>
 	<name>bl4ckb0t</name>
 	<description>An IRC bot designed and managed by bl4ckscor3</description>
 	<url>https://github.com/bl4ckscor3/bl4ckb0t</url>

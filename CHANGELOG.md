@@ -1,5 +1,8 @@
 #Changelog
 ---
+**5.7.1.1**
+- Added Java version to -info
+
 ####5.7.1
 - -longurl now uses the unshorten.it API
 - Changed -longurl to -unshorten
