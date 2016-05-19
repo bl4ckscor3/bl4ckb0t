@@ -1,5 +1,9 @@
 #Changelog
 ---
+####5.7.2
+- Fixed YouTube Info not showing if the uploader disabled dis-/likes
+- Fixed -caps sending its output to the user as a pm instead to the channel
+
 **5.7.1.1**
 - Added Java version to -info
 

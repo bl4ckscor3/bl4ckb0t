@@ -55,7 +55,7 @@
 
 [**-unleet**: None.](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/Unleet.java)
 
-[**-unshorten**: -longurl](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/LongURL.java)
+[**-unshorten**: -longurl](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/Unshorten.java)
 
 [**-update**: None.](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/Update.java)
 

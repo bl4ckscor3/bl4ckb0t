@@ -51,7 +51,7 @@ public class Caps extends BaseChannelCommand<MessageEvent>
 				throw new IncorrectCommandExecutionException(getMainAlias());
 		}
 
-		Utilities.sendMessage(event.getUser().getNick(), builder.toString());
+		Utilities.sendMessage(channel, builder.toString());
 		SpellingCorrection.updateLatestMessage(channel, builder.toString(), event.getUser().getNick());
 	}
 

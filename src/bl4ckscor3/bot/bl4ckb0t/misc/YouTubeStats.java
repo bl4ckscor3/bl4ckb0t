@@ -79,8 +79,17 @@ public class YouTubeStats
 
 			title = doc.select("#eow-title").get(0).text();
 			views = doc.select(".watch-view-count").get(0).text().split(" ")[0];
-			likes = doc.select(".like-button-renderer-like-button-unclicked > span:nth-child(1)").get(0).text();
-			dislikes = doc.select(".like-button-renderer-dislike-button-unclicked > span:nth-child(1)").get(0).text();
+			
+			try
+			{
+				likes = doc.select(".like-button-renderer-like-button-unclicked > span:nth-child(1)").get(0).text();
+				dislikes = doc.select(".like-button-renderer-dislike-button-unclicked > span:nth-child(1)").get(0).text();
+			}
+			catch(IndexOutOfBoundsException e)
+			{
+				likes = (dislikes = L10N.getString("youtube.ratingDisabled", channel));
+			}
+			
 			date = doc.select(".watch-time-text").get(0).text().split(" ")[2].trim();
 			uploader = doc.select(".yt-user-info > a:nth-child(1)").get(0).text();
 
