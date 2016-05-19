@@ -22,16 +22,16 @@ public class Language extends BaseChannelCommand<MessageEvent>
 	{
 		String channel = event.getChannel().getName();
 		
-		if(args.length == 1)
+		if(args.length == 0)
 			Utilities.sendMessage(channel, L10N.getString("language.currentLanguage", channel).replace("#lang", Utilities.capitalizeFirstLetter(L10N.chanLangs.get(channel))));
-		else if(args.length == 2)
+		else if(args.length == 1)
 		{
-			if(args[1].equalsIgnoreCase(availableLanguages[0]))
+			if(args[0].equalsIgnoreCase(availableLanguages[0]))
 			{
 				L10N.setChannelLanguage(channel, "english");
 				Logging.info("Changed localizitation in " + channel + " to " + availableLanguages[0] + ".");
 			}
-			else if(args[1].equalsIgnoreCase(availableLanguages[1]))
+			else if(args[0].equalsIgnoreCase(availableLanguages[1]))
 			{
 				L10N.setChannelLanguage(channel, "german");
 				Logging.info("Changed localizitation in " + channel + " to " + availableLanguages[1] + ".");

@@ -35,7 +35,7 @@ public class ListChans extends BaseChannelCommand<MessageEvent>
 		Utilities.sendMessage(channel, L10N.getString("listchans.list", channel) + ": " + result);
 		secretChannelAmount = 0;
 
-		if(args.length == 2 && args[1].equalsIgnoreCase("show"))
+		if(args.length == 1 && args[0].equalsIgnoreCase("show"))
 		{
 			if(Utilities.isValidUser(event.getUser()))
 			{

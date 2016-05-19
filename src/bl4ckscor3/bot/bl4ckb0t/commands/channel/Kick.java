@@ -29,21 +29,21 @@ public class Kick extends BaseChannelCommand<MessageEvent>
 				return;
 			}
 
-			if(args.length >= 2)
+			if(args.length >= 1)
 			{
 				for(String userNotToKick : Lists.getValidUsers())
 				{
-					if(args[1].equalsIgnoreCase(userNotToKick))
+					if(args[0].equalsIgnoreCase(userNotToKick))
 					{
 						Utilities.sendMessage(channel, L10N.getString("kick.cannotKick", channel));
 						return;
 					}
 				}
 
-				if(args[1].equalsIgnoreCase(Core.bot.getNick()))
+				if(args[0].equalsIgnoreCase(Core.bot.getNick()))
 				{
 					event.getChannel().send().action(L10N.getString("kick.self", channel));
-					Core.bot.kick(channel, args[1], L10N.getString("kick.self.reason", channel));
+					Core.bot.kick(channel, args[0], L10N.getString("kick.self.reason", channel));
 
 					if(L10N.chanLangs.containsKey(channel))
 						L10N.chanLangs.remove(channel);
@@ -52,12 +52,12 @@ public class Kick extends BaseChannelCommand<MessageEvent>
 				{
 					String result = "";
 
-					for(int i = (args.length == 2 ? 1 : 2); i < args.length; i++)
+					for(int i = (args.length == 1 ? 0 : 1); i < args.length; i++)
 					{
 						result += args[i] + " ";
 					}
 
-					Core.bot.kick(channel, args[1], result.substring(0, result.lastIndexOf(' ')));
+					Core.bot.kick(channel, args[0], result.substring(0, result.lastIndexOf(' ')));
 				}
 			}
 			else

@@ -16,9 +16,9 @@ public class Stop extends BaseChannelCommand<MessageEvent>
 	@Override
 	public void exe(MessageEvent event, String[] args) throws IOException, IrcException, IncorrectCommandExecutionException
 	{
-		if(args.length == 2)
+		if(args.length == 1)
 		{
-			switch(args[1])
+			switch(args[0])
 			{
 				case "yes":
 					Core.bot.stopBotReconnect();

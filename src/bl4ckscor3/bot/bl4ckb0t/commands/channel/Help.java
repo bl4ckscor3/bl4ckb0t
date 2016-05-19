@@ -30,7 +30,7 @@ public class Help extends BaseChannelCommand<MessageEvent>
 		String[] aliases = pLvl == 3 ? aliasesValid : (pLvl == 2 ? aliasesAllowed : aliasesNormal);
 		String channel = event.getChannel().getName();
 		
-		if(args.length == 1)
+		if(args.length == 0)
 		{
 			Utilities.sendMessage(nick, Colors.BOLD + Colors.OLIVE + "----------" + L10N.getString("help.header", channel) + "----------");
 
@@ -59,11 +59,11 @@ public class Help extends BaseChannelCommand<MessageEvent>
 			Utilities.sendMessage(nick, Colors.TEAL + L10N.getString("help.credits.4", channel));
 			Utilities.sendMessage(nick, Colors.TEAL + L10N.getString("help.credits.5", channel));
 		}
-		else if(args.length == 2)
+		else if(args.length == 1)
 		{
 			for(BaseChannelCommand<MessageEvent> cmd : CMDListener.commands)
 			{
-				if(cmd.isValidAlias(args[1]) || cmd.isValidAlias("-" + args[1]))
+				if(cmd.isValidAlias(args[0]) || cmd.isValidAlias("-" + args[0]))
 				{
 					if(cmd.getPermissionLevel() > pLvl)
 					{
@@ -76,7 +76,7 @@ public class Help extends BaseChannelCommand<MessageEvent>
 				}
 			}
 
-			Utilities.sendMessage(channel, args[1] + " " + L10N.getString("help.invalidCmd", channel));
+			Utilities.sendMessage(channel, args[0] + " " + L10N.getString("help.invalidCmd", channel));
 		}
 		else
 			throw new IncorrectCommandExecutionException(getMainAlias());

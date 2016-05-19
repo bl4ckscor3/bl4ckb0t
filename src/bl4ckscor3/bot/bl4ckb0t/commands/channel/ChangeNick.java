@@ -20,13 +20,13 @@ public class ChangeNick extends BaseChannelCommand<MessageEvent>
 	{
 		String channel = event.getChannel().getName();
 		
-		if(args.length == 2)
+		if(args.length == 1)
 		{
-			if(args[1].equals(Core.bot.getNick()))
+			if(args[0].equals(Core.bot.getNick()))
 				Utilities.sendMessage(channel, L10N.getString("changenick.same", channel));
 
-			if(!args[1].equalsIgnoreCase("d"))
-				Core.bot.sendIRC().changeNick(args[1]);
+			if(!args[0].equalsIgnoreCase("d"))
+				Core.bot.sendIRC().changeNick(args[0]);
 			else
 				Core.bot.sendIRC().changeNick("bl4ckb0t");
 			

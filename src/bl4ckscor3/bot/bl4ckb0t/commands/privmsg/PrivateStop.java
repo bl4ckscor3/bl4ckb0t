@@ -39,7 +39,7 @@ public class PrivateStop extends BasePrivateCommand<PrivateMessageEvent>
 	@Override
 	public String getMainAlias()
 	{
-		return "stop";
+		return "stop ";
 	}
 	
 

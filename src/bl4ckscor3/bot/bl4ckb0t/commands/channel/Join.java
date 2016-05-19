@@ -16,16 +16,16 @@ public class Join extends BaseChannelCommand<MessageEvent>
 	@Override
 	public void exe(MessageEvent event, String[] args) throws MalformedURLException, IOException, IncorrectCommandExecutionException
 	{
-		if(args.length == 2)
+		if(args.length == 1)
 		{
-			if(args[1].equals("d"))
+			if(args[0].equals("d"))
 			{
 				Core.bot.joinDefaults();
 				return;
 			}
 
-			if(!args[1].startsWith("#"))
-				args[1] = "#" + args[1];
+			if(!args[0].startsWith("#"))
+				args[0] = "#" + args[0];
 
 			if(!Utilities.hasJoinedChannel(args[1]))
 				Core.bot.joinChannel(args[1]);

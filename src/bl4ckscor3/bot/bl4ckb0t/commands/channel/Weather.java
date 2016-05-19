@@ -23,9 +23,6 @@ public class Weather extends BaseChannelCommand<MessageEvent>
 		
 		for(String s : args)
 		{
-			if(isValidAlias(s)) //if it's the first argument, don't add it to the city string
-				continue;
-
 			city += s + " ";
 		}
 		

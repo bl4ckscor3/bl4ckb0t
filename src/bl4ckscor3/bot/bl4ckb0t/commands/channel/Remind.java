@@ -20,7 +20,7 @@ public class Remind extends BaseChannelCommand<MessageEvent>
 	{
 		String channel = event.getChannel().getName();
 		
-		if(args.length == 2 && args[1].equals("list"))
+		if(args.length == 1 && args[0].equals("list"))
 		{
 			if(reminders.size() > 0)
 			{
@@ -42,7 +42,7 @@ public class Remind extends BaseChannelCommand<MessageEvent>
 		
 		try
 		{
-			int id = Integer.parseInt(args[1]); //if this doesn't fail we know that the user is probably asking for a specific id
+			int id = Integer.parseInt(args[0]); //if this doesn't fail we know that the user is probably asking for a specific id
 
 			if(!(id > Reminder.latestId))
 			{
@@ -50,7 +50,7 @@ public class Remind extends BaseChannelCommand<MessageEvent>
 				{
 					if(r.getId() == id)
 					{
-						if(args.length >= 3 && args[2].equals("stop"))
+						if(args.length >= 2 && args[1].equals("stop"))
 						{
 							if(event.getUser().getNick().equals(r.getIssuedUser()))
 							{
@@ -86,11 +86,11 @@ public class Remind extends BaseChannelCommand<MessageEvent>
 		}
 		catch(NumberFormatException ex)
 		{
-			if(args.length >= 3)
+			if(args.length >= 2)
 			{
 				String e = "";
 
-				for(int i = 2; i < args.length; i++)
+				for(int i = 1; i < args.length; i++)
 				{
 					e += args[i] + " ";
 				}
@@ -100,7 +100,7 @@ public class Remind extends BaseChannelCommand<MessageEvent>
 
 				try
 				{
-					timeDue = new TimeParser(getMainAlias()).stl(args[1]) * 1000L;
+					timeDue = new TimeParser(getMainAlias()).stl(args[0]) * 1000L;
 				}
 				catch(NumberFormatException ex1)
 				{

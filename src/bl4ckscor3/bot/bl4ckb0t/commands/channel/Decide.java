@@ -14,7 +14,7 @@ public class Decide extends BaseChannelCommand<MessageEvent>
 	@Override
 	public void exe(MessageEvent event, String[] args) throws IncorrectCommandExecutionException
 	{
-		if(args.length >= 2 && event.getMessage().endsWith("?"))
+		if(args.length >= 1 && event.getMessage().endsWith("?"))
 		{
 			int decision = new Random().nextInt(101);
 			String channel = event.getChannel().getName();

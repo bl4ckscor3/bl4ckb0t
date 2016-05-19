@@ -14,7 +14,7 @@ public class Select extends BaseChannelCommand<MessageEvent>
 	@Override
 	public void exe(MessageEvent event, String[] args) throws IncorrectCommandExecutionException 
 	{
-		if(args.length != 1)
+		if(args.length != 0)
 		{
 			String[] options = event.getMessage().substring(8).split(",");
 

@@ -12,7 +12,7 @@ public class Leet extends BaseChannelCommand<MessageEvent>
 	@Override
 	public void exe(MessageEvent event, String[] args) throws IncorrectCommandExecutionException
 	{
-		if(args.length >= 2)
+		if(args.length >= 1)
 		{
 			char[] chars = event.getMessage().substring(6).toCharArray();
 			String result = "";

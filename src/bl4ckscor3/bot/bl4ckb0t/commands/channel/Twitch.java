@@ -12,8 +12,8 @@ public class Twitch extends BaseChannelCommand<MessageEvent>
 	@Override
 	public void exe(MessageEvent event, String[] args) throws IncorrectCommandExecutionException
 	{
-		if(args.length == 2)
-			Utilities.sendMessage(event.getChannel().getName(), "http://www.twitch.tv/" + args[1]);
+		if(args.length == 1)
+			Utilities.sendMessage(event.getChannel().getName(), "http://www.twitch.tv/" + args[01]);
 		else
 			throw new IncorrectCommandExecutionException(getMainAlias());
 	}

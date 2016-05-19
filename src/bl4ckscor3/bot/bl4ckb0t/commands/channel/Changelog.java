@@ -21,15 +21,15 @@ public class Changelog extends BaseChannelCommand<MessageEvent>
 	{
 		String channel = event.getChannel().getName();
 		
-		if(args.length == 2)
+		if(args.length == 1)
 		{
-			if(!versions.containsKey(args[1]))
+			if(!versions.containsKey(args[0]))
 			{
 				Utilities.sendMessage(channel, L10N.getString("changelog.versionNotFound", channel));
 				return;
 			}
 
-			for(String s : versions.get(args[1]))
+			for(String s : versions.get(args[0]))
 			{
 				Utilities.sendMessage(channel, s);
 			}

@@ -217,7 +217,14 @@ public class Bot extends PircBotX
 	 */
 	public <E extends Event> void dispatchCommand(E e, ICommand<E> cmd, String[] args) throws Exception
 	{
-		cmd.exe(e, args);
+		String[] newArgs = new String[args.length - 1];
+		
+		for(int i = 0; i < newArgs.length; i++)
+		{
+			newArgs[i] = args[i + 1];
+		}
+
+		cmd.exe(e, newArgs);
 		System.gc();
 	}
 	

@@ -18,12 +18,12 @@ public class Enable extends BaseChannelCommand<MessageEvent>
 	@Override
 	public void exe(MessageEvent event, String[] args) throws MalformedURLException, IOException, IncorrectCommandExecutionException
 	{
-		if(args.length > 2)
+		if(args.length > 1)
 			throw new IncorrectCommandExecutionException(getMainAlias());
 
 		String channel = event.getChannel().getName();
 		
-		if(args.length == 1)
+		if(args.length == 0)
 		{
 			if(!Core.bot.isEnabled())
 			{
@@ -40,22 +40,22 @@ public class Enable extends BaseChannelCommand<MessageEvent>
 		{
 			ArrayMap<String,Boolean> states = Core.bot.getChannelStates();
 			
-			if(!states.containsKey(args[1].replace("#", "")))
+			if(!states.containsKey(args[0].replace("#", "")))
 			{
-				states.put(args[1].replace("#", ""), true);
+				states.put(args[0].replace("#", ""), true);
 				Utilities.sendMessage(channel, L10N.getString("enable.success", channel));
-				Logging.info("Enabled bot in " + args[1]);
+				Logging.info("Enabled bot in " + args[0]);
 			}
 			else
 			{
-				if(!states.get(args[1].replace("#", "")))
+				if(!states.get(args[0].replace("#", "")))
 				{
-					states.put(args[1].replace("#", ""), true);
-					Utilities.sendMessage(args[1], L10N.getString("enable.success", channel));
-					Logging.info("Enabled bot in " + args[1]);
+					states.put(args[0].replace("#", ""), true);
+					Utilities.sendMessage(args[0], L10N.getString("enable.success", channel));
+					Logging.info("Enabled bot in " + args[0]);
 				}
 				else
-					Utilities.sendMessage(args[1], L10N.getString("enable.alreadyEnabled", channel));
+					Utilities.sendMessage(args[0], L10N.getString("enable.alreadyEnabled", channel));
 			}
 		}
 	}

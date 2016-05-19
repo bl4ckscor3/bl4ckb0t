@@ -22,7 +22,7 @@ public class Evaluate extends BaseChannelCommand<MessageEvent>
 	{
 		String input = "";
 		
-		for(int i = 1; i < args.length; i++)
+		for(int i = 0; i < args.length; i++)
 		{
 			input += args[i] + " ";
 		}

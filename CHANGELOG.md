@@ -2,8 +2,10 @@
 ---
 ####5.7.2
 - The user now gets notified if the sent Tweet doesn't exist
+- -forge's version subcommand now shows the build date
 - Fixed YouTube Info not showing if the uploader disabled dis-/likes
 - Fixed -caps sending its output to the user as a pm instead to the channel
+- Internal changes
 
 **5.7.1.1**
 - Added Java version to -info

@@ -6,7 +6,7 @@ import bl4ckscor3.bot.bl4ckb0t.commands.BaseChannelCommand;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 
 /**
- * 'PlaceholderÄ class to be able to set the help menu
+ * Placeholder class to be able to set the help menu
  */
 public class Ping extends BaseChannelCommand<MessageEvent>
 {

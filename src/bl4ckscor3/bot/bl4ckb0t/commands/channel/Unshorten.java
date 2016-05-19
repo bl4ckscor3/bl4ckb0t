@@ -18,9 +18,9 @@ public class Unshorten extends BaseChannelCommand<MessageEvent>
 	@Override
 	public void exe(MessageEvent event, String[] args) throws MalformedURLException, IOException, IncorrectCommandExecutionException
 	{
-		if(args.length == 2)
+		if(args.length == 1)
 		{
-			Document doc = Jsoup.connect("http://api.unshorten.it?shortURL=" + args[1] + "&apiKey=" + Passwords.UNSHORTENITAPIKEY.getPassword()).userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:5.0) Gecko/20100101 Firefox/5.0").get();
+			Document doc = Jsoup.connect("http://api.unshorten.it?shortURL=" + args[0] + "&apiKey=" + Passwords.UNSHORTENITAPIKEY.getPassword()).userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:5.0) Gecko/20100101 Firefox/5.0").get();
 			String channel = event.getChannel().getName();
 			String output = doc.text();
 			

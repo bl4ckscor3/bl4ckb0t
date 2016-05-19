@@ -19,11 +19,11 @@ public class Leave extends BaseChannelCommand<MessageEvent>
 	{
 		String channel = event.getChannel().getName();
 		
-		if(args.length == 1)
+		if(args.length == 0)
 			Core.bot.leaveChannel(channel);
-		else if(args.length == 2)
+		else if(args.length == 1)
 		{
-			if(args[1].equals("d"))
+			if(args[0].equals("d"))
 			{
 				for(String s : Lists.getDefaultChans())
 				{	
@@ -31,11 +31,11 @@ public class Leave extends BaseChannelCommand<MessageEvent>
 				}
 			}
 
-			if(!args[1].startsWith("#"))
-				args[1] = "#" + args[1];
+			if(!args[0].startsWith("#"))
+				args[0] = "#" + args[0];
 
-			if(Utilities.hasJoinedChannel(args[1]))
-				Core.bot.leaveChannel(args[1]);
+			if(Utilities.hasJoinedChannel(args[0]))
+				Core.bot.leaveChannel(args[0]);
 			else
 				Utilities.sendMessage(channel, L10N.getString("leave.notJoined", channel));
 		}
