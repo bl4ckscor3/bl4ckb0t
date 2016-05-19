@@ -1,6 +1,7 @@
 #Changelog
 ---
 ####5.7.2
+- The user now gets notified if the sent Tweet doesn't exist
 - Fixed YouTube Info not showing if the uploader disabled dis-/likes
 - Fixed -caps sending its output to the user as a pm instead to the channel
 
