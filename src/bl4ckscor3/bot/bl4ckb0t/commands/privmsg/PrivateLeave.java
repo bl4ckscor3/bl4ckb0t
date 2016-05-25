@@ -10,13 +10,13 @@ public class PrivateLeave extends BasePrivateCommand<PrivateMessageEvent>
 	@Override
 	public void exe(PrivateMessageEvent event, String[] args)
 	{
-		Core.bot.leaveChannel(args[1].startsWith("#") ? args[1] : "#" + args[1]);
+		Core.bot.leaveChannel(args[0].startsWith("#") ? args[0] : "#" + args[0]);
 	}
 
 	@Override
 	public String getMainAlias()
 	{
-		return "leave ";
+		return "leave";
 	}
 	
 

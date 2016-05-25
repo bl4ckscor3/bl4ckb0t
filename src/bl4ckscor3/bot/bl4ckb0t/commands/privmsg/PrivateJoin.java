@@ -10,16 +10,16 @@ public class PrivateJoin extends BasePrivateCommand<PrivateMessageEvent>
 	@Override
 	public void exe(PrivateMessageEvent event, String[] args)
 	{
-		if(args.length > 2)
-			Core.bot.joinChannelWithPassword(args[1], args[2]);
+		if(args.length > 1)
+			Core.bot.joinChannelWithPassword(args[0], args[1]);
 		else
-			Core.bot.joinChannel(args[1]);
+			Core.bot.joinChannel(args[0]);
 	}
 
 	@Override
 	public String getMainAlias()
 	{
-		return "join ";
+		return "join";
 	}
 
 	

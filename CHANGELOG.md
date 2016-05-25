@@ -1,5 +1,10 @@
 #Changelog
 ---
+####5.7.3
+- Fixed private commands not working
+- Merged user/channel messaage private commands
+- Internal changes
+
 ####5.7.2
 - The user now gets notified if the sent Tweet doesn't exist
 - -forge's version subcommand now shows the build date

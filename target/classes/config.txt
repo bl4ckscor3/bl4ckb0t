@@ -38,13 +38,12 @@ yt=true
 #       Private Commands       #
 ################################
 action=true
-chanmsg=true
 configEdit=true
 identify=true
 privatejoin=true
 privateleave=true
 privatestop=true
-usermsg=true
+sendMessage=true
 
 ################################
 #            Other             #

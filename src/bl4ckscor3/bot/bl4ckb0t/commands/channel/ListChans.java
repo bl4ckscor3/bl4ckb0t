@@ -27,10 +27,11 @@ public class ListChans extends BaseChannelCommand<MessageEvent>
 				result += (s + " | ");
 		}
 
-		result = result.substring(0, result.lastIndexOf(" | "));
+		if(result.lastIndexOf(" | ") != -1)
+			result = result.substring(0, result.lastIndexOf(" | "));
 
 		if(secretChannelAmount != 0)
-			result += " + " + secretChannelAmount + " " + L10N.getString("listchans.secret", channel);
+			result += L10N.getString("listchans.secret", channel).replace("#secretChannelAmount", "" + secretChannelAmount);
 
 		Utilities.sendMessage(channel, L10N.getString("listchans.list", channel) + ": " + result);
 		secretChannelAmount = 0;
@@ -39,7 +40,6 @@ public class ListChans extends BaseChannelCommand<MessageEvent>
 		{
 			if(Utilities.isValidUser(event.getUser()))
 			{
-
 				Utilities.sendMessage(event.getUser().getNick(), L10N.getString("listchans.secret.show", channel));
 
 				for(String s : Utilities.getSecretChannels())

@@ -12,9 +12,9 @@ public class PrivateStop extends BasePrivateCommand<PrivateMessageEvent>
 	@Override
 	public void exe(PrivateMessageEvent event, String[] args) throws Exception
 	{
-		if(args.length == 2)
+		if(args.length == 1)
 		{
-			switch(args[1])
+			switch(args[0])
 			{
 				case "yes":
 					Core.bot.stopBotReconnect();
@@ -39,10 +39,8 @@ public class PrivateStop extends BasePrivateCommand<PrivateMessageEvent>
 	@Override
 	public String getMainAlias()
 	{
-		return "stop ";
+		return "stop";
 	}
-	
-
 	
 	@Override
 	public String getConfigEntry()

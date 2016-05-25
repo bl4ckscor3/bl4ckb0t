@@ -19,15 +19,15 @@ public class ConfigEdit extends BasePrivateCommand<PrivateMessageEvent>
 		ConfigurationFile config = Core.bot.getConfig();
 		ArrayMap<String,String> values = config.values;
 		
-		if(args[1].equals("set"))
+		if(args[0].equals("set"))
 		{
-			if(args.length > 2)
+			if(args.length > 1)
 			{
-				if(args.length > 3)
+				if(args.length > 2)
 				{
-					if(values.containsKey(args[2]))
+					if(values.containsKey(args[1]))
 					{
-						if(args[3].equalsIgnoreCase("true") || args[3].equalsIgnoreCase("false"))
+						if(args[2].equalsIgnoreCase("true") || args[2].equalsIgnoreCase("false"))
 						{
 							List<String> file = FileUtils.readLines(config.config);
 							
@@ -37,10 +37,10 @@ public class ConfigEdit extends BasePrivateCommand<PrivateMessageEvent>
 								
 								if(s.contains("="))
 								{
-									if(s.split("=")[0].equals(args[2]))
+									if(s.split("=")[0].equals(args[1]))
 									{
 										file.remove(i);
-										file.add(i, s.split("=")[0] + "=" + args[3]);
+										file.add(i, s.split("=")[0] + "=" + args[2]);
 										FileUtils.writeLines(config.config, file);
 										event.respond("Value updated. Use " + Colors.BOLD + "config save" + Colors.NORMAL + " to apply the changes.");
 									}
@@ -51,7 +51,7 @@ public class ConfigEdit extends BasePrivateCommand<PrivateMessageEvent>
 							event.respond("The new value needs to be either " + Colors.BOLD + "true" + Colors.NORMAL + " or " + Colors.BOLD + "false" + Colors.NORMAL + ".");
 					}
 					else
-						event.respond("Config value \"" + args[2] +"\" does not exist.");
+						event.respond("Config value \"" + args[1] +"\" does not exist.");
 				}
 				else
 					event.respond("Please specify a new value (true/false): " + Colors.BOLD + "config set <option> <value>");
@@ -59,7 +59,7 @@ public class ConfigEdit extends BasePrivateCommand<PrivateMessageEvent>
 			else
 				event.respond("Please specify a config option and a new value (true/false): " + Colors.BOLD + "config set <option> <value>");
 		}
-		else if(args[1].equals("list"))
+		else if(args[0].equals("list"))
 		{
 			String result = "";
 			int count = 0;
@@ -77,13 +77,13 @@ public class ConfigEdit extends BasePrivateCommand<PrivateMessageEvent>
 				count++;
 			}
 		}
-		else if(args[1].equals("lookup"))
+		else if(args[0].equals("lookup"))
 		{
-			if(args.length > 2)
+			if(args.length > 1)
 			{
-				if(values.containsKey(args[2]))
+				if(values.containsKey(args[1]))
 				{
-					boolean b = config.isEnabled(args[2]);
+					boolean b = config.isEnabled(args[1]);
 					event.respond("" + b);
 				}
 				else
@@ -92,7 +92,7 @@ public class ConfigEdit extends BasePrivateCommand<PrivateMessageEvent>
 			else
 				event.respond("Please specify a config option: " + Colors.BOLD + "config lookup <option>");
 		}
-		else if(args[1].equals("save"))
+		else if(args[0].equals("save"))
 		{
 			config.values.clear();
 			config.populateArrayMap();

@@ -5,7 +5,7 @@ import org.pircbotx.hooks.events.PrivateMessageEvent;
 import bl4ckscor3.bot.bl4ckb0t.commands.BasePrivateCommand;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class ChanMsg extends BasePrivateCommand<PrivateMessageEvent>
+public class SendMessage extends BasePrivateCommand<PrivateMessageEvent>
 {
 	@Override
 	public void exe(PrivateMessageEvent event, String[] args)
@@ -24,12 +24,12 @@ public class ChanMsg extends BasePrivateCommand<PrivateMessageEvent>
 	@Override
 	public String getMainAlias()
 	{
-		return "#";
+		return "send";
 	}
 	
 	@Override
 	public String getConfigEntry()
 	{
-		return "chanmsg";
+		return "sendMessage";
 	}
 }

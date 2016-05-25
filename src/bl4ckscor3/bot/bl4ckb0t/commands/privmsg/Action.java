@@ -13,25 +13,25 @@ public class Action extends BasePrivateCommand<PrivateMessageEvent>
 	{
 		String msg = "";
 		
-		if(!args[1].startsWith("#"))
+		if(!args[0].startsWith("#"))
 		{
 			Utilities.sendMessage(event.getUser().getNick(), "Channel names start with #. Please use the following syntax: * #<channelName> <message>");
 			return;
 		}
 		
-		for(int i = 2; i < args.length; i++)
+		for(int i = 1; i < args.length; i++)
 		{
 			msg += args[i] + " ";
 		}
 
 		msg = msg.substring(0, msg.length() - 1);
-		Core.bot.action(args[1], msg);
+		Core.bot.action(args[0], msg);
 	}
 
 	@Override
 	public String getMainAlias()
 	{
-		return "* ";
+		return "*";
 	}
 	
 	@Override

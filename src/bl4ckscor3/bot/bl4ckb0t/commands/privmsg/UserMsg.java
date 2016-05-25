@@ -15,19 +15,19 @@ public class UserMsg extends BasePrivateCommand<PrivateMessageEvent>
 	{
 		String msg = "";
 		
-		for(int i = 2; i < args.length; i++)
+		for(int i = 1; i < args.length; i++)
 		{
 			msg += args[i] + " ";
 		}
 
 		msg = msg.substring(0, msg.length() - 1);
-		Utilities.sendMessage(args[1], msg);
+		Utilities.sendMessage(args[0], msg);
 	}
 
 	@Override
 	public String getMainAlias()
 	{
-		return "msg ";
+		return "msg";
 	}
 	
 	@Override

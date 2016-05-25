@@ -39,13 +39,12 @@ import bl4ckscor3.bot.bl4ckb0t.commands.channel.Weather;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.XColor;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.YouTube;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.Action;
-import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.ChanMsg;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.ConfigEdit;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.Identify;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.PrivateJoin;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.PrivateLeave;
 import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.PrivateStop;
-import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.UserMsg;
+import bl4ckscor3.bot.bl4ckb0t.commands.privmsg.SendMessage;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.CustomArrayList;
@@ -98,13 +97,12 @@ public class CMDListener extends ListenerAdapter
 		Help.setupHelpMenu(CMDListener.commands);
 		privCommands.addEverything(
 				new Action(),
-				new ChanMsg(),
 				new ConfigEdit(),
 				new Identify(),
 				new PrivateJoin(),
 				new PrivateLeave(),
 				new PrivateStop(),
-				new UserMsg());
+				new SendMessage());
 		Logging.info("Registered command classes for private messages...");
 	}
 
