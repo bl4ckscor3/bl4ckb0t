@@ -1,8 +1,9 @@
 #Changelog
 ---
-####5.7.3
+####5.7.3_WIP
+- Merged user/channel message private commands
 - Fixed private commands not working
-- Merged user/channel messaage private commands
+- Fixed LinkManager sometimes executing ShowTweet code if "twitter" was present in the link itself
 - Internal changes
 
 ####5.7.2
