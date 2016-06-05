@@ -2,6 +2,7 @@
 ---
 ####5.7.3_WIP
 - Merged user/channel message private commands
+- Devoice Geffy if he joins #bl4ckscor3
 - Fixed private commands not working
 - Fixed LinkManager sometimes executing ShowTweet code if "twitter" was present in the link itself
 - Internal changes

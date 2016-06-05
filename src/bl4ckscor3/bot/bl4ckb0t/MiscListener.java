@@ -6,6 +6,7 @@ import java.net.MalformedURLException;
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.ActionEvent;
 import org.pircbotx.hooks.events.ConnectEvent;
+import org.pircbotx.hooks.events.JoinEvent;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.NickAlreadyInUseEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
@@ -164,5 +165,12 @@ public class MiscListener extends ListenerAdapter
 		{
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public void onJoin(JoinEvent event) throws Exception
+	{
+		if(event.getChannel().getName().equals("#bl4ckscor3") && event.getUser().equals("Geffy"))
+			event.getUser().send().mode("-v");
 	}
 }
