@@ -5,6 +5,7 @@
 - Devoice Geffy if he joins #bl4ckscor3
 - Fixed private commands not working
 - Fixed LinkManager sometimes executing ShowTweet code if "twitter" was present in the link itself
+- Fixed YouTube stats' date and views for (probably) all languages using latin letters
 - Internal changes
 
 ####5.7.2

@@ -3,7 +3,6 @@ package bl4ckscor3.bot.bl4ckb0t.util;
 public class YouTubeLink
 {
 	private String link;
-	private boolean shortLink;
 	
 	/**
 	 * Saves information while a YouTube link is being analyzed
@@ -12,8 +11,7 @@ public class YouTubeLink
 	 */
 	public YouTubeLink(String l, boolean s)
 	{
-		link = l;
-		shortLink = s;
+		link = s ? "www.youtube.com/watch?v=" + l.split("/")[3] : l;
 	}
 
 	/**
@@ -31,13 +29,5 @@ public class YouTubeLink
 	public String getLink()
 	{
 		return link;
-	}
-	
-	/**
-	 * @return true if the link is a short link, false otherwise
-	 */
-	public boolean isShortLink()
-	{
-		return shortLink;
 	}
 }

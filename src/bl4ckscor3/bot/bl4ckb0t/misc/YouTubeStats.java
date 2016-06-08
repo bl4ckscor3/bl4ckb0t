@@ -54,9 +54,6 @@ public class YouTubeStats
 			if(currentLink != 0)
 				Utilities.sendMessage(channel, "------------------------------------------");
 
-			if(link.isShortLink())
-				link.setLink("www.youtube.com/watch?v=" + link.getLink().split("/")[3]);
-
 			//if someone posts the link without a space between the link and the word before it
 			if(!link.getLink().startsWith("w"))
 				link.setLink(link.getLink().split(":")[1].substring(2));
@@ -78,7 +75,7 @@ public class YouTubeStats
 			Document doc = Jsoup.connect(link.getLink()).get();
 
 			title = doc.select("#eow-title").get(0).text();
-			views = doc.select(".watch-view-count").get(0).text().split(" ")[0];
+			views = doc.select(".watch-view-count").get(0).text();
 			
 			try
 			{
@@ -90,12 +87,11 @@ public class YouTubeStats
 				likes = (dislikes = L10N.getString("youtube.ratingDisabled", channel));
 			}
 			
-			date = doc.select(".watch-time-text").get(0).text().split(" ")[2].trim();
+			date = doc.select(".watch-time-text").get(0).text();
 			uploader = doc.select(".yt-user-info > a:nth-child(1)").get(0).text();
-
-			if(!views.matches("[0-9.\\+]*")) //any amount of numbers with . and + inbetween
-				views = "0";
 			
+			date = date.replaceAll("[^0-9.][^ A-Za-z ]*3", ""); //replace everything except 3 letters surrounded by spaces, numbers and . with nothing
+			views = views.replaceAll("[^0-9+.]", ""); //replace everything except numbers, + and . with nothing
 			Utilities.sendStarMsg(channel,
 					Colors.BOLD + Utilities.backgroundColor(Colors.WHITE, Colors.BLACK) + "You" + Utilities.backgroundColor(Colors.RED, Colors.WHITE) + "Tube" + Colors.NORMAL,
 					Colors.BOLD + L10N.getString("youtube.title", channel) + ": " + Colors.NORMAL + title,
