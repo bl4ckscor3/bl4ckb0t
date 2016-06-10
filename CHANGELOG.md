@@ -626,105 +626,63 @@
 - Added -bukkit (similar to -forge)
 - Fixed -leet conversion
 
-####1.13.3
-- Bot now reconnects on a ping timeout
-
-####1.13.2
-- Tweaks to -calc
-- Added 2²-type calculations
-- Removed * kicks <name> message
-
 ####1.13.1
-- Added reminder for <s>TehKitti</s>Vauff to update bl4ckb0t
+- Added 2²-type calculations
+- Bot now reconnects on a ping timeout
+- Tweaks to -calc
+- Removed * kicks <name> message
 
 ##1.13
 - Added -calc
+- Added reminder for <s>TehKitti</s>Vauff to update bl4ckb0t
 - Removed redundant message
-
-####1.12.3
-- Updated help menu
-- Removed jokes
-- Removed -say
-- Removed -time
-- Internal changes
-
-####1.12.2
-- -decide now requires a questionmark (?) to work
-- Fixed bot not being able to be enabled again
-
-####1.12.1
-- Changed source message again
-- Subaraki is awesome!
 
 ##1.12
 - Added -leet to 1337ify your messages
 - Added -vowels to get rid of all the vowels in your messages
+- Changed source message again
+- Subaraki is awesome!
+- -decide now requires a questionmark (?) to work
 - Removed eastereggs
 - Removed funmode
 - Removed debug mode
+- Removed jokes
+- Removed -say
+- Removed -time
+- Fixed bot not being able to be enabled again
 - Internal changes
-
-####1.11.1
-- If something was done incorrectly with -u, all the available arguments get sent
-- Fancied up help menu
 
 ##1.11
 - Added -decide which answers to a question with yes or no
-- bl4ckb0t will masturbate with a 0.1% chance after a message
-
-####1.10.1
-- Updated -dl link
-- bl4ckb0t will say "Yeah, lol" with a 5% chance after a sent message if it starts with "lol"
-- Removed greeting on nick change
+- bl4ckb0t will masturbate with a 0.1% chance after a message was sent
+- If something was done incorrectly with -u, all the available arguments get sent
+- Fancied up help menu
 
 ##1.10
 - Added -dl command for <s>TehKitti</s>Vauff to get the update link
 - Added quit message
+- bl4ckb0t will say "Yeah, lol" with a 5% chance after a sent message if it starts with "lol"
+- Removed greeting on nick change
 - Fixed some features triggering if bot was disabled
 
-####1.9.6
+####1.9.1
+- Added twelve drawings
 - Added how-to to -latestforge if something was done incorrectly
-- Fixed -kick sometimes not sending the correct message
-
-####1.9.5
+- Added option to activate funmode for a specific amount of time
 - Changed server from aperture.esper.net to chaos.esper.net
 - Changed way of getting bl4ckb0t's source
-- Internal changes
-
-####1.9.4
-- Added two drawings
-- Internal changes
-
-####1.9.3
-- Added ten drawings
-- Added option to activate funmode for a specific amount of time
-- Internal changes
-
-####1.9.2
-- Fixed bl4ckb0t repeating -fun when in funmode
-
-####1.9.1
 - Fixed funmode not working as intended
+- Fixed bl4ckb0t repeating -fun when in funmode
+- Fixed -kick sometimes not sending the correct message
+- Internal changes
 
 ##1.9
 - Added funmode (repeates every message sent)
 
-####1.8.3
-- Optimized -draw
-
-####1.8.2
-- Optimized -latestforge
-
-####1.8.1
-- Updated help menu
-- Fixed source command
-
 ##1.8
 - Added -latestforge
-
-####1.7.1
-- Added a drawing
-- Internal changes
+- Optimized -draw
+- Fixed source command
 
 ##1.7
 - Added -draw
@@ -732,37 +690,26 @@
 ##1.6
 - Added -girlballs
 
-####1.5.1
-- Updated help menu
-
 ##1.5
 - Added -yt to retrieve a YouTube channel link
 - Added -tw to retrieve a Twitter profile link
 - Added -tv to retrieve a Twitch channel link
 
-####1.4.1
-- bl4ckb0t welcomes bl4ckscor3
-
 ##1.4
 - bl4ckb0t can now talk
 - bl4ckb0t now sends the pms he received to bl4ckscor3
+- bl4ckb0t welcomes bl4ckscor3
 - Only bl4ckscor3 is being loved
 - Internal changes
 
-####1.3.5
-- Seperated users who are not allowed to be kicked from users who are allowed to kick others
-
-####1.3.4
-- Removed custom leave message argument from -stop
-
-####1.3.3
-- -changenick is now only accessible if -debug is enabled
-
 ####1.3.2
-- Added argument to -stop to allow for a custom leave message
+- Removed custom leave message argument from -stop
+- Seperated users who are not allowed to be kicked from users who are allowed to kick others
 
 ####1.3.1
 - Fixed -kick being able to be used by users with the correct name, but who are not logged in
+- Added argument to -stop to allow for a custom leave message
+- -changenick is now only accessible if -debug is enabled
 
 ##1.3 
 - Added -kick command to kick a user from the channel
