@@ -133,7 +133,7 @@ public class CMDListener extends ListenerAdapter
 					{
 						if(cmd.getPermissionLevel() > permissionLevel)
 						{
-							Utilities.noPermission(event.getUser().getNick());
+							Utilities.noPermission(event.getChannel().getName());
 							return;
 						}
 

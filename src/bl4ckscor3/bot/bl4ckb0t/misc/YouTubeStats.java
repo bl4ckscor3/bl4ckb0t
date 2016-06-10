@@ -90,7 +90,7 @@ public class YouTubeStats
 			date = doc.select(".watch-time-text").get(0).text();
 			uploader = doc.select(".yt-user-info > a:nth-child(1)").get(0).text();
 			
-			date = date.replaceAll("[^0-9.][^ A-Za-z ]*3", ""); //replace everything except 3 letters surrounded by spaces, numbers and . with nothing
+			date = date.replaceAll("^[^0-9]*", ""); //replace everything infront of the first number
 			views = views.replaceAll("[^0-9+.]", ""); //replace everything except numbers, + and . with nothing
 			Utilities.sendStarMsg(channel,
 					Colors.BOLD + Utilities.backgroundColor(Colors.WHITE, Colors.BLACK) + "You" + Utilities.backgroundColor(Colors.RED, Colors.WHITE) + "Tube" + Colors.NORMAL,

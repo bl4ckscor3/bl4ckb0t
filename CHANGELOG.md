@@ -1,5 +1,9 @@
 #Changelog
 ---
+####5.7.4
+- Fixed YouTube stats' date (now removes everything infront of the first number, which should include many many languages)
+- Fixed "No permissions" message getting sent to the user as a PM instead of a channel message
+
 ####5.7.3
 - Merged user/channel message private commands
 - Devoice Geffy if he joins #bl4ckscor3
