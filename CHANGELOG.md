@@ -1,5 +1,8 @@
 #Changelog
 ---
+####5.7.5
+- Added map announcing for the aG Surf Skill server
+
 ####5.7.4
 - Fixed YouTube stats' date (now removes everything infront of the first number, which should include many many languages)
 - Fixed "No permissions" message getting sent to the user as a PM instead of a channel message
