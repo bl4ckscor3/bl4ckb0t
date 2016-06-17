@@ -1,5 +1,9 @@
 #Changelog
 ---
+**5.7.5.1**
+- Added config option for map announcing
+- Increased delay
+
 ####5.7.5
 - Added map announcing for the aG Surf Skill server
 

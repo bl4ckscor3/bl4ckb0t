@@ -24,7 +24,7 @@ public class AGMaps implements Runnable
 	@Override
 	public void run()
 	{
-		if(!Core.bot.isEnabled())
+		if(!Core.bot.isEnabled() || !Core.bot.getConfig().isEnabled("queryAGMaps"))
 			return;
 
 		try

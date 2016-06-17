@@ -83,7 +83,9 @@ public class ConfigurationFile
 			"showWelcomeBackMsg=true",
 			"spellingCorrection=true",
 			"shrugs=true",
-			"kickOnBannedImgurLink=true"
+			"kickOnBannedImgurLink=true",
+			"queryAGMaps=true"
+			
 	};
 
 	/**
