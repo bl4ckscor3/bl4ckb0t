@@ -84,7 +84,8 @@ public class ConfigurationFile
 			"spellingCorrection=true",
 			"shrugs=true",
 			"kickOnBannedImgurLink=true",
-			"queryAGMaps=true"
+			"queryAGMaps=true",
+			"AGMapsChannel=#AGMaps"
 			
 	};
 
@@ -176,15 +177,23 @@ public class ConfigurationFile
 	}
 
 	/**
-	 * Checks wether a boolean value from a config option is true
 	 * @param option The option to get the value from
-	 * @return true if true, false if not
+	 * @return true if the option is true, false if not
 	 */
 	public boolean isEnabled(String option)
 	{
 		return Boolean.parseBoolean(values.get(option));
 	}
 
+	/**
+	 * @param option The option to get the value from
+	 * @return The value as a string
+	 */
+	public String getString(String option)
+	{
+		return values.get(option);
+	}
+	
 	/**
 	 * Writes the default values to the file
 	 */

@@ -1,5 +1,10 @@
 #Changelog
 ---
+**5.7.6**
+- Added config option for channel
+- Player count now updates more often
+- Decreased delay
+
 **5.7.5.1**
 - Added config option for map announcing
 - Increased delay

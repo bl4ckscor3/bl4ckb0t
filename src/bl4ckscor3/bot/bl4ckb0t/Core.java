@@ -20,7 +20,7 @@ public class Core
 	public static Bot bot;
 	private static boolean wasStartedAsWIP;
 	private static final String botName = "bl4ckb0t";
-	private static final String version = "5.7.5.1";
+	private static final String version = "5.7.6";
 	private static ConfigurationFile customConfig;
 
 	public static void main(String args[]) throws IOException, IrcException
@@ -74,7 +74,7 @@ public class Core
 		
 		if(bot.getConfig().isEnabled("queryAGMaps"))
 		{
-			Executors.newScheduledThreadPool(1).scheduleWithFixedDelay(new AGMaps(), 1, 10, TimeUnit.MINUTES);
+			Executors.newScheduledThreadPool(1).scheduleWithFixedDelay(new AGMaps(), 1, 5, TimeUnit.MINUTES);
 			Logging.info("Started AGMaps executor...");
 		}
 		

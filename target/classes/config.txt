@@ -62,3 +62,4 @@ spellingCorrection=true
 shrugs=true
 kickOnBannedImgurLink=true
 queryAGMaps=true
+AGMapsChannel=#AGMaps
