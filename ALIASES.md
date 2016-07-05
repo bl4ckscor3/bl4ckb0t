@@ -11,6 +11,8 @@
 
 [**-disable**: None.](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/Disable.java)
 
+[**-distance**: -dist](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/Distance.java)
+
 [**-enable**: None.](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/Enable.java)
 
 [**-evaluate**: -eval | -calculate | -calc](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/Evaluate.java)

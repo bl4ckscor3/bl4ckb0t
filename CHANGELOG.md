@@ -1,11 +1,13 @@
 #Changelog
 ---
-####5.7.7_WIP
+##5.8
+- Added -distance to get the direct distance between two cities
 - Added text to Tweet message if said Tweet has a poll in it
 - Map announcing: Added config value to change server host
 - Map announcing: Added config value to turn off player count
 - Map announcing: Changed name of config values
 - Fixed config command not allowing string value changes
+- Internal changes
 
 ####5.7.6
 - Map announcing: Added config option for channel
