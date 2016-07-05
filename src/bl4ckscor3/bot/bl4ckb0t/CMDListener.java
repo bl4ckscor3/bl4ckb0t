@@ -11,6 +11,7 @@ import bl4ckscor3.bot.bl4ckb0t.commands.channel.ChangeNick;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Changelog;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Decide;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Disable;
+import bl4ckscor3.bot.bl4ckb0t.commands.channel.Distance;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Enable;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Evaluate;
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.Forge;
@@ -66,6 +67,7 @@ public class CMDListener extends ListenerAdapter
 				new ChangeNick(),
 				new Decide(),
 				new Disable(),
+				new Distance(),
 				new Enable(),
 				new Evaluate(),
 				new Help(),

@@ -29,6 +29,7 @@ public class ConfigurationFile
 			"changenick=true",
 			"decide=true",
 			"disable=true",
+			"distance=true",
 			"enable=true",
 			"evaluate=true",
 			"forge=true",
