@@ -1,16 +1,22 @@
 #Changelog
 ---
-**5.7.6**
-- Added config option for channel
-- Player count now updates more often
-- Decreased delay
+####5.7.7_WIP
+- Map announcing: Added config value to change server host
+- Map announcing: Added config value to turn off player count
+- Map announcing: Changed name of config values
+- Fixed config command not allowing string value changes
+
+####5.7.6
+- Map announcing: Added config option for channel
+- Map announcing: Player count now updates more often
+- Map announcing: Decreased delay
 
 **5.7.5.1**
-- Added config option for map announcing
-- Increased delay
+- Map announcing: Added config option to enable/disable feature
+- Map announcing: Increased delay
 
 ####5.7.5
-- Added map announcing for the aG Surf Skill server
+- Added map announcing for the aG Skill Surf server
 
 ####5.7.4
 - Fixed YouTube stats' date (now removes everything infront of the first number, which should include many many languages)
