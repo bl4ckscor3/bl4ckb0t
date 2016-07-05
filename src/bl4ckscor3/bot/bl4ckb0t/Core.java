@@ -74,7 +74,7 @@ public class Core
 		
 		if(bot.getConfig().isEnabled("queryMaps"))
 		{
-			Executors.newScheduledThreadPool(1).scheduleWithFixedDelay(new Maps(), 30, 10, TimeUnit.SECONDS);
+			Executors.newScheduledThreadPool(1).scheduleWithFixedDelay(new Maps(), 1, 5, TimeUnit.MINUTES);
 			Logging.info("Started Maps executor...");
 		}
 		

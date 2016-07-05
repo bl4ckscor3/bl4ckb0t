@@ -72,7 +72,7 @@ public class ShowTweet
 				msg = " " + msg;
 		}
 		
-		Utilities.sendMessage(channel, msg);
+		Utilities.sendMessage(channel, msg.replace("…", "") + (doc.select(".card2").size() != 0 ? Colors.ITALICS + " (This Tweet has a vote)" : ""));
 		
 		for(String s : tweet.split(" "))
 		{
