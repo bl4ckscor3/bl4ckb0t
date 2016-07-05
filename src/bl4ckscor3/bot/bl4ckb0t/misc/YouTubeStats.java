@@ -93,13 +93,13 @@ public class YouTubeStats
 			date = date.replaceAll("^[^0-9]*", ""); //replace everything infront of the first number
 			views = views.replaceAll("[^0-9+.]", ""); //replace everything except numbers, + and . with nothing
 			Utilities.sendStarMsg(channel,
-					Colors.BOLD + Utilities.backgroundColor(Colors.WHITE, Colors.BLACK) + "You" + Utilities.backgroundColor(Colors.RED, Colors.WHITE) + "Tube" + Colors.NORMAL,
-					Colors.BOLD + L10N.getString("youtube.title", channel) + ": " + Colors.NORMAL + title,
-					Colors.BOLD + L10N.getString("youtube.views", channel) + ": " + Colors.NORMAL + views,
-					Colors.BOLD + L10N.getString("youtube.likes", channel) + ": " + Colors.NORMAL + Colors.DARK_GREEN + likes + Colors.NORMAL,
-					Colors.BOLD + L10N.getString("youtube.dislikes", channel) + ": " + Colors.NORMAL + Colors.RED + dislikes + Colors.NORMAL,
-					Colors.BOLD + L10N.getString("youtube.uploader", channel) + ": " + Colors.NORMAL + uploader + Colors.NORMAL,
-					Colors.BOLD + L10N.getString("youtube.date", channel) + ": " + Colors.NORMAL + date + Colors.NORMAL);
+					Utilities.backgroundColor(Colors.WHITE, Colors.BLACK) + "You" + Utilities.backgroundColor(Colors.RED, Colors.WHITE) + "Tube",
+					L10N.getString("youtube.title", channel) + ": " + Colors.NORMAL + title,
+					L10N.getString("youtube.views", channel) + ": " + Colors.NORMAL + views,
+					L10N.getString("youtube.likes", channel) + ": " + Colors.NORMAL + Colors.DARK_GREEN + likes,
+					L10N.getString("youtube.dislikes", channel) + ": " + Colors.NORMAL + Colors.RED + dislikes,
+					L10N.getString("youtube.uploader", channel) + ": " + Colors.NORMAL + uploader,
+					L10N.getString("youtube.date", channel) + ": " + Colors.NORMAL + date);
 		}
 	}
 }

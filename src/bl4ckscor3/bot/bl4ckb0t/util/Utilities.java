@@ -105,10 +105,10 @@ public class Utilities
 		
 		for(String s : data)
 		{
-			result += Colors.BOLD + " ** " + Colors.NORMAL + s;
+			result += Colors.NORMAL + Colors.BOLD + " ** " + s;
 		}
 		
-		sendMessage(channel, result.replaceFirst(" ", "") + Colors.BOLD + " **");
+		sendMessage(channel, result.replaceFirst(" ", "") + Colors.NORMAL + Colors.BOLD + " **");
 	}
 	
 	/**

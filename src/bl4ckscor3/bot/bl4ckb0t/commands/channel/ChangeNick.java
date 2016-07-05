@@ -11,7 +11,7 @@ import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class ChangeNick extends BaseChannelCommand<MessageEvent>
+public class ChangeNick extends BaseChannelCommand
 {
 	public static boolean isInUse = false;
 	

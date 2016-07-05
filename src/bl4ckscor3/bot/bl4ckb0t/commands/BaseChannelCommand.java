@@ -1,10 +1,10 @@
 package bl4ckscor3.bot.bl4ckb0t.commands;
 
-import org.pircbotx.hooks.Event;
+import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.Core;
 
-public abstract class BaseChannelCommand<E extends Event> implements ICommand<E>
+public abstract class BaseChannelCommand implements ICommand<MessageEvent>
 {
 	/**
 	 * The lines that can be used to trigger the command exclusive the prefix. The first alias is the main one.

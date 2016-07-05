@@ -11,7 +11,7 @@ import bl4ckscor3.bot.bl4ckb0t.util.Reminder;
 import bl4ckscor3.bot.bl4ckb0t.util.TimeParser;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Remind extends BaseChannelCommand<MessageEvent>
+public class Remind extends BaseChannelCommand
 {
 	public static final ArrayList<Reminder> reminders = new ArrayList<Reminder>();
 

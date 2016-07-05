@@ -8,7 +8,7 @@ import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 /**
  * Placeholder class to be able to set the help menu
  */
-public class Ping extends BaseChannelCommand<MessageEvent>
+public class Ping extends BaseChannelCommand
 {
 	@Override
 	public void exe(MessageEvent event, String[] args) throws Exception{}

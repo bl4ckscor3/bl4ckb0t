@@ -7,7 +7,7 @@ import bl4ckscor3.bot.bl4ckb0t.commands.BasePrivateCommand;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 
-public class PrivateStop extends BasePrivateCommand<PrivateMessageEvent>
+public class PrivateStop extends BasePrivateCommand
 {
 	@Override
 	public void exe(PrivateMessageEvent event, String[] args) throws Exception

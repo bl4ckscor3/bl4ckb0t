@@ -13,7 +13,7 @@ import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Passwords;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Weather extends BaseChannelCommand<MessageEvent>
+public class Weather extends BaseChannelCommand
 {
 	@Override
 	public void exe(MessageEvent event, String[] args) throws IOException, IncorrectCommandExecutionException
@@ -34,12 +34,12 @@ public class Weather extends BaseChannelCommand<MessageEvent>
 			Document doc = Jsoup.connect("http://api.openweathermap.org/data/2.5/weather?q=" + city.trim() + "&mode=html&APPID=" + Passwords.WEATHERAPIKEY.getPassword()).get();
 
 			Utilities.sendStarMsg(channel, 
-					Colors.BOLD + doc.select("body > div:nth-child(1)").text() + Colors.NORMAL,
-					Colors.BOLD + L10N.getString("w.temperature", channel).replace("#temperature", Colors.BOLD + getTemperature(doc)),
-					Colors.BOLD + L10N.getString("w.humidity", channel).replace("#humidity", Colors.BOLD + doc.select("body > div:nth-child(2) > div:nth-child(3)").text().split(" ")[1]),
-					Colors.BOLD + L10N.getString("w.pressure", channel).replace("#pressure", Colors.BOLD + doc.select("body > div:nth-child(2) > div:nth-child(5)").text().split(" ")[1]),
-					Colors.BOLD + L10N.getString("w.wind", channel).replace("#wind", Colors.BOLD + getWindSpeed(doc)),
-					Colors.BOLD + L10N.getString("w.credit", channel).replace("#link", doc.select("body > div:nth-child(3) > a:nth-child(1)").attr("href")));
+					doc.select("body > div:nth-child(1)").text() + Colors.NORMAL,
+					L10N.getString("w.temperature", channel).replace("#temperature", Colors.BOLD + getTemperature(doc)),
+					L10N.getString("w.humidity", channel).replace("#humidity", Colors.BOLD + doc.select("body > div:nth-child(2) > div:nth-child(3)").text().split(" ")[1]),
+					L10N.getString("w.pressure", channel).replace("#pressure", Colors.BOLD + doc.select("body > div:nth-child(2) > div:nth-child(5)").text().split(" ")[1]),
+					L10N.getString("w.wind", channel).replace("#wind", Colors.BOLD + getWindSpeed(doc)),
+					L10N.getString("w.credit", channel).replace("#link", doc.select("body > div:nth-child(3) > a:nth-child(1)").attr("href")));
 		}
 		catch(Exception e)
 		{

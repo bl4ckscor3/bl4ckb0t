@@ -10,7 +10,7 @@ import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class ListChans extends BaseChannelCommand<MessageEvent>
+public class ListChans extends BaseChannelCommand
 {
 	public static int secretChannelAmount = 0;
 

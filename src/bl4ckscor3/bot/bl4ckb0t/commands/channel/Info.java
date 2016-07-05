@@ -13,7 +13,7 @@ import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.TimeParser;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Info extends BaseChannelCommand<MessageEvent>
+public class Info extends BaseChannelCommand
 {
 	@Override
 	public void exe(MessageEvent event, String[] args) throws Exception
@@ -21,11 +21,11 @@ public class Info extends BaseChannelCommand<MessageEvent>
 		String channel = event.getChannel().getName();
 		
 		Utilities.sendStarMsg(channel,
-				Colors.BOLD + L10N.getString("info.version", channel).replace("#version", Colors.NORMAL + Core.bot.getConfiguration().getVersion()),
-				Colors.BOLD + L10N.getString("info.uptime", channel).replace("#uptime", Colors.NORMAL + new TimeParser(getMainAlias()).lts(ManagementFactory.getRuntimeMXBean().getUptime(), "%s:%s:%s:%s")), 
-				Colors.BOLD + L10N.getString("info.buildDate", channel).replace("#time", Colors.NORMAL + new Date(getBuildDate())),
-				Colors.BOLD + L10N.getString("info.javaVersion", channel).replace("#version", Colors.NORMAL + System.getProperty("java.version")),
-				Colors.BOLD + L10N.getString("info.author", channel).replace("#author", Colors.NORMAL + "bl4ckscor3"));
+				L10N.getString("info.version", channel).replace("#version", Colors.NORMAL + Core.bot.getConfiguration().getVersion()),
+				L10N.getString("info.uptime", channel).replace("#uptime", Colors.NORMAL + new TimeParser(getMainAlias()).lts(ManagementFactory.getRuntimeMXBean().getUptime(), "%s:%s:%s:%s")), 
+				L10N.getString("info.buildDate", channel).replace("#time", Colors.NORMAL + new Date(getBuildDate())),
+				L10N.getString("info.javaVersion", channel).replace("#version", Colors.NORMAL + System.getProperty("java.version")),
+				L10N.getString("info.author", channel).replace("#author", Colors.NORMAL + "bl4ckscor3"));
 	}
 
 	private long getBuildDate()

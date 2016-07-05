@@ -15,7 +15,7 @@ import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.CustomArrayList;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Help extends BaseChannelCommand<MessageEvent>
+public class Help extends BaseChannelCommand
 {
 	private static String[] aliasesValid;
 	private static String[] aliasesAllowed;
@@ -61,7 +61,7 @@ public class Help extends BaseChannelCommand<MessageEvent>
 		}
 		else if(args.length == 1)
 		{
-			for(BaseChannelCommand<MessageEvent> cmd : CMDListener.commands)
+			for(BaseChannelCommand cmd : CMDListener.commands)
 			{
 				if(cmd.isValidAlias(args[0]) || cmd.isValidAlias("-" + args[0]))
 				{
@@ -103,7 +103,7 @@ public class Help extends BaseChannelCommand<MessageEvent>
 		};
 	}
 
-	public static void setupHelpMenu(CustomArrayList<BaseChannelCommand<MessageEvent>> cmd)
+	public static void setupHelpMenu(CustomArrayList<BaseChannelCommand> cmd)
 	{
 		aliasesValid = new String[cmd.size()];
 		aliasesAllowed = new String[cmd.size()];

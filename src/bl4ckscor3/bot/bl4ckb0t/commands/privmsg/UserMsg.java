@@ -8,7 +8,7 @@ import org.pircbotx.hooks.events.PrivateMessageEvent;
 import bl4ckscor3.bot.bl4ckb0t.commands.BasePrivateCommand;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class UserMsg extends BasePrivateCommand<PrivateMessageEvent>
+public class UserMsg extends BasePrivateCommand
 {
 	@Override
 	public void exe(PrivateMessageEvent event, String[] args) throws MalformedURLException, IOException

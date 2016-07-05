@@ -5,7 +5,7 @@ import org.pircbotx.hooks.events.PrivateMessageEvent;
 import bl4ckscor3.bot.bl4ckb0t.Core;
 import bl4ckscor3.bot.bl4ckb0t.commands.BasePrivateCommand;
 
-public class PrivateLeave extends BasePrivateCommand<PrivateMessageEvent>
+public class PrivateLeave extends BasePrivateCommand
 {
 	@Override
 	public void exe(PrivateMessageEvent event, String[] args)

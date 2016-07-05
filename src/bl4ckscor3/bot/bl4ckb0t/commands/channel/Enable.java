@@ -13,7 +13,7 @@ import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 import bl4ckscor3.bot.bl4ckb0t.util.android.ArrayMap;
 
-public class Enable extends BaseChannelCommand<MessageEvent>
+public class Enable extends BaseChannelCommand
 {
 	@Override
 	public void exe(MessageEvent event, String[] args) throws MalformedURLException, IOException, IncorrectCommandExecutionException

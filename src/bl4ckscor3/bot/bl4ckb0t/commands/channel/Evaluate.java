@@ -15,7 +15,7 @@ import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Passwords;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Evaluate extends BaseChannelCommand<MessageEvent>
+public class Evaluate extends BaseChannelCommand
 {
 	@Override
 	public void exe(MessageEvent event, String[] args) throws IncorrectCommandExecutionException, IOException

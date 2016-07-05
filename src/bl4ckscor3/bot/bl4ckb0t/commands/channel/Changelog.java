@@ -12,7 +12,7 @@ import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 import bl4ckscor3.bot.bl4ckb0t.util.android.ArrayMap;
 
-public class Changelog extends BaseChannelCommand<MessageEvent>
+public class Changelog extends BaseChannelCommand
 {
 	public static final ArrayMap<String, ArrayList<String>> versions = new ArrayMap<String, ArrayList<String>>();
 

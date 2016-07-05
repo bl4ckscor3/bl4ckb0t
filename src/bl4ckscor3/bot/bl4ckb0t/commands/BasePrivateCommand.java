@@ -1,10 +1,10 @@
 package bl4ckscor3.bot.bl4ckb0t.commands;
 
-import org.pircbotx.hooks.Event;
+import org.pircbotx.hooks.events.PrivateMessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.Core;
 
-public abstract class BasePrivateCommand<E extends Event> implements ICommand<E>
+public abstract class BasePrivateCommand implements ICommand<PrivateMessageEvent>
 {
 	/**
 	 * The prefix which triggers the command

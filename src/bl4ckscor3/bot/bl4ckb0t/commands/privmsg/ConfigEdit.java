@@ -11,7 +11,7 @@ import bl4ckscor3.bot.bl4ckb0t.Core;
 import bl4ckscor3.bot.bl4ckb0t.commands.BasePrivateCommand;
 import bl4ckscor3.bot.bl4ckb0t.util.android.ArrayMap;
 
-public class ConfigEdit extends BasePrivateCommand<PrivateMessageEvent>
+public class ConfigEdit extends BasePrivateCommand
 {
 	@Override
 	public void exe(PrivateMessageEvent event, String[] args) throws Exception

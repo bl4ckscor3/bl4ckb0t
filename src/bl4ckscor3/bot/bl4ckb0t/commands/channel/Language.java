@@ -10,7 +10,7 @@ import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Language extends BaseChannelCommand<MessageEvent>
+public class Language extends BaseChannelCommand
 {
 	private String[] availableLanguages = {
 				"English",

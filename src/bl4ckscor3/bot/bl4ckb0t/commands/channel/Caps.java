@@ -8,7 +8,7 @@ import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
 import bl4ckscor3.bot.bl4ckb0t.misc.SpellingCorrection;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Caps extends BaseChannelCommand<MessageEvent>
+public class Caps extends BaseChannelCommand
 {
 	@Override
 	public void exe(MessageEvent event, String[] args) throws Exception
