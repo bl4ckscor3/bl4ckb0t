@@ -1,9 +1,11 @@
 #Changelog
 ---
 ##5.9_WIP
+- Added and modified some help messages of ConfigEdit
 - Fixed -tv not working
 - Fixed Tweet vote notification showing incorrectly sometimes
 - Fixed error in ShowTweet
+- Fixed config lookup not working with non boolean values
 
 ##5.8
 - Added -distance to get the direct distance between two cities

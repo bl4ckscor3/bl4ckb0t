@@ -85,9 +85,9 @@ public class ConfigurationFile
 			"spellingCorrection=true",
 			"shrugs=true",
 			"kickOnBannedImgurLink=true",
-			"queryMaps=true",
-			"mapsChannel=#AGMaps",
-			"mapsHost=csgo.area-community.net:27210",
+			"queryMaps=false",
+			"mapsChannel=-",
+			"mapsHost=-",
 			"showPlayerCount=true"
 	};
 

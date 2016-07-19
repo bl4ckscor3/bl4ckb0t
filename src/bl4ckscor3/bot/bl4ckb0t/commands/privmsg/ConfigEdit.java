@@ -18,7 +18,7 @@ public class ConfigEdit extends BasePrivateCommand
 	{
 		ConfigurationFile config = Core.bot.getConfig();
 		ArrayMap<String,String> values = config.values;
-
+		
 		if(args[0].equals("set"))
 		{
 			if(args.length > 1)
@@ -37,22 +37,27 @@ public class ConfigEdit extends BasePrivateCommand
 							{
 								if(s.split("=")[0].equals(args[1]))
 								{
-									file.remove(i);
-									file.add(i, s.split("=")[0] + "=" + args[2]);
-									FileUtils.writeLines(config.config, file);
-									event.respond("Value updated. Use " + Colors.BOLD + "config save" + Colors.NORMAL + " to apply the changes.");
+									if(!s.split("=")[1].equals(args[2]))
+									{
+										file.remove(i);
+										file.add(i, s.split("=")[0] + "=" + args[2]);
+										FileUtils.writeLines(config.config, file);
+										event.respond("Value updated. Use " + Colors.BOLD + "config save" + Colors.NORMAL + " to apply the changes.");
+									}
+									else
+										event.respond("Config option \"" + args[1] + "\" already has the value \"" + args[2] + "\".");
 								}
 							}
 						}
 					}
 					else
-						event.respond("Config value \"" + args[1] +"\" does not exist.");
+						event.respond("Config option \"" + args[1] + "\" does not exist.");
 				}
 				else
-					event.respond("Please specify a new value (true/false): " + Colors.BOLD + "config set <option> <value>");
+					event.respond("Please specify a new value: " + Colors.BOLD + "config set <option> <value>");
 			}
 			else
-				event.respond("Please specify a config option and a new value (true/false): " + Colors.BOLD + "config set <option> <value>");
+				event.respond("Please specify a config option and a new value: " + Colors.BOLD + "config set <option> <value>");
 		}
 		else if(args[0].equals("list"))
 		{
@@ -77,12 +82,9 @@ public class ConfigEdit extends BasePrivateCommand
 			if(args.length > 1)
 			{
 				if(values.containsKey(args[1]))
-				{
-					boolean b = config.isEnabled(args[1]);
-					event.respond("" + b);
-				}
+					event.respond(config.getString(args[1])); //every config option is saved as a string
 				else
-					event.respond("Config value does not exist.");
+					event.respond("Config option \"" + args[1] + "\" does not exist.");
 			}
 			else
 				event.respond("Please specify a config option: " + Colors.BOLD + "config lookup <option>");
@@ -93,6 +95,8 @@ public class ConfigEdit extends BasePrivateCommand
 			config.populateArrayMap();
 			event.respond("Configuration file updated successfully.");
 		}
+		else
+			event.respond("Syntax: config <set|list|lookup>");
 	}
 
 	@Override
