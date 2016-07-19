@@ -13,7 +13,7 @@ public class Twitch extends BaseChannelCommand
 	public void exe(MessageEvent event, String[] args) throws IncorrectCommandExecutionException
 	{
 		if(args.length == 1)
-			Utilities.sendMessage(event.getChannel().getName(), "http://www.twitch.tv/" + args[01]);
+			Utilities.sendMessage(event.getChannel().getName(), "http://www.twitch.tv/" + args[0]);
 		else
 			throw new IncorrectCommandExecutionException(getMainAlias());
 	}

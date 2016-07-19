@@ -1,5 +1,8 @@
 #Changelog
 ---
+##5.9_WIP
+- Fixed -tv not working
+
 ##5.8
 - Added -distance to get the direct distance between two cities
 - Added text to Tweet message if said Tweet has a poll in it
