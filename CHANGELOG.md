@@ -1,6 +1,7 @@
 #Changelog
 ---
 ##5.9_WIP
+- Added -thumbnail to get the link of the thumbnail of a YouTube video
 - Added and modified some help messages of ConfigEdit
 - Fixed -tv not working
 - Fixed Tweet vote notification showing incorrectly sometimes

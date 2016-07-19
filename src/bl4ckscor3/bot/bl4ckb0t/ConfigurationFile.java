@@ -48,6 +48,7 @@ public class ConfigurationFile
 			"select=true",
 			"source=true",
 			"stop=true",
+			"thumbnail=true",
 			"trello=true",
 			"tv=true",
 			"tw=true",

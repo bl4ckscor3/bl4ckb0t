@@ -49,6 +49,8 @@
 
 [**-stop**: None.](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/Stop.java)
 
+[**-thumbnail**: -thumb | -tn](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/Thumbnail.java)
+
 [**-trello**: -tr](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/Trello.java)
 
 [**-tv**: -twitch](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/Twitch.java)
