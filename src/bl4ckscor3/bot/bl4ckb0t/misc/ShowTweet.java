@@ -1,10 +1,12 @@
 package bl4ckscor3.bot.bl4ckb0t.misc;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.pircbotx.Colors;
 
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
@@ -72,12 +74,25 @@ public class ShowTweet
 				msg = " " + msg;
 		}
 		
-		Utilities.sendMessage(channel, msg.replace("…", "") + (doc.select(".card2").size() != 0 ? Colors.ITALICS + " (This Tweet has a vote)" : ""));
+		List<Element> vote = doc.select(".card2");
+		boolean hasVote = false;
 		
-		for(String s : tweet.split(" "))
+		for(Element e : vote)
 		{
-			if(s.endsWith(" …"))
-				show(channel, "https://twitter.com" + s.split("https://twitter.com")[1], ++depth);
+			if(e.hasAttr("data-card2-name") && e.attr("data-card2-name").matches("poll[0-9]+choice_text_only"))
+				hasVote = true;
 		}
+			
+		Utilities.sendMessage(channel, msg.replace("…", "") + (hasVote ? Colors.ITALICS + " (This Tweet has a vote)" : ""));
+		
+		try
+		{
+			for(String s : tweet.split(" "))
+			{
+				if(s.endsWith(" …"))
+					show(channel, "https://twitter.com" + s.split("https://twitter.com")[1], ++depth);
+			}
+		}
+		catch(ArrayIndexOutOfBoundsException e){} //happens when the Tweet doesn't actually have any quoted Tweet in it
 	}
 }
