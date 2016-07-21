@@ -3,6 +3,8 @@
 ##5.9_WIP
 - Added -thumbnail to get the link of the thumbnail of a YouTube video
 - Added and modified some help messages of ConfigEdit
+- Added notification to -tv, -tw and -yt if the requested user doesn't exist
+- Removed faulty devoicing of Geffy due to redundancy
 - Fixed -tv not working
 - Fixed Tweet vote notification showing incorrectly sometimes
 - Fixed error in ShowTweet

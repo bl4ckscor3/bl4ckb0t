@@ -1,5 +1,9 @@
 package bl4ckscor3.bot.bl4ckb0t.commands.channel;
 
+import java.io.IOException;
+
+import org.jsoup.HttpStatusException;
+import org.jsoup.Jsoup;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.commands.BaseChannelCommand;
@@ -10,10 +14,23 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 public class YouTube extends BaseChannelCommand
 {
 	@Override
-	public void exe(MessageEvent event, String[] args) throws IncorrectCommandExecutionException
+	public void exe(MessageEvent event, String[] args) throws IncorrectCommandExecutionException, IOException
 	{
 		if(args.length == 1)
-			Utilities.sendMessage(event.getChannel().getName(), "http://www.youtube.com/" + args[0]);
+		{
+			String channel = event.getChannel().getName();
+			
+			try
+			{
+				Jsoup.connect("http://www.youtube.com/" + args[0]).get();
+				Utilities.sendMessage(channel, "http://www.youtube.com/" + args[0]);
+			}
+			catch(HttpStatusException e)
+			{
+				if(e.getStatusCode() == 404)
+					Utilities.sendMessage(channel, L10N.getString("socials.error", channel));
+			}
+		}
 		else
 			throw new IncorrectCommandExecutionException(getMainAlias());
 	}
