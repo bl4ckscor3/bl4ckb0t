@@ -1,6 +1,6 @@
 #Changelog
 ---
-##5.9_WIP
+##5.9
 - Added -thumbnail to get the link of the thumbnail of a YouTube video
 - Added and modified some help messages of ConfigEdit
 - Added notification to -tv, -tw and -yt if the requested user doesn't exist
