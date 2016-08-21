@@ -1,9 +1,11 @@
 #Changelog
 ---
-####5.9.1_WIP
+####5.9.1
 - Added info for reddit user links
 - Updated for Maunz' CS:GO update message changes
+- Data files are now kindly hosted by akino_germany
 - Fixed a ConcurrentModificationException when using -update
+- Internal changes
 
 ##5.9
 - Added -thumbnail to get the link of the thumbnail of a YouTube video

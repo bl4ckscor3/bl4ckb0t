@@ -11,6 +11,7 @@ public class Lists
 	private static final List<String> allowedUsers = new ArrayList<String>();
 	private static final List<String> validUsers = new ArrayList<String>();
 	private static final List<String> ignoredUsers = new ArrayList<String>();
+	private static final List<String> blacklistedWebsites = new ArrayList<String>();
 	
 	/**
 	 * Adds a default channel to the bot
@@ -24,7 +25,7 @@ public class Lists
 	
 	/**
 	 * Gives a user permission level 2
-	 * @param a The user
+	 * @param a The user to give the permission level to
 	 */
 	public static void addAllowedUser(String a)
 	{
@@ -34,7 +35,7 @@ public class Lists
 	
 	/**
 	 * Gives a user permission level 3
-	 * @param v The user
+	 * @param v The user to give the permission level to
 	 */
 	public static void addValidUser(String v)
 	{
@@ -44,12 +45,22 @@ public class Lists
 	
 	/**
 	 * Makes the bot ignore a user
-	 * @param i The user
+	 * @param i The user to ignore
 	 */
 	public static void addIgnoredUser(String i)
 	{
 		ignoredUsers.add(i);
 		Logging.info("Added " + i + " to ignored user list...");
+	}
+	
+	/**
+	 * Makes the bot ignore a website
+	 * @param i The website to ignore
+	 */
+	public static void addBlacklistedWebsite(String i)
+	{
+		ignoredUsers.add(i);
+		Logging.info("Added " + i + " to blacklisted websites list...");
 	}
 	
 	/**
@@ -85,6 +96,14 @@ public class Lists
 	}
 	
 	/**
+	 * @return All blacklisted websites
+	 */
+	public static List<String> getBlacklistedWebsites()
+	{
+		return blacklistedWebsites;
+	}
+	
+	/**
 	 * Clears all lists
 	 */
 	public static void clearAll()
@@ -93,6 +112,7 @@ public class Lists
 		allowedUsers.clear();
 		validUsers.clear();
 		ignoredUsers.clear();
+		blacklistedWebsites.clear();
 		Logging.info("Cleared all lists...");
 	}
 }
