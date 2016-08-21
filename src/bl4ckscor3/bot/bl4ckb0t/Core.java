@@ -70,6 +70,7 @@ public class Core
 		bot = new Bot(config, wip, customConfig, "-");
 		Lists.clearAll();
 		Startup.callMethods();
+		CMDListener.setupCMDs();
 		Logging.info("Completed last setup steps...");
 		
 		if(bot.getConfig().isEnabled("queryMaps"))

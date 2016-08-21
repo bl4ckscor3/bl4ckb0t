@@ -24,7 +24,6 @@ public class Startup
 		setIgnoredUsers();
 		setValidUsers();
 		Core.bot.getConfig().populateArrayMap();
-		CMDListener.setupCMDs();
 	}
 	
 	/**

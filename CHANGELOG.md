@@ -3,6 +3,7 @@
 ####5.9.1_WIP
 - Added info for reddit user links
 - Updated for Maunz' CS:GO update message changes
+- Fixed a ConcurrentModificationException when using -update
 
 ##5.9
 - Added -thumbnail to get the link of the thumbnail of a YouTube video
