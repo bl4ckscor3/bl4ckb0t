@@ -45,6 +45,8 @@ public class LinkManager
 					GitHub.showRepo(channel, s);
 				else if(Core.bot.getConfig().isEnabled("kickOnBannedImgurLink") && channel.equals("#bl4ckscor3") && (s.contains("imgur") && !s.contains("i.imgur") && !s.contains("/gallery/") && !s.contains("/a/")))
 					Core.bot.kick(channel, event.getUser().getNick(), "Only use i.imgur.com links.");
+				else if(Core.bot.getConfig().isEnabled("showRedditInfo") && s.contains("reddit.com"))
+					Reddit.showInfo(channel, s);
 				else if(Core.bot.getConfig().isEnabled("showLinkTitles"))
 				{
 					WebDriver driver = new HtmlUnitDriver();

@@ -67,3 +67,4 @@ queryMaps=false
 mapsChannel=-
 mapsHost=-
 showPlayerCount=true
+showRedditInfo=true

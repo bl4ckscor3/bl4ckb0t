@@ -89,7 +89,8 @@ public class ConfigurationFile
 			"queryMaps=false",
 			"mapsChannel=-",
 			"mapsHost=-",
-			"showPlayerCount=true"
+			"showPlayerCount=true",
+			"showRedditInfo=true"
 	};
 
 	/**
