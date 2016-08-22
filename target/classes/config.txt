@@ -51,7 +51,7 @@ sendMessage=true
 #            Other             #
 ################################
 showCmdColorsInHelpMenu=true
-allowBlacklistWebpages=true
+allowBlacklistWebsites=true
 allowIgnoringUsers=true
 allowCommandAliases=true
 showGitHubRepoInfo=true

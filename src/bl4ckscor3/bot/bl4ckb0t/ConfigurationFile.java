@@ -74,7 +74,7 @@ public class ConfigurationFile
 			"#            Other             #",
 			"################################",
 			"showCmdColorsInHelpMenu=true",
-			"allowBlacklistWebpages=true",
+			"allowBlacklistWebsites=true",
 			"allowIgnoringUsers=true",
 			"allowCommandAliases=true",
 			"showGitHubRepoInfo=true",

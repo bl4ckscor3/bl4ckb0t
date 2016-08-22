@@ -27,7 +27,7 @@ public class LinkManager
 
 			if(s.contains("www.") || s.contains("http://") || s.contains("https://"))
 			{
-				if(Core.bot.getConfig().isEnabled("allowBlacklistWebpages") && isWebsiteBlacklisted(s))
+				if(Core.bot.getConfig().isEnabled("allowBlacklistWebsites") && isWebsiteBlacklisted(s))
 				{
 					Logging.info("Website blacklisted: " + s);
 					continue;

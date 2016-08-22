@@ -59,7 +59,7 @@ public class Lists
 	 */
 	public static void addBlacklistedWebsite(String i)
 	{
-		ignoredUsers.add(i);
+		blacklistedWebsites.add(i);
 		Logging.info("Added " + i + " to blacklisted websites list...");
 	}
 	

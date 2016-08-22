@@ -81,7 +81,7 @@ public class Startup
 			return;
 		}
 
-		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://irc.akino-germany.tk/bl4ckb0t/files/bl4ckb0t chans.txt").openStream()));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://akino.canopus.uberspace.de/bl4ckb0t/files/defaultChannels.txt").openStream()));
 		String line = "";
 
 		while((line = reader.readLine()) != null)
@@ -97,7 +97,7 @@ public class Startup
 	 */
 	private static void setAllowedUsers() throws MalformedURLException, IOException
 	{
-		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://irc.akino-germany.tk/bl4ckb0t/files/allowedUsers.txt").openStream()));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://akino.canopus.uberspace.de/bl4ckb0t/files/allowedUsers.txt").openStream()));
 		String line = "";
 
 		while((line = reader.readLine()) != null)
@@ -113,7 +113,7 @@ public class Startup
 	 */
 	private static void setValidUsers() throws MalformedURLException, IOException
 	{
-		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://irc.akino-germany.tk/bl4ckb0t/files/validUsers.txt").openStream()));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://akino.canopus.uberspace.de/bl4ckb0t/files/validUsers.txt").openStream()));
 		String line = "";
 
 		while((line = reader.readLine()) != null)
@@ -129,7 +129,7 @@ public class Startup
 	 */
 	private static void setIgnoredUsers() throws MalformedURLException, IOException
 	{
-		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://irc.akino-germany.tk/bl4ckb0t/files/ignoredUsers.txt").openStream()));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://akino.canopus.uberspace.de/bl4ckb0t/files/ignoredUsers.txt").openStream()));
 		String line = "";
 
 		while((line = reader.readLine()) != null)
@@ -149,7 +149,7 @@ public class Startup
 	 */
 	private static void setBlacklistedWebsites() throws MalformedURLException, IOException
 	{
-		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://irc.akino-germany.tk/bl4ckb0t/files/blacklistedWebsites.txt").openStream()));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://akino.canopus.uberspace.de/bl4ckb0t/files/blacklistedWebsites.txt").openStream()));
 		String line = "";
 
 		while((line = reader.readLine()) != null)
