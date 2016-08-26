@@ -1,5 +1,8 @@
 #Changelog
 ---
+####5.9.2_WIP
+- Adapted imgur kicking to one-image-albums
+
 ###5.9.1
 - Added info for reddit user links
 - Updated for Maunz' CS:GO update message changes
