@@ -1,8 +1,9 @@
 #Changelog
 ---
 ####5.9.2_WIP
-- Added latest push of specific branch, if link to it is sent
+- Added information about branches to GitHub repo message
 - Adapted imgur kicking to one-image-albums
+- Fixed a rare error that occured in commit analyzing
 
 ###5.9.1
 - Added info for reddit user links

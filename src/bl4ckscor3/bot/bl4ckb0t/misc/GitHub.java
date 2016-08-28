@@ -111,11 +111,40 @@ public class GitHub
 		if(link.startsWith("www."))
 			link = "http://" + link;
 		
-		String text = Jsoup.connect(link).get().select(".toc-diff-stats").text();
-	
+		String title = Jsoup.connect(link).get().title();
+		String sha = title.substring(title.lastIndexOf('@') + 1).split(" ")[0];
+		int changedFiles = 0;
+		String additions = "";
+		String deletions = "";
+		boolean files = false;
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://api.github.com/repos/bl4ckscor3/bl4ckb0t/commits/" + sha).openStream()));
+
+		for(String s : reader.readLine().split(",\""))
+		{
+			String[] split = s.split(":");
+
+			switch(split[0])
+			{
+				case "files\"":
+					files = true;
+					break;
+				case "additions\"":
+					if(!files)
+						additions = split[1].replace(",", "");
+					break;
+				case "deletions\"":
+					if(!files)
+						deletions = split[1].replace("}", "");
+					break;
+				case "filename\"":
+					if(files)
+						changedFiles++;
+			}
+		}
+		
 		Utilities.sendStarMsg(channel,
-				Colors.NORMAL + Colors.PURPLE + L10N.getString("github.changedFiles", channel).replace("#files", text.split(" ")[1]),
-				Colors.NORMAL + Colors.DARK_GREEN + L10N.getString("github.additions", channel).replace("#additions", text.split(" ")[5]),
-				Colors.NORMAL + Colors.RED + L10N.getString("github.deletions", channel).replace("#deletions", text.split(" ")[8]));
+				Colors.NORMAL + Colors.PURPLE + L10N.getString("github.changedFiles", channel).replace("#files", "" + changedFiles),
+				Colors.NORMAL + Colors.DARK_GREEN + L10N.getString("github.additions", channel).replace("#additions", additions),
+				Colors.NORMAL + Colors.RED + L10N.getString("github.deletions", channel).replace("#deletions", deletions));
 	}
 }
