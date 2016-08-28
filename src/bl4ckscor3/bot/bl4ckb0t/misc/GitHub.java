@@ -69,6 +69,26 @@ public class GitHub
 		
 		reader.close();
 		
+		if(link.split("/").length > 6 && link.split("/")[5].equals("tree"))
+		{
+			name += "/branches/" + link.split("/")[6];
+			reader = new BufferedReader(new InputStreamReader(new URL("https://api.github.com/repos/" + name).openStream()));
+			
+			for(String s : reader.readLine().split(",\""))
+			{
+				String[] split = s.split(":");
+				
+				switch(split[0])
+				{
+					case "date\"":
+						latestPush = split[1].replace("\"", "").replace("T", " ") + ":" + split[2] + ":" + split[3].replace("Z", "").replace("\"", "").replace("}", "") + " GMT";
+						break;
+				}
+			}
+			
+			reader.close();
+		}
+		
 		if(language.equals("null") || language.equals("") || language.equals(null))
 			language = L10N.getString("helpMenu.noNotes", channel).replace(".", "");
 		

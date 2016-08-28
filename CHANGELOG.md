@@ -1,6 +1,7 @@
 #Changelog
 ---
 ####5.9.2_WIP
+- Added latest push of specific branch, if link to it is sent
 - Adapted imgur kicking to one-image-albums
 
 ###5.9.1
