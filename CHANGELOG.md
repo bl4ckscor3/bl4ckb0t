@@ -3,6 +3,7 @@
 ####5.9.2_WIP
 - Added information upon sending a link of a GitHub repository branch
 - Added information upon sending a link of a GitHub issue or pull request
+- Added last updated time, wind direction and country to -w
 - Adapted imgur kicking to one-image-albums
 - Changed some GitHub messages
 - Fixed a rare error that occured in commit analyzing
