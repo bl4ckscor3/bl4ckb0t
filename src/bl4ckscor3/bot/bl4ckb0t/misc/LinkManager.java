@@ -42,7 +42,7 @@ public class LinkManager
 					GitHub.showIssue(channel, s);
 				else if(Core.bot.getConfig().isEnabled("showGitHubRepoInfo") && s.contains("github.com"))
 					GitHub.showRepo(channel, s);
-				else if(Core.bot.getConfig().isEnabled("kickOnBannedImgurLink") && channel.equals("#bl4ckscor3") && (s.contains("imgur") && !s.contains("i.imgur")))
+				else if(Core.bot.getConfig().isEnabled("kickOnBannedImgurLink") && channel.equals("#bl4ckscor3") && (s.contains("imgur.com") && !s.contains("i.imgur.com")))
 				{//code courtesy of Vauff
 					int images = 0;
 
