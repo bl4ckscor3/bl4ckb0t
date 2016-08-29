@@ -1,6 +1,6 @@
 #Changelog
 ---
-####5.9.2
+###5.9.2
 - Added information upon sending a link of a GitHub repository branch
 - Added information upon sending a link of a GitHub issue or pull request
 - Added last updated time, wind direction and country to -w

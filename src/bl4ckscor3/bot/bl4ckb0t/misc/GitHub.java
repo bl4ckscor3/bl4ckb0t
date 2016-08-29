@@ -164,7 +164,12 @@ public class GitHub
 		String comments = " ";
 		boolean user = false;
 		boolean pr = false;
-		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://api.github.com/repos/" + name + "/issues/" + number).openStream()));
+		BufferedReader reader;
+		
+		if(number.contains("#"))
+			number = number.split("#")[0];
+		
+		reader = new BufferedReader(new InputStreamReader(new URL("https://api.github.com/repos/" + name + "/issues/" + number).openStream()));
 
 		for(String s : reader.readLine().split(",\""))
 		{
