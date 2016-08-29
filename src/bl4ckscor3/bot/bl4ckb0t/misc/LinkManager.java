@@ -38,9 +38,11 @@ public class LinkManager
 					ShowTweet.show(channel, s, 0);
 				else if(Core.bot.getConfig().isEnabled("showGitHubCommitInfo") && (s.contains("git.io") || (s.contains("github.com") && s.contains("commit"))))
 					GitHub.showCommit(channel, s);
+				else if(Core.bot.getConfig().isEnabled("showGitHubIssueInfo") && s.contains("github.com") && (s.contains("issues") || s.contains("pull")))
+					GitHub.showIssue(channel, s);
 				else if(Core.bot.getConfig().isEnabled("showGitHubRepoInfo") && s.contains("github.com"))
 					GitHub.showRepo(channel, s);
-				else if(Core.bot.getConfig().isEnabled("kickOnBannedImgurLink") && channel.equals("#bl4ckb0tTest") && (s.contains("imgur") && !s.contains("i.imgur")))
+				else if(Core.bot.getConfig().isEnabled("kickOnBannedImgurLink") && channel.equals("#bl4ckscor3") && (s.contains("imgur") && !s.contains("i.imgur")))
 				{//code courtesy of Vauff
 					int images = 0;
 

@@ -68,3 +68,4 @@ mapsChannel=-
 mapsHost=-
 showPlayerCount=true
 showRedditInfo=true
+showGitHubIssueInfo=true

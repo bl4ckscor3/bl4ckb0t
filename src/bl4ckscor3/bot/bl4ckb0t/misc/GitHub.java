@@ -16,13 +16,15 @@ public class GitHub
 {
 	/**
 	 * Shows information about a GitHub repository
-	 * @param channel The channel to show the info in
-	 * @param link The link to the repo
+	 * @param channel The channel to show the information in
+	 * @param link The link to the repository
 	 */
 	public static void showRepo(String channel, String link) throws MalformedURLException, IOException
 	{
-		BufferedReader reader;
-		String name = "";
+		if(link.startsWith("www."))
+			link = "http://" + link;
+		
+		String name = link.split("/")[3] + "/" + link.split("/")[4];
 		String description = "";
 		String language = "";
 		String latestPush = "";
@@ -30,12 +32,7 @@ public class GitHub
 		String stars = "";
 		String forks = "";
 		String issues = "";
-		
-		if(link.startsWith("www."))
-			link = "http://" + link;
-		
-		name = link.split("/")[3] + "/" + link.split("/")[4];
-		reader = new BufferedReader(new InputStreamReader(new URL("https://api.github.com/repos/" + name).openStream()));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://api.github.com/repos/" + name).openStream()));
 
 		for(String s : reader.readLine().split(",\""))
 		{
@@ -63,7 +60,6 @@ public class GitHub
 					break;
 				case "open_issues_count\"":
 					issues = split[1];
-					break;
 			}
 		}
 		
@@ -92,13 +88,13 @@ public class GitHub
 		if(language.equals("null") || language.equals("") || language.equals(null))
 			language = L10N.getString("helpMenu.noNotes", channel).replace(".", "");
 		
-		Utilities.sendMessage(channel, Colors.BOLD + "[GitHub] " + Colors.BOLD + name + " - " + description + 
-				" | " + L10N.getString("github.mainLanguage", channel).replace("#lang", language) + 
-				" | " + L10N.getString("github.latestPush", channel).replace("#push", latestPush) + 
-				" | " + L10N.getString("github.watching", channel).replace("#watching", watching) + 
-				" | " + L10N.getString("github.stargazers", channel).replace("#stars", stars) + 
-				" | " + L10N.getString("github.forks", channel).replace("#forks", forks) + 
-				" | " + L10N.getString("github.issues", channel).replace("#issues", issues));
+		Utilities.sendStarMsg(channel, "[GitHub] " +  name + " - " + Colors.NORMAL + description,
+				L10N.getString("github.mainLanguage", channel).replace("#lang", Colors.NORMAL + language),
+				L10N.getString("github.latestPush", channel).replace("#push", Colors.NORMAL + latestPush),
+				L10N.getString("github.watching", channel).replace("#watching", Colors.NORMAL + watching),
+				L10N.getString("github.stargazers", channel).replace("#stars", Colors.NORMAL + stars),
+				L10N.getString("github.forks", channel).replace("#forks", Colors.NORMAL + forks),
+				L10N.getString("github.issues", channel).replace("#issues", Colors.NORMAL + issues));
 	}
 
 	/**
@@ -113,11 +109,13 @@ public class GitHub
 		
 		String title = Jsoup.connect(link).get().title();
 		String sha = title.substring(title.lastIndexOf('@') + 1).split(" ")[0];
+		String name = title.substring(0, title.lastIndexOf('@')).split(" ")[title.substring(0, title.lastIndexOf('@')).split(" ").length - 1];
+		System.out.println(name);
 		int changedFiles = 0;
 		String additions = "";
 		String deletions = "";
 		boolean files = false;
-		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://api.github.com/repos/bl4ckscor3/bl4ckb0t/commits/" + sha).openStream()));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://api.github.com/repos/" + name + "/commits/" + sha).openStream()));
 
 		for(String s : reader.readLine().split(",\""))
 		{
@@ -142,9 +140,64 @@ public class GitHub
 			}
 		}
 		
-		Utilities.sendStarMsg(channel,
-				Colors.NORMAL + Colors.PURPLE + L10N.getString("github.changedFiles", channel).replace("#files", "" + changedFiles),
-				Colors.NORMAL + Colors.DARK_GREEN + L10N.getString("github.additions", channel).replace("#additions", additions),
-				Colors.NORMAL + Colors.RED + L10N.getString("github.deletions", channel).replace("#deletions", deletions));
+		Utilities.sendStarMsg(channel, "[GitHub] " + Colors.NORMAL + name + "@" + sha,
+				Colors.PURPLE + L10N.getString("github.changedFiles", channel).replace("#files", Colors.BOLD + changedFiles),
+				Colors.DARK_GREEN + L10N.getString("github.additions", channel).replace("#additions", Colors.BOLD + additions),
+				Colors.RED + L10N.getString("github.deletions", channel).replace("#deletions", Colors.BOLD + deletions));
+	}
+
+	/**
+	 * Shows information about a GitHub issue/pull request
+	 * @param channel The channel to show the information in
+	 * @param link The link to the issue/pull request
+	 */
+	public static void showIssue(String channel, String link) throws IOException
+	{
+		if(link.startsWith("www."))
+			link = "http://" + link;
+
+		String name = link.split("/")[3] + "/" + link.split("/")[4];
+		String number = link.split(link.contains("issues") ? "issues/" : "pull/")[1].replace("/", "");
+		String title = " ";
+		String username = " ";
+		String state = " ";
+		String comments = " ";
+		boolean user = false;
+		boolean pr = false;
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://api.github.com/repos/" + name + "/issues/" + number).openStream()));
+
+		for(String s : reader.readLine().split(",\""))
+		{
+			String[] split = s.split(":");
+
+			switch(split[0])
+			{
+				case "title\"":
+					title = split[1].replace("\"", "");
+					break;
+				case "user\"":
+					if(!user)
+					{
+						username = split[2].replace("\"", "");
+						user = true;
+					}
+					
+					break;
+				case "state\"":
+					state = split[1].replace("\"", "");
+					break;
+				case "comments\"":
+					comments = split[1].replace(",", "");
+					break;
+				case "pull_request\"":
+					pr = true;
+			}
+		}
+		
+		Utilities.sendStarMsg(channel, "[GitHub] " + Colors.NORMAL + name + " - " + (pr ? "Pull Request " : "Issue ") + "#" + number,
+				L10N.getString("github.title", channel).replace("#title", Colors.NORMAL + title),
+				L10N.getString("github.createdBy", channel).replace("#creator", Colors.NORMAL + username),
+				L10N.getString("github.state", channel).replace("#state", Colors.NORMAL + state),
+				L10N.getString("github.comments", channel).replace("#amount", Colors.NORMAL + comments));
 	}
 }

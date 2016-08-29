@@ -1,8 +1,10 @@
 #Changelog
 ---
 ####5.9.2_WIP
-- Added information about branches to GitHub repo message
+- Added information upon sending a link of a GitHub repository branch
+- Added information upon sending a link of a GitHub issue or pull request
 - Adapted imgur kicking to one-image-albums
+- Changed some GitHub messages
 - Fixed a rare error that occured in commit analyzing
 
 ###5.9.1

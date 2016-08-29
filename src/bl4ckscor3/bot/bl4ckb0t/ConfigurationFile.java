@@ -90,7 +90,8 @@ public class ConfigurationFile
 			"mapsChannel=-",
 			"mapsHost=-",
 			"showPlayerCount=true",
-			"showRedditInfo=true"
+			"showRedditInfo=true",
+			"showGitHubIssueInfo=true"
 	};
 
 	/**

@@ -95,7 +95,7 @@ public class Utilities
 	/**
 	 * Sends a message in the following format:
 	 * 		** x1 ** x2 ** ... ** xn **
-	 * Where x1...xn are is the data array in order
+	 * Where x1...xn is the data array in order. The message as well as each argument is prefixed by normal color, latter is bold, too 
 	 * @param event The channel to send the message to
 	 * @param args The contents of the message seperated by **
 	 */
