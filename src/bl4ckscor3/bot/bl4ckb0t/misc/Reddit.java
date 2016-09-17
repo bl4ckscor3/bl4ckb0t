@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.pircbotx.Colors;
 
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
@@ -21,6 +23,34 @@ public class Reddit
 	{
 		if(link.contains("/user/") || link.contains("/u/"))
 			user(channel, link.replace("/u/", "/user/"));
+		else //temporary
+		{
+			WebDriver driver = new HtmlUnitDriver();
+			String title = "";
+
+			if(link.startsWith("www."))
+				link = "http://" + link;
+
+			driver.get(link);
+			title = driver.getTitle();
+			driver.quit();
+			
+			if(link.startsWith("http://"))
+				link = link.substring(7);
+			else if(link.startsWith("https://"))
+				link = link.substring(8);
+
+			if(link.length() > 21)
+			{
+				link = link.substring(0, 21);
+				link += "...";
+			}
+
+			if(title == null || title == "null" || title == "")
+				Utilities.sendMessage(channel, L10N.getString("linkTitle.notFound", channel).replace("#link", link));
+			else
+				Utilities.sendMessage(channel, L10N.getString("linkTitle.available", channel).replace("#link", link).replace("#title", title));
+		}
 //		else
 //		{
 //			String noPrefixLink = link.replace("http://", "").replace("https://", "").replace("www.", "");
