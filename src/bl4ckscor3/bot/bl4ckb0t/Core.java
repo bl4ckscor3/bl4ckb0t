@@ -20,7 +20,7 @@ public class Core
 	public static Bot bot;
 	private static boolean wasStartedAsWIP;
 	private static final String botName = "bl4ckb0t";
-	private static final String version = "5.9.2";
+	private static final String version = "5.9.3";
 	private static ConfigurationFile customConfig;
 
 	public static void main(String args[]) throws IOException, IrcException
