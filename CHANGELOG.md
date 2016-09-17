@@ -1,5 +1,9 @@
 #Changelog
 ---
+###5.9.3
+- Fixed selenium related features not working
+- Fixed ping for CS:GO updates
+
 ###5.9.2
 - Added information upon sending a link of a GitHub repository branch
 - Added information upon sending a link of a GitHub issue or pull request
