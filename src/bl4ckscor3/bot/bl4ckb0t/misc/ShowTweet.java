@@ -10,6 +10,7 @@ import org.jsoup.nodes.Element;
 import org.pircbotx.Colors;
 
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
+import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class ShowTweet
@@ -52,8 +53,17 @@ public class ShowTweet
 				return;
 			}
 		}
-		
-		name = doc.select("a.account-group:nth-child(2) > strong:nth-child(2)").get(0).toString().split(">")[1].split("<")[0];
+
+		try
+		{
+			name = doc.select("a.account-group:nth-child(2) > strong:nth-child(2)").get(0).toString().split(">")[1].split("<")[0];
+		}
+		catch(IndexOutOfBoundsException e)
+		{
+			doc.select("div.ProtectedTimeline");
+			Utilities.sendMessage(channel, L10N.getString("tweet.protectedTweets", channel));
+			return;
+		}
 		
 		if(name.endsWith("Verified Account"))
 		{
@@ -83,7 +93,7 @@ public class ShowTweet
 				hasVote = true;
 		}
 			
-		Utilities.sendMessage(channel, msg.replace("…", "") + (hasVote ? Colors.ITALICS + " (This Tweet has a vote)" : ""));
+		Utilities.sendMessage(channel, msg.replace("…", "") + (hasVote ? Colors.ITALICS + " (" + L10N.getString("tweet.vote", channel) + ")" : ""));
 		
 		try
 		{
