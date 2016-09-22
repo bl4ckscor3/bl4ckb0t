@@ -1,5 +1,8 @@
 #Changelog
 ---
+###5.9.4_WIP
+- Added Pushbullet notification if a new CS:GO update gets released
+
 ###5.9.3
 - Fixed selenium related features not working
 - Fixed ping for CS:GO updates

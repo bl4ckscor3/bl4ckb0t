@@ -91,7 +91,8 @@ public class ConfigurationFile
 			"mapsHost=-",
 			"showPlayerCount=true",
 			"showRedditInfo=true",
-			"showGitHubIssueInfo=true"
+			"showGitHubIssueInfo=true",
+			"pushNotificationOnCsgoUpdate=false"
 	};
 
 	/**

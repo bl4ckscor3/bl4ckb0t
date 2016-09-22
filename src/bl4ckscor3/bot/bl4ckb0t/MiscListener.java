@@ -10,11 +10,14 @@ import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.NickAlreadyInUseEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
+import com.github.sheigutn.pushbullet.Pushbullet;
+
 import bl4ckscor3.bot.bl4ckb0t.commands.channel.ChangeNick;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.misc.LinkManager;
 import bl4ckscor3.bot.bl4ckb0t.misc.SpellingCorrection;
 import bl4ckscor3.bot.bl4ckb0t.misc.YouTubeStats;
+import bl4ckscor3.bot.bl4ckb0t.util.Passwords;
 import bl4ckscor3.bot.bl4ckb0t.util.Reminder;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
@@ -25,8 +28,11 @@ public class MiscListener extends ListenerAdapter
 	{
 		try
 		{
-			if(event.getUser().getNick().equals("Maunz") && event.getMessage().toLowerCase().contains("was pushed to the steam client!"))
+			if(event.getUser().getNick().equals("bl4ckscor3") && event.getMessage().toLowerCase().contains("was pushed to the steam client!"))
 			{
+				if(Core.bot.getConfig().isEnabled("pushNotificationOnCsgoUpdate"))
+					new Pushbullet(Passwords.PUSHBULLETAPIKEY.getPassword()).pushNote("New CS:GO update!", "");
+				
 				Utilities.sendMessage(event.getChannel().getName(), "bl4ckscor3, Vauff, ^");
 				return;
 			}

@@ -69,3 +69,4 @@ mapsHost=-
 showPlayerCount=true
 showRedditInfo=true
 showGitHubIssueInfo=true
+pushNotificationOnCsgoUpdate=false
