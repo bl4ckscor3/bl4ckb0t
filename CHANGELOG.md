@@ -1,6 +1,6 @@
 #Changelog
 ---
-###5.9.4_WIP
+###5.9.4
 - Added Pushbullet notification if a new CS:GO update gets released
 - Added notification if the sent Tweet is protected
 
