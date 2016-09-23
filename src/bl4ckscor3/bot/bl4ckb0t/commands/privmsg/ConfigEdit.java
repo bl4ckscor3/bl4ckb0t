@@ -96,7 +96,7 @@ public class ConfigEdit extends BasePrivateCommand
 			event.respond("Configuration file updated successfully.");
 		}
 		else
-			event.respond("Syntax: config <set|list|lookup>");
+			event.respond("Syntax: config <set|list|lookup|save>");
 	}
 
 	@Override

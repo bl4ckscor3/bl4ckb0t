@@ -3,6 +3,7 @@
 ###5.9.4
 - Added Pushbullet notification if a new CS:GO update gets released
 - Added notification if the sent Tweet is protected
+- Fixed config command syntax
 
 ###5.9.3
 - Fixed selenium related features not working
