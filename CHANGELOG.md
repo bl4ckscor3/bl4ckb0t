@@ -8,6 +8,7 @@
 ###5.9.3
 - Fixed selenium related features not working
 - Fixed ping for CS:GO updates
+- Fixed some reddit links not showing link titles
 
 ###5.9.2
 - Added information upon sending a link of a GitHub repository branch
