@@ -28,7 +28,7 @@ public class MiscListener extends ListenerAdapter
 	{
 		try
 		{
-			if(event.getUser().getNick().equals("bl4ckscor3") && event.getMessage().toLowerCase().contains("was pushed to the steam client!"))
+			if(event.getUser().getNick().equals("Maunz") && event.getMessage().toLowerCase().contains("was pushed to the steam client!"))
 			{
 				if(Core.bot.getConfig().isEnabled("pushNotificationOnCsgoUpdate"))
 					new Pushbullet(Passwords.PUSHBULLETAPIKEY.getPassword()).pushNote("New CS:GO update!", "");
