@@ -17,7 +17,7 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class LinkManager
 {
-	public static void checkForLinkAndSendTitle(MessageEvent event) throws MalformedURLException, IOException
+	public static void handleLink(MessageEvent event) throws MalformedURLException, IOException
 	{
 		String[] args = Utilities.toArgs(event.getMessage());
 		String channel = event.getChannel().getName();
@@ -42,6 +42,8 @@ public class LinkManager
 					GitHub.showIssue(channel, s);
 				else if(Core.bot.getConfig().isEnabled("showGitHubRepoInfo") && s.contains("github.com"))
 					GitHub.showRepo(channel, s);
+				else if(Core.bot.getConfig().isEnabled("showYouTubeStats") && (s.contains("www.youtube.com/watch") || s.contains("youtu.be/")))
+					YouTubeStats.sendVideoStats(s, event.getChannel().getName());
 				else if(Core.bot.getConfig().isEnabled("kickOnBannedImgurLink") && channel.equals("#bl4ckscor3") && (s.contains("imgur.com") && !s.contains("i.imgur.com")))
 				{//code courtesy of Vauff
 					int images = 0;
