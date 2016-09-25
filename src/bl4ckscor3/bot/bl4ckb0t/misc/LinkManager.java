@@ -7,7 +7,6 @@ import org.jsoup.Jsoup;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.pircbotx.Colors;
-import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.Core;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
@@ -17,10 +16,16 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class LinkManager
 {
-	public static void handleLink(MessageEvent event) throws MalformedURLException, IOException
+	/**
+	 * Takes actions when specific links are sent
+	 * @param message The message containing links
+	 * @param channel The channel the message got sent in
+	 * @param user The user the message got sent by
+	 * @param tweet Wether or not the links are searched in a Tweet or not (this is to prevent an infinite loop with nested Tweets)
+	 */
+	public static void handleLink(String message, String channel, String user, boolean tweet) throws MalformedURLException, IOException
 	{
-		String[] args = Utilities.toArgs(event.getMessage());
-		String channel = event.getChannel().getName();
+		String[] args = Utilities.toArgs(message);
 		
 		for(String s : args)
 		{
@@ -34,8 +39,8 @@ public class LinkManager
 					continue;
 				}
 
-				if(Core.bot.getConfig().isEnabled("showTweets") && s.contains("twitter.com"))
-					ShowTweet.show(channel, s, 0);
+				if(!tweet && Core.bot.getConfig().isEnabled("showTweets") && s.contains("twitter.com"))
+					ShowTweet.show(channel, s, user, 0);
 				else if(Core.bot.getConfig().isEnabled("showGitHubCommitInfo") && (s.contains("git.io") || (s.contains("github.com") && s.contains("commit"))))
 					GitHub.showCommit(channel, s);
 				else if(Core.bot.getConfig().isEnabled("showGitHubIssueInfo") && s.contains("github.com") && (s.contains("issues") || s.contains("pull")))
@@ -43,7 +48,7 @@ public class LinkManager
 				else if(Core.bot.getConfig().isEnabled("showGitHubRepoInfo") && s.contains("github.com"))
 					GitHub.showRepo(channel, s);
 				else if(Core.bot.getConfig().isEnabled("showYouTubeStats") && (s.contains("www.youtube.com/watch") || s.contains("youtu.be/")))
-					YouTubeStats.sendVideoStats(s, event.getChannel().getName());
+					YouTubeStats.sendVideoStats(s, channel);
 				else if(Core.bot.getConfig().isEnabled("kickOnBannedImgurLink") && channel.equals("#bl4ckscor3") && (s.contains("imgur.com") && !s.contains("i.imgur.com")))
 				{//code courtesy of Vauff
 					int images = 0;
@@ -60,11 +65,11 @@ public class LinkManager
 					}
 
 					if(images == 1)
-						Core.bot.kick(channel, event.getUser().getNick(), "Only use i.imgur.com links.");
+						Core.bot.kick(channel, user, "Only use i.imgur.com links.");
 				}
 				else if(Core.bot.getConfig().isEnabled("showRedditInfo") && s.contains("reddit.com"))
 					Reddit.showInfo(channel, s);
-				else if(Core.bot.getConfig().isEnabled("showLinkTitles"))
+				else if(Core.bot.getConfig().isEnabled("showLinkTitles") && (tweet ^ s.contains("twitter.com")))
 				{
 					WebDriver driver = new HtmlUnitDriver();
 					String title = "";

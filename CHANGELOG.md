@@ -2,6 +2,7 @@
 ---
 ###5.9.5_WIP
 - YouTube links are now getting handled like all other links
+- Links within Tweets now get handled, too (YouTube stats, link titles, GitHub stats, etc. now show)
 - Fixed (some?) errors not getting logged to file
 - Fixed SpellingCorrection not working when a user corrects someone else twice in a row
 

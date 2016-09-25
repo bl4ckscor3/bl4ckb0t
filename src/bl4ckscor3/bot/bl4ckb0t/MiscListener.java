@@ -89,7 +89,7 @@ public class MiscListener extends ListenerAdapter
 					Utilities.sendMessage(channel, "wb, " + event.getUser().getNick());
 				//checking for urls and sending the title if available
 				else
-					LinkManager.handleLink(event);
+					LinkManager.handleLink(event.getMessage(), event.getChannel().getName(), event.getUser().getNick(), false);
 			}
 		}
 		catch(Exception e)
