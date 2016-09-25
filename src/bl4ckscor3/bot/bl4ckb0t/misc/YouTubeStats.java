@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.DataNode;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.pircbotx.Colors;
 
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
@@ -20,6 +22,7 @@ public class YouTubeStats
 	{
 		String yt = null;
 		String title = L10N.getString("youtube.noValue", channel);
+		String duration = L10N.getString("youtube.noValue", channel);
 		String views = L10N.getString("youtube.noValue", channel);
 		String likes = L10N.getString("youtube.noValue", channel);
 		String dislikes = L10N.getString("youtube.noValue", channel);
@@ -41,7 +44,7 @@ public class YouTubeStats
 
 		if(yt == null)
 			return;
-		
+
 		//if someone posts the link without a space between the link and the word before it
 		if(!yt.startsWith("w"))
 			yt = yt.split(":")[1].substring(2);
@@ -63,6 +66,42 @@ public class YouTubeStats
 		Document doc = Jsoup.connect(yt).get();
 
 		title = doc.select("#eow-title").get(0).text();
+
+		outer:
+		for(Element e : doc.getElementsByTag("script"))
+		{
+			for(DataNode n : e.dataNodes())
+			{
+				if(n.getWholeData().contains("length_seconds"))
+				{
+					for(String s : n.getWholeData().split(","))
+					{
+						if(s.startsWith("\"length_seconds\""))
+						{
+							int seconds = Integer.parseInt(s.split(":")[1].replace("\"", ""));
+							int minutes = 0;
+							int hours = 0;
+
+							while(seconds >= 60)
+							{
+								seconds -= 60;
+								minutes++;
+							}
+							
+							while(minutes >= 60)
+							{
+								minutes -= 60;
+								hours++;
+							}
+							
+							duration = (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds < 10 ? "0" + seconds : seconds);
+							break outer;
+						}
+					}
+				}
+			}
+		}
+
 		views = doc.select(".watch-view-count").get(0).text();
 
 		try
@@ -83,6 +122,7 @@ public class YouTubeStats
 		Utilities.sendStarMsg(channel,
 				Utilities.backgroundColor(Colors.WHITE, Colors.BLACK) + "You" + Utilities.backgroundColor(Colors.RED, Colors.WHITE) + "Tube",
 				L10N.getString("youtube.title", channel) + ": " + Colors.NORMAL + title,
+				L10N.getString("youtube.duration", channel) + ": " + Colors.NORMAL + duration,
 				L10N.getString("youtube.views", channel) + ": " + Colors.NORMAL + views,
 				L10N.getString("youtube.likes", channel) + ": " + Colors.NORMAL + Colors.DARK_GREEN + likes,
 				L10N.getString("youtube.dislikes", channel) + ": " + Colors.NORMAL + Colors.RED + dislikes,

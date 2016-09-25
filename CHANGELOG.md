@@ -1,6 +1,7 @@
 #Changelog
 ---
 ###5.9.5_WIP
+- Re-added duration to YouTube stats
 - YouTube links are now getting handled like all other links
 - Links within Tweets now get handled, too (YouTube stats, link titles, GitHub stats, etc. now show)
 - Fixed (some?) errors not getting logged to file
@@ -485,7 +486,7 @@
 - Fixed "welcome back" message not showing if only "re" was posted
 
 ##2.20
-- bl4ckb0t now detects multiple YouTube links in one message and sends their 
+- bl4ckb0t now detects multiple YouTube links in one message and sends their info
 - bl4ckb0t can now join and leave his default channels
 - Updated -forge for 1.8 beta versions
 - Revamped scrambling algorithm
