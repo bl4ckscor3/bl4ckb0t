@@ -23,6 +23,8 @@
 
 [**-info**: -about](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/Info.java)
 
+[**-iplocation**: -iploc | -ip | -loc](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/IPLocation.java)
+
 [**-join**: None.](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/Join.java)
 
 [**-kick**: None.](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/src/bl4ckscor3/bot/bl4ckb0t/commands/channel/Kick.java)

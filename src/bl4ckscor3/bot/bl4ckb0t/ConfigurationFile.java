@@ -35,6 +35,7 @@ public class ConfigurationFile
 			"forge=true",
 			"help=true",
 			"info=true",
+			"iplocation=true",
 			"join=true",
 			"kick=true",
 			"language=true",
