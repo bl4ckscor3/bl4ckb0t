@@ -96,7 +96,7 @@ public class Logging extends ListenerAdapter
 		catch(Exception e)
 		{
 			severe("Could not create logger!");
-			e.printStackTrace();
+			Logging.stackTrace(e);
 			disable();
 		}
 	}
@@ -121,7 +121,7 @@ public class Logging extends ListenerAdapter
 		end();
 		enabled = false;
 	}
-
+	
 	/**
 	 * Logs a severe message
 	 * @param line The message to log
@@ -266,7 +266,7 @@ public class Logging extends ListenerAdapter
 				}
 				catch (IOException e)
 				{
-					e.printStackTrace();
+					e.printStackTrace(); //don't call Logging.stackTrace(e); here
 				}
 			}
 
@@ -293,7 +293,7 @@ public class Logging extends ListenerAdapter
 				}
 				catch (IOException e)
 				{
-					e.printStackTrace();
+					e.printStackTrace(); //don't call Logging.stackTrace(e); here
 				}
 			}
 

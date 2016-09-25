@@ -10,6 +10,7 @@ import org.pircbotx.hooks.events.MessageEvent;
 import bl4ckscor3.bot.bl4ckb0t.commands.BaseChannelCommand;
 import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
+import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Passwords;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
@@ -43,7 +44,7 @@ public class Weather extends BaseChannelCommand
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			Logging.stackTrace(e);
 			Utilities.sendMessage(channel, L10N.getString("w.cityNotFound", channel).replace("#city", city.trim()).replace("#smiley", ":/"));
 		}
 	}

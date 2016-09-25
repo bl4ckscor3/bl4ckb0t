@@ -98,7 +98,7 @@ public class MiscListener extends ListenerAdapter
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			Logging.stackTrace(e);
 		}
 	}
 
@@ -118,7 +118,7 @@ public class MiscListener extends ListenerAdapter
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			Logging.stackTrace(e);
 		}
 	}
 
@@ -135,7 +135,7 @@ public class MiscListener extends ListenerAdapter
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			Logging.stackTrace(e);
 		}
 	}
 
@@ -155,7 +155,7 @@ public class MiscListener extends ListenerAdapter
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			Logging.stackTrace(e);
 		}
 	}
 
@@ -168,7 +168,7 @@ public class MiscListener extends ListenerAdapter
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			Logging.stackTrace(e);
 		}
 	}
 }

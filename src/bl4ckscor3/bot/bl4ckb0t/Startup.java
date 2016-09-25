@@ -66,7 +66,7 @@ public class Startup
 		catch(IOException e)
 		{
 			Logging.severe("Changelog could not be loaded!");
-			e.printStackTrace();
+			Logging.stackTrace(e);
 		}
 	}
 

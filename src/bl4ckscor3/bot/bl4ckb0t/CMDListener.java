@@ -150,7 +150,7 @@ public class CMDListener extends ListenerAdapter
 						}
 						catch(Exception e)
 						{
-							e.printStackTrace();
+							Logging.stackTrace(e);
 						}
 					}
 					else
@@ -181,7 +181,7 @@ public class CMDListener extends ListenerAdapter
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			Logging.stackTrace(e);
 		}
 	}	
 
@@ -213,7 +213,7 @@ public class CMDListener extends ListenerAdapter
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			Logging.stackTrace(e);
 		}
 	}
 }

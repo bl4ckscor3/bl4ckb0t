@@ -6,6 +6,7 @@ import org.pircbotx.Colors;
 
 import bl4ckscor3.bot.bl4ckb0t.ConfigurationFile;
 import bl4ckscor3.bot.bl4ckb0t.Core;
+import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 /**
@@ -61,7 +62,7 @@ public class Maps implements Runnable
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			Logging.stackTrace(e);
 		}
 	}
 }

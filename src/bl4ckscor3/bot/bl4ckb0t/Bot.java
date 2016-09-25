@@ -77,7 +77,7 @@ public class Bot extends PircBotX
 			}
 			catch(IOException e)
 			{
-				e.printStackTrace();
+				Logging.stackTrace(e);
 			}
 		}
 		
@@ -107,7 +107,7 @@ public class Bot extends PircBotX
 			}
 			catch(IOException e)
 			{
-				e.printStackTrace();
+				Logging.stackTrace(e);
 			}
 		}
 

@@ -1,5 +1,8 @@
 #Changelog
 ---
+###5.9.5
+- Fixed (some?) errors not getting logged to file
+
 ###5.9.4
 - Added Pushbullet notification if a new CS:GO update gets released
 - Added notification if the sent Tweet is protected

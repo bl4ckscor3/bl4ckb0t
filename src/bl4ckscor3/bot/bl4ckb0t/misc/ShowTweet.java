@@ -49,7 +49,7 @@ public class ShowTweet
 			else
 			{
 				Utilities.sendMessage(channel, L10N.getString("tweet.error", channel));
-				e.printStackTrace();
+				Logging.stackTrace(e);
 				return;
 			}
 		}

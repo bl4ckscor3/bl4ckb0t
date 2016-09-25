@@ -43,7 +43,7 @@ public class L10N
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			Logging.stackTrace(e);
 			Logging.severe("Error in localizing message.");
 			
 			try
@@ -75,7 +75,7 @@ public class L10N
 			}
 			catch(Exception e1)
 			{
-				e1.printStackTrace();
+				Logging.stackTrace(e1);
 				return "Error in localizing english message.\n";
 			}
 		}

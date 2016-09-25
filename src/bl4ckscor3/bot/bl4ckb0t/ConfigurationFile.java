@@ -178,7 +178,7 @@ public class ConfigurationFile
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			Logging.stackTrace(e);
 		}
 	}
 
@@ -211,7 +211,7 @@ public class ConfigurationFile
 		}
 		catch(IOException e)
 		{
-			e.printStackTrace();
+			Logging.stackTrace(e);
 		}
 	}
 
@@ -234,7 +234,7 @@ public class ConfigurationFile
 		}
 		catch(IOException e)
 		{
-			e.printStackTrace();
+			Logging.stackTrace(e);
 		}
 	}
 
@@ -252,7 +252,7 @@ public class ConfigurationFile
 		}
 		catch(IOException e)
 		{
-			e.printStackTrace();
+			Logging.stackTrace(e);
 		}
 	}
 }
