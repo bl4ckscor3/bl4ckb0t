@@ -1,7 +1,8 @@
 #Changelog
 ---
-###5.9.5
+###5.9.5_WIP
 - Fixed (some?) errors not getting logged to file
+- Fixed SpellingCorrection not working when a user corrects someone else twice in a row
 
 ###5.9.4
 - Added Pushbullet notification if a new CS:GO update gets released

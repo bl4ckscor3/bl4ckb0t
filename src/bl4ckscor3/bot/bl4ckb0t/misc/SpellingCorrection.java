@@ -7,6 +7,7 @@ import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
+import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 import bl4ckscor3.bot.bl4ckb0t.util.android.ArrayMap;
 
@@ -120,7 +121,7 @@ public class SpellingCorrection
 				else
 				{
 					previousMessage = getLatestMessage(userToCorrect, storage.get(channel));
-					newMessage = getLatestMessage(event.getUser().getNick(), storage.get(channel)).replace(toReplace, replaceWith); //w/o italics
+					newMessage = getLatestMessage(userToCorrect, storage.get(channel)).replace(toReplace, replaceWith); //w/o italics
 					correctedMessage = getLatestMessage(userToCorrect, storage.get(channel)).replace(toReplace, "\u001d" + replaceWith + Colors.NORMAL); //w/ italics
 				}
 				
