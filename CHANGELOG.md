@@ -3,10 +3,10 @@
 ###5.10_WIP
 - Added -iplocation
 - Re-added duration to YouTube stats
-- YouTube links are now getting handled like all other links
 - Links within Tweets now get handled, too (YouTube stats, link titles, GitHub stats, etc. now show)
 - Fixed (some?) errors not getting logged to file
 - Fixed SpellingCorrection not working when a user corrects someone else twice in a row
+- Internal changes
 
 ###5.9.4
 - Added Pushbullet notification if a new CS:GO update gets released
