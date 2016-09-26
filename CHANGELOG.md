@@ -1,6 +1,6 @@
 #Changelog
 ---
-###5.10_WIP
+###5.10
 - Added -iplocation
 - Added subreddit information
 - Added reddit post information
