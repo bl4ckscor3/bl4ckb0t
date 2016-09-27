@@ -1,6 +1,9 @@
 #Changelog
 ---
-###5.10
+###5.10.1
+- Fixed link titles not showing
+
+##5.10
 - Added -iplocation
 - Added subreddit information
 - Added reddit post information

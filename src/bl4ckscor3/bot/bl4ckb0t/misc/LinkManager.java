@@ -69,7 +69,7 @@ public class LinkManager
 				}
 				else if(Core.bot.getConfig().isEnabled("showRedditInfo") && s.contains("reddit.com"))
 					Reddit.showInfo(channel, s);
-				else if(Core.bot.getConfig().isEnabled("showLinkTitles") && (tweet ^ s.contains("twitter.com")))
+				else if(Core.bot.getConfig().isEnabled("showLinkTitles") && !(tweet && s.contains("twitter.com")))
 				{
 					WebDriver driver = new HtmlUnitDriver();
 					String title = "";
