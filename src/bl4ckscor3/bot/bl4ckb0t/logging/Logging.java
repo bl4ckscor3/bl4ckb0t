@@ -11,6 +11,7 @@ import java.util.List;
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.ActionEvent;
+import org.pircbotx.hooks.events.ConnectEvent;
 import org.pircbotx.hooks.events.DisconnectEvent;
 import org.pircbotx.hooks.events.JoinEvent;
 import org.pircbotx.hooks.events.KickEvent;
@@ -61,7 +62,7 @@ public class Logging extends ListenerAdapter
 
 			if(!f.exists())
 			{
-				buffer.add("\"" + botName + ".log\" does not exist, creating new file...");
+				buffer.add("\"" + botName + ".log\" does not exist, creating new file");
 				f.createNewFile();
 				buffer.add("File successfully created!");
 			}
@@ -72,7 +73,7 @@ public class Logging extends ListenerAdapter
 				copy.mkdirs();
 				copy = new File(jarPath + "/logs/" + botName + " - " + Utilities.getCurrentDate().toString().replace(":", "-") + ".log");
 				buffer.add("Created new file to copy to: \"" + copy.getName() + "\"");
-				buffer.add("Starting copy process...");
+				buffer.add("Starting copy process");
 
 				FileWriter copyWriter = new FileWriter(copy);
 				BufferedReader reader = new BufferedReader(new FileReader(f));
@@ -368,6 +369,12 @@ public class Logging extends ListenerAdapter
 		severe("Disconnected from server!");
 	}
 
+	@Override
+	public void onConnect(ConnectEvent event) throws Exception
+	{
+		info("Connected to server!");
+	}
+	
 	/***************************Getters***************************/
 
 	public static boolean isEnabled()
