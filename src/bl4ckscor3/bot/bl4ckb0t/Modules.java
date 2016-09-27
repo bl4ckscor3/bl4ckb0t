@@ -4,19 +4,19 @@ import java.io.File;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLClassLoader;
-
-import org.pircbotx.Configuration;
+import java.util.ArrayList;
 
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Modules
 {
-	public Configuration.Builder builder;
+	public static final ArrayList<Module> modules = new ArrayList<Module>();
+	public Module.Builder builder;
 	
 	public Modules(){}
 	
-	public Modules(Configuration.Builder c)
+	public Modules(Module.Builder c)
 	{
 		builder = c;
 	}
@@ -24,7 +24,7 @@ public class Modules
 	/**
 	 * Loads all installed modules
 	 */
-	public Configuration.Builder init() throws URISyntaxException
+	public Module.Builder init() throws URISyntaxException
 	{
 		File folder = new File(Utilities.getJarLocation() + "/modules");
 		
@@ -42,8 +42,10 @@ public class Modules
 					ClassLoader loader = URLClassLoader.newInstance(new URL[]{f.toURI().toURL()}, getClass().getClassLoader());
 					Class<?> jarClass = Class.forName(main, true, loader);
 					Class<? extends Module> moduleClass = jarClass.asSubclass(Module.class);
+					Module module = moduleClass.newInstance();
 					
-					moduleClass.newInstance().setup();
+					module.setup();
+					modules.add(module);
 					Logging.info("Loaded module " + f.getName().split("\\.")[0]);
 				}
 				catch(ClassCastException e)

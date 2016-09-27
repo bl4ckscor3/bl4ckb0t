@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.pircbotx.Configuration;
 import org.pircbotx.UtilSSLSocketFactory;
 import org.pircbotx.exception.IrcException;
 
@@ -45,7 +44,7 @@ public class Core
 	 */
 	public static void createBot(boolean wip) throws Exception
 	{
-		Configuration.Builder builder = new Configuration.Builder()
+		Module.Builder builder = (Module.Builder)new Module.Builder()
 				.setVersion(version + (wip ? "_WIP" : ""))
 				.setName(botName)
 				.setLogin(botName)
@@ -56,6 +55,7 @@ public class Core
 				.setAutoReconnect(true)
 				.setMessageDelay(0)
 				.addAutoJoinChannel("#bl4ckb0tTest")
+				.addListener(new Listener())
 				.addListener(new Logging());
 		Logging.info("Created PircBotX config");
 		Logging.info("Starting to load modules");
