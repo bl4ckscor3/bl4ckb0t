@@ -101,6 +101,11 @@ public class LinkManager
 		}
 	}
 
+	/**
+	 * Checks wether a website is blacklisted
+	 * @param website The website link to check
+	 * @return true if the given link is blacklisted, false otherwise
+	 */
 	private static boolean isWebsiteBlacklisted(String website) throws MalformedURLException, IOException
 	{
 		for(String s : Lists.getBlacklistedWebsites())

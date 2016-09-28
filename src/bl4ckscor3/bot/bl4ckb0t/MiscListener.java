@@ -146,8 +146,13 @@ public class MiscListener extends ListenerAdapter
 				return;
 			}
 
-			if(Core.bot.getConfig().isEnabled("shrugs") && event.getAction().startsWith("shrugs"))
-				Utilities.sendMessage(event.getChannel().getName(), "¯\\_(ツ)_/¯");
+			if(Core.bot.isEnabled())
+			{
+				if(Core.bot.getConfig().isEnabled("shrugs") && event.getAction().startsWith("shrugs"))
+					Utilities.sendMessage(event.getChannel().getName(), "¯\\_(ツ)_/¯");
+				else
+					LinkManager.handleLink(event.getMessage(), event.getChannel().getName(), event.getUser().getNick(), false);
+			}
 		}
 		catch(Exception e)
 		{
