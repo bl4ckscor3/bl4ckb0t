@@ -37,13 +37,23 @@ public class Utilities
 	{
 		String[] previous = line.split(" ");
 		String[] result = new String[previous.length - 1];
-		
+
 		for(int i = 1; i < previous.length; i++)
 		{
-			result[i - 1] = previous[0];
+			result[i - 1] = previous[i];
 		}
-		
+
 		return result;
-		
+
+	}
+
+	/**
+	 * Checks if the specified string is starting with a number
+	 * @param s The string to check
+	 * @return Wether the string starts with a number or not
+	 */
+	public static boolean startsWithNumber(String s)
+	{
+		return s.startsWith("1") || s.startsWith("2") || s.startsWith("3") || s.startsWith("4") || s.startsWith("5") || s.startsWith("6") || s.startsWith("7") || s.startsWith("8") || s.startsWith("9") || s.startsWith("0");
 	}
 }

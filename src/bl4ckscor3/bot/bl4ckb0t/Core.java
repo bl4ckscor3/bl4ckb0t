@@ -58,10 +58,15 @@ public class Core
 				.addListener(new Listener())
 				.addListener(new Logging());
 		Logging.info("Created PircBotX config");
+		Logging.info("Setting up external information");
+		Startup.callMethods();
 		Logging.info("Starting to load modules");
 		modules = new Modules(builder);
-		builder = modules.init();
-		Logging.info("All modules loaded.");
+		Logging.info("Loading private modules");
+		builder = modules.initPrivate();
+		Logging.info("Loading public modules");
+		builder = modules.initPublic();
+		Logging.info("All modules loaded");
 		bot = new Bot(builder.buildConfiguration(), wip, "-");
 		Logging.info("Completed last setup steps");
 		Logging.info("Starting bot");

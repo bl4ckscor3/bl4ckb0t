@@ -6,6 +6,7 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
 
+import bl4ckscor3.bot.bl4ckb0t.commands.modules.Changelog;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
@@ -23,8 +24,9 @@ public class Modules
 	
 	/**
 	 * Loads all installed modules
+	 * @return The modified builder
 	 */
-	public Module.Builder init() throws URISyntaxException
+	public Module.Builder initPublic() throws URISyntaxException
 	{
 		File folder = new File(Utilities.getJarLocation() + "/modules");
 		
@@ -67,6 +69,29 @@ public class Modules
 					continue;
 				}
 			}
+		}
+		
+		return builder;
+	}
+	
+	/**
+	 * Loads all modules that are getting shipped with the bot
+	 * @return The modified builder
+	 */
+	public Module.Builder initPrivate()
+	{
+		try
+		{
+			Changelog module = new Changelog();
+			
+			module.setup();
+			modules.add(module);
+			Logging.info("Loaded module Changelog");
+		}
+		catch(Exception e)
+		{
+			Logging.warn("Module Changelog could not be loaded due to an error. Is it even a module?");
+			Logging.stackTrace(e);
 		}
 		
 		return builder;
