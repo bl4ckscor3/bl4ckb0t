@@ -10,6 +10,7 @@ import org.jsoup.nodes.Element;
 import org.pircbotx.Colors;
 
 import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
+import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class YouTubeStats
@@ -40,10 +41,14 @@ public class YouTubeStats
 			}
 		}
 		else if(link.contains("youtu.be/"))
-			yt = link;
+			yt = "www.youtube.com/watch?v=" + link.split("youtu.be/")[1];
 
+		//shouldn't happen
 		if(yt == null)
+		{
+			Logging.warn("YouTube link is null - " + link);
 			return;
+		}
 
 		//if someone posts the link without a space between the link and the word before it
 		if(!yt.startsWith("w"))
