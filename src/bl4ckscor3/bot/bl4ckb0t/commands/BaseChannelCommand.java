@@ -54,14 +54,14 @@ public abstract class BaseChannelCommand implements ICommand<MessageEvent>
 	
 	/**
 	 * Checks if the String is a valid alias
-	 * @param check The String to check
+	 * @param check The String to check, WITHOUT the command prefix
 	 * @return Wether the checked String is a valid alias or not
 	 */
 	public final boolean isValidAlias(String check)
 	{
 		for(String s : getAliases())
 		{
-			if(check.replace("-", "").equals(s))
+			if(check.equals(s))
 				return true;
 		}
 		
