@@ -54,7 +54,7 @@ public class Weather extends BaseChannelCommand
 		double kelvin = Double.parseDouble(doc.select("temperature").attr("value"));
 		String celsius = Utilities.formatDouble(kelvin - 273.15D);
 		
-		return celsius + "Â°C | " + Utilities.formatDouble(Double.parseDouble(celsius) * (9D / 5D) + 32D) + "Â°F | " + kelvin + "K";
+		return celsius + "°C | " + Utilities.formatDouble(Double.parseDouble(celsius) * (9D / 5D) + 32D) + "°F | " + kelvin + "K";
 	}
 
 	private String getWindSpeed(Document doc)
