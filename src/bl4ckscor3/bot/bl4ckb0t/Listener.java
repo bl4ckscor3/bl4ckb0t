@@ -7,6 +7,7 @@ import org.pircbotx.hooks.events.PrivateMessageEvent;
 import bl4ckscor3.bot.bl4ckb0t.commands.BaseChannelCommand;
 import bl4ckscor3.bot.bl4ckb0t.commands.BasePrivateCommand;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
+import bl4ckscor3.bot.bl4ckb0t.util.Lists;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Listener extends ListenerAdapter
@@ -18,6 +19,12 @@ public class Listener extends ListenerAdapter
 
 		if(!cmdName.startsWith(Core.bot.getCmdPrefix()))
 			return;
+		
+		if(Lists.isIgnored(event.getUser().getNick()))
+		{
+			Logging.warn("Ignoring user " + event.getUser().getNick());
+			return;
+		}
 		
 		cmdName = cmdName.replace(Core.bot.getCmdPrefix(), "");
 		
@@ -31,7 +38,8 @@ public class Listener extends ListenerAdapter
 					{
 						try
 						{
-							cmd.exe(event, cmdName, Utilities.toArgs(event.getMessage()));
+							if(Utilities.hasPermission(event.getUser().getNick(), cmd.getPermissionLevel()))
+								cmd.exe(event, cmdName, Utilities.toArgs(event.getMessage()));
 						}
 						catch(Exception e)
 						{
@@ -46,6 +54,9 @@ public class Listener extends ListenerAdapter
 	@Override
 	public void onPrivateMessage(PrivateMessageEvent event) throws Exception
 	{
+		if(!Lists.isLvl3User(event.getUser().getNick()))
+			return;
+		
 		String cmdName = event.getMessage().split(" ")[0];
 
 		for(Module m : Modules.modules)

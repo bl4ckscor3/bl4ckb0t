@@ -20,9 +20,9 @@ public class Startup
 	public static void callMethods() throws MalformedURLException, IOException
 	{
 		getChangelog();
-		setAllowedUsers();
+		setLvl2Users();
+		setLvl3Users();
 		setIgnoredUsers();
-		setValidUsers();
 	}
 
 	/**
@@ -93,14 +93,14 @@ public class Startup
 	/**
 	 * Sets the users with a permission level of 2
 	 */
-	private static void setAllowedUsers() throws MalformedURLException, IOException
+	private static void setLvl2Users() throws MalformedURLException, IOException
 	{
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://akino.canopus.uberspace.de/bl4ckb0t/files/allowedUsers.txt").openStream()));
 		String line = "";
 
 		while((line = reader.readLine()) != null)
 		{
-			Lists.addAllowedUser(line);
+			Lists.addLvl2User(line);
 		}
 
 		reader.close();
@@ -109,14 +109,14 @@ public class Startup
 	/**
 	 * Sets the users with a permission level of 3
 	 */
-	private static void setValidUsers() throws MalformedURLException, IOException
+	private static void setLvl3Users() throws MalformedURLException, IOException
 	{
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://akino.canopus.uberspace.de/bl4ckb0t/files/validUsers.txt").openStream()));
 		String line = "";
 
 		while((line = reader.readLine()) != null)
 		{
-			Lists.addValidUser(line);
+			Lists.addLvl3User(line);
 		}
 
 		reader.close();

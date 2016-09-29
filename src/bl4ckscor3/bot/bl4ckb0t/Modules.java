@@ -52,7 +52,7 @@ public class Modules
 				}
 				catch(ClassCastException e)
 				{
-					Logging.warn("Main class does not extend bl4ckscor3.bot.bl4ckb0t.Module.class");
+					Logging.warn("Main class does not extend bl4ckscor3.bot.bl4ckb0t.Module");
 					Logging.stackTrace(e);
 					continue;
 				}
@@ -90,7 +90,7 @@ public class Modules
 		}
 		catch(Exception e)
 		{
-			Logging.warn("Module Changelog could not be loaded due to an error. Is it even a module?");
+			Logging.warn("Module Changelog could not be loaded due to an error");
 			Logging.stackTrace(e);
 		}
 		
