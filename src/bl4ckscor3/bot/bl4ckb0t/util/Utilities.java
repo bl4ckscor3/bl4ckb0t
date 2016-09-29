@@ -4,6 +4,7 @@ import java.net.URISyntaxException;
 import java.util.Date;
 
 import bl4ckscor3.bot.bl4ckb0t.Core;
+import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 
 public class Utilities
 {
@@ -56,7 +57,7 @@ public class Utilities
 	{
 		return s.startsWith("1") || s.startsWith("2") || s.startsWith("3") || s.startsWith("4") || s.startsWith("5") || s.startsWith("6") || s.startsWith("7") || s.startsWith("8") || s.startsWith("9") || s.startsWith("0");
 	}
-	
+
 	/**
 	 * Checks wether the given user has the given permission level
 	 * @param user The user to check for
@@ -72,5 +73,16 @@ public class Utilities
 		else if(level == 3)
 			return Lists.isLvl3User(user);
 		return false;
+	}
+
+	/**
+	 * Sends a message to a channel or user
+	 * @param target The message receiver
+	 * @param msg The message
+	 */
+	public static void sendMessage(String target, String msg)
+	{
+		Core.bot.sendIRC().message(target, msg);
+		Logging.message(target, Core.bot.getNick(), msg);
 	}
 }

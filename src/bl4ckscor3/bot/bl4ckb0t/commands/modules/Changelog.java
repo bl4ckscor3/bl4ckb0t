@@ -13,12 +13,23 @@ public class Changelog extends Module
 {
 	public static final ArrayMap<String, ArrayList<String>> versions = new ArrayMap<String, ArrayList<String>>();
 	
+	public Changelog(String name)
+	{
+		super(name);
+	}
+	
 	@Override
 	public void setup()
 	{
 		getBuilder().registerChannelCommand(this, new Command());
 	}
 
+	@Override
+	public String[] getUsage()
+	{
+		return new String[]{"Changelog command explanation", "Bla 1", "Bla 2"}; //TODO: L10N
+	}
+	
 	public class Command extends BaseChannelCommand
 	{
 		@Override
@@ -28,7 +39,7 @@ public class Changelog extends Module
 			{
 				if(!versions.containsKey(args[0]))
 				{
-					event.respondChannel("This version could not be found.");
+					event.respondChannel("This version could not be found."); //TODO: L10N
 					return;
 				}
 
@@ -56,15 +67,9 @@ public class Changelog extends Module
 		}
 
 		@Override
-		public String getSyntax(String channel)
+		public String getSyntax()
 		{
-			return null;
-		}
-
-		@Override
-		public String[] getUsage(String channel)
-		{
-			return null;
+			return Core.bot.getCmdPrefix() + "changelog [version]";
 		}
 	}
 }

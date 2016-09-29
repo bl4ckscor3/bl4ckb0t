@@ -5,41 +5,12 @@ import org.pircbotx.hooks.events.MessageEvent;
 public abstract class BaseChannelCommand implements ICommand<MessageEvent>
 {
 	/**
-	 * The lines that can be used to trigger the command exclusive the prefix. The first alias is the main one.
+	 * The lines that can be used to trigger the command exclusive the prefix. The first alias is the main one
 	 */
 	public abstract String[] getAliases();
 
-	/**
-	 * How the command can be used. Gets shown in the help menu.
-	 * @param event The channel the help command was used in
-	 */
-	public abstract String getSyntax(String channel);
-	
-	/**
-	 * Explanation of the command. Gets shown in the help menu.
-	 * @param event The channel the help command was used in
-	 */
-	public abstract String[] getUsage(String channel);
-	
-	/**
-	 * Anything special the user needs to know about the command. Gets shown in the help menu.
-	 * @param event The channel the help command was used in
-	 */
-	public String getNotes(String channel)
-	{
-		return null;
-	}
-	
-	/**
-	 * Which user can issue this command?
-	 * 3 = Only valid users
-	 * 2 = Valid and allowed users
-	 * 1 = Everybody (Default)
-	 */
-	public int getPermissionLevel()
-	{
-		return 1;
-	}
+	@Override
+	public abstract String getSyntax();
 	
 	/*Helpful Methods*/
 	

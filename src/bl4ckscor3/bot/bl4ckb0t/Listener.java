@@ -38,13 +38,15 @@ public class Listener extends ListenerAdapter
 					{
 						try
 						{
-							if(Utilities.hasPermission(event.getUser().getNick(), cmd.getPermissionLevel()))
+							if(Utilities.hasPermission(event.getUser().getNick(), m.getPermissionLevel()))
 								cmd.exe(event, cmdName, Utilities.toArgs(event.getMessage()));
 						}
 						catch(Exception e)
 						{
 							Logging.stackTrace(e);
 						}
+						
+						return;
 					}
 				}
 			}
@@ -75,6 +77,8 @@ public class Listener extends ListenerAdapter
 						{
 							Logging.stackTrace(e);
 						}
+						
+						return;
 					}
 				}
 			}

@@ -7,6 +7,7 @@ import java.net.URLClassLoader;
 import java.util.ArrayList;
 
 import bl4ckscor3.bot.bl4ckb0t.commands.modules.Changelog;
+import bl4ckscor3.bot.bl4ckb0t.commands.modules.Help;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
@@ -44,7 +45,7 @@ public class Modules
 					ClassLoader loader = URLClassLoader.newInstance(new URL[]{f.toURI().toURL()}, getClass().getClassLoader());
 					Class<?> jarClass = Class.forName(main, true, loader);
 					Class<? extends Module> moduleClass = jarClass.asSubclass(Module.class);
-					Module module = moduleClass.newInstance();
+					Module module = moduleClass.getDeclaredConstructor(String.class).newInstance(f.getName().split("\\.")[0]);
 					
 					module.setup();
 					modules.add(module);
@@ -82,7 +83,7 @@ public class Modules
 	{
 		try
 		{
-			Changelog module = new Changelog();
+			Changelog module = new Changelog("Changelog");
 			
 			module.setup();
 			modules.add(module);
@@ -91,6 +92,20 @@ public class Modules
 		catch(Exception e)
 		{
 			Logging.warn("Module Changelog could not be loaded due to an error");
+			Logging.stackTrace(e);
+		}
+		
+		try
+		{
+			Help module = new Help("Help");
+			
+			module.setup();
+			modules.add(module);
+			Logging.info("Loaded module Help");
+		}
+		catch(Exception e)
+		{
+			Logging.warn("Module Help could not be loaded due to an error");
 			Logging.stackTrace(e);
 		}
 		

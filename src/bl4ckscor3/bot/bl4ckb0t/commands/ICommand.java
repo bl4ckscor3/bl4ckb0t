@@ -13,6 +13,11 @@ public interface ICommand<E extends Event>
 	public void exe(E event, String cmdName, String[] args) throws Exception;
 
 	/**
+	 * How the command can be used, gets shown in the help menu
+	 */
+	public String getSyntax();
+	
+	/**
 	 * The prefix which triggers the command
 	 */
 	public String getMainAlias();
