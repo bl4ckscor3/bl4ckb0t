@@ -1,4 +1,4 @@
-package bl4ckscor3.bot.bl4ckb0t.commands.modules;
+package bl4ckscor3.bot.bl4ckb0t.modules;
 
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;

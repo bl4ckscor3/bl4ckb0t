@@ -7,8 +7,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-import bl4ckscor3.bot.bl4ckb0t.commands.modules.Changelog;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
+import bl4ckscor3.bot.bl4ckb0t.modules.Changelog;
 import bl4ckscor3.bot.bl4ckb0t.util.Lists;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
@@ -19,9 +19,13 @@ public class Startup
 	 */
 	public static void callMethods() throws MalformedURLException, IOException
 	{
+		Logging.info("Getting changelog");
 		getChangelog();
+		Logging.info("Getting allowed users");
 		setLvl2Users();
+		Logging.info("Getting valid users");
 		setLvl3Users();
+		Logging.info("Getting users to ignore");
 		setIgnoredUsers();
 	}
 

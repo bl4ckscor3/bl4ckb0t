@@ -21,7 +21,7 @@ public abstract class Module
 	 */
 	public Module(String n)
 	{
-		name = n.toLowerCase();
+		name = n;
 	}
 	
 	/**
