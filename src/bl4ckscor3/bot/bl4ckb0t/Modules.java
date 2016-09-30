@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.modules.Changelog;
 import bl4ckscor3.bot.bl4ckb0t.modules.Help;
+import bl4ckscor3.bot.bl4ckb0t.modules.Info;
 import bl4ckscor3.bot.bl4ckb0t.modules.ModuleManagement;
+import bl4ckscor3.bot.bl4ckb0t.modules.Update;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Modules
@@ -50,46 +52,27 @@ public class Modules
 	 */
 	public Module.Builder initPrivate()
 	{
-		try
-		{
-			Changelog module = new Changelog("Changelog");
-			
-			module.setup();
-			modules.add(module);
-			Logging.info("	Loaded module Changelog");
-		}
-		catch(Exception e)
-		{
-			Logging.warn("	Module Changelog could not be loaded due to an error");
-			Logging.stackTrace(e);
-		}
+		Module[] privateModules = {
+				new Changelog("Changelog"),
+				new Help("Help"),
+				new ModuleManagement("ModuleManagement"),
+				new Info("Info"),
+				new Update("Update")
+		};
 		
-		try
+		for(Module m : privateModules)
 		{
-			Help module = new Help("Help");
-			
-			module.setup();
-			modules.add(module);
-			Logging.info("	Loaded module Help");
-		}
-		catch(Exception e)
-		{
-			Logging.warn("	Module Help could not be loaded due to an error");
-			Logging.stackTrace(e);
-		}
-		
-		try
-		{
-			ModuleManagement module = new ModuleManagement("ModuleManagement");
-			
-			module.setup();
-			modules.add(module);
-			Logging.info("	Loaded module ModuleManagement");
-		}
-		catch(Exception e)
-		{
-			Logging.warn("	Module ModuleManagement could not be loaded due to an error");
-			Logging.stackTrace(e);
+			try
+			{
+				m.setup();
+				modules.add(m);
+				Logging.info("	Loaded module " + m.getName());
+			}
+			catch(Exception e)
+			{
+				Logging.warn("	Module " + m.getName() + " could not be loaded due to an error");
+				Logging.stackTrace(e);
+			}
 		}
 		
 		return builder;

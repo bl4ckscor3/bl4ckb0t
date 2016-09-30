@@ -19,9 +19,9 @@ public abstract class Module
 	 * Constructor
 	 * @param n The name of the module
 	 */
-	public Module(String n)
+	public Module(String name)
 	{
-		name = n;
+		this.name = name;
 	}
 	
 	/**

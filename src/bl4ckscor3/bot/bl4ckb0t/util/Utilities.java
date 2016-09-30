@@ -3,6 +3,8 @@ package bl4ckscor3.bot.bl4ckb0t.util;
 import java.net.URISyntaxException;
 import java.util.Date;
 
+import org.pircbotx.Colors;
+
 import bl4ckscor3.bot.bl4ckb0t.Core;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 
@@ -84,5 +86,24 @@ public class Utilities
 	{
 		Core.bot.sendIRC().message(target, msg);
 		Logging.message(target, Core.bot.getNick(), msg);
+	}
+	
+	/**
+	 * Sends a message in the following format:
+	 * 		** data[0] ** data[1] ** ... ** data[data.length - 1] **
+	 * The message as well as each argument is prefixed by normal color, latter is bold, too 
+	 * @param event The channel to send the message to
+	 * @param args The contents of the message seperated by **
+	 */
+	public static void sendStarMsg(String channel, String... data)
+	{
+		String result = Colors.NORMAL + "";
+		
+		for(String s : data)
+		{
+			result += Colors.NORMAL + Colors.BOLD + " ** " + s;
+		}
+		
+		sendMessage(channel, result.replaceFirst(" ", "") + Colors.NORMAL + Colors.BOLD + " **");
 	}
 }
