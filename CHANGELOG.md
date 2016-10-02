@@ -1,6 +1,12 @@
 #Changelog
 ---
+#6.0
+- New module system. Each module has to be installed seperately. They replace all features from previous versions
+
 ###5.10.1
+- Potentially fixed -w sometimes not working
+- Fixed youtu.be links not working
+- Fixed any link related feature (YouTubeStats, LinkTitle, GitHub, etc.) not working when sent via /me
 - Fixed link titles not showing
 
 ##5.10
@@ -702,7 +708,7 @@
 - Fixed -leet conversion
 
 ###1.13.1
-- Added 2Â²-type calculations
+- Added 2²-type calculations
 - Bot now reconnects on a ping timeout
 - Tweaks to -calc
 - Removed * kicks <name> message
