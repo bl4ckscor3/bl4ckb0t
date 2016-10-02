@@ -9,7 +9,6 @@ import bl4ckscor3.bot.bl4ckb0t.Core;
 import bl4ckscor3.bot.bl4ckb0t.Module;
 import bl4ckscor3.bot.bl4ckb0t.Modules;
 import bl4ckscor3.bot.bl4ckb0t.commands.BaseChannelCommand;
-import bl4ckscor3.bot.bl4ckb0t.commands.BasePrivateCommand;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
 public class Help extends Module
@@ -79,68 +78,7 @@ public class Help extends Module
 				for(Module m : Modules.modules)
 				{
 					if(m.getName().equalsIgnoreCase(args[0]))
-					{
-						if(Utilities.hasPermission(nick, m.getPermissionLevel()))
-						{
-							Utilities.sendMessage(nick, Colors.BOLD + Colors.OLIVE + Core.l10n.translate("help.header.2", channel).replace("#module", m.getName()));
-							Utilities.sendMessage(nick, Core.l10n.translate("help.channelCommands", channel));
-
-							if(m.getChannelCommands() != null)
-							{
-								for(BaseChannelCommand cmd : m.getChannelCommands())
-								{
-									String result = cmd.getSyntax();
-
-									if(cmd.getAliases().length > 1) //there are aliases
-									{
-										result += " " + Core.l10n.translate("help.aliases", channel);
-										
-										for(String s : cmd.getAliases())
-										{
-											if(s.equals(cmd.getMainAlias()))
-												continue;
-
-											result += s + ", ";
-										}
-
-										Utilities.sendMessage(nick, "		" + result.substring(0, result.lastIndexOf(",")) + ")");
-										
-										break;
-									}
-									
-									Utilities.sendMessage(nick, "		" + result);
-								}
-							}
-							else
-								Utilities.sendMessage(nick, Core.l10n.translate("help.none", channel));
-
-							Utilities.sendMessage(nick, Core.l10n.translate("help.privateCommands", channel));
-
-							if(m.getPrivateCommands() != null)
-							{
-								for(BasePrivateCommand cmd : m.getPrivateCommands())
-								{
-									Utilities.sendMessage(nick, "		" + cmd.getSyntax());
-								}
-							}
-							else
-								Utilities.sendMessage(nick, Core.l10n.translate("help.none", channel));
-
-							Utilities.sendMessage(nick, Core.l10n.translate("help.usage", channel));
-
-							for(String s : m.getUsage(channel))
-							{
-								Utilities.sendMessage(nick, "		" + s);
-							}
-
-							Utilities.sendMessage(nick, Core.l10n.translate("help.notes", channel));
-							Utilities.sendMessage(nick, "		" + m.getNotes(channel));
-						}
-						else
-						{
-							Utilities.sendMessage(nick, Core.l10n.translate("help.noPermission", channel));
-						}
-					}
+						Utilities.sendHelp(m, nick, channel);
 				}
 			}
 		}

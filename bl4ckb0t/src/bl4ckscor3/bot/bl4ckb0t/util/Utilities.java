@@ -6,6 +6,9 @@ import java.util.Date;
 import org.pircbotx.Colors;
 
 import bl4ckscor3.bot.bl4ckb0t.Core;
+import bl4ckscor3.bot.bl4ckb0t.Module;
+import bl4ckscor3.bot.bl4ckb0t.commands.BaseChannelCommand;
+import bl4ckscor3.bot.bl4ckb0t.commands.BasePrivateCommand;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 
 public class Utilities
@@ -105,5 +108,73 @@ public class Utilities
 		}
 		
 		sendMessage(channel, result.replaceFirst(" ", "") + Colors.NORMAL + Colors.BOLD + " **");
+	}
+	
+	/**
+	 * Sends help about a module
+	 * @param m The module to send help about
+	 * @param nick The user to send the help to
+	 * @param channel The channel the action that triggered this method got sent in
+	 */
+	public static void sendHelp(Module m, String nick, String channel)
+	{
+		if(Utilities.hasPermission(nick, m.getPermissionLevel()))
+		{
+			Utilities.sendMessage(nick, Colors.BOLD + Colors.OLIVE + Core.l10n.translate("help.header.2", channel).replace("#module", m.getName()));
+			Utilities.sendMessage(nick, Core.l10n.translate("help.channelCommands", channel));
+
+			if(m.getChannelCommands() != null)
+			{
+				for(BaseChannelCommand cmd : m.getChannelCommands())
+				{
+					String result = cmd.getSyntax();
+
+					if(cmd.getAliases().length > 1) //there are aliases
+					{
+						result += " " + Core.l10n.translate("help.aliases", channel);
+						
+						for(String s : cmd.getAliases())
+						{
+							if(s.equals(cmd.getMainAlias()))
+								continue;
+
+							result += s + ", ";
+						}
+
+						Utilities.sendMessage(nick, "		" + result.substring(0, result.lastIndexOf(",")) + ")");
+						
+						break;
+					}
+					
+					Utilities.sendMessage(nick, "		" + result);
+				}
+			}
+			else
+				Utilities.sendMessage(nick, Core.l10n.translate("help.none", channel));
+
+			Utilities.sendMessage(nick, Core.l10n.translate("help.privateCommands", channel));
+
+			if(m.getPrivateCommands() != null)
+			{
+				for(BasePrivateCommand cmd : m.getPrivateCommands())
+				{
+					Utilities.sendMessage(nick, "		" + cmd.getSyntax());
+				}
+			}
+			else
+				Utilities.sendMessage(nick, Core.l10n.translate("help.none", channel));
+
+			Utilities.sendMessage(nick, Core.l10n.translate("help.usage", channel));
+
+			for(String s : m.getUsage(channel))
+			{
+				Utilities.sendMessage(nick, "		" + s);
+			}
+
+			Utilities.sendMessage(nick, Core.l10n.translate("help.notes", channel));
+			Utilities.sendMessage(nick, "		" + m.getNotes(channel));
+		}
+		else
+			Utilities.sendMessage(nick, Core.l10n.translate("help.noPermission", channel));
 	}
 }

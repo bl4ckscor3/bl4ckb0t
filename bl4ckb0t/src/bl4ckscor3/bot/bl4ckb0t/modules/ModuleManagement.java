@@ -110,7 +110,7 @@ public class ModuleManagement extends Module
 
 							if(name.equalsIgnoreCase(args[1]))
 							{
-								if(!f.getName().endsWith(".disabled"))
+								if(!f.getName().endsWith(".disabled") && Modules.contains(name))
 								{
 									Utilities.sendMessage(channel, Core.l10n.translate("moduleManagement.alreadyEnabled", channel));
 									return;

@@ -125,4 +125,20 @@ public class Modules
 			return false;
 		}
 	}
+	
+	/**
+	 * Checks if a module with the given name is within the modules array
+	 * @param name The name to check
+	 * @return true if the module is contained in the array, false otherwise
+	 */
+	public static boolean contains(String name)
+	{
+		for(Module m : modules)
+		{
+			if(m.getName().equalsIgnoreCase(name))
+				return true;
+		}
+		
+		return false;
+	}
 }

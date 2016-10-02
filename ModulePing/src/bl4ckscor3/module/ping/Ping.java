@@ -33,7 +33,7 @@ public class Ping extends Module
 	{
 		return new String[]{
 				l10n.translate("explanation.1", channel),
-				l10n.translate("explanation.2", channel),
+				l10n.translate("explanation.2", channel)
 		};
 	}
 	
