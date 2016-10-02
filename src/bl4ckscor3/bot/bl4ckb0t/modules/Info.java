@@ -2,6 +2,7 @@ package bl4ckscor3.bot.bl4ckb0t.modules;
 
 import java.lang.management.ManagementFactory;
 import java.net.JarURLConnection;
+import java.net.URLClassLoader;
 import java.util.Date;
 
 import org.pircbotx.Colors;
@@ -21,15 +22,15 @@ public class Info extends Module
 	}
 
 	@Override
-	public void setup()
+	public void setup(URLClassLoader loader)
 	{
 		getBuilder().registerChannelCommand(this, new Command());
 	}
 
 	@Override
-	public String[] getUsage()
+	public String[] getUsage(String channel)
 	{
-		return new String[]{"Info usage"}; //TODO: L10N
+		return new String[]{Core.l10n.translate("info.explanation", channel)};
 	}
 	
 	public class Command extends BaseChannelCommand
@@ -37,13 +38,14 @@ public class Info extends Module
 		@Override
 		public void exe(MessageEvent event, String cmdName, String[] args) throws Exception
 		{
-			//TODO: L10N
+			String channel = event.getChannel().getName();
+			
 			Utilities.sendStarMsg(event.getChannel().getName(),
-					"Version: " + Colors.NORMAL + Core.bot.getConfiguration().getVersion(),
-					"Uptime: " + Colors.NORMAL + TimeParser.lts(ManagementFactory.getRuntimeMXBean().getUptime(), "%s:%s:%s:%s"), 
-					"Bulid date: " + Colors.NORMAL + new Date(getBuildDate()),
-					"Java version: " + Colors.NORMAL + System.getProperty("java.version"),
-					"Author: " + Colors.NORMAL + "bl4ckscor3");
+					Core.l10n.translate("info.version", channel).replace("#version", Colors.NORMAL + Core.bot.getConfiguration().getVersion()),
+					Core.l10n.translate("info.uptime", channel).replace("#uptime", Colors.NORMAL + TimeParser.lts(ManagementFactory.getRuntimeMXBean().getUptime(), "%s:%s:%s:%s")), 
+					Core.l10n.translate("info.buildDate", channel).replace("#date", Colors.NORMAL + new Date(getBuildDate())),
+					Core.l10n.translate("info.javaVersion", channel).replace("#version", Colors.NORMAL + System.getProperty("java.version")),
+					Core.l10n.translate("info.author", channel));
 		}
 
 		@Override

@@ -77,7 +77,7 @@ public class Startup
 	 */
 	public static void setDefaultChans() throws MalformedURLException, IOException
 	{
-		if(Core.bot.isDevelopment())
+		if(Core.wasStartedAsWIP)
 		{
 			Lists.addDefaultChan("#bl4ckb0tTest");
 			return;

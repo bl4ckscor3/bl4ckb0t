@@ -1,19 +1,24 @@
 package bl4ckscor3.bot.bl4ckb0t;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.util.List;
+
 import org.pircbotx.Configuration;
 import org.pircbotx.PircBotX;
 
+import bl4ckscor3.bot.bl4ckb0t.l10n.L10N;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
+import bl4ckscor3.bot.bl4ckb0t.util.Lists;
+import bl4ckscor3.bot.bl4ckb0t.util.Passwords;
 
 public class Bot extends PircBotX
 {
-	private boolean wasStartedAsWIP;
 	private final String cmdPrefix;
 	
-	public Bot(Configuration configuration, boolean wip, String prefix)
+	public Bot(Configuration configuration, String prefix)
 	{
 		super(configuration);
-		wasStartedAsWIP = wip;
 		cmdPrefix = prefix;
 	}
 	
@@ -40,20 +45,16 @@ public class Bot extends PircBotX
 	}
 	
 	/**
-	 * Checks wether the bot is started with -wip or not
-	 */
-	public boolean isDevelopment()
-	{
-		return wasStartedAsWIP;
-	}
-	
-	/**
 	 * Joins a channel given the bot hasn't already joined the channel
 	 * @param channel The channel to join
 	 */
 	public void joinChannel(String channel)
 	{
 		sendIRC().joinChannel(channel);
+		
+		if(!L10N.chanLangs.containsKey(channel))
+			L10N.chanLangs.put(channel, "english");
+		
 		Logging.info("Joined " + channel);
 	}
 	
@@ -65,6 +66,15 @@ public class Bot extends PircBotX
 	public void joinChannelWithPassword(String channel, String password)
 	{
 		sendIRC().joinChannel(channel, password);
+		
+		if(!L10N.chanLangs.containsKey(channel))
+		{
+			if(channel.equals("#akino_germany"))
+				L10N.chanLangs.put(channel, "german");
+			else
+				L10N.chanLangs.put(channel, "english");
+		}
+		
 		Logging.info("Joined " + channel);
 	}
 
@@ -96,4 +106,27 @@ public class Bot extends PircBotX
 	{
 		return cmdPrefix;
 	}
+	
+	/**
+	 * Joins the default channels given the bot hasn't already joined them
+	 */
+	public void joinDefaults() throws MalformedURLException, IOException
+	{
+		List<String> channelsToJoin = Lists.getDefaultChans();
+
+		outer:
+		for(String s : channelsToJoin)
+		{
+			for(Passwords p : Passwords.class.getEnumConstants())
+			{
+				if(s.replace("#", "").equalsIgnoreCase(p.toString()))
+				{
+					joinChannelWithPassword(s, p.getPassword());
+					continue outer;
+				}
+			}
+			
+			joinChannel(s);
+		}
+}
 }

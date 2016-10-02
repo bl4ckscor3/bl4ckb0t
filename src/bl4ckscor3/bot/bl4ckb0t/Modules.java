@@ -20,8 +20,6 @@ public class Modules
 	public static final ArrayList<Module> modules = new ArrayList<Module>();
 	public Module.Builder builder;
 	
-	public Modules(){}
-	
 	public Modules(Module.Builder c)
 	{
 		builder = c;
@@ -64,13 +62,13 @@ public class Modules
 		{
 			try
 			{
-				m.setup();
+				m.setup(null); //no need for a class loader because the language files are already loaded
 				modules.add(m);
 				Logging.info("	Loaded module " + m.getName());
 			}
 			catch(Exception e)
 			{
-				Logging.warn("	Module " + m.getName() + " could not be loaded due to an error");
+				Logging.warn(" Module " + m.getName() + " could not be loaded due to an error");
 				Logging.stackTrace(e);
 			}
 		}
@@ -95,8 +93,8 @@ public class Modules
 			Class<? extends Module> moduleClass = jarClass.asSubclass(Module.class);
 			Module module = moduleClass.getDeclaredConstructor(String.class).newInstance(name);
 			
+			module.setup(loader);
 			loader.close();
-			module.setup();
 			
 			if(modules.contains(module))
 			{
@@ -110,19 +108,19 @@ public class Modules
 		}
 		catch(ClassCastException e)
 		{
-			Logging.warn("	" + name + ": Main class does not extend bl4ckscor3.bot.bl4ckb0t.Module");
+			Logging.warn(" " + name + ": Main class does not extend bl4ckscor3.bot.bl4ckb0t.Module");
 			Logging.stackTrace(e);
 			return false;
 		}
 		catch(ClassNotFoundException e)
 		{
-			Logging.warn("	" + name + ": Couldn't find main class " + main);
+			Logging.warn(" " + name + ": Couldn't find main class " + main);
 			Logging.stackTrace(e);
 			return false;
 		}
 		catch(Exception e)
 		{
-			Logging.warn("	Module " + name + " could not be loaded due to an error. Is it even a module?");
+			Logging.warn(" Module " + name + " could not be loaded due to an error. Is it even a module?");
 			Logging.stackTrace(e);
 			return false;
 		}

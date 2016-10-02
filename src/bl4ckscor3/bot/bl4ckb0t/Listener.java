@@ -1,6 +1,7 @@
 package bl4ckscor3.bot.bl4ckb0t;
 
 import org.pircbotx.hooks.ListenerAdapter;
+import org.pircbotx.hooks.events.ConnectEvent;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
@@ -82,6 +83,23 @@ public class Listener extends ListenerAdapter
 					}
 				}
 			}
+		}
+	}
+	
+	@Override
+	public void onConnect(ConnectEvent event)
+	{
+		try
+		{
+			Logging.info("Getting default channels");
+			Startup.setDefaultChans();
+			Logging.info("Joining default channels");
+			Core.bot.joinDefaults();
+			Logging.info("Connected to server");
+		}
+		catch(Exception e)
+		{
+			Logging.stackTrace(e);
 		}
 	}
 }

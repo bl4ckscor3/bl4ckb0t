@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLClassLoader;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 
@@ -25,15 +26,19 @@ public class ModuleManagement extends Module
 	}
 
 	@Override
-	public void setup()
+	public void setup(URLClassLoader loader)
 	{
 		getBuilder().registerChannelCommand(this, new Command());
 	}
 
 	@Override
-	public String[] getUsage()
+	public String[] getUsage(String channel)
 	{
-		return new String[]{"Usage of Module Management"}; //TODO: L10N
+		return new String[]{
+				Core.l10n.translate("moduleManagement.explanation.1", channel),
+				Core.l10n.translate("moduleManagement.explanation.2", channel),
+				Core.l10n.translate("moduleManagement.explanation.3", channel)
+		};
 	}
 
 	@Override
@@ -65,7 +70,7 @@ public class ModuleManagement extends Module
 							{
 								if(f.getName().endsWith(".disabled"))
 								{
-									Utilities.sendMessage(channel, "This module has already been disabled."); //TODO: L10N
+									Utilities.sendMessage(channel, Core.l10n.translate("moduleManagement.alreadyDisabled", channel));
 									return;
 								}
 
@@ -84,17 +89,17 @@ public class ModuleManagement extends Module
 
 								if(!f.renameTo(new File(f.getAbsolutePath() + ".disabled")))
 								{
-									Utilities.sendMessage(channel, "There was a problem while disabling the module."); //TODO: L10N
+									Utilities.sendMessage(channel, Core.l10n.translate("moduleManagement.problemDisabling", channel));
 									Logging.warn("Renaming the file did not work!");
 									return;
 								}
 
-								Utilities.sendMessage(channel, "Module has been successfully disabled."); //TODO: L10N
+								Utilities.sendMessage(channel, Core.l10n.translate("moduleManagement.disabled", channel));
 								return;
 							}
 						}
 
-						Utilities.sendMessage(channel, "This module is a private module and cannot be disabled."); //TODO: L10N
+						Utilities.sendMessage(channel, Core.l10n.translate("moduleManagement.private", channel));
 						break;
 					}
 					case "enable":
@@ -107,27 +112,27 @@ public class ModuleManagement extends Module
 							{
 								if(!f.getName().endsWith(".disabled"))
 								{
-									Utilities.sendMessage(channel, "This module is already enabled."); //TODO: L10N
+									Utilities.sendMessage(channel, Core.l10n.translate("moduleManagement.alreadyEnabled", channel));
 									return;
 								}
 
 								if(!f.renameTo(new File(f.getAbsolutePath().replace(".disabled", ""))))
 								{
-									Utilities.sendMessage(channel, "There was a problem while enabling the module."); //TODO: L10N
+									Utilities.sendMessage(channel, Core.l10n.translate("moduleManagement.problemEnabling", channel));
 									Logging.warn("Renaming the file did not work!");
 									return;
 								}
 
 								if(Core.modules.loadModule(new URL(f.toURI().toURL().toString().replace(".disabled", "")), name))
-									Utilities.sendMessage(channel, "The module was enabled successfully."); //TODO: L10N
+									Utilities.sendMessage(channel, Core.l10n.translate("moduleManagement.enabled", channel));
 								else
-									Utilities.sendMessage(channel, "The module was not enabled due to an error. See log for details."); //TODO: L10N
+									Utilities.sendMessage(channel, Core.l10n.translate("moduleManagement.errorEnabling", channel));
 
 								return;
 							}
 						}
 
-						Utilities.sendMessage(channel, "This module is a private module."); //TODO: L10N
+						Utilities.sendMessage(channel, Core.l10n.translate("moduleManagement.private", channel));
 						break;
 					}
 					case "load":
@@ -144,19 +149,19 @@ public class ModuleManagement extends Module
 							rbc.close();
 
 							if(Core.modules.loadModule(new URL("file:" + Utilities.getJarLocation() + "/modules/" + name), name.substring(0, name.lastIndexOf('.'))))
-								Utilities.sendMessage(channel, "The module was loaded successfully."); //TODO: L10N
+								Utilities.sendMessage(channel, Core.l10n.translate("moduleManagement.loaded", channel));
 							else
-								Utilities.sendMessage(channel, "There was an error, or the module was already loaded. See log for details."); //TODO: L10N
+								Utilities.sendMessage(channel, Core.l10n.translate("moduleManagement.errorLoading", channel));
 						}
 						catch(MalformedURLException e)
 						{
-							Utilities.sendMessage(channel, "That is not a valid URL.");
+							Utilities.sendMessage(channel, Core.l10n.translate("moduleManagement.invalidURL", channel));
 						}
 					}
 				}
 			}
 			else
-				Utilities.sendMessage(channel, "Correct syntax: " + getSyntax()); //TODO: L10N
+				Utilities.sendMessage(channel, Core.l10n.translate("moduleManagement.correctSyntax", channel).replace("#syntax", getSyntax()));
 		}
 
 		@Override

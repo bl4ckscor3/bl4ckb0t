@@ -1,5 +1,6 @@
 package bl4ckscor3.bot.bl4ckb0t;
 
+import java.net.URLClassLoader;
 import java.util.ArrayList;
 
 import org.pircbotx.Configuration;
@@ -26,22 +27,23 @@ public abstract class Module
 	
 	/**
 	 * Gets called to setup the module. Should be used to add any Listeners or commands
+	 * @param loader The loader with which to load the language files
 	 */
-	public abstract void setup();
+	public abstract void setup(URLClassLoader loader);
 	
 	/**
 	 * Explanation of the module, gets shown in the help menu.
 	 * @param event The channel the help command was used in
 	 */
-	public abstract String[] getUsage();
+	public abstract String[] getUsage(String channel);
 	
 	/**
 	 * Anything special the user needs to know about the module, gets shown in the help menu
 	 * @param event The channel the help command was used in
 	 */
-	public String getNotes()
+	public String getNotes(String channel)
 	{
-		return "None."; //TODO: L10N
+		return Core.l10n.translate("help.none", channel).trim();
 	}
 	
 	/**

@@ -1,5 +1,7 @@
 package bl4ckscor3.bot.bl4ckb0t.modules;
 
+import java.net.URLClassLoader;
+
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
@@ -17,15 +19,18 @@ public class Help extends Module
 		super(name);
 	}
 
-	public void setup()
+	public void setup(URLClassLoader loader)
 	{
 		getBuilder().registerChannelCommand(this, new Command());
 	}
 
 	@Override
-	public String[] getUsage()
+	public String[] getUsage(String channel)
 	{
-		return new String[]{"Help module explanation", "Line 1", "Line 2"}; //TODO: L10N
+		return new String[]{
+				Core.l10n.translate("help.explanation.1", channel),
+				Core.l10n.translate("help.explanation.2", channel)
+		};
 	}
 
 	public class Command extends BaseChannelCommand
@@ -34,13 +39,14 @@ public class Help extends Module
 		public void exe(MessageEvent event, String cmdName, String[] args) throws Exception
 		{
 			String nick = event.getUser().getNick();
+			String channel = event.getChannel().getName();
 
 			if(args.length == 0)
 			{
 				String msg = "";
 				int i = 0;
 
-				Utilities.sendMessage(nick, Colors.BOLD + Colors.OLIVE + "----------Available modules----------"); //TODO: L10N
+				Utilities.sendMessage(nick, Core.l10n.translate("help.header.1", channel));
 
 				for(Module m : Modules.modules)
 				{
@@ -59,14 +65,14 @@ public class Help extends Module
 
 				Utilities.sendMessage(nick, msg.substring(0, msg.lastIndexOf(" | ")));
 				Utilities.sendMessage(nick, Colors.BOLD + Colors.OLIVE + "----------------------------------------------------------");
-				Utilities.sendMessage(nick, "Write -help <module> to get more specific help on that module"); //TODO: L10N
+				Utilities.sendMessage(nick, Core.l10n.translate("help.moreInfo", channel));
 				Thread.sleep(2000);
-				Utilities.sendMessage(nick, Colors.BOLD + Colors.OLIVE + "----------Credits----------"); //TODO: L10N
-				Utilities.sendMessage(nick, Colors.TEAL + "Made by bl4ckscor3!"); //TODO: L10N
-				Utilities.sendMessage(nick, Colors.TEAL + "Initial help from Lord_Ralex and inspiration from Vauff, Geforce and akino_germany!"); //TODO: L10N
-				Utilities.sendMessage(nick, Colors.TEAL + "Thanks Stackoverflow - It saved me many, many times!"); //TODO: L10N
-				Utilities.sendMessage(nick, Colors.TEAL + "Compiled in Java 8 using PircBotX 2.1 (https://github.com/thelq/pircbotx) and its dependencies."); //TODO: L10N
-				Utilities.sendMessage(nick, Colors.TEAL + "Suggestions are much appreciated! Please create a card on the Trello board if you want to submit one :) (-trello)"); //TODO: L10N
+				Utilities.sendMessage(nick, Core.l10n.translate("help.credits.header", channel));
+				Utilities.sendMessage(nick, Core.l10n.translate("help.credits.1", channel));
+				Utilities.sendMessage(nick, Core.l10n.translate("help.credits.2", channel));
+				Utilities.sendMessage(nick, Core.l10n.translate("help.credits.3", channel));
+				Utilities.sendMessage(nick, Core.l10n.translate("help.credits.4", channel));
+				Utilities.sendMessage(nick, Core.l10n.translate("help.credits.5", channel));
 			}
 			else if(args.length == 1)
 			{
@@ -76,8 +82,8 @@ public class Help extends Module
 					{
 						if(Utilities.hasPermission(nick, m.getPermissionLevel()))
 						{
-							Utilities.sendMessage(nick, Colors.BOLD + Colors.OLIVE + "----------Help for: " + m.getName() + "----------"); //TODO: L10N
-							Utilities.sendMessage(nick, "Channel commands: " ); //TODO: L10N
+							Utilities.sendMessage(nick, Colors.BOLD + Colors.OLIVE + Core.l10n.translate("help.header.2", channel).replace("#module", m.getName()));
+							Utilities.sendMessage(nick, Core.l10n.translate("help.channelCommands", channel));
 
 							if(m.getChannelCommands() != null)
 							{
@@ -87,7 +93,7 @@ public class Help extends Module
 
 									if(cmd.getAliases().length > 1) //there are aliases
 									{
-										result += " (Aliases: ";
+										result += " " + Core.l10n.translate("help.aliases", channel);
 										
 										for(String s : cmd.getAliases())
 										{
@@ -98,15 +104,17 @@ public class Help extends Module
 										}
 
 										Utilities.sendMessage(nick, "		" + result.substring(0, result.lastIndexOf(",")) + ")");
+										
+										break;
 									}
 									
 									Utilities.sendMessage(nick, "		" + result);
 								}
 							}
 							else
-								Utilities.sendMessage(nick, "		None."); //TODO: L10N
+								Utilities.sendMessage(nick, Core.l10n.translate("help.none", channel));
 
-							Utilities.sendMessage(nick, "Private commands: " ); //TODO: L10N
+							Utilities.sendMessage(nick, Core.l10n.translate("help.privateCommands", channel));
 
 							if(m.getPrivateCommands() != null)
 							{
@@ -116,21 +124,21 @@ public class Help extends Module
 								}
 							}
 							else
-								Utilities.sendMessage(nick, "		None."); //TODO: L10N
+								Utilities.sendMessage(nick, Core.l10n.translate("help.none", channel));
 
-							Utilities.sendMessage(nick, "Usage: ");
+							Utilities.sendMessage(nick, Core.l10n.translate("help.usage", channel));
 
-							for(String s : m.getUsage())
+							for(String s : m.getUsage(channel))
 							{
 								Utilities.sendMessage(nick, "		" + s);
 							}
 
-							Utilities.sendMessage(nick, "Notes: ");
-							Utilities.sendMessage(nick, "		" + m.getNotes());
+							Utilities.sendMessage(nick, Core.l10n.translate("help.notes", channel));
+							Utilities.sendMessage(nick, "		" + m.getNotes(channel));
 						}
 						else
 						{
-							Utilities.sendMessage(nick, "No permission!"); //TODO: L10N
+							Utilities.sendMessage(nick, Core.l10n.translate("help.noPermission", channel));
 						}
 					}
 				}

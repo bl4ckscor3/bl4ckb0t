@@ -1,5 +1,7 @@
 package bl4ckscor3.bot.bl4ckb0t.modules;
 
+import java.net.URLClassLoader;
+
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.Core;
@@ -17,15 +19,15 @@ public class Update extends Module
 	}
 
 	@Override
-	public void setup()
+	public void setup(URLClassLoader loader)
 	{
 		getBuilder().registerChannelCommand(this, new Command());
 	}
 
 	@Override
-	public String[] getUsage()
+	public String[] getUsage(String channel)
 	{
-		return new String[]{"Update usage"}; //TODO: L10N
+		return new String[]{Core.l10n.translate("update.explanation", channel)};
 	}
 	
 	@Override
@@ -42,7 +44,7 @@ public class Update extends Module
 			Lists.clearAll();
 			Changelog.versions.clear();
 			Startup.callMethods();
-			Utilities.sendMessage(event.getChannel().getName(), "The lists were updated successfully."); //TODO: L10N
+			Utilities.sendMessage(event.getChannel().getName(), Core.l10n.translate("update.success", event.getChannel().getName()));
 		}
 
 		@Override

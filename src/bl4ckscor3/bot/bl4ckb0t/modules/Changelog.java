@@ -1,5 +1,6 @@
 package bl4ckscor3.bot.bl4ckb0t.modules;
 
+import java.net.URLClassLoader;
 import java.util.ArrayList;
 
 import org.pircbotx.hooks.events.MessageEvent;
@@ -7,6 +8,7 @@ import org.pircbotx.hooks.events.MessageEvent;
 import bl4ckscor3.bot.bl4ckb0t.Core;
 import bl4ckscor3.bot.bl4ckb0t.Module;
 import bl4ckscor3.bot.bl4ckb0t.commands.BaseChannelCommand;
+import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 import bl4ckscor3.bot.bl4ckb0t.util.android.ArrayMap;
 
 public class Changelog extends Module
@@ -19,15 +21,18 @@ public class Changelog extends Module
 	}
 	
 	@Override
-	public void setup()
+	public void setup(URLClassLoader loader)
 	{
 		getBuilder().registerChannelCommand(this, new Command());
 	}
 
 	@Override
-	public String[] getUsage()
+	public String[] getUsage(String channel)
 	{
-		return new String[]{"Changelog command explanation", "Bla 1", "Bla 2"}; //TODO: L10N
+		return new String[]{
+				Core.l10n.translate("changelog.explanation.1", channel),
+				Core.l10n.translate("changelog.explanation.2", channel)
+		};
 	}
 	
 	public class Command extends BaseChannelCommand
@@ -35,27 +40,29 @@ public class Changelog extends Module
 		@Override
 		public void exe(MessageEvent event, String cmdName, String[] args)
 		{
+			String channel = event.getChannel().getName();
+			
 			if(args.length == 1)
 			{
 				if(!versions.containsKey(args[0]))
 				{
-					event.respondChannel("This version could not be found."); //TODO: L10N
+					Utilities.sendMessage(channel, Core.l10n.translate("changelog.notFound", channel));
 					return;
 				}
 
 				for(String s : versions.get(args[0]))
 				{
-					event.respondChannel(s);
+					Utilities.sendMessage(channel, s);
 				}
 
 				return;
 			}
 
-			if(!Core.bot.isDevelopment())
+			if(!Core.wasStartedAsWIP)
 			{
 				for(String s : versions.get(Core.bot.getConfiguration().getVersion()))
 				{
-					event.respondChannel(s);
+					Utilities.sendMessage(channel, s);
 				}
 			}
 		}

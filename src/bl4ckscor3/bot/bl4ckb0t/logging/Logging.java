@@ -11,7 +11,6 @@ import java.util.List;
 import org.pircbotx.Colors;
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.ActionEvent;
-import org.pircbotx.hooks.events.ConnectEvent;
 import org.pircbotx.hooks.events.DisconnectEvent;
 import org.pircbotx.hooks.events.JoinEvent;
 import org.pircbotx.hooks.events.KickEvent;
@@ -170,7 +169,7 @@ public class Logging extends ListenerAdapter
 	 */
 	public static void debug(Object line)
 	{
-		if(Core.bot.isDevelopment())
+		if(Core.wasStartedAsWIP)
 			log("[DEBUG] " + line.toString());
 	}
 
@@ -369,12 +368,6 @@ public class Logging extends ListenerAdapter
 		severe("Disconnected from server");
 	}
 
-	@Override
-	public void onConnect(ConnectEvent event) throws Exception
-	{
-		info("Connected to server");
-	}
-	
 	/***************************Getters***************************/
 
 	public static boolean isEnabled()
