@@ -1,9 +1,8 @@
-/RemoteSystemsTempFiles
-/.settings
-/bin
-/.classpath
-/.project
-/src/bl4ckscor3/bot/bl4ckb0t/util/Passwords.java
-/bl4ckb0t.log
-/logs
-/target
+/.metadata
+*/RemoteSystemsTempFiles
+*/.settings
+*/bin
+*/.classpath
+*/.project
+/bl4ckb0t/src/bl4ckscor3/bot/bl4ckb0t/util/Passwords.java
+*/target
