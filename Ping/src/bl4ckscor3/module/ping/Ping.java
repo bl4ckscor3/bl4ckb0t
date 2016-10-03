@@ -57,7 +57,7 @@ public class Ping extends Module
 		@Override
 		public String getSyntax(String channel)
 		{
-			return l10n.translate("syntax", channel);
+			return l10n.translate("syntax.1", channel);
 		}
 	}
 	
@@ -78,7 +78,7 @@ public class Ping extends Module
 		@Override
 		public String getSyntax(String channel)
 		{
-			return l10n.translate("syntax", channel);
+			return l10n.translate("syntax.2", channel);
 		}
 	}
 }
