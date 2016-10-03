@@ -150,7 +150,7 @@ public class Utilities
 				}
 			}
 			else
-				Utilities.sendMessage(nick, Core.l10n.translate("help.none", channel));
+				Utilities.sendMessage(nick, "		" + Core.l10n.translate("help.none", channel));
 
 			Utilities.sendMessage(nick, Core.l10n.translate("help.privateCommands", channel));
 
@@ -162,7 +162,7 @@ public class Utilities
 				}
 			}
 			else
-				Utilities.sendMessage(nick, Core.l10n.translate("help.none", channel));
+				Utilities.sendMessage(nick, "		" + Core.l10n.translate("help.none", channel));
 
 			Utilities.sendMessage(nick, Core.l10n.translate("help.usage", channel));
 

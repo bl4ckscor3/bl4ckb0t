@@ -28,7 +28,7 @@ public class ModuleManagement extends Module
 	@Override
 	public void setup(URLClassLoader loader)
 	{
-		getBuilder().registerChannelCommand(this, new Command());
+		getBuilder().registerChannelCommand(this, new Command(this));
 	}
 
 	@Override
@@ -49,6 +49,13 @@ public class ModuleManagement extends Module
 
 	public class Command extends BaseChannelCommand
 	{
+		public Module module;
+
+		public Command(Module m)
+		{
+			module = m;
+		}
+
 		@Override
 		public void exe(MessageEvent event, String cmdName, String[] args) throws Exception
 		{
@@ -61,7 +68,6 @@ public class ModuleManagement extends Module
 				switch(args[0])
 				{
 					case "disable":
-					{	
 						for(File f : folder.listFiles())
 						{
 							String name = f.getName().split("\\.")[0];
@@ -101,9 +107,7 @@ public class ModuleManagement extends Module
 
 						Utilities.sendMessage(channel, Core.l10n.translate("moduleManagement.private", channel));
 						break;
-					}
 					case "enable":
-					{
 						for(File f : folder.listFiles())
 						{
 							String name = f.getName().split("\\.")[0];
@@ -134,9 +138,11 @@ public class ModuleManagement extends Module
 
 						Utilities.sendMessage(channel, Core.l10n.translate("moduleManagement.private", channel));
 						break;
-					}
+					case "reload":
+						exe(event, cmdName, new String[]{"disable", args[1]});
+						exe(event, cmdName, new String[]{"enable", args[1]});
+						break;
 					case "load":
-					{
 						try
 						{
 							String name = FilenameUtils.getName(args[1].contains("?") ? args[1].substring(0, args[1].indexOf('?')) : args[1]);
@@ -157,11 +163,10 @@ public class ModuleManagement extends Module
 						{
 							Utilities.sendMessage(channel, Core.l10n.translate("moduleManagement.invalidURL", channel));
 						}
-					}
 				}
 			}
 			else
-				Utilities.sendMessage(channel, Core.l10n.translate("moduleManagement.correctSyntax", channel).replace("#syntax", getSyntax(channel)));
+				Utilities.sendHelp(module, event.getUser().getNick(), channel);
 		}
 
 		@Override
