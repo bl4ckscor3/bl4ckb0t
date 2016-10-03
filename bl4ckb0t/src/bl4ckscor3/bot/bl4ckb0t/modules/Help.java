@@ -18,7 +18,7 @@ public class Help extends Module
 		super(name);
 	}
 
-	public void setup(URLClassLoader loader)
+	public void onEnable(URLClassLoader loader)
 	{
 		getBuilder().registerChannelCommand(this, new Command());
 	}

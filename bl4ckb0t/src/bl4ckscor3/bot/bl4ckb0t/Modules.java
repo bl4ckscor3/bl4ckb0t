@@ -62,7 +62,7 @@ public class Modules
 		{
 			try
 			{
-				m.setup(null); //no need for a class loader because the language files are already loaded
+				m.onEnable(null); //no need for a class loader because the language files are already loaded
 				modules.add(m);
 				Logging.info("	Loaded module " + m.getName());
 			}
@@ -93,7 +93,7 @@ public class Modules
 			Class<? extends Module> moduleClass = jarClass.asSubclass(Module.class);
 			Module module = moduleClass.getDeclaredConstructor(String.class).newInstance(name);
 			
-			module.setup(loader);
+			module.onEnable(loader);
 			loader.close();
 			
 			if(modules.contains(module))

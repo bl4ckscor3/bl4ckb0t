@@ -26,7 +26,7 @@ public class ModuleManagement extends Module
 	}
 
 	@Override
-	public void setup(URLClassLoader loader)
+	public void onEnable(URLClassLoader loader)
 	{
 		getBuilder().registerChannelCommand(this, new Command(this));
 	}
@@ -80,19 +80,6 @@ public class ModuleManagement extends Module
 									return;
 								}
 
-								int toRemove = 0;
-
-								inner:
-									for(Module m : Modules.modules)
-									{
-										if(m.getName().equalsIgnoreCase(name))
-											break inner;
-
-										toRemove++;
-									}
-
-								Modules.modules.remove(toRemove);
-
 								if(!f.renameTo(new File(f.getAbsolutePath() + ".disabled")))
 								{
 									Utilities.sendMessage(channel, Core.l10n.translate("moduleManagement.problemDisabling", channel));
@@ -100,6 +87,17 @@ public class ModuleManagement extends Module
 									return;
 								}
 
+								inner:
+								for(Module m : Modules.modules)
+								{
+									if(m.getName().equalsIgnoreCase(name))
+									{
+										Modules.modules.remove(m);
+										m.onDisable();
+										break inner;
+									}
+								}
+								
 								Utilities.sendMessage(channel, Core.l10n.translate("moduleManagement.disabled", channel));
 								return;
 							}

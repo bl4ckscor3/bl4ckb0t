@@ -22,7 +22,7 @@ public class Distance extends Module
 	}
 
 	@Override
-	public void setup(URLClassLoader loader)
+	public void onEnable(URLClassLoader loader)
 	{
 		getBuilder().registerChannelCommand(this, new Command(this));
 		l10n = new L10N(this, loader);

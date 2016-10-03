@@ -21,7 +21,7 @@ public class Changelog extends Module
 	}
 	
 	@Override
-	public void setup(URLClassLoader loader)
+	public void onEnable(URLClassLoader loader)
 	{
 		getBuilder().registerChannelCommand(this, new Command());
 	}

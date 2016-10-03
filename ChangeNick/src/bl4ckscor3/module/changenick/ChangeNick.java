@@ -17,6 +17,7 @@ public class ChangeNick extends Module
 {
 	private boolean isInUse = false;
 	private L10N l10n;
+	private Listener listener;
 	
 	public ChangeNick(String name)
 	{
@@ -24,11 +25,17 @@ public class ChangeNick extends Module
 	}
 
 	@Override
-	public void setup(URLClassLoader loader)
+	public void onEnable(URLClassLoader loader)
 	{
 		getBuilder().registerChannelCommand(this, new Command(this));
-		getBuilder().addListener(new Listener());
+		getBuilder().addListener(listener = new Listener());
 		l10n = new L10N(this, loader);
+	}
+	
+	@Override
+	public void onDisable()
+	{
+		getBuilder().getListenerManager().removeListener(listener);
 	}
 	
 	@Override

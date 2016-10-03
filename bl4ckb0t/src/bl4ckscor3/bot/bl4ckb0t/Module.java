@@ -26,10 +26,15 @@ public abstract class Module
 	}
 	
 	/**
-	 * Gets called to setup the module. Should be used to add any Listeners or commands
+	 * Gets called when the module gets enabled. Should be used to add any Listeners or commands
 	 * @param loader The loader with which to load the language files
 	 */
-	public abstract void setup(URLClassLoader loader);
+	public abstract void onEnable(URLClassLoader loader);
+	
+	/**
+	 * Gets called when the module gets disabled. Should be used to remove any Listeners
+	 */
+	public void onDisable(){}
 	
 	/**
 	 * Explanation of the module, gets shown in the help menu.
