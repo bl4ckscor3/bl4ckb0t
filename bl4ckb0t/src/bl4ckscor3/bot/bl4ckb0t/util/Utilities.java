@@ -127,7 +127,7 @@ public class Utilities
 			{
 				for(BaseChannelCommand cmd : m.getChannelCommands())
 				{
-					String result = cmd.getSyntax();
+					String result = cmd.getSyntax(channel);
 
 					if(cmd.getAliases().length > 1) //there are aliases
 					{
@@ -158,7 +158,7 @@ public class Utilities
 			{
 				for(BasePrivateCommand cmd : m.getPrivateCommands())
 				{
-					Utilities.sendMessage(nick, "		" + cmd.getSyntax());
+					Utilities.sendMessage(nick, "		" + cmd.getSyntax(channel));
 				}
 			}
 			else

@@ -8,5 +8,5 @@ public abstract class BasePrivateCommand implements ICommand<PrivateMessageEvent
 	public abstract String getMainAlias();
 	
 	@Override
-	public abstract String getSyntax();
+	public abstract String getSyntax(String channel);
 }

@@ -55,9 +55,9 @@ public class Info extends Module
 		}
 
 		@Override
-		public String getSyntax()
+		public String getSyntax(String channel)
 		{
-			return Core.bot.getCmdPrefix() + "info";
+			return Core.l10n.translate("info.syntax", channel);
 		}
 		
 		/**

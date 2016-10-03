@@ -54,9 +54,9 @@ public class Update extends Module
 		}
 
 		@Override
-		public String getSyntax()
+		public String getSyntax(String channel)
 		{
-			return Core.bot.getCmdPrefix() + "update";
+			return Core.l10n.translate("update.syntax", channel);
 		}
 	}
 }

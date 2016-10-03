@@ -23,6 +23,7 @@ public class ChangeNick extends Module
 		super(name);
 	}
 
+	@Override
 	public void setup(URLClassLoader loader)
 	{
 		getBuilder().registerChannelCommand(this, new Command(this));
@@ -37,6 +38,12 @@ public class ChangeNick extends Module
 				l10n.translate("explanation.1", channel),
 				l10n.translate("explanation.2", channel)
 		};
+	}
+	
+	@Override
+	public int getPermissionLevel()
+	{
+		return 2;
 	}
 	
 	public class Command extends BaseChannelCommand
@@ -82,9 +89,9 @@ public class ChangeNick extends Module
 		}
 
 		@Override
-		public String getSyntax()
+		public String getSyntax(String channel)
 		{
-			return Core.bot.getCmdPrefix() + "changenick <name|d>";
+			return l10n.translate("syntax", channel);
 		}
 	}
 	

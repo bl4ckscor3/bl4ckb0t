@@ -10,7 +10,7 @@ public abstract class BaseChannelCommand implements ICommand<MessageEvent>
 	public abstract String[] getAliases();
 
 	@Override
-	public abstract String getSyntax();
+	public abstract String getSyntax(String channel);
 	
 	/*Helpful Methods*/
 	

@@ -15,7 +15,7 @@ public interface ICommand<E extends Event>
 	/**
 	 * How the command can be used, gets shown in the help menu
 	 */
-	public String getSyntax();
+	public String getSyntax(String channel);
 	
 	/**
 	 * The prefix which triggers the command

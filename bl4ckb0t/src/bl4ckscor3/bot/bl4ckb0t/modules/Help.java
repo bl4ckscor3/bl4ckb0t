@@ -90,9 +90,9 @@ public class Help extends Module
 		}
 
 		@Override
-		public String getSyntax()
+		public String getSyntax(String channel)
 		{
-			return Core.bot.getCmdPrefix() + "help <modulename>";
+			return Core.l10n.translate("help.syntax", channel);
 		}
 	}
 }

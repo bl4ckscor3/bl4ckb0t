@@ -5,7 +5,6 @@ import java.net.URLClassLoader;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.Core;
 import bl4ckscor3.bot.bl4ckb0t.Module;
 import bl4ckscor3.bot.bl4ckb0t.commands.BaseChannelCommand;
 import bl4ckscor3.bot.bl4ckb0t.commands.BasePrivateCommand;
@@ -21,6 +20,7 @@ public class Ping extends Module
 		super(name);
 	}
 
+	@Override
 	public void setup(URLClassLoader loader)
 	{
 		getBuilder().registerChannelCommand(this, new ChannelCommand());
@@ -37,7 +37,7 @@ public class Ping extends Module
 		};
 	}
 	
-	public static class ChannelCommand extends BaseChannelCommand
+	public class ChannelCommand extends BaseChannelCommand
 	{
 		@Override
 		public void exe(MessageEvent event, String cmdName, String[] args) throws Exception
@@ -55,13 +55,13 @@ public class Ping extends Module
 		}
 
 		@Override
-		public String getSyntax()
+		public String getSyntax(String channel)
 		{
-			return Core.bot.getCmdPrefix() + "ping";
+			return l10n.translate("syntax", channel);
 		}
 	}
 	
-	public static class PrivateCommand extends BasePrivateCommand
+	public class PrivateCommand extends BasePrivateCommand
 	{
 		@Override
 		public void exe(PrivateMessageEvent event, String cmdName, String[] args) throws Exception
@@ -76,9 +76,9 @@ public class Ping extends Module
 		}
 
 		@Override
-		public String getSyntax()
+		public String getSyntax(String channel)
 		{
-			return "ping";
+			return l10n.translate("syntax", channel);
 		}
 	}
 }

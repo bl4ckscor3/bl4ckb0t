@@ -161,7 +161,7 @@ public class ModuleManagement extends Module
 				}
 			}
 			else
-				Utilities.sendMessage(channel, Core.l10n.translate("moduleManagement.correctSyntax", channel).replace("#syntax", getSyntax()));
+				Utilities.sendMessage(channel, Core.l10n.translate("moduleManagement.correctSyntax", channel).replace("#syntax", getSyntax(channel)));
 		}
 
 		@Override
@@ -171,9 +171,9 @@ public class ModuleManagement extends Module
 		}
 
 		@Override
-		public String getSyntax()
+		public String getSyntax(String channel)
 		{
-			return Core.bot.getCmdPrefix() + "module <disable|enable|load> <modulename|directDownloadLink>";
+			return Core.l10n.translate("moduleManagement.syntax", channel);
 		}
 	}
 }

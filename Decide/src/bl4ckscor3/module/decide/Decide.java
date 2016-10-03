@@ -5,7 +5,6 @@ import java.util.Random;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
-import bl4ckscor3.bot.bl4ckb0t.Core;
 import bl4ckscor3.bot.bl4ckb0t.Module;
 import bl4ckscor3.bot.bl4ckb0t.commands.BaseChannelCommand;
 import bl4ckscor3.bot.bl4ckb0t.l10n.L10N;
@@ -20,6 +19,7 @@ public class Decide extends Module
 		super(name);
 	}
 
+	@Override
 	public void setup(URLClassLoader loader)
 	{
 		getBuilder().registerChannelCommand(this, new Command(this));
@@ -76,9 +76,9 @@ public class Decide extends Module
 		}
 
 		@Override
-		public String getSyntax()
+		public String getSyntax(String channel)
 		{
-			return Core.bot.getCmdPrefix() + "decide <question>";
+			return l10n.translate("syntax", channel);
 		}
 	}
 }

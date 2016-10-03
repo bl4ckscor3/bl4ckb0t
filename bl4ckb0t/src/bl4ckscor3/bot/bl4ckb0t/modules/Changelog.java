@@ -74,9 +74,9 @@ public class Changelog extends Module
 		}
 
 		@Override
-		public String getSyntax()
+		public String getSyntax(String channel)
 		{
-			return Core.bot.getCmdPrefix() + "changelog [version]";
+			return Core.l10n.translate("changelog.syntax", channel);
 		}
 	}
 }
