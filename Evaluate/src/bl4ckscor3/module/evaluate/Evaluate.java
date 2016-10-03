@@ -127,7 +127,7 @@ public class Evaluate extends Module
 				return;
 			}
 			
-			if(result.contains("/"))
+			if(result.matches("[0-9]+/[0-9]+.*"))
 			{
 				evaluate(event, input + " in decimal");
 				return;
