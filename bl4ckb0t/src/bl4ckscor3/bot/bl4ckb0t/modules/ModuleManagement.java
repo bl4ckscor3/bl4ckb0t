@@ -161,6 +161,10 @@ public class ModuleManagement extends Module
 						{
 							Utilities.sendMessage(channel, Core.l10n.translate("moduleManagement.invalidURL", channel));
 						}
+						
+						break;
+					default:
+						Utilities.sendHelp(module, event.getUser().getNick(), channel);
 				}
 			}
 			else

@@ -28,10 +28,10 @@ public class Bot extends PircBotX
 	 * @param target The user to kick
 	 * @param reason The reason for the kick
 	 */
-	public void kick(String channel, String target, String reason)
+	public void kick(String channel, String target, String reason) throws IOException
 	{
-		sendRaw().rawLine("KICK " + channel + " " + target + " :" + reason);
-		Logging.warn("Kicked " + target + " from " + channel + " for \"" + reason + "\".");
+		sendRawLineToServer("KICK " + channel + " " + target + " :" + reason);
+		Logging.info("Kicked " + target + " from " + channel + " for \"" + reason + "\"");
 	}
 
 	/**
