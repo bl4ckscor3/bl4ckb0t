@@ -1,6 +1,7 @@
-package bl4ckscor3.module.leet;
+package bl4ckscor3.module.select;
 
 import java.net.URLClassLoader;
+import java.util.Random;
 
 import org.pircbotx.hooks.events.MessageEvent;
 
@@ -9,11 +10,11 @@ import bl4ckscor3.bot.bl4ckb0t.commands.BaseChannelCommand;
 import bl4ckscor3.bot.bl4ckb0t.l10n.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
-public class Leet extends Module
+public class Select extends Module
 {
 	private L10N l10n;
 	
-	public Leet(String name)
+	public Select(String name)
 	{
 		super(name);
 	}
@@ -33,6 +34,12 @@ public class Leet extends Module
 		};
 	}
 	
+	@Override
+	public String getNotes(String channel)
+	{
+		return l10n.translate("notes", channel);
+	}
+	
 	public class Command extends BaseChannelCommand
 	{
 		private Module module;
@@ -47,28 +54,11 @@ public class Leet extends Module
 		{
 			String channel = event.getChannel().getName();
 			
-			if(args.length >= 1)
+			if(args.length != 0)
 			{
-				char[] chars = event.getMessage().substring(6).toCharArray();
-				String result = "";
+				String[] options = event.getMessage().substring(8).split(",");
 
-				for(int i = 0; i < chars.length; i++)
-				{
-					switch(chars[i])
-					{
-						case 'A': case 'a': result += "4"; break;
-						case 'E': case 'e': result += "3"; break;
-						case 'G': case 'g': result += "6"; break;
-						case 'L': case 'l': result += "1"; break;
-						case 'O': case 'o': result += "0"; break;
-						case 'S': case 's': result += "5"; break;
-						case 'T': case 't': result += "7"; break;
-						case 'Z': case 'z': result += "2"; break;
-						default: result += chars[i];
-					}
-				}
-				
-				Utilities.sendMessage(channel, result);
+				Utilities.sendMessage(event.getChannel().getName(), options[new Random().nextInt(options.length)]);
 			}
 			else
 				Utilities.sendHelp(module, event.getUser().getNick(), channel);
@@ -77,7 +67,7 @@ public class Leet extends Module
 		@Override
 		public String[] getAliases()
 		{
-			return new String[]{"leet", "1337"};
+			return new String[]{"select", "choose"};
 		}
 
 		@Override
