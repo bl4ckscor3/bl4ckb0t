@@ -12,6 +12,8 @@ import bl4ckscor3.bot.bl4ckb0t.modules.Changelog;
 import bl4ckscor3.bot.bl4ckb0t.modules.Help;
 import bl4ckscor3.bot.bl4ckb0t.modules.Info;
 import bl4ckscor3.bot.bl4ckb0t.modules.ModuleManagement;
+import bl4ckscor3.bot.bl4ckb0t.modules.Source;
+import bl4ckscor3.bot.bl4ckb0t.modules.Stop;
 import bl4ckscor3.bot.bl4ckb0t.modules.Update;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
@@ -55,6 +57,8 @@ public class Modules
 				new Help("Help"),
 				new ModuleManagement("ModuleManagement"),
 				new Info("Info"),
+				new Source("Source"),
+				new Stop("Stop"),
 				new Update("Update")
 		};
 		
