@@ -4,6 +4,7 @@ import java.net.URISyntaxException;
 import java.util.Date;
 
 import org.pircbotx.Colors;
+import org.pircbotx.User;
 
 import bl4ckscor3.bot.bl4ckb0t.Core;
 import bl4ckscor3.bot.bl4ckb0t.Module;
@@ -176,5 +177,16 @@ public class Utilities
 		}
 		else
 			Utilities.sendMessage(nick, Core.l10n.translate("help.noPermission", channel));
+	}
+	
+	/**
+	 * Sends a notice to a user
+	 * @param user The user to send the notice to
+	 * @param The notice to send
+	 */
+	public static void notice(User user, String notice)
+	{
+		user.send().notice(notice);
+		Logging.noticeSent(user.getNick(), notice);
 	}
 }
