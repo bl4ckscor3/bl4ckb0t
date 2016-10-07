@@ -5,7 +5,6 @@ import java.net.JarURLConnection;
 import java.net.URLClassLoader;
 import java.util.Date;
 
-import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.Core;
@@ -41,10 +40,10 @@ public class Info extends Module
 			String channel = event.getChannel().getName();
 			
 			Utilities.sendStarMsg(event.getChannel().getName(),
-					Core.l10n.translate("info.version", channel).replace("#version", Colors.NORMAL + Core.bot.getConfiguration().getVersion()),
-					Core.l10n.translate("info.uptime", channel).replace("#uptime", Colors.NORMAL + TimeParser.lts(ManagementFactory.getRuntimeMXBean().getUptime(), "%s:%s:%s:%s")), 
-					Core.l10n.translate("info.buildDate", channel).replace("#date", Colors.NORMAL + new Date(getBuildDate())),
-					Core.l10n.translate("info.javaVersion", channel).replace("#version", Colors.NORMAL + System.getProperty("java.version")),
+					Core.l10n.translate("info.version", channel).replace("#version", Core.bot.getConfiguration().getVersion()),
+					Core.l10n.translate("info.uptime", channel).replace("#uptime", TimeParser.lts(ManagementFactory.getRuntimeMXBean().getUptime(), "%s:%s:%s:%s")), 
+					Core.l10n.translate("info.buildDate", channel).replace("#date", "" + new Date(getBuildDate())),
+					Core.l10n.translate("info.javaVersion", channel).replace("#version", System.getProperty("java.version")),
 					Core.l10n.translate("info.author", channel));
 		}
 

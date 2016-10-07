@@ -5,7 +5,6 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLClassLoader;
 
-import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.Module;
@@ -81,10 +80,10 @@ public class IPLocation extends Module
 						city = s.split(">")[1].split("<")[0];
 				}
 
-				Utilities.sendStarMsg(channel, l10n.translate("country", channel).replace("#", Colors.NORMAL + country),
-						l10n.translate("region", channel).replace("#", Colors.NORMAL + region),
-						l10n.translate("city", channel).replace("#", Colors.NORMAL + city),
-						l10n.translate("credit", channel).replace("#", Colors.NORMAL + "http://freegeoip.net"));
+				Utilities.sendStarMsg(channel, l10n.translate("country", channel).replace("#", country),
+						l10n.translate("region", channel).replace("#",region),
+						l10n.translate("city", channel).replace("#", city),
+						l10n.translate("credit", channel).replace("#", "http://freegeoip.net"));
 			}
 			else
 				Utilities.sendHelp(module, event.getUser().getNick(), channel);

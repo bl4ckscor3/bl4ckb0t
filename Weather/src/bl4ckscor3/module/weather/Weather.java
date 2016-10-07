@@ -4,7 +4,6 @@ import java.net.URLClassLoader;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.pircbotx.Colors;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.Module;
@@ -72,12 +71,12 @@ public class Weather extends Module
 				Document doc = Jsoup.connect("http://api.openweathermap.org/data/2.5/weather?q=" + city.trim() + "&mode=xml&APPID=" + Passwords.WEATHERAPIKEY.getPassword()).ignoreContentType(true).get();
 
 				Utilities.sendStarMsg(channel, doc.select("city").attr("name") + ", " + doc.select("country").text(),
-						l10n.translate("temperature", channel).replace("#temperature", Colors.NORMAL + getTemperature(doc)),
-						l10n.translate("humidity", channel).replace("#humidity", Colors.NORMAL + doc.select("humidity").attr("value") + doc.select("humidity").attr("unit")),
-						l10n.translate("pressure", channel).replace("#pressure", Colors.NORMAL + doc.select("pressure").attr("value") + doc.select("pressure").attr("unit")),
-						l10n.translate("wind", channel).replace("#wind", Colors.NORMAL + getWindSpeed(doc)),
-						l10n.translate("updated", channel).replace("#date", Colors.NORMAL + doc.select("lastupdate").attr("value").replace("T", " ") + " GMT"),
-						l10n.translate("credit", channel).replace("#link", Colors.NORMAL + "http://openweathermap.org/city/" + doc.select("city").attr("id")));
+						l10n.translate("temperature", channel).replace("#temperature", getTemperature(doc)),
+						l10n.translate("humidity", channel).replace("#humidity", doc.select("humidity").attr("value") + doc.select("humidity").attr("unit")),
+						l10n.translate("pressure", channel).replace("#pressure", doc.select("pressure").attr("value") + doc.select("pressure").attr("unit")),
+						l10n.translate("wind", channel).replace("#wind", getWindSpeed(doc)),
+						l10n.translate("updated", channel).replace("#date", doc.select("lastupdate").attr("value").replace("T", " ") + " GMT"),
+						l10n.translate("credit", channel).replace("#link", "http://openweathermap.org/city/" + doc.select("city").attr("id")));
 			}
 			catch(Exception e)
 			{
