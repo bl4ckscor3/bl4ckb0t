@@ -1,6 +1,7 @@
 package bl4ckscor3.bot.bl4ckb0t.util;
 
 import java.net.URISyntaxException;
+import java.text.DecimalFormat;
 import java.util.Date;
 
 import org.pircbotx.Colors;
@@ -188,5 +189,15 @@ public class Utilities
 	{
 		user.send().notice(notice);
 		Logging.noticeSent(user.getNick(), notice);
+	}
+	
+	/**
+	 * Formats a double to two decimal places
+	 * @param d The double to format
+	 * @return The formatted double
+	 */
+	public static String formatDouble(double d)
+	{
+		return new DecimalFormat("#.00").format(d).replace(",", ".");
 	}
 }
