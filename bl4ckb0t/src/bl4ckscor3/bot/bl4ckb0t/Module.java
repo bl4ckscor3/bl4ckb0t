@@ -29,12 +29,17 @@ public abstract class Module
 	 * Gets called when the module gets enabled. Should be used to add any Listeners or commands
 	 * @param loader The loader with which to load the language files
 	 */
-	public abstract void onEnable(URLClassLoader loader);
+	public abstract void onEnable(URLClassLoader loader) throws Exception;
 	
 	/**
 	 * Gets called when the module gets disabled. Should be used to remove any Listeners
 	 */
 	public void onDisable(){}
+	
+	/**
+	 * Gets called when all modules have been loaded
+	 */
+	public void onFinish(){}
 	
 	/**
 	 * Explanation of the module, gets shown in the help menu.
@@ -152,6 +157,16 @@ public abstract class Module
 			
 			list.add(cmd);
 			privateCmds.put(module, list);
+		}
+		
+		/**
+		 * Shorthand method to remove a listener, without needing to go through PircBotX' method
+		 * Removes a listener
+		 * @param listener The listener to remove
+		 */
+		public void removeListener(org.pircbotx.hooks.Listener listener)
+		{
+			getListenerManager().removeListener(listener);
 		}
 	}
 }

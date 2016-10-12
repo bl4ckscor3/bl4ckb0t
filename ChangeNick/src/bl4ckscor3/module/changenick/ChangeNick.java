@@ -35,7 +35,7 @@ public class ChangeNick extends Module
 	@Override
 	public void onDisable()
 	{
-		getBuilder().getListenerManager().removeListener(listener);
+		getBuilder().removeListener(listener);
 	}
 	
 	@Override
