@@ -1,6 +1,7 @@
 package bl4ckscor3.bot.bl4ckb0t;
 
 import org.pircbotx.hooks.ListenerAdapter;
+import org.pircbotx.hooks.events.ActionEvent;
 import org.pircbotx.hooks.events.ConnectEvent;
 import org.pircbotx.hooks.events.MessageEvent;
 import org.pircbotx.hooks.events.PrivateMessageEvent;
@@ -8,6 +9,7 @@ import org.pircbotx.hooks.events.PrivateMessageEvent;
 import bl4ckscor3.bot.bl4ckb0t.commands.BaseChannelCommand;
 import bl4ckscor3.bot.bl4ckb0t.commands.BasePrivateCommand;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
+import bl4ckscor3.bot.bl4ckb0t.modules.LinkManager;
 import bl4ckscor3.bot.bl4ckb0t.util.Lists;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
@@ -52,6 +54,18 @@ public class Listener extends ListenerAdapter
 				}
 			}
 		}
+	}
+	
+	@Override
+	public void onAction(ActionEvent event) throws Exception
+	{
+		if(Lists.isIgnored(event.getUser().getNick()))
+		{
+			Logging.warn("Ignoring user " + event.getUser().getNick());
+			return;
+		}
+		
+		LinkManager.handleLink(event.getMessage(), event.getChannel().getName(), event.getUser().getNick());
 	}
 	
 	@Override
