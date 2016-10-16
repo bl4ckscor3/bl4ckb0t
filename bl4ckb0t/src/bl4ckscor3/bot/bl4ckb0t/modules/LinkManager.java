@@ -103,6 +103,9 @@ public class LinkManager extends Module
 		@Override
 		public void onMessage(MessageEvent event) throws Exception
 		{
+			if(event.getMessage().startsWith(Core.bot.getCmdPrefix()))
+				return;
+			
 			try
 			{
 				handleLink(event.getMessage(), event.getChannel().getName(), event.getUser().getNick());

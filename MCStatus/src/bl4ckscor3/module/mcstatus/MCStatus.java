@@ -40,12 +40,6 @@ public class MCStatus extends Module
 		};
 	}
 	
-	@Override
-	public String getNotes(String channel)
-	{
-		return l10n.translate("notes", channel);
-	}
-	
 	public class Command extends BaseChannelCommand
 	{
 		@Override
