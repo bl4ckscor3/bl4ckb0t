@@ -28,7 +28,7 @@ public class MCStatus extends Module
 	@Override
 	public void onEnable(URLClassLoader loader)
 	{
-		getBuilder().registerChannelCommand(this, new Command(this));
+		getBuilder().registerChannelCommand(this, new Command());
 		l10n = new L10N(this, loader);
 	}
 	
@@ -48,13 +48,6 @@ public class MCStatus extends Module
 	
 	public class Command extends BaseChannelCommand
 	{
-		public Module module;
-		
-		public Command(Module m)
-		{
-			module = m;
-		}
-		
 		@Override
 		public void exe(MessageEvent event, String cmdName, String[] args) throws Exception
 		{
