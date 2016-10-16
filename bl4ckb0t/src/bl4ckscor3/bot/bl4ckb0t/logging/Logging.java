@@ -223,7 +223,7 @@ public class Logging extends ListenerAdapter
 	 */
 	public static void action(String channel, String sender, String action)
 	{
-		log("[ACTION] " + channel + " | *" + sender + " " + action);
+		log("[ACTION] " + channel + " | " + sender + " " + action);
 	}
 
 	/**
