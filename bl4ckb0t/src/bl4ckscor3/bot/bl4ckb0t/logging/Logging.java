@@ -61,9 +61,9 @@ public class Logging extends ListenerAdapter
 
 			if(!f.exists())
 			{
-				buffer.add("\"" + botName + ".log\" does not exist, creating new file...");
+				buffer.add("\"" + botName + ".log\" does not exist, creating new file");
 				f.createNewFile();
-				buffer.add("File successfully created!");
+				buffer.add("File successfully created");
 			}
 			else
 			{
@@ -72,7 +72,7 @@ public class Logging extends ListenerAdapter
 				copy.mkdirs();
 				copy = new File(jarPath + "/logs/" + botName + " - " + Utilities.getCurrentDate().toString().replace(":", "-") + ".log");
 				buffer.add("Created new file to copy to: \"" + copy.getName() + "\"");
-				buffer.add("Starting copy process...");
+				buffer.add("Starting copy process");
 
 				FileWriter copyWriter = new FileWriter(copy);
 				BufferedReader reader = new BufferedReader(new FileReader(f));
@@ -86,7 +86,7 @@ public class Logging extends ListenerAdapter
 
 				copyWriter.close();
 				reader.close();
-				buffer.add("Successfully copied old logging file.");
+				buffer.add("Successfully copied old logging file");
 			}
 
 			writer = new FileWriter(f);
@@ -95,7 +95,7 @@ public class Logging extends ListenerAdapter
 		}
 		catch(Exception e)
 		{
-			severe("Could not create logger!");
+			severe("Could not create logger");
 			Logging.stackTrace(e);
 			disable();
 		}
@@ -169,7 +169,7 @@ public class Logging extends ListenerAdapter
 	 */
 	public static void debug(Object line)
 	{
-		if(Core.bot.isDevelopment())
+		if(Core.wasStartedAsWIP)
 			log("[DEBUG] " + line.toString());
 	}
 
@@ -223,7 +223,7 @@ public class Logging extends ListenerAdapter
 	 */
 	public static void action(String channel, String sender, String action)
 	{
-		log("[ACTION] " + channel + " | *" + sender + " " + action);
+		log("[ACTION] " + channel + " | " + sender + " " + action);
 	}
 
 	/**
@@ -326,9 +326,9 @@ public class Logging extends ListenerAdapter
 	public void onKick(KickEvent event) throws Exception
 	{
 		if(event.getRecipient().getNick().equals(Core.bot.getNick()))
-			warn("Bot kicked from " + event.getChannel().getName() + " for \"" + event.getReason() + "\".");
+			warn("Bot kicked from " + event.getChannel().getName() + " for \"" + event.getReason() + "\"");
 		else
-			info(event.getRecipient().getNick() + " was kicked from " + event.getChannel().getName() + " for \"" + event.getReason() + "\".");
+			info(event.getRecipient().getNick() + " was kicked from " + event.getChannel().getName() + " for \"" + event.getReason() + "\"");
 	}
 
 	@Override
@@ -340,20 +340,20 @@ public class Logging extends ListenerAdapter
 	@Override
 	public void onPart(PartEvent event) throws Exception
 	{
-		info(event.getUser().getNick() + " left " + event.getChannel().getName() + ": \"" + event.getReason() + "\".");
+		info(event.getUser().getNick() + " left " + event.getChannel().getName() + ": \"" + event.getReason() + "\"");
 	}
 
 	@Override
 	public void onJoin(JoinEvent event) throws Exception
 	{
 		if(!event.getUser().getNick().equals(Core.bot.getNick()))
-			info(event.getUser().getNick() + " joined " + event.getChannel().getName() + ".");
+			info(event.getUser().getNick() + " joined " + event.getChannel().getName() + "");
 	}
 
 	@Override
 	public void onQuit(QuitEvent event) throws Exception
 	{
-		info(event.getUser().getNick() + " quit: \"" + event.getReason() + "\".");
+		info(event.getUser().getNick() + " quit: \"" + event.getReason() + "\"");
 	}
 
 	@Override
@@ -365,7 +365,7 @@ public class Logging extends ListenerAdapter
 	@Override
 	public void onDisconnect(DisconnectEvent event) throws Exception
 	{
-		severe("Disconnected from server!");
+		severe("Disconnected from server");
 	}
 
 	/***************************Getters***************************/

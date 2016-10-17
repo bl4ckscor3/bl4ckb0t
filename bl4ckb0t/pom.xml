@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>bl4ckscor3.bot</groupId>
 	<artifactId>bl4ckb0t</artifactId>
-	<version>5.10.1</version>
+	<version>6.0</version>
 	<name>bl4ckb0t</name>
 	<description>An IRC bot designed and managed by bl4ckscor3</description>
 	<url>https://github.com/bl4ckscor3/bl4ckb0t</url>
@@ -41,9 +41,14 @@
 			<version>1.7.13</version>
 		</dependency>
 		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.5</version>
+		</dependency>
+		<dependency>
 			<groupId>org.jsoup</groupId>
 			<artifactId>jsoup</artifactId>
-			<version>1.9.2</version>
+			<version>1.9.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.github.sheigutn</groupId>

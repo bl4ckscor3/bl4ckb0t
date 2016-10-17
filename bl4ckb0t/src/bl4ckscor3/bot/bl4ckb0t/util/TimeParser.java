@@ -1,36 +1,16 @@
 package bl4ckscor3.bot.bl4ckb0t.util;
 
-import bl4ckscor3.bot.bl4ckb0t.exception.IncorrectCommandExecutionException;
 
 public class TimeParser
 {
-	private String cmdName;
-
-	/**
-	 * Initializes a TimeParser
-	 */
-	public TimeParser()
-	{
-		this("None.");
-	}
-	
-	/**
-	 * Initializes a TimeParser with a command alias that is used to send help if something goes wrong
-	 * @param cmdN
-	 */
-	public TimeParser(String cmdN)
-	{
-		cmdName = cmdN;
-	}
-	
 	//----------------CHANGE STRING TO LONG----------------\\
 
 	/**
 	 * Changes a String of the format xdxhxmxs (where x is a positive number) to a timestamp
 	 * @param s The String to convert
-	 * @return The converted String in milliseconds
+	 * @return The converted String in milliseconds, -1 if malformed
 	 */
-	public long stl(String s) throws IncorrectCommandExecutionException
+	public static long stl(String s)
 	{
 		if(s.contains("d"))
 			return d(s);
@@ -41,7 +21,7 @@ public class TimeParser
 		else if(s.contains("s"))
 			return s(s);
 		else
-			throw new IncorrectCommandExecutionException(cmdName);
+			return -1;
 	}
 
 	/**
@@ -49,7 +29,7 @@ public class TimeParser
 	 * @param s The String to convert
 	 * @return The converted String
 	 */
-	private long d(String s)
+	private static long d(String s)
 	{
 		long value = Long.parseLong(s.split("d")[0]);
 
@@ -70,7 +50,7 @@ public class TimeParser
 	 * @param s The String to convert
 	 * @return The converted String
 	 */
-	private long h(String s)
+	private static long h(String s)
 	{
 		long value = 0;
 
@@ -94,7 +74,7 @@ public class TimeParser
 	 * @param s The String to convert
 	 * @return The converted String
 	 */
-	private long m(String s)
+	private static long m(String s)
 	{
 		long value = 0;
 
@@ -123,7 +103,7 @@ public class TimeParser
 	 * @param s The String to convert
 	 * @return The converted String
 	 */
-	private long s(String s)
+	private static long s(String s)
 	{
 		long value = 0;
 
@@ -167,7 +147,7 @@ public class TimeParser
 	 * @param format The format the String will have. Use %s as a placeholder for days/hours/minutes/seconds
 	 * @return The converted timestamp as a String
 	 */
-	public String lts(long l, String format)
+	public static String lts(long l, String format)
 	{
 		long s = l / 1000;
 		long m = s / 60;

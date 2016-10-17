@@ -1,262 +1,20 @@
 package bl4ckscor3.bot.bl4ckb0t.util;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-import org.pircbotx.Channel;
 import org.pircbotx.Colors;
 import org.pircbotx.User;
 
-import com.google.common.collect.ImmutableSortedSet;
-
 import bl4ckscor3.bot.bl4ckb0t.Core;
-import bl4ckscor3.bot.bl4ckb0t.commands.channel.ListChans;
-import bl4ckscor3.bot.bl4ckb0t.localization.L10N;
+import bl4ckscor3.bot.bl4ckb0t.Module;
+import bl4ckscor3.bot.bl4ckb0t.commands.BaseChannelCommand;
+import bl4ckscor3.bot.bl4ckb0t.commands.BasePrivateCommand;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 
 public class Utilities
 {
-	/**
-	 * Sends a message to a channel or user
-	 * @param target The message receiver
-	 * @param msg The message
-	 */
-	public static void sendMessage(String target, String msg)
-	{
-		Core.bot.sendIRC().message(target, msg);
-		Logging.message(target, Core.bot.getNick(), msg);
-	}
-
-	/**
-	 * Sends a notice to a user
-	 * @param user The user to send the notice to
-	 * @param notice The message
-	 */
-	public static void notice(User user, String notice)
-	{
-		user.send().notice(notice);
-		Logging.noticeSent(user.getNick(), notice);
-	}
-
-	/**
-	 * Tells the user that he doesn't have permission for the action he wanted to take
-	 * @param channel The channel to send the message to
-	 */
-	public static void noPermission(String channel)
-	{
-		sendMessage(channel, L10N.getString("noPermission", channel));
-	}
-
-	/**
-	 * Sends a help line to a user
-	 * @param user The user to send the help line to
-	 * @param msg The help line to send
-	 */
-	public static void addHelpLine(String user, String msg)
-	{
-		sendMessage(user, Colors.BOLD + Colors.RED + msg);
-	}
-
-	/**
-	 * Checks wether a user is a valid user (equal to admin)
-	 * @param user The user to check
-	 * @return Wether the user is a valid user
-	 */
-	public static boolean isValidUser(User user) throws MalformedURLException, IOException
-	{
-		return user.isVerified() && Lists.getValidUsers().contains(user.getNick()); //commented out due to esper blocking whois requests
-	}
-
-	/**
-	 * Checks wether a user is an allowed user (equal to moderator)
-	 * @param user The user to check
-	 * @return Wether the user is an allowed user
-	 */
-	public static boolean isAllowedUser(User user) throws MalformedURLException, IOException
-	{
-		return user.isVerified() && Lists.getAllowedUsers().contains(user.getNick()); //commented out due to esper blocking whois requests
-	}
-
-	/**
-	 * Gets the permission level of the user
-	 * @param user The user to check
-	 * @return The permission level of the user
-	 */
-	public static int getUserPermissionLevel(User user) throws MalformedURLException, IOException
-	{
-		return isValidUser(user) ? 3 : (isAllowedUser(user) ? 2 : 1);
-	}
-
-	/**
-	 * Sends a message in the following format:
-	 * 		** x1 ** x2 ** ... ** xn **
-	 * Where x1...xn is the data array in order. The message as well as each argument is prefixed by normal color, latter is bold, too 
-	 * @param event The channel to send the message to
-	 * @param args The contents of the message seperated by **
-	 */
-	public static void sendStarMsg(String channel, String... data)
-	{
-		String result = Colors.NORMAL + "";
-		
-		for(String s : data)
-		{
-			result += Colors.NORMAL + Colors.BOLD + " ** " + s;
-		}
-		
-		sendMessage(channel, result.replaceFirst(" ", "") + Colors.NORMAL + Colors.BOLD + " **");
-	}
-	
-	/**
-	 * Sends a help menu to a user
-	 * @param nick The user to receive the menu
-	 * @param aliases The aliases of the command
-	 * @param mainAlias The main alias of the command
-	 * @param syntax The syntax of the command which's help menu gets shown
-	 * @param usage The usage of the command
-	 * @param notes The notes of the command
-	 * @param channel The channel the help command got sent in
-	 */
-	public static void sendHelp(String nick, String[] aliases, String mainAlias, String syntax, String[] usage, String notes, String channel)
-	{
-		String formattedAliases = "";
-
-		sendMessage(nick, Colors.BOLD + Colors.OLIVE + "-----------" + L10N.getString("helpMenu.syntax", channel) + "-----------");
-		sendMessage(nick, syntax);
-		sendMessage(nick, Colors.BOLD + Colors.OLIVE + "-----------" + L10N.getString("helpMenu.usage", channel) + "-----------");
-
-		for(String s : usage)
-		{
-			sendMessage(nick, s);
-		}
-
-		if(aliases.length != 1)
-		{
-			for(int i = 0; i < aliases.length; i++)
-			{
-				if(aliases[i] == null || aliases[i].equals(mainAlias))
-					continue;
-
-				formattedAliases += "-" + aliases[i] + " | ";
-
-				if((i + 1) % 10 == 0)
-				{
-					sendMessage(nick, formattedAliases.trim());
-					formattedAliases = "";
-				}
-			}
-		}
-
-		sendMessage(nick, Colors.BOLD + Colors.OLIVE + "-----------" + L10N.getString("helpMenu.aliases", channel) + "-----------");
-		
-		try
-		{
-			sendMessage(nick, formattedAliases.substring(0, formattedAliases.lastIndexOf(" | ")));
-		}
-		catch(StringIndexOutOfBoundsException e)
-		{
-			formattedAliases += L10N.getString("helpMenu.noNotes", channel);
-			
-			sendMessage(nick, formattedAliases);
-		}
-		
-		sendMessage(nick, Colors.BOLD + Colors.OLIVE + "-----------" + L10N.getString("helpMenu.notes", channel) + "-----------");
-		sendMessage(nick, notes == null ? L10N.getString("helpMenu.noNotes", channel) : notes);
-		System.gc();
-	}
-
-	/**
-	 * Splits a string into all its words
-	 * @param line The string to split
-	 * @return The string array of all the words
-	 */
-	public static String[] toArgs(String line)
-	{
-		return line.split(" ");
-	}
-
-	/**
-	 * Checks wether the bot has joined the given channel
-	 * @param channel The channel to check
-	 * @return Wether the bot has joined the given channel or not
-	 */
-	public static boolean hasJoinedChannel(String channel)
-	{
-		String[] chans = getJoinedChannels(true);
-
-		for(String s : chans)
-		{
-			if(s != null)
-			{
-				if(s.equalsIgnoreCase(channel))
-					return true;
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * Gets the channels with mode +s the bot has joined
-	 */
-	public static List<String> getSecretChannels()
-	{
-		ImmutableSortedSet<Channel> list = Core.bot.getUserBot().getChannels();
-		Object[] x = list.toArray();
-		List<String> chans = new ArrayList<String>();
-
-		for(Object o : x)
-		{
-			//if the channel has the flag +s, it does not get shown
-			if(o.toString().contains("secret=true"))
-				chans.add(o.toString().split(",")[0].split("=")[1]);
-		}
-
-		return chans;
-	}
-
-	/**
-	 * Gets the channels the bot has joined
-	 * @param listSecretChannels Wether to list secret channels
-	 */
-	public static String[] getJoinedChannels(boolean listSecretChannels)
-	{
-		ImmutableSortedSet<Channel> list = Core.bot.getUserBot().getChannels();
-		Object[] x = list.toArray();
-		String[] chans = new String[x.length];
-		int i = 0;
-
-		for(Object o : x)
-		{
-			if(!listSecretChannels)
-			{
-				//if the channel has the flag +s, it does not get shown
-				if(!o.toString().contains("secret=true"))
-					chans[i] = o.toString().split(",")[0].split("=")[1];
-				else
-					ListChans.secretChannelAmount++;
-			}
-			else
-				chans[i] = o.toString().split(",")[0].split("=")[1];
-			i++;
-		}
-
-		return chans;
-	}
-
-	/**
-	 * Capiatlizes the first letter of a string
-	 * @param s The string to capialize the first letter of
-	 * @return The capitalized first letter including the rest of the string
-	 */
-	public static String capitalizeFirstLetter(String s)
-	{
-		return s.substring(0, 1).toUpperCase() + s.substring(1);
-	}
-
 	/**
 	 * Gets the current time from UNIX
 	 */
@@ -279,6 +37,25 @@ public class Utilities
 	}
 
 	/**
+	 * Splits a command into its arguments, leaving out the command itself
+	 * @param line The string to split
+	 * @return An array of all the arguments
+	 */
+	public static String[] toArgs(String line)
+	{
+		String[] previous = line.split(" ");
+		String[] result = new String[previous.length - 1];
+
+		for(int i = 1; i < previous.length; i++)
+		{
+			result[i - 1] = previous[i];
+		}
+
+		return result;
+
+	}
+
+	/**
 	 * Checks if the specified string is starting with a number
 	 * @param s The string to check
 	 * @return Wether the string starts with a number or not
@@ -289,13 +66,129 @@ public class Utilities
 	}
 
 	/**
-	 * Checks wether a user is ignored
-	 * @param nick The user to check
-	 * @return Wether the user is ignored or not
+	 * Checks wether the given user has the given permission level
+	 * @param user The user to check for
+	 * @param level The level to check for, must be either 1, 2 or 3
+	 * @return true if the user has the given permission level, false otherwise, or if the level is not 1, 2 or 3
 	 */
-	public static boolean isIgnored(String nick)
+	public static boolean hasPermission(String user, int level)
 	{
-		return Core.bot.getConfig().isEnabled("allowIgnoringUsers") && Lists.getIgnoredUsers().contains(nick);
+		if(level == 1)
+			return true;
+		else if(level == 2)
+			return Lists.isLvl2User(user);
+		else if(level == 3)
+			return Lists.isLvl3User(user);
+		return false;
+	}
+
+	/**
+	 * Sends a message to a channel or user
+	 * @param target The message receiver
+	 * @param msg The message
+	 */
+	public static void sendMessage(String target, String msg)
+	{
+		Core.bot.sendIRC().message(target, msg);
+		Logging.message(target, Core.bot.getNick(), msg);
+	}
+	
+	/**
+	 * Sends a message in the following format:
+	 * 		** data[0] ** data[1] ** ... ** data[data.length - 1] **
+	 * The message as well as each argument is prefixed by normal color, latter is bold, too 
+	 * @param event The channel to send the message to
+	 * @param args The contents of the message seperated by **
+	 */
+	public static void sendStarMsg(String channel, String... data)
+	{
+		String result = Colors.NORMAL + "";
+		
+		for(String s : data)
+		{
+			result += Colors.NORMAL + Colors.BOLD + " ** " + s;
+		}
+		
+		sendMessage(channel, result.replaceFirst(" ", "") + Colors.NORMAL + Colors.BOLD + " **");
+	}
+	
+	/**
+	 * Sends help about a module
+	 * @param m The module to send help about
+	 * @param nick The user to send the help to
+	 * @param channel The channel the action that triggered this method got sent in
+	 */
+	public static void sendHelp(Module m, String nick, String channel)
+	{
+		if(Utilities.hasPermission(nick, m.getPermissionLevel()))
+		{
+			Utilities.sendMessage(nick, Colors.BOLD + Colors.OLIVE + Core.l10n.translate("help.header.2", channel).replace("#module", m.getName()));
+			Utilities.sendMessage(nick, Core.l10n.translate("help.channelCommands", channel));
+
+			if(m.getChannelCommands() != null)
+			{
+				for(BaseChannelCommand cmd : m.getChannelCommands())
+				{
+					String result = cmd.getSyntax(channel);
+
+					if(cmd.getAliases().length > 1) //there are aliases
+					{
+						result += " " + Core.l10n.translate("help.aliases", channel);
+						
+						for(String s : cmd.getAliases())
+						{
+							if(s.equals(cmd.getMainAlias()))
+								continue;
+
+							result += s + ", ";
+						}
+
+						Utilities.sendMessage(nick, "  " + result.substring(0, result.lastIndexOf(",")) + ")");
+						
+						break;
+					}
+					
+					Utilities.sendMessage(nick, "  " + result);
+				}
+			}
+			else
+				Utilities.sendMessage(nick, "  " + Core.l10n.translate("help.none", channel));
+
+			Utilities.sendMessage(nick, Core.l10n.translate("help.privateCommands", channel));
+
+			if(m.getPrivateCommands() != null)
+			{
+				for(BasePrivateCommand cmd : m.getPrivateCommands())
+				{
+					Utilities.sendMessage(nick, "  " + cmd.getSyntax(channel));
+				}
+			}
+			else
+				Utilities.sendMessage(nick, "  " + Core.l10n.translate("help.none", channel));
+
+			Utilities.sendMessage(nick, Core.l10n.translate("help.usage", channel));
+
+			for(String s : m.getUsage(channel))
+			{
+				Utilities.sendMessage(nick, "  " + s);
+			}
+
+			Utilities.sendMessage(nick, Core.l10n.translate("help.notes", channel));
+			Utilities.sendMessage(nick, "  " + m.getNotes(channel));
+		}
+		else
+			Utilities.sendMessage(nick, Core.l10n.translate("help.noPermission", channel));
+	}
+	
+	/**
+	 * Sends a notice to a user
+	 * @param user The user to send the notice to
+	 * @param The notice to send
+	 */
+	public static void notice(User user, String notice)
+	{
+		user.send().notice(notice);
+		Logging.noticeSent(user.getNick(), notice);
 	}
 	
 	/**
@@ -312,7 +205,7 @@ public class Utilities
 	 * Generates a String which represents a background and foreground color
 	 * @param background The background color to use (use PircBotX's Colors class)
 	 * @param foreground The foreground color to use (use PircBotX's Colors class)
-	 * @return The String to be used in coloring back- and foreground of a message or an empty String if either background or foreground is not a color (aka bold/underline/reverse etc.)
+	 * @return The String to be used in coloring back- and foreground of a message or null if either background or foreground is not a color (aka bold/underline/reverse etc.)
 	 */
 	public static String backgroundColor(String background, String foreground)
 	{

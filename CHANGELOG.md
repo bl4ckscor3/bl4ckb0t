@@ -1,5 +1,9 @@
 #Changelog
 ---
+#6.0
+- New module system. Each module has to be installed seperately. They replace all features from previous versions
+- To see everything that  has changed, please take a look [here](https://github.com/bl4ckscor3/bl4ckb0t/commits/new-system).
+
 ###5.10.1
 - Potentially fixed -w sometimes not working
 - Fixed youtu.be links not working
@@ -705,7 +709,7 @@
 - Fixed -leet conversion
 
 ###1.13.1
-- Added 2Â²-type calculations
+- Added 2²-type calculations
 - Bot now reconnects on a ping timeout
 - Tweaks to -calc
 - Removed * kicks <name> message
