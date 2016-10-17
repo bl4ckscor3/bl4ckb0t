@@ -75,7 +75,7 @@ public class Modules
 			{
 				m.onEnable(null); //no need for a class loader because the language files are already loaded
 				modules.add(m);
-				Logging.info("	Loaded module " + m.getName());
+				Logging.info("  Loaded module " + m.getName());
 			}
 			catch(Exception e)
 			{
@@ -116,24 +116,24 @@ public class Modules
 			}
 
 			modules.add(module);
-			Logging.info("	Loaded module " + name);
+			Logging.info("  Loaded module " + name);
 			return true;
 		}
 		catch(ClassCastException e)
 		{
-			Logging.warn(" " + name + ": Main class does not extend bl4ckscor3.bot.bl4ckb0t.Module");
+			Logging.warn("  " + name + ": Main class does not extend bl4ckscor3.bot.bl4ckb0t.Module");
 			Logging.stackTrace(e);
 			return false;
 		}
 		catch(ClassNotFoundException e)
 		{
-			Logging.warn(" " + name + ": Couldn't find main class " + main);
+			Logging.warn("  " + name + ": Couldn't find main class " + main);
 			Logging.stackTrace(e);
 			return false;
 		}
 		catch(Exception e)
 		{
-			Logging.warn(" Module " + name + " could not be loaded due to an error. Is it even a module?");
+			Logging.warn("  Module " + name + " could not be loaded due to an error. Is it even a module?");
 			Logging.stackTrace(e);
 			return false;
 		}

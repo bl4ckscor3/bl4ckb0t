@@ -19,7 +19,7 @@ public class Lists
 	public static void addDefaultChan(String c)
 	{
 		defaultChans.add(c);
-		Logging.info("	Added " + c + " to channel list");
+		Logging.info("  Added " + c + " to channel list");
 	}
 
 	/**
@@ -29,7 +29,7 @@ public class Lists
 	public static void addLvl2User(String a)
 	{
 		allowedUsers.add(a);
-		Logging.info("	Added " + a + " to allowed user list");
+		Logging.info("  Added " + a + " to allowed user list");
 	}
 
 	/**
@@ -39,7 +39,7 @@ public class Lists
 	public static void addLvl3User(String v)
 	{
 		validUsers.add(v);
-		Logging.info("	Added " + v + " to valid user list");
+		Logging.info("  Added " + v + " to valid user list");
 	}
 
 	/**
@@ -49,7 +49,7 @@ public class Lists
 	public static void addIgnoredUser(String i)
 	{
 		ignoredUsers.add(i);
-		Logging.info("	Added " + i + " to ignored user list");
+		Logging.info("  Added " + i + " to ignored user list");
 	}
 
 	/**

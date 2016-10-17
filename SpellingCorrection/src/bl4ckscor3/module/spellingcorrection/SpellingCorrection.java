@@ -8,13 +8,16 @@ import org.pircbotx.Colors;
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.MessageEvent;
 
+import bl4ckscor3.bot.bl4ckb0t.Core;
 import bl4ckscor3.bot.bl4ckb0t.Module;
+import bl4ckscor3.bot.bl4ckb0t.commands.BaseChannelCommand;
 import bl4ckscor3.bot.bl4ckb0t.l10n.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 import bl4ckscor3.bot.bl4ckb0t.util.android.ArrayMap;
 
 public class SpellingCorrection extends Module
 {
+	private final ArrayMap<String, List<String>> storage = new ArrayMap<String, List<String>>(); //<channel, <user#message>>
 	private L10N l10n;
 	private Listener listener;
 	
@@ -26,6 +29,7 @@ public class SpellingCorrection extends Module
 	@Override
 	public void onEnable(URLClassLoader loader)
 	{
+		getBuilder().registerChannelCommand(this, new Command(this));
 		getBuilder().addListener(listener = new Listener());
 		l10n = new L10N(this, loader);
 	}
@@ -41,18 +45,91 @@ public class SpellingCorrection extends Module
 	{
 		return new String[]{
 				l10n.translate("explanation.1", channel),
-				l10n.translate("explanation.2", channel)
+				l10n.translate("explanation.2", channel),
+				l10n.translate("explanation.3", channel),
+				l10n.translate("explanation.4", channel),
+				l10n.translate("explanation.5", channel)
 		};
+	}
+	
+	public class Command extends BaseChannelCommand
+	{
+		public Module module;
+
+		public Command(Module m)
+		{
+			module = m;
+		}
+		
+		@Override
+		public void exe(MessageEvent event, String cmdName, String[] args) throws Exception
+		{
+			String lastMessage = "";
+			String channel = event.getChannel().getName();
+			String user = event.getUser().getNick();
+			
+			for(String s : storage.get(channel))
+			{
+				if(s.split("#")[0].equals(user))
+					lastMessage = s.split("#")[1];
+			}
+
+			if(lastMessage.equals(""))
+				return;
+
+			StringBuilder builder = new StringBuilder();
+
+			if(args.length == 0)
+			{
+				builder.append(lastMessage);
+
+				for(int i = 0; i < builder.length(); i++)
+				{
+					char c = builder.charAt(i);
+
+					if(Character.isLowerCase(c))
+						builder.setCharAt(i, Character.toUpperCase(c));
+					else if(Character.isUpperCase(c))
+						builder.setCharAt(i, Character.toLowerCase(c));
+				}
+			}
+			else
+			{
+				if(args[0].equals("up"))
+					builder.append(lastMessage.toUpperCase());
+				else if(args[0].equals("low"))
+					builder.append(lastMessage.toLowerCase());
+				else
+					Utilities.sendHelp(module, user, channel);
+			}
+
+			Utilities.sendMessage(channel, builder.toString());
+			listener.updateLatestMessage(channel, builder.toString(), user);
+		}
+
+		@Override
+		public String[] getAliases()
+		{
+			return new String[]{"caps"};
+		}
+
+		@Override
+		public String getSyntax(String channel)
+		{
+			return "-caps [up|low]";
+		}
 	}
 	
 	public class Listener extends ListenerAdapter
 	{
-		private final ArrayMap<String, List<String>> storage = new ArrayMap<String, List<String>>(); //<channel, <user#message>>
 		private boolean corrected = false; //needed to check if the message should be added to the array or not
 		
 		@Override
 		public void onMessage(MessageEvent event) throws Exception
 		{
+			if(event.getMessage().startsWith(Core.bot.getCmdPrefix()))
+				return;
+			
 			checkForSpellingCorrection(event.getChannel().getName(), event.getUser().getNick(), event.getMessage());
 
 			//making sure the above messages dont get added as a latest message

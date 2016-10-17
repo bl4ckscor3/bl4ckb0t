@@ -143,16 +143,16 @@ public class Utilities
 							result += s + ", ";
 						}
 
-						Utilities.sendMessage(nick, "		" + result.substring(0, result.lastIndexOf(",")) + ")");
+						Utilities.sendMessage(nick, "  " + result.substring(0, result.lastIndexOf(",")) + ")");
 						
 						break;
 					}
 					
-					Utilities.sendMessage(nick, "		" + result);
+					Utilities.sendMessage(nick, "  " + result);
 				}
 			}
 			else
-				Utilities.sendMessage(nick, "		" + Core.l10n.translate("help.none", channel));
+				Utilities.sendMessage(nick, "  " + Core.l10n.translate("help.none", channel));
 
 			Utilities.sendMessage(nick, Core.l10n.translate("help.privateCommands", channel));
 
@@ -160,21 +160,21 @@ public class Utilities
 			{
 				for(BasePrivateCommand cmd : m.getPrivateCommands())
 				{
-					Utilities.sendMessage(nick, "		" + cmd.getSyntax(channel));
+					Utilities.sendMessage(nick, "  " + cmd.getSyntax(channel));
 				}
 			}
 			else
-				Utilities.sendMessage(nick, "		" + Core.l10n.translate("help.none", channel));
+				Utilities.sendMessage(nick, "  " + Core.l10n.translate("help.none", channel));
 
 			Utilities.sendMessage(nick, Core.l10n.translate("help.usage", channel));
 
 			for(String s : m.getUsage(channel))
 			{
-				Utilities.sendMessage(nick, "		" + s);
+				Utilities.sendMessage(nick, "  " + s);
 			}
 
 			Utilities.sendMessage(nick, Core.l10n.translate("help.notes", channel));
-			Utilities.sendMessage(nick, "		" + m.getNotes(channel));
+			Utilities.sendMessage(nick, "  " + m.getNotes(channel));
 		}
 		else
 			Utilities.sendMessage(nick, Core.l10n.translate("help.noPermission", channel));
