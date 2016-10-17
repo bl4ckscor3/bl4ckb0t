@@ -709,7 +709,7 @@
 - Fixed -leet conversion
 
 ###1.13.1
-- Added 2²-type calculations
+- Added 2ï¿½-type calculations
 - Bot now reconnects on a ping timeout
 - Tweaks to -calc
 - Removed * kicks <name> message
