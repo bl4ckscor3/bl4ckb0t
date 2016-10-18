@@ -41,7 +41,7 @@ public class Thumbnail extends Module
 		{
 			String channel = event.getChannel().getName();
 
-			if(!args[0].matches("(https:\\/\\/|http:\\/\\/|)www\\.youtube\\.com\\/watch\\?v=[A-Za-z0-9-_]{11}") && !args[0].matches("[A-Za-z0-9-_]{11}")) //"https://" or "http://" or nothing, followed by www.youtube.com/watch?v= followed by 11 interchangeable upper or lower cased letters, or numbers or - or _
+			if(!args[0].matches("(https:\\/\\/|http:\\/\\/|)www\\.youtube\\.com\\/watch\\?v=[A-Za-z0-9-_]{11}(&[A-Za-z0-9=&]*|)") && !args[0].matches("[A-Za-z0-9-_]{11}")) //"https://" or "http://" or nothing, followed by www.youtube.com/watch?v= followed by 11 interchangeable upper or lower cased letters, or numbers or - or _
 			{
 				Utilities.sendMessage(channel, l10n.translate("noVideo", channel));
 				return;
