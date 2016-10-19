@@ -46,8 +46,8 @@ public class LinkTitle extends Module implements LinkAction
 	@Override
 	public void onUpdate()
 	{
-		getBlacklistedWebsites();
 		blacklistedWebsites.clear();
+		getBlacklistedWebsites();
 	}
 
 	@Override
@@ -91,7 +91,13 @@ public class LinkTitle extends Module implements LinkAction
 	@Override
 	public boolean isValid(String channel, String link)
 	{
-		return !blacklistedWebsites.contains(link);
+		for(String s : blacklistedWebsites)
+		{
+			if(link.contains(s))
+				return false;
+		}
+		
+		return true;
 	}
 
 	@Override
