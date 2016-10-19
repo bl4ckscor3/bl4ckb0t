@@ -7,6 +7,7 @@
 
 #6.0
 - New module system. Each module has to be installed seperately. They replace all features from previous versions
+- A few fixes in individual modules
 - To see everything that  has changed, please take a look [here](https://github.com/bl4ckscor3/bl4ckb0t/commits/new-system).
 
 ###5.10.1
