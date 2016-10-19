@@ -1,0 +1,6 @@
+{
+  "name": "bl4ckb0t",
+  "tagline": "A modular IRC bot made in Java",
+  "body": "###General Information\r\n- IRC-Bot for Java 8\r\n- Made with [PircBotX 2.1](https://github.com/thelq/pircbotx)\r\n- Based on Modules, for further information see \r\n- [See the bot in action](webchat.esper.net/?channels=bl4ckscor3)\r\n- Used libraries: Some AOSP classes, see Apache-License part.\r\n- [Trello board](https://trello.com/b/039j1jFa/bl4ckb0t)\r\n- Thanks to Lord_Ralex for help on [v2.0](http://github.com/bl4ckscor3/bl4ckb0t/commit/0703810f5870d2cdb7c678ff983671c2884fa7e9), he did the whole command system work :)\r\n\r\n###Legal\r\n_Software used under the [Apache-License](https://github.com/bl4ckscor3/bl4ckb0t/blob/master/APACHELICENSE.md):_\r\n- **Objects.java** from libcore (The Android Open Source Project)\r\n- **EmptyArray.java** from libcore (The Android Open Source Project)\r\n- **ArrayMap.java** from android (The Android Open Source Project)\r\n- **ContainerHelper.java** from android (The Android Open Source Project)\r\n- **MapCollections.java** from android (The Android Open Source Project)\r\n\r\nSome of these classes have been slightly edited to ignore warnings eclipse shows and to adapt the packages they're placed in.",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
