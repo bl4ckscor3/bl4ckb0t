@@ -42,6 +42,11 @@ public abstract class Module
 	public void onFinish(){}
 	
 	/**
+	 * Gets called when the -update command gets executed
+	 */
+	public void onUpdate(){}
+	
+	/**
 	 * Explanation of the module, gets shown in the help menu.
 	 * @param event The channel the help command was used in
 	 */

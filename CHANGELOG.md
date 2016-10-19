@@ -1,6 +1,7 @@
 #Changelog
 ---
 ###6.0.1
+- Added onUpdate method in Module that gets called when the -update command gets executed
 - Fixed -module load <link> not able to reload modules
 - Fixed fourth -module explanation not showing up
 

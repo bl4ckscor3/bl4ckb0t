@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>bl4ckscor3.bot</groupId>
 	<artifactId>bl4ckb0t.module.csgonotification</artifactId>
-	<version>1.0</version>
+	<version>1.0.1</version>
 	<name>CSGONotification</name>
 	<description>CSGONotification module for bl4ckb0t</description>
 	<url>https://github.com/bl4ckscor3/bl4ckb0t</url>
@@ -33,7 +33,7 @@
 		<dependency>
 			<groupId>bl4ckscor3.bot</groupId>
 			<artifactId>bl4ckb0t</artifactId>
-			<version>6.0</version>
+			<version>6.0.1</version>
 		</dependency>
 	</dependencies>
 </project>

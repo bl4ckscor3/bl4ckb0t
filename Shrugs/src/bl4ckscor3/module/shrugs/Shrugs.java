@@ -12,6 +12,7 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 public class Shrugs extends Module
 {
 	private L10N l10n;
+	private Listener listener;
 	
 	public Shrugs(String name)
 	{
@@ -21,8 +22,14 @@ public class Shrugs extends Module
 	@Override
 	public void onEnable(URLClassLoader loader)
 	{
-		getBuilder().addListener(new Listener());
+		getBuilder().addListener(listener = new Listener());
 		l10n = new L10N(this, loader);
+	}
+	
+	@Override
+	public void onDisable()
+	{
+		getBuilder().removeListener(listener);
 	}
 	
 	@Override

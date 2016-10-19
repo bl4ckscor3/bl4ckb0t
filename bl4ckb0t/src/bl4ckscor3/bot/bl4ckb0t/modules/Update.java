@@ -6,6 +6,7 @@ import org.pircbotx.hooks.events.MessageEvent;
 
 import bl4ckscor3.bot.bl4ckb0t.Core;
 import bl4ckscor3.bot.bl4ckb0t.Module;
+import bl4ckscor3.bot.bl4ckb0t.Modules;
 import bl4ckscor3.bot.bl4ckb0t.Startup;
 import bl4ckscor3.bot.bl4ckb0t.commands.BaseChannelCommand;
 import bl4ckscor3.bot.bl4ckb0t.util.Lists;
@@ -44,6 +45,12 @@ public class Update extends Module
 			Lists.clearAll();
 			Changelog.versions.clear();
 			Startup.callMethods();
+			
+			for(Module m : Modules.modules)
+			{
+				m.onUpdate();
+			}
+				
 			Utilities.sendMessage(event.getChannel().getName(), Core.l10n.translate("update.success", event.getChannel().getName()));
 		}
 
