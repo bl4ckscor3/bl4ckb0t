@@ -91,12 +91,12 @@ public class Modules
 	 * Loads a public module
 	 * @param url The url to the file of the module (file.getURI().getURL())
 	 * @param name The name of the file without the file type
-	 * @return true if the module was loaded, false otherwise
+	 * @return 1 if the module was loaded, 0 if it was already loaded, -1 if an error occured
 	 */
-	public boolean loadModule(URL url, String name) throws IOException
+	public int loadModule(URL url, String name) throws IOException
 	{
 		if(isLoaded(name))
-			return false;
+			return 0;
 		
 		String main = "bl4ckscor3.module." + name.toLowerCase() + "." + name;
 		URLClassLoader loader = null;
@@ -112,30 +112,28 @@ public class Modules
 			if(modules.contains(module))
 			{
 				Logging.warn("Tried to load already loaded module.");
-				return false;
+				return 0;
 			}
 
 			modules.add(module);
 			Logging.info("  Loaded module " + name);
-			return true;
+			return 1;
 		}
 		catch(ClassCastException e)
 		{
 			Logging.warn("  " + name + ": Main class does not extend bl4ckscor3.bot.bl4ckb0t.Module");
-			Logging.stackTrace(e);
-			return false;
+			return -1;
 		}
 		catch(ClassNotFoundException e)
 		{
 			Logging.warn("  " + name + ": Couldn't find main class " + main);
-			Logging.stackTrace(e);
-			return false;
+			return -1;
 		}
 		catch(Exception e)
 		{
 			Logging.warn("  Module " + name + " could not be loaded due to an error. Is it even a module?");
 			Logging.stackTrace(e);
-			return false;
+			return -1;
 		}
 		finally
 		{

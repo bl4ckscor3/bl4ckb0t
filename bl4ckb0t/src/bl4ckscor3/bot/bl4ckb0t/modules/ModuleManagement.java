@@ -37,7 +37,8 @@ public class ModuleManagement extends Module
 		return new String[]{
 				Core.l10n.translate("moduleManagement.explanation.1", channel),
 				Core.l10n.translate("moduleManagement.explanation.2", channel),
-				Core.l10n.translate("moduleManagement.explanation.3", channel)
+				Core.l10n.translate("moduleManagement.explanation.3", channel),
+				Core.l10n.translate("moduleManagement.explanation.4", channel)
 		};
 	}
 
@@ -125,8 +126,12 @@ public class ModuleManagement extends Module
 									return;
 								}
 
-								if(Core.modules.loadModule(new URL(f.toURI().toURL().toString().replace(".disabled", "")), name))
+								int loadState = Core.modules.loadModule(new URL(f.toURI().toURL().toString().replace(".disabled", "")), name);
+								
+								if(loadState == 1)
 									Utilities.sendMessage(channel, Core.l10n.translate("moduleManagement.enabled", channel));
+								else if(loadState == 0)
+									Utilities.sendMessage(channel, Core.l10n.translate("moduleManagement.alreadyEnabled", channel));
 								else
 									Utilities.sendMessage(channel, Core.l10n.translate("moduleManagement.errorEnabling", channel));
 
@@ -152,8 +157,12 @@ public class ModuleManagement extends Module
 							stream.close();
 							rbc.close();
 
-							if(Core.modules.loadModule(new URL("file:" + Utilities.getJarLocation() + "/modules/" + name), name.substring(0, name.lastIndexOf('.'))))
+							int loadState = Core.modules.loadModule(new URL("file:" + Utilities.getJarLocation() + "/modules/" + name), name.substring(0, name.lastIndexOf('.')));
+							
+							if(loadState == 1)
 								Utilities.sendMessage(channel, Core.l10n.translate("moduleManagement.loaded", channel));
+							else if(loadState == 0)
+								exe(event, cmdName, new String[]{"reload", name.substring(0, name.lastIndexOf('.'))});
 							else
 								Utilities.sendMessage(channel, Core.l10n.translate("moduleManagement.errorLoading", channel));
 						}

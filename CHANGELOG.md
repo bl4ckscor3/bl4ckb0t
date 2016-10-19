@@ -1,5 +1,9 @@
 #Changelog
 ---
+###6.0.1
+- Fixed -module load <link> not able to reload modules
+- Fixed fourth -module explanation not showing up
+
 #6.0
 - New module system. Each module has to be installed seperately. They replace all features from previous versions
 - To see everything that  has changed, please take a look [here](https://github.com/bl4ckscor3/bl4ckb0t/commits/new-system).
