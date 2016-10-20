@@ -45,7 +45,7 @@ public class WelcomeBack extends Module
 		@Override
 		public void onMessage(MessageEvent event) throws Exception
 		{
-			if(event.getMessage().startsWith("re "))
+			if(event.getMessage().toLowerCase().startsWith("re ") || event.getMessage().toLowerCase().equals("re"))
 				Utilities.sendMessage(event.getChannel().getName(), "wb, " + event.getUser().getNick());
 		}
 	}
