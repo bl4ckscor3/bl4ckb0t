@@ -38,12 +38,6 @@ public class LinkManager extends Module
 	}
 	
 	@Override
-	public void onFinish()
-	{
-		linkActions.sort(new LinkAction.LinkActionComparator());
-	}
-	
-	@Override
 	public String[] getUsage(String channel)
 	{
 		return new String[]{
@@ -60,6 +54,7 @@ public class LinkManager extends Module
 	public static void registerLinkAction(LinkAction la)
 	{
 		linkActions.add(la);
+		linkActions.sort(new LinkAction.LinkActionComparator());
 	}
 	
 	/**

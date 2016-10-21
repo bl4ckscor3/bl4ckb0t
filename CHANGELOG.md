@@ -1,5 +1,8 @@
 #Changelog
 ---
+####6.0.1.1
+- Fixed modules depending on LinkManager not working when reloaded
+
 ###6.0.1
 - Added onUpdate method in Module that gets called when the -update command gets executed
 - Fixed -module load <link> not able to reload modules
