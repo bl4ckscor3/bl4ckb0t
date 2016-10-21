@@ -63,7 +63,7 @@ public class YouTubeStats extends Module implements LinkAction
 				yt = "www.youtube.com/watch?v=" + link.split("v=")[1].substring(0, 11) + "/";
 			else
 			{
-				Utilities.sendMessage(channel, l10n.translate("youtube.noId", channel));
+				Utilities.sendMessage(channel, l10n.translate("noId", channel));
 				return;
 			}
 		}
@@ -134,8 +134,15 @@ public class YouTubeStats extends Module implements LinkAction
 			}
 		}
 
-		views = doc.select(".watch-view-count").get(0).text();
-
+		try
+		{
+			views = doc.select(".watch-view-count").get(0).text();
+		}
+		catch(IndexOutOfBoundsException e)
+		{
+			views = l10n.translate("ratingDisabled", channel);
+		}
+		
 		try
 		{
 			likes = doc.select(".like-button-renderer-like-button-unclicked > span:nth-child(1)").get(0).text();
@@ -143,14 +150,17 @@ public class YouTubeStats extends Module implements LinkAction
 		}
 		catch(IndexOutOfBoundsException e)
 		{
-			likes = (dislikes = l10n.translate("youtube.ratingDisabled", channel));
+			likes = (dislikes = l10n.translate("ratingDisabled", channel));
 		}
 
 		date = doc.select(".watch-time-text").get(0).text();
 		uploader = doc.select(".yt-user-info > a:nth-child(1)").get(0).text();
 
 		date = date.replaceAll("^[^0-9]*", ""); //replace everything infront of the first number
-		views = views.replaceAll("[^0-9+.]", ""); //replace everything except numbers, + and . with nothing
+
+		if(!views.equals(l10n.translate("ratingDisabled", channel)))
+				views = views.replaceAll("[^0-9+.]", ""); //replace everything except numbers, + and . with nothing
+		
 		Utilities.sendStarMsg(channel,
 				Utilities.backgroundColor(Colors.WHITE, Colors.BLACK) + "You" + Utilities.backgroundColor(Colors.RED, Colors.WHITE) + "Tube",
 				l10n.translate("title", channel).replace("#title", title),
