@@ -110,7 +110,7 @@ public class YouTubeStats extends Module implements LinkAction
 					{
 						if(s.startsWith("\"length_seconds\""))
 						{
-							int seconds = Integer.parseInt(s.split(":")[1].replace("\"", ""));
+							int seconds = Integer.parseInt(s.split(":")[1].replace("\"", "").replace("}", ""));
 							int minutes = 0;
 							int hours = 0;
 
