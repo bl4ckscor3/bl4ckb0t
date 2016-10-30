@@ -1,6 +1,7 @@
 package bl4ckscor3.module.cookie;
 
 import java.io.File;
+import java.net.URISyntaxException;
 import java.net.URLClassLoader;
 import java.nio.charset.Charset;
 import java.util.List;
@@ -23,7 +24,7 @@ public class Cookie extends Module
 	}
 
 	@Override
-	public void onEnable(URLClassLoader loader)
+	public void onEnable(URLClassLoader loader) throws URISyntaxException
 	{
 		getBuilder().registerChannelCommand(this, new CommandCookie(this));
 		getBuilder().registerChannelCommand(this, new CommandCookies(this));
@@ -251,6 +252,12 @@ public class Cookie extends Module
 					return;
 				}
 			}
+			
+			Utilities.sendStarMsg(channel, 
+					l10n.translate("user", channel).replace("#user", args[0]),
+					l10n.translate("amount", channel).replace("#amount", "" + 20),
+					l10n.translate("given", channel).replace("#given", "" + 0),
+					l10n.translate("received", channel).replace("#received", "" + 0));
 		}
 
 		@Override
