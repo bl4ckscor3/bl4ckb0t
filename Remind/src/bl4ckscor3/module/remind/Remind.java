@@ -137,6 +137,7 @@ public class Remind extends Module
 					catch(NumberFormatException ex)
 					{
 						Utilities.sendHelp(module, event.getUser().getNick(), channel);
+						return;
 					}
 
 					Reminder reminder = new Reminder(event.getUser().getNick(), channel, ev, timeDue, false);
