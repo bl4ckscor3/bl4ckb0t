@@ -1,6 +1,6 @@
 #Changelog
 ---
-####6.0.1.1
+###6.0.2
 - Fixed modules depending on LinkManager not working when reloaded
 
 ###6.0.1
