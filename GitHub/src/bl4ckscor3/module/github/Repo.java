@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 
+import bl4ckscor3.bot.bl4ckb0t.Core;
 import bl4ckscor3.bot.bl4ckb0t.l10n.L10N;
 import bl4ckscor3.bot.bl4ckb0t.util.LinkAction;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
@@ -85,7 +86,7 @@ public class Repo implements LinkAction
 		}
 		
 		if(language.equals("null") || language.equals("") || language.equals(null))
-			language = l10n.translate("help.none", channel).replace(".", "").trim();
+			language = Core.l10n.translate("help.none", channel).replace(".", "").trim();
 		
 		Utilities.sendStarMsg(channel, l10n.translate("repo.header", channel).replace("#name", name).replace("#description", description),
 				l10n.translate("repo.mainLanguage", channel).replace("#lang", language),
