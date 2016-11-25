@@ -82,7 +82,7 @@ public class LinkTitle extends Module implements LinkAction
 			link += "...";
 		}
 
-		if(title == null || title == "null" || title == "")
+		if(title.equals("") || title.equals("null"))
 			Utilities.sendMessage(channel, l10n.translate("notFound", channel).replace("#link", link));
 		else
 			Utilities.sendMessage(channel, l10n.translate("available", channel).replace("#link", link).replace("#title", title));

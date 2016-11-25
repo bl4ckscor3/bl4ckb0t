@@ -85,7 +85,7 @@ public class Repo implements LinkAction
 			reader.close();
 		}
 		
-		if(language.equals("null") || language.equals("") || language.equals(null))
+		if(language.equals("null") || language.equals(""))
 			language = Core.l10n.translate("help.none", channel).replace(".", "").trim();
 		
 		Utilities.sendStarMsg(channel, l10n.translate("repo.header", channel).replace("#name", name).replace("#description", description),

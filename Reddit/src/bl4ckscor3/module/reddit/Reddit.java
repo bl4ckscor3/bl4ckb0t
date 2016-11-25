@@ -122,7 +122,7 @@ public class Reddit extends Module implements LinkAction
 		String author = doc.select("p.tagline > a.author").get(0).text();
 		String time = doc.select("p.tagline > time").get(0).text();
 
-		if(gilded == "")
+		if(gilded.equals(""))
 			gilded = "0";
 
 		Utilities.sendMessage(channel, Colors.BROWN + "(" + gilded + ") " + Colors.GREEN + "[" + votes + " " + percentage + "] " + Colors.NORMAL + title + " " + Colors.ITALICS + Colors.LIGHT_GRAY  + type  + Colors.NORMAL + " - " + comments + " - " + Colors.MAGENTA + "/u/" + author + " posted " + time);
@@ -150,7 +150,7 @@ public class Reddit extends Module implements LinkAction
 			gilded = doc.select(".gilded-icon").attr("data-count"); //for it the op has no gild
 		}
 
-		if(gilded == "")
+		if(gilded.equals(""))
 			gilded = "0";
 
 		Utilities.sendMessage(channel,  Colors.BROWN + "(" + gilded + ") " + Colors.GREEN + "[" + votes + "] " + Colors.MAGENTA + "/u/" + author + " posted " + time);
