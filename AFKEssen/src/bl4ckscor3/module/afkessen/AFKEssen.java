@@ -45,8 +45,8 @@ public class AFKEssen extends Module
 		@Override
 		public void onMessage(MessageEvent event) throws Exception
 		{
-			if(event.getMessage().matches("afk[A-Za-z]*essen"))
-				Utilities.sendMessage(event.getChannel().getName(), "gh");
+			if(event.getMessage().matches("afk[öÖäÄüÜßA-Za-z]*essen"))
+				Utilities.sendMessage(event.getChannel().getName(), l10n.translate("wish", event.getChannel().getName()));
 		}
 	}
 }
