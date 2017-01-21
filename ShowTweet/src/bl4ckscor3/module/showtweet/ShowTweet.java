@@ -63,6 +63,7 @@ public class ShowTweet extends Module implements LinkAction
 		String name = "";
 		String account = "";
 		String tweet = "";
+		boolean verified = false;
 
 		if(link.startsWith("www."))
 			link = "http://" + link;
@@ -93,25 +94,30 @@ public class ShowTweet extends Module implements LinkAction
 
 		try
 		{
-			name = doc.select("a.account-group:nth-child(2) > strong:nth-child(2)").get(0).toString().split(">")[1].split("<")[0];
+			name = doc.select(".permalink-header > a:nth-child(1) > strong:nth-child(2)").get(0).ownText();
+			
+			if(doc.select(".permalink-header > a:nth-child(1) > strong:nth-child(2) > .Icon--verified").size() != 0)
+				verified = true;
 		}
-		catch(IndexOutOfBoundsException e)
+		catch(IndexOutOfBoundsException e1)
 		{
-			doc.select("div.ProtectedTimeline");
-			Utilities.sendMessage(channel, l10n.translate("protectedTweets", channel));
+			try
+			{
+				doc.select("div.ProtectedTimeline").get(0);
+				Utilities.sendMessage(channel, l10n.translate("protectedTweets", channel));
+			}
+			catch(IndexOutOfBoundsException e2)
+			{
+				Utilities.sendMessage(channel, "Error");
+			}
+			
 			return;
 		}
 
-		if(name.endsWith("Verified Account"))
-		{
-			name = name.substring(0, name.lastIndexOf("Verified Account"));
-			name = name.substring(0, name.length() - 1);
-		}
+		account = doc.select(".permalink-header > a:nth-child(1) > span:nth-child(4)").text();
+		tweet = doc.select(".TweetTextSize--26px").get(0).text().replace("https://twitter.com", " https://twitter.com").replace("pic.twitter", " pic.twitter").replace("Â ", "").trim();
 		
-		account = "@" + doc.select("a.account-group:nth-child(2) > span:nth-child(4) > b:nth-child(2)").get(0).toString().replace("<b>", "").replace("</b>", "");
-		tweet = doc.select(".TweetTextSize--26px").get(0).text().replace("https://twitter.com", " https://twitter.com").replace("pic.twitter", " pic.twitter").replace(" ", "").trim();
-		
-		String msg = Colors.BOLD + name + " (" + account + ") - " + Colors.BOLD + tweet;
+		String msg = Colors.BOLD + name + " (" + account + ") " + (verified ? "\u2713 " : "") + "- " + Colors.BOLD + tweet;
 		
 		for(int i = depth; i > 0; i--)
 		{
@@ -130,7 +136,7 @@ public class ShowTweet extends Module implements LinkAction
 				hasVote = true;
 		}
 			
-		Utilities.sendMessage(channel, msg.replace("…", "") + (hasVote ? Colors.ITALICS + " (" + l10n.translate("vote", channel) + ")" : ""));
+		Utilities.sendMessage(channel, msg.replace("â€¦", "") + (hasVote ? Colors.ITALICS + " (" + l10n.translate("vote", channel) + ")" : ""));
 		
 		String[] split = tweet.split(" ");
 		
