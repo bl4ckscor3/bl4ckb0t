@@ -128,5 +128,5 @@ public class Bot extends PircBotX
 			
 			joinChannel(s);
 		}
-}
+	}
 }
