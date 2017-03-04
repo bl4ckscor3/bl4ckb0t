@@ -94,9 +94,9 @@ public class ShowTweet extends Module implements LinkAction
 
 		try
 		{
-			name = doc.select(".permalink-header > a:nth-child(1) > strong:nth-child(2)").get(0).ownText();
+			name = doc.select(".permalink-header > a:nth-child(1) > span:nth-child(2) > strong:nth-child(1)").get(0).ownText();
 			
-			if(doc.select(".permalink-header > a:nth-child(1) > strong:nth-child(2) > .Icon--verified").size() != 0)
+			if(doc.select(".permalink-header > a:nth-child(1) > span:nth-child(2) > span:nth-child(3) > span:nth-child(1)").size() != 0)
 				verified = true;
 		}
 		catch(IndexOutOfBoundsException e1)
@@ -108,13 +108,14 @@ public class ShowTweet extends Module implements LinkAction
 			}
 			catch(IndexOutOfBoundsException e2)
 			{
-				Utilities.sendMessage(channel, "Error");
+				Logging.stackTrace(e2);
+				Utilities.sendMessage(channel, "Error. See log for details.");
 			}
 			
 			return;
 		}
 
-		account = doc.select(".permalink-header > a:nth-child(1) > span:nth-child(4)").text();
+		account = doc.select(".permalink-header > a:nth-child(1) > span:nth-child(3)").text();
 		tweet = doc.select(".TweetTextSize--26px").get(0).text().replace("https://twitter.com", " https://twitter.com").replace("pic.twitter", " pic.twitter").replace(" ", "").trim();
 		
 		String msg = Colors.BOLD + name + " (" + account + ") " + (verified ? "\u2713 " : "") + "- " + Colors.BOLD + tweet;
