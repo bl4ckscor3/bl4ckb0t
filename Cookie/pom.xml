@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>bl4ckscor3.bot</groupId>
 	<artifactId>bl4ckb0t.module.cookie</artifactId>
-	<version>1.0</version>
+	<version>1.1</version>
 	<name>Cookie</name>
 	<description>Cookie module for bl4ckb0t</description>
 	<url>https://github.com/bl4ckscor3/bl4ckb0t</url>

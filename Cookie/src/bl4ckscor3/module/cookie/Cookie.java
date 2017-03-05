@@ -222,11 +222,13 @@ public class Cookie extends Module
 			String nick = event.getUser().getNick();
 			String channel = event.getChannel().getName();
 
-			if(args.length == 0)
+			if(args.length > 1)
 			{
 				Utilities.sendHelp(module, nick, channel);
 				return;
 			}
+			else if(args.length == 0)
+				args = new String[] {nick};
 
 			File f = new File(Utilities.getJarLocation() + "/cookies.txt");
 
