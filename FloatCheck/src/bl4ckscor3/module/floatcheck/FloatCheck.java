@@ -39,12 +39,6 @@ public class FloatCheck extends Module
 		};
 	}
 	
-	@Override
-	public String getNotes(String channel)
-	{
-		return l10n.translate("notes", channel);
-	}
-	
 	public class ChannelCommand extends BaseChannelCommand
 	{
 		private Module module;
@@ -78,7 +72,15 @@ public class FloatCheck extends Module
 			if(json.has("error"))
 				Utilities.sendMessage(channel, "" + json.get("error"));
 			else
-				Utilities.sendMessage(channel, "" + json.get("iteminfo").getAsJsonObject().get("floatvalue"));
+			{
+				JsonObject info = json.get("iteminfo").getAsJsonObject();
+				String stattraktm = !info.get("killeatervalue").toString().equals("null") ? "StatTrak™ " : "";
+				
+				Utilities.sendStarMsg(channel,
+						l10n.translate("name", channel).replace("#name", stattraktm + info.get("weapon_type").toString() + " | " + info.get("item_name").toString()).replace("\"", ""),
+						l10n.translate("floatvalue", channel).replace("#floatvalue", info.get("floatvalue").toString()),
+						l10n.translate("credits", channel).replace("#link", "https://csgofloat.com"));
+			}
 		}
 
 		@Override
