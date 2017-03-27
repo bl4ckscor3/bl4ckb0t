@@ -41,7 +41,8 @@ public class Remind extends Module
 	
 	public class Command extends BaseChannelCommand
 	{
-		private Module module;		
+		private Module module;
+		
 		public Command(Module m)
 		{
 			module = m;
@@ -60,6 +61,9 @@ public class Remind extends Module
 					
 					for(Reminder r : reminders)
 					{
+						if(!r.getIssuedUser().equalsIgnoreCase(event.getUser().getNick()))
+							continue;
+						
 						ids += "" + r.getId() + ", ";
 					}
 					
@@ -101,12 +105,7 @@ public class Remind extends Module
 							}
 							
 							if(event.getUser().getNick().equals(r.getIssuedUser()))
-							{
-								if(channel.equals(r.getIssuedChannel()))
 									Utilities.sendMessage(channel, l10n.translate("timeLeft", channel).replace("#event", r.getEvent()).replace("#timeLeft", TimeParser.lts(r.getRemainingTime(), "%sd %sh %sm %ss")));
-								else
-									Utilities.sendMessage(channel, l10n.translate("wrongChannel", channel));
-							}
 							else
 								Utilities.sendMessage(channel, l10n.translate("notOwned", channel));
 							return;
