@@ -70,7 +70,7 @@ public class Issue implements LinkAction
 				l10n.translate("issue.title", channel).replace("#title", title),
 				l10n.translate("issue.createdBy", channel).replace("#creator", username),
 				l10n.translate("issue.state", channel).replace("#state", state),
-				l10n.translate("issue.comments", channel).replace("#amount", comments));
+				l10n.translate("issue.comments", channel).replace("#comments", comments));
 	}
 	
 	@Override
