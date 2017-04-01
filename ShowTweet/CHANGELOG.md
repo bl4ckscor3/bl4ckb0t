@@ -1,5 +1,9 @@
 #Changelog
 ---
+
+###1.1.2
+- Fixed module not working due to reply changes Twitter made
+
 ###1.1.1
 - Fixed module not working due to changes on Twitter's side
 

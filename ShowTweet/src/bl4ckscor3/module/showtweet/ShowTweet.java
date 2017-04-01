@@ -7,6 +7,7 @@ import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.pircbotx.Colors;
 
 import bl4ckscor3.bot.bl4ckb0t.Module;
@@ -115,11 +116,23 @@ public class ShowTweet extends Module implements LinkAction
 			return;
 		}
 
+		Elements replyingTo = doc.select(".permalink-tweet > .ReplyingToContextBelowAuthor");
+		
 		account = doc.select(".permalink-header > a:nth-child(1) > span:nth-child(3)").text();
-		tweet = doc.select(".TweetTextSize--26px").get(0).text().replace("https://twitter.com", " https://twitter.com").replace("pic.twitter", " pic.twitter").replace(" ", "").trim();
+		tweet = doc.select(".TweetTextSize--jumbo").get(0).text().replace("https://twitter.com", " https://twitter.com").replace("pic.twitter", " pic.twitter").replace(" ", "").trim();
+		
+		//adding people this tweet replies to, if it does
+		if(replyingTo.size() != 0)
+		{
+			for(Element e : replyingTo.select(".js-user-profile-link"))
+			{
+				tweet = e.text() + " " + tweet;
+			}
+		}
 		
 		String msg = Colors.BOLD + name + " (" + account + ") " + (verified ? "\u2713 " : "") + "- " + Colors.BOLD + tweet;
 		
+		//adding nested tweets prefixes
 		for(int i = depth; i > 0; i--)
 		{
 			if(i == depth)
@@ -156,7 +169,7 @@ public class ShowTweet extends Module implements LinkAction
 		String links = "";
 
 		//extracting all links from the tweet
-		for(Element e : doc.select(".TweetTextSize--26px").get(0).select(".twitter-timeline-link"))
+		for(Element e : doc.select(".TweetTextSize--jumbo").get(0).select(".twitter-timeline-link"))
 		{
 			if(!e.attr("data-expanded-url").contains("twitter.com")) //ignore nested tweets
 				links += e.attr("data-expanded-url") + " ";
