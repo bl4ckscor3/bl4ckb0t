@@ -58,17 +58,24 @@ public class Remind extends Module
 				if(reminders.size() > 0)
 				{
 					String ids = "";
+					boolean reminder = false; //wether the user has any active reminder or not
 					
 					for(Reminder r : reminders)
 					{
 						if(!r.getIssuedUser().equalsIgnoreCase(event.getUser().getNick()))
 							continue;
 						
+						reminder = true;
 						ids += "" + r.getId() + ", ";
 					}
 					
-					ids = ids.substring(0, ids.lastIndexOf(','));
-					Utilities.sendMessage(channel, l10n.translate("amount", channel).replace("#amount", "" + reminders.size()).replace("#ids", ids));
+					if(reminder)
+					{
+						ids = ids.substring(0, ids.lastIndexOf(','));
+						Utilities.sendMessage(channel, l10n.translate("amount", channel).replace("#amount", "" + reminders.size()).replace("#ids", ids));
+					}
+					else
+						Utilities.sendMessage(channel, l10n.translate("none", channel));
 				}
 				else
 					Utilities.sendMessage(channel, l10n.translate("none", channel));
