@@ -14,6 +14,7 @@ import bl4ckscor3.bot.bl4ckb0t.Core;
 import bl4ckscor3.bot.bl4ckb0t.Module;
 import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.LinkAction;
+import bl4ckscor3.bot.bl4ckb0t.util.Lists;
 
 public class LinkManager extends Module
 {
@@ -98,7 +99,7 @@ public class LinkManager extends Module
 		@Override
 		public void onMessage(MessageEvent event) throws Exception
 		{
-			if(event.getMessage().startsWith(Core.bot.getCmdPrefix()))
+			if(event.getMessage().startsWith(Core.bot.getCmdPrefix()) || Lists.isIgnored(event.getUser().getNick()))
 				return;
 			
 			try

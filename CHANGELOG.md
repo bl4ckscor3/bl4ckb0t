@@ -1,5 +1,9 @@
 #Changelog
 ---
+
+####6.0.1.2
+- Fixed LinkManager not ignoring people
+
 ####6.0.1.1
 - Fixed modules depending on LinkManager not working when reloaded
 

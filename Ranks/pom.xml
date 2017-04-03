@@ -33,7 +33,7 @@
 		<dependency>
 			<groupId>bl4ckscor3.bot</groupId>
 			<artifactId>bl4ckb0t</artifactId>
-			<version>6.0.1.1</version>
+			<version>6.0.1.2</version>
 		</dependency>
 	</dependencies>
 </project>
