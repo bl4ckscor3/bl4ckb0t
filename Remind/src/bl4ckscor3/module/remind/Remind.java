@@ -52,6 +52,12 @@ public class Remind extends Module
 		public void exe(MessageEvent event, String cmdName, String[] args) throws Exception
 		{
 			String channel = event.getChannel().getName();
+		
+			if(args.length == 0)
+			{
+				Utilities.sendHelp(module, event.getUser().getNick(), channel);
+				return;
+			}
 			
 			if(args.length == 1 && args[0].equals("list"))
 			{
