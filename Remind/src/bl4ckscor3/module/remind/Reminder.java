@@ -13,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 import org.apache.commons.io.FileUtils;
 
 import bl4ckscor3.bot.bl4ckb0t.l10n.L10N;
+import bl4ckscor3.bot.bl4ckb0t.logging.Logging;
 import bl4ckscor3.bot.bl4ckb0t.util.TimeParser;
 import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 
@@ -161,7 +162,15 @@ public class Reminder
 				
 				FileUtils.writeLines(newFile, lines);
 				f.delete();
-				Utilities.sendMessage(channel, l10n.translate("reminder.loaded", channel).replace("#user", user).replace("#event", e).replace("#id", "" + r.getId()));
+				
+				try
+				{
+					Utilities.sendMessage(channel, l10n.translate("reminder.loaded", channel).replace("#user", user).replace("#event", e).replace("#id", "" + r.getId()));
+				}
+				catch(Exception ex)
+				{
+					Logging.info("Tried to send message while not being connected.");
+				}
 			}
 		}
 	}
