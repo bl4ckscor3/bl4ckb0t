@@ -93,7 +93,7 @@ public class LinkTitle extends Module implements LinkAction
 	{
 		for(String s : blacklistedWebsites)
 		{
-			if(link.matches(s))
+			if(link.matches((".*" + s + ".*")))
 				return false;
 		}
 		
