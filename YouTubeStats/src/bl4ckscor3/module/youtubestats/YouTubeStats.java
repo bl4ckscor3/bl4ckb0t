@@ -153,10 +153,8 @@ public class YouTubeStats extends Module implements LinkAction
 			likes = (dislikes = l10n.translate("ratingDisabled", channel));
 		}
 
-		date = doc.select(".watch-time-text").get(0).text().split(" ")[0];
+		date = doc.select(".watch-time-text").get(0).text().split(" ")[1];
 		uploader = doc.select(".yt-user-info > a:nth-child(1)").get(0).text();
-
-		date = date.replaceAll("^[^0-9]*", ""); //replace everything infront of the first number
 
 		if(!views.equals(l10n.translate("ratingDisabled", channel)))
 				views = views.replaceAll("[^0-9+.]", ""); //replace everything except numbers, + and . with nothing

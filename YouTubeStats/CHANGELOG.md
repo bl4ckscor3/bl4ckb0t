@@ -1,6 +1,9 @@
 # Changelog
 ---
 
+### 1.0.4
+- Fixed date not showing
+
 ### 1.0.3
 - Fix for new layout
 
