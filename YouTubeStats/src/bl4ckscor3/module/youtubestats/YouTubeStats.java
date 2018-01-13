@@ -153,11 +153,11 @@ public class YouTubeStats extends Module implements LinkAction
 			likes = (dislikes = l10n.translate("ratingDisabled", channel));
 		}
 
-		date = doc.select(".watch-time-text").get(0).text().split(" ")[1];
+		date = doc.select(".watch-time-text").get(0).text().replaceAll("[^0-9.]", " ").trim();
 		uploader = doc.select(".yt-user-info > a:nth-child(1)").get(0).text();
 
 		if(!views.equals(l10n.translate("ratingDisabled", channel)))
-				views = views.replaceAll("[^0-9+.]", ""); //replace everything except numbers, + and . with nothing
+			views = views.replaceAll("[^0-9+.]", ""); //replace everything except numbers, + and . with nothing
 		
 		Utilities.sendStarMsg(channel,
 				Utilities.backgroundColor(Colors.WHITE, Colors.BLACK) + "You" + Utilities.backgroundColor(Colors.RED, Colors.WHITE) + "Tube",

@@ -1,6 +1,10 @@
 # Changelog
 ---
 
+### 1.0.5
+- Fixed date not showing correctly in some circumstances
+
+
 ### 1.0.4
 - Fixed date not showing
 
