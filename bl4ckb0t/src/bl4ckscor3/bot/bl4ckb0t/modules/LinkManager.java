@@ -86,7 +86,15 @@ public class LinkManager extends Module
 				{
 					if(la.isValid(channel, s))
 					{
-						la.handle(channel, user, s);
+						try
+						{
+							la.handle(channel, user, s);
+						}
+						catch(Exception e)
+						{
+							e.printStackTrace();
+						}
+						
 						continue outer;
 					}
 				}

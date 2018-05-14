@@ -14,10 +14,10 @@ public class Core
 	public static Bot bot;
 	public static boolean wasStartedAsWIP;
 	private static final String botName = "bl4ckb0t";
-	private static final String version = "6.0.1.2";
+	private static final String version = "6.0.1.3";
 	public static Modules modules;
 	public static L10N l10n;
-	
+
 	public static void main(String args[])
 	{
 		try
