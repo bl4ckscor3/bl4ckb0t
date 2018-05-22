@@ -1,6 +1,9 @@
 #Changelog
 ---
 
+###1.1.3
+- Fixed module not working due to missing user agent
+
 ###1.1.2
 - Fixed module not working due to reply changes Twitter made
 

@@ -76,7 +76,7 @@ public class ShowTweet extends Module implements LinkAction
 		
 		try
 		{
-			doc = Jsoup.connect(link).get();
+			doc = Jsoup.connect(link).userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.183 Safari/537.36 Vivaldi/1.96.1147.42").get();
 		}
 		catch(HttpStatusException e)
 		{
