@@ -20,7 +20,7 @@ import bl4ckscor3.bot.bl4ckb0t.util.Utilities;
 public class ShowTweet extends Module implements LinkAction
 {
 	private L10N l10n;
-	
+
 	public ShowTweet(String name)
 	{
 		super(name);
@@ -32,13 +32,13 @@ public class ShowTweet extends Module implements LinkAction
 		LinkManager.registerLinkAction(this);
 		l10n = new L10N(this, loader);
 	}
-	
+
 	@Override
 	public void onDisable()
 	{
 		LinkManager.removeLinkAction(this);
 	}
-	
+
 	@Override
 	public String[] getUsage(String channel)
 	{
@@ -46,13 +46,13 @@ public class ShowTweet extends Module implements LinkAction
 				l10n.translate("explanation", channel)
 		};
 	}
-	
+
 	@Override
 	public void handle(String channel, String user, String link) throws Exception
 	{
 		show(channel, user, link, 0);
 	}
-	
+
 	/**
 	 * Shows a Tweet
 	 * @param channel The channel to show the Tweet in
@@ -73,7 +73,7 @@ public class ShowTweet extends Module implements LinkAction
 			return;
 
 		Document doc = null;
-		
+
 		try
 		{
 			doc = Jsoup.connect(link).userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.183 Safari/537.36 Vivaldi/1.96.1147.42").get();
@@ -96,7 +96,7 @@ public class ShowTweet extends Module implements LinkAction
 		try
 		{
 			name = doc.select(".permalink-header > a:nth-child(1) > span:nth-child(2) > strong:nth-child(1)").get(0).ownText();
-			
+
 			if(doc.select(".permalink-header > a:nth-child(1) > span:nth-child(2) > span:nth-child(3) > span:nth-child(1)").size() != 0)
 				verified = true;
 		}
@@ -112,15 +112,15 @@ public class ShowTweet extends Module implements LinkAction
 				Logging.stackTrace(e2);
 				Utilities.sendMessage(channel, "Error. See log for details.");
 			}
-			
+
 			return;
 		}
 
 		Elements replyingTo = doc.select(".permalink-tweet > .ReplyingToContextBelowAuthor");
-		
+
 		account = doc.select(".permalink-header > a:nth-child(1) > span:nth-child(3)").text();
 		tweet = doc.select(".TweetTextSize--jumbo").get(0).text().replace("https://twitter.com", " https://twitter.com").replace("pic.twitter", " pic.twitter").replace(" ", "").trim();
-		
+
 		//adding people this tweet replies to, if it does
 		if(replyingTo.size() != 0)
 		{
@@ -129,9 +129,9 @@ public class ShowTweet extends Module implements LinkAction
 				tweet = e.text() + " " + tweet;
 			}
 		}
-		
+
 		String msg = Colors.BOLD + name + " (" + account + ") " + (verified ? "\u2713 " : "") + "- " + Colors.BOLD + tweet;
-		
+
 		//adding nested tweets prefixes
 		for(int i = depth; i > 0; i--)
 		{
@@ -140,20 +140,20 @@ public class ShowTweet extends Module implements LinkAction
 			else
 				msg = " " + msg;
 		}
-		
+
 		List<Element> vote = doc.select(".card2");
 		boolean hasVote = false;
-		
+
 		for(Element e : vote)
 		{
 			if(e.hasAttr("data-card2-name") && e.attr("data-card2-name").matches("poll[0-9]+choice_text_only"))
 				hasVote = true;
 		}
-			
+
 		Utilities.sendMessage(channel, msg.replace("…", "") + (hasVote ? Colors.ITALICS + " (" + l10n.translate("vote", channel) + ")" : ""));
-		
+
 		String[] split = tweet.split(" ");
-		
+
 		try
 		{
 			for(int i = 0; i < split.length; i++)
@@ -165,7 +165,7 @@ public class ShowTweet extends Module implements LinkAction
 			}
 		}
 		catch(ArrayIndexOutOfBoundsException e){} //happens when the Tweet doesn't actually have any quoted Tweet in it
-		
+
 		String links = "";
 
 		//extracting all links from the tweet
