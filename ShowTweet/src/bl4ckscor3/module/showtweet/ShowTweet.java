@@ -119,7 +119,14 @@ public class ShowTweet extends Module implements LinkAction
 		Elements replyingTo = doc.select(".permalink-tweet > .ReplyingToContextBelowAuthor");
 
 		account = doc.select(".permalink-header > a:nth-child(1) > span:nth-child(3)").text();
-		tweet = doc.select(".TweetTextSize--jumbo").get(0).text().replace("https://twitter.com", " https://twitter.com").replace("pic.twitter", " pic.twitter").replace(" ", "").trim();
+		Element text = doc.select(".TweetTextSize--jumbo").get(0);
+
+		for(Element img : text.getElementsByClass("Emoji"))
+		{
+			img.appendText(img.attr("alt"));
+		}
+
+		tweet = text.text().replace("https://twitter.com", " https://twitter.com").replace("pic.twitter", " pic.twitter").replace(" ", "").trim();
 
 		//adding people this tweet replies to, if it does
 		if(replyingTo.size() != 0)

@@ -1,6 +1,9 @@
 #Changelog
 ---
 
+##1.2
+- Any Emojis within a Tweet will now be shown in IRC
+
 ###1.1.3
 - Fixed module not working due to missing user agent
 
