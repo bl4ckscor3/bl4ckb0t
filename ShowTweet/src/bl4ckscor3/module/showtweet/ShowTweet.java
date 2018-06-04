@@ -63,7 +63,7 @@ public class ShowTweet extends Module implements LinkAction
 	{
 		String name = "";
 		String account = "";
-		String tweet = "";
+		String tweetText = "";
 		boolean verified = false;
 
 		if(link.startsWith("www."))
@@ -119,25 +119,26 @@ public class ShowTweet extends Module implements LinkAction
 		Elements replyingTo = doc.select(".permalink-tweet > .ReplyingToContextBelowAuthor");
 
 		account = doc.select(".permalink-header > a:nth-child(1) > span:nth-child(3)").text();
-		Element text = doc.select(".TweetTextSize--jumbo").get(0);
+		Element tweetElement = doc.select(".tweet").get(0);
+		Element textElement = tweetElement.select(".TweetTextSize--jumbo").get(0);
 
-		for(Element img : text.getElementsByClass("Emoji"))
+		for(Element img : textElement.getElementsByClass("Emoji"))
 		{
 			img.appendText(img.attr("alt"));
 		}
 
-		tweet = text.text().replace("https://twitter.com", " https://twitter.com").replace("pic.twitter", " pic.twitter").replace(" ", "").trim();
+		tweetText = textElement.text().replace("https://twitter.com", " https://twitter.com").replace("pic.twitter", " pic.twitter").replace(" ", "").trim();
 
 		//adding people this tweet replies to, if it does
 		if(replyingTo.size() != 0)
 		{
 			for(Element e : replyingTo.select(".js-user-profile-link"))
 			{
-				tweet = e.text() + " " + tweet;
+				tweetText = e.text() + " " + tweetText;
 			}
 		}
 
-		String msg = Colors.BOLD + name + " (" + account + ") " + (verified ? "\u2713 " : "") + "- " + Colors.BOLD + tweet;
+		String msg = Colors.BOLD + name + " (" + account + ") " + (verified ? "\u2713 " : "") + "- " + Colors.BOLD + tweetText;
 
 		//adding nested tweets prefixes
 		for(int i = depth; i > 0; i--)
@@ -148,7 +149,7 @@ public class ShowTweet extends Module implements LinkAction
 				msg = " " + msg;
 		}
 
-		List<Element> vote = doc.select(".card2");
+		List<Element> vote = tweetElement.select(".card2");
 		boolean hasVote = false;
 
 		for(Element e : vote)
@@ -159,7 +160,7 @@ public class ShowTweet extends Module implements LinkAction
 
 		Utilities.sendMessage(channel, msg.replace("…", "") + (hasVote ? Colors.ITALICS + " (" + l10n.translate("vote", channel) + ")" : ""));
 
-		String[] split = tweet.split(" ");
+		String[] split = tweetText.split(" ");
 
 		try
 		{

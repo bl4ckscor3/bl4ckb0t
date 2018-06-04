@@ -1,6 +1,9 @@
 #Changelog
 ---
 
+###1.2.1
+- Fix "This Tweet has a vote" showing up when an answer to a Tweet has a vote
+
 ##1.2
 - Any Emojis within a Tweet will now be shown in IRC
 
