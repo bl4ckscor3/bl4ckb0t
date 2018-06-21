@@ -1,5 +1,5 @@
 # bl4ckb0t
-IRC-Bot for Java 8, made with [PircBotX 2.1](https://github.com/thelq/pircbotx) | [See the bot in action](webchat.esper.net/?channels=bl4ckscor3) | Used libraries: Some AOSP classes, see Apache-License part.  
+IRC-Bot for Java 8, made with [PircBotX 2.1](https://github.com/thelq/pircbotx) | Used libraries: Some AOSP classes, see Apache-License part.  
 [Trello board](https://trello.com/b/039j1jFa/bl4ckb0t)  
 Thanks to Lord_Ralex for help on [v2.0](http://github.com/bl4ckscor3/bl4ckb0t/commit/0703810f5870d2cdb7c678ff983671c2884fa7e9), he did the whole command system work :)
 
