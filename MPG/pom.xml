@@ -1,0 +1,15 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>akino_germany.bot</groupId>
+  <artifactId>bl4ckb0t.modules.mpg</artifactId>
+  <version>0.0.1</version>
+  <name>Miles per gallon converter</name>
+  <description>duh.</description>
+      <dependencies>
+        <dependency>
+            <groupId>bl4ckscor3.bot</groupId>
+            <artifactId>bl4ckb0t</artifactId>
+            <version>6.0.1.3</version>
+        </dependency>
+    </dependencies>
+</project>
