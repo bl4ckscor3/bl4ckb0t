@@ -64,7 +64,7 @@ public class Remind extends Module
 				if(reminders.size() > 0)
 				{
 					String ids = "";
-					boolean reminder = false; //wether the user has any active reminder or not
+					boolean reminder = false; //whether the user has any active reminder or not
 					
 					for(Reminder r : reminders)
 					{

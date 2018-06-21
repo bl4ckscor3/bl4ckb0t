@@ -40,7 +40,7 @@ public class Core
 
 	/**
 	 * Creates the bot and starts it
-	 * @param wip Wether or not the bot should be started as a development version
+	 * @param wip Whether or not the bot should be started as a development version
 	 */
 	public static void createBot(boolean wip) throws Exception
 	{

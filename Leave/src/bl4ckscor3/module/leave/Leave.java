@@ -96,9 +96,9 @@ public class Leave extends Module
 		}
 		
 		/**
-		 * Checks wether the bot has joined the given channel
+		 * Checks whether the bot has joined the given channel
 		 * @param channel The channel to check
-		 * @return Wether the bot has joined the given channel or not
+		 * @return Whether the bot has joined the given channel or not
 		 */
 		public boolean hasJoinedChannel(String channel)
 		{

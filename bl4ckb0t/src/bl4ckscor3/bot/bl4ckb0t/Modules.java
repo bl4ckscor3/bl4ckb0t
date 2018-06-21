@@ -143,7 +143,7 @@ public class Modules
 	}
 
 	/**
-	 * Checks wether a module with the given name is loaded
+	 * Checks whether a module with the given name is loaded
 	 * @param name The module name to check
 	 * @return true if the module is loaded, false otherwise
 	 */

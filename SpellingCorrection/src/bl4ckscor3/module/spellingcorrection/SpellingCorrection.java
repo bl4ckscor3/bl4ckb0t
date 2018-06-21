@@ -215,7 +215,7 @@ public class SpellingCorrection extends Module
 		 * @param channel The channel the SpellingCorrection got called from
 		 * @param user The user who called the SpellingCorrection
 		 * @param split The message split by slashes
-		 * @param correctsDifferentUser Wether or not the issuer corrects their own or another person's spelling
+		 * @param correctsDifferentUser Whether or not the issuer corrects their own or another person's spelling
 		 * @param userToCorrect The user to correct the spelling of
 		 */
 		private void correctSpelling(String channel, String user, String[] split, boolean correctsDifferentUser, String userToCorrect)

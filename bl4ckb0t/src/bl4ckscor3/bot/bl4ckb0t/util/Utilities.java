@@ -58,7 +58,7 @@ public class Utilities
 	/**
 	 * Checks if the specified string is starting with a number
 	 * @param s The string to check
-	 * @return Wether the string starts with a number or not
+	 * @return Whether the string starts with a number or not
 	 */
 	public static boolean startsWithNumber(String s)
 	{
@@ -66,7 +66,7 @@ public class Utilities
 	}
 
 	/**
-	 * Checks wether the given user has the given permission level
+	 * Checks whether the given user has the given permission level
 	 * @param user The user to check for
 	 * @param level The level to check for, must be either 1, 2 or 3
 	 * @return true if the user has the given permission level, false otherwise, or if the level is not 1, 2 or 3

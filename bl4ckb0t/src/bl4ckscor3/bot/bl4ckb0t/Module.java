@@ -82,7 +82,7 @@ public abstract class Module
 	}
 	
 	/**
-	 * Checks wether this module has registered channel commands or not
+	 * Checks whether this module has registered channel commands or not
 	 * @return true if the module registered channel commands, false otherwise
 	 */
 	public final boolean hasChannelCommand()
@@ -100,7 +100,7 @@ public abstract class Module
 	}
 	
 	/**
-	 * Checks wether this module has registered private commands or not
+	 * Checks whether this module has registered private commands or not
 	 * @return true if the module registered private commands, false otherwise
 	 */
 	public final boolean hasPrivateCommand()

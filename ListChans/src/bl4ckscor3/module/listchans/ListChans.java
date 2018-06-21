@@ -114,7 +114,7 @@ public class ListChans extends Module
 
 		/**
 		 * Gets the channels the bot has joined
-		 * @param listSecretChannels Wether to list secret channels
+		 * @param listSecretChannels Whether to list secret channels
 		 */
 		public String[] getJoinedChannels(boolean listSecretChannels)
 		{

@@ -13,7 +13,7 @@ public interface LinkAction
 	public void handle(String channel, String user, String link) throws Exception;
 	
 	/**
-	 * Checks wether or not the given link is valid for this LinkAction
+	 * Checks whether or not the given link is valid for this LinkAction
 	 * @param channel The channel the link got sent in
 	 * @param link The link to check
 	 * @return true if the link can be executed by this LinkAction, false otherwise

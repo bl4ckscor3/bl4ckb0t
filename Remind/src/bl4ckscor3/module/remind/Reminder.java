@@ -34,7 +34,7 @@ public class Reminder
 	 * @param channel The channel this Reminder got issued from
 	 * @param e The reminder text
 	 * @param timeDue How long to wait between issuing the Reminder and reminding the person
-	 * @param load Wether or not the reminder gets loaded from a saved reminder
+	 * @param load Whether or not the reminder gets loaded from a saved reminder
 	 */
 	public Reminder(String user, String channel, String e, long timeDue, boolean load) throws URISyntaxException, IOException
 	{

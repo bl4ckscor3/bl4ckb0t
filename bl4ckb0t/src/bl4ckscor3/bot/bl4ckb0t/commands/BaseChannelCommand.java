@@ -26,7 +26,7 @@ public abstract class BaseChannelCommand implements ICommand<MessageEvent>
 	/**
 	 * Checks if the String is a valid alias
 	 * @param check The String to check, WITHOUT the command prefix
-	 * @return Wether the checked String is a valid alias or not
+	 * @return Whether the checked String is a valid alias or not
 	 */
 	public final boolean isValidAlias(String check)
 	{

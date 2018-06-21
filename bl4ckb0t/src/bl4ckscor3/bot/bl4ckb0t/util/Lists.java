@@ -85,7 +85,7 @@ public class Lists
 	}
 
 	/**
-	 * Checks wether the given user has permission level 2
+	 * Checks whether the given user has permission level 2
 	 * @param user The user to check
 	 * @return true if the given user has permission level 2, false otherwise
 	 */
@@ -95,7 +95,7 @@ public class Lists
 	}
 	
 	/**
-	 * Checks wether the given user has permission level 3
+	 * Checks whether the given user has permission level 3
 	 * @param user The user to check
 	 * @return true if the given user has permission level 3, false otherwise
 	 */
@@ -105,7 +105,7 @@ public class Lists
 	}
 	
 	/**
-	 * Checks wether the given user is being ignored by the bot
+	 * Checks whether the given user is being ignored by the bot
 	 * @param user The user to check
 	 * @return true if the given user is being ignored, false otherwise
 	 */
