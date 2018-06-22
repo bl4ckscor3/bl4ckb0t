@@ -26,17 +26,18 @@ public class ChannelCommand extends BaseChannelCommand {
 		if(args.length == 2) {
 			if(args[0].equals("us")) {
 				calc = 235/(Float.parseFloat(args[1]));
-				result = String.format("%d mpg (US) sind %f l/100km", Integer.parseInt(args[1]), calc);
+				result = String.format("%s mpg (US) sind %f l/100km", args[1], calc);
 				Utilities.sendMessage(channel, result);
 			} else if(args[0].equals("imp")) {
 				calc = 282/(Float.parseFloat(args[1]));
-				result = String.format("%d mpg (Imperial) sind %f l/100km", Integer.parseInt(args[1]), calc);
+				result = String.format("%s mpg (Imperial) sind %f l/100km", args[1], calc);
 				Utilities.sendMessage(channel, result);
 			}
 		} else if(args.length == 1) {
 			calc = 235/(Float.parseFloat(args[0]));
 			calc2 = 282/(Float.parseFloat(args[0]));
-			result = String.format("%d l/100km sind %f mpg (US) und %f mpg (Imperial) ", Integer.parseInt(args[0]), calc, calc2);
+			result = String.format("%s l/100km sind %f mpg (US) und %f mpg (Imperial) ", args[0], calc, calc2);
+			Utilities.sendMessage(channel, result);
 		}
 		
 	}
